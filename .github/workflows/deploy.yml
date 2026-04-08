@@ -1,0 +1,101 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: ["main"]
+
+env:
+  DOMAIN: "erp.weberq.in"
+  APP_NAME: "weberq-erp"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          # GHCR_PAT needs repo scope to access private submodule repos
+          token: ${{ secrets.GHCR_PAT }}
+
+      - name: Set lowercase owner
+        run: echo "OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and Push Image
+        run: |
+          IMAGE_SHA=ghcr.io/${OWNER_LC}/${{ env.APP_NAME }}:${{ github.sha }}
+          IMAGE_LATEST=ghcr.io/${OWNER_LC}/${{ env.APP_NAME }}:latest
+          docker build --no-cache -t $IMAGE_SHA -t $IMAGE_LATEST .
+          docker push $IMAGE_SHA
+          docker push $IMAGE_LATEST
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.0
+        env:
+          DB_HOST: ${{ secrets.DB_HOST || 'db' }}
+          DB_PORT: ${{ secrets.DB_PORT || '5432' }}
+          DB_USER: ${{ secrets.DB_USER || 'odoo' }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          ODOO_MASTER_PASSWORD: ${{ secrets.ODOO_MASTER_PASSWORD || 'changeme' }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: DB_HOST,DB_PORT,DB_USER,DB_PASSWORD,ODOO_MASTER_PASSWORD
+          script: |
+            DOMAIN="erp.weberq.in"
+            APP_NAME="weberq-erp"
+            OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+            IMAGE="ghcr.io/$OWNER_LC/$APP_NAME:${{ github.sha }}"
+
+            echo "Login to GHCR..."
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u $OWNER_LC --password-stdin
+
+            echo "Pull exact image..."
+            docker pull $IMAGE
+
+            echo "Stop old container..."
+            docker rm -f $APP_NAME || true
+
+            echo "Run new container..."
+            docker run -d \
+              --name $APP_NAME \
+              --network web_network \
+              --restart unless-stopped \
+              -e HOST="$DB_HOST" \
+              -e PORT="$DB_PORT" \
+              -e USER="$DB_USER" \
+              -e PASSWORD="$DB_PASSWORD" \
+              -e ADMIN_PASSWD="$ODOO_MASTER_PASSWORD" \
+              -e WORKERS="4" \
+              -e LOG_LEVEL="info" \
+              -l "traefik.enable=true" \
+              -l "traefik.http.routers.$APP_NAME.rule=Host(\`$DOMAIN\`) || Host(\`www.$DOMAIN\`)" \
+              -l "traefik.http.routers.$APP_NAME.entrypoints=web,websecure" \
+              -l "traefik.http.routers.$APP_NAME.tls=true" \
+              -l "traefik.http.routers.$APP_NAME.tls.certresolver=letsencrypt" \
+              -l "traefik.http.services.$APP_NAME.loadbalancer.server.port=8069" \
+              -l "traefik.http.routers.${APP_NAME}-ws.rule=(Host(\`$DOMAIN\`) || Host(\`www.$DOMAIN\`)) && PathPrefix(\`/websocket\`)" \
+              -l "traefik.http.routers.${APP_NAME}-ws.entrypoints=websecure" \
+              -l "traefik.http.routers.${APP_NAME}-ws.tls=true" \
+              -l "traefik.http.routers.${APP_NAME}-ws.tls.certresolver=letsencrypt" \
+              -l "traefik.http.services.${APP_NAME}-ws.loadbalancer.server.port=8072" \
+              $IMAGE
+
+            echo "Cleanup old images..."
+            docker image prune -f
+
+            echo "Deploy complete."
