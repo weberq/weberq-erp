@@ -65,13 +65,16 @@ jobs:
             IMAGE="ghcr.io/$OWNER_LC/$APP_NAME:${{ github.sha }}"
 
             echo "Login to GHCR..."
-            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u $OWNER_LC --password-stdin
-
-            echo "Pull exact image..."
-            docker pull $IMAGE
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u $OWNER_LC --password-stdin || true
 
             echo "Stop old container..."
             docker rm -f $APP_NAME || true
+
+            echo "Cleanup old images to free disk space..."
+            docker image prune -af
+
+            echo "Pull exact image..."
+            docker pull $IMAGE
 
             echo "Run new container..."
             docker run -d \
