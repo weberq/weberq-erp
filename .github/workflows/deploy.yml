@@ -106,15 +106,18 @@ jobs:
               -e WORKERS="4" \
               -e LOG_LEVEL="info" \
               -l "traefik.enable=true" \
+              -l "traefik.docker.network=web_network" \
               -l "traefik.http.routers.$APP_NAME.rule=Host(\`$DOMAIN\`) || Host(\`www.$DOMAIN\`)" \
               -l "traefik.http.routers.$APP_NAME.entrypoints=web,websecure" \
               -l "traefik.http.routers.$APP_NAME.tls=true" \
               -l "traefik.http.routers.$APP_NAME.tls.certresolver=letsencrypt" \
+              -l "traefik.http.routers.$APP_NAME.service=$APP_NAME" \
               -l "traefik.http.services.$APP_NAME.loadbalancer.server.port=8069" \
               -l "traefik.http.routers.${APP_NAME}-ws.rule=(Host(\`$DOMAIN\`) || Host(\`www.$DOMAIN\`)) && PathPrefix(\`/websocket\`)" \
-              -l "traefik.http.routers.${APP_NAME}-ws.entrypoints=websecure" \
+              -l "traefik.http.routers.${APP_NAME}-ws.entrypoints=web,websecure" \
               -l "traefik.http.routers.${APP_NAME}-ws.tls=true" \
               -l "traefik.http.routers.${APP_NAME}-ws.tls.certresolver=letsencrypt" \
+              -l "traefik.http.routers.${APP_NAME}-ws.service=${APP_NAME}-ws" \
               -l "traefik.http.services.${APP_NAME}-ws.loadbalancer.server.port=8072" \
               $IMAGE
 
