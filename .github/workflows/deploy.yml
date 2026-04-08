@@ -21,7 +21,7 @@ jobs:
         with:
           submodules: recursive
           # GHCR_PAT needs repo scope to access private submodule repos
-          token: ${{ secrets.GHCR_PAT }}
+          token: ${{ secrets.GHCR_PAT || secrets.GITHUB_TOKEN }}
 
       - name: Set lowercase owner
         run: echo "OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
