@@ -1,0 +1,3 @@
+[submodule "custom_addons/weberq_branding"]
+	path = custom_addons/weberq_branding
+	url = git@github.com:weberq/erp_weberq_branding.git
