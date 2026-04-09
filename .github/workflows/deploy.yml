@@ -119,7 +119,7 @@ jobs:
               -l "traefik.http.routers.${APP_NAME}-ws.tls.certresolver=letsencrypt" \
               -l "traefik.http.routers.${APP_NAME}-ws.service=${APP_NAME}-ws" \
               -l "traefik.http.services.${APP_NAME}-ws.loadbalancer.server.port=8072" \
-              $IMAGE
+              $IMAGE -d "$DB_USER" -u weberq_branding
 
             echo "Cleanup dangling images..."
             docker image prune -f
