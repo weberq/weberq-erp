@@ -24,7 +24,7 @@ jobs:
           # actions/checkout injects an extraheader overriding our PAT. We must remove it.
           git config --local --unset-all "http.https://github.com/.extraheader" || true
           git config --global url."https://${{ secrets.GHCR_PAT }}:x-oauth-basic@github.com/".insteadOf "git@github.com:"
-          git submodule update --init --recursive
+          git submodule update --init --recursive --remote
 
       - name: Set lowercase owner
         run: echo "OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
