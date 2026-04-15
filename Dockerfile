@@ -62,12 +62,27 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-reco
     && rm -rf /var/lib/apt/lists/*
 
 # ─── wkhtmltopdf (patched Qt build — required for PDF headers/footers) ───────
-RUN wget -q \
-    https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.jammy_amd64.deb \
-    -O /tmp/wkhtmltox.deb \
-    && dpkg -i /tmp/wkhtmltox.deb || true \
+# NOTE: The upstream wkhtmltopdf project no longer publishes Noble (24.04) debs.
+# We install the Focal (20.04) build, which is the last patched-Qt release,
+# and force-install its dependencies manually.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    fontconfig \
+    libfreetype6 \
+    libjpeg-turbo8 \
+    libpng16-16t64 \
+    libx11-6 \
+    libxcb1 \
+    libxext6 \
+    libxrender1 \
+    xfonts-75dpi \
+    xfonts-base \
+    && wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.jammy_amd64.deb \
+       -O /tmp/wkhtmltox.deb \
+    && dpkg --force-depends -i /tmp/wkhtmltox.deb \
     && apt-get install -f -y \
-    && rm /tmp/wkhtmltox.deb
+    && rm /tmp/wkhtmltox.deb \
+    && rm -rf /var/lib/apt/lists/* \
+    && wkhtmltopdf --version
 
 # ─── Less CSS pre-processor (needed for Odoo backend styles) ─────────────────
 RUN npm install -g less less-plugin-clean-css
