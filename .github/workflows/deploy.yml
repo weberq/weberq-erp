@@ -38,7 +38,10 @@ jobs:
         run: |
           IMAGE_SHA=ghcr.io/${OWNER_LC}/${{ env.APP_NAME }}:${{ github.sha }}
           IMAGE_LATEST=ghcr.io/${OWNER_LC}/${{ env.APP_NAME }}:latest
-          docker build --no-cache -t $IMAGE_SHA -t $IMAGE_LATEST .
+          # Fingerprint of the Odoo core and all addons. The deploy upgrades every
+          # module when it differs from the running release's.
+          CORE_REV=$(git rev-parse HEAD:odoo HEAD:addons HEAD:custom_addons/odoomates-apps | sha1sum | cut -c1-12)
+          docker build --no-cache --label weberq.core-rev=$CORE_REV -t $IMAGE_SHA -t $IMAGE_LATEST .
           docker push $IMAGE_SHA
           docker push $IMAGE_LATEST
 
@@ -184,6 +187,29 @@ jobs:
             fi
 
             docker rm -f "$APP_NAME" 2>/dev/null || true
+
+            # Odoo core or addon code changed since the running release (or the
+            # release is unknown): update every module so data and view fixes apply
+            core_rev() {
+              docker inspect -f '{{index .Config.Labels "weberq.core-rev"}}' "$1" 2>/dev/null | grep -v '<no value>' || true
+            }
+            NEW_REV=$(core_rev "$IMAGE")
+            PREV_REV=""
+            [ -n "$PREV_IMAGE" ] && PREV_REV=$(core_rev "$PREV_IMAGE")
+            if [ -z "$NEW_REV" ] || [ "$NEW_REV" != "$PREV_REV" ]; then
+              UPGRADE_MODULES="all"
+            fi
+
+            if docker exec odoo-db psql -U "$DB_USER" -lqt | cut -d'|' -f1 | grep -qw "$DB_NAME"; then
+              BACKUP_DIR="$HOME/backups/weberq-erp"
+              BACKUP_FILE="$BACKUP_DIR/$DB_NAME-$(date -u +%Y%m%dT%H%M%SZ)-$(echo "${IMAGE##*:}" | cut -c1-12).dump"
+              echo "Back up database to $BACKUP_FILE..."
+              mkdir -p "$BACKUP_DIR"
+              docker exec odoo-db pg_dump -U "$DB_USER" -Fc "$DB_NAME" > "$BACKUP_FILE" \
+                || { rm -f "$BACKUP_FILE"; rollback "database backup failed"; }
+              # Keep the 10 most recent
+              ls -1t "$BACKUP_DIR"/*.dump | tail -n +11 | xargs -r rm --
+            fi
 
             # Upgrade as a one-off step so container restarts don't re-run it
             echo "Upgrade modules ($UPGRADE_MODULES)..."
