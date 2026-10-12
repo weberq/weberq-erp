@@ -1,0 +1,248 @@
+name: Build and Deploy
+
+on:
+  push:
+    # main deploys; weberq-* branches only build an image, for testing
+    branches: ["main", "weberq-*"]
+
+env:
+  DOMAIN: "erp.weberq.in"
+  APP_NAME: "weberq-erp"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@v4
+
+      - name: Setup submodule access and initialize
+        run: |
+          # actions/checkout injects an extraheader overriding our PAT. We must remove it.
+          git config --local --unset-all "http.https://github.com/.extraheader" || true
+          git config --global url."https://${{ secrets.GHCR_PAT }}:x-oauth-basic@github.com/".insteadOf "git@github.com:"
+          # Build exactly the submodule commits recorded in this repo. To take a newer
+          # version: ./scripts/submodules.sh pull <name>, test it, commit the new pointer.
+          git submodule update --init --recursive
+
+      - name: Set lowercase owner
+        run: echo "OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and Push Image
+        run: |
+          IMAGE_SHA=ghcr.io/${OWNER_LC}/${{ env.APP_NAME }}:${{ github.sha }}
+          IMAGE_LATEST=ghcr.io/${OWNER_LC}/${{ env.APP_NAME }}:latest
+          # Fingerprint of the Odoo core and all addons. The deploy upgrades every
+          # module when it differs from the running release's.
+          CORE_REV=$(git rev-parse HEAD:odoo HEAD:addons HEAD:custom_addons/odoomates-apps | sha1sum | cut -c1-12)
+          # Odoo series (e.g. 20.0). The deploy never rolls back across series.
+          SERIES=$(sed -nE 's/^version_info = \(([0-9]+), ([0-9]+),.*/\1.\2/p' odoo/release.py)
+          docker build --no-cache --label weberq.core-rev=$CORE_REV --label weberq.odoo-series=$SERIES -t $IMAGE_SHA .
+          docker push $IMAGE_SHA
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            docker tag $IMAGE_SHA $IMAGE_LATEST
+            docker push $IMAGE_LATEST
+          fi
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.0
+        env:
+          DB_HOST: ${{ secrets.DB_HOST || 'odoo-db' }}
+          DB_PORT: ${{ secrets.DB_PORT || '5432' }}
+          DB_USER: ${{ secrets.DB_USER || 'odoo' }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          ODOO_MASTER_PASSWORD: ${{ secrets.ODOO_MASTER_PASSWORD }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: DB_HOST,DB_PORT,DB_USER,DB_PASSWORD,ODOO_MASTER_PASSWORD
+          command_timeout: 30m
+          script: |
+            DOMAIN="erp.weberq.in"
+            APP_NAME="weberq-erp"
+            DB_NAME="weberq"
+            DATA_VOLUME="odoo_data"
+            UPGRADE_MODULES="weberq_branding"
+            OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+            IMAGE="ghcr.io/$OWNER_LC/$APP_NAME:${{ github.sha }}"
+
+            if [ -z "$DB_PASSWORD" ]; then
+              echo "DB_PASSWORD secret is not set, aborting."
+              exit 1
+            fi
+
+            echo "Login to GHCR..."
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u $OWNER_LC --password-stdin || true
+
+            echo "Ensure Database container is running..."
+            if ! docker ps -a --format '{{.Names}}' | grep -Eq "^odoo-db\$"; then
+              echo "Creating missing Postgres container..."
+              docker run -d \
+                --name odoo-db \
+                --network web_network \
+                --restart unless-stopped \
+                -e POSTGRES_DB="$DB_USER" \
+                -e POSTGRES_USER="$DB_USER" \
+                -e POSTGRES_PASSWORD="$DB_PASSWORD" \
+                -v postgres_data:/var/lib/postgresql/data \
+                postgres:16-alpine
+            else
+              docker start odoo-db
+            fi
+
+            echo "Wait for Postgres..."
+            DB_READY=false
+            for i in $(seq 1 30); do
+              if docker exec odoo-db pg_isready -q -U "$DB_USER"; then DB_READY=true; break; fi
+              sleep 2
+            done
+            [ "$DB_READY" = true ] || { echo "Postgres did not become ready, aborting."; exit 1; }
+
+            # Only ERP images are pruned, and images used by a container (the
+            # current release, kept for rollback) survive
+            echo "Remove unused ERP images to free disk space..."
+            docker image prune -af --filter "label=org.opencontainers.image.source=https://github.com/weberq/weberq-erp"
+
+            echo "Pull exact image..."
+            docker pull "$IMAGE" || { echo "Image pull failed, old container left running."; exit 1; }
+
+            # Every Odoo container gets the same database settings and the persistent
+            # data volume (filestore, sessions). Sized for the shared e2-medium VM
+            # (2 vCPU, 4 GB): the memory cap keeps the other sites on it alive if
+            # Odoo misbehaves.
+            erp_run() {
+              docker run \
+                --network web_network \
+                --memory 2g \
+                -v "$DATA_VOLUME":/var/lib/odoo \
+                -e HOST="$DB_HOST" \
+                -e PORT="$DB_PORT" \
+                -e USER="$DB_USER" \
+                -e PASSWORD="$DB_PASSWORD" \
+                -e DB_NAME="$DB_NAME" \
+                -e ADMIN_PASSWD="$ODOO_MASTER_PASSWORD" \
+                -e WORKERS="2" \
+                -e MAX_CRON_THREADS="1" \
+                -e LOG_LEVEL="info" \
+                "$@"
+            }
+
+            start_erp() {
+              erp_run -d \
+                --name "$APP_NAME" \
+                --restart unless-stopped \
+                -l "traefik.enable=true" \
+                -l "traefik.docker.network=web_network" \
+                -l "traefik.http.routers.$APP_NAME.rule=Host(\`$DOMAIN\`) || Host(\`www.$DOMAIN\`)" \
+                -l "traefik.http.routers.$APP_NAME.entrypoints=web,websecure" \
+                -l "traefik.http.routers.$APP_NAME.tls=true" \
+                -l "traefik.http.routers.$APP_NAME.tls.certresolver=letsencrypt" \
+                -l "traefik.http.routers.$APP_NAME.service=$APP_NAME" \
+                -l "traefik.http.services.$APP_NAME.loadbalancer.server.port=8069" \
+                -l "traefik.http.routers.${APP_NAME}-ws.rule=(Host(\`$DOMAIN\`) || Host(\`www.$DOMAIN\`)) && PathPrefix(\`/websocket\`)" \
+                -l "traefik.http.routers.${APP_NAME}-ws.entrypoints=web,websecure" \
+                -l "traefik.http.routers.${APP_NAME}-ws.tls=true" \
+                -l "traefik.http.routers.${APP_NAME}-ws.tls.certresolver=letsencrypt" \
+                -l "traefik.http.routers.${APP_NAME}-ws.service=${APP_NAME}-ws" \
+                -l "traefik.http.services.${APP_NAME}-ws.loadbalancer.server.port=8072" \
+                "$1" --config=/etc/odoo/odoo.conf
+            }
+
+            rollback() {
+              echo "Deploy failed: $1"
+              docker logs --tail 100 "$APP_NAME" 2>/dev/null || true
+              docker rm -f "$APP_NAME" 2>/dev/null || true
+              # An older Odoo series must never start on a database this one has
+              # already upgraded
+              if [ -n "$PREV_IMAGE" ] && [ -n "$PREV_SERIES" ] && [ "$PREV_SERIES" = "$NEW_SERIES" ]; then
+                echo "Rolling back to $PREV_IMAGE..."
+                start_erp "$PREV_IMAGE"
+              elif [ -n "$PREV_IMAGE" ]; then
+                echo "Not rolling back: $PREV_IMAGE runs Odoo ${PREV_SERIES:-unknown}, this release ${NEW_SERIES:-unknown}. Restore manually."
+              fi
+              exit 1
+            }
+
+            image_label() {
+              docker inspect -f "{{index .Config.Labels \"$2\"}}" "$1" 2>/dev/null | grep -v '<no value>' || true
+            }
+
+            PREV_IMAGE=$(docker inspect -f '{{.Config.Image}}' "$APP_NAME" 2>/dev/null || true)
+            NEW_SERIES=$(image_label "$IMAGE" weberq.odoo-series)
+            PREV_SERIES=""
+            [ -n "$PREV_IMAGE" ] && PREV_SERIES=$(image_label "$PREV_IMAGE" weberq.odoo-series)
+
+            echo "Stop old container..."
+            docker stop "$APP_NAME" 2>/dev/null || true
+
+            # One-time migration: before $DATA_VOLUME existed, each deploy started Odoo
+            # on a fresh anonymous volume. Carry the previous container's data over.
+            if ! docker volume inspect "$DATA_VOLUME" >/dev/null 2>&1 && [ -n "$PREV_IMAGE" ]; then
+              echo "Seeding $DATA_VOLUME from the previous container..."
+              if ! docker run --rm --user root --entrypoint bash \
+                  --volumes-from "$APP_NAME" \
+                  -v "$DATA_VOLUME":/seed \
+                  "$IMAGE" -c 'cp -a /var/lib/odoo/. /seed/ && chown -R odoo:odoo /seed'; then
+                docker volume rm "$DATA_VOLUME" >/dev/null 2>&1 || true
+                docker start "$APP_NAME" || true
+                echo "Seeding $DATA_VOLUME failed, old container restarted."
+                exit 1
+              fi
+            fi
+
+            docker rm -f "$APP_NAME" 2>/dev/null || true
+
+            # Odoo core or addon code changed since the running release (or the
+            # release is unknown): update every module so data and view fixes apply
+            NEW_REV=$(image_label "$IMAGE" weberq.core-rev)
+            PREV_REV=""
+            [ -n "$PREV_IMAGE" ] && PREV_REV=$(image_label "$PREV_IMAGE" weberq.core-rev)
+            if [ -z "$NEW_REV" ] || [ "$NEW_REV" != "$PREV_REV" ]; then
+              UPGRADE_MODULES="all"
+            fi
+
+            if docker exec odoo-db psql -U "$DB_USER" -lqt | cut -d'|' -f1 | grep -qw "$DB_NAME"; then
+              BACKUP_DIR="$HOME/backups/weberq-erp"
+              BACKUP_FILE="$BACKUP_DIR/$DB_NAME-$(date -u +%Y%m%dT%H%M%SZ)-$(echo "${IMAGE##*:}" | cut -c1-12).dump"
+              echo "Back up database to $BACKUP_FILE..."
+              mkdir -p "$BACKUP_DIR"
+              docker exec odoo-db pg_dump -U "$DB_USER" -Fc "$DB_NAME" > "$BACKUP_FILE" \
+                || { rm -f "$BACKUP_FILE"; rollback "database backup failed"; }
+              # Keep the 10 most recent
+              ls -1t "$BACKUP_DIR"/*.dump | tail -n +11 | xargs -r rm --
+            fi
+
+            # Upgrade as a one-off step so container restarts don't re-run it
+            echo "Upgrade modules ($UPGRADE_MODULES)..."
+            erp_run --rm "$IMAGE" --config=/etc/odoo/odoo.conf -d "$DB_NAME" -u "$UPGRADE_MODULES" --stop-after-init \
+              || rollback "module upgrade failed"
+
+            echo "Run new container..."
+            start_erp "$IMAGE" || rollback "container failed to start"
+
+            echo "Wait for Odoo to serve the login page..."
+            HEALTHY=false
+            for i in $(seq 1 60); do
+              if docker exec "$APP_NAME" curl -fsS -m 10 -o /dev/null http://localhost:8069/web/login 2>/dev/null; then HEALTHY=true; break; fi
+              sleep 5
+            done
+            [ "$HEALTHY" = true ] || rollback "Odoo did not serve /web/login in time"
+
+            echo "Cleanup dangling images..."
+            docker image prune -f
+
+            echo "Deploy complete."

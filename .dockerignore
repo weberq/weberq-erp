@@ -1,0 +1,12 @@
+# Keep the build context to what Odoo needs at runtime
+.git
+**/.git
+.github
+.gitmodules
+doc/
+debian/
+odoo-venv/
+**/__pycache__
+**/*.py[co]
+**/node_modules
+.weblate.json

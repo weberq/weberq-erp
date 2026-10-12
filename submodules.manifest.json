@@ -1,0 +1,23 @@
+{
+  "description": "WeberQ ERP - Custom Addons Submodule Manifest",
+  "base_path": "custom_addons",
+  "default_branch": "main",
+  "submodules": [
+    {
+      "name": "weberq_branding",
+      "repo": "git@github.com:weberq/erp_weberq_branding.git",
+      "path": "custom_addons/weberq_branding",
+      "branch": "20.0",
+      "description": "WeberQ brand customization and white-labeling for Odoo",
+      "enabled": true
+    },
+    {
+      "name": "odoomates-apps",
+      "repo": "https://github.com/odoomates/odooapps.git",
+      "path": "custom_addons/odoomates-apps",
+      "branch": "20.0",
+      "description": "Odoomates Apps",
+      "enabled": true
+    }
+  ]
+}
