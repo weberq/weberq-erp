@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Statutory schemes, next to the salary structure on the employee and
+         on contract templates -->
+    <record id="hr_employee_view_form_payroll_in" model="ir.ui.view">
+        <field name="name">hr.employee.form.payroll.in</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="om_hr_payroll.payroll_hr_employee_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='current_contract_struct']" position="after">
+                <field name="weberq_pf"/>
+                <field name="weberq_esi"/>
+                <field name="weberq_pt"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_employee_view_form_statutory_ids" model="ir.ui.view">
+        <field name="name">hr.employee.form.statutory.ids</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <field name="identification_id" position="after">
+                <field name="weberq_pan" placeholder="e.g. ABCDE1234F"/>
+                <field name="weberq_uan"/>
+                <field name="weberq_esic_number"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_contract_template_form_payroll_in" model="ir.ui.view">
+        <field name="name">hr.version.template.form.payroll.in</field>
+        <field name="model">hr.version</field>
+        <field name="inherit_id" ref="om_hr_payroll.hr_contract_form_inherit"/>
+        <field name="arch" type="xml">
+            <field name="struct_id" position="after">
+                <field name="weberq_pf"/>
+                <field name="weberq_esi"/>
+                <field name="weberq_pt"/>
+            </field>
+        </field>
+    </record>
+</odoo>

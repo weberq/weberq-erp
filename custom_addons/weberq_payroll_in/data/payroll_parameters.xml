@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Rates and ceilings read by the salary rules. Editable in Payroll >
+         Configuration: a new rate is a new value with its start date. -->
+    <data noupdate="1">
+
+        <record id="param_basic_rate" model="hr.rule.parameter">
+            <field name="name">Basic, % of the monthly gross</field>
+            <field name="code">IN_BASIC_RATE</field>
+            <field name="value_type">number</field>
+        </record>
+        <record id="param_basic_rate_v1" model="hr.rule.parameter.value">
+            <field name="parameter_id" ref="param_basic_rate"/>
+            <field name="date_from">2017-04-01</field>
+            <field name="value_number">50</field>
+        </record>
+
+        <record id="param_hra_rate" model="hr.rule.parameter">
+            <field name="name">HRA, % of Basic</field>
+            <field name="code">IN_HRA_RATE</field>
+            <field name="value_type">number</field>
+            <field name="note">40% outside the metro cities (Hyderabad included), 50% in Delhi, Mumbai, Kolkata and Chennai.</field>
+        </record>
+        <record id="param_hra_rate_v1" model="hr.rule.parameter.value">
+            <field name="parameter_id" ref="param_hra_rate"/>
+            <field name="date_from">2017-04-01</field>
+            <field name="value_number">40</field>
+        </record>
+
+        <record id="param_pf_employee_rate" model="hr.rule.parameter">
+            <field name="name">Provident Fund, employee rate (%)</field>
+            <field name="code">IN_PF_EE_RATE</field>
+            <field name="value_type">number</field>
+        </record>
+        <record id="param_pf_employee_rate_v1" model="hr.rule.parameter.value">
+            <field name="parameter_id" ref="param_pf_employee_rate"/>
+            <field name="date_from">2017-04-01</field>
+            <field name="value_number">12</field>
+        </record>
+
+        <record id="param_pf_employer_rate" model="hr.rule.parameter">
+            <field name="name">Provident Fund, employer rate (%)</field>
+            <field name="code">IN_PF_ER_RATE</field>
+            <field name="value_type">number</field>
+            <field name="note">EPF 3.67% plus EPS 8.33%.</field>
+        </record>
+        <record id="param_pf_employer_rate_v1" model="hr.rule.parameter.value">
+            <field name="parameter_id" ref="param_pf_employer_rate"/>
+            <field name="date_from">2017-04-01</field>
+            <field name="value_number">12</field>
+        </record>
+
+        <record id="param_pf_wage_ceiling" model="hr.rule.parameter">
+            <field name="name">Provident Fund, wage ceiling</field>
+            <field name="code">IN_PF_WAGE_CEILING</field>
+            <field name="value_type">number</field>
+            <field name="note">PF is computed on Basic up to this amount.</field>
+        </record>
+        <record id="param_pf_wage_ceiling_v1" model="hr.rule.parameter.value">
+            <field name="parameter_id" ref="param_pf_wage_ceiling"/>
+            <field name="date_from">2017-04-01</field>
+            <field name="value_number">15000</field>
+        </record>
+
+        <record id="param_esi_employee_rate" model="hr.rule.parameter">
+            <field name="name">ESI, employee rate (%)</field>
+            <field name="code">IN_ESI_EE_RATE</field>
+            <field name="value_type">number</field>
+        </record>
+        <record id="param_esi_employee_rate_v1" model="hr.rule.parameter.value">
+            <field name="parameter_id" ref="param_esi_employee_rate"/>
+            <field name="date_from">2019-07-01</field>
+            <field name="value_number">0.75</field>
+        </record>
+
+        <record id="param_esi_employer_rate" model="hr.rule.parameter">
+            <field name="name">ESI, employer rate (%)</field>
+            <field name="code">IN_ESI_ER_RATE</field>
+            <field name="value_type">number</field>
+        </record>
+        <record id="param_esi_employer_rate_v1" model="hr.rule.parameter.value">
+            <field name="parameter_id" ref="param_esi_employer_rate"/>
+            <field name="date_from">2019-07-01</field>
+            <field name="value_number">3.25</field>
+        </record>
+
+        <record id="param_esi_wage_limit" model="hr.rule.parameter">
+            <field name="name">ESI, gross wage limit</field>
+            <field name="code">IN_ESI_WAGE_LIMIT</field>
+            <field name="value_type">number</field>
+            <field name="note">ESI applies while the monthly gross is at most this amount.</field>
+        </record>
+        <record id="param_esi_wage_limit_v1" model="hr.rule.parameter.value">
+            <field name="parameter_id" ref="param_esi_wage_limit"/>
+            <field name="date_from">2017-01-01</field>
+            <field name="value_number">21000</field>
+        </record>
+
+        <!-- Telangana Professional Tax, monthly: up to 15,000 nil, up to
+             20,000 Rs 150, above Rs 200 -->
+        <record id="bracket_ts_pt" model="hr.salary.bracket">
+            <field name="name">Professional Tax, Telangana (monthly)</field>
+            <field name="code">IN_TS_PT</field>
+            <field name="computation">flat</field>
+        </record>
+        <record id="bracket_ts_pt_v1" model="hr.salary.bracket.version">
+            <field name="bracket_id" ref="bracket_ts_pt"/>
+            <field name="date_from">2013-04-01</field>
+        </record>
+        <record id="bracket_ts_pt_v1_band1" model="hr.salary.bracket.line">
+            <field name="version_id" ref="bracket_ts_pt_v1"/>
+            <field name="lower">0</field>
+            <field name="upper">15000</field>
+            <field name="fixed_amount">0</field>
+        </record>
+        <record id="bracket_ts_pt_v1_band2" model="hr.salary.bracket.line">
+            <field name="version_id" ref="bracket_ts_pt_v1"/>
+            <field name="lower">15000.01</field>
+            <field name="upper">20000</field>
+            <field name="fixed_amount">150</field>
+        </record>
+        <record id="bracket_ts_pt_v1_band3" model="hr.salary.bracket.line">
+            <field name="version_id" ref="bracket_ts_pt_v1"/>
+            <field name="lower">20000.01</field>
+            <field name="upper">0</field>
+            <field name="fixed_amount">200</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Monthly salary structure. The contract holds the monthly gross as its
+         wage; amounts are rounded to the rupee. The accounts are set by the
+         post-init hook, from the Indian chart of accounts of each company. -->
+    <data noupdate="1">
+
+        <record id="rule_basic" model="hr.salary.rule">
+            <field name="name">Basic</field>
+            <field name="code">BASIC</field>
+            <field name="sequence">10</field>
+            <field name="category_id" ref="om_hr_payroll.BASIC"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute"># the monthly gross, less the unpaid part of the period (unpaid_ratio is negative)
+gross = contract.wage * (1 + worked_days.unpaid_ratio())
+result = round(gross * parameters.IN_BASIC_RATE / 100)</field>
+        </record>
+
+        <record id="rule_hra" model="hr.salary.rule">
+            <field name="name">House Rent Allowance</field>
+            <field name="code">HRA</field>
+            <field name="sequence">20</field>
+            <field name="category_id" ref="om_hr_payroll.ALW"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = round(BASIC * parameters.IN_HRA_RATE / 100)</field>
+        </record>
+
+        <record id="rule_special" model="hr.salary.rule">
+            <field name="name">Special Allowance</field>
+            <field name="code">SPECIAL</field>
+            <field name="sequence">30</field>
+            <field name="category_id" ref="om_hr_payroll.ALW"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute"># what is left of the gross after Basic and HRA
+result = round(contract.wage * (1 + worked_days.unpaid_ratio())) - BASIC - HRA</field>
+        </record>
+
+        <record id="rule_bonus" model="hr.salary.rule">
+            <field name="name">Bonus / Arrears</field>
+            <field name="code">BONUS</field>
+            <field name="sequence">40</field>
+            <field name="category_id" ref="om_hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = bool(inputs.BONUS and inputs.BONUS.amount)</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = round(inputs.BONUS.amount)</field>
+        </record>
+        <record id="input_bonus" model="hr.rule.input">
+            <field name="name">Bonus / Arrears</field>
+            <field name="code">BONUS</field>
+            <field name="input_id" ref="rule_bonus"/>
+        </record>
+
+        <record id="rule_gross" model="hr.salary.rule">
+            <field name="name">Gross Salary</field>
+            <field name="code">GROSS</field>
+            <field name="sequence">100</field>
+            <field name="category_id" ref="om_hr_payroll.GROSS"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.BASIC + categories.ALW</field>
+        </record>
+
+        <record id="rule_pf_employee" model="hr.salary.rule">
+            <field name="name">Provident Fund (Employee)</field>
+            <field name="code">PF_EE</field>
+            <field name="sequence">110</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.weberq_pf</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -round(min(BASIC, parameters.IN_PF_WAGE_CEILING) * parameters.IN_PF_EE_RATE / 100)</field>
+        </record>
+
+        <record id="rule_esi_employee" model="hr.salary.rule">
+            <field name="name">ESI (Employee)</field>
+            <field name="code">ESI_EE</field>
+            <field name="sequence">120</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.weberq_esi and GROSS &lt;= parameters.IN_ESI_WAGE_LIMIT</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute"># ESI is rounded up to the next rupee
+amount = GROSS * parameters.IN_ESI_EE_RATE / 100
+result = -(int(amount) + (amount &gt; int(amount)))</field>
+        </record>
+
+        <record id="rule_professional_tax" model="hr.salary.rule">
+            <field name="name">Professional Tax</field>
+            <field name="code">PT</field>
+            <field name="sequence">130</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.weberq_pt</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -brackets.IN_TS_PT.compute(GROSS)</field>
+        </record>
+
+        <record id="rule_tds" model="hr.salary.rule">
+            <field name="name">TDS on Salary</field>
+            <field name="code">TDS</field>
+            <field name="sequence">140</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = bool(inputs.TDS and inputs.TDS.amount)</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute"># the month's share of the employee's projected income tax (section 192)
+result = -round(abs(inputs.TDS.amount))</field>
+        </record>
+        <record id="input_tds" model="hr.rule.input">
+            <field name="name">TDS for the month</field>
+            <field name="code">TDS</field>
+            <field name="input_id" ref="rule_tds"/>
+        </record>
+
+        <record id="rule_net" model="hr.salary.rule">
+            <field name="name">Net Salary</field>
+            <field name="code">NET</field>
+            <field name="sequence">200</field>
+            <field name="category_id" ref="om_hr_payroll.NET"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.BASIC + categories.ALW + categories.DED</field>
+        </record>
+
+        <record id="rule_pf_employer" model="hr.salary.rule">
+            <field name="name">Provident Fund (Employer)</field>
+            <field name="code">PF_ER</field>
+            <field name="sequence">300</field>
+            <field name="category_id" ref="om_hr_payroll.COMP"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.weberq_pf</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = round(min(BASIC, parameters.IN_PF_WAGE_CEILING) * parameters.IN_PF_ER_RATE / 100)</field>
+        </record>
+
+        <record id="rule_esi_employer" model="hr.salary.rule">
+            <field name="name">ESI (Employer)</field>
+            <field name="code">ESI_ER</field>
+            <field name="sequence">310</field>
+            <field name="category_id" ref="om_hr_payroll.COMP"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.weberq_esi and GROSS &lt;= parameters.IN_ESI_WAGE_LIMIT</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">amount = GROSS * parameters.IN_ESI_ER_RATE / 100
+result = int(amount) + (amount &gt; int(amount))</field>
+        </record>
+
+        <record id="structure_in_monthly" model="hr.payroll.structure">
+            <field name="name">India - Monthly Salary</field>
+            <field name="code">IN_MONTHLY</field>
+            <field name="parent_id" eval="False"/>
+            <field name="rule_ids" eval="[(6, 0, [
+                ref('rule_basic'), ref('rule_hra'), ref('rule_special'), ref('rule_bonus'),
+                ref('rule_gross'), ref('rule_pf_employee'), ref('rule_esi_employee'),
+                ref('rule_professional_tax'), ref('rule_tds'), ref('rule_net'),
+                ref('rule_pf_employer'), ref('rule_esi_employer'),
+            ])]"/>
+        </record>
+
+    </data>
+</odoo>
