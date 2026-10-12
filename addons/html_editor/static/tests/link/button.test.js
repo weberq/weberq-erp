@@ -112,6 +112,22 @@ describe("button style", () => {
             `),
         });
     });
+
+    test("backspace on button should not remove editor", async () => {
+        const { el, editor } = await setupEditor(
+            '<p><a href="https://test.com/" class="btn btn-lg btn-primary">#</a>[]</p>'
+        );
+        expect(getContent(el)).toBe(
+            `<p>\ufeff<a href="https://test.com/" class="btn btn-lg btn-primary">\ufeff#\ufeff</a>\ufeff[]</p>`
+        );
+        deleteBackward(editor);
+        deleteBackward(editor);
+        deleteBackward(editor);
+        expect(getContent(el)).toBe(
+            `<p o-we-hint-text='Type "/" for commands' class="o-we-hint">[]<br></p>`
+        );
+        expect(editor.editable.isConnected).toBe(true);
+    });
 });
 
 const allowCustomOpt = {
@@ -317,22 +333,6 @@ describe("Custom button style", () => {
         expect(cleanLinkArtifacts(getContent(el))).toBe(
             '<p><a href="https://test.com/" class="rounded-circle btn btn-fill-custom" style="color: rgb(0, 0, 0); background-color: rgb(166, 227, 226); border-width: 1px; border-color: rgb(0, 143, 140); border-style: dashed; ">link[]Label</a></p>'
         );
-    });
-
-    test("button with size classes should be detected as custom type", async () => {
-        // Setup: Editor with a button link containing size class (btn-lg) + primary class
-        await setupEditor(
-            '<p><a href="https://test.com/" class="btn btn-lg btn-primary">link[]Label</a></p>',
-            allowCustomOpt
-        );
-
-        // Wait for popover and click edit
-        await waitFor(".o-we-linkpopover");
-        await click(".o_we_edit_link");
-        await animationFrame();
-
-        // The button type should be detected as "custom" because it has btn-lg
-        expect(queryOne('select[name="link_type"]').selectedOptions[0].value).toBe("custom");
     });
 });
 

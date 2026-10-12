@@ -13,6 +13,7 @@ import {
     queryFirst,
     queryOne,
     queryRect,
+    resize,
     runAllTimers,
 } from "@odoo/hoot-dom";
 import { mockDate, mockTimeZone } from "@odoo/hoot-mock";
@@ -1533,6 +1534,7 @@ test(`week numbering`, async () => {
 
 test.tags("desktop");
 test(`render popover`, async () => {
+    onRpc("write", () => expect.step("write"));
     await mountView({
         resModel: "event",
         type: "calendar",
@@ -1573,6 +1575,13 @@ test(`render popover`, async () => {
     ).toHaveText("Partner");
 
     await contains(`.o_cw_popover .o_cw_popover_close`).click();
+    expect(`.o_cw_popover`).toHaveCount(0);
+
+    // Drag and drop with opened popover should work and close popover
+    await clickEvent(2);
+    expect(`.o_cw_popover`).toHaveCount(1);
+    await moveEventToTime(2, "2016-12-13 08:00:00");
+    expect.verifySteps(["write"]);
     expect(`.o_cw_popover`).toHaveCount(0);
 });
 
@@ -5248,6 +5257,66 @@ test(`calendar sidebar state is saved on session storage`, async () => {
     expect.verifySteps(["calendar.showSideBar-read", "calendar.showSideBar-true"]);
 });
 
+test.tags("desktop");
+test("calendar sidebar reacts to isSmall changes", async () => {
+    patchWithCleanup(sessionStorage, {
+        getItem(key) {
+            if (key === "calendar.showSideBar") {
+                return null;
+            }
+        },
+        setItem() {},
+    });
+
+    await mountView({
+        resModel: "event",
+        type: "calendar",
+        arch: `<calendar date_start="start" mode="week"/>`,
+    });
+    expect(".o_calendar_renderer").toHaveCount(1);
+    expect(".o_calendar_sidebar").toHaveCount(1);
+    expect(".o_sidebar_toggler").toHaveCount(1);
+    expect(".o_other_calendar_panel").toHaveCount(0);
+
+    // Reduce the viewport to a mobile size (isSmall = true)
+    // The sidebar (which actually takes the entire screen) should be hidden without interaction,
+    // and swapped for the mobile filter panel's toggle bar instead of the desktop sidebar.
+    await resize({ width: 500 });
+    await animationFrame();
+    expect(".o_calendar_renderer").toHaveCount(1);
+    expect(".o_calendar_sidebar").toHaveCount(0);
+    expect(".o_sidebar_toggler").toHaveCount(0);
+    expect(".o_other_calendar_panel").toHaveCount(1);
+
+    // Expand the viewport to desktop size, the sidebar should show (unless previously hidden),
+    // and the mobile filter panel's should be removed.
+    await resize({ width: 1200 });
+    await animationFrame();
+    expect(".o_calendar_renderer").toHaveCount(1);
+    expect(".o_calendar_sidebar").toHaveCount(1);
+    expect(".o_sidebar_toggler").toHaveCount(1);
+    expect(".o_other_calendar_panel").toHaveCount(0);
+});
+
+test.tags("desktop");
+test("calendar should keep displaying its content after widening from a mobile viewport", async () => {
+    // Reduce the viewport to a mobile size (isSmall = true)
+    await resize({ width: 500 });
+
+    await mountView({
+        resModel: "event",
+        type: "calendar",
+        arch: `<calendar date_start="start" mode="week"/>`,
+    });
+    expect(".o_calendar_renderer").toHaveCount(1);
+
+    await resize({ width: 1200 });
+    await animationFrame();
+
+    expect(".o_calendar_renderer").toHaveCount(1);
+    expect(".fc-view-harness").toBeVisible();
+});
+
 test(`calendar should show date information on header`, async () => {
     mockDate("2015-12-26 09:00:00");
 
@@ -5530,7 +5599,7 @@ test("update time while drag and drop on month mode", async () => {
     expect(".o_field_widget[name='stop']").toHaveText("Dec 29, 10:00 AM");
 });
 
-test("html field on calendar shouldn't have a tooltip", async () => {
+test("html and boolean fields on calendar shouldn't have a tooltip", async () => {
     Event._fields.description = fields.Html();
     Event._records[0].description = "<p>test html field</p>";
     await mountView({
@@ -5539,13 +5608,17 @@ test("html field on calendar shouldn't have a tooltip", async () => {
         arch: `
             <calendar date_start="start">
                 <field name="description"/>
+                <field name="is_all_day"/>
             </calendar>
         `,
     });
 
     await clickEvent(MockServer.env["event"][0].id);
     const descriptionField = queryFirst('.o_cw_popover_field .o_field_widget[name="description"]');
-    const parentLi = descriptionField.closest("li");
+    let parentLi = descriptionField.closest("li");
+    expect(parentLi).toHaveAttribute("data-tooltip", "");
+    const isAllDayField = queryFirst('.o_cw_popover_field .o_field_widget[name="is_all_day"]');
+    parentLi = isAllDayField.closest("li");
     expect(parentLi).toHaveAttribute("data-tooltip", "");
 });
 

@@ -275,6 +275,14 @@ class TestSalePurchaseStockFlow(TransactionCase):
         ])
         so.action_cancel()
         self.assertEqual(delivery.state, 'cancel')
+        po = so.stock_reference_ids.purchase_ids
+        self.assertRecordValues(po, [{'state': 'draft'}])
+        self.assertRegex(po.activity_ids.note, fr"Exception\(s\) occurred on the sale order\(s\)[\s\S]*{so.name}[\s\S]*Manual actions may be needed")
+        # Cancel the associated PO and reset to draft to see if it is properly re-considered
+        po.button_cancel()
+        po.button_draft()
+
+        # Reset the SO to draft and re-confirm
         so.action_draft()
         so.action_confirm()
         new_delivery = so.picking_ids - delivery
@@ -282,12 +290,19 @@ class TestSalePurchaseStockFlow(TransactionCase):
         self.assertRecordValues(new_delivery.move_ids, [
             {'product_id': self.mto_product.id, 'product_uom_qty': 2.0},
         ])
+        self.assertEqual(po, so.stock_reference_ids.purchase_ids)
+        self.assertRecordValues(po.order_line, [
+            {'product_id': self.mto_product.id, 'product_uom_qty': 4.0},
+        ])
         with Form(so) as so_form:
             with so_form.order_line.edit(0) as line:
                 line.product_uom_qty = 1
         self.assertEqual(so.picking_ids, delivery | new_delivery)
         self.assertRecordValues(new_delivery.move_ids, [
             {'product_id': self.mto_product.id, 'product_uom_qty': 1.0},
+        ])
+        self.assertRecordValues(po.order_line, [
+            {'product_id': self.mto_product.id, 'product_uom_qty': 3.0},
         ])
 
     def test_two_step_delivery_forecast_after_first_picking(self):
@@ -582,3 +597,63 @@ class TestSalePurchaseStockFlow(TransactionCase):
             so.picking_ids[2].move_ids.quantity = 10
             so.picking_ids[2].button_validate()
         self.assertEqual(self.mto_product.monthly_demand, 10.0)
+
+    def test_reordering_rule_not_merged_into_so_po(self):
+        """ With group_rfq='default' (On Order), a reordering rule procurement
+        must not merge into a PO that was created for a specific sale order. """
+        self.assertEqual(self.mto_product.seller_ids.partner_id.group_rfq, 'default')
+        so = self.env['sale.order'].create({
+            'partner_id': self.customer.id,
+            'order_line': [Command.create({
+                'product_id': self.mto_product.id,
+                'product_uom_qty': 5,
+                'price_unit': 10,
+            })],
+        })
+        so.action_confirm()
+
+        po_from_so = self.env['purchase.order'].search([('partner_id', '=', self.vendor.id)])
+        self.assertEqual(len(po_from_so), 1, 'One PO should be created from the sale order')
+        self.assertTrue(po_from_so.reference_ids, 'PO from sale order must carry reference_ids')
+
+        # Trigger reordering rule for the same product, no reference involved
+        orderpoint = self.env['stock.warehouse.orderpoint'].create({
+            'product_id': self.mto_product.id,
+            'product_min_qty': 5,
+            'product_max_qty': 10,
+            'trigger': 'manual',
+        })
+        orderpoint.action_replenish()
+        all_pos = self.env['purchase.order'].search([('partner_id', '=', self.vendor.id)])
+        self.assertEqual(len(all_pos), 2, 'Reordering rule must create a separate PO, not merge into the sale order PO')
+        po_from_rr = all_pos - po_from_so
+        self.assertFalse(po_from_rr.reference_ids, 'Reordering rule PO should have no reference_ids')
+
+    def test_mto_po_double_quantity_update(self):
+        """
+        Confirm an SO for an MTO + Buy product. Increase and then decrease the quantity on the PO.
+        The quantity of the receipt should be adapted accodingly.
+        """
+        so = self.env['sale.order'].create({
+            'partner_id': self.customer.id,
+            'order_line': [
+                Command.create({
+                    'name': self.mto_product.name,
+                    'product_id': self.mto_product.id,
+                    'product_uom_qty': 1,
+                    'product_uom_id': self.mto_product.uom_id.id,
+                    'price_unit': 10,
+                }),
+            ],
+        })
+        so.action_confirm()
+        delivery = so.picking_ids
+        self.assertRecordValues(delivery.move_ids, [
+            {'product_id': self.mto_product.id, 'product_uom_qty': 1.0},
+        ])
+        po = so._get_purchase_orders()
+        po.button_confirm()
+        po.order_line.product_qty = 10.0
+        self.assertEqual(po.picking_ids.move_ids.quantity, 10.0)
+        po.order_line.product_qty = 5.0
+        self.assertEqual(po.picking_ids.move_ids.quantity, 5.0)

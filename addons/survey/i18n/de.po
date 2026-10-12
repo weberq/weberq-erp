@@ -8,16 +8,16 @@
 # Martin Trigaux, 2022
 # Larissa Manderfeld, 2023
 # Stefan Reisich <nafex@gmx.net>, 2023
-# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025, 2026.
 # "Larissa Manderfeld (lman)" <lman@odoo.com>, 2025, 2026.
 # Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-04-02 11:41+0000\n"
-"Last-Translator: \"Larissa Manderfeld (lman)\" <lman@odoo.com>\n"
+"POT-Creation-Date: 2026-04-10 18:37+0000\n"
+"PO-Revision-Date: 2026-08-02 13:21+0000\n"
+"Last-Translator: \"Dylan Kiss (dyki)\" <dyki@odoo.com>\n"
 "Language-Team: German <https://translate.odoo.com/projects/odoo-19/survey/"
 "de/>\n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey__question_count
@@ -36,36 +36,6 @@ msgstr "Anzahl Fragen"
 #: model:ir.model.fields,field_description:survey.field_survey_question__random_questions_count
 msgid "# Questions Randomly Picked"
 msgstr "Anzahl zufällig ausgewählter Fragen"
-
-#. module: survey
-#: model:survey.question.answer,value:survey.vendor_certification_page_2_question_1_choice_4
-msgid "$100"
-msgstr "100 €"
-
-#. module: survey
-#: model:survey.question.answer,value:survey.vendor_certification_page_2_question_1_choice_1
-msgid "$20"
-msgstr "20 €"
-
-#. module: survey
-#: model:survey.question.answer,value:survey.vendor_certification_page_2_question_1_choice_5
-msgid "$200"
-msgstr "200 €"
-
-#. module: survey
-#: model:survey.question.answer,value:survey.vendor_certification_page_2_question_1_choice_6
-msgid "$300"
-msgstr "300 €"
-
-#. module: survey
-#: model:survey.question.answer,value:survey.vendor_certification_page_2_question_1_choice_2
-msgid "$50"
-msgstr "50 €"
-
-#. module: survey
-#: model:survey.question.answer,value:survey.vendor_certification_page_2_question_1_choice_3
-msgid "$80"
-msgstr "80 €"
 
 #. module: survey
 #: model_terms:ir.ui.view,arch_db:survey.survey_progression
@@ -108,11 +78,6 @@ msgid "'Certification - %s' % (object.survey_id.display_name)"
 msgstr "'Zertifizierung - %s' % (object.survey_id.display_name)"
 
 #. module: survey
-#: model_terms:ir.ui.view,arch_db:survey.certification_report_view_general
-msgid "0000000010"
-msgstr "0000000010"
-
-#. module: survey
 #: model:survey.question.answer,value:survey.survey_demo_burger_quiz_p4_q2_sug2
 msgid "10 kg"
 msgstr "10 kg"
@@ -123,29 +88,14 @@ msgid "100 years"
 msgstr "100 Jahre"
 
 #. module: survey
-#: model:survey.question.answer,value:survey.survey_demo_burger_quiz_p3_q1_sug3
-msgid "1055"
-msgstr "1055"
-
-#. module: survey
 #: model:survey.question.answer,value:survey.survey_demo_burger_quiz_p3_q3_sug3
 msgid "116 years"
 msgstr "116 Jahre"
 
 #. module: survey
-#: model:survey.question.answer,value:survey.survey_demo_burger_quiz_p3_q1_sug1
-msgid "1227"
-msgstr "1227"
-
-#. module: survey
 #: model:survey.question.answer,value:survey.survey_demo_burger_quiz_p3_q3_sug4
 msgid "127 years"
 msgstr "127 Jahre"
-
-#. module: survey
-#: model:survey.question.answer,value:survey.survey_demo_burger_quiz_p3_q1_sug2
-msgid "1324"
-msgstr "1324"
 
 #. module: survey
 #: model:survey.question.answer,value:survey.survey_demo_burger_quiz_p2_q1_sug1
@@ -156,11 +106,6 @@ msgstr "1450 km"
 #: model:survey.question.answer,value:survey.survey_demo_burger_quiz_p4_q2_sug3
 msgid "16.2 kg"
 msgstr "16,2 kg"
-
-#. module: survey
-#: model_terms:ir.ui.view,arch_db:survey.certification_report_view_general
-msgid "2023-08-18"
-msgstr "18.08.2023"
 
 #. module: survey
 #: model:survey.question.answer,value:survey.survey_demo_burger_quiz_p2_q1_sug2
@@ -349,8 +294,8 @@ msgid ""
 msgstr ""
 "<div style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
 "    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"        Lieber <t t-out=\"object.partner_id.name or "
-"'participant'\">Teilnehmer</t><br/><br/>\n"
+"        Lieber <t t-out=\"object.partner_id.name or 'participant'\">"
+"Teilnehmer</t><br/><br/>\n"
 "        <t t-if=\"object.survey_id.certification\">\n"
 "            Sie sind zu einer neuen Zertifizierung eingeladen worden.\n"
 "        </t>\n"
@@ -361,8 +306,8 @@ msgstr ""
 "        </p><div style=\"margin: 16px 0px 16px 0px;\">\n"
 "            <a t-att-href=\"(object.get_start_url())\" t-attf-"
 "style=\"background-color: {{user.company_id.email_secondary_color or "
-"'#875A7B'}}; padding: 8px 16px 8px 16px; text-decoration: none; color: "
-"{{user.company_id.email_primary_color or '#FFFFFF'}}; border-radius: 5px; "
+"'#875A7B'}}; padding: 8px 16px 8px 16px; text-decoration: none; color: {"
+"{user.company_id.email_primary_color or '#FFFFFF'}}; border-radius: 5px; "
 "font-size:13px;\">\n"
 "                <t t-if=\"object.survey_id.certification\">\n"
 "                    Zertifizierung beginnen\n"
@@ -373,8 +318,8 @@ msgstr ""
 "            </a>\n"
 "        </div>\n"
 "        <t t-if=\"object.deadline\">\n"
-"            Bitte beantworten Sie die Umfrage vor dem <t t-"
-"out=\"format_date(object.deadline) or ''\">05/05/2021</t>.<br/><br/>\n"
+"            Bitte beantworten Sie die Umfrage vor dem <t t-out=\"format_date"
+"(object.deadline) or ''\">05/05/2021</t>.<br/><br/>\n"
 "        </t>\n"
 "        <t t-if=\"object.survey_id.certification\">\n"
 "            Viel Erfolg!\n"
@@ -1618,7 +1563,7 @@ msgstr "Live-Sitzung erstellen"
 #. module: survey
 #: model:ir.model,website_form_label:survey.model_res_partner
 msgid "Create a Customer"
-msgstr "Kunden erstellen"
+msgstr "Kunde erstellen"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_invite__create_uid
@@ -2499,8 +2444,7 @@ msgstr "Es hat keine bestimmte Bedeutung."
 #. odoo-python
 #: code:addons/survey/models/templates/survey_survey.py:0
 msgid "It helps attendees focus on what you are saying"
-msgstr ""
-"Es hilft den Teilnehmern, sich auf das zu konzentrieren, was Sie sagen."
+msgstr "Es hilft den Teilnehmern, sich auf das zu konzentrieren, was Sie sagen."
 
 #. module: survey
 #. odoo-python
@@ -3316,8 +3260,8 @@ msgstr ""
 "Optionale Übersetzungssprache (ISO-Code), die beim Versenden einer E-Mail "
 "ausgewählt werden kann. Wenn keine Einstellung vorgenommen wird, wird die "
 "Hauptsprache des Partners verwendet. In der Regel sollte dies ein "
-"Platzhalterausdruck sein, der die entsprechende Sprache angibt, z. B. "
-"{{ object.partner_id.lang }}."
+"Platzhalterausdruck sein, der die entsprechende Sprache angibt, z. B. {{ "
+"object.partner_id.lang }}."
 
 #. module: survey
 #: model_terms:ir.ui.view,arch_db:survey.survey_question_form
@@ -3613,7 +3557,7 @@ msgstr "Frage-Antwort-Formular"
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_survey__session_question_answer_count
 msgid "Question Answers Count"
-msgstr "Anzahl Anworten auf Frage"
+msgstr "Anzahl Antworten auf Frage"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_question__questions_selection
@@ -3676,7 +3620,7 @@ msgstr "Quiz bestanden"
 #. odoo-javascript
 #: code:addons/survey/static/src/views/widgets/radio_selection_with_filter/radio_selection_field_with_filter.js:0
 msgid "Radio for Selection With Filter"
-msgstr "Radio für Auwahl mit Filter"
+msgstr "Radio für Auswahl mit Filter"
 
 #. module: survey
 #: model:ir.model.fields.selection,name:survey.selection__survey_survey__questions_selection__random
@@ -3843,7 +3787,7 @@ msgstr "Als Spitzname des Benutzers speichern"
 #: model:ir.model.fields.selection,name:survey.selection__survey_question__question_type__scale
 #: model_terms:ir.ui.view,arch_db:survey.survey_question_form
 msgid "Scale"
-msgstr "Waage"
+msgstr "Skala"
 
 #. module: survey
 #: model:ir.model.fields,field_description:survey.field_survey_question__scale_max_label
@@ -3978,7 +3922,7 @@ msgstr "Abschnitte und Fragen"
 #: model_terms:ir.ui.view,arch_db:survey.survey_survey_view_form
 #: model_terms:ir.ui.view,arch_db:survey.survey_survey_view_kanban
 msgid "See results"
-msgstr "Ergebnisse ansehen"
+msgstr "Ergebnisse anzeigen"
 
 #. module: survey
 #: model_terms:survey.survey,description_done:survey.survey_demo_food_preferences
@@ -5586,8 +5530,41 @@ msgid ""
 "⚠️ This question is positioned before some or all of its triggers and could "
 "be skipped."
 msgstr ""
-"⚠️ Diese Frage steht vor einigen oder allen Auslösern und könnte übersprungen "
-"werden."
+"⚠️ Diese Frage steht vor einigen oder allen Auslösern und könnte "
+"übersprungen werden."
+
+#~ msgid "$100"
+#~ msgstr "100 €"
+
+#~ msgid "$20"
+#~ msgstr "20 €"
+
+#~ msgid "$200"
+#~ msgstr "200 €"
+
+#~ msgid "$300"
+#~ msgstr "300 €"
+
+#~ msgid "$50"
+#~ msgstr "50 €"
+
+#~ msgid "$80"
+#~ msgstr "80 €"
+
+#~ msgid "0000000010"
+#~ msgstr "0000000010"
+
+#~ msgid "1055"
+#~ msgstr "1055"
+
+#~ msgid "1227"
+#~ msgstr "1227"
+
+#~ msgid "1324"
+#~ msgstr "1324"
+
+#~ msgid "2023-08-18"
+#~ msgstr "18.08.2023"
 
 #~ msgid ""
 #~ "<br/>\n"

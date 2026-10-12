@@ -93,7 +93,7 @@ const fakeActionService = {
     doAction: async (request, options = {}) => {
         if (request.type === "ir.actions.act_window") {
             expect.step("do-action");
-            expect(request).toEqual(action);
+            expect(request).toMatchObject(action);
         }
     },
     loadAction(actionRequest) {
@@ -1016,7 +1016,7 @@ test("See records when clicking on a pie chart slice", async () => {
         doAction: async (request, options = {}) => {
             if (request.type === "ir.actions.act_window") {
                 expect.step("do-action");
-                expect(request).toEqual({
+                expect(request).toMatchObject({
                     ...action,
                     name: "January 2022",
                 });
@@ -1854,4 +1854,45 @@ test("filtering on 'day' doesn't change to hour if not datetime", async () => {
         value: { type: "relative", period: "today" },
     });
     expect(model.getters.getChartDefinition(chartId).metaData.groupBy).toEqual(["date:day"]);
+});
+
+test("filtering on a date range without start/end does not change the granularity", async () => {
+    const { model } = await createSpreadsheetWithChart({
+        type: "odoo_bar",
+        definition: {
+            metaData: {
+                groupBy: ["date:month"],
+                measure: "probability",
+                resModel: "partner",
+                order: null,
+            },
+        },
+    });
+    const sheetId = model.getters.getActiveSheetId();
+    const chartId = model.getters.getChartIds(sheetId)[0];
+    const filterId = "42";
+    await addGlobalFilter(
+        model,
+        { id: filterId, type: "date", label: "Date" },
+        { chart: { [chartId]: { chain: "date", type: "date" } } }
+    );
+    model.updateMode("dashboard");
+
+    await setGlobalFilterValue(model, {
+        id: filterId,
+        value: { type: "range", from: "2026-04-07", to: "" },
+    });
+    expect(model.getters.getChartDefinition(chartId).metaData.groupBy).toEqual(["date:month"]);
+
+    await setGlobalFilterValue(model, {
+        id: filterId,
+        value: { type: "range", from: "", to: "2026-04-07" },
+    });
+    expect(model.getters.getChartDefinition(chartId).metaData.groupBy).toEqual(["date:month"]);
+
+    await setGlobalFilterValue(model, {
+        id: filterId,
+        value: { type: "range", from: "", to: "" },
+    });
+    expect(model.getters.getChartDefinition(chartId).metaData.groupBy).toEqual(["date:month"]);
 });

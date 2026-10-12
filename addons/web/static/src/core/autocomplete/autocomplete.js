@@ -48,7 +48,7 @@ export class AutoComplete extends Component {
         value: "",
         placeholder: "",
         title: "",
-        autocomplete: "new-password",
+        autocomplete: "off",
         autoSelect: false,
         dropdown: true,
         onInput: () => {},
@@ -98,8 +98,8 @@ export class AutoComplete extends Component {
             try {
                 await this.open(true);
                 currentPromise.resolve();
-            } catch {
-                currentPromise.reject();
+            } catch (e) {
+                currentPromise.reject(e);
             } finally {
                 if (currentPromise === this.loadingPromise) {
                     this.loadingPromise = null;
@@ -121,7 +121,6 @@ export class AutoComplete extends Component {
                     this.state.value = nextProps.value;
                     this.inputRef.el.value = nextProps.value;
                 }
-                this.close();
             }
         });
 
@@ -185,6 +184,15 @@ export class AutoComplete extends Component {
         this.state.open = false;
         this.state.activeSourceOption = null;
         this.mouseSelectionActive = false;
+    }
+
+    discardPendingInput() {
+        this.debouncedProcessInput.cancel();
+        this.pendingPromise?.resolve();
+        if (this.loadingPromise === this.pendingPromise) {
+            this.loadingPromise = null;
+        }
+        this.pendingPromise = null;
     }
 
     cancel() {
@@ -265,6 +273,7 @@ export class AutoComplete extends Component {
 
     selectOption(option) {
         this.inEdition = false;
+        this.discardPendingInput();
         if (option.unselectable) {
             return;
         }

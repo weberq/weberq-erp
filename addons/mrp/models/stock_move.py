@@ -276,7 +276,13 @@ class StockMove(models.Model):
                 if not values.get('location_dest_id'):
                     values['location_dest_id'] = mo.location_dest_id.id
                 if not values.get('location_final_id'):
-                    values['location_final_id'] = mo.warehouse_id.lot_stock_id.id
+                    warehouse = mo.location_dest_id.warehouse_id
+                    if warehouse.sam_loc_id and mo.location_dest_id._child_of(warehouse.sam_loc_id):
+                        # in 3 steps, the finished product is pushed afterwards
+                        sam_rule = warehouse.pbm_route_id.rule_ids.filtered(lambda r: r.picking_type_id == warehouse.sam_type_id)[:1]
+                        values['location_final_id'] = sam_rule.location_dest_id.id or mo.location_dest_id.id
+                    else:
+                        values['location_final_id'] = mo.location_dest_id.id
         return super().create(vals_list)
 
     def write(self, vals):
@@ -314,6 +320,7 @@ class StockMove(models.Model):
         procurements = []
         old_qties = old_qties or {}
         to_assign = self.env['stock.move']
+        proc_move = set()
         self._adjust_procure_method()
         for move in self:
             if move.product_uom.compare(move.product_uom_qty - old_qties.get(move.id, 0), 0) < 0\
@@ -325,9 +332,18 @@ class StockMove(models.Model):
                         or move.picking_type_id.reservation_method == 'at_confirm' \
                         or (move.reservation_date and move.reservation_date <= fields.Date.today()):
                     to_assign |= move
+            proc_move.add(move.id)
 
+        # Save quantity on each move before assignment
+        before_assign_qties = {move.id: move.quantity for move in to_assign}
+        to_assign._action_assign()
+        # Compute the delta (newly assigned quantity) per move
+        delta_qties = {move.id: (move.quantity - before_assign_qties.get(move.id, 0)) if move.product_id.is_storable else 0 for move in to_assign}
+
+        proc_move = self.browse(proc_move)
+        for move in proc_move:
             if move.procure_method == 'make_to_order' or move.rule_id.procure_method == 'mts_else_mto':
-                procurement_qty = move.product_uom_qty - old_qties.get(move.id, 0)
+                procurement_qty = move.product_uom_qty - old_qties.get(move.id, 0) - delta_qties.get(move.id, 0)
                 if move.move_orig_ids:
                     possible_reduceable_qty = -sum(move.move_orig_ids.filtered(lambda m: m.state not in ('done', 'cancel') and m.product_uom_qty).mapped('product_uom_qty'))
                     procurement_qty = max(procurement_qty, possible_reduceable_qty)
@@ -336,17 +352,8 @@ class StockMove(models.Model):
                     move.product_id, procurement_qty, move.product_uom,
                     move.location_id, move.reference, move.origin, move.company_id, values))
 
-        to_assign._action_assign()
         if procurements:
             self.env['stock.rule'].run(procurements)
-
-    def _action_assign(self, force_qty=False):
-        res = super(StockMove, self)._action_assign(force_qty=force_qty)
-        for move in self.filtered(lambda x: x.production_id or x.raw_material_production_id):
-            if move.move_line_ids:
-                move.move_line_ids.write({'production_id': move.raw_material_production_id.id,
-                                               'workorder_id': move.workorder_id.id,})
-        return res
 
     def _action_confirm(self, merge=True, merge_into=False, create_proc=True):
         moves = self.action_explode()
@@ -363,6 +370,10 @@ class StockMove(models.Model):
 
     def _should_bypass_reservation(self, forced_location=False):
         return super()._should_bypass_reservation(forced_location) or self.product_id.with_company(self.company_id).is_kits
+
+    def _should_be_auto_picked(self):
+        self.ensure_one()
+        return (self.manual_consumption or (self.has_tracking != 'none' and self.move_orig_ids and self.lot_ids)) and not self.picked
 
     def action_explode(self):
         """ Explodes pickings """
@@ -552,7 +563,16 @@ class StockMove(models.Model):
 
     def _key_assign_picking(self):
         keys = super(StockMove, self)._key_assign_picking()
-        return keys + (self.created_production_id,)
+        keys += (self.created_production_id,)
+        if self._feeds_raw_material_production():
+            keys += (self.production_group_id,)
+        return keys
+
+    def _feeds_raw_material_production(self):
+        """Whether this move directly or indirectly supplies components for a production
+        (i.e. ends up in a `raw_material_production_id`).
+        """
+        return bool(self.browse(self._rollup_move_dests()).raw_material_production_id)
 
     @api.model
     def _prepare_merge_moves_distinct_fields(self):
@@ -645,6 +665,8 @@ class StockMove(models.Model):
         return domain
 
     def _get_production_assignation_domain(self):
+        if not self._feeds_raw_material_production():
+            return []
         return [('production_group_id', '=', self.production_group_id.id)]
 
     def action_open_reference(self):

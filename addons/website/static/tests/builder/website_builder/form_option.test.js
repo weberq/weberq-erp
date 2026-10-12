@@ -79,6 +79,32 @@ test("change action of form changes available options", async () => {
     expect("div:has(>span:contains('URL')) + div input").toHaveValue("/contactus-thank-you");
 });
 
+test("remove hidden many2one field from form if value is None", async () => {
+    onRpc("get_authorized_fields", () => ({}));
+    onRpc("/web/dataset/call_kw/hr.job/search_read", () => [{ id: 1, display_name: "Some Job" }]);
+    registry.category("website.form_editor_actions").add("apply_job", {
+        formFields: [],
+        fields: [{ name: "job_id", type: "many2one", relation: "hr.job", string: "Applied Job" }],
+    });
+    await setupWebsiteBuilderWithSnippet("s_website_form");
+
+    await contains(":iframe section").click();
+    await contains("div:has(>span:contains('Action')) + div button").click();
+    await contains("div.o-dropdown-item:contains('Apply for a Job')").click();
+
+    await animationFrame();
+    await contains("div:has(>span:contains('Applied Job')) + div button").click();
+    await contains("div.o-dropdown-item:contains('Some Job')").click();
+
+    await animationFrame();
+    expect(':iframe input[type="hidden"][name="job_id"][value="1"]').toHaveCount(1);
+    await contains("div:has(>span:contains('Applied Job')) + div button").click();
+    await contains("div.o-dropdown-item:contains('None')").click();
+
+    await animationFrame();
+    expect(':iframe input[type="hidden"][name="job_id"]').toHaveCount(0);
+});
+
 test("'Author' field's type stays selected when you modify the option list", async () => {
     onRpc("get_authorized_fields", () => ({
         author_id: {
@@ -192,6 +218,27 @@ test("Set 'Message' as form success action and show/hide the message preview", a
     expect(":iframe .o_show_form_success_message").toHaveCount(2);
     await contains(".options-container [data-action-id='toggleEndMessage']").click();
     expect(":iframe .o_show_form_success_message").toHaveCount(0);
+});
+
+test("Undo change of default value of a text field", async () => {
+    onRpc("get_authorized_fields", () => ({}));
+    const builder = await setupWebsiteBuilderWithSnippet("s_website_form");
+
+    const questionInputSelector = ":iframe .s_website_form_field:contains(Your Question) textarea";
+    expect(questionInputSelector).toHaveProperty("value", "");
+    await contains(questionInputSelector).click();
+    await contains('[data-label="Default Value"] input').fill("hello");
+    expect(questionInputSelector).toHaveProperty("value", "hello");
+    undo(builder.getEditor());
+    expect(questionInputSelector).toHaveProperty("value", "");
+
+    const subjectInputSelector = ":iframe .s_website_form_field:contains(Subject) input";
+    expect(subjectInputSelector).toHaveProperty("value", "");
+    await contains(subjectInputSelector).click();
+    await contains('[data-label="Default Value"] input').fill("hello");
+    expect(subjectInputSelector).toHaveProperty("value", "hello");
+    undo(builder.getEditor());
+    expect(subjectInputSelector).toHaveProperty("value", "");
 });
 
 const formWithCondition = `
@@ -466,6 +513,33 @@ test("Label falls back to default value (data-translated-name) when removed", as
     );
 });
 
+test("Checkbox default value option stays visible when changing label position", async () => {
+    onRpc("get_authorized_fields", () => ({}));
+    await setupWebsiteBuilder(
+        `<section class="s_website_form" data-snippet="s_website_form" data-name="Form">
+            <div class="container-fluid">
+                <form action="/website/form/" method="post" class="o_mark_required" data-model_name="mail.mail">
+                    <div class="s_website_form_rows">
+                        <div data-name="Field" class="s_website_form_field s_website_form_custom" data-type="boolean">
+                            <label class="s_website_form_label" for="opftfejmju">
+                                <span class="s_website_form_label_content">My Field</span>
+                            </label>
+                            <div class="form-check">
+                                <input type="checkbox" value="Yes" class="s_website_form_input form-check-input" name="My field" id="opftfejmju">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>`
+    );
+
+    await contains(":iframe section span:contains('My Field')").click();
+    expect("[data-attribute-action='checked']").toHaveCount(1);
+    await contains("[data-action-value='right']").click();
+    expect("[data-attribute-action='checked']").toHaveCount(1);
+});
+
 test("Option list input editing is disabled for non-custom forms", async () => {
     onRpc("get_authorized_fields", () => ({}));
     const { getEditor } = await setupWebsiteBuilder(
@@ -532,4 +606,74 @@ test("Option list input editing is enabled for custom forms", async () => {
         .find(el => el.textContent.includes('Option List'))
         .querySelectorAll('.o-hb-input-base');
     expect([...inputs].every(input => input.disabled)).toBe(false);
+});
+
+test("Changing field type removes data-fill-with attribute", async () => {
+    onRpc("get_authorized_fields", () => ({
+        cc: {
+            name: "cc",
+            relation: "res.partner",
+            string: "CC",
+            type: "char",
+        },
+    }));
+
+    await setupWebsiteBuilder(`
+        <form data-model_name="mail.mail">
+            <div class="s_website_form_field" data-type="char">
+                <label class="s_website_form_label" for="field">
+                    <span class="s_website_form_label_content">Company</span>
+                </label>
+                <input id="field" class="s_website_form_input" type="text" data-fill-with="commercial_company_name"/>
+            </div>
+            <div class="s_website_form_field" data-type="char">
+                <label class="s_website_form_label" for="field1">
+                    <span class="s_website_form_label_content">Phone Number</span>
+                </label>
+                <input id="field1" class="s_website_form_input" type="tel" data-fill-with="phone"/>
+            </div>
+        </form>
+    `);
+
+    // Change the field type to custom field.
+    await contains(":iframe input[type='text'][data-fill-with='commercial_company_name']").click();
+    await contains(".hb-row[data-label='Type'] button.o-hb-select-toggle").click();
+    await contains(".o_popover [data-action-value='email']").click();
+    expect(":iframe input[type='email']").not.toHaveAttribute("data-fill-with");
+
+    // Change the field type to existing field.
+    await contains(":iframe input[type='tel'][data-fill-with='phone']").click();
+    await contains(".hb-row[data-label='Type'] button.o-hb-select-toggle").click();
+    await contains(".o_popover [data-action-value='cc']").click();
+    expect(":iframe input[name='cc']").not.toHaveAttribute("data-fill-with");
+});
+
+test("Changing field type from date to datetime removes value property (and attribute)", async () => {
+    onRpc("get_authorized_fields", () => ({}));
+
+    await setupWebsiteBuilder(`
+        <form class="s_website_form" data-model_name="mail.mail">
+            <div class="s_website_form_field" data-type="date">
+                <label class="s_website_form_label" for="field">
+                    <span class="s_website_form_label_content">Date</span>
+                </label>
+                <div class="s_website_form_date">
+                    <input id="field" class="datetimepicker-input s_website_form_input" type="text"/>
+                </div>
+            </div>
+        </form>
+    `);
+
+    // Set a default date.
+    await contains(":iframe input#field").click();
+    await contains(".hb-row[data-label='Default Value'] input").fill("08/20/2026");
+
+    expect(":iframe input#field").toHaveAttribute("value", "1787180400");
+    expect(":iframe input#field").toHaveProperty("value", "08/20/2026");
+
+    await contains(".hb-row[data-label='Type'] button.o-hb-select-toggle").click();
+    await contains(".o_popover [data-action-value='datetime']").click();
+
+    expect(":iframe input#field").toHaveAttribute("value", "");
+    expect(":iframe input#field").toHaveProperty("value", "");
 });

@@ -41,7 +41,6 @@ from functools import lru_cache, partial, wraps
 from itertools import islice, zip_longest
 from textwrap import shorten
 from typing import Optional, Iterable, cast
-from unittest import TestResult
 from unittest.mock import patch, _patch, Mock
 from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 from xmlrpc import client as xmlrpclib
@@ -67,12 +66,11 @@ from odoo.service import security
 from odoo.sql_db import Cursor, Savepoint
 from odoo.tools import config, float_compare, mute_logger, profiler, SQL, DotDict
 from odoo.tools.mail import single_email_re
-from odoo.tools.misc import find_in_path, lower_logging
+from odoo.tools.misc import find_in_path
 from odoo.tools.xml_utils import _validate_xml
 from odoo.addons.base.models import ir_actions_report
 
 from . import case, test_cursor
-from .result import OdooTestResult
 
 try:
     import websocket
@@ -323,8 +321,6 @@ class BaseCase(case.TestCase):
     warm = True             # False during warm-up phase (see :func:`warmup`)
     _python_version = sys.version_info
 
-    _tests_run_count = int(os.environ.get('ODOO_TEST_FAILURE_RETRIES', 0)) + 1
-
     _registry_patched = False
     _registry_readonly_enabled = True
     test_cursor_lock_timeout: int = 20
@@ -354,32 +350,6 @@ class BaseCase(case.TestCase):
         _logger.getChild('requests').info(
             "Blocking un-mocked external HTTP request %s %s", r.method, r.url)
         raise BlockedRequest(f"External requests verboten (was {r.method} {r.url})")
-
-    def run(self, result: OdooTestResult) -> None:
-        testMethod = getattr(self, self._testMethodName)
-
-        if getattr(testMethod, '_retry', True) and getattr(self, '_retry', True):
-            tests_run_count = self._tests_run_count
-        else:
-            tests_run_count = 1
-            _logger.info('Auto retry disabled for %s', self)
-
-        for retry in range(tests_run_count):
-            result.had_failure = False  # reset in case of retry without soft_fail
-            if retry:
-                _logger.runbot(f'Retrying a failed test: {self}')
-            if retry < tests_run_count-1:
-                with warnings.catch_warnings(), \
-                        result.soft_fail(), \
-                        lower_logging(25, logging.INFO) as quiet_log:
-                    super().run(cast(TestResult, result))
-                if not (result.had_failure or quiet_log.had_error_log):
-                    break
-            else:  # last try
-                super().run(cast(TestResult, result))
-                if not result.wasSuccessful() and BaseCase._tests_run_count != 1:
-                    _logger.runbot('Disabling auto-retry after a failed test')
-                    BaseCase._tests_run_count = 1
 
     @classmethod
     def setUpClass(cls):
@@ -900,7 +870,7 @@ class BaseCase(case.TestCase):
 
     def assertCanOpenTestCursor(self):
         """ Asserts that we can currently open a test cursor. """
-        if odoo.modules.module.current_test != self:
+        if odoo.modules.module.current_test is not self:
             message = f"Trying to open a test cursor for {self.canonical_tag} while already in a test {odoo.modules.module.current_test.canonical_tag}"
             _logger.runbot(message)
             raise BadRequest(message)
@@ -1109,12 +1079,26 @@ class TransactionCase(BaseCase):
 
         cls.env = api.Environment(cls.cr, api.SUPERUSER_ID, {})
 
-        # speedup CryptContext. Many user an password are done during tests, avoid spending time hasing password with many rounds
+        # speedup CryptContext. Many password-type logins are done during tests, avoid spending time hashing password with many rounds
         def _crypt_context(self):  # noqa: ARG001
-            return CryptContext(
+            cryptCtx = CryptContext(
                 ['pbkdf2_sha512', 'plaintext'],
                 pbkdf2_sha512__rounds=1,
             )
+            # The modified hash configuration causes rotation of the in-database password hash values.
+            # Rotating password hashes mid-test causes session_id rotation leading into indeterministic 'user not logged in' errors.
+            # Never returning a replacement hash prevents this problem.
+            original_verify_and_update = cryptCtx.verify_and_update
+
+            def mock_verify_and_update(*args, **kwargs):
+                valid, replacement_hash = original_verify_and_update(*args, **kwargs)
+                if replacement_hash:
+                    _logger.info("Surpressing hash update in CryptContext override")
+                return valid, None
+
+            cryptCtx.verify_and_update = mock_verify_and_update
+            return cryptCtx
+
         cls._crypt_context_patcher = patch('odoo.addons.base.models.res_users.ResUsersPatchedInTest._crypt_context', _crypt_context)
         cls.startClassPatcher(cls._crypt_context_patcher)
 
@@ -1188,8 +1172,9 @@ class TransactionCase(BaseCase):
             old_run_wkhtmltopdf = ir_actions_report._run_wkhtmltopdf
 
             def _patched_run_wkhtmltopdf(args):
-                with patch.object(self, 'http_request_key', 'wkhtmltopdf'), release_test_lock():
-                    args = ['--cookie', TEST_CURSOR_COOKIE_NAME, 'wkhtmltopdf', *args]
+                http_request_key = self.http_request_key
+                with release_test_lock():
+                    args = ['--cookie', TEST_CURSOR_COOKIE_NAME, http_request_key, *args]
                     return old_run_wkhtmltopdf(args)
 
             stack.enter_context(
@@ -1521,12 +1506,20 @@ class ChromeBrowser:
             yield proc, devtools_port
         finally:
             self._logger.info("Terminating chrome headless with pid %s", proc.pid)
+            main = psutil.Process(proc.pid)
+            procs = [main] + main.children(recursive=True)
             proc.terminate()
-            try:
-                proc.wait(5)
-            except subprocess.TimeoutExpired:
-                self._logger.warning("Killing chrome headless with pid %s: still alive", proc.pid)
-                proc.kill()
+            _, alive = psutil.wait_procs(procs, 5)
+            if alive:  # can't early exit, it suppresses the finally'd exception if any
+                self._logger.warning(
+                    "Killing chrome descendants-or-self of %s: %d remaining%s",
+                    proc.pid,
+                    len(alive),
+                    "".join(f"\n- {p.name()} ({p.status()})" for p in alive),
+                )
+                for p in alive:
+                    p.kill()
+                psutil.wait_procs(alive, 1)
                 self.chrome_log_level = logging.RUNBOT
 
     def read_log(self) -> bytes:
@@ -1637,8 +1630,13 @@ class ChromeBrowser:
                 if not self._result.done():
                     del self.ws
                     self._result.set_exception(e)
-                    for f in self._responses.values():
-                        f.cancel()
+                    while True:
+                        try:
+                            _, f = self._responses.popitem()
+                        except KeyError:
+                            break
+                        else:
+                            f.cancel()
                 return
             except Exception as e:
                 if isinstance(e, ConnectionResetError) and self._result.done():
@@ -1882,10 +1880,16 @@ which leads to stray network requests and inconsistencies."""
             if taken > timeout:
                 break
 
-            result = self._websocket_request('Runtime.evaluate', params={
-                'expression': "try { %s } catch {}" % ready_code,
-                'awaitPromise': True,
-            }, timeout=timeout-taken)['result']
+            try:
+                result = self._websocket_request('Runtime.evaluate', params={
+                    'expression': "try { %s } catch {}" % ready_code,
+                    'awaitPromise': True,
+                }, timeout=timeout-taken)['result']
+            except CancelledError:
+                exc = self._result.done() and self._result.exception()
+                if exc:
+                    raise exc from None
+                result = "cancelled"
 
             if result == {'type': 'boolean', 'value': True}:
                 time_to_ready = time.time() - start_time
@@ -1893,6 +1897,9 @@ which leads to stray network requests and inconsistencies."""
                     self._logger.info('The ready code tooks too much time : %s', time_to_ready)
                 return True
 
+        exc = self._result.done() and self._result.exception()
+        if exc:
+            raise exc from None
         self.take_screenshot(prefix='sc_failed_ready_')
         self._logger.info('Ready code last try result: %s', result)
         return False
@@ -2249,8 +2256,9 @@ class HttpCase(TransactionCase):
         old_run_wkhtmltopdf = ir_actions_report._run_wkhtmltopdf
 
         def _patched_run_wkhtmltopdf(args):
-            with patch.object(self, 'http_request_key', 'wkhtmltopdf'), release_test_lock():
-                args = ['--cookie', TEST_CURSOR_COOKIE_NAME, 'wkhtmltopdf', *args]
+            http_request_key = self.http_request_key
+            with release_test_lock():
+                args = ['--cookie', TEST_CURSOR_COOKIE_NAME, http_request_key, *args]
                 return old_run_wkhtmltopdf(args)
 
         self.startPatcher(

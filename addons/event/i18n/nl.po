@@ -6,17 +6,17 @@
 # Yenthe Van Ginneken <yenthespam@gmail.com>, 2022
 # Martin Trigaux, 2022
 # Jolien De Paepe, 2023
-# Erwin van der Ploeg <erwin@odooexperts.nl>, 2023, 2025.
-# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
+# Erwin van der Ploeg <erwin@odooexperts.nl>, 2023, 2025, 2026.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025, 2026.
 # Bren Driesen <brdri@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-27 18:37+0000\n"
-"PO-Revision-Date: 2026-03-17 22:06+0000\n"
-"Last-Translator: Bren Driesen <brdri@odoo.com>\n"
+"POT-Creation-Date: 2026-07-24 17:38+0000\n"
+"PO-Revision-Date: 2026-08-06 22:07+0000\n"
+"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
 "Language-Team: Dutch <https://translate.odoo.com/projects/odoo-19/event/nl/>"
 "\n"
 "Language: nl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_question__event_count
@@ -129,8 +129,8 @@ msgid ""
 "'Full Page Ticket - %s - %s' % ((object.event_id.name or "
 "'Event').replace('/',''), (object.name or '').replace('/',''))"
 msgstr ""
-"'Volledige pagina ticket- %s - %s' % ((object.event_id.name or "
-"'Event').replace('/',''), (object.name or '').replace('/',''))"
+"'Volledige pagina ticket- %s - %s' % ((object.event_id.name or 'Event')"
+".replace('/',''), (object.name or '').replace('/',''))"
 
 #. module: event
 #: model:ir.actions.report,print_report_name:event.action_report_event_event_full_page_ticket
@@ -139,39 +139,14 @@ msgstr ""
 "'Volledige pagina ticket - %s' % (object.name or 'Event').replace('/','')"
 
 #. module: event
-#: model_terms:ir.ui.view,arch_db:event.event_report_full_page_ticket_layout
-msgid "+123456789"
-msgstr "+123456789"
-
-#. module: event
-#: model:event.tag,name:event.event_tag_category_1_tag_2
-msgid "10-14"
-msgstr "10-14"
-
-#. module: event
 #: model_terms:ir.ui.view,arch_db:event.event_report_template_formatted_event_address
 msgid "1000 Brussels"
 msgstr "1000 Brussel"
 
 #. module: event
-#: model:event.tag,name:event.event_tag_category_1_tag_3
-msgid "15-18"
-msgstr "15-18"
-
-#. module: event
-#: model:event.tag,name:event.event_tag_category_1_tag_4
-msgid "18+"
-msgstr "18+"
-
-#. module: event
 #: model:ir.model.fields.selection,name:event.selection__event_event__badge_format__four_per_sheet
 msgid "4 per sheet"
 msgstr "4 per vel"
-
-#. module: event
-#: model:event.tag,name:event.event_tag_category_1_tag_1
-msgid "5-10"
-msgstr "5-10"
 
 #. module: event
 #: model_terms:res.partner,website_description:event.res_partner_event_3
@@ -2863,12 +2838,12 @@ msgstr "Activiteitsfase"
 #: model:ir.model.fields,field_description:event.field_event_event__activity_type_icon
 #: model:ir.model.fields,field_description:event.field_event_registration__activity_type_icon
 msgid "Activity Type Icon"
-msgstr "Activiteitensoort icoon"
+msgstr "Activiteitstype icoon"
 
 #. module: event
 #: model_terms:ir.ui.view,arch_db:event.view_event_search
 msgid "Activity type"
-msgstr "Soort activiteit"
+msgstr "Activiteitstype"
 
 #. module: event
 #: model_terms:ir.ui.view,arch_db:event.event_stage_view_form
@@ -2936,7 +2911,6 @@ msgstr "Leeftijd"
 
 #. module: event
 #: model_terms:ir.ui.view,arch_db:event.event_event_ticket_form_view
-#: model_terms:ir.ui.view,arch_db:event.view_event_mail_form
 msgid "All Events"
 msgstr "Alle evenementen"
 
@@ -3612,7 +3586,7 @@ msgstr "Ontdek meer"
 #: model:ir.model.fields,field_description:event.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:event.field_res_partner__display_name
 msgid "Display Name"
-msgstr "Weergavenaam"
+msgstr "Schermnaam"
 
 #. module: event
 #: model_terms:ir.ui.view,arch_db:event.res_config_settings_view_form
@@ -3706,8 +3680,7 @@ msgstr "Einduur"
 #. module: event
 #: model:event.event,subtitle:event.event_2
 msgid "Enhance your architectural business and improve professional skills."
-msgstr ""
-"Verbeter je architectuurbedrijf en verbeter professionele vaardigheden."
+msgstr "Verbeter je architectuurbedrijf en verbeter professionele vaardigheden."
 
 #. module: event
 #: model:ir.model.fields.selection,name:event.selection__event_mail__mail_state__error
@@ -3811,7 +3784,7 @@ msgstr "Antwoord van de evenementvraag"
 #. module: event
 #: model:ir.ui.menu,name:event.event_question_menu
 msgid "Event Questions"
-msgstr "Evenement vragen"
+msgstr "Evenementvragen"
 
 #. module: event
 #: model:ir.model,name:event.model_event_registration
@@ -4101,8 +4074,8 @@ msgid ""
 "href=\"mailto:events@odoo.com\">events@odoo.com</a>"
 msgstr ""
 "Voor meer informatie kun je contact met ons opnemen via <a "
-"class=\"o_translate_inline\" "
-"href=\"mailto:events@odoo.com\">events@odoo.com</a>"
+"class=\"o_translate_inline\" href=\"mailto:events@odoo.com\">"
+"events@odoo.com</a>"
 
 #. module: event
 #: model_terms:event.event,description:event.event_7
@@ -4112,8 +4085,8 @@ msgid ""
 "href=\"mailto:events@openwood.example.com\">events@penwood.example.com</a>."
 msgstr ""
 "Voor meer informatie kun je contact met ons opnemen via <a "
-"class=\"o_translate_inline\" "
-"href=\"mailto:events@openwood.example.com\">events@penwood.example.com</a>."
+"class=\"o_translate_inline\" href=\"mailto:events@openwood.example.com\">"
+"events@penwood.example.com</a>."
 
 #. module: event
 #: model_terms:event.event,description:event.event_0
@@ -4126,8 +4099,8 @@ msgid ""
 "href=\"mailto:events@yourcompany.com\">events@yourcompany.com</a>."
 msgstr ""
 "Voor meer informatie kun je contact met ons opnemen via <a "
-"class=\"o_translate_inline\" "
-"href=\"mailto:events@yourcompany.com\">events@yourcompany.com</a>."
+"class=\"o_translate_inline\" href=\"mailto:events@yourcompany.com\">"
+"events@yourcompany.com</a>."
 
 #. module: event
 #: model_terms:ir.ui.view,arch_db:event.event_question_view_search
@@ -5174,7 +5147,7 @@ msgstr "Voer een geldige evenement-URL in."
 #. odoo-javascript
 #: code:addons/event/static/src/client_action/event_barcode.js:0
 msgid "Please, Scan again!"
-msgstr "Graag opnieuw te scannen!"
+msgstr "Scan alsjeblieft opnieuw!"
 
 #. module: event
 #: model_terms:event.event,description:event.event_2
@@ -5215,7 +5188,7 @@ msgstr "Inkoop, Verkoop &amp; Inkoopbeheer en Boekhouding."
 #: model_terms:ir.ui.view,arch_db:event.event_report_template_foldable_badge
 #: model_terms:ir.ui.view,arch_db:event.event_report_template_full_page_ticket
 msgid "QR Code"
-msgstr "QR code"
+msgstr "QR-code"
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_question_answer__question_id
@@ -5902,8 +5875,8 @@ msgstr ""
 msgid ""
 "The limit per order must be positive. Please check ticket %(ticket_name)s"
 msgstr ""
-"De limiet per bestelling moet positief zijn. Controleer ticket %"
-"(ticket_name)s"
+"De limiet per bestelling moet positief zijn. Controleer ticket %(ticket_name)"
+"s"
 
 #. module: event
 #: model_terms:event.event,description:event.event_1
@@ -6092,8 +6065,8 @@ msgid ""
 "Ticket types allow you to distinguish your attendees. Let's <b>create</b> a "
 "new one."
 msgstr ""
-"Met tickettypen kun je je bezoekers onderscheiden. Laten we een nieuwe "
-"<b>maken</b>."
+"Met tickettypen kun je je bezoekers onderscheiden. Laten we een nieuwe <b>"
+"maken</b>."
 
 #. module: event
 #. odoo-javascript
@@ -6303,8 +6276,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/event/static/src/js/tours/event_tour.js:0
 msgid "Use the <b>breadcrumbs</b> to go back to your kanban overview."
-msgstr ""
-"Gebruik de <b>breadcrumbs</b> om terug te gaan naar je Kanbanoverzicht."
+msgstr "Gebruik de <b>breadcrumbs</b> om terug te gaan naar je Kanbanoverzicht."
 
 #. module: event
 #: model:ir.model.fields,field_description:event.field_event_event_ticket__seats_used
@@ -6601,6 +6573,21 @@ msgstr "morgen"
 #: model:mail.template,subject:event.event_reminder
 msgid "{{ object.event_id.name }}: {{ object.event_date_range }}"
 msgstr "{{ object.event_id.name }}: {{ object.event_date_range }}"
+
+#~ msgid "+123456789"
+#~ msgstr "+123456789"
+
+#~ msgid "10-14"
+#~ msgstr "10-14"
+
+#~ msgid "15-18"
+#~ msgstr "15-18"
+
+#~ msgid "18+"
+#~ msgstr "18+"
+
+#~ msgid "5-10"
+#~ msgstr "5-10"
 
 #~ msgid ""
 #~ "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-"

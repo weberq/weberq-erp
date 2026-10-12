@@ -24,6 +24,7 @@ import {
     defineActions,
     getService,
     mockService,
+    onRpc,
     serverState,
     waitForSteps,
 } from "@web/../tests/web_test_helpers";
@@ -141,6 +142,32 @@ test("can post a note on a record thread", async () => {
     await waitForSteps(["/mail/message/post"]);
 });
 
+test("post with reload_on_post keeps the changes of an invalid record", async () => {
+    const pyEnv = await startServer();
+    const partnerId = pyEnv["res.partner"].create({ name: "John Doe" });
+    onRpcBefore("/mail/message/post", () => expect.step("/mail/message/post"));
+    onRpc("res.partner", "web_read", () => expect.step("web_read"));
+    await start();
+    await openFormView("res.partner", partnerId, {
+        arch: `
+            <form>
+                <sheet>
+                    <field name="name" required="1"/>
+                </sheet>
+                <chatter reload_on_post="True"/>
+            </form>`,
+    });
+    await expect.waitForSteps(["web_read"]);
+    await insertText(".o_field_widget[name=name] input", "", { replace: true });
+    await click("button:text('Log note')");
+    await insertText(".o-mail-Composer-input", "hey");
+    await click(".o-mail-Composer button:enabled:text('Log')");
+    await contains(".o-mail-Message");
+    await contains(".o_notification:text('Missing required fields')");
+    await contains(".o_field_invalid[name=name] input:value(/^$/)");
+    await expect.waitForSteps(["/mail/message/post"]);
+});
+
 test("No attachment loading spinner when creating records", async () => {
     await start();
     await openFormView("res.partner");
@@ -217,6 +244,7 @@ test("chatter: drop attachments", async () => {
     const text3 = new File(["hello, world"], "text3.txt", { type: "text/plain" });
     await start();
     await openFormView("res.partner", partnerId);
+    await contains("button[aria-label='Attach files']:enabled");
     const files = [text, text2];
     await dragenterFiles(".o-mail-Chatter", files);
     await contains(".o-Dropzone");
@@ -227,6 +255,29 @@ test("chatter: drop attachments", async () => {
     await dragenterFiles(".o-mail-Chatter", extraFiles);
     await dropFiles(".o-Dropzone", extraFiles);
     await contains(".o-mail-AttachmentContainer:not(.o-isUploading)", { count: 3 });
+});
+
+test("chatter: drop attachments on message in edition", async () => {
+    const pyEnv = await startServer();
+    const partnerId = pyEnv["res.partner"].create({ name: "John Doe" });
+    pyEnv["mail.message"].create({
+        author_id: serverState.partnerId,
+        body: "my note",
+        model: "res.partner",
+        res_id: partnerId,
+        message_type: "comment",
+    });
+    const file = new File(["hello, world"], "text.txt", { type: "text/plain" });
+    await start();
+    await openFormView("res.partner", partnerId);
+    await click(".o-mail-Message [title='Edit']");
+    await contains(".o-mail-Message .o-mail-Composer-input");
+    await dragenterFiles(".o-mail-Message-body", [file]);
+    await contains(".o-Dropzone");
+    await dropFiles(".o-Dropzone.o-mail-Composer-dropzone", [file]);
+    await contains(
+        ".o-mail-Message .o-mail-Composer .o-mail-AttachmentContainer:not(.o-isUploading)"
+    );
 });
 
 test("chatter: drop attachment should refresh thread data with hasParentReloadOnAttachmentsChange prop", async () => {
@@ -246,6 +297,7 @@ test("chatter: drop attachment should refresh thread data with hasParentReloadOn
                 <chatter reload_on_post="True" reload_on_attachment="True"/>
             </form>`,
     });
+    await contains("button[aria-label='Attach files']:enabled");
     await dragenterFiles(".o-mail-Chatter", [textPdf]);
     await dropFiles(".o-Dropzone", [textPdf]);
     await contains(".o-mail-Attachment iframe", { count: 1 });

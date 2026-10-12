@@ -3,15 +3,15 @@
 # * hr_expense
 #
 # Translators:
-# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
 # "Anastasiia Koroleva (koan)" <koan@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-20 18:35+0000\n"
-"PO-Revision-Date: 2026-02-26 15:59+0000\n"
+"POT-Creation-Date: 2026-07-03 17:35+0000\n"
+"PO-Revision-Date: 2026-09-04 08:36+0000\n"
 "Last-Translator: \"Anastasiia Koroleva (koan)\" <koan@odoo.com>\n"
 "Language-Team: Russian <https://translate.odoo.com/projects/odoo-19/"
 "hr_expense/ru/>\n"
@@ -22,27 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 5.14.3\n"
-
-#. module: hr_expense
-#: model_terms:ir.ui.view,arch_db:hr_expense.report_expense
-msgid "$100.00"
-msgstr "$100.00"
-
-#. module: hr_expense
-#: model_terms:ir.ui.view,arch_db:hr_expense.report_expense
-msgid "$120.00"
-msgstr "$120.00"
-
-#. module: hr_expense
-#: model_terms:ir.ui.view,arch_db:hr_expense.report_expense
-msgid "$500.00"
-msgstr "$500.00"
-
-#. module: hr_expense
-#: model_terms:ir.ui.view,arch_db:hr_expense.report_expense
-msgid "$600.00"
-msgstr "$600.00"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: hr_expense
 #. odoo-python
@@ -106,11 +86,6 @@ msgstr "(вкл."
 #: code:addons/hr_expense/models/hr_expense.py:0
 msgid "1 %(exp_cur)s = %(rate)s %(comp_cur)s"
 msgstr "1 %(exp_cur)s = %(rate)s %(comp_cur)s"
-
-#. module: hr_expense
-#: model_terms:ir.ui.view,arch_db:hr_expense.report_expense
-msgid "2023-08-11"
-msgstr "2023-08-11"
 
 #. module: hr_expense
 #. odoo-javascript
@@ -352,6 +327,11 @@ msgid "Attach a receipt - usually an image or a PDF file."
 msgstr "Прикрепите чек – изображение или PDF-файл."
 
 #. module: hr_expense
+#: model:ir.model,name:hr_expense.model_ir_attachment
+msgid "Attachment"
+msgstr "Вложение"
+
+#. module: hr_expense
 #: model:ir.model.fields,field_description:hr_expense.field_hr_expense__message_attachment_count
 msgid "Attachment Count"
 msgstr "Количество вложений"
@@ -580,6 +560,7 @@ msgstr "Оцифруйте свои квитанции с помощью OCR и 
 #: model:ir.model.fields,field_description:hr_expense.field_hr_expense_split__display_name
 #: model:ir.model.fields,field_description:hr_expense.field_hr_expense_split_wizard__display_name
 #: model:ir.model.fields,field_description:hr_expense.field_ir_actions_report__display_name
+#: model:ir.model.fields,field_description:hr_expense.field_ir_attachment__display_name
 #: model:ir.model.fields,field_description:hr_expense.field_product_product__display_name
 #: model:ir.model.fields,field_description:hr_expense.field_product_template__display_name
 #: model:ir.model.fields,field_description:hr_expense.field_res_company__display_name
@@ -994,6 +975,7 @@ msgstr "Домен псевдонима для расходов"
 #: model:ir.model.fields,field_description:hr_expense.field_hr_expense_split__id
 #: model:ir.model.fields,field_description:hr_expense.field_hr_expense_split_wizard__id
 #: model:ir.model.fields,field_description:hr_expense.field_ir_actions_report__id
+#: model:ir.model.fields,field_description:hr_expense.field_ir_attachment__id
 #: model:ir.model.fields,field_description:hr_expense.field_product_product__id
 #: model:ir.model.fields,field_description:hr_expense.field_product_template__id
 #: model:ir.model.fields,field_description:hr_expense.field_res_company__id
@@ -1113,7 +1095,7 @@ msgstr "Бухгалтерская запись, созданная по эти�
 #. odoo-python
 #: code:addons/hr_expense/models/account_move.py:0
 msgid "Journal entry created from this expense: %(link)s"
-msgstr "Бухгалтерская запись, созданная по этому расходу: %(links)s"
+msgstr "Бухгалтерская запись, созданная по этому расходу: %(link)s"
 
 #. module: hr_expense
 #: model:mail.message.subtype,description:hr_expense.mt_expense_entry_delete
@@ -1442,8 +1424,7 @@ msgstr "Только расходы в статусе «Черновик» мо�
 #. odoo-python
 #: code:addons/hr_expense/models/hr_expense.py:0
 msgid "Only expense paid by the employee can be posted with the wizard"
-msgstr ""
-"С помощью мастера можно провести только расходы, оплаченные сотрудником"
+msgstr "С помощью мастера можно провести только расходы, оплаченные сотрудником"
 
 #. module: hr_expense
 #. odoo-python
@@ -1960,8 +1941,7 @@ msgstr "Ответственный за одобрение команды"
 #. odoo-python
 #: code:addons/hr_expense/models/hr_expense.py:0
 msgid "The account %(name)s (%(code)s) is archived. Activate it to continue"
-msgstr ""
-"Счет %(name)s (%(code)s) архивирован. Активируйте его, чтобы продолжить"
+msgstr "Счет %(name)s (%(code)s) архивирован. Активируйте его, чтобы продолжить"
 
 #. module: hr_expense
 #. odoo-python
@@ -2038,6 +2018,18 @@ msgstr "Статусы всех текущих расходов отобража
 #: model:ir.model.fields,help:hr_expense.field_hr_expense_split_wizard__split_possible
 msgid "The sum of after split shut remain the same"
 msgstr "Сумма после разделения остается прежней"
+
+#. module: hr_expense
+#. odoo-python
+#: code:addons/hr_expense/models/hr_expense.py:0
+msgid ""
+"The vendor is required for expenses using SEPA Credit Transfer as the "
+"payment method.\n"
+"Please set a vendor on the following expenses: %s"
+msgstr ""
+"Поставщик обязателен для расходов с методом оплаты «Кредитный перевод SEPA"
+"».\n"
+"Пожалуйста, укажите поставщика для следующих расходов: %s"
 
 #. module: hr_expense
 #. odoo-python
@@ -2290,6 +2282,25 @@ msgstr ""
 #. module: hr_expense
 #. odoo-python
 #: code:addons/hr_expense/models/hr_expense.py:0
+msgid "You can't add an attachment to an expense once it has been approved."
+msgstr "Невозможно добавить вложение к расходу после его согласования."
+
+#. module: hr_expense
+#. odoo-python
+#: code:addons/hr_expense/models/ir_attachment.py:0
+msgid "You can't add attachments to an expense once it has been approved."
+msgstr "Невозможно добавить вложения к расходу после его согласования."
+
+#. module: hr_expense
+#. odoo-python
+#: code:addons/hr_expense/models/ir_attachment.py:0
+msgid ""
+"You can't delete attachments from an expense once it has been submitted."
+msgstr "Нельзя удалять вложения из расхода после его отправки на согласование."
+
+#. module: hr_expense
+#. odoo-python
+#: code:addons/hr_expense/models/hr_expense.py:0
 msgid ""
 "You can't post simultaneously employee-paid expenses belonging to different "
 "companies"
@@ -2376,6 +2387,12 @@ msgstr "У вас нет необходимых прав для отправки
 #: code:addons/hr_expense/models/hr_expense.py:0
 msgid "You do not have the rights to edit this expense."
 msgstr "У вас нет прав на редактирование этого расхода."
+
+#. module: hr_expense
+#. odoo-python
+#: code:addons/hr_expense/models/hr_expense.py:0
+msgid "You don't have the access rights to modify this expense."
+msgstr "У вас нет прав доступа для изменения этого расхода."
 
 #. module: hr_expense
 #. odoo-python
@@ -2468,6 +2485,21 @@ msgstr "используйте OCR для заполнения данных с �
 msgid "with the same receipt already exists."
 msgstr "с тем же чеком уже существует."
 
+#~ msgid "$100.00"
+#~ msgstr "$100.00"
+
+#~ msgid "$120.00"
+#~ msgstr "$120.00"
+
+#~ msgid "$500.00"
+#~ msgstr "$500.00"
+
+#~ msgid "$600.00"
+#~ msgstr "$600.00"
+
+#~ msgid "2023-08-11"
+#~ msgstr "2023-08-11"
+
 #~ msgid "View Attachments"
 #~ msgstr "Посмотреть вложения"
 
@@ -2541,9 +2573,6 @@ msgstr "с тем же чеком уже существует."
 
 #~ msgid "Approved On"
 #~ msgstr "Одобрен"
-
-#~ msgid "Attachment"
-#~ msgstr "Вложение"
 
 #~ msgid "Attachments of expenses"
 #~ msgstr "Приложения к расходам"

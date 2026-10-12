@@ -10,14 +10,14 @@
 # Martin Trigaux, 2023
 # Stefan Reisich <nafex@gmx.net>, 2023
 # Larissa Manderfeld, 2023
-# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025, 2026.
 # "Larissa Manderfeld (lman)" <lman@odoo.com>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-20 18:36+0000\n"
-"PO-Revision-Date: 2026-04-02 11:41+0000\n"
+"POT-Creation-Date: 2026-07-10 17:37+0000\n"
+"PO-Revision-Date: 2026-08-12 11:06+0000\n"
 "Last-Translator: \"Larissa Manderfeld (lman)\" <lman@odoo.com>\n"
 "Language-Team: German <https://translate.odoo.com/projects/odoo-19/sale/de/>"
 "\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #. module: sale
 #. odoo-javascript
@@ -103,32 +103,6 @@ msgid ""
 msgstr ""
 ", es ist 100 % kostenlos! Sie werden Zeit bei der Erstellung wunderschöner "
 "Angebote sparen und Verkäufe verfolgen."
-
-#. module: sale
-#: model_terms:ir.ui.view,arch_db:sale.report_saleorder_document
-msgid "2023-12-31"
-msgstr "2023-12-31"
-
-#. module: sale
-#: model_terms:ir.ui.view,arch_db:sale.report_saleorder_document
-msgid "25.00"
-msgstr "25,00"
-
-#. module: sale
-#: model_terms:ir.ui.view,arch_db:sale.report_saleorder_document
-#: model_terms:ir.ui.view,arch_db:sale.sale_order_portal_content
-msgid "27.00"
-msgstr "27,00"
-
-#. module: sale
-#: model_terms:ir.ui.view,arch_db:sale.report_saleorder_document
-msgid "30.00"
-msgstr "30,00"
-
-#. module: sale
-#: model_terms:ir.ui.view,arch_db:sale.sale_order_portal_content
-msgid "31.05"
-msgstr "31,05"
 
 #. module: sale
 #. odoo-javascript
@@ -210,14 +184,13 @@ msgstr ""
 "        <span style=\"font-weight:bold;\" t-out=\"transaction_sudo.reference "
 "or ''\">SOOO49</span>\n"
 "        in Höhe von\n"
-"        <span style=\"font-weight:bold;\" t-"
-"out=\"format_amount(transaction_sudo.amount, object.currency_id) or "
-"''\">10,00 €</span>\n"
+"        <span style=\"font-weight:bold;\" t-out=\"format_amount"
+"(transaction_sudo.amount, object.currency_id) or ''\">10,00 €</span>\n"
 "        für Ihren Auftrag\n"
-"        <span style=\"font-weight:bold;\" t-out=\"object.name or "
-"''\">S00049</span>\n"
-"        <t t-if=\"transaction_sudo and transaction_sudo.state == "
-"'pending'\">\n"
+"        <span style=\"font-weight:bold;\" t-out=\"object.name or ''\">"
+"S00049</span>\n"
+"        <t t-if=\"transaction_sudo and transaction_sudo.state == 'pending'\">"
+"\n"
 "            ist noch offen.\n"
 "            <br/>\n"
 "            <t t-if=\"object.currency_id.compare_amounts(object.amount_paid "
@@ -228,9 +201,9 @@ msgstr ""
 "            </t>\n"
 "            <t t-else=\"\">\n"
 "                Nach der Bestätigung sind noch\n"
-"                <span style=\"font-weight:bold;\" t-"
-"out=\"format_amount(object.amount_total - object.amount_paid - "
-"transaction_sudo.amount, object.currency_id) or ''\">10,00 €</span>\n"
+"                <span style=\"font-weight:bold;\" t-out=\"format_amount"
+"(object.amount_total - object.amount_paid - transaction_sudo.amount, "
+"object.currency_id) or ''\">10,00 €</span>\n"
 "                zu bezahlen.\n"
 "            </t>\n"
 "        </t>\n"
@@ -239,9 +212,9 @@ msgstr ""
 "            <t t-if=\"object.currency_id.compare_amounts(object.amount_paid, "
 "object.amount_total) &lt; 0\">\n"
 "                <br/>\n"
-"                <span style=\"font-weight:bold;\" t-"
-"out=\"format_amount(object.amount_total - object.amount_paid, "
-"object.currency_id) or ''\">10,00 €</span>\n"
+"                <span style=\"font-weight:bold;\" t-out=\"format_amount"
+"(object.amount_total - object.amount_paid, object.currency_id) or ''\">10,00 "
+"€</span>\n"
 "                sind noch zu bezahlen.\n"
 "            </t>\n"
 "        </t>\n"
@@ -965,12 +938,12 @@ msgstr ""
 "        <t t-if=\"object.origin\">\n"
 "            (mit Referenz: <t t-out=\"object.origin or ''\">S00052</t> )\n"
 "        </t>\n"
-"        in Höhe von <span style=\"font-weight: bold;\" t-"
-"out=\"format_amount(object.amount_total, object.currency_id) or ''\">10,00 "
-"€</span> steht zur Prüfung bereit.\n"
+"        in Höhe von <span style=\"font-weight: bold;\" t-out=\"format_amount"
+"(object.amount_total, object.currency_id) or ''\">10,00 €</span> steht zur "
+"Prüfung bereit.\n"
 "        <br/>\n"
-"        <t t-set=\"documents\" t-value=\"object._get_product_documents()\"/"
-">\n"
+"        <t t-set=\"documents\" t-value=\"object._get_product_documents()\"/>"
+"\n"
 "        <t t-if=\"documents\">\n"
 "            <br/>  \n"
 "            <t t-if=\"len(documents)&gt;1\">\n"
@@ -1045,9 +1018,9 @@ msgstr ""
 "        <t t-if=\"object.origin\">\n"
 "            (mit Referenz: <t t-out=\"object.origin or ''\"/> )\n"
 "        </t>\n"
-"        in Höhe von <span style=\"font-weight: bold;\" t-"
-"out=\"format_amount(object.amount_total, object.currency_id) or ''\">10,00 "
-"€</span> ist verfügbar.\n"
+"        in Höhe von <span style=\"font-weight: bold;\" t-out=\"format_amount"
+"(object.amount_total, object.currency_id) or ''\">10,00 €</span> ist "
+"verfügbar.\n"
 "        <br/><br/>\n"
 "        Bei Rückfragen stehen wir gerne zur Verfügung.\n"
 "        <t t-if=\"not is_html_empty(object.user_id.signature)\" data-o-mail-"
@@ -1461,8 +1434,8 @@ msgid ""
 msgstr ""
 "Aktivitätspläne werden verwendet, um eine Liste von Aktivitäten mit nur "
 "wenigen Klicks zuzuweisen\n"
-"                    (z. B. „Lieferplanung“, „Zahlungserinnerung für "
-"Auftrag“...)"
+"                    (z. B. „Lieferplanung“, „Zahlungserinnerung für Auftrag"
+"“...)"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.view_sales_order_filter
@@ -1896,8 +1869,8 @@ msgstr ""
 "   • Bei Verbrauchsgütern oder lagerfähigen Produkten öffnen Sie das "
 "Produkt, gehen Sie zum Reiter „Allgemeine Informationen“ und ändern Sie die "
 "'„Abrechnungspolitik“ von „Gelieferte Mengen“ in „Bestellte Mengen“.\n"
-"   • Ändern Sie bei Dienstleistungen (und anderen Produkten) die "
-"„Abrechnungspolitik“ auf „Vorkasse/Festpreis“.\n"
+"   • Ändern Sie bei Dienstleistungen (und anderen Produkten) die „"
+"Abrechnungspolitik“ auf „Vorkasse/Festpreis“.\n"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.view_order_form
@@ -2024,7 +1997,7 @@ msgstr "Unternehmen"
 #. module: sale
 #: model:ir.model,name:sale.model_base_document_layout
 msgid "Company Document Layout"
-msgstr "Dokumentenlayout des Unternehmens"
+msgstr "Dokumentlayout des Unternehmens"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.res_config_settings_view_form
@@ -2144,11 +2117,6 @@ msgid "Connect with your software!"
 msgstr "Mit Ihrer Software verknüpfen"
 
 #. module: sale
-#: model_terms:ir.ui.view,arch_db:sale.report_saleorder_document
-msgid "Connect your software"
-msgstr "Verknüpfen Sie Ihre Software!"
-
-#. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Connectors"
 msgstr "Konnektoren"
@@ -2202,7 +2170,7 @@ msgstr "Rechnungen erstellen"
 #. module: sale
 #: model:ir.model,website_form_label:sale.model_res_partner
 msgid "Create a Customer"
-msgstr "Kunden erstellen"
+msgstr "Kunde erstellen"
 
 #. module: sale
 #: model_terms:ir.actions.act_window,help:sale.mail_activity_plan_action_sale_order
@@ -2475,7 +2443,7 @@ msgstr "Lieferadresse"
 #: model:ir.model.fields,field_description:sale.field_sale_order__commitment_date
 #: model_terms:ir.ui.view,arch_db:sale.view_order_form
 msgid "Delivery Date"
-msgstr "Liefertermin"
+msgstr "Lieferdatum"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.sale_order_portal_content
@@ -3135,14 +3103,12 @@ msgstr "Sofort"
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Import Amazon orders and sync deliveries"
-msgstr ""
-"Importieren Sie Amazon-Bestellungen und synchronisieren Sie Lieferungen"
+msgstr "Importieren Sie Amazon-Bestellungen und synchronisieren Sie Lieferungen"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Import Shopee orders and sync deliveries"
-msgstr ""
-"Importieren Sie Shopee-Bestellungen und synchronisieren Sie Lieferungen"
+msgstr "Importieren Sie Shopee-Bestellungen und synchronisieren Sie Lieferungen"
 
 #. module: sale
 #. odoo-python
@@ -3916,9 +3882,9 @@ msgid ""
 "Optional Products are suggested whenever the customer hits *Add to Cart* "
 "(cross-sell strategy, e.g. for computers: warranty, software, etc.)."
 msgstr ""
-"Optionale Produkte werden vorgeschlagen, wenn der Kunde auf „In den "
-"Warenkorb“ klickt (Cross-Selling-Strategie, z. B. für Computer: Garantie, "
-"Software usw.)."
+"Optionale Produkte werden vorgeschlagen, wenn der Kunde auf „In den Warenkorb"
+"“ klickt (Cross-Selling-Strategie, z. B. für Computer: Garantie, Software "
+"usw.)."
 
 #. module: sale
 #. odoo-python
@@ -4564,8 +4530,7 @@ msgstr "Alle Steuern auf der Grundlage dieser Steuerposition neu berechnen"
 #. module: sale
 #: model:ir.model.fields,help:sale.field_sale_order__origin
 msgid "Reference of the document that generated this sales order request"
-msgstr ""
-"Referenz des Dokuments, das diese Verkaufsauftragsanfrage generiert hat"
+msgstr "Referenz des Dokuments, das diese Verkaufsauftragsanfrage generiert hat"
 
 #. module: sale
 #: model:ir.model.fields.selection,name:sale.selection__sale_advance_payment_inv__advance_payment_method__delivered
@@ -5083,7 +5048,7 @@ msgstr "Sequenz"
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.res_config_settings_view_form
 msgid "Set multiple prices per product, automated discounts, etc."
-msgstr "Setzen Sie mehrere Preise pro Produkt, automatische Rabatte etc."
+msgstr "Legen Sie mehrere Preise pro Produkt, automatische Rabatte usw. fest."
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.view_order_form
@@ -5656,7 +5621,7 @@ msgstr "Sie haben noch keine Angebote für Ihr Konto."
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.portal_my_orders
 msgid "There are currently no sales orders for your account."
-msgstr "Aktuell gibt es keine Verkaufsaufträge für Ihr Konto."
+msgstr "Derzeit gibt es keine Verkaufsaufträge für Ihr Konto."
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.view_sale_advance_payment_inv
@@ -5707,7 +5672,7 @@ msgid ""
 "This is the delivery date promised to the customer. If set, the delivery "
 "order will be scheduled based on this date rather than product lead times."
 msgstr ""
-"Dies ist der dem Kunden zugesagte Liefertermin. Wenn gesetzt, wird der "
+"Dies ist das dem Kunden zugesagte Lieferdatum. Wenn gesetzt, wird der "
 "Lieferauftrag nicht auf der Grundlage der Produktvorlaufzeiten, sondern auf "
 "der Grundlage dieses Datums terminiert."
 
@@ -6397,15 +6362,9 @@ msgid "sale order"
 msgstr "Verkaufsauftrag"
 
 #. module: sale
-#: model_terms:ir.ui.view,arch_db:sale.report_saleorder_document
-msgid "to create quotes automatically."
-msgstr ", um Angebote automatisch zu erstellen"
-
-#. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.sale_order_portal_template
 msgid "to learn all the ways to connect your software with"
-msgstr ""
-"und entdecken Sie alle Möglichkeiten zur Verkmüpfung Ihrer Software mit"
+msgstr "und entdecken Sie alle Möglichkeiten zur Verkmüpfung Ihrer Software mit"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.report_saleorder_document
@@ -6414,8 +6373,8 @@ msgstr "Einheiten"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.report_saleorder_document
-msgid "with"
-msgstr "mit"
+msgid "x"
+msgstr "x"
 
 #. module: sale
 #: model_terms:ir.ui.view,arch_db:sale.sale_order_portal_pay_modal
@@ -6431,8 +6390,8 @@ msgid ""
 "a' }})"
 msgstr ""
 "{{ object.company_id.name }} {{ (object.get_portal_last_transaction().state "
-"== 'pending') and 'Ausstehender Auftrag' or 'Auftrag' }} (Ref. "
-"{{ object.name or 'k. A.' }})"
+"== 'pending') and 'Ausstehender Auftrag' or 'Auftrag' }} (Ref. {{ "
+"object.name or 'k. A.' }})"
 
 #. module: sale
 #: model:mail.template,subject:sale.email_template_proforma
@@ -6451,6 +6410,30 @@ msgid ""
 msgstr ""
 "{{ object.company_id.name }} {{ object.state in ('draft', 'sent') and "
 "'Angebot' or 'Auftrag' }} (Ref. {{ object.name or 'k. A.' }})"
+
+#~ msgid "Connect your software"
+#~ msgstr "Verknüpfen Sie Ihre Software!"
+
+#~ msgid "to create quotes automatically."
+#~ msgstr ", um Angebote automatisch zu erstellen"
+
+#~ msgid "with"
+#~ msgstr "mit"
+
+#~ msgid "2023-12-31"
+#~ msgstr "2023-12-31"
+
+#~ msgid "25.00"
+#~ msgstr "25,00"
+
+#~ msgid "27.00"
+#~ msgstr "27,00"
+
+#~ msgid "30.00"
+#~ msgstr "30,00"
+
+#~ msgid "31.05"
+#~ msgstr "31,05"
 
 #~ msgid ""
 #~ "<span class=\"fa fa-lg fa-building-o p-2\" title=\"Values set here are "

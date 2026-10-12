@@ -24,24 +24,24 @@
 # Mikael Åkerberg <mikael.akerberg@mariaakerberg.com>, 2023
 # Kim Asplund <kim.asplund@gmail.com>, 2023
 # Daniel Osser <danielosser@gmail.com>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
 # Hanna Kharraziha <hakha@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-03 18:38+0000\n"
-"PO-Revision-Date: 2026-03-31 07:12+0000\n"
+"POT-Creation-Date: 2026-07-10 17:38+0000\n"
+"PO-Revision-Date: 2026-10-05 09:50+0000\n"
 "Last-Translator: Hanna Kharraziha <hakha@odoo.com>\n"
-"Language-Team: Swedish <https://translate.odoo.com/projects/odoo-19/web/sv/"
-">\n"
+"Language-Team: Swedish <https://translate.odoo.com/projects/odoo-19/web/sv/>"
+"\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: web
 #. odoo-javascript
@@ -150,133 +150,9 @@ msgstr "+ NYCKEL"
 
 #. module: web
 #. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "00"
-msgstr "00"
-
-#. module: web
-#: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
-msgid "07/08/2020"
-msgstr "07/08/2020"
-
-#. module: web
-#: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
-msgid "08/07/2020"
-msgstr "08/07/2020"
-
-#. module: web
-#. odoo-javascript
 #: code:addons/web/static/src/views/fields/formatters.js:0
 msgid "1 record"
 msgstr "1 post"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "1.30"
-msgstr "1.30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "10"
-msgstr "10"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "10.30"
-msgstr "10.30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "100"
-msgstr "100"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "10:00"
-msgstr "10:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "10:30"
-msgstr "10:30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "11"
-msgstr "11"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "11.30"
-msgstr "11.30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "11:00"
-msgstr "11:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "11:30"
-msgstr "11:30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "12"
-msgstr "12"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "12.30"
-msgstr "12.30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "1234"
-msgstr "1234"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "12:00"
-msgstr "12:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "12:30"
-msgstr "12:30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "18"
-msgstr "18"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "1:00"
-msgstr "1:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "1:30"
-msgstr "1:30"
 
 #. module: web
 #. odoo-javascript
@@ -287,74 +163,20 @@ msgstr "Förstaplatsmedalj"
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "2.30"
-msgstr "2.30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "2:00"
-msgstr "2:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "2:30"
-msgstr "2:30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "2nd place medal"
 msgstr "Andraplats medalj"
 
 #. module: web
 #. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "3.30"
-msgstr "3.30"
-
-#. module: web
-#. odoo-javascript
 #: code:addons/web/static/src/views/fields/datetime/datetime_field.js:0
 msgid "31/01/%s"
-msgstr ""
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "3:00"
-msgstr "3:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "3:30"
-msgstr "3:30"
+msgstr "31/01/%s"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "3rd place medal"
 msgstr "Tredjeplatsmedalj"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "4.30"
-msgstr "4.30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "4:00"
-msgstr "4:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "4:30"
-msgstr "4:30"
 
 #. module: web
 #. odoo-javascript
@@ -367,96 +189,6 @@ msgstr "4WD"
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "4x4"
 msgstr "4x4"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "5.30"
-msgstr "5.30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "5:00"
-msgstr "5:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "5:30"
-msgstr "5:30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "6.30"
-msgstr "6.30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "6:00"
-msgstr "6:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "6:30"
-msgstr "6:30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "7.30"
-msgstr "7.30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "7:00"
-msgstr "7:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "7:30"
-msgstr "7:30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "8.30"
-msgstr "8.30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "8:00"
-msgstr "8:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "8:30"
-msgstr "8:30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "9.30"
-msgstr "9.30"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "9:00"
-msgstr "9:00"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-msgid "9:30"
-msgstr "9:30"
 
 #. module: web
 #. odoo-javascript
@@ -548,8 +280,8 @@ msgid ""
 msgstr ""
 "<span class=\"w-100 o_force_ltr\" itemprop=\"streetAddress\">77 Santa "
 "Barbara\n"
-"                                        Rd<br/>Pleasant Hill CA 94523<br/"
-">United States</span>"
+"                                        Rd<br/>Pleasant Hill CA 94523<br/>"
+"United States</span>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
@@ -722,6 +454,12 @@ msgstr ""
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "A"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "A button (blood type)"
 msgstr "En knapp (blodtyp)"
 
@@ -868,19 +606,19 @@ msgstr "Aktivera felsökningsläge (med tillgångar)"
 #. odoo-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_dev_tool.xml:0
 msgid "Activate the developer mode"
-msgstr "Aktivera utvecklarmod"
+msgstr "Aktivera utvecklingsläge"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_dev_tool.xml:0
 msgid "Activate the developer mode (with assets)"
-msgstr "Aktivera utvecklarmod (med resurser)"
+msgstr "Aktivera utvecklingsläge (med resurser)"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_dev_tool.xml:0
 msgid "Activate the developer mode (with tests assets)"
-msgstr "Aktivera utvecklarmod (med tests resurser)"
+msgstr "Aktivera utvecklingsläge (med testkörningsresurser)"
 
 #. module: web
 #. odoo-javascript
@@ -1284,7 +1022,7 @@ msgstr "Australien"
 #. odoo-javascript
 #: code:addons/web/static/src/core/signature/name_and_signature.xml:0
 msgid "Auto"
-msgstr "Bil"
+msgstr "Automatisk"
 
 #. module: web
 #. odoo-javascript
@@ -1306,6 +1044,12 @@ msgstr "Tillgängliga fält"
 #: code:addons/web/static/src/views/calendar/calendar_filter_section/calendar_filter_section.xml:0
 msgid "Avatar"
 msgstr "Avatar"
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "B"
+msgstr ""
 
 #. module: web
 #. odoo-javascript
@@ -1523,6 +1267,12 @@ msgstr "Bytes"
 #: code:addons/web/static/src/core/utils/binary.js:0
 msgid "Bytes|Kb|Mb|Gb|Tb|Pb|Eb|Zb|Yb"
 msgstr "Bytes|Kb|Mb|Gb|Tb|Pb|Eb|Zb|Yb"
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "C"
+msgstr ""
 
 #. module: web
 #. odoo-javascript
@@ -2150,7 +1900,7 @@ msgstr "Skapa och redigera..."
 #. odoo-javascript
 #: code:addons/web/static/src/views/fields/relational_utils.js:0
 msgid "Create..."
-msgstr ""
+msgstr "Skapa..."
 
 #. module: web
 #: model:ir.model.fields,field_description:web.field_base_document_layout__create_uid
@@ -2241,7 +1991,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/web/static/src/search/custom_group_by_item/custom_group_by_item.xml:0
 msgid "Custom Group"
-msgstr ""
+msgstr "Anpassad grupp"
 
 #. module: web
 #. odoo-javascript
@@ -2351,7 +2101,7 @@ msgstr "Inaktivera felsöknings läge"
 #. odoo-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_dev_tool.xml:0
 msgid "Deactivate the developer mode"
-msgstr "Inaktivera utvecklarmod"
+msgstr "Avaktivera utvecklingsläge"
 
 #. module: web
 #. odoo-javascript
@@ -2529,6 +2279,12 @@ msgstr "Inaktivera öppning"
 #: code:addons/web/static/src/views/fields/float_toggle/float_toggle_field.js:0
 msgid "Disable readonly"
 msgstr "Inaktivera skrivskyddad"
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/search/search_bar_menu/search_bar_menu.xml:0
+msgid "Disabled due to invalid configuration"
+msgstr ""
 
 #. module: web
 #. odoo-javascript
@@ -2830,7 +2586,7 @@ msgstr "Redigera taggar"
 #. odoo-javascript
 #: code:addons/web/static/src/search/search_bar_menu/search_bar_menu.xml:0
 msgid "Edit favorite"
-msgstr ""
+msgstr "Redigera favorit"
 
 #. module: web
 #. odoo-javascript
@@ -3141,7 +2897,7 @@ msgstr "Filter"
 #. odoo-javascript
 #: code:addons/web/static/src/views/pivot/pivot_controller.xml:0
 msgid "Flip axis"
-msgstr "Vänd axel"
+msgstr "Omvänd axel"
 
 #. module: web
 #. odoo-javascript
@@ -3154,7 +2910,7 @@ msgstr "Flyttal"
 #: code:addons/web/static/src/views/fields/properties/property_definition.xml:0
 #: code:addons/web/static/src/views/kanban/kanban_header.js:0
 msgid "Fold"
-msgstr "Vik ihop"
+msgstr "Dölj"
 
 #. module: web
 #. odoo-javascript
@@ -3440,6 +3196,12 @@ msgstr "Dölj tekniska detaljer"
 #: code:addons/web/static/src/views/fields/float/float_field.js:0
 #: code:addons/web/static/src/views/fields/monetary/monetary_field.js:0
 msgid "Hide trailing zeros"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/views/fields/password/password_field.js:0
+msgid "Hide value"
 msgstr ""
 
 #. module: web
@@ -4357,6 +4119,12 @@ msgstr "Logo Sekundär Färg"
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "M"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "Mahjong"
 msgstr "Mahjong"
 
@@ -4482,12 +4250,7 @@ msgstr "Mötesämne"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.config_speedscope_index
-msgid "Memory limit (in bytes)"
-msgstr ""
-
-#. module: web
-#: model_terms:ir.ui.view,arch_db:web.config_speedscope_index
-msgid "Memory profile"
+msgid "Memory (heuristic)"
 msgstr ""
 
 #. module: web
@@ -4950,7 +4713,7 @@ msgstr "Ingen data"
 #: code:addons/web/static/src/views/action_helper.xml:0
 #: code:addons/web/static/src/views/no_content_helpers.xml:0
 msgid "No data to display"
-msgstr "Ingen data att visa"
+msgstr "Hittade ingen data."
 
 #. module: web
 #. odoo-python
@@ -5087,6 +4850,12 @@ msgstr ""
 #: code:addons/web/static/src/views/fields/many2many_binary/many2many_binary_field.js:0
 msgid "Number of files"
 msgstr "Antalet filer"
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "O"
+msgstr ""
 
 #. module: web
 #. odoo-javascript
@@ -5278,8 +5047,7 @@ msgstr "Endast sökbar"
 msgid ""
 "Only the first %(count)s records have been deleted (out of %(total)s "
 "selected)"
-msgstr ""
-"Endast de första %(count)s posterna har raderats (av %(total)s utvalda)"
+msgstr "Endast de första %(count)s posterna har raderats (av %(total)s utvalda)"
 
 #. module: web
 #. odoo-python
@@ -5288,8 +5056,8 @@ msgid ""
 "Only types %(supported_types)s are supported for category (found type %"
 "(field_type)s)"
 msgstr ""
-"Endast typer %(supported_types)s stöds för kategori (hittad typ %"
-"(field_type)s)"
+"Endast typer %(supported_types)s stöds för kategori (hittad typ %(field_type)"
+"s)"
 
 #. module: web
 #. odoo-python
@@ -5310,7 +5078,7 @@ msgstr "Bara du"
 #. odoo-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 msgid "Oops!"
-msgstr "Ojdå!"
+msgstr "Åh nej!"
 
 #. module: web
 #. odoo-javascript
@@ -5427,6 +5195,12 @@ msgstr "Stil för överflöde"
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "P"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "P button"
 msgstr "P-knapp"
 
@@ -5477,6 +5251,8 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/views/fields/password/password_field.js:0
 #: model_terms:ir.ui.view,arch_db:web.login
 msgid "Password"
 msgstr "Lösenord"
@@ -5831,6 +5607,12 @@ msgstr "Qweb fältbild"
 
 #. module: web
 #. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "R"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
 #: code:addons/web/static/src/views/fields/radio/radio_field.js:0
 msgid "Radio"
 msgstr "Radio"
@@ -6085,6 +5867,12 @@ msgstr "Återställ till logo färger"
 
 #. module: web
 #. odoo-javascript
+#: code:addons/web/static/src/views/fields/password/password_field.js:0
+msgid "Reveal value"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
 #: code:addons/web/static/src/core/file_viewer/file_viewer.xml:0
 msgid "Rotate (r)"
 msgstr "Rotera (r)"
@@ -6238,7 +6026,13 @@ msgstr "Spara standardvärden"
 #. odoo-javascript
 #: code:addons/web/static/src/views/form/form_status_indicator/form_status_indicator.xml:0
 msgid "Save manually"
-msgstr "Spara manuellt"
+msgstr "Spara"
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/views/fields/translation_button.js:0
+msgid "Save this record and its parent to translate"
+msgstr ""
 
 #. module: web
 #. odoo-javascript
@@ -6672,8 +6466,8 @@ msgid ""
 "Something went wrong... If you really are stuck, share the report with your "
 "friendly support service"
 msgstr ""
-"Något verkar ha gått fel... Om du upplever problemet upprepade gånger, kan "
-"du välja att skicka en felrapport till kundtjänsten"
+"Något verkar ha gått fel... Om du har kört fast, kan du välja att dela den "
+"här rapporten med vår kundtjänst."
 
 #. module: web
 #. odoo-javascript
@@ -6697,7 +6491,7 @@ msgstr "Speedscope"
 #: code:addons/web/static/src/views/fields/json_checkboxes/json_checkboxes_field.js:0
 #: code:addons/web/static/src/views/graph/graph_controller.xml:0
 msgid "Stacked"
-msgstr "Stackad"
+msgstr "Staplad"
 
 #. module: web
 #. odoo-javascript
@@ -6953,17 +6747,6 @@ msgid "Text file"
 msgstr "Text-fil"
 
 #. module: web
-#: model:ir.model.fields,help:web.field_base_document_layout__vat
-msgid ""
-"The Tax Identification Number. Values here will be validated based on the "
-"country format. You can use '/' to indicate that the partner is not subject "
-"to tax."
-msgstr ""
-"Skatteredovisningsnummer, värden här kommer att bekräftas baserat på "
-"landsformatet. Du kan använda '/' för att ange att partnern inte är "
-"skattepliktig."
-
-#. module: web
 #. odoo-python
 #: code:addons/web/controllers/action.py:0
 msgid "The action “%s” does not exist"
@@ -6994,8 +6777,8 @@ msgid ""
 "The content of this cell is too long for an XLSX file (more than %s "
 "characters). Please use the CSV format for this export."
 msgstr ""
-"Innehållet i den här cellen är för långt för en XLSX -fil (mer än %s "
-"tecken). Använd CSV -formatet för denna export."
+"Innehållet i den här cellen är för långt för en XLSX -fil (mer än %s tecken)"
+". Använd CSV -formatet för denna export."
 
 #. module: web
 #. odoo-javascript
@@ -7213,6 +6996,12 @@ msgstr "Tid"
 
 #. module: web
 #. odoo-javascript
+#: code:addons/web/static/src/webclient/debug/profiling/profiling_item.xml:0
+msgid "Time Limit (seconds)"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
 #: code:addons/web/static/src/views/fields/datetime/datetime_field.js:0
 msgid "Time interval"
 msgstr "Tidsintervall"
@@ -7371,6 +7160,8 @@ msgid ""
 "Try to add some records, or make sure that there is no\n"
 "                        active filter in the search bar."
 msgstr ""
+"Försök att lägga till fler handlingar eller ta bort\n"
+"                        eventuella aktiva filter i sökfältet."
 
 #. module: web
 #. odoo-javascript
@@ -7489,8 +7280,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/web/static/src/views/form/form_status_indicator/form_status_indicator.xml:0
 msgid "Unable to save. Correct the issue or discard all changes"
-msgstr ""
-"Det går inte att spara. Korrigera problemet eller avbryt alla ändringar"
+msgstr "Det går inte att spara. Korrigera problemet eller avbryt alla ändringar"
 
 #. module: web
 #. odoo-javascript
@@ -7512,7 +7302,7 @@ msgstr "Odefinierad"
 #. odoo-javascript
 #: code:addons/web/static/src/views/kanban/kanban_header.xml:0
 msgid "Unfold"
-msgstr "Vik ut"
+msgstr "Visa"
 
 #. module: web
 #. odoo-javascript
@@ -8054,6 +7844,11 @@ msgid "You can not read that field definition."
 msgstr ""
 
 #. module: web
+#: model:ir.model.fields,help:web.field_base_document_layout__vat
+msgid "You can use '/' to indicate that the customer has no Tax ID."
+msgstr ""
+
+#. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/views/fields/properties/property_definition.js:0
 msgid "You do not have access to the model \"%s\"."
@@ -8092,8 +7887,8 @@ msgid ""
 "You need to start Odoo with at least two workers to print a pdf version of "
 "the reports."
 msgstr ""
-"Du måste starta Odoo med minst två arbetare för att skriva ut en pdf "
-"-version av rapporterna."
+"Du måste starta Odoo med minst två arbetare för att skriva ut en pdf -"
+"version av rapporterna."
 
 #. module: web
 #. odoo-javascript
@@ -10570,7 +10365,7 @@ msgstr "knapp för kontrollmärke"
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "check-in"
-msgstr "incheckning"
+msgstr "Checka in"
 
 #. module: web
 #. odoo-javascript
@@ -15740,6 +15535,12 @@ msgstr "hóngbāo"
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "i"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "ice"
 msgstr "is"
 
@@ -19078,6 +18879,12 @@ msgstr "nuts"
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "o"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "ocean"
 msgstr "hav"
 
@@ -19300,7 +19107,6 @@ msgstr "ojdå"
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
-#: model_terms:ir.ui.view,arch_db:web.config_speedscope_index
 msgid "open"
 msgstr "öppna"
 
@@ -19374,14 +19180,14 @@ msgstr "optisk disk"
 #. odoo-javascript
 #: code:addons/web/static/src/core/autocomplete/autocomplete.xml:0
 msgid "option.label"
-msgstr ""
+msgstr "option.label"
 
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/record_selectors/record_autocomplete.xml:0
 #: code:addons/web/static/src/views/fields/relational_utils.xml:0
 msgid "optionScope.label"
-msgstr ""
+msgstr "optionScope.label"
 
 #. module: web
 #. odoo-javascript
@@ -21160,6 +20966,12 @@ msgstr "fråga"
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "quiet"
 msgstr "tyst"
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "r"
+msgstr ""
 
 #. module: web
 #. odoo-javascript
@@ -25355,6 +25167,12 @@ msgstr "urna"
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "v"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "vague"
 msgstr "vag"
 
@@ -26735,6 +26553,12 @@ msgstr "vrångt"
 #. module: web
 #. odoo-javascript
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "x"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "yacht"
 msgstr "yacht"
 
@@ -27013,6 +26837,246 @@ msgstr "\"ledig tjänst\""
 #: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
 msgid "ココ"
 msgstr "ココ"
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "サ"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "割"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "可"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "合"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "営"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "得"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "指"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "月"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "有"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "満"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "無"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "申"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "祝"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "禁"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "秘"
+msgstr ""
+
+#. module: web
+#. odoo-javascript
+#: code:addons/web/static/src/core/emoji_picker/emoji_data.js:0
+msgid "空"
+msgstr ""
+
+#~ msgid ""
+#~ "The Tax Identification Number. Values here will be validated based on the "
+#~ "country format. You can use '/' to indicate that the partner is not "
+#~ "subject to tax."
+#~ msgstr ""
+#~ "Skatteredovisningsnummer, värden här kommer att bekräftas baserat på "
+#~ "landsformatet. Du kan använda '/' för att ange att partnern inte är "
+#~ "skattepliktig."
+
+#~ msgid "00"
+#~ msgstr "00"
+
+#~ msgid "07/08/2020"
+#~ msgstr "07/08/2020"
+
+#~ msgid "08/07/2020"
+#~ msgstr "08/07/2020"
+
+#~ msgid "1.30"
+#~ msgstr "1.30"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "10.30"
+#~ msgstr "10.30"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "10:00"
+#~ msgstr "10:00"
+
+#~ msgid "10:30"
+#~ msgstr "10:30"
+
+#~ msgid "11"
+#~ msgstr "11"
+
+#~ msgid "11.30"
+#~ msgstr "11.30"
+
+#~ msgid "11:00"
+#~ msgstr "11:00"
+
+#~ msgid "11:30"
+#~ msgstr "11:30"
+
+#~ msgid "12"
+#~ msgstr "12"
+
+#~ msgid "12.30"
+#~ msgstr "12.30"
+
+#~ msgid "1234"
+#~ msgstr "1234"
+
+#~ msgid "12:00"
+#~ msgstr "12:00"
+
+#~ msgid "12:30"
+#~ msgstr "12:30"
+
+#~ msgid "18"
+#~ msgstr "18"
+
+#~ msgid "1:00"
+#~ msgstr "1:00"
+
+#~ msgid "1:30"
+#~ msgstr "1:30"
+
+#~ msgid "2.30"
+#~ msgstr "2.30"
+
+#~ msgid "2:00"
+#~ msgstr "2:00"
+
+#~ msgid "2:30"
+#~ msgstr "2:30"
+
+#~ msgid "3.30"
+#~ msgstr "3.30"
+
+#~ msgid "3:00"
+#~ msgstr "3:00"
+
+#~ msgid "3:30"
+#~ msgstr "3:30"
+
+#~ msgid "4.30"
+#~ msgstr "4.30"
+
+#~ msgid "4:00"
+#~ msgstr "4:00"
+
+#~ msgid "4:30"
+#~ msgstr "4:30"
+
+#~ msgid "5.30"
+#~ msgstr "5.30"
+
+#~ msgid "5:00"
+#~ msgstr "5:00"
+
+#~ msgid "5:30"
+#~ msgstr "5:30"
+
+#~ msgid "6.30"
+#~ msgstr "6.30"
+
+#~ msgid "6:00"
+#~ msgstr "6:00"
+
+#~ msgid "6:30"
+#~ msgstr "6:30"
+
+#~ msgid "7.30"
+#~ msgstr "7.30"
+
+#~ msgid "7:00"
+#~ msgstr "7:00"
+
+#~ msgid "7:30"
+#~ msgstr "7:30"
+
+#~ msgid "8.30"
+#~ msgstr "8.30"
+
+#~ msgid "8:00"
+#~ msgstr "8:00"
+
+#~ msgid "8:30"
+#~ msgstr "8:30"
+
+#~ msgid "9.30"
+#~ msgstr "9.30"
+
+#~ msgid "9:00"
+#~ msgstr "9:00"
+
+#~ msgid "9:30"
+#~ msgstr "9:30"
 
 #~ msgid "No emoji matches your search"
 #~ msgstr "Ingen emoji matchar din sökning"
@@ -27678,9 +27742,6 @@ msgstr "ココ"
 
 #~ msgid "greater than or equal to"
 #~ msgstr "större än eller lika med"
-
-#~ msgid "in"
-#~ msgstr "i"
 
 #~ msgid "is"
 #~ msgstr "är"

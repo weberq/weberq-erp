@@ -585,7 +585,7 @@ class ProductTemplate(models.Model):
     def write(self, vals):
         if 'uom_id' in vals:
             products = self.filtered(lambda template: template.uom_id.id != vals['uom_id']).product_variant_ids
-            products.with_context(skip_uom_conversion=True)._update_uom(vals['uom_id'])
+            products.sudo().with_context(skip_uom_conversion=True)._update_uom(vals['uom_id'])
         res = super(ProductTemplate, self).write(vals)
         if self.env.context.get("create_product_product", True) and 'attribute_line_ids' in vals or (vals.get('active') and len(self.product_variant_ids) == 0):
             self._create_variant_ids()
@@ -699,7 +699,7 @@ class ProductTemplate(models.Model):
                     %s
                 </p>
                 <p>
-                    <a class="oe_link" href="https://www.odoo.com/documentation/latest/_downloads/c2c6ce32294dfddffcfefcf2775f7a09/pdfquotebuilderexamples.zip">
+                    <a class="oe_link" href="https://www.odoo.com/documentation/latest/_downloads/eaa2883bd361273b475c9765f64e3e0c/pdfquotebuilderexamples.zip">
                     %s
                     </a>
                 </p>

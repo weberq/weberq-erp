@@ -156,7 +156,8 @@ export class FormOptionPlugin extends Plugin {
             SetVisibilityAction,
             SetVisibilityDependencyAction,
             SetFormCustomFieldValueListAction,
-            PropertyAction,
+            PropertyAction, // TODO: remove on master (unused)
+            PropertyAndAttributeValueAction,
             SetCustomErrorMessageAction,
             SetDefaultErrorMessageAction,
             SetRequirementComparatorAction,
@@ -185,6 +186,7 @@ export class FormOptionPlugin extends Plugin {
             },
         ],
         so_content_addition_selector: [".s_website_form"],
+        submit_button_selectors: [".s_website_form_send", ".s_website_form_submit"],
         on_snippet_dropped_handlers: this.onSnippetDropped.bind(this),
         on_cloned_handlers: this.onCloned.bind(this),
         is_unremovable_selector: ".s_website_form_send, .s_website_form_submit",
@@ -514,6 +516,7 @@ export class FormOptionPlugin extends Plugin {
         const activeField = getActiveField(oldFieldEl, { fields });
         if (activeField.type !== field.type) {
             field.value = "";
+            field.propertyValue = "";
         }
         const targetEl = oldFieldEl.querySelector(".s_website_form_input");
         if (targetEl) {
@@ -945,7 +948,7 @@ export class AddActionFieldAction extends BuilderAction {
             }
         }
         const fieldName = params.fieldName;
-        if (params.isSelect === "true") {
+        if (params.isSelect) {
             value = parseInt(value);
         }
         this.dependencies.websiteFormOption.addHiddenField(el, value, fieldName);
@@ -1260,19 +1263,28 @@ export class ToggleDescriptionAction extends BuilderAction {
         const description = fieldEl.querySelector(".s_website_form_field_description");
         const hasDescription = !!description;
         const field = getActiveField(fieldEl, { fields });
-        field.description = !hasDescription; // Will be changed to default description in qweb
+
+        if (hasDescription) {
+            description.classList.toggle("d-none");
+        } else {
+            field.description = true; // Will be changed to default description in qweb
+        }
+
         this.dependencies.websiteFormOption.replaceField(fieldEl, field, fields);
     }
     isApplied({ editingElement: fieldEl }) {
         const description = fieldEl.querySelector(".s_website_form_field_description");
-        return !!description;
+        return !!description && !description.classList.contains("d-none");
     }
 }
 export class SelectTextareaValueAction extends BuilderAction {
     static id = "selectTextareaValue";
+    static dependencies = ["valueHistory"];
     apply({ editingElement: fieldEl, value }) {
+        // Set the property first, because changing the attribute silently
+        // sets the value (the first time), messing the history
+        this.dependencies.valueHistory.setValue(fieldEl, value);
         fieldEl.textContent = value;
-        fieldEl.value = value;
     }
     getValue({ editingElement: fieldEl }) {
         return fieldEl.textContent;
@@ -1425,10 +1437,31 @@ export class SetFormCustomFieldValueListAction extends BuilderAction {
     }
 }
 class PropertyAction extends BuilderAction {
+    // TODO: remove this class on master (unused)
     static id = "property";
 
     apply({ editingElement, params: { property, format } = {}, value }) {
         editingElement[property] = format ? format(value) : value;
+    }
+}
+export class PropertyAndAttributeValueAction extends BuilderAction {
+    static id = "propertyAndAttributeValue";
+    static dependencies = ["valueHistory"];
+
+    getValue({ editingElement }) {
+        return editingElement.getAttribute("value");
+    }
+    apply({ editingElement, params: { format } = {}, value }) {
+        // Set both the property and the attribute in this action (instead of
+        // using the `attributeAction` shortcut) to ensure the order between
+        // the two, because setting the `value` attribute changes the `value`
+        // property the first time (leading to bad history)
+        this.dependencies.valueHistory.setValue(editingElement, format ? format(value) : value);
+        if (value) {
+            editingElement.setAttribute("value", value);
+        } else {
+            editingElement.removeAttribute("value");
+        }
     }
 }
 class SetMultipleFilesAction extends BuilderAction {

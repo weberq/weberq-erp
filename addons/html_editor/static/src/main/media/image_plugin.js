@@ -305,6 +305,7 @@ export class ImagePlugin extends Plugin {
             downloadUrl: targetedImg.src,
         };
         this.document.getSelection().collapseToEnd();
+        this.document.activeElement.blur();
         this.fileViewer.open(fileModel);
     }
 
@@ -316,10 +317,10 @@ export class ImagePlugin extends Plugin {
             }
             const cursors = this.dependencies.selection.preserveSelection();
             cursors.update(callbacksForCursorUpdate.remove(targetedImg));
-            const parentEl = closestBlock(targetedImg);
+            const blockEl = closestBlock(targetedImg.parentElement);
             targetedImg.remove();
             cursors.restore();
-            fillEmpty(parentEl);
+            fillEmpty(blockEl);
             this.dependencies.history.addStep();
         }
     }

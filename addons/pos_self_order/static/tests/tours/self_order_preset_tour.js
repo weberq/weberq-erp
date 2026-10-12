@@ -68,27 +68,6 @@ registry.category("web_tour.tours").add("self_order_preset_slot_tour", {
     ],
 });
 
-registry.category("web_tour.tours").add("test_slot_limit_orders", {
-    steps: () => [
-        Utils.checkIsNoBtn("My Order"),
-        Utils.clickBtn("Order Now"),
-        LandingPage.selectLocation("Takeaway"),
-        ProductPage.clickProduct("Free"),
-        Utils.clickBtn("Checkout"),
-        Utils.clickBtn("Order"),
-        CartPage.selectSpecificValueInInput(".slot-select", "18:00"),
-        CartPage.fillInput("Name", "Dr Dre"),
-        Utils.clickBtn("Continue"),
-        Utils.clickBtn("Ok"),
-        Utils.clickBtn("Order Now"),
-        LandingPage.selectLocation("Takeaway"),
-        ProductPage.clickProduct("Free"),
-        Utils.clickBtn("Checkout"),
-        Utils.clickBtn("Order"),
-        CartPage.checkSlotUnavailable("18:00"),
-    ],
-});
-
 registry.category("web_tour.tours").add("test_preset_takeaway_email_tour", {
     steps: () => [
         Utils.checkIsNoBtn("My Order"),

@@ -15,7 +15,8 @@ import werkzeug.routing
 
 from collections import defaultdict
 from lxml import etree, html
-from urllib.parse import urlparse
+from markupsafe import Markup
+from urllib.parse import urlparse, urlsplit
 from werkzeug import urls
 
 from odoo import api, fields, models, tools, release
@@ -687,13 +688,17 @@ class Website(models.Model):
         domain = Domain.AND([[('name', '!=', 'theme_default')], domain])
         client_themes = Module.search(domain).mapped('name')
         client_themes_img = {t: get_manifest(t).get('images_preview_theme', {}) for t in client_themes if get_manifest(t)}
-        themes_suggested = self._website_api_rpc(
-            '/api/website/2/configurator/recommended_themes/%s' % (industry_id if industry_id > 0 else ''),
-            {
-                'client_themes': client_themes_img,
-                'result_nbr_max': result_nbr_max,
-            }
-        )
+        try:
+            themes_suggested = self._website_api_rpc(
+                '/api/website/2/configurator/recommended_themes/%s' % (industry_id if industry_id > 0 else ''),
+                {
+                    'client_themes': client_themes_img,
+                    'result_nbr_max': result_nbr_max,
+                },
+            )
+        except AccessError as e:
+            logger.warning(e.args[0])
+            return []
         process_svg = self.env['website.configurator.feature']._process_svg
         for theme in themes_suggested:
             theme['svg'] = process_svg(theme['name'], palette, theme.pop('image_urls'))
@@ -708,13 +713,16 @@ class Website(models.Model):
 
     @api.model
     def configurator_missing_industry(self, unknown_industry):
-        self._website_api_rpc(
-            '/api/website/unknown_industry',
-            {
-                'unknown_industry': unknown_industry,
-                'lang': self.env.context.get('lang'),
-            }
-        )
+        try:
+            self._website_api_rpc(
+                '/api/website/unknown_industry',
+                {
+                    'unknown_industry': unknown_industry,
+                    'lang': self.env.context.get('lang'),
+                },
+            )
+        except AccessError as e:
+            logger.warning(e.args[0])
 
     @api.model
     def configurator_apply(self, **kwargs):
@@ -756,41 +764,6 @@ class Website(models.Model):
                     '/website/static/src/scss/options/colors/user_color_palette.scss',
                     {f'o-color-{i}': color for i, color in enumerate(selected_palette, 1)}
                 )
-
-        # Update CTA
-        cta_data = website.get_cta_data(kwargs.get('website_purpose'), kwargs.get('website_type'))
-        if cta_data['cta_btn_text']:
-            xpath_view = 'website.snippets'
-            parent_view = self.env['website'].with_context(website_id=website.id).viewref(xpath_view)
-            self.env['ir.ui.view'].create({
-                'name': parent_view.key + ' CTA',
-                'key': parent_view.key + "_cta",
-                'inherit_id': parent_view.id,
-                'website_id': website.id,
-                'type': 'qweb',
-                'priority': 32,
-                'arch_db': """
-                    <data>
-                        <xpath expr="//t[@t-set='cta_btn_href']" position="replace">
-                            <t t-set="cta_btn_href">%s</t>
-                        </xpath>
-                        <xpath expr="//t[@t-set='cta_btn_text']" position="replace">
-                            <t t-set="cta_btn_text">%s</t>
-                        </xpath>
-                    </data>
-                """ % (cta_data['cta_btn_href'], cta_data['cta_btn_text'])
-            })
-            try:
-                view_id = self.env['website'].viewref('website.header_call_to_action')
-                if view_id:
-                    el = etree.fromstring(view_id.arch_db)
-                    btn_cta_el = el.xpath("//a[hasclass('btn_cta')]")
-                    if btn_cta_el:
-                        btn_cta_el[0].attrib['href'] = cta_data['cta_btn_href']
-                        btn_cta_el[0].text = cta_data['cta_btn_text']
-                    view_id.with_context(website_id=website.id).write({'arch_db': etree.tostring(el)})
-            except ValueError as e:
-                logger.warning(e)
 
         # Configure the features
         features = self.env['website.configurator.feature'].browse(kwargs.get('selected_features'))
@@ -847,6 +820,41 @@ class Website(models.Model):
         # the call to `get_cta_data`.
         website = self.env['website'].browse(website.id)
 
+        # Update CTA
+        cta_data = website.get_cta_data(kwargs.get('website_purpose'), kwargs.get('website_type'))
+        if cta_data['cta_btn_text']:
+            xpath_view = 'website.snippets'
+            parent_view = self.env['website'].with_context(website_id=website.id).viewref(xpath_view)
+            self.env['ir.ui.view'].create({
+                'name': parent_view.key + ' CTA',
+                'key': parent_view.key + "_cta",
+                'inherit_id': parent_view.id,
+                'website_id': website.id,
+                'type': 'qweb',
+                'priority': 32,
+                'arch_db': """
+                    <data>
+                        <xpath expr="//t[@t-set='cta_btn_href']" position="replace">
+                            <t t-set="cta_btn_href">%s</t>
+                        </xpath>
+                        <xpath expr="//t[@t-set='cta_btn_text']" position="replace">
+                            <t t-set="cta_btn_text">%s</t>
+                        </xpath>
+                    </data>
+                """ % (cta_data['cta_btn_href'], cta_data['cta_btn_text']),
+            })
+            try:
+                view_id = self.env['website'].viewref('website.header_call_to_action')
+                if view_id:
+                    el = etree.fromstring(view_id.arch_db)
+                    btn_cta_el = el.xpath("//a[hasclass('btn_cta')]")
+                    if btn_cta_el:
+                        btn_cta_el[0].attrib['href'] = cta_data['cta_btn_href']
+                        btn_cta_el[0].text = cta_data['cta_btn_text']
+                    view_id.with_context(website_id=website.id).write({'arch_db': etree.tostring(el)})
+            except ValueError as e:
+                logger.warning(e)
+
         # Update footers links, needs to be done after "Features" addition to go
         # through module overrides of `configurator_get_footer_links`.
         footer_links = website.configurator_get_footer_links()
@@ -877,10 +885,14 @@ class Website(models.Model):
 
         # Load suggestion from iap for selected pages
         industry_id = kwargs['industry_id']
-        custom_resources = self._website_api_rpc(
-            '/api/website/2/configurator/custom_resources/%s' % (industry_id if industry_id > 0 else ''),
-            {'theme': theme_name}
-        )
+        try:
+            custom_resources = self._website_api_rpc(
+                '/api/website/2/configurator/custom_resources/%s' % (industry_id if industry_id > 0 else ''),
+                {'theme': theme_name},
+            )
+        except AccessError as e:
+            logger.warning(e.args[0])
+            custom_resources = {}
 
         # Generate text for the pages
         requested_pages = set(pages_views.keys()).union({'homepage'})
@@ -1397,10 +1409,11 @@ class Website(models.Model):
         # We will now try to find a website matching the request host/domain (if
         # there is one on request) or return a random one.
 
-        # The format of `httprequest.host` is `domain:port`
+        # The format of `httprequest.host` is `domain:port`, while the url set
+        # on the thread is a full url: only keep its `domain:port` part.
         domain_name = (
             request and request.httprequest.host
-            or hasattr(threading.current_thread(), 'url') and threading.current_thread().url
+            or hasattr(threading.current_thread(), 'url') and get_base_domain(threading.current_thread().url)
             or '')
         website_id = self.sudo()._get_current_website_id(domain_name, fallback=fallback)
         return self.browse(website_id)
@@ -1569,6 +1582,10 @@ class Website(models.Model):
             domain += [('url', 'like', query_string)]
 
         pages = self._get_website_pages(domain)
+
+        # Only fetch the fields needed below: lazily reading a view field would
+        # prefetch arch_db arch_prev for every page and may end in a out-of-memory error.
+        pages.view_id.fetch(['name', 'priority', 'write_date'])
 
         for page in pages:
             record = {'loc': page['url'], 'id': page['id'], 'name': page['name']}
@@ -2053,13 +2070,13 @@ class Website(models.Model):
         fuzzy_term = False
         search_details = self._search_get_details(search_type, order, options)
         if search and options.get('allowFuzzy', True):
-            fuzzy_term = self._search_find_fuzzy_term(search_details, search)
-            if fuzzy_term:
-                count, results = self._search_exact(search_details, fuzzy_term, limit, order)
-                if fuzzy_term.lower() == search.lower():
+            count, results = self._search_exact(search_details, search, limit, order)
+            if not count:
+                fuzzy_term = self._search_find_fuzzy_term(search_details, search)
+                if fuzzy_term and fuzzy_term.lower() != search.lower():
+                    count, results = self._search_exact(search_details, fuzzy_term, limit, order)
+                else:
                     fuzzy_term = False
-            else:
-                count, results = self._search_exact(search_details, search, limit, order)
         else:
             count, results = self._search_exact(search_details, search, limit, order)
         return count, results, fuzzy_term
@@ -2366,3 +2383,64 @@ class Website(models.Model):
         """
         self.ensure_one()
         return not self.cookies_bar or self.env['ir.http']._is_allowed_cookie('optional')
+
+    def _control_third_party_trackers_in_html(self, html_content):
+        if not html_content or not self._should_remove_third_party_trackers():
+            return html_content
+        try:
+            root_node = html.fromstring(str(html_content))
+            els = root_node.xpath("//script | //iframe")
+        except (etree.ParserError, etree.XMLSyntaxError):
+            return html_content
+        for el in els:
+            self._remove_third_party_trackers(el.tag, el.attrib, ['domains'])
+        return Markup(html.tostring(root_node, encoding="unicode"))
+
+    def _should_remove_third_party_trackers(self):
+        return (self.cookies_bar
+            and self.block_third_party_domains
+            and not self.env['ir.http']._is_allowed_cookie('optional')
+            and not self.env.user.has_group('website.group_website_restricted_editor'))
+
+    def _remove_third_party_trackers(self, tagName, atts, cookies_watchlist):
+        # If the cookie banner is activated, 3rd-party embedded iframes and
+        # scripts should be controlled. As such:
+        # - 'domains' is a watchlist on the iframe/script's src itself,
+        # - 'classes' is a watchlist on container elements in which iframes
+        # are/could be built on the fly client-side for some reason.
+        watchlist_checker = {
+            'domains': self._is_tag_domains_watchlisted,
+            'classes': self._is_tag_classes_watchlisted,
+        }
+        remove_src = False
+        for watch in cookies_watchlist:
+            if (checker := watchlist_checker.get(watch)) and checker(tagName, atts):
+                remove_src = True
+                break
+        if remove_src:
+            atts['data-need-cookies-approval'] = 'true'
+            # Case class in watchlist: we stop here. The element could
+            # contain an iframe created on the fly client-side. It is marked
+            # now so that the iframe can be marked later when created.
+            # Case iframe/script's src in watchlist: we adapt the src.
+            if atts.get("src"):
+                atts['data-nocookie-src'] = atts['src']
+                atts['src'] = 'about:blank'
+
+    def _is_tag_domains_watchlisted(self, tagName, atts):
+        domains = self.blocked_third_party_domains.split('\n')
+        if tagName in ('iframe', 'script'):
+            src_host = urlsplit((atts.get('src') or '').lower()).hostname
+            if src_host:
+                return any(
+                    # "www.example.com" and "example.com" should block both.
+                    src_host == domain.removeprefix('www.')
+                    # "domain.com" should block "subdomain.domain.com", but
+                    # not "(subdomain.)mydomain.com".
+                    or src_host.endswith('.' + domain.removeprefix('www.'))
+                    for domain in domains
+                )
+        return False
+
+    def _is_tag_classes_watchlisted(self, tagName, atts):
+        return self._get_blocked_iframe_containers_classes().intersection((atts.get('class') or '').split(' '))

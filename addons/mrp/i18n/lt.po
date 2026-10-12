@@ -22,15 +22,16 @@
 # Jonas Zinkevicius <jozi@odoo.com>, 2022
 # Linas Versada <linaskrisiukenas@gmail.com>, 2022
 # Arunas V. <arunas@devoro.com>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
+# Ulevičienė <vilma.uleviciene@mededu.lt>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-20 18:35+0000\n"
-"PO-Revision-Date: 2025-11-08 19:03+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
+"POT-Creation-Date: 2026-04-10 18:37+0000\n"
+"PO-Revision-Date: 2026-10-05 22:33+0000\n"
+"Last-Translator: Ulevičienė <vilma.uleviciene@mededu.lt>\n"
 "Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-19/mrp/"
 "lt/>\n"
 "Language: lt\n"
@@ -38,9 +39,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
-"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
-"1 : n % 1 != 0 ? 2: 3);\n"
-"X-Generator: Weblate 5.12.2\n"
+"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 "
+": n % 1 != 0 ? 2: 3);\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_production__state
@@ -110,25 +111,25 @@ msgstr "# KS, kuriuose naudojamas"
 #. odoo-python
 #: code:addons/mrp/models/mrp_bom.py:0
 msgid "%(display_name)s"
-msgstr ""
+msgstr "%(display_name)s"
 
 #. module: mrp
 #. odoo-python
 #: code:addons/mrp/models/stock_warehouse.py:0
 msgid "%(name)s Sequence picking before manufacturing"
-msgstr ""
+msgstr "%(name)s Sekos komplektavimas prieš Gamybą"
 
 #. module: mrp
 #. odoo-python
 #: code:addons/mrp/models/stock_warehouse.py:0
 msgid "%(name)s Sequence production"
-msgstr ""
+msgstr "%(name)s Sekų generavimas"
 
 #. module: mrp
 #. odoo-python
 #: code:addons/mrp/models/stock_warehouse.py:0
 msgid "%(name)s Sequence stock after manufacturing"
-msgstr ""
+msgstr "%(name)s Gamybos pabaigoje atlikite atsargų inventorizaciją"
 
 #. module: mrp
 #. odoo-python
@@ -146,7 +147,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/mrp/models/mrp_bom.py:0
 msgid "%(product_name)s (new) %(number_of_boms)s"
-msgstr ""
+msgstr "%(product_name)s (nauja) %(number_of_boms)s"
 
 #. module: mrp
 #. odoo-python
@@ -252,54 +253,13 @@ msgid ""
 msgstr ""
 
 #. module: mrp
-#: model_terms:ir.ui.view,arch_db:mrp.report_mrporder
-msgid "100"
-msgstr "100"
-
-#. module: mrp
-#: model_terms:ir.ui.view,arch_db:mrp.report_mrp_production_components
-#: model_terms:ir.ui.view,arch_db:mrp.report_mrp_workorder
-msgid "12345678901"
-msgstr ""
-
-#. module: mrp
 #: model_terms:product.template,description:mrp.product_product_computer_desk_leg_product_template
 msgid "18″ x 2½″ Square Leg"
 msgstr "18″ x 2½″ Kvadratinė koja"
 
 #. module: mrp
-#: model_terms:ir.ui.view,arch_db:mrp.report_mrporder
-msgid "2023-09-15"
-msgstr ""
-
-#. module: mrp
-#: model_terms:ir.ui.view,arch_db:mrp.report_mrp_production_components
-msgid "25"
-msgstr "25"
-
-#. module: mrp
-#: model_terms:ir.ui.view,arch_db:mrp.report_mrporder
-msgid "50"
-msgstr "50"
-
-#. module: mrp
-#: model_terms:ir.ui.view,arch_db:mrp.report_mrporder
-msgid "58"
-msgstr ""
-
-#. module: mrp
-#: model_terms:ir.ui.view,arch_db:mrp.report_mrporder
-msgid "60"
-msgstr ""
-
-#. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.report_mrp_production_components
 msgid "8 GB RAM"
-msgstr ""
-
-#. module: mrp
-#: model_terms:ir.ui.view,arch_db:mrp.report_mrporder
-msgid "987654321098"
 msgstr ""
 
 #. module: mrp
@@ -361,6 +321,19 @@ msgid ""
 "                                        <span class=\"o_annotation "
 "o_annotation_5 o_annotation_start position-absolute\">Select Operator</span>"
 msgstr ""
+"<span class=\"o_annotation o_annotation_1 o_annotation_end position-"
+"absolute\">Laiko registratorius</span>\n"
+"                                        <span class=\"o_annotation "
+"o_annotation_2 o_annotation_end position-absolute\">Kokybės kontrolė</span>\n"
+"                                        <span class=\"o_annotation "
+"o_annotation_3 o_annotation_start position-absolute\">Grįžtamojo ryšio "
+"ciklas</span>\n"
+"                                        <span class=\"o_annotation "
+"o_annotation_4 o_annotation_start position-absolute\">Registruoti medžiagas</"
+"span>\n"
+"                                        <span class=\"o_annotation "
+"o_annotation_5 o_annotation_start position-absolute\">Pasirinkite "
+"operatorių</span>"
 
 #. module: mrp
 #: model_terms:ir.actions.act_window,help:mrp.mrp_routing_action
@@ -376,6 +349,16 @@ msgid ""
 "                    <span class=\"o_annotation o_annotation_5 "
 "o_annotation_start position-absolute\">Select Operator</span>"
 msgstr ""
+"<span class=\"o_annotation o_annotation_1 o_annotation_end position-"
+"absolute\">Laiko registratorius</span>\n"
+"                    <span class=\"o_annotation o_annotation_2 "
+"o_annotation_end position-absolute\">Kokybės kontrolė</span>\n"
+"                    <span class=\"o_annotation o_annotation_3 "
+"o_annotation_start position-absolute\">Atsiliepimų ciklas</span>\n"
+"                    <span class=\"o_annotation o_annotation_4 "
+"o_annotation_start position-absolute\">Registruoti medžiagą</span>\n"
+"                    <span class=\"o_annotation o_annotation_5 "
+"o_annotation_start position-absolute\">Pasirinkti operatorių</span>"
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_bom_form_view
@@ -385,7 +368,7 @@ msgstr ""
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_production_form_view
 msgid "<span class=\"o_stat_text\">Backorders</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Užsakymų su užlaikymu</span>"
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_bom_form_view
@@ -506,7 +489,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_production_form_view
 msgid ""
 "<span name=\"to_produce\" class=\"fw-bold text-nowrap\">To Produce</span>"
-msgstr ""
+msgstr "<span name=\"to_produce\" class=\"fw-bold text-nowrap\">Sukurti</span>"
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.report_mrp_production_components
@@ -1123,45 +1106,47 @@ msgstr "Nurodytos KS komplektavimo eilutės"
 #. odoo-javascript
 #: code:addons/mrp/static/src/components/product_catalog/kanban_controller.js:0
 msgid "Back to BoM"
-msgstr ""
+msgstr "Grįžti į BoM"
 
 #. module: mrp
 #. odoo-javascript
 #: code:addons/mrp/static/src/components/product_catalog/kanban_controller.js:0
 msgid "Back to Production"
-msgstr ""
+msgstr "Grįžti į gamybą"
 
 #. module: mrp
 #: model:ir.model,name:mrp.model_mrp_production_backorder_line
 msgid "Backorder Confirmation Line"
-msgstr ""
+msgstr "Užsakymo patvirtinimo eilutė"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production_backorder__mrp_production_backorder_line_ids
 msgid "Backorder Confirmation Lines"
-msgstr ""
+msgstr "Užsakymų su atidėtu pristatymu patvirtinimo eilutės"
 
 #. module: mrp
 #. odoo-python
 #: code:addons/mrp/models/mrp_production.py:0
 msgid "Backorder MO"
-msgstr ""
+msgstr "Užsakymo atidėjimas MO"
 
 #. module: mrp
 #. odoo-python
 #: code:addons/mrp/models/mrp_production.py:0
 msgid "Backorder MO's"
-msgstr ""
+msgstr "Užsakymų su atidėtu pristatymu MO"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production__backorder_sequence
 msgid "Backorder Sequence"
-msgstr ""
+msgstr "Užsakymų vykdymo seka"
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_production__backorder_sequence
 msgid "Backorder sequence, if equals to 0 means there is not related backorder"
 msgstr ""
+"Užsakymų atidėjimo seka; jei lygi 0, tai reiškia, kad nėra susijusių "
+"užsakymų atidėjimų"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workorder__barcode
@@ -1541,12 +1526,13 @@ msgstr "Pasirinkite etiketės išdėstymą"
 #. odoo-python
 #: code:addons/mrp/models/mrp_production.py:0
 msgid "Choose Type of Labels To Print"
-msgstr ""
+msgstr "Pasirinkite spausdintinų etikečių tipą"
 
 #. module: mrp
 #: model:ir.model,name:mrp.model_picking_label_type
 msgid "Choose whether to print product or lot/sn labels"
 msgstr ""
+"Pasirinkite, ar spausdinti produkto, ar partijos/serijos numerių etiketes"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workcenter__time_stop
@@ -1566,7 +1552,7 @@ msgstr "Valyti"
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_production_form_view
 msgid "Clears the selected lot/serial number"
-msgstr ""
+msgstr "Ištrina pasirinktą partijos/serijos numerį"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_workcenter__code
@@ -1746,7 +1732,7 @@ msgstr ""
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_routing_workcenter_copy_to_bom_tree_view
 msgid "Copy selected operations"
-msgstr ""
+msgstr "Kopijuoti pasirinktas operacijas"
 
 #. module: mrp
 #. odoo-javascript
@@ -1835,7 +1821,7 @@ msgstr ""
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production__mrp_production_backorder_count
 msgid "Count of linked backorder"
-msgstr ""
+msgstr "Susietų užsakymų, kurių trūksta, skaičius"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production__serial_numbers_count
@@ -1851,7 +1837,7 @@ msgstr "Kurti naujas partijas / naujus serijos numerius komponentams"
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_production_backorder_form
 msgid "Create a Backorder"
-msgstr ""
+msgstr "Sukurti užsakymą su atidėtu pristatymu"
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_production_backorder_form
@@ -1859,6 +1845,8 @@ msgid ""
 "Create a backorder if you expect to process the remaining products later. Do "
 "not create a backorder if you will not process the remaining products."
 msgstr ""
+"Sukurkite užsakymo atidėjimą, jei ketinate likusius produktus apdoroti "
+"vėliau. Nesukurkite užsakymo atidėjimo, jei likusių produktų neapdorosite."
 
 #. module: mrp
 #: model_terms:ir.actions.act_window,help:mrp.mrp_workcenter_action
@@ -1882,7 +1870,7 @@ msgstr ""
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.view_mrp_production_backorder_form
 msgid "Create backorder"
-msgstr ""
+msgstr "Sukurti atidėtą užsakymą"
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.res_config_settings_view_form
@@ -2116,6 +2104,16 @@ msgid ""
 "  * Blocked: only a manager can close a manufacturing order when the BoM "
 "consumption is not respected."
 msgstr ""
+"Nustato, ar galite sunaudoti daugiau ar mažiau komponentų nei nurodyta "
+"gamybos sąraše (BoM):\n"
+"  * Leidžiama: leidžiama visiems gamybos vartotojams.\n"
+"  * Leidžiama su įspėjimu: leidžiama visiems gamybos vartotojams, pateikiant "
+"suvartojimo skirtumų suvestinę užbaigiant gamybos užsakymą.\n"
+"  Atkreipkite dėmesį, kad komponentų suvartojimo išskyrimo atveju, kai "
+"suvartojimas registruojamas tik rankiniu būdu, suvartojimo įspėjimai taip "
+"pat bus pateikiami, kai tai bus tinkama.\n"
+"  * Uždrausta: tik vadovas gali užbaigti gamybos užsakymą, jei nesilaikoma "
+"BoM suvartojimo reikalavimų."
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production__delay_alert_date
@@ -2945,6 +2943,8 @@ msgid ""
 "Informative date allowing to define when the manufacturing order should be "
 "processed at the latest to fulfill delivery on time."
 msgstr ""
+"Informacinė data, leidžianti nustatyti, kada vėliausiai turi būti apdorotas "
+"gamybos užsakymas, kad pristatymas būtų atliktas laiku."
 
 #. module: mrp
 #: model:ir.actions.act_window,name:mrp.action_mrp_production_moves
@@ -3168,6 +3168,8 @@ msgid ""
 "Latest component availability status for this MO. If green, then the MO's "
 "readiness status is ready, as per BOM configuration."
 msgstr ""
+"Naujausia šio MO komponentų prieinamumo būsena. Jei spalva žalia, tai "
+"reiškia, kad MO yra paruoštas pagal BOM konfigūraciją."
 
 #. module: mrp
 #: model_terms:product.template,description:mrp.product_product_wood_ply_product_template
@@ -3279,7 +3281,7 @@ msgstr "Partijos / serijiniai numeriai"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production_backorder_line__mrp_production_backorder_id
 msgid "MO Backorder"
-msgstr ""
+msgstr "MO Užsakymas su atidėjimu"
 
 #. module: mrp
 #: model:mail.message.subtype,description:mrp.mrp_mo_in_cancelled
@@ -3724,7 +3726,7 @@ msgstr "Naujas"
 #. odoo-python
 #: code:addons/mrp/models/mrp_production.py:0
 msgid "New BoM from %(mo_name)s"
-msgstr ""
+msgstr "Naujas „BoM“ iš %(mo_name)s"
 
 #. module: mrp
 #: model_terms:ir.ui.view,arch_db:mrp.mrp_production_tree_view
@@ -3818,6 +3820,12 @@ msgstr "Šiai įrangai nėra produktyvumo nuostolių"
 #. module: mrp
 #: model_terms:ir.actions.act_window,help:mrp.mrp_unbuild
 msgid "No unbuild order found"
+msgstr ""
+
+#. module: mrp
+#. odoo-python
+#: code:addons/mrp/wizard/mrp_production_serial_numbers.py:0
+msgid "No valid serial numbers provided."
 msgstr ""
 
 #. module: mrp
@@ -4380,6 +4388,11 @@ msgstr "Po gamybos"
 #: code:addons/mrp/models/stock_warehouse.py:0
 msgid "Pre-Production"
 msgstr "Prieš gamybą"
+
+#. module: mrp
+#: model_terms:ir.ui.view,arch_db:mrp.view_mrp_production_serials_form
+msgid "Prepare MO"
+msgstr ""
 
 #. module: mrp
 #. odoo-javascript
@@ -5129,7 +5142,7 @@ msgstr "Ieškoti MRP darbo centro"
 #. odoo-python
 #: code:addons/mrp/models/mrp_routing.py:0
 msgid "Select Operations to Copy"
-msgstr ""
+msgstr "Pasirinkite operacijas, kurias norite nukopijuoti"
 
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_bom__sequence
@@ -5285,7 +5298,7 @@ msgstr ""
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production_backorder__show_backorder_lines
 msgid "Show backorder lines"
-msgstr ""
+msgstr "Rodyti užsakymų su atidėjimu eilutes"
 
 #. module: mrp
 #: model:ir.model.fields,help:mrp.field_mrp_workorder__leave_id
@@ -5687,6 +5700,7 @@ msgstr ""
 msgid ""
 "The quantity already produced awaiting allocation in the backorders chain."
 msgstr ""
+"Jau pagamintas kiekis, laukiantis paskirstymo užsakymų atidėjimų grandinėje."
 
 #. module: mrp
 #. odoo-python
@@ -5827,6 +5841,10 @@ msgid ""
 "                You can filter on the product to see all the past movements "
 "for the product."
 msgstr ""
+"Šiame meniu galite visiškai atsekti konkretaus produkto inventoriaus "
+"operacijas.\n"
+"                Galite filtruoti pagal produktą, kad pamatytumėte visus "
+"ankstesnius šio produkto judėjimus."
 
 #. module: mrp
 #. odoo-python
@@ -5910,7 +5928,7 @@ msgstr "Iki"
 #. module: mrp
 #: model:ir.model.fields,field_description:mrp.field_mrp_production_backorder_line__to_backorder
 msgid "To Backorder"
-msgstr ""
+msgstr "Užsakyti iš atsargų"
 
 #. module: mrp
 #: model:ir.model.fields.selection,name:mrp.selection__mrp_production__state__to_close
@@ -6467,6 +6485,11 @@ msgid ""
 "perfectly integrated into the process. Workers can trigger feedback loops, "
 "maintenance alerts, scrap products, etc."
 msgstr ""
+"Naudodamasis „Odoo“ darbo centro valdymo skydeliu, jūsų darbuotojas gali "
+"pradėti vykdyti darbo užsakymus dirbtuvėse ir laikytis darbo lapo nurodymų. "
+"Kokybės patikrinimai yra puikiai integruoti į procesą. Darbuotojai gali "
+"inicijuoti grįžtamojo ryšio ciklus, priežiūros įspėjimus, produktų atmetimą "
+"ir pan."
 
 #. module: mrp
 #: model:ir.model,name:mrp.model_mrp_consumption_warning
@@ -6489,6 +6512,7 @@ msgstr ""
 #: model:ir.model,name:mrp.model_mrp_production_backorder
 msgid "Wizard to mark as done or create back order"
 msgstr ""
+"Vedlys, skirtas pažymėti kaip atlikta arba sukurti užsakymą su atidėjimu"
 
 #. module: mrp
 #: model:product.template,name:mrp.product_product_wood_panel_product_template
@@ -7063,6 +7087,15 @@ msgstr "reali trukmė"
 #: code:addons/mrp/models/mrp_production.py:0
 msgid "split"
 msgstr ""
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "50"
+#~ msgstr "50"
 
 #~ msgid "# Read Work Orders"
 #~ msgstr "# Perskaityti darbo užsakymai"

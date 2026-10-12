@@ -1,9 +1,17 @@
 import { session } from "@web/session";
 import { _t } from "@web/core/l10n/translation";
-import { Component, useState, useRef, useEffect, useExternalListener } from "@odoo/owl";
+import {
+    Component,
+    useState,
+    onMounted,
+    useRef,
+    useEffect,
+    useExternalListener,
+    onWillUnmount,
+} from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks";
 import { browser } from "@web/core/browser/browser";
-import { cleanZWChars, deduceURLfromText } from "./utils";
+import { cleanZWChars, deduceLinkUrl, normalizeLinkUrlInput } from "./utils";
 import { useColorPicker } from "@web/core/color_picker/color_picker";
 import { CheckBox } from "@web/core/checkbox/checkbox";
 
@@ -20,6 +28,15 @@ const formatColor = (color) => {
     }
     return color;
 };
+
+function useContentChange(el, callback) {
+    onMounted(() => {
+        el.addEventListener("keyup", callback);
+    });
+    onWillUnmount(() => {
+        el.removeEventListener("keyup", callback);
+    });
+}
 
 export class LinkPopover extends Component {
     static template = "html_editor.linkPopover";
@@ -99,18 +116,10 @@ export class LinkPopover extends Component {
 
         const computedStyle = this.props.document.defaultView.getComputedStyle(linkElement);
         const currentRelValues = linkElement.rel.split(" ");
-        const hasButtonSizeOrShapeOrCustom = this.props.linkElement.className.match(
-            /btn-(lg|sm|xs|custom)|rounded-circle|(?:^|\\s)(outline|fill|flat)(?:\\s|$)/
-        );
-        const buttonType = hasButtonSizeOrShapeOrCustom
-            ? "custom"
-            : this.props.linkElement.className
-                  .match(/btn(-[a-z0-9_-]*)(primary|secondary)/)
-                  ?.pop() || "";
         this.state = useState({
             editing: this.props.LinkPopoverState.editing,
             // `.getAttribute("href")` instead of `.href` to keep relative url
-            url: linkElement.getAttribute("href") || this.deduceUrl(textContent),
+            url: linkElement.getAttribute("href") || deduceLinkUrl(textContent, linkElement),
             label: labelEqualsUrl ? "" : textContent,
             previewIcon: {
                 /** @type {'fa'|'imgSrc'|'mimetype'} */
@@ -121,7 +130,10 @@ export class LinkPopover extends Component {
             urlDescription: "",
             linkPreviewName: "",
             imgSrc: "",
-            type: this.props.type || buttonType,
+            type:
+                this.props.type ||
+                linkElement.className.match(/btn(-[a-z0-9_-]*)(primary|secondary|custom)/)?.pop() ||
+                "",
             linkTarget: linkElement.target === "_blank" ? "_blank" : "",
             directDownload: true,
             isDocument: false,
@@ -131,6 +143,7 @@ export class LinkPopover extends Component {
             customBorderStyle: computedStyle.borderStyle || "solid",
             isImage: this.props.isImage,
             showReplaceTitleBanner: this.props.showReplaceTitleBanner,
+            canReplaceTitle: !linkElement.querySelector("img,.fa"),
             showLabel: !linkElement.childElementCount,
             stripDomain: true,
             showAdvancedOptions: false,
@@ -268,6 +281,9 @@ export class LinkPopover extends Component {
             // Listen to pointerdown outside the iframe
             useExternalListener(document, "pointerdown", onPointerDown);
         }
+        useContentChange(this.props.linkElement, () => {
+            this.state.urlTitle = this.props.linkElement.textContent;
+        });
     }
 
     toggleAdvancedOptions() {
@@ -277,6 +293,11 @@ export class LinkPopover extends Component {
     toggleRelAttr(attr) {
         const option = this.state.relAttributeOptions[attr];
         option.isChecked = !option.isChecked;
+    }
+
+    discard() {
+        this.props.onDiscard();
+        this.cancelUpload?.();
     }
 
     onChange() {
@@ -312,10 +333,7 @@ export class LinkPopover extends Component {
         if (this.state.label === "") {
             this.state.label = this.state.url;
         }
-        const deducedUrl = this.deduceUrl(this.state.url);
-        this.state.url = deducedUrl
-            ? this.correctLink(deducedUrl)
-            : this.correctLink(this.state.url);
+        this.state.url = normalizeLinkUrlInput(this.state.url, this.props.linkElement);
         if (
             this.props.allowStripDomain &&
             this.state.stripDomain &&
@@ -363,6 +381,9 @@ export class LinkPopover extends Component {
     }
 
     onKeydown(ev) {
+        if (!this.editingWrapper?.el) {
+            return;
+        }
         if (ev.key === "Escape") {
             ev.preventDefault();
             ev.stopImmediatePropagation();
@@ -429,32 +450,6 @@ export class LinkPopover extends Component {
             this.state.directDownload = true;
         }
     }
-    correctLink(url) {
-        if (
-            url &&
-            !url.startsWith("tel:") &&
-            !url.startsWith("mailto:") &&
-            !url.includes("://") &&
-            !url.startsWith("/") &&
-            !url.startsWith("#") &&
-            !url.startsWith("${")
-        ) {
-            url = "https://" + url;
-        }
-        if (url && (url.startsWith("http:") || url.startsWith("https:"))) {
-            url = URL.parse(url) ? url : "";
-        }
-        return url;
-    }
-    deduceUrl(text) {
-        text = text.trim();
-        if (/^(https?:|mailto:|tel:)/.test(text)) {
-            // Text begins with a known protocol, accept it as valid URL.
-            return text;
-        } else {
-            return deduceURLfromText(text, this.props.linkElement) || "";
-        }
-    }
     getButtonShape() {
         const shapeToRegex = (shape) => {
             const parts = shape.trim().split(/\s+/);
@@ -507,9 +502,9 @@ export class LinkPopover extends Component {
             return;
         }
         if (this.isAttachmentUrl()) {
-            const { name, mimetype } = await this.props.getAttachmentMetadata(this.state.url);
+            const { mimetype } = await this.props.getAttachmentMetadata(this.state.url);
             this.resetPreview();
-            this.state.urlTitle = name;
+            this.state.urlTitle = this.props.linkElement.textContent;
             this.state.previewIcon = { type: "mimetype", value: mimetype };
             return;
         }
@@ -551,9 +546,9 @@ export class LinkPopover extends Component {
                     return {};
                 });
 
-            this.state.urlTitle = externalMetadata?.og_title || this.state.url;
-            this.state.urlDescription = externalMetadata?.og_description || "";
-            this.state.imgSrc = externalMetadata?.og_image || "";
+            this.state.urlTitle = externalMetadata?.og_title?.trim() || this.state.url;
+            this.state.urlDescription = externalMetadata?.og_description?.trim() || "";
+            this.state.imgSrc = externalMetadata?.og_image?.trim() || "";
             if (
                 externalMetadata?.og_image &&
                 this.state.label &&
@@ -676,7 +671,14 @@ export class LinkPopover extends Component {
     async uploadFile() {
         const { upload, getURL } = this.uploadService;
         const { resModel, resId } = this.props.recordInfo;
-        const [attachment] = await upload({ resModel, resId }, { accessToken: true });
+        const setAbortCallback = (abortFn) => {
+            this.cancelUpload = abortFn;
+        };
+        const [attachment] = await upload(
+            { resModel, resId },
+            { accessToken: true, setAbortCallback }
+        );
+        delete this.cancelUpload;
         if (!attachment) {
             // No file selected or upload failed
             return;

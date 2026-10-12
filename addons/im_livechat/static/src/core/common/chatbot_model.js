@@ -139,7 +139,7 @@ export class Chatbot extends Record {
     }
 
     get canRestart() {
-        return this.completed && !this.currentStep?.operatorFound;
+        return this.currentStep?.isLast && !this.currentStep.operatorFound;
     }
 
     /**
@@ -165,6 +165,8 @@ export class Chatbot extends Record {
             const nextStepIndex = this.steps.lastIndexOf(this.currentStep) + 1;
             this.currentStep = this.steps[nextStepIndex];
             this.currentStep.selectedAnswer = null;
+            // Welcome steps are reused across sessions, reset their completion state.
+            this.currentStep.completed = false;
         }
     }
 
