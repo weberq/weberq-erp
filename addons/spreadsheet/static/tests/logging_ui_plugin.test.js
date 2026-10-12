@@ -37,8 +37,8 @@ test("getLoadedDataSources discards datasources with an invalid model", async ()
         },
     });
 
-    const definition = getChartDefinition("odoo_bar");
-    definition.metaData.resModel = "unknown";
+    const definition = getChartDefinition("bar");
+    definition.dataSource.metaData.resModel = "unknown";
     insertChartInSpreadsheet(model, "chart1", definition);
     await waitForDataLoaded(model);
 

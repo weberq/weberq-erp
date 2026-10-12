@@ -2,17 +2,17 @@
 # This file contains the translation of the following modules:
 # * project_todo
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 # Hanna Kharraziha <hakha@odoo.com>, 2025, 2026.
 # Jacob Ljungström <jacob.ljungstrom03@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-09 13:51+0000\n"
+"POT-Creation-Date: 2026-09-04 17:44+0000\n"
+"PO-Revision-Date: 2026-08-31 16:56+0000\n"
 "Last-Translator: Hanna Kharraziha <hakha@odoo.com>\n"
-"Language-Team: Swedish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Swedish <https://translate.odoo.com/projects/odoo-s19-4/"
 "project_todo/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -31,13 +31,28 @@ msgstr ""
 "    Välkommen till att-göra appen!"
 
 #. module: project_todo
+#: model_terms:digest.tip,tip_description:project_todo.digest_tip_project_todo_0
+msgid "<b>Alt + Shift + T</b> (Windows/Linux)"
+msgstr ""
+
+#. module: project_todo
+#: model_terms:digest.tip,tip_description:project_todo.digest_tip_project_todo_0
+msgid "<b>Ctrl + Shift + T</b> (macOS)"
+msgstr ""
+
+#. module: project_todo
+#: model_terms:digest.tip,tip_description:project_todo.digest_tip_project_todo_0
+msgid "<b>Tip: Create to-dos from anywhere</b>"
+msgstr ""
+
+#. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
 msgid ""
 "<br/>\n"
-"    <span style=\"font-size: 14px;\">\n"
-"        Ensure you follow the correct format and order. For example: Send "
-"invitations #event @Mitchell !\n"
-"    </span>"
+"        <span style=\"font-size: 14px;\">\n"
+"            Ensure you follow the correct format and order. For example: "
+"Send invitations #event @Mitchell !\n"
+"        </span>"
 msgstr ""
 
 #. module: project_todo
@@ -50,8 +65,8 @@ msgid ""
 msgstr ""
 "<span style=\"font-size: 14px;\">\n"
 "                    Lägg till en checklista\n"
-"                    (/<span style=\"font-style: italic;\">checklista</span>)"
-"\n"
+"                    (/<span style=\"font-style: italic;\">checklista</"
+"span>)\n"
 "                </span>"
 
 #. module: project_todo
@@ -134,6 +149,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
 msgid ""
 "<span style=\"font-size: 14px;\">\n"
+"            Use these keywords in the title to streamline your to-dos:\n"
+"        </span>\n"
+"        <br/>"
+msgstr ""
+
+#. module: project_todo
+#: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
+msgid ""
+"<span style=\"font-size: 14px;\">\n"
 "        Access your personal pipeline with your to-dos and assigned tasks by "
 "going to the Project app and clicking\n"
 "        <span>\n"
@@ -156,8 +180,8 @@ msgstr ""
 "        Få tillgång till ditt personliga flöde med din checklista och "
 "tilldelade aktiviteter genom att gå till Projekt-appen och klicka på\n"
 "        <span>\n"
-"            <font style=\"font-weight: bolder;\" class=\"text-o-color-2\">"
-"Mina aktiviteter</font>.\n"
+"            <font style=\"font-weight: bolder;\" class=\"text-o-"
+"color-2\">Mina aktiviteter</font>.\n"
 "        </span>.\n"
 "    </span>\n"
 "    <br/>\n"
@@ -188,8 +212,8 @@ msgstr ""
 "        Som standard är att-göra-uppgifter endast synliga för dig. Du kan "
 "dela dem med andra användare genom att lägga till dem som\n"
 "        <span>\n"
-"            <font style=\"font-weight: bolder;\" class=\"text-o-color-2\">"
-"tilldelade</font>.\n"
+"            <font style=\"font-weight: bolder;\" class=\"text-o-"
+"color-2\">tilldelade</font>.\n"
 "        </span>\n"
 "    </span>\n"
 "    <br/>"
@@ -231,8 +255,8 @@ msgstr ""
 "        Om du vill tilldela din uppgift till ett visst projekt öppnar du "
 "menyn ⚙️ och klickar på\n"
 "        <span>.\n"
-"            <font style=\"font-weight: bolder;\" class=\"text-o-color-2\">"
-"Konvertera till uppgift</font>.\n"
+"            <font style=\"font-weight: bolder;\" class=\"text-o-"
+"color-2\">Konvertera till uppgift</font>.\n"
 "        </span>\n"
 "        Denna åtgärd kommer att göra den synlig för andra användare.\n"
 "    </span>\n"
@@ -250,15 +274,6 @@ msgstr ""
 "        Använd den för att hantera ditt arbete, ta anteckningar när du är på "
 "språng och skapa uppgifter baserat på dem.\n"
 "    </span>"
-
-#. module: project_todo
-#: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
-msgid ""
-"<span style=\"font-size: 14px;\">\n"
-"        Use these keywords in the title to streamline your to-dos:\n"
-"    </span>\n"
-"    <br/>"
-msgstr ""
 
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
@@ -320,45 +335,45 @@ msgstr "<span style=\"font-size: 14px;\">Prova följande</span>"
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
 msgid ""
 "<span style=\"font-weight: bolder;\">\n"
-"                <font class=\"text-o-color-2\">!!!:</font>\n"
-"            </span>\n"
-"            Mark the to-do as urgent"
+"                    <font class=\"text-o-color-2\">!!!:</font>\n"
+"                </span>\n"
+"                Mark the to-do as urgent"
 msgstr ""
 
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
 msgid ""
 "<span style=\"font-weight: bolder;\">\n"
-"                <font class=\"text-o-color-2\">!!:</font>\n"
-"            </span>\n"
-"            Mark the to-do as high priority"
+"                    <font class=\"text-o-color-2\">!!:</font>\n"
+"                </span>\n"
+"                Mark the to-do as high priority"
 msgstr ""
 
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
 msgid ""
 "<span style=\"font-weight: bolder;\">\n"
-"                <font class=\"text-o-color-2\">!:</font>\n"
-"            </span>\n"
-"            Mark the to-do as medium priority"
+"                    <font class=\"text-o-color-2\">!:</font>\n"
+"                </span>\n"
+"                Mark the to-do as medium priority"
 msgstr ""
 
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
 msgid ""
 "<span style=\"font-weight: bolder;\">\n"
-"                <font class=\"text-o-color-2\">#tags:</font>\n"
-"            </span>\n"
-"            Add tags to categorize the to-do"
+"                    <font class=\"text-o-color-2\">#tags:</font>\n"
+"                </span>\n"
+"                Add tags to categorize the to-do"
 msgstr ""
 
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
 msgid ""
 "<span style=\"font-weight: bolder;\">\n"
-"                <font class=\"text-o-color-2\">@user:</font>\n"
-"            </span>\n"
-"            Assign the to-do to a specific user"
+"                    <font class=\"text-o-color-2\">@user:</font>\n"
+"                </span>\n"
+"                Assign the to-do to a specific user"
 msgstr ""
 
 #. module: project_todo
@@ -394,7 +409,7 @@ msgstr "Lägg till att-göra"
 
 #. module: project_todo
 #. odoo-javascript
-#: code:addons/project_todo/static/src/web/activity/activity_menu_patch.js:0
+#: code:addons/project_todo/static/src/core/web/activity_menu_patch.js:0
 msgid "Add a To-Do"
 msgstr "Lägg till en att göra"
 
@@ -405,7 +420,6 @@ msgstr "Lägg till information om dina att göra..."
 
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_form
-#: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_search
 msgid "Archived"
 msgstr "Arkiverade"
 
@@ -422,7 +436,6 @@ msgstr "Tilldelad till"
 
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_form
-#: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_search
 msgid "Assignees"
 msgstr "Ansvariga"
 
@@ -430,11 +443,6 @@ msgstr "Ansvariga"
 #: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_search
 msgid "By assigned tags"
 msgstr "Genom tilldelade taggar"
-
-#. module: project_todo
-#: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_search
-msgid "By personal stages"
-msgstr "Genom personliga steg"
 
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_conversion_form
@@ -500,12 +508,6 @@ msgid "Delete"
 msgstr "Ta bort"
 
 #. module: project_todo
-#: model_terms:ir.ui.view,arch_db:project_todo.mail_activity_todo_create_popup
-#: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_conversion_form
-msgid "Discard"
-msgstr "Avbryt"
-
-#. module: project_todo
 #: model:ir.model.fields,field_description:project_todo.field_mail_activity_todo_create__display_name
 #: model:ir.model.fields,field_description:project_todo.field_project_task__display_name
 #: model:ir.model.fields,field_description:project_todo.field_res_users__display_name
@@ -564,7 +566,7 @@ msgstr "Senast uppdaterad den"
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_search
 msgid "Late Activities"
-msgstr "Försenade aktiviteter"
+msgstr "Sena aktiviteter"
 
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
@@ -597,6 +599,11 @@ msgstr "Pågående"
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
 msgid "Organize your to-dos however you want"
 msgstr "Organisera dina att-göra-uppgifter hur du vill"
+
+#. module: project_todo
+#: model:ir.module.module,summary:base.module_project_todo
+msgid "Organize your work with memos and to-do lists"
+msgstr ""
 
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_calendar
@@ -637,10 +644,9 @@ msgstr "Ställ in omslagsbild"
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_search
 msgid "Show all records whose next activity date is past"
-msgstr "Visa alla handlingar vars nästkommande aktivitetsdatum har passerat"
+msgstr ""
 
 #. module: project_todo
-#: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_search
 #: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_tree
 msgid "Stage"
 msgstr "Läge"
@@ -656,8 +662,6 @@ msgid "Tags"
 msgstr "Taggar"
 
 #. module: project_todo
-#. odoo-python
-#: code:addons/project_todo/models/res_users.py:0
 #: model:ir.model,name:project_todo.model_project_task
 msgid "Task"
 msgstr "Aktivitet"
@@ -676,8 +680,16 @@ msgid ""
 msgstr ""
 
 #. module: project_todo
+#: model:digest.tip,name:project_todo.digest_tip_project_todo_0
+msgid "Tip: Create to-dos from anywhere"
+msgstr ""
+
+#. module: project_todo
+#. odoo-javascript
 #. odoo-python
 #: code:addons/project_todo/models/res_users.py:0
+#: code:addons/project_todo/static/src/webclient/share_target/todo_share_target_item.js:0
+#: model:ir.module.module,shortdesc:base.module_project_todo
 msgid "To-Do"
 msgstr "Att-göra"
 
@@ -704,7 +716,7 @@ msgstr "Att göra-titel"
 #: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_calendar
 #: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_tree
 msgid "To-dos"
-msgstr "Att-göra"
+msgstr "To-dos"
 
 #. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.project_task_view_todo_search
@@ -787,6 +799,13 @@ msgid "Welcome %s!"
 msgstr "Välkommen %s!"
 
 #. module: project_todo
+#: model_terms:digest.tip,tip_description:project_todo.digest_tip_project_todo_0
+msgid ""
+"Wherever you are, use the magic keyboard shortcut to set yourself a "
+"reminder: 💡<br>"
+msgstr ""
+
+#. module: project_todo
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
 msgid "Who has access to what?"
 msgstr "Vem har tillgång till vad?"
@@ -811,15 +830,3 @@ msgstr "t.ex. Skicka inbjudningar"
 #: model_terms:ir.ui.view,arch_db:project_todo.todo_user_onboarding
 msgid "todo-access"
 msgstr "todo-tillgång"
-
-#~ msgid "Group By"
-#~ msgstr "Gruppera efter"
-
-#~ msgid "Onboarding todo already generated for those users"
-#~ msgstr "Onboarding-uppgifter har redan genererats för dessa användare"
-
-#~ msgid "To-do..."
-#~ msgstr "Att göra..."
-
-#~ msgid "menu load To-dos"
-#~ msgstr "meny ladda att-göra"

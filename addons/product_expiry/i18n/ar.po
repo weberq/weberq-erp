@@ -5,17 +5,16 @@
 # Translators:
 # Martin Trigaux, 2022
 # Malaz Abuidris <msea@odoo.com>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# "Malaz Siddig Elsayed Abuidris (msea)" <msea@odoo.com>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.5alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-01 11:10+0000\n"
-"Last-Translator: \"Malaz Siddig Elsayed Abuidris (msea)\" <msea@odoo.com>\n"
-"Language-Team: Arabic <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 17:37+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Arabic <https://translate.odoo.com/projects/odoo-s19-4/"
 "product_expiry/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -38,6 +37,24 @@ msgid "\t--Expired--"
 msgstr "\t--منتهي الصلاحية--"
 
 #. module: product_expiry
+#: model:ir.module.module,description:base.module_product_expiry
+msgid ""
+"\n"
+"Track different dates on products and production lots.\n"
+"======================================================\n"
+"\n"
+"Following dates can be tracked:\n"
+"-------------------------------\n"
+"    - end of life\n"
+"    - best before date\n"
+"    - removal date\n"
+"    - alert date\n"
+"\n"
+"Also implements the removal strategy First Expiry First Out (FEFO) widely "
+"used, for example, in food industries.\n"
+msgstr ""
+
+#. module: product_expiry
 #: model_terms:ir.ui.view,arch_db:product_expiry.view_move_form_expiry
 msgid ""
 "<span class=\"badge rounded-pill float-end text-bg-warning\" invisible=\"not "
@@ -46,20 +63,15 @@ msgid ""
 "            <span class=\"badge rounded-pill float-end text-bg-danger\" "
 "invisible=\"not product_expiry_alert\">Expired</span>"
 msgstr ""
-"<span class=\"badge rounded-pill float-end text-bg-warning\" invisible=\"not "
-"(alert_date &lt;= time.strftime('%Y-%m-%d %H:%M:%S') &lt; expiration_date)\">"
-"ستنتهي صلاحيتها بتاريخ</span>\n"
-"            <span class=\"badge rounded-pill float-end text-bg-danger\" "
-"invisible=\"not product_expiry_alert\">انتهت مدة صلاحيتها</span>"
 
 #. module: product_expiry
 #: model_terms:ir.ui.view,arch_db:product_expiry.view_production_lot_view_kanban
 msgid ""
-"<span title=\"Alert\" class=\"fa fa-exclamation-triangle text-danger me-2\" "
+"<span title=\"Alert\" class=\"oi text-danger me-2\" data-icon=\"warning\" "
 "invisible=\"product_qty &lt;= 0 or not product_expiry_alert or not "
 "expiration_date\"/>"
 msgstr ""
-"<span title=\"تنبيه \" class=\"fa fa-exclamation-triangle text-danger me-2\" "
+"<span title=\"تنبيه \" class=\"oi text-danger me-2\" data-icon=\"warning\" "
 "invisible=\"product_qty <= 0 or not product_expiry_alert or not "
 "expiration_date\"/>"
 
@@ -72,6 +84,11 @@ msgstr "<span> أيام بعد الإيصال</span>"
 #: model_terms:ir.ui.view,arch_db:product_expiry.view_product_form_expiry
 msgid "<span> days before expiration date</span>"
 msgstr "<span> أيام بعد تاريخ انتهاء الصلاحية</span>"
+
+#. module: product_expiry
+#: model:ir.model,name:product_expiry.model_res_groups
+msgid "Access Groups"
+msgstr ""
 
 #. module: product_expiry
 #: model:ir.model.fields,field_description:product_expiry.field_product_product__alert_time
@@ -89,12 +106,12 @@ msgstr "تم الوصول لتاريخ التنبيه"
 #. module: product_expiry
 #: model_terms:ir.ui.view,arch_db:product_expiry.quant_search_view_inherit_product_expiry
 msgid "Alert Lots"
-msgstr "تنبيهات المجموعات"
+msgstr ""
 
 #. module: product_expiry
 #: model_terms:ir.ui.view,arch_db:product_expiry.view_move_form_expiry
 msgid "Alert from"
-msgstr "تنبيه من"
+msgstr ""
 
 #. module: product_expiry
 #: model:ir.model.fields,field_description:product_expiry.field_stock_quant__available_quantity
@@ -117,12 +134,13 @@ msgstr ""
 "إزالتها)\n"
 "في سياق به موقع مخزون واحد، وهذا يشمل البضائع المخزنة في هذا الموقع، أو أي "
 "من توابعه.\n"
-"في سياق به مستودع واحد، وهذا يشمل البضائع المخزنة في موقع مخزون هذا المستودع"
-"، أو أي من توابعه.\n"
+"في سياق به مستودع واحد، وهذا يشمل البضائع المخزنة في موقع مخزون هذا "
+"المستودع، أو أي من توابعه.\n"
 "خلاف ذلك، وهذا يشمل البضائع المخزنة في أي موقع مع نوع 'الداخلي'."
 
 #. module: product_expiry
 #: model_terms:ir.ui.view,arch_db:product_expiry.report_lot_label_expiry
+#: model_terms:ir.ui.view,arch_db:product_expiry.report_lot_qr_label_expiry
 msgid "B.b."
 msgstr "يفضل استخدامه قبل"
 
@@ -135,12 +153,17 @@ msgstr "يُفضل قبل تاريخ"
 #. module: product_expiry
 #: model_terms:ir.ui.view,arch_db:product_expiry.view_move_form_expiry
 msgid "Best before"
-msgstr "يفضل استخدامه قبل"
+msgstr ""
 
 #. module: product_expiry
 #: model:ir.model.fields,field_description:product_expiry.field_stock_lot__use_date
 msgid "Best before Date"
 msgstr "مثالي قبل تاريخ"
+
+#. module: product_expiry
+#: model:ir.model,name:product_expiry.model_lot_label_layout
+msgid "Choose the sheet layout to print lot labels"
+msgstr ""
 
 #. module: product_expiry
 #: model:ir.model,name:product_expiry.model_res_config_settings
@@ -195,21 +218,18 @@ msgid "Description"
 msgstr "الوصف"
 
 #. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.confirm_expiry_view
-msgid "Discard"
-msgstr "إهمال"
-
-#. module: product_expiry
 #: model:ir.model.fields,field_description:product_expiry.field_res_config_settings__group_expiry_date_on_delivery_slip
 msgid "Display Expiration Dates on Delivery Slips"
 msgstr "عرض تواريخ انتهاء الصلاحية على إيصالات التوصيل"
 
 #. module: product_expiry
 #: model:ir.model.fields,field_description:product_expiry.field_expiry_picking_confirmation__display_name
+#: model:ir.model.fields,field_description:product_expiry.field_lot_label_layout__display_name
 #: model:ir.model.fields,field_description:product_expiry.field_product_product__display_name
 #: model:ir.model.fields,field_description:product_expiry.field_product_template__display_name
 #: model:ir.model.fields,field_description:product_expiry.field_report_stock_quantity__display_name
 #: model:ir.model.fields,field_description:product_expiry.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:product_expiry.field_res_groups__display_name
 #: model:ir.model.fields,field_description:product_expiry.field_stock_forecasted_product_product__display_name
 #: model:ir.model.fields,field_description:product_expiry.field_stock_lot__display_name
 #: model:ir.model.fields,field_description:product_expiry.field_stock_move__display_name
@@ -217,11 +237,14 @@ msgstr "عرض تواريخ انتهاء الصلاحية على إيصالات 
 #: model:ir.model.fields,field_description:product_expiry.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:product_expiry.field_stock_quant__display_name
 #: model:ir.model.fields,field_description:product_expiry.field_stock_rule__display_name
+#: model:ir.model.fields,field_description:product_expiry.field_stock_traceability_report__display_name
 msgid "Display Name"
 msgstr "اسم العرض"
 
 #. module: product_expiry
 #: model_terms:ir.ui.view,arch_db:product_expiry.report_lot_label_expiry
+#: model_terms:ir.ui.view,arch_db:product_expiry.report_lot_qr_label_expiry
+#: model_terms:ir.ui.view,arch_db:product_expiry.report_package_barcode_content_inherit_expiry
 msgid "Exp."
 msgstr "انتهاء الصلاحية"
 
@@ -236,11 +259,14 @@ msgid "Expiration Alerts"
 msgstr "تنبيهات انتهاء الصلاحية"
 
 #. module: product_expiry
+#. odoo-javascript
+#: code:addons/product_expiry/static/src/stock_traceability_report_backend.xml:0
 #: model:ir.model.fields,field_description:product_expiry.field_product_product__expiration_time
 #: model:ir.model.fields,field_description:product_expiry.field_product_template__expiration_time
 #: model:ir.model.fields,field_description:product_expiry.field_stock_lot__expiration_date
 #: model:ir.model.fields,field_description:product_expiry.field_stock_move_line__expiration_date
 #: model:ir.model.fields,field_description:product_expiry.field_stock_quant__expiration_date
+#: model_terms:ir.ui.view,arch_db:product_expiry.report_stock_body_print
 #: model_terms:ir.ui.view,arch_db:product_expiry.stock_report_delivery_document_inherit_product_expiry
 #: model_terms:ir.ui.view,arch_db:product_expiry.view_product_form_expiry
 msgid "Expiration Date"
@@ -264,13 +290,13 @@ msgstr "الدفعة (الدفعات) منتهية الصلاحية"
 #. module: product_expiry
 #: model_terms:ir.ui.view,arch_db:product_expiry.quant_search_view_inherit_product_expiry
 msgid "Expired Lots"
-msgstr "المجموعات منتهية الصلاحية"
+msgstr ""
 
 #. module: product_expiry
 #. odoo-javascript
 #: code:addons/product_expiry/static/src/forecasted_details.xml:0
 msgid "Expired Stock"
-msgstr "مخزون منتهي الصلاحية"
+msgstr ""
 
 #. module: product_expiry
 #: model:ir.model.fields,field_description:product_expiry.field_stock_lot__product_expiry_reminded
@@ -298,8 +324,8 @@ msgstr ""
 "المراد إزالتها)\n"
 "في سياق به موقع مخزون واحد، وهذا يشمل البضائع المخزنة في هذا الموقع، أو أي "
 "من توابعه.\n"
-"في سياق به مستودع واحد، وهذا يشمل البضائع المخزنة في موقع مخزون هذا المستودع"
-"، أو أي من توابعه.\n"
+"في سياق به مستودع واحد، وهذا يشمل البضائع المخزنة في موقع مخزون هذا "
+"المستودع، أو أي من توابعه.\n"
 "خلاف ذلك، وهذا يشمل البضائع المخزنة في أي موقع مع نوع 'الداخلي'."
 
 #. module: product_expiry
@@ -314,10 +340,12 @@ msgstr "الكميات المتاحة لاستخدامها "
 
 #. module: product_expiry
 #: model:ir.model.fields,field_description:product_expiry.field_expiry_picking_confirmation__id
+#: model:ir.model.fields,field_description:product_expiry.field_lot_label_layout__id
 #: model:ir.model.fields,field_description:product_expiry.field_product_product__id
 #: model:ir.model.fields,field_description:product_expiry.field_product_template__id
 #: model:ir.model.fields,field_description:product_expiry.field_report_stock_quantity__id
 #: model:ir.model.fields,field_description:product_expiry.field_res_config_settings__id
+#: model:ir.model.fields,field_description:product_expiry.field_res_groups__id
 #: model:ir.model.fields,field_description:product_expiry.field_stock_forecasted_product_product__id
 #: model:ir.model.fields,field_description:product_expiry.field_stock_lot__id
 #: model:ir.model.fields,field_description:product_expiry.field_stock_move__id
@@ -325,6 +353,7 @@ msgstr "الكميات المتاحة لاستخدامها "
 #: model:ir.model.fields,field_description:product_expiry.field_stock_picking__id
 #: model:ir.model.fields,field_description:product_expiry.field_stock_quant__id
 #: model:ir.model.fields,field_description:product_expiry.field_stock_rule__id
+#: model:ir.model.fields,field_description:product_expiry.field_stock_traceability_report__id
 msgid "ID"
 msgstr "المُعرف"
 
@@ -361,9 +390,9 @@ msgid ""
 "stock after production) after which the goods may become dangerous and must "
 "not be consumed. It will be computed on the lot/serial number."
 msgstr ""
-"عدد الأيام بعد استلام المنتجات (من المورّد أو في المخزون بعد الإنتاج) التي ستصبح "
-"المنتجات بعدها خطرة ولا يجب استهلاكها. سوف يتم احتسابها في رقم الدفعة/الرقم "
-"التسلسلي."
+"عدد الأيام بعد استلام المنتجات (من المورّد أو في المخزون بعد الإنتاج) التي "
+"ستصبح المنتجات بعدها خطرة ولا يجب استهلاكها. سوف يتم احتسابها في رقم الدفعة/"
+"الرقم التسلسلي."
 
 #. module: product_expiry
 #: model:ir.model.fields,help:product_expiry.field_product_product__alert_time
@@ -373,8 +402,8 @@ msgid ""
 "raised on the lot/serial number. It will be computed on the lot/serial "
 "number."
 msgstr ""
-"عدد الأيام قبل تاريخ انتهاء الصلاحية التي يجب بعدها إرسال تنبيه في رقم الدفعة/"
-"الرقم التسلسلي. سوف يتم احتسابه في رقم الدفعة/الرقم التسلسلي."
+"عدد الأيام قبل تاريخ انتهاء الصلاحية التي يجب بعدها إرسال تنبيه في رقم "
+"الدفعة/الرقم التسلسلي. سوف يتم احتسابه في رقم الدفعة/الرقم التسلسلي."
 
 #. module: product_expiry
 #: model:ir.model.fields,help:product_expiry.field_product_product__removal_time
@@ -396,8 +425,8 @@ msgid ""
 "deteriorating, without being dangerous yet. It will be computed on the lot/"
 "serial number."
 msgstr ""
-"عدد الأيام قبل تاريخ انتهاء الصلاحية التي تبدأ حالة البضائع في التدهور بعدها، "
-"قبل أن تصبح خطرة. سوف يتم احتسابه في رقم الدفعة/الرقم التسلسلي."
+"عدد الأيام قبل تاريخ انتهاء الصلاحية التي تبدأ حالة البضائع في التدهور "
+"بعدها، قبل أن تصبح خطرة. سوف يتم احتسابه في رقم الدفعة/الرقم التسلسلي."
 
 #. module: product_expiry
 #: model:ir.model.fields,help:product_expiry.field_stock_quant__available_quantity
@@ -416,7 +445,7 @@ msgstr "الانتقاء"
 #. module: product_expiry
 #: model_terms:ir.ui.view,arch_db:product_expiry.confirm_expiry_view
 msgid "Proceed except expired"
-msgstr "المضي قدماً باستثناء المنتجات منتهية الصلاحية"
+msgstr ""
 
 #. module: product_expiry
 #: model:ir.model,name:product_expiry.model_product_template
@@ -440,9 +469,14 @@ msgid "Product Variant"
 msgstr "متغير المنتج"
 
 #. module: product_expiry
+#: model:ir.module.module,shortdesc:base.module_product_expiry
+msgid "Products Expiration Date"
+msgstr ""
+
+#. module: product_expiry
 #: model:ir.model,name:product_expiry.model_stock_quant
-msgid "Quants"
-msgstr "سجلات الكميات"
+msgid "Quant"
+msgstr ""
 
 #. module: product_expiry
 #: model:ir.model.fields,field_description:product_expiry.field_product_product__removal_time
@@ -538,13 +572,18 @@ msgstr "للإزالة"
 #. odoo-javascript
 #: code:addons/product_expiry/static/src/forecasted_details.xml:0
 msgid "To remove now"
-msgstr "لتتم إزالته الآن"
+msgstr ""
 
 #. module: product_expiry
 #. odoo-javascript
 #: code:addons/product_expiry/static/src/forecasted_details.xml:0
 msgid "To remove on"
-msgstr "لتتم إزالته بتاريخ"
+msgstr ""
+
+#. module: product_expiry
+#: model:ir.model,name:product_expiry.model_stock_traceability_report
+msgid "Traceability Report"
+msgstr ""
 
 #. module: product_expiry
 #: model:ir.model,name:product_expiry.model_stock_picking
@@ -573,8 +612,8 @@ msgid ""
 "product expiration, on the product and on the corresponding lot/serial "
 "numbers"
 msgstr ""
-"عندما يكون هذا المربع محدداً، لديك احتمالية تحديد التواريخ لإدارة انتهاء صلاحية "
-"المنتجات على المنتج ورقم الدفعة/الرقم التسلسلي المقابل"
+"عندما يكون هذا المربع محدداً، لديك احتمالية تحديد التواريخ لإدارة انتهاء "
+"صلاحية المنتجات على المنتج ورقم الدفعة/الرقم التسلسلي المقابل"
 
 #. module: product_expiry
 #. odoo-python
@@ -599,142 +638,126 @@ msgstr ""
 "هل أنت واثق من أنك ترغب في المتابعة؟"
 
 #. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid "^A0N,44,33^FDUse by:"
-msgstr "^A0N,44,33^FDUse by:"
-
-#. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid ""
-"^BCN,100,Y,N,N\n"
-"^FD"
+#: model_terms:ir.ui.view,arch_db:product_expiry.alternative_zpl_lot_label_qr_expiry
+msgid "^A0N,16^TBN,246,23^FH^FD"
 msgstr ""
-"^BCN,100,Y,N,N\n"
-"^FD"
 
 #. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid "^FO100,150"
-msgstr "^FO100,150"
-
-#. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid ""
-"^FO100,150\n"
-"^A0N,44,33^FDBest before:"
+#: model_terms:ir.ui.view,arch_db:product_expiry.alternative_zpl_lot_label_qr_expiry
+msgid "^A0N,16^TBN,246,23^FH^FDB.b."
 msgstr ""
-"^FO100,150\n"
-"^A0N,44,33^FDBest before:"
 
 #. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid ""
-"^FO100,150\n"
-"^A0N,44,33^FDUse by:"
+#: model_terms:ir.ui.view,arch_db:product_expiry.report_lot_label_zpl_expiry
+msgid "^A0N,21,16^FB170,1,0,R^FH^FDExp."
 msgstr ""
-"^FO100,150\n"
-"^A0N,44,33^FDUse by:"
 
 #. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid "^FO100,200"
-msgstr "^FO100,200"
-
-#. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid ""
-"^FO100,200\n"
-"^A0N,44,33^FDUse by:"
+#: model_terms:ir.ui.view,arch_db:product_expiry.alternative_zpl_lot_label_qr_expiry
+msgid "^FO155,"
 msgstr ""
-"^FO100,200\n"
-"^A0N,44,33^FDUse by:"
 
 #. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid "^FO100,200^BY3"
-msgstr "^FO100,200^BY3"
-
-#. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid ""
-"^FO100,50\n"
-"^A0N,44,33^FD"
+#: model_terms:ir.ui.view,arch_db:product_expiry.alternative_zpl_lot_label_qr_expiry
+msgid "^FO155,145^A0N,16^TBN,246,23^FH^FDExp."
 msgstr ""
-"^FO100,50\n"
-"^A0N,44,33^FD"
 
 #. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
+#: model_terms:ir.ui.view,arch_db:product_expiry.report_lot_label_zpl_expiry
+msgid "^FO222,22"
+msgstr ""
+
+#. module: product_expiry
+#: model_terms:ir.ui.view,arch_db:product_expiry.report_lot_label_zpl_expiry
+msgid "^FO222,22^A0N,21,16^FB170,1,0,R^FH^FDB.b."
+msgstr ""
+
+#. module: product_expiry
+#: model_terms:ir.ui.view,arch_db:product_expiry.report_lot_label_zpl_expiry
+msgid "^FO222,44"
+msgstr ""
+
+#. module: product_expiry
+#: model_terms:ir.ui.view,arch_db:product_expiry.alternative_zpl_lot_label_qr_expiry
+#: model_terms:ir.ui.view,arch_db:product_expiry.report_lot_label_zpl_expiry
 msgid "^FS"
 msgstr "^FS"
-
-#. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid ""
-"^FS\n"
-"^FO100,100\n"
-"^A0N,44,33^FDLN/SN:"
-msgstr ""
-"^FS\n"
-"^FO100,100\n"
-"^A0N,44,33^FDLN/SN:"
-
-#. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid ""
-"^FS\n"
-"^FO100,200^BY3\n"
-"^BCN,100,Y,N,N\n"
-"^FD"
-msgstr ""
-"^FS\n"
-"^FO100,200^BY3\n"
-"^BCN,100,Y,N,N\n"
-"^FD"
-
-#. module: product_expiry
-#: model_terms:ir.ui.view,arch_db:product_expiry.label_lot_template_view_expiry
-msgid ""
-"^FS\n"
-"^FO100,250^BY3"
-msgstr ""
-"^FS\n"
-"^FO100,250^BY3"
 
 #. module: product_expiry
 #: model:product.removal,method:product_expiry.removal_fefo
 msgid "fefo"
 msgstr "fefo"
 
-#~ msgid ""
-#~ "<span class=\"badge text-bg-danger\" attrs=\"{'invisible': "
-#~ "[('product_expiry_alert', '=', False)]}\">Expiration Alert</span>"
-#~ msgstr ""
-#~ "<span class=\"badge text-bg-danger\" attrs=\"{'invisible': "
-#~ "[('product_expiry_alert', '=', False)]}\">تنبيه انتهاء الصلاحية</span> "
+#~ msgid "^A0N,44,33^FDUse by:"
+#~ msgstr "^A0N,44,33^FDUse by:"
 
 #~ msgid ""
-#~ "Number of days before the Expiration Date after which the goods should be "
-#~ "removed from the stock. It will be computed on the lot/serial number."
+#~ "^BCN,100,Y,N,N\n"
+#~ "^FD"
 #~ msgstr ""
-#~ "عدد الأيام قبل تاريخ انتهاء الصلاحية التي يجب بعدها إزالة البضائع من "
-#~ "المخزون. سوف يتم احتسابه في رقم الدفعة/الرقم التسلسلي. "
+#~ "^BCN,100,Y,N,N\n"
+#~ "^FD"
 
-#~ msgid "Proceed except for expired one"
-#~ msgstr "الاستمرار باستثناء المنتج منتهي الصلاحية "
-
-#~ msgid "Procurement Group"
-#~ msgstr "مجموعة الشراء "
+#~ msgid "^FO100,150"
+#~ msgstr "^FO100,150"
 
 #~ msgid ""
-#~ "This is the date on which the goods with this Serial Number should be "
-#~ "removed from the stock. This date will be used in FEFO removal strategy."
+#~ "^FO100,150\n"
+#~ "^A0N,44,33^FDBest before:"
 #~ msgstr ""
-#~ "هذا هو التاريخ الذي يجب أن تتم فيه إزالة البضائع التي تحمل هذا الرقم "
-#~ "التسلسلي من المخزون. سوف يُستخدم هذا التاريخ في استراتيجية إزالة FEFO. "
+#~ "^FO100,150\n"
+#~ "^A0N,44,33^FDBest before:"
 
-#~ msgid "This lot is expired"
-#~ msgstr "لقد انتهت صلاحية هذه المجموعة "
+#~ msgid ""
+#~ "^FO100,150\n"
+#~ "^A0N,44,33^FDUse by:"
+#~ msgstr ""
+#~ "^FO100,150\n"
+#~ "^A0N,44,33^FDUse by:"
 
-#~ msgid "This lot is expired."
-#~ msgstr "لقد انتهت صلاحية هذه المجموعة. "
+#~ msgid "^FO100,200"
+#~ msgstr "^FO100,200"
+
+#~ msgid ""
+#~ "^FO100,200\n"
+#~ "^A0N,44,33^FDUse by:"
+#~ msgstr ""
+#~ "^FO100,200\n"
+#~ "^A0N,44,33^FDUse by:"
+
+#~ msgid "^FO100,200^BY3"
+#~ msgstr "^FO100,200^BY3"
+
+#~ msgid ""
+#~ "^FO100,50\n"
+#~ "^A0N,44,33^FD"
+#~ msgstr ""
+#~ "^FO100,50\n"
+#~ "^A0N,44,33^FD"
+
+#~ msgid ""
+#~ "^FS\n"
+#~ "^FO100,100\n"
+#~ "^A0N,44,33^FDLN/SN:"
+#~ msgstr ""
+#~ "^FS\n"
+#~ "^FO100,100\n"
+#~ "^A0N,44,33^FDLN/SN:"
+
+#~ msgid ""
+#~ "^FS\n"
+#~ "^FO100,200^BY3\n"
+#~ "^BCN,100,Y,N,N\n"
+#~ "^FD"
+#~ msgstr ""
+#~ "^FS\n"
+#~ "^FO100,200^BY3\n"
+#~ "^BCN,100,Y,N,N\n"
+#~ "^FD"
+
+#~ msgid ""
+#~ "^FS\n"
+#~ "^FO100,250^BY3"
+#~ msgstr ""
+#~ "^FS\n"
+#~ "^FO100,250^BY3"

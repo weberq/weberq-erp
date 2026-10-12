@@ -4,11 +4,12 @@
 from datetime import datetime, timedelta
 
 from odoo import Command
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 from odoo.addons.mail.tests.common import mail_new_test_user
 from odoo.addons.stock.tests.test_report import TestReportsCommon
 
 
+@tagged('at_install', '-post_install')  # LEGACY at_install
 class TestPurchaseStockReports(TestReportsCommon):
     def test_report_forecast_1_purchase_order_multi_receipt(self):
         """ Create a PO for 5 product, receive them then increase the quantity to 10.
@@ -251,7 +252,7 @@ class TestPurchaseStockReports(TestReportsCommon):
             'location_id': receipt_move.location_id.id,
             'location_dest_id': receipt_move.location_dest_id.id,
             'product_id': self.product.id,
-            'product_uom_id': uom_12.id,
+            'uom_id': uom_12.id,
             'quantity': 1,
             'picking_id': receipt.id,
         })]
@@ -301,14 +302,14 @@ class TestPurchaseStockReports(TestReportsCommon):
             'location_id': receipt_move.location_id.id,
             'location_dest_id': child_loc_01.id,
             'product_id': self.product.id,
-            'product_uom_id': self.product.uom_id.id,
+            'uom_id': self.product.uom_id.id,
             'quantity': 6,
             'picking_id': receipt.id,
         }), (0, 0, {
             'location_id': receipt_move.location_id.id,
             'location_dest_id': child_loc_02.id,
             'product_id': self.product.id,
-            'product_uom_id': self.product.uom_id.id,
+            'uom_id': self.product.uom_id.id,
             'quantity': 4,
             'picking_id': receipt.id,
         })]

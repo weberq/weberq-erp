@@ -13,6 +13,8 @@ from odoo.addons.l10n_fr_pdp.tests.common import TestL10nFrPdpCommon
 
 @tagged('post_install_l10n', 'post_install', '-at_install', 'test_flow_lifecycle')
 class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -29,9 +31,9 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
             'l10n_fr_pdp_periodicity': 'normal_monthly',
             'l10n_fr_pdp_send_to_ppf': True,
             'name': 'NOM MATELAS',
-            'company_registry': '34057796400024',
             'vat': 'FR23334175221',
         })
+        cls.company.partner_id._set_additional_identifier('FR_SIRET', '34057796400026')
         cls.company.invalidate_recordset([
             'account_peppol_edi_user',
             'l10n_fr_f10_enable_reporting',
@@ -78,12 +80,22 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
             'country_id': cls.env.ref('base.it').id,
             'vat': 'IT04119190371',
         })
+        cls._setup_taxes_included()
+
+    @classmethod
+    def _setup_taxes_included(cls):
+        cls.tax_sale_good_20_tax_included = cls.env['account.chart.template'].ref('tva_normale').copy({'name': '20%G Testing'})
+        cls.tax_sale_good_20_tax_included.price_include_override = 'tax_included'
+        cls.tax_on_payment_20_tax_included = cls.env['account.chart.template'].ref('tva_normale_encaissement').copy({'name': '20%G Payment Testing'})
+        cls.tax_on_payment_20_tax_included.price_include_override = 'tax_included'
+        cls.tax_purchase_tax_on_payment = cls.env['account.chart.template'].ref('tva_acq_encaissement').copy({'name': '20%G Purchase Testing'})
+        cls.tax_purchase_tax_on_payment.price_include_override = 'tax_included'
 
     def _get_tax_on_payment(self):
         return self.env['account.chart.template'].ref('tva_sale_service_0')
 
     def _get_tax_on_payment_20(self):
-        return self.env['account.chart.template'].ref('tva_acq_encaissement')
+        return self.env['account.chart.template'].ref('tva_normale_encaissement')
 
     def _get_tax_sale_good_intra_0(self):
         return self.env['account.chart.template'].ref('tva_sale_good_intra_0')
@@ -92,13 +104,13 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
         return self.env['account.chart.template'].ref('tva_sale_service_intra_0')
 
     def _get_tax_sale_good_20_tax_included(self):
-        return self.env['account.chart.template'].ref('tva_normale_ttc')
+        return self.tax_sale_good_20_tax_included
 
     def _get_tax_on_payment_20_tax_included(self):
-        return self.env['account.chart.template'].ref('tva_acq_encaissement_TTC')
+        return self.tax_on_payment_20_tax_included
 
     def _get_purchase_tax_on_payment(self):
-        return self.env['account.chart.template'].ref('tva_acq_encaissement')
+        return self.tax_purchase_tax_on_payment
 
     def _create_reporting_move(
         self,
@@ -314,7 +326,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
         self._refresh_pdp_fields(invoice)
 
     def _run_send_cron(self, date, identifier='FLOW-TEST-001'):
-        with patch('odoo.fields.Date.today', return_value=fields.Date.to_date(date)):
+        with self.mock_datetime_and_now(date):
             with patch(
                 'odoo.addons.l10n_fr_pdp.models.pdp_flow.PdpFlow._send_to_proxy',
                 return_value=self._proxy_success_response(identifier),
@@ -339,7 +351,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
     def _build_flow_xml(self, flow):
         flow._build_payload()
         self.assertTrue(flow.payload_id)
-        return etree.fromstring(flow.payload_id.raw)
+        return etree.fromstring(flow.payload_id.raw.content)
 
     def _load_expected_report_xml(self, filename):
         with file_open(f'l10n_fr_pdp/tests/data/{filename}', 'rb', filter_ext=('.xml',)) as report_file:
@@ -687,7 +699,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
 
     def test_b2bi_invoice_rejects_invalid_report_values(self):
         invoice = self._create_reporting_invoice(partner=self.b2bi_customer)
-        self.company.partner_id.company_registry = 'invalid'
+        self.company.partner_id.additional_identifiers = {}
         self.b2bi_customer.country_id.code = 'B1'
         self.b2bi_customer.with_context(no_vat_validation=True).vat = 'BE12345678901234567'
         self.b2c_customer.country_id = False
@@ -1258,7 +1270,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
         valid_invoice.invalidate_recordset(['l10n_fr_pdp_sent_in_flow_ids'])
         invalid_invoice.invalidate_recordset(['l10n_fr_pdp_status', 'l10n_fr_pdp_sent_in_flow_ids'])
 
-        xml = etree.fromstring(flow.payload_id.raw)
+        xml = etree.fromstring(flow.payload_id.raw.content)
         reported_invoice_ids = [
             invoice_node.findtext('ID')
             for invoice_node in xml.findall('./TransactionsReport/Invoice')
@@ -1380,7 +1392,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
 
         flow.invalidate_recordset(['payload_id'])
         resent_payload = flow.payload_id
-        resent_xml = etree.fromstring(flow.payload_id.raw)
+        resent_xml = etree.fromstring(flow.payload_id.raw.content)
         self.assertRecordValues(flow, [{
             'state': 'sent',
             'transport_status': False,
@@ -1402,7 +1414,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
             flow.action_send_from_ui()
 
         flow.invalidate_recordset(['payload_id'])
-        second_resent_xml = etree.fromstring(flow.payload_id.raw)
+        second_resent_xml = etree.fromstring(flow.payload_id.raw.content)
         second_resent_tracking_id = second_resent_xml.findtext('./ReportDocument/Id')
         self.assertIn('_2', second_resent_tracking_id)
         self.assertNotIn(second_resent_tracking_id, (original_tracking_id, resent_tracking_id))
@@ -1534,11 +1546,11 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
         self.assertEqual(transaction_rectificative.state, 'sent')
         self.assertEqual(payment_rectificative.state, 'sent')
         self.assertEqual(
-            etree.fromstring(transaction_rectificative.payload_id.raw).findtext('./ReportDocument/TypeCode'),
+            etree.fromstring(transaction_rectificative.payload_id.raw.content).findtext('./ReportDocument/TypeCode'),
             'RE',
         )
         self.assertEqual(
-            etree.fromstring(payment_rectificative.payload_id.raw).findtext('./ReportDocument/TypeCode'),
+            etree.fromstring(payment_rectificative.payload_id.raw.content).findtext('./ReportDocument/TypeCode'),
             'RE',
         )
 
@@ -1655,7 +1667,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
         )
         initial_flow = invoice.l10n_fr_pdp_last_flow_id
 
-        invoice.button_draft()
+        invoice.with_context(l10n_fr_pdp_bypass_draft_check=True).button_draft()
         invoice.invoice_line_ids.price_unit = 150.0
         invoice.action_post()
         invoice.is_move_sent = True
@@ -2081,7 +2093,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
         )
         flow = invoice.l10n_fr_pdp_last_flow_id
 
-        with patch('odoo.fields.Date.today', return_value=fields.Date.to_date('2025-09-20')):
+        with self.mock_datetime_and_now(fields.Date.to_date('2025-09-20')):
             with patch(
                 'odoo.addons.l10n_fr_pdp.models.pdp_flow.PdpFlow._send_to_proxy',
                 return_value=self._proxy_success_response('FLOW-CRON-IDEMPOTENT'),
@@ -2110,7 +2122,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
         )
         flow = kept_invoice.l10n_fr_pdp_last_flow_id
 
-        draft_invoice.button_draft()
+        draft_invoice.with_context(l10n_fr_pdp_bypass_draft_check=True).button_draft()
         cancelled_invoice.button_cancel()
         self._refresh_pdp_fields(draft_invoice | cancelled_invoice)
         xml = self._build_flow_xml(flow)
@@ -2434,7 +2446,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
 
         self.assertRecordValues(flow, [{'state': 'sent'}])
         self.assertTrue(flow.payload_id)
-        xml = etree.fromstring(flow.payload_id.raw)
+        xml = etree.fromstring(flow.payload_id.raw.content)
         transactions = xml.findall('./TransactionsReport/Transactions')
 
         self.assertFalse(xml.findall('./TransactionsReport/Invoice'))
@@ -2457,7 +2469,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
 
         self.assertRecordValues(flow, [{'state': 'sent'}])
         self.assertTrue(flow.payload_id)
-        xml = etree.fromstring(flow.payload_id.raw)
+        xml = etree.fromstring(flow.payload_id.raw.content)
         invoice_nodes = xml.findall('./TransactionsReport/Invoice')
 
         self.assertEqual(len(invoice_nodes), 1)
@@ -2506,7 +2518,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
 
         self.assertRecordValues(flow, [{'state': 'sent'}])
         self.assertTrue(flow.payload_id)
-        xml = etree.fromstring(flow.payload_id.raw)
+        xml = etree.fromstring(flow.payload_id.raw.content)
         invoice_nodes = xml.findall('./TransactionsReport/Invoice')
         transactions = {
             node.findtext('CategoryCode'): node
@@ -2558,7 +2570,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
             {'state': 'sent'},
         ])
         self.assertTrue(payment_flow.payload_id)
-        xml = etree.fromstring(payment_flow.payload_id.raw)
+        xml = etree.fromstring(payment_flow.payload_id.raw.content)
         payment_invoice = xml.find('./PaymentsReport/Invoice')
 
         self.assertIsNotNone(payment_invoice)
@@ -2607,7 +2619,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
 
         self.assertRecordValues(rectificative_flow, [{'state': 'sent'}])
         self.assertTrue(rectificative_flow.payload_id)
-        xml = etree.fromstring(rectificative_flow.payload_id.raw)
+        xml = etree.fromstring(rectificative_flow.payload_id.raw.content)
         invoice_nodes = xml.findall('./TransactionsReport/Invoice')
 
         self.assertEqual(xml.findtext('./ReportDocument/TypeCode'), 'RE')
@@ -2624,7 +2636,7 @@ class TestPdpReportsFlowLifecycle(TestL10nFrPdpCommon):
             }],
         )
         self.assertFalse(invoice.l10n_fr_pdp_last_flow_id)
-        self.env['ir.config_parameter'].set_param(
+        self.env['ir.config_parameter'].set_str(
             f'l10n_fr_pdp.flow10.start.date.{invoice.company_id.id}',
             '2024-11-01',
         )

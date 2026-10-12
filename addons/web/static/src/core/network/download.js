@@ -1,6 +1,6 @@
 import { _t } from "@web/core/l10n/translation";
 import { makeErrorFromResponse, ConnectionLostError } from "@web/core/network/rpc";
-import { browser } from "@web/core/browser/browser";
+import { browser, location } from "@web/core/browser/browser";
 import { session } from "@web/session";
 
 /* eslint-disable */
@@ -321,10 +321,10 @@ function _download(data, filename, mimetype) {
         // When embedded on an external origin (browser.location.origin),
         // use a direct download for url targeting the odoo instance
         // (session.origin) to avoid triggering CORS
-        const targetOrigin = new URL(url, browser.location.origin).origin;
+        const targetOrigin = new URL(url, location.origin).origin;
         if (
             targetOrigin &&
-            targetOrigin !== browser.location.origin &&
+            targetOrigin !== location.origin &&
             targetOrigin === session.origin
         ) {
             anchor.setAttribute("download", "");
@@ -381,7 +381,7 @@ function _download(data, filename, mimetype) {
             anchor.href = url;
             anchor.setAttribute("download", fileName);
             anchor.className = "download-js-link";
-            anchor.innerText = _t("downloading...");
+            anchor.textContent = String(_t("downloading..."));
             anchor.style.display = "none";
             anchor.target = "_blank";
             document.body.appendChild(anchor);

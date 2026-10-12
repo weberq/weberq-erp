@@ -15,6 +15,12 @@ patch(SelfOrder.prototype, {
             this.updateOnlinePaymentStatus(status);
         });
     },
+    createNewOrder() {
+        if (this.onlinePaymentStatus === "progress") {
+            this.onlinePaymentStatus = null;
+        }
+        return super.createNewOrder(...arguments);
+    },
     async updateOnlinePaymentStatus(status) {
         const data = await rpc(`/pos-self-order/get-order/${this.currentOrder.id}`, {
             access_token: this.access_token,
@@ -32,42 +38,37 @@ patch(SelfOrder.prototype, {
             this.confirmationPage("order", this.config.self_ordering_mode, order.access_token);
         }
     },
+    hasPaymentMethod() {
+        if (
+            this.config.self_ordering_mode === "mobile" &&
+            this.config.self_order_online_payment_method_id
+        ) {
+            return true;
+        }
+        return super.hasPaymentMethod();
+    },
     getOnlinePaymentUrl(
         { id: order_id, access_token: order_access_token, config_id: order_pos_config_id },
         exitRoute = true
     ) {
         const baseUrl = session.base_url;
-        const order = this.currentOrder;
         let exitRouteUrl = baseUrl;
 
         if (exitRoute) {
-            let table = "";
-            exitRouteUrl += `/pos-self/${order_pos_config_id.id}`;
+            let extra = "";
+            exitRouteUrl += `/pos-self/${order_pos_config_id.id}/confirmation/${order_access_token}/order`;
 
-            if (this.config.self_ordering_pay_after === "each") {
-                exitRouteUrl += `/confirmation/${order.access_token}/order`;
+            if (this.config.self_ordering_service_mode === "dynamic_qr") {
+                extra += `&order_identifier=${order_access_token}`;
+            } else if (this.currentTableIdentifier) {
+                extra = `&table_identifier=${this.currentTableIdentifier}`;
             }
 
-            if (this.currentTable) {
-                table = `&table_identifier=${this.currentTable.identifier}`;
-            }
-
-            exitRouteUrl += `?access_token=${this.access_token}${table}`;
+            exitRouteUrl += `?access_token=${this.access_token}${extra}`;
         }
 
         const exit = encodeURIComponent(exitRouteUrl);
         return `${baseUrl}/pos/pay/${order_id}?access_token=${order_access_token}&exit_route=${exit}`;
-    },
-    filterPaymentMethods(pms) {
-        const pm = super.filterPaymentMethods(...arguments);
-        const pmIds = this.config.payment_method_ids.map((o) => o.id);
-        const online_pms = pms.filter(
-            (rec) =>
-                rec.is_online_payment &&
-                (this.config.self_order_online_payment_method_id?.id === rec.id ||
-                    (this.config.self_ordering_mode === "kiosk" && pmIds.includes(rec.id)))
-        );
-        return [...new Set([...pm, ...online_pms])];
     },
     shouldUpdateLastOrderChange() {
         if (

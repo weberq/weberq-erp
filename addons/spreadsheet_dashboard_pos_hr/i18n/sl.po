@@ -2,19 +2,15 @@
 # This file contains the translation of the following modules:
 # * spreadsheet_dashboard_pos_hr
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-09-14 10:34+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 20:10+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "spreadsheet_dashboard_pos_hr/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -34,35 +30,26 @@ msgstr "Povprečno naročilo"
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
 msgid "Current"
 msgstr "Trenutno"
 
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
 msgid "Customer"
-msgstr "Stranka"
-
-#. module: spreadsheet_dashboard_pos_hr
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
-msgid "Date"
-msgstr "Datum"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
 msgid "Employee"
 msgstr "Kader"
 
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
 msgid "KPI"
-msgstr "KPI"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
@@ -74,7 +61,6 @@ msgstr "Naročila"
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
 msgid "Orders by Month"
 msgstr "Naročila po mesecih"
 
@@ -87,7 +73,6 @@ msgstr "Obdobje"
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
 #: model:spreadsheet.dashboard,name:spreadsheet_dashboard_pos_hr.spreadsheet_dashboard_pos
 msgid "Point of Sale"
 msgstr "Prodajna točka"
@@ -95,21 +80,24 @@ msgstr "Prodajna točka"
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
+msgid "Preset"
+msgstr ""
+
+#. module: spreadsheet_dashboard_pos_hr
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
 msgid "Previous"
 msgstr "Nazaj"
 
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
 msgid "Product"
 msgstr "Proizvod"
 
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
 msgid "Responsible"
 msgstr "Odgovoren"
 
@@ -123,29 +111,38 @@ msgstr "Prihodek"
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
 msgid "Session"
 msgstr "Seja"
 
 #. module: spreadsheet_dashboard_pos_hr
+#: model:ir.module.module,description:base.module_spreadsheet_dashboard_pos_hr
+#: model:ir.module.module,summary:base.module_spreadsheet_dashboard_pos_hr
+msgid "Spreadsheet"
+msgstr ""
+
+#. module: spreadsheet_dashboard_pos_hr
+#: model:ir.module.module,shortdesc:base.module_spreadsheet_dashboard_pos_hr
+msgid "Spreadsheet dashboard for point of sale"
+msgstr ""
+
+#. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
-msgid "Sessions"
-msgstr "Seje"
+msgid "Sunburst"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
 msgid "Top Orders"
-msgstr "Najboljša naročila"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
 msgid "Top Points of Sale"
-msgstr "Najboljša prodajna mesta"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
@@ -159,20 +156,14 @@ msgstr "Najboljši izdelek"
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
 msgid "Top Responsibles"
-msgstr "Najboljše odgovorne osebe"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
 msgid "Top Sessions"
-msgstr "Najboljše seje"
-
-#. module: spreadsheet_dashboard_pos_hr
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_hr/data/files/pos_sample_dashboard.json:0
-msgid "Total"
-msgstr "Skupaj"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_hr
 #. odoo-javascript

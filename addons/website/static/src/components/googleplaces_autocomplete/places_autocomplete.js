@@ -1,15 +1,15 @@
-import { Component } from "@odoo/owl";
+import { Component, t, useProps } from "@odoo/owl";
 import { AutoCompleteWithPages } from "@website/components/autocomplete_with_pages/autocomplete_with_pages";
 
 export class PlacesAutoComplete extends Component {
     static template = "website.PlacesAutoComplete";
     static components = { AutoCompleteWithPages };
-    static props = {
-        targetDropdown: { type: HTMLElement },
-        maps: { validate: (v) => v !== null && typeof v === "object" },
-        onPlaceSelected: { type: Function },
-        onError: { type: Function },
-    };
+    props = useProps({
+        targetDropdown: t.instanceOf(HTMLElement),
+        maps: t.customValidator(t.any(), (v) => v != null && typeof v === "object"),
+        onPlaceSelected: t.function(),
+        onError: t.function(),
+    });
 
     setup() {
         this.state = { sessionToken: null };
@@ -37,12 +37,12 @@ export class PlacesAutoComplete extends Component {
                                 }
                             );
                         return result.suggestions.map((suggestion) => ({
-                            id: suggestion.placePrediction.id,
-                            label: suggestion.placePrediction.text.toString(),
-                            value: suggestion.placePrediction.text.toString(),
                             cssClass: "pac-item",
-                            placePrediction: suggestion.placePrediction,
-                            onSelect: () => this.onSelect(suggestion),
+                            label: suggestion.placePrediction.text.toString(),
+                            data: {
+                                label: suggestion.placePrediction.text.toString(),
+                            },
+                            onSelect: () => this.onSelect(suggestion.placePrediction),
                         }));
                     } catch {
                         this.props.onError();
@@ -53,8 +53,7 @@ export class PlacesAutoComplete extends Component {
         ];
     }
 
-    async onSelect(selectedSuggestion) {
-        const placePrediction = selectedSuggestion.placePrediction;
+    async onSelect(placePrediction) {
         try {
             const placeResult = placePrediction.toPlace();
             await placeResult.fetchFields({
@@ -71,9 +70,9 @@ export class PlacesAutoComplete extends Component {
                     },
                 },
             };
+            this.props.targetDropdown.value = place.formatted_address;
             this.props.onPlaceSelected(place);
-        } catch (error) {
-            console.error(error);
+        } catch {
             this.props.onError();
         }
     }

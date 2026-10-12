@@ -1,4 +1,4 @@
-import { after, Deferred, mockWorker } from "@odoo/hoot";
+import { after, mockWorker } from "@odoo/hoot";
 import { MockServer, patchWithCleanup } from "@web/../tests/web_test_helpers";
 
 import { WebsocketWorker } from "@bus/workers/websocket_worker";
@@ -18,7 +18,7 @@ function cleanupWebSocketWorker() {
         clearTimeout(currentWebSocketWorker.connectTimeout);
     }
 
-    currentWebSocketWorker.firstSubscribeDeferred = new Deferred();
+    currentWebSocketWorker.firstSubscribeResolver = Promise.withResolvers();
     currentWebSocketWorker.websocket = null;
     currentWebSocketWorker = null;
 }
@@ -86,6 +86,7 @@ patchWithCleanup(MockServer.prototype, {
     },
 });
 
+WebsocketWorker.OUTGOING_BATCH_DELAY = 0;
 patch(WebsocketWorker.prototype, {
     // `runAllTimers` advances time based on the longest registered timeout.
     // Some tests rely on the fragile assumption that time won’t advance too much.

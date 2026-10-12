@@ -11,26 +11,33 @@
 # Linas Versada <linaskrisiukenas@gmail.com>, 2022
 # UAB "Draugiški sprendimai" <transifex@draugiskisprendimai.lt>, 2022
 # digitouch UAB <digitouchagencyeur@gmail.com>, 2022
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Ulevičienė <vilma.uleviciene@mededu.lt>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.5alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-10-05 22:33+0000\n"
-"Last-Translator: Ulevičienė <vilma.uleviciene@mededu.lt>\n"
-"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 14:32+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-s19-4/"
 "digest/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
-"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 "
-": n % 1 != 0 ? 2: 3);\n"
+"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
+"1 : n % 1 != 0 ? 2: 3);\n"
 "X-Generator: Weblate 2026.8.1\n"
+
+#. module: digest
+#: model:ir.module.module,description:base.module_digest
+msgid ""
+"\n"
+"Send KPI Digests periodically\n"
+"=============================\n"
+msgstr ""
 
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.digest_mail_main
@@ -66,6 +73,11 @@ msgstr ""
 "duomenimis gavėjus"
 
 #. module: digest
+#: model_terms:ir.ui.view,arch_db:digest.digest_mail_main
+msgid "All Companies"
+msgstr ""
+
+#. module: digest
 #: model:ir.model.fields,field_description:digest.field_digest_tip__group_id
 msgid "Authorized Group"
 msgstr "Leistina grupė"
@@ -84,7 +96,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/digest/models/digest.py:0
 msgid "Choose the metrics you care about"
-msgstr "Pasirinkite jums svarbius rodiklius"
+msgstr ""
 
 #. module: digest
 #: model_terms:digest.tip,tip_description:digest.digest_tip_digest_6
@@ -104,7 +116,7 @@ msgstr "Konfigūracijos nustatymai"
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.res_config_settings_view_form
 msgid "Configure Digest Emails"
-msgstr "Nustatykite apibendrinančių el. laiškų parametrus"
+msgstr ""
 
 #. module: digest
 #. odoo-python
@@ -119,12 +131,14 @@ msgstr ""
 
 #. module: digest
 #: model:ir.model.fields,field_description:digest.field_digest_digest__create_uid
+#: model:ir.model.fields,field_description:digest.field_digest_test__create_uid
 #: model:ir.model.fields,field_description:digest.field_digest_tip__create_uid
 msgid "Created by"
 msgstr "Sukūrė"
 
 #. module: digest
 #: model:ir.model.fields,field_description:digest.field_digest_digest__create_date
+#: model:ir.model.fields,field_description:digest.field_digest_test__create_date
 #: model:ir.model.fields,field_description:digest.field_digest_tip__create_date
 msgid "Created on"
 msgstr "Sukurta"
@@ -151,12 +165,14 @@ msgstr ""
 
 #. module: digest
 #: model:ir.model.fields.selection,name:digest.selection__digest_digest__state__deactivated
+#: model_terms:ir.ui.view,arch_db:digest.digest_digest_view_form
 #: model_terms:ir.ui.view,arch_db:digest.digest_digest_view_search
 msgid "Deactivated"
 msgstr ""
 
 #. module: digest
 #: model:ir.model,name:digest.model_digest_digest
+#: model:ir.model.fields,field_description:digest.field_digest_test__digest_id
 msgid "Digest"
 msgstr "Santrauka"
 
@@ -180,8 +196,12 @@ msgid "Digest Subscriptions"
 msgstr "Santraukos prenumeratos"
 
 #. module: digest
-#: model:ir.actions.act_window,name:digest.digest_tip_action
 #: model:ir.model,name:digest.model_digest_tip
+msgid "Digest Tip"
+msgstr ""
+
+#. module: digest
+#: model:ir.actions.act_window,name:digest.digest_tip_action
 #: model:ir.ui.menu,name:digest.digest_tip_menu
 msgid "Digest Tips"
 msgstr "Santraukos patarimai"
@@ -192,12 +212,35 @@ msgid "Digest Title"
 msgstr ""
 
 #. module: digest
+#. odoo-python
+#: code:addons/digest/models/digest.py:0
+msgid "Digest sent!"
+msgstr ""
+
+#. module: digest
+#: model:ir.model.fields,field_description:digest.field_res_users__digest_ids
+msgid "Digests"
+msgstr ""
+
+#. module: digest
+#: model_terms:ir.ui.view,arch_db:digest.digest_test_view_form
+msgid "Discard"
+msgstr ""
+
+#. module: digest
 #: model:ir.model.fields,field_description:digest.field_digest_digest__display_name
+#: model:ir.model.fields,field_description:digest.field_digest_test__display_name
 #: model:ir.model.fields,field_description:digest.field_digest_tip__display_name
 #: model:ir.model.fields,field_description:digest.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:digest.field_res_users__display_name
 msgid "Display Name"
 msgstr "Rodomas pavadinimas"
+
+#. module: digest
+#. odoo-python
+#: code:addons/digest/models/digest.py:0
+msgid "Do not have access, skip this data for user's digest email"
+msgstr ""
 
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.digest_digest_view_form
@@ -220,12 +263,10 @@ msgid ""
 "Have a question about a document? Click on the responsible user's picture to "
 "start a conversation. If his avatar has a green dot, he is online."
 msgstr ""
-"Turite klausimų apie dokumentą? Spustelėkite atsakingo vartotojo nuotrauką, "
-"kad pradėtumėte pokalbį. Jei jo avatare yra žalia taškelė, jis yra "
-"prisijungęs."
 
 #. module: digest
 #: model:ir.model.fields,field_description:digest.field_digest_digest__id
+#: model:ir.model.fields,field_description:digest.field_digest_test__id
 #: model:ir.model.fields,field_description:digest.field_digest_tip__id
 #: model:ir.model.fields,field_description:digest.field_res_config_settings__id
 #: model:ir.model.fields,field_description:digest.field_res_users__id
@@ -257,6 +298,11 @@ msgstr ""
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.digest_tip_view_tree
 msgid "KPI Digest Tips"
+msgstr ""
+
+#. module: digest
+#: model:ir.module.module,shortdesc:base.module_digest
+msgid "KPI Digests"
 msgstr ""
 
 #. module: digest
@@ -294,12 +340,14 @@ msgstr "Paskutinės 7 dienos"
 
 #. module: digest
 #: model:ir.model.fields,field_description:digest.field_digest_digest__write_uid
+#: model:ir.model.fields,field_description:digest.field_digest_test__write_uid
 #: model:ir.model.fields,field_description:digest.field_digest_tip__write_uid
 msgid "Last Updated by"
 msgstr "Paskutinį kartą atnaujino"
 
 #. module: digest
 #: model:ir.model.fields,field_description:digest.field_digest_digest__write_date
+#: model:ir.model.fields,field_description:digest.field_digest_test__write_date
 #: model:ir.model.fields,field_description:digest.field_digest_tip__write_date
 msgid "Last Updated on"
 msgstr "Paskutinį kartą atnaujinta"
@@ -368,6 +416,7 @@ msgstr "Kas ketvirtį"
 
 #. module: digest
 #: model:ir.model.fields,field_description:digest.field_digest_digest__user_ids
+#: model:ir.model.fields,field_description:digest.field_digest_test__user_ids
 #: model:ir.model.fields,field_description:digest.field_digest_tip__user_ids
 #: model_terms:ir.ui.view,arch_db:digest.digest_digest_view_form
 msgid "Recipients"
@@ -379,9 +428,29 @@ msgid "Run your business from anywhere with <b>Odoo Mobile</b>."
 msgstr ""
 
 #. module: digest
+#: model:ir.model,name:digest.model_digest_test
+msgid "Sample Digest Wizard"
+msgstr ""
+
+#. module: digest
+#: model_terms:ir.ui.view,arch_db:digest.digest_test_view_form
+msgid "Select Recipients..."
+msgstr ""
+
+#. module: digest
+#: model_terms:ir.ui.view,arch_db:digest.digest_test_view_form
+msgid "Send Digest"
+msgstr ""
+
+#. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.digest_digest_view_form
 msgid "Send Now"
 msgstr "Siųsti dabar"
+
+#. module: digest
+#: model_terms:ir.ui.view,arch_db:digest.digest_test_view_form
+msgid "Send a Sample Digest"
+msgstr ""
 
 #. module: digest
 #: model_terms:ir.ui.view,arch_db:digest.digest_mail_main
@@ -402,6 +471,22 @@ msgstr "Būsena"
 #. odoo-python
 #: code:addons/digest/models/digest.py:0
 msgid "Switch to weekly Digests"
+msgstr ""
+
+#. module: digest
+#: model_terms:ir.ui.view,arch_db:digest.res_config_settings_view_form
+msgid "Template"
+msgstr ""
+
+#. module: digest
+#: model_terms:ir.ui.view,arch_db:digest.digest_digest_view_form
+msgid "Test"
+msgstr ""
+
+#. module: digest
+#. odoo-python
+#: code:addons/digest/models/digest.py:0
+msgid "Test Digest"
 msgstr ""
 
 #. module: digest
@@ -479,16 +564,14 @@ msgstr "Pavadinimas"
 #. module: digest
 #: model_terms:digest.tip,tip_description:digest.digest_tip_digest_3
 msgid ""
-"Type \"@\" to notify someone in a message, or \"#\" to link to a channel. "
-"Try to notify @OdooBot to test the feature."
+"Type \"@\" to notify someone in a message. Try to notify @OdooBot to test "
+"the feature."
 msgstr ""
 
 #. module: digest
 #: model:ir.model.fields,help:digest.field_digest_tip__sequence
 msgid "Used to display digest tip in email template base on order"
 msgstr ""
-"Naudojama, kad el. pašto šablone būtų rodomas santraukos patarimas pagal "
-"užsakymą"
 
 #. module: digest
 #: model:ir.model,name:digest.model_res_users
@@ -509,7 +592,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/digest/models/digest.py:0
 msgid "Want to customize this email?"
-msgstr "Norite pritaikyti šį el. laišką?"
+msgstr ""
 
 #. module: digest
 #. odoo-python
@@ -573,9 +656,3 @@ msgstr "ketvirtinis"
 #: code:addons/digest/models/digest.py:0
 msgid "weekly"
 msgstr ""
-
-#~ msgid "Group by"
-#~ msgstr "Grupuoti pagal"
-
-#~ msgid "Statistics"
-#~ msgstr "Statistika"

@@ -126,7 +126,7 @@ class MassSMSCase(SMSCase, MockLinkTracker):
             partner = recipient_info.get('partner', self.env['res.partner'])
             number = recipient_info.get('number')
             if number is None and partner:
-                number = partner._sms_get_recipients_info()[partner.id]['sanitized']
+                number = partner._phone_get_recipients_info()[partner.id]['sanitized']
             # trace
             status = recipient_info.get('trace_status', 'outgoing')
             failure_type = recipient_info['failure_type'] if status in ('error', 'cancel', 'bounce') else None
@@ -194,7 +194,10 @@ class MassSMSCase(SMSCase, MockLinkTracker):
                 for (url, is_shortened, add_link_params) in link_info:
                     if url == 'unsubscribe':
                         url = '%s/sms/%d/%s' % (mailing.get_base_url(), mailing.id, trace.sms_code)
-                    link_params = {'utm_medium': 'SMS', 'utm_source': mailing.name}
+                    link_params = {'utm_medium': mailing.medium_id.name,
+                                   'utm_source': mailing.source_id.name,
+                                   'utm_reference': f'{mailing._name},{mailing.id}',
+                                   }
                     if add_link_params:
                         link_params.update(**add_link_params)
                     self.assertLinkShortenedText(

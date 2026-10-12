@@ -7,6 +7,8 @@ from odoo.tests import Command, Form, tagged
 @tagged('post_install_l10n', 'post_install', '-at_install')
 class TestDDT(TestSaleCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     @TestSaleCommon.setup_country('it')
     def setUpClass(cls):
@@ -20,7 +22,7 @@ class TestDDT(TestSaleCommon):
                         'city': 'Cremona',
                         })
         cls.env['res.partner.bank'].create({
-            'acc_number': 'IT60X0542811101000000123456',
+            'account_number': 'IT60X0542811101000000123456',
             'partner_id': cls.company_data['company'].partner_id.id,
             'allow_out_payment': True,
         })

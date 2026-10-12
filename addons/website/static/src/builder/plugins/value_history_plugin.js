@@ -8,12 +8,12 @@ import { registry } from "@web/core/registry";
 
 export class ValueHistoryPlugin extends Plugin {
     static id = "valueHistory";
-    static dependencies = ["history"];
+    static dependencies = ["domObserver"];
     static shared = ["setValue"];
 
     setValue(el, value) {
         const oldValue = el.value;
-        this.dependencies.history.applyCustomMutation({
+        this.dependencies.domObserver.applyCustomMutation({
             apply: () => (el.value = value),
             revert: () => (el.value = oldValue),
         });
@@ -21,3 +21,4 @@ export class ValueHistoryPlugin extends Plugin {
 }
 
 registry.category("website-plugins").add(ValueHistoryPlugin.id, ValueHistoryPlugin);
+registry.category("translation-plugins").add(ValueHistoryPlugin.id, ValueHistoryPlugin);

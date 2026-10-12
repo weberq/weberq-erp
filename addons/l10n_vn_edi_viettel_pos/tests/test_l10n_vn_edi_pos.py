@@ -13,17 +13,16 @@ from odoo import Command
 
 @tagged("post_install_l10n", "post_install", "-at_install")
 class TestVNEDIPOS(TestVNEDI, TestPointOfSaleHttpCommon):
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.template_2 = cls.env['l10n_vn_edi_viettel.sinvoice.template'].create({
-            'name': '2/0024',
-            'template_invoice_type': '2',
-        })
+        cls.template_2 = "2/0024"
         cls.symbol_2 = cls.env['l10n_vn_edi_viettel.sinvoice.symbol'].create({
             'name': 'C25MNK',
-            'invoice_template_id': cls.template_2.id,
+            'invoice_template_code': cls.template_2,
         })
         cls.company.write({
             "l10n_vn_pos_default_symbol": cls.symbol.id,
@@ -87,7 +86,6 @@ class TestVNEDIPOS(TestVNEDI, TestPointOfSaleHttpCommon):
             'group_ids': [
                 (4, self.env.ref('base.group_user').id),
                 (4, self.env.ref('point_of_sale.group_pos_user').id),
-                (4, self.env.ref('stock.group_stock_user').id),
             ],
         })
         pos_order = self._create_simple_order()
@@ -98,9 +96,7 @@ class TestVNEDIPOS(TestVNEDI, TestPointOfSaleHttpCommon):
     def test_invoice_send_and_print(self):
         """ Test the invoice creation, sending and printing from a POS order."""
         order = self._create_simple_order()
-        move_vals = order._prepare_invoice_vals()
-        invoice = order._create_invoice(move_vals)
-        invoice.action_post()
+        invoice = order._generate_pos_order_invoice()
 
         self.assertEqual(invoice.l10n_vn_edi_invoice_state, 'ready_to_send')
         self._send_invoice(invoice)
@@ -121,15 +117,11 @@ class TestVNEDIPOS(TestVNEDI, TestPointOfSaleHttpCommon):
     def test_invoice_refund(self):
         """ Test the refund flow of PoS order"""
         order = self._create_simple_order()
-        move_vals = order._prepare_invoice_vals()
-        invoice = order._create_invoice(move_vals)
-        invoice.action_post()
+        invoice = order._generate_pos_order_invoice()
         self._send_invoice(invoice)
 
         refund_order = order._refund()
-        refund_move_vals = refund_order._prepare_invoice_vals()
-        refund_invoice = refund_order._create_invoice(refund_move_vals)
-        refund_invoice.action_post()
+        refund_invoice = refund_order._generate_pos_order_invoice()
 
         self.assertEqual(refund_invoice.l10n_vn_edi_invoice_state, 'ready_to_send')
         self._send_invoice(refund_invoice)
@@ -149,8 +141,7 @@ class TestVNEDIPOS(TestVNEDI, TestPointOfSaleHttpCommon):
     def test_fetch_invoice_files(self):
         """Test that l10n_vn_edi_fetch_invoice_files fetches and stores XML and PDF files on a sent POS invoice."""
         order = self._create_simple_order()
-        invoice = order._create_invoice(order._prepare_invoice_vals())
-        invoice.action_post()
+        invoice = order._generate_pos_order_invoice()
         self._send_invoice(invoice)
 
         self.assertEqual(invoice.l10n_vn_edi_invoice_state, 'sent')
@@ -185,9 +176,45 @@ class TestVNEDIPOS(TestVNEDI, TestPointOfSaleHttpCommon):
     def test_fetch_invoice_files_not_sent_raises(self):
         """Test that calling l10n_vn_edi_fetch_invoice_files on a non-sent invoice raises a UserError."""
         order = self._create_simple_order()
-        invoice = order._create_invoice(order._prepare_invoice_vals())
-        invoice.action_post()
+        invoice = order._generate_pos_order_invoice()
 
         self.assertNotEqual(invoice.l10n_vn_edi_invoice_state, 'sent')
         with self.assertRaises(UserError):
             invoice.l10n_vn_edi_fetch_invoice_files()
+
+    @freeze_time('2024-01-01')
+    def test_pos_sinvoice_auto_send_deferred_pdf(self):
+        """When use_download_invoice is disabled (deferred PDF), the SInvoice
+        submission must still happen during order validation."""
+        self.main_pos_config.write({
+            'l10n_vn_auto_send_to_sinvoice': True,
+            'use_download_invoice': False,
+        })
+
+        order = self._create_simple_order()
+        cash_pm = self.main_pos_config._get_cash_payment_method()
+        order.write({
+            'to_invoice': True,
+            'state': 'paid',
+            'amount_paid': order.amount_total,
+            'payment_ids': [Command.create({
+                'amount': order.amount_total,
+                'payment_method_id': cash_pm.id,
+                'session_id': self.session.id,
+            })],
+        })
+
+        create_resp = {'invoiceNo': 'K24TUT01', 'reservationCode': '123456'}
+        token_resp = {'access_token': '123', 'expires_in': '60'}
+        pdf_resp = {'name': 'sinvoice.pdf', 'mimetype': 'application/pdf', 'raw': b'pdf', 'res_field': 'l10n_vn_edi_sinvoice_pdf_file'}
+        xml_resp = {'name': 'sinvoice.xml', 'mimetype': 'application/xml', 'raw': b'xml', 'res_field': 'l10n_vn_edi_sinvoice_xml_file'}
+
+        with patch('odoo.addons.l10n_vn_edi_viettel.models.sinvoice_service.SInvoiceService.create_invoice', return_value=(create_resp, None)), \
+             patch('odoo.addons.l10n_vn_edi_viettel.models.sinvoice_service.SInvoiceService.get_access_token', return_value=(token_resp, None)), \
+             patch('odoo.addons.l10n_vn_edi_viettel.models.account_move.AccountMove._l10n_vn_edi_fetch_invoice_pdf_file_data', return_value=(pdf_resp, '')), \
+             patch('odoo.addons.l10n_vn_edi_viettel.models.account_move.AccountMove._l10n_vn_edi_fetch_invoice_xml_file_data', return_value=(xml_resp, '')):
+            order._generate_order_invoice()
+
+        invoice = order.account_move
+        self.assertTrue(invoice, "Invoice should have been created")
+        self.assertEqual(invoice.l10n_vn_edi_invoice_state, 'sent', "SInvoice should be submitted during order validation even with deferred PDF")

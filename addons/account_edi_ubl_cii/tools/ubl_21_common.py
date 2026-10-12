@@ -171,6 +171,7 @@ CustomerParty = {
 Delivery = {
     'cbc:ID': {},
     'cbc:ActualDeliveryDate': {},
+    'cbc:LatestDeliveryDate': {},
     'cac:DeliveryLocation': {
         'cbc:ID': {},
         'cac:Address': Address,
@@ -190,6 +191,13 @@ FinancialAccount = {
     }
 }
 
+PaymentMandate = {
+    'cbc:ID': {},
+    'cac:PayerFinancialAccount': {
+        'cbc:ID': {},
+    },
+}
+
 PaymentMeans = {
     'cbc:ID': {},
     'cbc:PaymentMeansCode': {},
@@ -198,6 +206,7 @@ PaymentMeans = {
     'cbc:InstructionNote': {},
     'cbc:PaymentID': {},
     'cac:PayeeFinancialAccount': FinancialAccount,
+    'cac:PaymentMandate': PaymentMandate,
 }
 
 PaymentTerms = {
@@ -214,6 +223,7 @@ PrepaidPayment = {
     'cbc:ID': {},
     'cbc:PaidAmount': {},
     'cbc:ReceivedDate': {},
+    'cbc:PaidDate': {},
 }
 
 ExchangeRate = {
@@ -282,6 +292,7 @@ PricingReference = {
     'cac:AlternativeConditionPrice': {
         'cbc:PriceAmount': {},
         'cbc:PriceTypeCode': {},
+        'cbc:PriceType': {},
     }
 }
 

@@ -4,6 +4,64 @@ import { definePosModels } from "../data/generate_model_definitions";
 
 definePosModels();
 
+test("Nested Pricelists with different currencies", async () => {
+    const store = await setupPosEnv();
+
+    const mxn = store.models["res.currency"].create({
+        name: "MXN",
+        symbol: "MX$",
+        position: "before",
+        rounding: 0.01,
+        rate: 2.0,
+        decimal_places: 2,
+    });
+
+    // POS uses MXN
+    store.config.update({ currency_id: mxn });
+
+    // Base pricelist in USD: +10 USD surcharge on list_price
+    const usd = store.models["res.currency"].get(1);
+    const basePricelist = store.models["product.pricelist"].create({
+        name: "USD Pricelist",
+        currency_id: usd,
+    });
+    const baseRule = store.models["product.pricelist.item"].create({
+        pricelist_id: basePricelist,
+        compute_price: "discount",
+        base: "list_price",
+        price_discount: 0,
+        price_surcharge: 10,
+    });
+    basePricelist.update({ item_ids: [baseRule] });
+
+    // POS pricelist in MXN: based on USD pricelist + 25% discount
+    const posPricelist = store.models["product.pricelist"].create({
+        name: "MXN Pricelist",
+        currency_id: mxn,
+    });
+    const posRule = store.models["product.pricelist.item"].create({
+        pricelist_id: posPricelist,
+        compute_price: "discount",
+        price_discount: 25,
+        base: "pricelist",
+        base_pricelist_id: basePricelist,
+    });
+    posPricelist.update({ item_ids: [posRule] });
+
+    const productTemplate = store.models["product.template"].create({
+        name: "Test Product",
+        list_price: 100,
+    });
+    const product = store.models["product.product"].create({
+        product_tmpl_id: productTemplate,
+        lst_price: 100,
+    });
+
+    // 100 MXN → 50 USD, + 10 surcharge = 60 USD → 120 MXN
+    // 120 MXN - 25% = 90 MXN
+    expect(product.getPrice(posPricelist, 1, 0, false, product)).toBe(90);
+});
+
 test("Pricelist: Precedence Rules (Variant > Template > Category > Global)", async () => {
     const store = await setupPosEnv();
     const pricelist = store.models["product.pricelist"].create({
@@ -28,7 +86,6 @@ test("Pricelist: Precedence Rules (Variant > Template > Category > Global)", asy
         fixed_price: 90,
     });
     pricelist.update({ item_ids: [globalRule] });
-    pricelist.computeRuleIndexes();
     expect(product.getPrice(pricelist, 1, 0, false, product)).toBe(90);
 
     // 2. Category Rule (should win over Global)
@@ -39,7 +96,6 @@ test("Pricelist: Precedence Rules (Variant > Template > Category > Global)", asy
         fixed_price: 80,
     });
     pricelist.update({ item_ids: [globalRule, categoryRule] });
-    pricelist.computeRuleIndexes();
     expect(product.getPrice(pricelist, 1, 0, false, product)).toBe(80);
 
     // 3. Template Rule (should win over Category)
@@ -50,7 +106,6 @@ test("Pricelist: Precedence Rules (Variant > Template > Category > Global)", asy
         fixed_price: 70,
     });
     pricelist.update({ item_ids: [globalRule, categoryRule, templateRule] });
-    pricelist.computeRuleIndexes();
     expect(product.getPrice(pricelist, 1, 0, false, product)).toBe(70);
 
     // 4. Variant Rule (should win over Template)
@@ -61,7 +116,6 @@ test("Pricelist: Precedence Rules (Variant > Template > Category > Global)", asy
         fixed_price: 60,
     });
     pricelist.update({ item_ids: [globalRule, categoryRule, templateRule, variantRule] });
-    pricelist.computeRuleIndexes();
     expect(product.getPrice(pricelist, 1, 0, false, product)).toBe(60);
 });
 
@@ -96,7 +150,6 @@ test("Pricelist: Min Quantity logic", async () => {
     });
 
     pricelist.update({ item_ids: [ruleSmall, ruleLarge] });
-    pricelist.computeRuleIndexes();
 
     // Qty 1 -> should use ruleSmall (50)
     expect(product.getPrice(pricelist, 1, 0, false, product)).toBe(50);
@@ -115,12 +168,11 @@ test("Pricelist: Nested Pricelists (Pricelist of Pricelist)", async () => {
     });
     const baseRule = store.models["product.pricelist.item"].create({
         pricelist_id: basePricelist,
-        compute_price: "percentage",
-        percent_price: 10,
+        compute_price: "discount",
+        price_discount: 10,
         base: "list_price",
     });
     basePricelist.update({ item_ids: [baseRule] });
-    basePricelist.computeRuleIndexes();
 
     // Nested Pricelist: Base + another -5$ surcharge
     const nestedPricelist = store.models["product.pricelist"].create({
@@ -128,13 +180,12 @@ test("Pricelist: Nested Pricelists (Pricelist of Pricelist)", async () => {
     });
     const nestedRule = store.models["product.pricelist.item"].create({
         pricelist_id: nestedPricelist,
-        compute_price: "formula", // formula to use base + surcharge
+        compute_price: "discount", // discount to use base + surcharge
         base: "pricelist",
         base_pricelist_id: basePricelist,
         price_surcharge: 5,
     });
     nestedPricelist.update({ item_ids: [nestedRule] });
-    nestedPricelist.computeRuleIndexes();
 
     const productTemplate = store.models["product.template"].create({
         name: "Nested Test Product",
@@ -200,7 +251,58 @@ test("Pricelist: rule targeting a product missing from the PoS is not applied gl
     expect(productTmpl.getPrice(pricelist, 1, 0, false, product)).toBe(productTmpl.list_price);
 });
 
-test("Nested Pricelists with different currencies", async () => {
+test("Pricelist: fixed price rule still adds attribute extra price", async () => {
+    const store = await setupPosEnv();
+    const pricelist = store.models["product.pricelist"].create({
+        name: "Fixed Price Pricelist",
+    });
+
+    const productTemplate = store.models["product.template"].create({
+        name: "Test Template",
+        list_price: 100,
+    });
+    const product = store.models["product.product"].create({
+        product_tmpl_id: productTemplate,
+        lst_price: 100,
+    });
+
+    const rule = store.models["product.pricelist.item"].create({
+        pricelist_id: pricelist,
+        compute_price: "fixed",
+        fixed_price: 90,
+    });
+    pricelist.update({ item_ids: [rule] });
+
+    expect(product.getPrice(pricelist, 1, 15, false, product)).toBe(105);
+});
+
+test("Pricelist: fixed price rule targeting a specific variant only adds no_variant extra price", async () => {
+    const store = await setupPosEnv();
+    const pricelist = store.models["product.pricelist"].create({
+        name: "Fixed Price Pricelist",
+    });
+
+    const productTemplate = store.models["product.template"].create({
+        name: "Test Template",
+        list_price: 100,
+    });
+    const product = store.models["product.product"].create({
+        product_tmpl_id: productTemplate,
+        lst_price: 150, // 100 (list_price) + 50 (variant's own attribute extra)
+    });
+
+    const rule = store.models["product.pricelist.item"].create({
+        pricelist_id: pricelist,
+        product_id: product,
+        compute_price: "fixed",
+        fixed_price: 90,
+    });
+    pricelist.update({ item_ids: [rule] });
+
+    expect(product.getPrice(pricelist, 1, 15, false, product)).toBe(105);
+});
+
+test("Pricelist: fixed price with currency conversion still adds attribute extra price", async () => {
     const store = await setupPosEnv();
 
     const mxn = store.models["res.currency"].create({
@@ -212,39 +314,19 @@ test("Nested Pricelists with different currencies", async () => {
         decimal_places: 2,
     });
 
-    // POS uses MXN
-    const config = store.models["pos.config"].getFirst();
-    config.update({ currency_id: mxn });
+    store.config.update({ currency_id: mxn });
 
-    // Base pricelist in USD: +10 USD surcharge on list_price
     const usd = store.models["res.currency"].get(1);
-    const basePricelist = store.models["product.pricelist"].create({
-        name: "USD Pricelist",
+    const pricelist = store.models["product.pricelist"].create({
+        name: "USD Fixed Pricelist",
         currency_id: usd,
     });
-    const baseRule = store.models["product.pricelist.item"].create({
-        pricelist_id: basePricelist,
-        compute_price: "formula",
-        base: "list_price",
-        price_surcharge: 10,
+    const rule = store.models["product.pricelist.item"].create({
+        pricelist_id: pricelist,
+        compute_price: "fixed",
+        fixed_price: 50,
     });
-    basePricelist.update({ item_ids: [baseRule] });
-    basePricelist.computeRuleIndexes();
-
-    // POS pricelist in MXN: based on USD pricelist + 25% discount
-    const posPricelist = store.models["product.pricelist"].create({
-        name: "MXN Pricelist",
-        currency_id: mxn,
-    });
-    const posRule = store.models["product.pricelist.item"].create({
-        pricelist_id: posPricelist,
-        compute_price: "percentage",
-        percent_price: 25,
-        base: "pricelist",
-        base_pricelist_id: basePricelist,
-    });
-    posPricelist.update({ item_ids: [posRule] });
-    posPricelist.computeRuleIndexes();
+    pricelist.update({ item_ids: [rule] });
 
     const productTemplate = store.models["product.template"].create({
         name: "Test Product",
@@ -255,7 +337,5 @@ test("Nested Pricelists with different currencies", async () => {
         lst_price: 100,
     });
 
-    // 100 MXN → 50 USD, + 10 surcharge = 60 USD → 120 MXN
-    // 120 MXN - 25% = 90 MXN
-    expect(product.getPrice(posPricelist, 1, 0, false, product)).toBe(90);
+    expect(product.getPrice(pricelist, 1, 10, false, product)).toBe(110);
 });

@@ -9,6 +9,8 @@ from odoo.addons.mail.tests.common import MailCommon
 @tagged('post_install_l10n', 'post_install', '-at_install')
 class TestArDeliveryGuide(TestArCommon, MailCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -56,11 +58,15 @@ class TestArDeliveryGuide(TestArCommon, MailCommon):
         }
 
     def get_stock_picking(self, stock_picking_args=None, move_lines_args=None):
-        """Create and validate a stock picking."""
+        """Helper method to create and validate a single stock picking."""
+        return self.get_stock_pickings(stock_picking_args=stock_picking_args, move_lines_args=move_lines_args, count=1)
+
+    def get_stock_pickings(self, stock_picking_args=None, move_lines_args=None, count=3):
+        """Create and validate multiple stock pickings."""
         stock_picking_vals = self._get_stock_picking_vals(move_lines_args)
         if stock_picking_args:
             stock_picking_vals.update(stock_picking_args)
-        stock_picking = self.env['stock.picking'].create(stock_picking_vals)
+        stock_picking = self.env['stock.picking'].create([dict(stock_picking_vals) for _ in range(count)])
         stock_picking.action_confirm()
         stock_picking.button_validate()
         return stock_picking

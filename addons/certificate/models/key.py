@@ -6,7 +6,8 @@ from cryptography.hazmat.primitives.asymmetric import ec, ed25519, padding, rsa
 from cryptography.hazmat.primitives.serialization import Encoding
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools import BinaryBytes
 
 
 STR_TO_HASH = {
@@ -34,7 +35,7 @@ def _int_to_bytes(value, byteorder='big'):
 
 class CertificateKey(models.Model):
     _name = 'certificate.key'
-    _description = 'Cryptographic Keys'
+    _description = 'Cryptographic Key'
 
     name = fields.Char(string='Name', default="New key")
     content = fields.Binary(string='Key file', required=True)
@@ -80,11 +81,9 @@ class CertificateKey(models.Model):
             key.public = None
             key.loading_error = ""
 
-            content = key.with_context(bin_size=False).content
-            if not content:
+            if not (content := key.content.content):
                 continue
 
-            content = base64.b64decode(content)
             pwd = key.password.encode('utf-8') if key.password else None
             loading_error = self.env._("This key could not be loaded. Either its content or its password is erroneous.")
 
@@ -92,26 +91,20 @@ class CertificateKey(models.Model):
                 try:
                     pkey, key.public = handler(content, pwd)
                     break
-                except TypeError:
-                    # Raises TypeError if a password was given and the private key was not encrypted.
-                    # Or if the key was encrypted but no password was supplied.
-                    # We don't want to show an error if the user hasn't provided a password for an encrypted key yet.
-                    if not pwd:
-                        loading_error = ""
-                except ValueError:
+                except (TypeError, ValueError):
                     pass
             else:
                 key.loading_error = loading_error
                 continue
 
             if key.public:
-                key.pem_key = base64.b64encode(pkey.public_bytes(
+                key.pem_key = BinaryBytes(pkey.public_bytes(
                     encoding=Encoding.PEM,
                     format=serialization.PublicFormat.SubjectPublicKeyInfo,
                 ))
             else:
                 encryption = serialization.BestAvailableEncryption(pwd) if pwd else serialization.NoEncryption()
-                key.pem_key = base64.b64encode(pkey.private_bytes(
+                key.pem_key = BinaryBytes(pkey.private_bytes(
                     encoding=Encoding.PEM,
                     format=serialization.PrivateFormat.PKCS8,
                     encryption_algorithm=encryption,
@@ -138,10 +131,7 @@ class CertificateKey(models.Model):
         if self.public:
             raise UserError(_("Make sure to use a private key to sign documents."))
 
-        pem_key = self.with_context(bin_size=False).pem_key
-
-        if not pem_key:
-            raise UserError(self.env._("The private key could not be loaded."))
+        pem_key = self.pem_key.content
 
         if self.loading_error:
             raise UserError(self.name + " - " + self.loading_error)
@@ -161,7 +151,7 @@ class CertificateKey(models.Model):
         if not self.public:
             raise UserError(_("Make sure to use a public key to verify the signature of documents."))
 
-        pem_key = self.with_context(bin_size=False).pem_key
+        pem_key = self.pem_key.content
         if self.loading_error:
             raise UserError(self.name + " - " + self.loading_error)
 
@@ -185,7 +175,7 @@ class CertificateKey(models.Model):
         self.ensure_one()
 
         return self._numbers_public_key_bytes_with_key(
-            self._get_public_key_bytes(encoding='PEM'),
+            self._get_public_key_bytes(encoding='PEM', formatting=''),
             formatting=formatting,
         )
 
@@ -205,13 +195,13 @@ class CertificateKey(models.Model):
         self.ensure_one()
 
         if self.public:
-            public_key = serialization.load_pem_public_key(base64.b64decode(self.with_context(bin_size=False).pem_key))
+            public_key = serialization.load_pem_public_key(self.pem_key.content)
         else:
             password = self.password
             if password and not isinstance(password, bytes):
                 password = password.encode()
             public_key = serialization.load_pem_private_key(
-                base64.b64decode(self.with_context(bin_size=False).pem_key),
+                self.pem_key.content,
                 password or None
             ).public_key()
 
@@ -242,7 +232,7 @@ class CertificateKey(models.Model):
         if hashing_algorithm not in STR_TO_HASH:
             raise UserError(f"Unsupported hashing algorithm '{hashing_algorithm}'. Currently supported: sha1 and sha256.")  # pylint: disable=missing-gettext
 
-        private_key = serialization.load_pem_private_key(base64.b64decode(self.with_context(bin_size=False).pem_key), None)
+        private_key = serialization.load_pem_private_key(self.pem_key.content, None)
         if not isinstance(private_key, rsa.RSAPrivateKey):
             raise UserError(_("Unsupported asymmetric cryptography algorithm '%s'. Currently supported for decryption: RSA.", type(private_key)))
 
@@ -260,7 +250,7 @@ class CertificateKey(models.Model):
         ''' Compute and return the message's signature for a given private key.
 
         :param str|bytes message: The message to sign
-        :param str|bytes pem_key: A base64 encoded private key in the PEM format
+        :param str|bytes pem_key: Private key in the PEM format
         :param str|bytes pwd: A password to decrypt the PEM key
         :param optional,default='sha1' hashing_algorithm: The digest algorithm to use. Currently, only 'sha1' and 'sha256' are available.
         :param optional,default='encodebytes' formatting: The formatting of the returned bytes
@@ -282,7 +272,7 @@ class CertificateKey(models.Model):
             raise UserError(f"Unsupported hashing algorithm '{hashing_algorithm}'. Currently supported: sha1 and sha256.")  # pylint: disable=missing-gettext
 
         try:
-            private_key = serialization.load_pem_private_key(base64.b64decode(pem_key), pwd or None)
+            private_key = serialization.load_pem_private_key(pem_key, pwd or None)
         except ValueError:
             raise UserError(_("The private key could not be loaded."))
 
@@ -322,7 +312,7 @@ class CertificateKey(models.Model):
             pem_key = pem_key.encode('utf-8')
 
         try:
-            public_key = serialization.load_pem_public_key(base64.b64decode(pem_key))
+            public_key = serialization.load_pem_public_key(pem_key)
         except ValueError:
             raise UserError(_("The public key could not be loaded."))
 
@@ -366,10 +356,10 @@ class CertificateKey(models.Model):
                 ))
 
     @api.model
-    def _numbers_public_key_bytes_with_key(self, pem_key, formatting='encodebytes'):
+    def _numbers_public_key_bytes_with_key(self, pem_key: bytes, formatting='encodebytes'):
         ''' Get the given public key's public numbers bytes.
 
-        :param str|bytes pem_key: A base64 encoded public key in the PEM format
+        :param pem_key: A public key in the PEM format
         :param optional,default='encodebytes' formatting: The formatting of the returned bytes
             - 'encodebytes' returns a base64-encoded block of 76 characters lines
             - 'base64' returns the raw base64-encoded data
@@ -377,11 +367,9 @@ class CertificateKey(models.Model):
         :return: A tuple containing the formatted public number bytes of the public key
         :rtype: tuple(bytes,bytes)
         '''
-        if not isinstance(pem_key, bytes):
-            pem_key = pem_key.encode('utf-8')
 
         try:
-            public_key = serialization.load_pem_public_key(base64.b64decode(pem_key))
+            public_key = serialization.load_pem_public_key(pem_key)
         except ValueError:
             raise UserError(_("The public key could not be loaded."))
 
@@ -420,7 +408,7 @@ class CertificateKey(models.Model):
 
         return self.env['certificate.key'].create({
             'name': name,
-            'content': base64.b64encode(private_key.private_bytes(
+            'content': BinaryBytes(private_key.private_bytes(
                 encoding=serialization.Encoding.PEM,
                 format=serialization.PrivateFormat.PKCS8,
                 encryption_algorithm=serialization.BestAvailableEncryption(password) if password else serialization.NoEncryption())),
@@ -456,7 +444,7 @@ class CertificateKey(models.Model):
         encryption_algorithm = serialization.BestAvailableEncryption(password) if password else serialization.NoEncryption()
         return self.env['certificate.key'].create({
             'name': name,
-            'content': base64.b64encode(private_key.private_bytes(
+            'content': BinaryBytes(private_key.private_bytes(
                 encoding=serialization.Encoding.PEM,
                 format=serialization.PrivateFormat.PKCS8,
                 encryption_algorithm=encryption_algorithm,
@@ -481,7 +469,7 @@ class CertificateKey(models.Model):
 
         return self.env['certificate.key'].create({
             'name': name,
-            'content': base64.b64encode(private_key.private_bytes(
+            'content': BinaryBytes(private_key.private_bytes(
                 encoding=serialization.Encoding.PEM,
                 format=serialization.PrivateFormat.PKCS8,
                 encryption_algorithm=serialization.BestAvailableEncryption(password) if password else serialization.NoEncryption()
@@ -489,3 +477,9 @@ class CertificateKey(models.Model):
             'company_id': company.id,
             'password': password,
         })
+
+    @api.constrains('content', 'password')
+    def _check_key_loading_error(self):
+        for key in self:
+            if key.loading_error:
+                raise ValidationError(key.loading_error)

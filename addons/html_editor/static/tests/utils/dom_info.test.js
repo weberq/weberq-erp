@@ -1,5 +1,4 @@
 import {
-    areSimilarElements,
     getDeepestEditablePosition,
     getDeepestPosition,
     isEmptyBlock,
@@ -11,8 +10,8 @@ import {
 } from "@html_editor/utils/dom_info";
 import { describe, expect, test } from "@odoo/hoot";
 import { insertTestHtml } from "../_helpers/editor";
-import { isBlock } from "../../src/utils/blocks";
 import { unformat } from "../_helpers/format";
+import { isBlock } from "../../src/utils/blocks";
 
 const base64Img =
     "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUA\n        AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO\n            9TXL0Y4OHwAAAABJRU5ErkJggg==";
@@ -318,6 +317,13 @@ describe("isVisible", () => {
             const result = isVisible(table);
             expect(result).toBe(true);
         });
+
+        test("should identify a video as visible", () => {
+            const [video] = insertTestHtml(
+                `<video src="https://example.com/video/my-video.mp4"></video>`
+            );
+            expect(isVisible(video)).toBe(true);
+        });
     });
 });
 
@@ -400,6 +406,21 @@ describe("getDeepestEditablePosition", () => {
 
         expect(getDeepestEditablePosition(p, 0)).toEqual([p, 0]);
         expect(getDeepestEditablePosition(p, 1)).toEqual([p, 1]);
+    });
+
+    test("should get deepest editable position around a self-hosted video", () => {
+        const [div] = insertTestHtml(
+            unformat(`
+                <div class="media_iframe_video" contenteditable="false" data-platform="video_file">
+                    <div class="css_editable_mode_display"></div>
+                    <div class="media_iframe_video_size" contenteditable="false"></div>
+                    <video src="https://example.com/video/my-video.mp4" contenteditable="false"></video>
+                </div>
+            `)
+        );
+        const editable = div.parentElement;
+
+        expect(getDeepestEditablePosition(div, 3)).toEqual([editable, 1]);
     });
 
     test("should get deepest editable position before or after a non-editable sibling", () => {
@@ -590,7 +611,7 @@ describe("isEmptyBlock", () => {
     });
 
     test("should identify span with icon classes as non-empty", () => {
-        const [span] = insertTestHtml('<span class="fa fa-trash-o"></span>');
+        const [span] = insertTestHtml('<span class="oi" data-icon="delete"></span>');
         const result = isEmptyBlock(span);
         expect(result).toBe(false);
     });
@@ -637,44 +658,6 @@ describe("isShrunkBlock", () => {
     test("should not consider a block containing a canvas as a shrunk block", () => {
         const [canvas] = insertTestHtml("<canvas></canvas>");
         const result = isShrunkBlock(canvas);
-        expect(result).toBe(false);
-    });
-});
-
-describe("areSimilarElements", () => {
-    test("should consider elements with same classes and styles in different orders as similar", () => {
-        const [span1, span2] = insertTestHtml(
-            "<span class='first second' style='color: red; color2: blue'>hello</span><span class='second first' style='color2: blue; color: red'>world</span>"
-        );
-        const result = areSimilarElements(span1, span2);
-        expect(result).toBe(true);
-    });
-    test("return false when the number of styles are different", () => {
-        const [span1, span2] = insertTestHtml(
-            "<span class='first second' style='color: red; color2: blue'>hello</span><span class='second first' style='color2: blue;'>world</span>"
-        );
-        const result = areSimilarElements(span1, span2);
-        expect(result).toBe(false);
-    });
-    test("return false when the number of classes are different", () => {
-        const [span1, span2] = insertTestHtml(
-            "<span class='first' style='color: red; color2: blue'>hello</span><span class='second first' style='color2: blue;'>world</span>"
-        );
-        const result = areSimilarElements(span1, span2);
-        expect(result).toBe(false);
-    });
-    test("return false when classes are different", () => {
-        const [span1, span2] = insertTestHtml(
-            "<span class='first' style='color: red; color2: blue'>hello</span><span class='second' style='color2: blue;'>world</span>"
-        );
-        const result = areSimilarElements(span1, span2);
-        expect(result).toBe(false);
-    });
-    test("return false when styles are different", () => {
-        const [span1, span2] = insertTestHtml(
-            "<span class='first second' style='color2: blue'>hello</span><span class='second first' style='color2: blue; color: red'>world</span>"
-        );
-        const result = areSimilarElements(span1, span2);
         expect(result).toBe(false);
     });
 });

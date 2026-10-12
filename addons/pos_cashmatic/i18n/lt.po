@@ -1,16 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * pos_cashmatic
+# 	* pos_cashmatic
 #
-# Ulevičienė <vilma.uleviciene@mededu.lt>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.4a1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-03 17:36+0000\n"
-"PO-Revision-Date: 2026-10-06 08:19+0000\n"
-"Last-Translator: Ulevičienė <vilma.uleviciene@mededu.lt>\n"
-"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 19:09+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-s19-4/"
 "pos_cashmatic/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
@@ -30,13 +29,7 @@ msgstr ""
 #. module: pos_cashmatic
 #. odoo-javascript
 #: code:addons/pos_cashmatic/static/src/app/screens/payment_screen/payment_lines/payment_lines.xml:0
-msgid "Cash dispensed:"
-msgstr ""
-
-#. module: pos_cashmatic
-#. odoo-javascript
-#: code:addons/pos_cashmatic/static/src/app/screens/payment_screen/payment_lines/payment_lines.xml:0
-msgid "Cash inserted:"
+msgid "Cash dispensed"
 msgstr ""
 
 #. module: pos_cashmatic
@@ -62,7 +55,7 @@ msgstr ""
 #. module: pos_cashmatic
 #: model:ir.model.fields,field_description:pos_cashmatic.field_pos_payment_method__cashmatic_username
 msgid "Cashmatic Username"
-msgstr "„Cashmatic“ vartotojo vardas"
+msgstr ""
 
 #. module: pos_cashmatic
 #. odoo-javascript
@@ -80,12 +73,12 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/pos_cashmatic/static/src/app/payment_cashmatic.js:0
 msgid "Cashmatic payment failed: %s"
-msgstr "„Cashmatic“ mokėjimas nepavyko: %s"
+msgstr ""
 
 #. module: pos_cashmatic
 #: model:ir.model.fields,field_description:pos_cashmatic.field_pos_payment_method__display_name
 msgid "Display Name"
-msgstr "Rodomas vardas"
+msgstr ""
 
 #. module: pos_cashmatic
 #: model:ir.model.fields,field_description:pos_cashmatic.field_pos_payment_method__id
@@ -93,9 +86,19 @@ msgid "ID"
 msgstr ""
 
 #. module: pos_cashmatic
+#: model:ir.module.module,summary:base.module_pos_cashmatic
+msgid "Integrate your POS with a cash matic automatic cash payment device"
+msgstr ""
+
+#. module: pos_cashmatic
+#: model:ir.module.module,shortdesc:base.module_pos_cashmatic
+msgid "POS Cashmatic Cash Machines"
+msgstr ""
+
+#. module: pos_cashmatic
 #: model:ir.model,name:pos_cashmatic.model_pos_payment_method
-msgid "Point of Sale Payment Methods"
-msgstr "Pardavimo taško mokėjimo būdai"
+msgid "Point of Sale Payment Method"
+msgstr ""
 
 #. module: pos_cashmatic
 #. odoo-javascript

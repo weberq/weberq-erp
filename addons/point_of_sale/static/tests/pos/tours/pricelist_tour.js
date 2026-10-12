@@ -10,7 +10,7 @@ import * as Chrome from "@point_of_sale/../tests/pos/tours/utils/chrome_util";
 import * as OfflineUtil from "@point_of_sale/../tests/generic_helpers/offline_util";
 import * as ProductConfigurator from "@point_of_sale/../tests/pos/tours/utils/product_configurator_util";
 import * as PaymentScreen from "@point_of_sale/../tests/pos/tours/utils/payment_screen_util";
-import * as ReceiptScreen from "@point_of_sale/../tests/pos/tours/utils/receipt_screen_util";
+import * as FeedbackScreen from "@point_of_sale/../tests/pos/tours/utils/feedback_screen_util";
 import { refresh, scan_barcode } from "@point_of_sale/../tests/generic_helpers/utils";
 
 registry.category("web_tour.tours").add("pos_pricelist", {
@@ -20,18 +20,15 @@ registry.category("web_tour.tours").add("pos_pricelist", {
             Pricelist.setUp(),
             Pricelist.waitForUnitTest(),
             Dialog.confirm("Open Register"),
-            OfflineUtil.setOfflineMode(),
-            // ensure that even after refreshing the page while being offline all data is correctly reloaded
-            refresh(),
-            Dialog.confirm("Continue with limited functionality"),
             ProductScreen.clickPriceList("Fixed", true, "Public Pricelist"),
             ProductScreen.clickPartnerButton(),
-            ProductScreen.clickCustomer("Acme Corporation"),
+            ProductScreen.clickCustomer("Acme Corporation", true),
             ProductScreen.clickPriceList("Public Pricelist", true),
             ProductScreen.clickPartnerButton(),
-            ProductScreen.clickCustomer("Lumber Inc"),
+            ProductScreen.clickCustomer("Lumber Inc", true),
             ProductScreen.clickPriceList("Public Pricelist", true),
             ProductScreen.clickDisplayedProduct("Wall Shelf", true, "1"),
+            OfflineUtil.setOfflineMode(true),
             ProductScreen.clickPriceList("min_quantity ordering"),
             ProductScreen.clickReview(),
             { ...ProductScreen.clickLine("Wall Shelf")[0], isActive: ["mobile"] },
@@ -126,6 +123,7 @@ const test_pricelists_in_pos_steps = [
 
     // Test if post-loaded product with attribute open the configrator
     scan_barcode("cherry_3"),
+    ProductScreen.selectedOrderlineHas("Cherry", "1", "5.0", "MEDIUM"),
     Chrome.waitRequest(),
     {
         content: "Click hided product with attribute",
@@ -147,8 +145,8 @@ const test_pricelists_in_pos_steps = [
     ProductScreen.clickPayButton(),
     PaymentScreen.clickPaymentMethod("Bank", true, { remaining: "0.00" }),
     PaymentScreen.clickValidate(),
-    ReceiptScreen.isShown(),
-    ReceiptScreen.clickNextOrder(),
+    FeedbackScreen.isShown(),
+    FeedbackScreen.clickNextOrder(),
 ];
 
 registry.category("web_tour.tours").add("test_pricelists_in_pos", {
@@ -159,35 +157,6 @@ registry.category("web_tour.tours").add("test_pricelists_in_pos", {
             ...test_pricelists_in_pos_steps,
             refresh(), // Check pricelist sorting after a refresh
             ...test_pricelists_in_pos_steps,
-        ].flat(),
-});
-
-const searchAndLoadProduct = (name) => [
-    ...ProductScreen.searchProduct(name),
-    {
-        content: `Wait for the search of '${name}' to be applied`,
-        trigger: `.product-screen p:contains("No products found") b:contains("${name}")`,
-    },
-    {
-        content: "Load the product from the server",
-        trigger: ".search-more-button > button",
-        run: "click",
-    },
-];
-
-registry.category("web_tour.tours").add("test_pricelist_categ_rule_on_late_loaded_product", {
-    steps: () =>
-        [
-            Chrome.startPoS(),
-            Dialog.confirm("Open Register"),
-            // The category of this product is already known by the PoS
-            searchAndLoadProduct("Late Product"),
-            ProductScreen.clickDisplayedProduct("Late Product"),
-            ProductScreen.selectedOrderlineHas("Late Product", "1", "500.0"),
-            // The category of this one was created after the PoS was opened
-            searchAndLoadProduct("Newer Product"),
-            ProductScreen.clickDisplayedProduct("Newer Product"),
-            ProductScreen.selectedOrderlineHas("Newer Product", "1", "700.0"),
         ].flat(),
 });
 

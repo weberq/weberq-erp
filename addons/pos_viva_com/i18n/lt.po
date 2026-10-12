@@ -3,15 +3,14 @@
 # * pos_viva_com
 #
 # Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Ulevičienė <vilma.uleviciene@mededu.lt>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-17 18:37+0000\n"
-"PO-Revision-Date: 2026-10-06 09:37+0000\n"
-"Last-Translator: Ulevičienė <vilma.uleviciene@mededu.lt>\n"
-"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-10-09 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 17:54+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-s19-4/"
 "pos_viva_com/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
@@ -32,15 +31,12 @@ msgstr "API raktas"
 #: code:addons/pos_viva_com/models/pos_payment_method.py:0
 msgid "Can't create payment method. Please check the data and update it."
 msgstr ""
-"Nepavyksta sukurti mokėjimo būdo. Patikrinkite duomenis ir juos atnaujinkite."
 
 #. module: pos_viva_com
 #. odoo-python
 #: code:addons/pos_viva_com/models/pos_payment_method.py:0
 msgid "Can't update payment method. Please check the data and update it."
 msgstr ""
-"Nepavyksta atnaujinti mokėjimo būdo. Patikrinkite duomenis ir juos "
-"atnaujinkite."
 
 #. module: pos_viva_com
 #: model:ir.model.fields,field_description:pos_viva_com.field_pos_payment_method__viva_com_client_id
@@ -50,6 +46,12 @@ msgstr "Kliento ID"
 #. module: pos_viva_com
 #: model:ir.model.fields,field_description:pos_viva_com.field_pos_payment_method__viva_com_client_secret
 msgid "Client secret"
+msgstr ""
+
+#. module: pos_viva_com
+#. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/screens/payment_screen/payment_lines/payment_lines.js:0
+msgid "Continue on Viva app"
 msgstr ""
 
 #. module: pos_viva_com
@@ -64,13 +66,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:pos_viva_com.field_pos_payment__display_name
 #: model:ir.model.fields,field_description:pos_viva_com.field_pos_payment_method__display_name
 msgid "Display Name"
-msgstr "Rodomas vardas"
+msgstr "Rodomas pavadinimas"
 
 #. module: pos_viva_com
 #: model:ir.model.fields,field_description:pos_viva_com.field_pos_payment__id
 #: model:ir.model.fields,field_description:pos_viva_com.field_pos_payment_method__id
 msgid "ID"
 msgstr "ID"
+
+#. module: pos_viva_com
+#: model:ir.module.module,summary:base.module_pos_viva_com
+msgid "Integrate your PoS with a Viva.com payment terminal"
+msgstr ""
+
+#. module: pos_viva_com
+#. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/screens/payment_screen/payment_screen.js:0
+msgid ""
+"Is the vivawallet application installed on your device? If so, the payment "
+"will initialize directly from it."
+msgstr ""
 
 #. module: pos_viva_com
 #. odoo-python
@@ -106,29 +121,41 @@ msgstr ""
 
 #. module: pos_viva_com
 #. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/screens/payment_screen/payment_screen.js:0
+#, fuzzy
+msgid "No"
+msgstr "Ne"
+
+#. module: pos_viva_com
+#. odoo-javascript
 #: code:addons/pos_viva_com/static/src/app/payment_viva_com.js:0
 msgid "No internet connection. Waiting for recovery to confirm the payment..."
 msgstr ""
-"Nėra interneto ryšio. Laukiama atkūrimo, kad būtų patvirtintas mokėjimas..."
+
+#. module: pos_viva_com
+#. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/hooks/use_viva_app.js:0
+msgid "Oh snap !"
+msgstr ""
 
 #. module: pos_viva_com
 #. odoo-python
 #: code:addons/pos_viva_com/models/pos_payment_method.py:0
 msgid "Only 'group_pos_user' are allowed to cancel a Viva.com payment"
-msgstr "Tik „group_pos_user“ turi teisę atšaukti „Viva.com“ mokėjimą"
+msgstr ""
 
 #. module: pos_viva_com
 #. odoo-python
 #: code:addons/pos_viva_com/models/pos_payment_method.py:0
 msgid ""
 "Only 'group_pos_user' are allowed to get the payment status from Viva.com"
-msgstr "Tik „group_pos_user“ turi teisę gauti mokėjimo būseną iš Viva.com"
+msgstr ""
 
 #. module: pos_viva_com
 #. odoo-python
 #: code:addons/pos_viva_com/models/pos_payment_method.py:0
 msgid "Only 'group_pos_user' are allowed to send a Viva.com payment request"
-msgstr "Tik „group_pos_user“ turi teisę siųsti „Viva.com“ mokėjimo prašymą"
+msgstr ""
 
 #. module: pos_viva_com
 #. odoo-python
@@ -137,14 +164,53 @@ msgid "Only 'group_pos_user' are allowed to send a Viva.com refund request"
 msgstr ""
 
 #. module: pos_viva_com
-#: model:ir.model,name:pos_viva_com.model_pos_payment_method
-msgid "Point of Sale Payment Methods"
-msgstr "Pardavimo taško mokėjimo būdai"
+#. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/screens/payment_screen/payment_lines/payment_lines.js:0
+msgid "Pay with the Viva Wallet application"
+msgstr ""
+
+#. module: pos_viva_com
+#. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/hooks/use_viva_app.js:0
+msgid ""
+"Please note that your order has not been finalized, try again or choose "
+"another payment method."
+msgstr ""
+
+#. module: pos_viva_com
+#. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/hooks/use_viva_app.js:0
+msgid ""
+"Please note that your order has not been finalized, try again or choose "
+"another payment method. (%s)"
+msgstr ""
+
+#. module: pos_viva_com
+#: model:ir.module.module,shortdesc:base.module_pos_viva_com
+msgid "PoS Viva.com"
+msgstr ""
 
 #. module: pos_viva_com
 #: model:ir.model,name:pos_viva_com.model_pos_payment
-msgid "Point of Sale Payments"
-msgstr "Pardavimų Taško Mokėjimai"
+msgid "Point of Sale Payment"
+msgstr ""
+
+#. module: pos_viva_com
+#: model:ir.model,name:pos_viva_com.model_pos_payment_method
+msgid "Point of Sale Payment Method"
+msgstr ""
+
+#. module: pos_viva_com
+#. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/screens/payment_screen/payment_lines/payment_lines.js:0
+msgid "Reset Integration"
+msgstr ""
+
+#. module: pos_viva_com
+#. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/screens/payment_screen/payment_lines/payment_lines.js:0
+msgid "Reset Viva Integration"
+msgstr ""
 
 #. module: pos_viva_com
 #: model:ir.model.fields,help:pos_viva_com.field_pos_payment_method__viva_com_test_mode
@@ -157,8 +223,6 @@ msgid ""
 "Session ID of the transaction, stored so that it can be used to refund the "
 "payment."
 msgstr ""
-"Sandorio sesijos ID, saugomas tam, kad jį būtų galima naudoti grąžinant "
-"mokėjimą."
 
 #. module: pos_viva_com
 #: model:ir.model.fields,field_description:pos_viva_com.field_pos_payment_method__viva_com_terminal_id
@@ -191,14 +255,20 @@ msgid ""
 msgstr ""
 
 #. module: pos_viva_com
-#: model:ir.model.fields,field_description:pos_viva_com.field_pos_payment_method__viva_com_bearer_token
-msgid "Viva Com Bearer Token"
+#. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/screens/payment_screen/payment_lines/payment_lines.js:0
+msgid "Use Viva app"
 msgstr ""
 
 #. module: pos_viva_com
-#: model:ir.model.fields,field_description:pos_viva_com.field_pos_payment_method__viva_com_latest_response
-msgid "Viva Com Latest Response"
-msgstr "„Viva Com“ naujausias atsakymas"
+#: model_terms:ir.ui.view,arch_db:pos_viva_com.pos_payment_method_view_form_inherit_pos_viva_com
+msgid "Viva Com"
+msgstr ""
+
+#. module: pos_viva_com
+#: model:ir.model.fields,field_description:pos_viva_com.field_pos_payment_method__viva_com_bearer_token
+msgid "Viva Com Bearer Token"
+msgstr ""
 
 #. module: pos_viva_com
 #: model:ir.model.fields,field_description:pos_viva_com.field_pos_payment__viva_com_session_id
@@ -217,9 +287,28 @@ msgstr ""
 
 #. module: pos_viva_com
 #. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/screens/payment_screen/payment_screen.js:0
+msgid "Viva Wallet Application"
+msgstr ""
+
+#. module: pos_viva_com
+#. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/hooks/use_viva_app.js:0
+msgid "Viva Wallet Payment Error"
+msgstr ""
+
+#. module: pos_viva_com
+#. odoo-javascript
 #: code:addons/pos_viva_com/static/src/app/payment_viva_com.js:0
 msgid "Viva.com Error"
 msgstr ""
+
+#. module: pos_viva_com
+#. odoo-javascript
+#: code:addons/pos_viva_com/static/src/app/screens/payment_screen/payment_screen.js:0
+#, fuzzy
+msgid "Yes"
+msgstr "Taip"
 
 #. module: pos_viva_com
 #. odoo-python
@@ -236,10 +325,10 @@ msgstr ""
 #. odoo-python
 #: code:addons/pos_viva_com/controllers/main.py:0
 msgid "received a message for a pos payment provider not registered."
-msgstr "gauta žinutė, kad POS mokėjimo paslaugų teikėjas nėra užregistruotas."
+msgstr ""
 
 #. module: pos_viva_com
 #. odoo-python
 #: code:addons/pos_viva_com/controllers/main.py:0
 msgid "received a message for a terminal not registered in Odoo: %s"
-msgstr "gauta žinutė apie terminalą, kuris nėra užregistruotas „Odoo“: %s"
+msgstr ""

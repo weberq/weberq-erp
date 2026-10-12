@@ -12,7 +12,7 @@ class CiiExportFacturXFR(TestCiiFacturXCommon, TestUblCiiFRCommon):
         super().setUpClass()
         cls.startClassPatcher(freeze_time('2026-01-01 10:00:00'))
         cls.recipient_bank = cls.env['res.partner.bank'].create({
-            'acc_number': 'FR7630004028379876543210943',
+            'account_number': 'FR7630004028379876543210943',
             'partner_id': cls.partner_fr.id,
             'allow_out_payment': True,
         })
@@ -26,7 +26,7 @@ class CiiExportFacturXFR(TestCiiFacturXCommon, TestUblCiiFRCommon):
         company.partner_id.write({
             'email': 'mycompany@company.com',
             'phone': '+33 499 65 43 21',
-            'company_registry': False,
+            'additional_identifiers': False,
         })
         return company
 
@@ -145,11 +145,11 @@ class CiiExportFacturXFR(TestCiiFacturXCommon, TestUblCiiFRCommon):
             lst_price=100.0,
             default_code='P123',
             barcode='1234567890123',
-            description='A simple product description',
             taxes_id=self.tax_20,
         )
         invoice = self._create_invoice_one_line(
             product_id=product,
+            name='A simple product description',
             partner_id=self.partner_fr,
             partner_bank_id=self.recipient_bank,
             post=True,
@@ -177,12 +177,8 @@ class CiiExportFacturXFR(TestCiiFacturXCommon, TestUblCiiFRCommon):
 
     def test_invoice_partner_info(self):
         self.partner_fr.write({
-            'company_registry': '123456789',
             'phone': '+33 499 12 34 56',
             'email': 'partner_fr@company.com',
-        })
-        self.company.write({
-            'company_registry': '987654321',
         })
 
         invoice = self._create_invoice_one_line(
@@ -197,12 +193,8 @@ class CiiExportFacturXFR(TestCiiFacturXCommon, TestUblCiiFRCommon):
         self._assert_invoice_ubl_file(invoice, 'test_invoice_partner_info')
 
     def test_invoice_partner_siret(self):
-        self.partner_fr.write({
-            'company_registry': '93062183400322',
-        })
-        self.company.write({
-            'company_registry': '65933441140047',
-        })
+        self.partner_fr.additional_identifiers = {'FR_SIRET': '93062183400322'}
+        self.company.partner_id.additional_identifiers = {'FR_SIRET': '65933441140047'}
 
         invoice = self._create_invoice_one_line(
             product_id=self.product,
@@ -481,10 +473,10 @@ class CiiExportFacturXFR(TestCiiFacturXCommon, TestUblCiiFRCommon):
 
     def test_invoice_financial_account_iban(self):
         partner_bank = self.env['res.partner.bank'].create({
-            'acc_number': 'FR7730004028379876543210943',
+            'account_number': 'FR7730004028379876543210943',
             'partner_id': self.partner_fr.id,
         })
-        partner_bank.write({'acc_type': 'iban', 'allow_out_payment': True})
+        partner_bank.write({'account_type': 'iban', 'allow_out_payment': True})
 
         invoice = self._create_invoice_one_line(
             partner_id=self.partner_fr,
@@ -550,7 +542,7 @@ class CiiExportFacturXFR(TestCiiFacturXCommon, TestUblCiiFRCommon):
             'zip': "75000",
             'city': "Paris",
             'country_id': self.env.ref('base.fr').id,
-            'global_location_number': 5412345000008,
+            'global_location_number': 9780471117094,
         })
 
         invoice = self._create_invoice_one_line(

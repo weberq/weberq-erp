@@ -217,7 +217,7 @@ class IrAttachment(models.Model):
 
     def _index_pdf(self, bin_data):
         '''Index PDF documents'''
-        if not bin_data.startswith(b'%PDF-'):
+        if bin_data.mimetype != 'application/pdf':
             return ""
         try:
             if not importlib.util.find_spec('pdfminer.high_level'):
@@ -230,7 +230,6 @@ class IrAttachment(models.Model):
         except ImportError:
             # warned already during init of module
             return ""
-        f = io.BytesIO(bin_data)
         try:
             resource_manager = PDFResourceManager()
             # Setting boxes_flow triggers the _group_textboxes function,
@@ -244,7 +243,7 @@ class IrAttachment(models.Model):
                 resource_manager,
                 content,
                 laparams=laparams
-            ) as device:
+            ) as device, bin_data.open() as f:
                 interpreter = PDFPageInterpreter(resource_manager, device)
                 for page in PDFPage.get_pages(f):
                     interpreter.process_page(page)

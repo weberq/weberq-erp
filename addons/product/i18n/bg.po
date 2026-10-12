@@ -4,7 +4,7 @@
 #
 # Translators:
 # Nikola Iliev, 2023
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2023, 2026.
+# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2023
 # Весел Карастоянов <vesel@abv.bg>, 2023
 # Александра Николова <alexandra1nikolova@gmail.com>, 2023
 # Igor Sheludko <igor.sheludko@gmail.com>, 2023
@@ -15,39 +15,49 @@
 # aleksandar ivanov, 2023
 # Albena Mincheva <albena_vicheva@abv.bg>, 2023
 # Maria Boyadjieva <marabo2000@gmail.com>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Toma Tomov <toma.tomov@gmail.com>, 2025, 2026.
-# Ivaylo Malinov <iv.malinov@gmail.com>, 2025, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 # Odoo Translation Bot <c3p@odoo.com>, 2026.
+# Martin Dinovski <martin.dinovski@industria.tech>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-10 18:39+0000\n"
-"PO-Revision-Date: 2026-08-02 17:41+0000\n"
-"Last-Translator: Ivaylo Malinov <iv.malinov@gmail.com>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-25 17:38+0000\n"
+"PO-Revision-Date: 2026-08-31 17:00+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "product/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: product
-#. odoo-python
-#: code:addons/product/models/product_product.py:0
+#: model:ir.module.module,description:base.module_product
 msgid ""
 "\n"
+"This is the base module for managing products and pricelists in Odoo.\n"
+"========================================================================\n"
 "\n"
-"Note: products that you don't have access to will not be shown above."
+"Products support variants, different pricing methods, vendors information,\n"
+"make to stock/order, different units of measure, packaging and properties.\n"
+"\n"
+"Pricelists support:\n"
+"-------------------\n"
+"    * Multiple-level of discount (by product, category, quantities)\n"
+"    * Compute price based on different criteria:\n"
+"        * Other pricelist\n"
+"        * Cost price\n"
+"        * List price\n"
+"        * Vendor price\n"
+"\n"
+"Pricelists preferences by product and/or partners.\n"
+"\n"
+"Print product labels with barcode.\n"
 msgstr ""
-"\n"
-"\n"
-"Забележка: продуктите, до които нямате достъп, няма да бъдат показани по-"
-"горе."
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__product_variant_count
@@ -65,91 +75,56 @@ msgstr "# Продукти"
 #. odoo-python
 #: code:addons/product/models/product_pricelist_item.py:0
 msgid ""
-"%(base)s with a %(discount)s %% %(discount_type)s and %(surcharge)s extra "
-"fee\n"
-"Example: %(amount)s * %(discount_charge)s + %(price_surcharge)s → %"
-"(total_amount)s"
-msgstr ""
-"%(base)s с %(discount)s %% %(discount_type)s и %(surcharge)s допълнителна "
-"такса\n"
-"Пример: %(amount)s * %(discount_charge)s + %(price_surcharge)s → %"
-"(total_amount)s"
-
-#. module: product
-#. odoo-python
-#: code:addons/product/models/product_pricelist_item.py:0
-msgid ""
 "%(item_name)s: end date (%(end_date)s) should be after start date (%"
 "(start_date)s)"
 msgstr ""
-"%(item_name)s: крайната дата (%(end_date)s) трябва да е след началната дата "
-"(%(start_date)s)"
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_pricelist_item.py:0
 msgid "%(percentage)s %% %(discount_type)s on %(base)s %(extra)s"
-msgstr "%(percentage)s %% %(discount_type)s върху %(base)s %(extra)s"
+msgstr ""
 
 #. module: product
-#. odoo-python
-#: code:addons/product/models/product_pricelist_item.py:0
-msgid "%(percentage)s %% discount on %(pricelist)s"
-msgstr "%(percentage)s %% отстъпка върху %(pricelist)s"
+#: model_terms:ir.ui.view,arch_db:product.barcode_2x7_label
+#: model_terms:ir.ui.view,arch_db:product.barcode_4x12_label
+#: model_terms:ir.ui.view,arch_db:product.barcode_4x7_label
+#: model_terms:ir.ui.view,arch_db:product.barcode_dymo_label
+#: model_terms:ir.ui.view,arch_db:product.qr_2x7_label
+#: model_terms:ir.ui.view,arch_db:product.report_label_barcode
+#: model_terms:ir.ui.view,arch_db:product.report_label_contour_marks
+msgid "&amp;nbsp;"
+msgstr ""
 
 #. module: product
-#. odoo-python
-#: code:addons/product/models/product_pricelist_item.py:0
-msgid "%(percentage)s %% discount on sales price"
-msgstr "%(percentage)s %% отстъпка върху продажната цена"
-
-#. module: product
-#. odoo-python
-#: code:addons/product/models/product_category.py:0
-#: code:addons/product/models/product_pricelist.py:0
-#: code:addons/product/models/product_tag.py:0
-#: code:addons/product/models/product_template.py:0
-msgid "%s (copy)"
-msgstr "%s (копие)"
-
-#. module: product
-#: model:ir.actions.report,print_report_name:product.report_product_template_label_2x7
-#: model:ir.actions.report,print_report_name:product.report_product_template_label_4x12
-#: model:ir.actions.report,print_report_name:product.report_product_template_label_4x12_noprice
-#: model:ir.actions.report,print_report_name:product.report_product_template_label_4x7
-#: model:ir.actions.report,print_report_name:product.report_product_template_label_dymo
+#: model:ir.actions.report,print_report_name:product.action_report_product_label_dymo
+#: model:ir.actions.report,print_report_name:product.action_report_product_label_pdf
 msgid "'Products Labels - %s' % (object.name)"
-msgstr "'Products Labels - %s' % (object.name)"
-
-#. module: product
-#: model:ir.actions.report,print_report_name:product.report_product_packaging
-msgid "'Products packaging - %s' % (object.uom_id.name)"
-msgstr "'Products packaging - %s' % (object.uom_id.name)"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_template.py:0
 msgid "(e.g: product description, ebook, legal notice, ...)."
-msgstr "(напр.: описание на продукт, електронна книга, правна забележка, ...)."
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_pricelist_item.py:0
 msgid "+ %(amount)s extra fee"
-msgstr "+ %(amount)s допълнителна такса"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_pricelist_item.py:0
 msgid "- %(amount)s rebate"
-msgstr "- %(amount)s отстъпка"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_product.py:0
-msgid ""
-"- Barcode \"%(barcode)s\" already assigned to product(s): %(product_list)s"
-msgstr "- Баркод „%(barcode)s“ вече е присвоен на продукт(и): %(product_list)s"
+msgid "- Barcode \"%(barcode)s\" already assigned to %(product_list)s"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_attribute__create_variant
@@ -161,13 +136,6 @@ msgid ""
 "        - Never: Variants are never created for the attribute.\n"
 "        Note: this cannot be changed once the attribute is used on a product."
 msgstr ""
-"- Незабавно: Всички възможни варианти се създават веднага щом атрибутът и "
-"неговите стойности бъдат добавени към продукт.\n"
-"        - Динамично: Всеки вариант се създава само когато съответните му "
-"атрибути и стойности бъдат добавени към продажбена поръчка.\n"
-"        - Никога: Варианти никога не се създават за атрибута.\n"
-"        Забележка: това не може да бъде променено, след като атрибутът се "
-"използва в продукт."
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_duration_month_1
@@ -182,67 +150,65 @@ msgstr "1 година"
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
 msgid "10 Units"
-msgstr "10 единици"
+msgstr ""
 
 #. module: product
 #: model:product.template,description_sale:product.product_product_4_product_template
 msgid "160x80cm, with large legs"
-msgstr "160x80см, с големи крака"
+msgstr ""
 
 #. module: product
-#: model:ir.model.fields.selection,name:product.selection__product_label_layout__print_format__2x7xprice
-msgid "2 x 7 with price"
-msgstr "2 x 7 с цена"
+#: model:ir.model.fields.selection,name:product.selection__mrp_finished_product_label_layout__print_format__2x7
+#: model:ir.model.fields.selection,name:product.selection__product_label_layout__print_format__2x7
+msgid "2 x 7"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_duration_year_2
 msgid "2 years"
-msgstr "2 години"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_size_2xl
 msgid "2XL"
-msgstr "2XL"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_duration_year_3
 msgid "3 years"
-msgstr "3 години"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_size_3xl
 msgid "3XL"
-msgstr "3XL"
+msgstr ""
 
 #. module: product
+#: model:ir.model.fields.selection,name:product.selection__mrp_finished_product_label_layout__print_format__4x12
 #: model:ir.model.fields.selection,name:product.selection__product_label_layout__print_format__4x12
 msgid "4 x 12"
 msgstr "4 x 12"
 
 #. module: product
-#: model:ir.model.fields.selection,name:product.selection__product_label_layout__print_format__4x12xprice
-msgid "4 x 12 with price"
-msgstr "4 x 12 с цена"
-
-#. module: product
-#: model:ir.model.fields.selection,name:product.selection__product_label_layout__print_format__4x7xprice
-msgid "4 x 7 with price"
-msgstr "4 x 7 с цена"
+#: model:ir.model.fields.selection,name:product.selection__mrp_finished_product_label_layout__print_format__4x7
+#: model:ir.model.fields.selection,name:product.selection__product_label_layout__print_format__4x7
+msgid "4 x 7"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_size_4xl
 msgid "4XL"
-msgstr "4XL"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_size_5xl
 msgid "5XL"
-msgstr "5XL"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_duration_month_6
 msgid "6 months"
-msgstr "6 месеца"
+msgstr ""
 
 #. module: product
 #: model_terms:product.template,website_description:product.product_product_4_product_template
@@ -250,30 +216,23 @@ msgid ""
 "<a href=\"/contactus\" class=\"mb-2 btn btn-primary "
 "o_translate_inline\">Contact Us</a>"
 msgstr ""
-"<a href=\"/contactus\" class=\"mb-2 btn btn-primary o_translate_inline\">"
-"Свържете се с нас</a>"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
-msgid "<b>Tip: want to round at 9.99?</b>"
-msgstr "<b>Съвет: искате да закръглите до 9,99?</b>"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid ""
-"<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Arrow "
+"<i class=\"oi mx-2 oe_edit_only\" data-icon=\"east\" aria-label=\"Arrow "
 "icon\" title=\"Arrow\"/>"
 msgstr ""
-"<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Arrow "
+"<i class=\"oi mx-2 oe_edit_only\" data-icon=\"east\" aria-label=\"Arrow "
 "icon\" title=\"Arrow\"/>"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_view_kanban
 msgid ""
-"<i class=\"fa fa-money\" role=\"img\" aria-label=\"Currency\" "
+"<i class=\"oi\" data-icon=\"payments\" role=\"img\" aria-label=\"Currency\" "
 "title=\"Currency\"/>"
 msgstr ""
-"<i class=\"fa fa-money\" role=\"img\" aria-label=\"Currency\" "
+"<i class=\"oi\" data-icon=\"payments\" role=\"img\" aria-label=\"Currency\" "
 "title=\"Currency\"/>"
 
 #. module: product
@@ -282,74 +241,76 @@ msgid "<span class=\"o_stat_text\"> Products</span>"
 msgstr "<span class=\"o_stat_text\">Продукти</span>"
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.uom_uom_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_view
+msgid "<span class=\"o_stat_text\">Daily Rates</span>"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.uom_uom_view_form
 msgid "<span class=\"o_stat_text\">Packaging Barcodes</span>"
-msgstr "<span class=\"o_stat_text\">Баркодове на опаковките</span>"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_attribute_view_form
 msgid "<span class=\"o_stat_text\">Products</span>"
-msgstr "<span class=\"o_stat_text\">Продукти</span>"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
-msgid "<span>%</span>"
-msgstr "<span>%</span>"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_variant_easy_edit_view
-msgid "<span>All general settings about this product are managed on</span>"
-msgstr "<span>Всички общи настройки за този продукт се управляват в</span>"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
-msgid "<span>on</span>"
-msgstr "<span>на</span>"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.report_packagingbarcode
-msgid "<strong>Qty: </strong>"
-msgstr "<strong>К-во:</strong>"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_only_form_view
 msgid ""
-"<strong>Warning</strong>: adding or deleting attributes\n"
-"                        will delete and recreate existing variants and lead\n"
-"                        to the loss of their possible customizations."
+"<span class=\"text-muted\" invisible=\"product_variant_count &lt;= 1\">Based "
+"on variants</span>"
 msgstr ""
-"<strong>Предупреждение</strong>: добавянето или изтриването на "
-"характеристики ще изтрие и създаде повторно съществуващи варианти и ще "
-"доведе до загуба на техните възможни персонализации."
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_kanban_view
+#: model_terms:ir.ui.view,arch_db:product.product_template_kanban_view
+msgid "<span class=\"text-muted\">On Hand</span>"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
+msgid "<span class=\"text-nowrap\">% on</span>"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
+msgid "<span> - </span>"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_template_form_view
+msgid "<span>per</span>"
+msgstr ""
 
 #. module: product
 #: model:ir.model.constraint,message:product.constraint_product_uom_barcode_uniq
 msgid "A barcode can only be assigned to one packaging."
-msgstr "Баркодът може да бъде присвоен само на една опаковка."
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_combo.py:0
 msgid "A combo choice can't contain duplicate products."
-msgstr "Изборът на комбо не може да съдържа дублирани продукти."
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_combo_item.py:0
 msgid "A combo choice can't contain products of type \"combo\"."
-msgstr "Избор на комбо не може да съдържа продукти от тип „комбо“."
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_combo.py:0
 msgid "A combo choice must contain at least 1 product."
-msgstr "Изборът на комбо трябва да съдържа поне 1 продукт."
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_template.py:0
 msgid "A combo product must contain at least 1 combo choice."
-msgstr "Комбо продукт трябва да съдържа поне 1 избор на комбо."
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_product__description_sale
@@ -359,15 +320,12 @@ msgid ""
 "This description will be copied to every Sales Order, Delivery Order and "
 "Customer Invoice/Credit Note"
 msgstr ""
-"Описание на продукта, което искате да съобщите на клиентите си. Това "
-"описание ще бъде копирано във всяка поръчка за продажба, поръчка за доставка "
-"и фактура/кредитно известие към клиент"
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_product.py:0
 msgid "A packaging already uses the barcode"
-msgstr "Опаковка вече използва баркода"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.actions.act_window,help:product.product_pricelist_action2
@@ -378,11 +336,6 @@ msgid ""
 "            This is the perfect tool to handle several pricings, seasonal "
 "discounts, etc."
 msgstr ""
-"Ценоразписът е набор от продажбени цени или правила за изчисляване на цената "
-"на редовете на продажбена поръчка въз основа на продукти, продуктови "
-"категории, дати и поръчани количества.\n"
-"            Това е перфектният инструмент за управление на няколко "
-"ценообразувания, сезонни отстъпки и т.н."
 
 #. module: product
 #. odoo-python
@@ -391,20 +344,29 @@ msgid ""
 "A pricelist item with \"Other Pricelist\" as base must have a "
 "base_pricelist_id."
 msgstr ""
-"Елемент от ценоразпис с „Друг ценоразпис“ като основа трябва да има "
-"base_pricelist_id."
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_uom.py:0
 msgid "A product already uses the barcode"
-msgstr "Продукт вече използва баркода"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_template.py:0
 msgid "A sellable combo product can only contain sellable products."
-msgstr "Продаваем комбо продукт може да съдържа само продаваеми продукти."
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,help:product.field_product_product__is_storable
+#: model:ir.model.fields,help:product.field_product_template__is_storable
+msgid "A storable product is a product for which you manage stock."
+msgstr ""
+
+#. module: product
+#: model:ir.model,name:product.model_res_groups
+msgid "Access Groups"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__access_token
@@ -414,17 +376,17 @@ msgstr "Токен за достъп"
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
 msgid "Acme Widget"
-msgstr "Acme Widget"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
 msgid "Acme Widget - Blue"
-msgstr "Acme Widget - Blue"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_template_acoustic_bloc_screens
 msgid "Acoustic Bloc Screens"
-msgstr "Акустични блок-екрани"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_category__message_needaction
@@ -450,11 +412,6 @@ msgid "Active"
 msgstr "Активно"
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_search_view
-msgid "Active Products"
-msgstr "Активни продукти"
-
-#. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist__activity_ids
 #: model:ir.model.fields,field_description:product.field_product_product__activity_ids
 #: model:ir.model.fields,field_description:product.field_product_template__activity_ids
@@ -467,6 +424,13 @@ msgstr "Дейности"
 #: model:ir.model.fields,field_description:product.field_product_template__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr "Декорация за изключение на дейност"
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_pricelist__activity_plans_ids
+#: model:ir.model.fields,field_description:product.field_product_product__activity_plans_ids
+#: model:ir.model.fields,field_description:product.field_product_template__activity_plans_ids
+msgid "Activity Plans"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist__activity_state
@@ -485,25 +449,26 @@ msgstr "Икона за Вид Дейност"
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/product_catalog/order_line/order_line.xml:0
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "Add"
-msgstr "Добави"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.xml:0
 msgid "Add Products"
-msgstr "Добавяне на продукти"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.js:0
 msgid "Add Products to pricelist report"
-msgstr "Добавяне на продукти към справката за ценоразпис"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "Add a price"
-msgstr "Добавяне на цена"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
@@ -518,38 +483,33 @@ msgid ""
 "Add products using the \"Add Products\" button at the top right to\n"
 "                                include them in the report."
 msgstr ""
-"Добавете продукти с помощта на бутона „Добавяне на продукти“ горе вдясно, за "
-"да\n"
-"                                ги включите в отчета."
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_attribute_value.py:0
 msgid "Add to all products"
-msgstr "Добавяне към всички продукти"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__update_product_attribute_value__mode__add
 msgid "Add to existing products"
-msgstr "Добавяне към съществуващи продукти"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_attribute_view_form
 msgid "Add to products"
-msgstr "Добавяне към продукти"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_product__uom_ids
 #: model:ir.model.fields,help:product.field_product_template__uom_ids
 msgid "Additional packagings for this product which can be used for sales"
 msgstr ""
-"Допълнителни опаковки за този продукт, които могат да се използват за "
-"продажби"
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_adidas
 msgid "Adidas"
-msgstr "Adidas"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_document_search
@@ -557,20 +517,19 @@ msgid "All"
 msgstr "Всички"
 
 #. module: product
-#. odoo-python
-#: code:addons/product/models/product_pricelist_item.py:0
-msgid "All Categories"
-msgstr "Всички категории"
+#: model_terms:ir.ui.view,arch_db:product.product_category_form_view
+msgid "All Companies"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__all_product_tag_ids
 msgid "All Product Tag"
-msgstr "Всички продуктови маркери"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_tag__product_ids
 msgid "All Product Variants using this Tag"
-msgstr "Всички продуктови варианти, използващи този маркер"
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -582,35 +541,47 @@ msgstr "Всички продукти"
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "All categories"
-msgstr "Всички категории"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_view_tree
 msgid "All countries"
-msgstr "Всички държави"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/controllers/product_document.py:0
 msgid "All files uploaded"
-msgstr "Всички файлове са качени"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "All products"
-msgstr "Всички продукти"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_tree_view_from_product
 msgid "All variants"
-msgstr "Всички варианти"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_attribute_value__is_custom
 #: model:ir.model.fields,help:product.field_product_template_attribute_value__is_custom
 msgid "Allow customers to set their own value"
-msgstr "Позволете на клиентите да задават собствена стойност"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_pricelist_item__allowed_uom_ids
+#: model:ir.model.fields,field_description:product.field_product_uom__allowed_uom_ids
+msgid "Allowed Uom"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields.selection,name:product.selection__mrp_finished_product_label_layout__zpl_template__alternative
+#: model:ir.model.fields.selection,name:product.selection__product_label_layout__zpl_template__alternative
+msgid "Alternative (2.00\" x 1.00\")"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_legs_aluminium
@@ -624,19 +595,23 @@ msgstr "Ябълка"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_tree_view
-#: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "Applied On"
 msgstr "Приложимо за"
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_calendar
+msgid "Applied on"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
+msgid "Apply"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__applied_on
 msgid "Apply On"
 msgstr "Приложете на"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
-msgid "Apply To"
-msgstr "Приложи към"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_view
@@ -649,17 +624,26 @@ msgstr "Приложете върху"
 #: model_terms:ir.ui.view,arch_db:product.product_document_search
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_view
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_view_search
-#: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_search_view
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:product.product_template_search_view
-#: model_terms:ir.ui.view,arch_db:product.product_variant_easy_edit_view
 msgid "Archived"
 msgstr "Архивирано"
 
 #. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_search_view
+msgid "Archived Products"
+msgstr ""
+
+#. module: product
 #: model:product.attribute.value,name:product.pav_brand_ariel
 msgid "Ariel"
-msgstr "Ariel"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_res_partner__specific_property_product_pricelist
+#: model:ir.model.fields,field_description:product.field_res_users__specific_property_product_pricelist
+msgid "Assigned Pricelist"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_supplierinfo__sequence
@@ -673,13 +657,6 @@ msgid ""
 "At most %s quantities can be displayed simultaneously. Remove a selected "
 "quantity to add others."
 msgstr ""
-"Едновременно могат да се показват най-много %s количества. Премахнете "
-"избрано количество, за да добавите други."
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_document_form
-msgid "Attached To"
-msgstr "Прикачено към"
 
 #. module: product
 #: model:ir.model,name:product.model_ir_attachment
@@ -721,22 +698,27 @@ msgstr "Име на атрибут"
 #. module: product
 #: model:ir.model,name:product.model_product_attribute_value
 #: model:ir.model.fields,field_description:product.field_product_attribute_custom_value__custom_product_template_attribute_value_id
-#: model:ir.model.fields,field_description:product.field_product_template_attribute_exclusion__product_template_attribute_value_id
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__product_attribute_value_id
 #: model:ir.model.fields,field_description:product.field_update_product_attribute_value__attribute_value_id
+#: model_terms:ir.ui.view,arch_db:product.product_attribute_value_form
 msgid "Attribute Value"
 msgstr "Стойност на атрибут"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__product_template_attribute_value_ids
-#: model:ir.model.fields,field_description:product.field_product_template_attribute_exclusion__value_ids
 #: model_terms:ir.ui.view,arch_db:product.product_attribute_value_list
 #: model_terms:ir.ui.view,arch_db:product.product_attribute_view_form
 msgid "Attribute Values"
 msgstr "Атрибутивни стойности"
 
 #. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_template_only_form_view
+msgid "Attribute name (e.g. Color, Size, ... )"
+msgstr ""
+
+#. module: product
 #: model:ir.actions.act_window,name:product.attribute_action
+#: model:ir.model.fields,field_description:product.field_product_product__product_template_variant_value_ids
 #: model_terms:ir.ui.view,arch_db:product.product_template_attribute_value_view_tree
 #: model_terms:ir.ui.view,arch_db:product.product_template_search_view
 msgid "Attributes"
@@ -746,6 +728,24 @@ msgstr "Атрибути"
 #: model_terms:ir.ui.view,arch_db:product.product_template_only_form_view
 msgid "Attributes & Variants"
 msgstr "Атрибути и варианти"
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_label_layout__available_packaging_ids
+msgid "Available Packaging"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,help:product.field_product_product__free_qty
+msgid ""
+"Available quantity (computed as Quantity On Hand - reserved quantity - "
+"quantity to remove)\n"
+"In a context with a single Stock Location, this includes goods stored in "
+"this location, or any of its children.\n"
+"In a context with a single Warehouse, this includes goods stored in the "
+"Stock Location of this Warehouse, or any of its children.\n"
+"Otherwise, this includes goods stored in any Stock Location with 'internal' "
+"type."
+msgstr ""
 
 #. module: product
 #. odoo-javascript
@@ -760,6 +760,8 @@ msgid "Back to Quotation"
 msgstr "Връщане към офертата"
 
 #. module: product
+#. odoo-python
+#: code:addons/product/controllers/pricelist_report.py:0
 #: model:ir.model.fields,field_description:product.field_product_product__barcode
 #: model:ir.model.fields,field_description:product.field_product_template__barcode
 #: model:ir.model.fields,field_description:product.field_product_uom__barcode
@@ -767,21 +769,63 @@ msgid "Barcode"
 msgstr "Баркод"
 
 #. module: product
+#: model:ir.model.fields.selection,name:product.selection__mrp_finished_product_label_layout__barcode_format__barcode
+#: model:ir.model.fields.selection,name:product.selection__product_label_layout__barcode_format__barcode
+msgid "Barcode 1D"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_res_config_settings__module_product_barcodelookup
+#: model_terms:ir.ui.view,arch_db:product.res_config_settings_view_form
+msgid "Barcode Database"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.res_config_settings_view_form
+msgid "Barcode Lookup"
+msgstr ""
+
+#. module: product
 #. odoo-python
 #: code:addons/product/models/product_product.py:0
+#: code:addons/product/models/product_template.py:0
 msgid ""
 "Barcode(s) already assigned:\n"
 "\n"
 "%s"
 msgstr ""
-"Баркод(ове) вече присвоен(и):\n"
-"\n"
-"%s"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_uom_uom__product_uom_ids
+#: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "Barcodes"
-msgstr "Баркодове"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.uom_uom_view_form
+msgid "Barcodes can be configured on"
+msgstr ""
+
+#. module: product
+#: model:ir.model,name:product.model_report_product_label_base
+msgid "Base Label Report"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__base_unit_name
+#: model:ir.model.fields,field_description:product.field_product_template__base_unit_name
+msgid "Base Unit Name"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_res_config_settings__group_show_uom_price
+msgid "Base Unit Price"
+msgstr ""
+
+#. module: product
+#: model:ir.actions.act_window,name:product.base_unit_action
+msgid "Base Units"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_pricelist_item__base
@@ -791,20 +835,11 @@ msgid ""
 "Cost Price: The base price will be the cost price.\n"
 "Other Pricelist: Computation of the base price based on another Pricelist."
 msgstr ""
-"Базова цена за изчисление.\n"
-"Продажбена цена: Базовата цена ще бъде Продажбената цена.\n"
-"Себестойност: Базовата цена ще бъде себестойността.\n"
-"Друг ценоразпис: Изчисляване на базовата цена въз основа на друг ценоразпис."
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__base
 msgid "Based on"
 msgstr "Основан на"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
-msgid "Based price"
-msgstr "Базова цена"
 
 #. module: product
 #: model:res.groups,name:product.group_product_pricelist
@@ -814,12 +849,12 @@ msgstr "Основни ценови листи"
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_beige
 msgid "Beige"
-msgstr "Бежово"
+msgstr ""
 
 #. module: product
 #: model:product.template,description_sale:product.consu_delivery_02_product_template
 msgid "Big table seats 10–12 for team discussions"
-msgstr "Голяма маса с 10–12 места за екипни обсъждания"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_black
@@ -834,7 +869,7 @@ msgstr "Синьо"
 #. module: product
 #: model:product.template,description_sale:product.product_product_7_product_template
 msgid "Blue plastic bin for flexible office storage"
-msgstr "Синя пластмасова кутия за гъвкаво офис съхранение"
+msgstr ""
 
 #. module: product
 #: model:product.attribute,name:product.pa_brand
@@ -850,33 +885,39 @@ msgstr "Кафяво"
 #. odoo-javascript
 #: code:addons/product/static/src/js/product_attribute_value_list.js:0
 msgid "Bye-bye, record!"
-msgstr "Сбогом, запис!"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_10_product_template
 msgid "Cabinet with Doors"
-msgstr "Шкаф с врати"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__can_image_1024_be_zoomed
 #: model:ir.model.fields,field_description:product.field_product_template__can_image_1024_be_zoomed
 msgid "Can Image 1024 be zoomed"
-msgstr "Може ли изображението 1024 да се мащабира"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__can_image_variant_1024_be_zoomed
 msgid "Can Variant Image 1024 be zoomed"
-msgstr "Може ли изображението на варианта 1024 да се мащабира"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.update_product_attribute_value_form
-msgid "Cancel"
-msgstr "Отказ"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_canon
 msgid "Canon"
-msgstr "Canon"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__catalog_is_in_order
+msgid "Catalog Is In Order"
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_catalog_mixin.py:0
+msgid "Catalog missing the child field to update."
+msgstr ""
 
 #. module: product
 #: model:ir.actions.act_window,name:product.product_category_action_form
@@ -886,17 +927,15 @@ msgstr "Категории"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__categ_id
-#: model:ir.model.fields.selection,name:product.selection__product_pricelist_item__display_applied_on__2_product_category
 #: model_terms:ir.ui.view,arch_db:product.product_category_form_view
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "Category"
 msgstr "Категория"
 
 #. module: product
-#. odoo-python
-#: code:addons/product/models/product_pricelist_item.py:0
-msgid "Category: %s"
-msgstr "Категория:%s"
+#: model:product.combo,name:product.chairs_combo
+msgid "Chairs Combo"
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -908,11 +947,6 @@ msgid ""
 "All existing records (Sales orders, Purchase orders, etc.) using this "
 "product will be updated by replacing the unit name."
 msgstr ""
-"Промяната на мерната единица за вашия продукт ще приложи преобразуване 1 %"
-"(old_uom_name)s = 1 %(new_uom_name)s.\n"
-"Всички съществуващи записи (продажбени поръчки, поръчки за покупка и т.н.), "
-"използващи този продукт, ще бъдат актуализирани чрез замяна на името на "
-"единицата."
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__checksum
@@ -927,7 +961,19 @@ msgstr "Второстепенни категории"
 #. module: product
 #: model:ir.model,name:product.model_product_label_layout
 msgid "Choose the sheet layout to print the labels"
-msgstr "Изберете оформлението на листа, за да отпечатате етикетите"
+msgstr ""
+
+#. module: product
+#. odoo-javascript
+#: code:addons/product/static/src/product_catalog/product_catalog_search_panel.xml:0
+msgid "Clear All"
+msgstr ""
+
+#. module: product
+#. odoo-javascript
+#: code:addons/product/static/src/product_catalog/product_catalog_search_panel.xml:0
+msgid "Close"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_cocacola
@@ -935,14 +981,9 @@ msgid "Coca-Cola"
 msgstr "Кока-кола"
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_variant_easy_edit_view
-msgid "Codes"
-msgstr "Кодове"
-
-#. module: product
 #: model:product.attribute.value,name:product.pav_brand_colgate
 msgid "Colgate"
-msgstr "Colgate"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__html_color
@@ -968,43 +1009,42 @@ msgstr "Графи"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__combination_indices
 msgid "Combination Indices"
-msgstr "Комбинирани индекси"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_combo_item__combo_id
 #: model:ir.model.fields.selection,name:product.selection__product_template__type__combo
 #: model_terms:ir.ui.view,arch_db:product.product_template_search_view
 msgid "Combo"
-msgstr "Комбо"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_combo_view_form
 msgid "Combo Choice"
-msgstr "Избор за комбо"
+msgstr ""
 
 #. module: product
-#: model:ir.actions.act_window,name:product.product_combo_action
 #: model:ir.model.fields,field_description:product.field_product_product__combo_ids
 #: model:ir.model.fields,field_description:product.field_product_template__combo_ids
 #: model_terms:ir.ui.view,arch_db:product.product_combo_view_tree
 msgid "Combo Choices"
-msgstr "Избори за комбо"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_combo__combo_item_ids
 msgid "Combo Item"
-msgstr "Артикул в комбо"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_combo__base_price
 msgid "Combo Price"
-msgstr "Цена на комбо"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_template.py:0
 msgid "Combo products can't have attributes."
-msgstr "Комбинираните продукти не могат да имат атрибути."
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -1013,20 +1053,15 @@ msgid ""
 "Combos allow to choose one product amongst a selection of choices per "
 "category."
 msgstr ""
-"Комбинациите позволяват да изберете един продукт измежду избор от "
-"възможности за всяка категория."
 
 #. module: product
 #: model:product.template,description_sale:product.product_delivery_01_product_template
 msgid "Comfortable yellow chair for daily work"
-msgstr "Удобен жълт стол за ежедневна работа"
+msgstr ""
 
 #. module: product
 #: model:ir.model,name:product.model_res_company
-msgid "Companies"
-msgstr "Фирми"
-
-#. module: product
+#: model:ir.model.fields,field_description:product.field_product_category__company_id
 #: model:ir.model.fields,field_description:product.field_product_combo__company_id
 #: model:ir.model.fields,field_description:product.field_product_combo_item__company_id
 #: model:ir.model.fields,field_description:product.field_product_document__company_id
@@ -1036,13 +1071,14 @@ msgstr "Фирми"
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__company_id
 #: model:ir.model.fields,field_description:product.field_product_template__company_id
 #: model:ir.model.fields,field_description:product.field_product_uom__company_id
+#: model_terms:ir.ui.view,arch_db:product.product_category_search_view
 msgid "Company"
 msgstr "Фирма"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "Company Settings"
-msgstr "Настройки на компанията"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_category__complete_name
@@ -1057,7 +1093,7 @@ msgstr "Изчислете цена"
 #. module: product
 #: model:product.template,name:product.product_product_11_product_template
 msgid "Conference Chair"
-msgstr "Конферентен стол"
+msgstr ""
 
 #. module: product
 #: model:ir.model,name:product.model_res_config_settings
@@ -1065,6 +1101,7 @@ msgid "Config Settings"
 msgstr "Настройки"
 
 #. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_template_attribute_value_view_tree
 #: model_terms:ir.ui.view,arch_db:product.product_template_only_form_view
 msgid "Configure"
 msgstr "Конфигурирайте"
@@ -1082,17 +1119,17 @@ msgstr "Контакт"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_label_layout__custom_quantity
 msgid "Copies"
-msgstr "Копия"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_13_product_template
 msgid "Corner Desk Left Sit"
-msgstr "Ъглово бюро ляво"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_5_product_template
 msgid "Corner Desk Right Sit"
-msgstr "Ъглово бюро дясно"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__standard_price
@@ -1105,7 +1142,7 @@ msgstr "Цена"
 #: model:ir.model.fields,field_description:product.field_product_product__cost_currency_id
 #: model:ir.model.fields,field_description:product.field_product_template__cost_currency_id
 msgid "Cost Currency"
-msgstr "Валута на себестойността"
+msgstr ""
 
 #. module: product
 #: model:ir.model,name:product.model_res_country_group
@@ -1125,7 +1162,7 @@ msgstr "Създай"
 #. module: product
 #: model:ir.model,website_form_label:product.model_res_partner
 msgid "Create a Customer"
-msgstr "Създаване на клиент"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.actions.act_window,help:product.product_pricelist_action2
@@ -1139,8 +1176,11 @@ msgid "Create a new product"
 msgstr "Създаване на нов продукт"
 
 #. module: product
-#: model_terms:ir.actions.act_window,help:product.product_normal_action
-#: model_terms:ir.actions.act_window,help:product.product_normal_action_sell
+#: model_terms:ir.actions.act_window,help:product.product_category_action_form
+msgid "Create a new product category"
+msgstr ""
+
+#. module: product
 #: model_terms:ir.actions.act_window,help:product.product_variant_action
 msgid "Create a new product variant"
 msgstr "Създайте нов вариант на продукта"
@@ -1158,9 +1198,15 @@ msgid "Create on Order"
 msgstr "Създаване при поръчка"
 
 #. module: product
+#: model_terms:ir.ui.view,arch_db:product.res_config_settings_view_form
+msgid "Create products by scanning using"
+msgstr ""
+
+#. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute__create_uid
 #: model:ir.model.fields,field_description:product.field_product_attribute_custom_value__create_uid
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__create_uid
+#: model:ir.model.fields,field_description:product.field_product_base_unit__create_uid
 #: model:ir.model.fields,field_description:product.field_product_category__create_uid
 #: model:ir.model.fields,field_description:product.field_product_combo__create_uid
 #: model:ir.model.fields,field_description:product.field_product_combo_item__create_uid
@@ -1172,7 +1218,6 @@ msgstr "Създаване при поръчка"
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__create_uid
 #: model:ir.model.fields,field_description:product.field_product_tag__create_uid
 #: model:ir.model.fields,field_description:product.field_product_template__create_uid
-#: model:ir.model.fields,field_description:product.field_product_template_attribute_exclusion__create_uid
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_line__create_uid
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__create_uid
 #: model:ir.model.fields,field_description:product.field_product_uom__create_uid
@@ -1184,6 +1229,7 @@ msgstr "Създадено от"
 #: model:ir.model.fields,field_description:product.field_product_attribute__create_date
 #: model:ir.model.fields,field_description:product.field_product_attribute_custom_value__create_date
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__create_date
+#: model:ir.model.fields,field_description:product.field_product_base_unit__create_date
 #: model:ir.model.fields,field_description:product.field_product_category__create_date
 #: model:ir.model.fields,field_description:product.field_product_combo__create_date
 #: model:ir.model.fields,field_description:product.field_product_combo_item__create_date
@@ -1195,7 +1241,6 @@ msgstr "Създадено от"
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__create_date
 #: model:ir.model.fields,field_description:product.field_product_tag__create_date
 #: model:ir.model.fields,field_description:product.field_product_template__create_date
-#: model:ir.model.fields,field_description:product.field_product_template_attribute_exclusion__create_date
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_line__create_date
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__create_date
 #: model:ir.model.fields,field_description:product.field_product_uom__create_date
@@ -1204,19 +1249,14 @@ msgid "Created on"
 msgstr "Създадено на"
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_document_form
-msgid "Creation"
-msgstr "Създаване"
-
-#. module: product
 #: model:ir.model.fields.selection,name:product.selection__res_config_settings__product_volume_volume_in_cubic_feet__1
 msgid "Cubic Feet (ft³)"
-msgstr "Кубически фута (ft³)"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__res_config_settings__product_volume_volume_in_cubic_feet__0
 msgid "Cubic Meters (m³)"
-msgstr "Кубически метри (m³)"
+msgstr ""
 
 #. module: product
 #: model:ir.model,name:product.model_res_currency
@@ -1232,6 +1272,20 @@ msgid "Currency"
 msgstr "Валута"
 
 #. module: product
+#: model:ir.model.fields,help:product.field_product_product__qty_available
+msgid ""
+"Current quantity of products.\n"
+"In a context with a single Stock Location, this includes goods stored at "
+"this Location, or any of its children.\n"
+"In a context with a single Warehouse, this includes goods stored in the "
+"Stock Location of this Warehouse, or any of its children.\n"
+"stored in the Stock Location of the Warehouse of this Shop, or any of its "
+"children.\n"
+"Otherwise, this includes goods stored in any Stock Location with 'internal' "
+"type."
+msgstr ""
+
+#. module: product
 #: model:product.attribute.value,name:product.pav_custom
 #: model:product.attribute.value,name:product.pav_legs_custom
 #: model:product.attribute.value,name:product.pav_length_custom
@@ -1239,9 +1293,15 @@ msgid "Custom"
 msgstr "Персонализиран"
 
 #. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__base_unit_id
+#: model:ir.model.fields,field_description:product.field_product_template__base_unit_id
+msgid "Custom Unit of Measure"
+msgstr ""
+
+#. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute_custom_value__custom_value
 msgid "Custom Value"
-msgstr "Персонализирана стойност"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__partner_ref
@@ -1251,22 +1311,41 @@ msgstr "Референция за клиент"
 #. module: product
 #: model:product.template,name:product.product_product_4_product_template
 msgid "Customizable Desk"
-msgstr "Персонализируемо бюро"
+msgstr ""
 
 #. module: product
 #: model:product.attribute,name:product.pa_customization
 msgid "Customization"
-msgstr "Персонализиране"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_cyan
 msgid "Cyan"
-msgstr "Циан"
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_pricelist.py:0
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_calendar
+msgid "Daily Rates"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__db_datas
 msgid "Database Data"
 msgstr "Database Data"
+
+#. module: product
+#. odoo-javascript
+#: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.xml:0
+msgid "Date"
+msgstr ""
+
+#. module: product
+#. odoo-javascript
+#: code:addons/product/static/src/product_catalog/order_line/order_line.xml:0
+msgid "Decrease quantity"
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -1277,12 +1356,12 @@ msgstr "Стандартен"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__default_extra_price
 msgid "Default Extra Price"
-msgstr "Допълнителна цена по подразбиране"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__default_extra_price_changed
 msgid "Default Extra Price Changed"
-msgstr "Променена допълнителна цена по подразбиране"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_product__uom_id
@@ -1291,19 +1370,26 @@ msgid "Default unit of measure used for all stock operations."
 msgstr "Единица по подразбиране за всички складови операции."
 
 #. module: product
+#: model:ir.model.fields,help:product.field_product_base_unit__name
+#: model:ir.model.fields,help:product.field_product_product__base_unit_id
+#: model:ir.model.fields,help:product.field_product_template__base_unit_id
+msgid "Define a custom unit to display in the price per unit of measure field."
+msgstr ""
+
+#. module: product
 #: model_terms:ir.actions.act_window,help:product.product_tag_action
 msgid "Define a new tag"
-msgstr "Дефинирайте нов етикет"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.res_config_settings_view_form
 msgid "Define your volume unit of measure"
-msgstr "Задайте вашата мерна единица за обем"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.res_config_settings_view_form
 msgid "Define your weight unit of measure"
-msgstr "Задайте вашата мерна единица за тегло"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
@@ -1315,7 +1401,7 @@ msgstr "Изтриване"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_dell
 msgid "Dell"
-msgstr "Dell"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__description
@@ -1327,46 +1413,52 @@ msgstr "Описание"
 #. module: product
 #: model:product.template,description_sale:product.product_order_01_product_template
 msgid "Design and plan smart offices with ease"
-msgstr "Проектирайте и планирайте умни офиси с лекота"
+msgstr ""
+
+#. module: product
+#: model:product.combo,name:product.desk_accessories_combo
+msgid "Desk Accessories Combo"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_3_product_template
 msgid "Desk Combination"
-msgstr "Комбинация бюра"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.desk_organizer_product_template
 msgid "Desk Organizer"
-msgstr "Органайзер за бюро"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.desk_pad_product_template
 msgid "Desk Pad"
-msgstr "Подложка за бюро"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_22_product_template
 msgid "Desk Stand with Screen"
-msgstr "Стойка за бюро с екран"
+msgstr ""
 
 #. module: product
 #: model:product.template,description_sale:product.product_product_3_product_template
 msgid "Desk combination, black-brown: chair + desk + drawer"
-msgstr "Комбинация за бюро, черно-кафяво: стол + бюро + шкаф"
+msgstr ""
+
+#. module: product
+#: model:product.combo,name:product.desks_combo
+msgid "Desks Combo"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_attribute__sequence
 #: model:ir.model.fields,help:product.field_product_attribute_value__sequence
+#: model:ir.model.fields,help:product.field_product_template_attribute_value__sequence
 msgid "Determine the display order"
 msgstr "Определете реда на показване"
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_label_layout_form
-msgid "Discard"
-msgstr "Отхвърлете"
-
-#. module: product
-#: model:ir.model.fields.selection,name:product.selection__product_pricelist_item__compute_price__percentage
+#: model:ir.model.fields.selection,name:product.selection__product_pricelist_item__compute_price__discount
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "Discount"
 msgstr "Отстъпка"
@@ -1379,18 +1471,15 @@ msgstr "Отстъпка (%)"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__price_discounted
 msgid "Discounted Price"
-msgstr "Цена с отстъпка"
-
-#. module: product
-#: model:ir.model.fields,field_description:product.field_product_pricelist_item__display_applied_on
-msgid "Display Applied On"
-msgstr "Показване на „Приложено върху“"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_ir_attachment__display_name
 #: model:ir.model.fields,field_description:product.field_product_attribute__display_name
 #: model:ir.model.fields,field_description:product.field_product_attribute_custom_value__display_name
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__display_name
+#: model:ir.model.fields,field_description:product.field_product_base_unit__display_name
+#: model:ir.model.fields,field_description:product.field_product_catalog_line_mixin__display_name
 #: model:ir.model.fields,field_description:product.field_product_catalog_mixin__display_name
 #: model:ir.model.fields,field_description:product.field_product_category__display_name
 #: model:ir.model.fields,field_description:product.field_product_combo__display_name
@@ -1403,20 +1492,19 @@ msgstr "Показване на „Приложено върху“"
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__display_name
 #: model:ir.model.fields,field_description:product.field_product_tag__display_name
 #: model:ir.model.fields,field_description:product.field_product_template__display_name
-#: model:ir.model.fields,field_description:product.field_product_template_attribute_exclusion__display_name
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_line__display_name
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__display_name
 #: model:ir.model.fields,field_description:product.field_product_uom__display_name
+#: model:ir.model.fields,field_description:product.field_report_product_label_base__display_name
 #: model:ir.model.fields,field_description:product.field_report_product_report_pricelist__display_name
-#: model:ir.model.fields,field_description:product.field_report_product_report_producttemplatelabel2x7__display_name
-#: model:ir.model.fields,field_description:product.field_report_product_report_producttemplatelabel4x12__display_name
-#: model:ir.model.fields,field_description:product.field_report_product_report_producttemplatelabel4x12noprice__display_name
-#: model:ir.model.fields,field_description:product.field_report_product_report_producttemplatelabel4x7__display_name
-#: model:ir.model.fields,field_description:product.field_report_product_report_producttemplatelabel_dymo__display_name
+#: model:ir.model.fields,field_description:product.field_report_product_report_product_label_dymo__display_name
+#: model:ir.model.fields,field_description:product.field_report_product_report_product_label_pdf__display_name
+#: model:ir.model.fields,field_description:product.field_report_product_report_product_label_zpl__display_name
 #: model:ir.model.fields,field_description:product.field_res_company__display_name
 #: model:ir.model.fields,field_description:product.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:product.field_res_country_group__display_name
 #: model:ir.model.fields,field_description:product.field_res_currency__display_name
+#: model:ir.model.fields,field_description:product.field_res_groups__display_name
 #: model:ir.model.fields,field_description:product.field_res_partner__display_name
 #: model:ir.model.fields,field_description:product.field_uom_uom__display_name
 #: model:ir.model.fields,field_description:product.field_update_product_attribute_value__display_name
@@ -1431,9 +1519,18 @@ msgid "Display Type"
 msgstr "Начин на показване"
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_document_kanban
-msgid "Document"
-msgstr "Документ"
+#: model:ir.model.fields,help:product.field_product_product__base_unit_count
+#: model:ir.model.fields,help:product.field_product_template__base_unit_count
+msgid "Display base unit price. Set to 0 to hide it for this product."
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,help:product.field_product_product__base_unit_name
+#: model:ir.model.fields,help:product.field_product_template__base_unit_name
+msgid ""
+"Displays the custom unit for the products if defined or the selected unit of "
+"measure otherwise."
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -1448,28 +1545,17 @@ msgstr "Документи"
 #: model:ir.model.fields,field_description:product.field_product_product__product_document_count
 #: model:ir.model.fields,field_description:product.field_product_template__product_document_count
 msgid "Documents Count"
-msgstr "Брой документи"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_document_search
-msgid "Documents of this variant"
-msgstr "Документи на този вариант"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_dove
 msgid "Dove"
-msgstr "Dove"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_document_kanban
 msgid "Download"
 msgstr "Изтеглете от системата"
-
-#. module: product
-#. odoo-python
-#: code:addons/product/models/product_template.py:0
-msgid "Download examples"
-msgstr "Изтегляне на примери"
 
 #. module: product
 #: model:product.template,name:product.product_product_27_product_template
@@ -1484,18 +1570,18 @@ msgstr "Черно чекмедже"
 #. module: product
 #: model_terms:product.template,description:product.product_product_27_product_template
 msgid "Drawer with two routing possiblities"
-msgstr "Шкаф с две възможности за окабеляване"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_options_drawers
 msgid "Drawers"
-msgstr "Чекмеджета"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_product.py:0
 msgid "Duplicate values in attribute values are not allowed: %s"
-msgstr "Дублирани стойности в стойностите на атрибута не са разрешени: %s"
+msgstr ""
 
 #. module: product
 #: model:product.attribute,name:product.pa_duration
@@ -1503,30 +1589,25 @@ msgid "Duration"
 msgstr "Продължителност"
 
 #. module: product
+#: model:ir.model.fields.selection,name:product.selection__mrp_finished_product_label_layout__print_format__dymo
 #: model:ir.model.fields.selection,name:product.selection__product_label_layout__print_format__dymo
 msgid "Dymo"
-msgstr "Dymo"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__product_attribute__create_variant__dynamic
 msgid "Dynamically"
-msgstr "Динамично"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_dyson
 msgid "Dyson"
-msgstr "Dyson"
+msgstr ""
 
 #. module: product
 #: model:ir.model.constraint,message:product.constraint_product_template_attribute_value_attribute_value_unique
 msgid "Each value should be defined only once per attribute per product."
 msgstr ""
-"Всяка стойност трябва да бъде дефинирана само веднъж за атрибут за продукт."
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.report_packagingbarcode
-msgid "Eco-friendly Wooden Chair"
-msgstr "Екологичен дървен стол"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_document_kanban
@@ -1541,6 +1622,14 @@ msgid "End Date"
 msgstr "Крайна Дата"
 
 #. module: product
+#. odoo-python
+#: code:addons/product/models/product_supplierinfo.py:0
+msgid ""
+"End date can't be earlier than the start date. Please check dates for vendor "
+"pricelist: %s"
+msgstr ""
+
+#. module: product
 #: model:ir.model.fields,help:product.field_product_supplierinfo__date_end
 msgid "End date for this vendor price"
 msgstr "Крайна дата за цената на този доставчик"
@@ -1551,25 +1640,32 @@ msgid ""
 "Ending datetime for the pricelist item validation\n"
 "The displayed value depends on the timezone set in your preferences."
 msgstr ""
-"Крайна дата и час за валидиране на елемента от ценоразписа\n"
-"Показаната стойност зависи от часовата зона, зададена във вашите "
-"предпочитания."
 
 #. module: product
 #: model_terms:product.template,website_description:product.product_product_4_product_template
 msgid "Ergonomic"
-msgstr "Ергономично"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.js:0
 msgid "Error exporting file. Please try again."
-msgstr "Грешка при експортиране на файла. Моля, опитайте отново."
+msgstr ""
 
 #. module: product
-#: model:ir.model.fields,field_description:product.field_product_template_attribute_value__exclude_for
-msgid "Exclude for"
-msgstr "Изключване за"
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
+msgid "Example:"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_template_attribute_value__excluded_value_ids
+msgid "Exclude For"
+msgstr ""
+
+#. module: product
+#: model:product.category,name:product.product_category_expenses
+msgid "Expenses"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_pricelist_item__name
@@ -1580,23 +1676,23 @@ msgstr "Изрично правило за име за този ред на це
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_label_layout__extra_html
 msgid "Extra Content"
-msgstr "Допълнително съдържание"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__price_surcharge
 msgid "Extra Fee"
-msgstr "Допълнителна такса"
+msgstr ""
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_template_form_view
-msgid "Extra Info"
-msgstr "Допълнителна информация"
+#: model:ir.model.fields,field_description:product.field_product_product__extra_uom_ids
+msgid "Extra Packagings"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_combo_item__extra_price
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__price_extra
 msgid "Extra Price"
-msgstr "Допълнителна цена"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_template_attribute_value__price_extra
@@ -1604,13 +1700,11 @@ msgid ""
 "Extra price for the variant with this attribute value on sale price. eg. 200 "
 "price extra, 1000 + 200 = 1200."
 msgstr ""
-"Допълнителна цена за варианта с тази стойност на атрибута към продажната "
-"цена. напр. 200 допълнителна цена, 1000 + 200 = 1200."
 
 #. module: product
 #: model:product.attribute,name:product.pa_fabric
 msgid "Fabric"
-msgstr "Плат"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__is_favorite
@@ -1625,9 +1719,9 @@ msgid "Favorites"
 msgstr "Любими"
 
 #. module: product
-#: model:ir.model.fields,field_description:product.field_product_document__datas
-msgid "File Content (base64)"
-msgstr "Съдържание на файл (base64)"
+#: model_terms:ir.ui.view,arch_db:product.product_document_form
+msgid "File"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__raw
@@ -1642,7 +1736,13 @@ msgstr "Размер на файл"
 #. module: product
 #: model:product.attribute.value,name:product.pav_options_file_cabinets
 msgid "File cabinets"
-msgstr "Картотеки"
+msgstr ""
+
+#. module: product
+#. odoo-javascript
+#: code:addons/product/static/src/product_catalog/product_catalog_search_panel.xml:0
+msgid "Filters"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__fixed_price
@@ -1651,9 +1751,15 @@ msgid "Fixed Price"
 msgstr "Фиксирана цена"
 
 #. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__fixed_pricelist_rule_ids
+#: model:ir.model.fields,field_description:product.field_product_template__fixed_pricelist_rule_ids
+msgid "Fixed Pricelist Rule"
+msgstr ""
+
+#. module: product
 #: model:product.template,name:product.product_product_20_product_template
 msgid "Flipover"
-msgstr "Флипчарт"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_category__message_follower_ids
@@ -1672,13 +1778,6 @@ msgid "Followers (Partners)"
 msgstr "Последователи (партньори)"
 
 #. module: product
-#: model:ir.model.fields,help:product.field_product_pricelist__activity_type_icon
-#: model:ir.model.fields,help:product.field_product_product__activity_type_icon
-#: model:ir.model.fields,help:product.field_product_template__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Икона, примерно fa-tasks"
-
-#. module: product
 #: model:ir.model.fields,help:product.field_product_pricelist_item__min_quantity
 msgid ""
 "For the rule to apply, bought/sold quantity must be greater than or equal to "
@@ -1691,30 +1790,64 @@ msgstr ""
 "Изразено в стандартната единица мярка на продукта."
 
 #. module: product
+#: model:ir.model.fields,help:product.field_product_product__virtual_available
+msgid ""
+"Forecast quantity (computed as Quantity On Hand - Outgoing + Incoming - "
+"Quantity to Remove)\n"
+"In a context with a single Stock Location, this includes goods stored in "
+"this location, or any of its children.\n"
+"In a context with a single Warehouse, this includes goods stored in the "
+"Stock Location of this Warehouse, or any of its children.\n"
+"Otherwise, this includes goods stored in any Stock Location with 'internal' "
+"type."
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_view_list_qty
+msgid "Forecasted"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__virtual_available
+#: model:ir.model.fields,field_description:product.field_product_template__virtual_available
+msgid "Forecasted Quantity"
+msgstr ""
+
+#. module: product
 #: model:ir.model.fields,field_description:product.field_product_label_layout__print_format
 msgid "Format"
 msgstr "Формат"
 
 #. module: product
-#: model:ir.model.fields.selection,name:product.selection__product_pricelist_item__compute_price__formula
-msgid "Formula"
-msgstr "Формула"
-
-#. module: product
 #: model:product.template,name:product.consu_delivery_03_product_template
 msgid "Four Person Desk"
-msgstr "Бюро за четирима"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_template__free_qty
+msgid "Free To Use"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__free_qty
+msgid "Free To Use Quantity "
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__is_custom
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__is_custom
 msgid "Free text"
-msgstr "Свободен текст"
+msgstr ""
+
+#. module: product
+#: model:product.category,name:product.product_category_furniture
+msgid "Furniture"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_furniture_product_template
 msgid "Furniture Assembly"
-msgstr "Сглобяване на мебели"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_search_view
@@ -1729,7 +1862,7 @@ msgstr "Обща информация"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_gillette
 msgid "Gillette"
-msgstr "Gillette"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_product__sequence
@@ -1740,7 +1873,7 @@ msgstr "Заава реда на последователност при пок�
 #. module: product
 #: model:product.attribute.value,name:product.pav_fabric_glass
 msgid "Glass"
-msgstr "Стъкло"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_gold
@@ -1750,10 +1883,11 @@ msgstr "Злато"
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
 msgid "Gold Member Pricelist"
-msgstr "Ценоразпис за златни членове"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__product_template__type__consu
+#: model:product.category,name:product.product_category_goods
 #: model_terms:ir.ui.view,arch_db:product.product_template_search_view
 #: model_terms:ir.ui.view,arch_db:product.product_view_search_catalog
 msgid "Goods"
@@ -1772,7 +1906,7 @@ msgstr ""
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_gray
 msgid "Gray"
-msgstr "Сиво"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_green
@@ -1782,7 +1916,7 @@ msgstr "Зелено"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_h_m
 msgid "H&M"
-msgstr "H&M"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__html_color
@@ -1800,17 +1934,22 @@ msgstr "Има съобщение"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__has_thumbnail
 msgid "Has Thumbnail"
-msgstr "Има миниатюра"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_head_shoulders
 msgid "Head & Shoulders"
-msgstr "Head & Shoulders"
+msgstr ""
 
 #. module: product
 #: model:product.attribute,name:product.pa_height
 msgid "Height"
 msgstr "Височина"
+
+#. module: product
+#: model:res.groups.privilege,description:product.res_groups_privilege_product
+msgid "Helps you manage your product catalog."
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_attribute_value__html_color
@@ -1819,18 +1958,16 @@ msgid ""
 "Here you can set a specific HTML color index (e.g. #ff0000) to display the "
 "color if the attribute type is 'Color'."
 msgstr ""
-"Тук можете да зададете конкретен HTML цветови индекс (напр. #ff0000), за да "
-"се покаже цветът, ако типът на атрибута е „Цвят“."
 
 #. module: product
 #: model:product.template,description_sale:product.product_product_12_product_template
 msgid "High-back office chair with great support"
-msgstr "Офис стол с висока облегалка и отлична опора"
+msgstr ""
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_document_form
-msgid "History"
-msgstr "История"
+#: model:product.category,name:product.product_category_construction
+msgid "Home Construction"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.expense_hotel_product_template
@@ -1838,10 +1975,22 @@ msgid "Hotel Accommodation"
 msgstr "Настаняване в хотел"
 
 #. module: product
+#: model:ir.model.fields,help:product.field_product_pricelist_item__compute_price
+msgid ""
+"How the price is derived from the base price.\n"
+"Discount: a percentage taken off it.\n"
+"Surcharge: a percentage added on top of it.\n"
+"Fixed Price: a set amount, ignoring the base price entirely.\n"
+"Activate the discount settings to show the discount to the customer."
+msgstr ""
+
+#. module: product
 #: model:ir.model.fields,field_description:product.field_ir_attachment__id
 #: model:ir.model.fields,field_description:product.field_product_attribute__id
 #: model:ir.model.fields,field_description:product.field_product_attribute_custom_value__id
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__id
+#: model:ir.model.fields,field_description:product.field_product_base_unit__id
+#: model:ir.model.fields,field_description:product.field_product_catalog_line_mixin__id
 #: model:ir.model.fields,field_description:product.field_product_catalog_mixin__id
 #: model:ir.model.fields,field_description:product.field_product_category__id
 #: model:ir.model.fields,field_description:product.field_product_combo__id
@@ -1854,20 +2003,19 @@ msgstr "Настаняване в хотел"
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__id
 #: model:ir.model.fields,field_description:product.field_product_tag__id
 #: model:ir.model.fields,field_description:product.field_product_template__id
-#: model:ir.model.fields,field_description:product.field_product_template_attribute_exclusion__id
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_line__id
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__id
 #: model:ir.model.fields,field_description:product.field_product_uom__id
+#: model:ir.model.fields,field_description:product.field_report_product_label_base__id
 #: model:ir.model.fields,field_description:product.field_report_product_report_pricelist__id
-#: model:ir.model.fields,field_description:product.field_report_product_report_producttemplatelabel2x7__id
-#: model:ir.model.fields,field_description:product.field_report_product_report_producttemplatelabel4x12__id
-#: model:ir.model.fields,field_description:product.field_report_product_report_producttemplatelabel4x12noprice__id
-#: model:ir.model.fields,field_description:product.field_report_product_report_producttemplatelabel4x7__id
-#: model:ir.model.fields,field_description:product.field_report_product_report_producttemplatelabel_dymo__id
+#: model:ir.model.fields,field_description:product.field_report_product_report_product_label_dymo__id
+#: model:ir.model.fields,field_description:product.field_report_product_report_product_label_pdf__id
+#: model:ir.model.fields,field_description:product.field_report_product_report_product_label_zpl__id
 #: model:ir.model.fields,field_description:product.field_res_company__id
 #: model:ir.model.fields,field_description:product.field_res_config_settings__id
 #: model:ir.model.fields,field_description:product.field_res_country_group__id
 #: model:ir.model.fields,field_description:product.field_res_currency__id
+#: model:ir.model.fields,field_description:product.field_res_groups__id
 #: model:ir.model.fields,field_description:product.field_res_partner__id
 #: model:ir.model.fields,field_description:product.field_uom_uom__id
 #: model:ir.model.fields,field_description:product.field_update_product_attribute_value__id
@@ -1909,16 +2057,12 @@ msgstr "Ако е отметнато, някои съобщения имат г�
 msgid ""
 "If not set, the vendor price will apply to all variants of this product."
 msgstr ""
-"Ако не е зададено, цената на доставчика ще се прилага за всички варианти на "
-"този продукт."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_attribute__active
 msgid ""
 "If unchecked, it will allow you to hide the attribute without removing it."
 msgstr ""
-"Ако е премахната отметката, ще ви позволи да скриете атрибута, без да го "
-"премахвате."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_pricelist__active
@@ -1973,46 +2117,36 @@ msgstr "Изображение 512"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__image_height
 msgid "Image Height"
-msgstr "Височина на изображението"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__image_src
 msgid "Image Src"
-msgstr "Източник на изображението"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__image_width
 msgid "Image Width"
-msgstr "Ширина на изображението"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_document_kanban
-msgid "Image is a link"
-msgstr "Изображението е връзка"
-
-#. module: product
-#. odoo-python
-#: code:addons/product/models/product_pricelist.py:0
-msgid "Import Template for Pricelists"
-msgstr "Шаблон за импортиране на ценоразписи"
-
-#. module: product
-#. odoo-python
-#: code:addons/product/models/product_template.py:0
-msgid "Import Template for Products"
-msgstr "Импортиране на шаблон за Продукти"
-
-#. module: product
-#. odoo-python
-#: code:addons/product/models/product_supplierinfo.py:0
-msgid "Import Template for Vendor Pricelists"
-msgstr "Шаблон за импортиране на ценоразписи на доставчици"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_attribute_search
+#: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_search_view
 #: model_terms:ir.ui.view,arch_db:product.product_template_attribute_value_view_search
 msgid "Inactive"
 msgstr "Неактивен"
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__incoming_qty
+#: model:ir.model.fields,field_description:product.field_product_template__incoming_qty
+msgid "Incoming"
+msgstr ""
+
+#. module: product
+#. odoo-javascript
+#: code:addons/product/static/src/product_catalog/order_line/order_line.xml:0
+msgid "Increase quantity"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__index_content
@@ -2022,7 +2156,7 @@ msgstr "Индексирано съдържание"
 #. module: product
 #: model:product.template,name:product.product_product_24_product_template
 msgid "Individual Workplace"
-msgstr "Индивидуално работно място"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__product_attribute__create_variant__always
@@ -2035,15 +2169,19 @@ msgid "Internal Notes"
 msgstr "Вътрешни бележки"
 
 #. module: product
+#. odoo-python
+#: code:addons/product/controllers/pricelist_report.py:0
 #: model:ir.model.fields,field_description:product.field_product_product__default_code
 #: model:ir.model.fields,field_description:product.field_product_template__default_code
+#: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
 msgid "Internal Reference"
 msgstr "Вътрешен Идентификатор"
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_product__barcode
 msgid "International Article Number used for product identification."
-msgstr "Международен номер на артикула, използван за идентификация на продукта."
+msgstr ""
+"Международен номер на артикула, използван за идентификация на продукта."
 
 #. module: product
 #. odoo-javascript
@@ -2060,7 +2198,7 @@ msgstr "Инвентар"
 #: model:ir.model.fields,field_description:product.field_product_product__is_dynamically_created
 #: model:ir.model.fields,field_description:product.field_product_template__is_dynamically_created
 msgid "Is Dynamically Created"
-msgstr "Създаден ли е динамично"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_category__message_is_follower
@@ -2071,14 +2209,15 @@ msgid "Is Follower"
 msgstr "е последовател"
 
 #. module: product
-#: model:ir.model.fields,field_description:product.field_product_product__is_in_selected_section_of_order
-msgid "Is In Selected Section Of Order"
-msgstr "В избрана секция от поръчката ли е"
+#: model:ir.model.fields,field_description:product.field_res_partner__is_pricelist_manually_set
+#: model:ir.model.fields,field_description:product.field_res_users__is_pricelist_manually_set
+msgid "Is Pricelist Manually Set"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__is_pricelist_required
 msgid "Is Pricelist Required"
-msgstr "Задължителна ли е ценовата листа"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__is_product_variant
@@ -2107,54 +2246,75 @@ msgstr "е документ - обществено достояние"
 msgid ""
 "It is not possible to import different values for the same attribute: %s"
 msgstr ""
-"Не е възможно да се импортират различни стойности за един и същ атрибут: %s"
+
+#. module: product
+#: model:ir.model.fields.selection,name:product.selection__mrp_finished_product_label_layout__zpl_template__jewelry
+#: model:ir.model.fields.selection,name:product.selection__product_label_layout__zpl_template__jewelry
+msgid "Jewelry (2.20\" x 0.50\")"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__res_config_settings__product_weight_in_lbs__0
 msgid "Kilograms (kg)"
-msgstr "Килограми (kg)"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_size_l
 msgid "L"
-msgstr "L"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_loreal
 msgid "L'Oréal"
-msgstr "L'Oréal"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_LG
 msgid "LG"
-msgstr "LG"
+msgstr ""
+
+#. module: product
+#: model:ir.model,name:product.model_report_product_report_product_label_dymo
+msgid "Label Dymo Report"
+msgstr ""
+
+#. module: product
+#: model:ir.model,name:product.model_report_product_report_product_label_pdf
+msgid "Label PDF Report"
+msgstr ""
+
+#. module: product
+#: model:ir.model,name:product.model_report_product_report_product_label_zpl
+msgid "Label ZPL Report"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_product.py:0
 #: code:addons/product/models/product_template.py:0
 msgid "Labels cannot be printed for products of service type"
-msgstr "Етикети не могат да се отпечатват за продукти от тип услуга"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_6_product_template
 msgid "Large Cabinet"
-msgstr "Голям шкаф"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_8_product_template
 msgid "Large Desk"
-msgstr "Голямо бюро"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.consu_delivery_02_product_template
 msgid "Large Meeting Table"
-msgstr "Голяма заседателна маса"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute__write_uid
 #: model:ir.model.fields,field_description:product.field_product_attribute_custom_value__write_uid
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__write_uid
+#: model:ir.model.fields,field_description:product.field_product_base_unit__write_uid
 #: model:ir.model.fields,field_description:product.field_product_category__write_uid
 #: model:ir.model.fields,field_description:product.field_product_combo__write_uid
 #: model:ir.model.fields,field_description:product.field_product_combo_item__write_uid
@@ -2166,7 +2326,6 @@ msgstr "Голяма заседателна маса"
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__write_uid
 #: model:ir.model.fields,field_description:product.field_product_tag__write_uid
 #: model:ir.model.fields,field_description:product.field_product_template__write_uid
-#: model:ir.model.fields,field_description:product.field_product_template_attribute_exclusion__write_uid
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_line__write_uid
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__write_uid
 #: model:ir.model.fields,field_description:product.field_product_uom__write_uid
@@ -2178,6 +2337,7 @@ msgstr "Последно актуализирано от"
 #: model:ir.model.fields,field_description:product.field_product_attribute__write_date
 #: model:ir.model.fields,field_description:product.field_product_attribute_custom_value__write_date
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__write_date
+#: model:ir.model.fields,field_description:product.field_product_base_unit__write_date
 #: model:ir.model.fields,field_description:product.field_product_category__write_date
 #: model:ir.model.fields,field_description:product.field_product_combo__write_date
 #: model:ir.model.fields,field_description:product.field_product_combo_item__write_date
@@ -2188,7 +2348,6 @@ msgstr "Последно актуализирано от"
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__write_date
 #: model:ir.model.fields,field_description:product.field_product_tag__write_date
 #: model:ir.model.fields,field_description:product.field_product_template__write_date
-#: model:ir.model.fields,field_description:product.field_product_template_attribute_exclusion__write_date
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_line__write_date
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__write_date
 #: model:ir.model.fields,field_description:product.field_product_uom__write_date
@@ -2199,7 +2358,7 @@ msgstr "Последно актуализирано на"
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_search_view
 msgid "Late Activities"
-msgstr "Просрочени дейности"
+msgstr "Последни дейности"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__delay
@@ -2220,17 +2379,17 @@ msgstr ""
 #. module: product
 #: model:product.attribute.value,name:product.pav_fabric_leather
 msgid "Leather"
-msgstr "Кожа"
+msgstr ""
 
 #. module: product
 #: model:product.template,description_sale:product.product_product_13_product_template
 msgid "Left-sided workspace with storage"
-msgstr "Работно място с леви плотове и място за съхранение"
+msgstr ""
 
 #. module: product
 #: model:product.attribute,name:product.pa_legs
 msgid "Legs"
-msgstr "Крака"
+msgstr ""
 
 #. module: product
 #: model:product.attribute,name:product.pa_length
@@ -2240,17 +2399,17 @@ msgstr "Дължина"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_lenovo
 msgid "Lenovo"
-msgstr "Lenovo"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_levis
 msgid "Levi's"
-msgstr "Levi's"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_fabric_linen
 msgid "Linen"
-msgstr "Лен"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute__attribute_line_ids
@@ -2259,9 +2418,19 @@ msgid "Lines"
 msgstr "Линии"
 
 #. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_document_kanban
+msgid "Link"
+msgstr ""
+
+#. module: product
 #: model:ir.model,name:product.model_product_uom
 msgid "Link between products and their UoMs"
-msgstr "Връзка между продуктите и техните мерни единици"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_template_only_form_view
+msgid "List of possible values (e.g. Blue, Green, White, ... )"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_local_delivery_product_template
@@ -2271,11 +2440,10 @@ msgstr "Местна доставка"
 #. module: product
 #: model_terms:product.template,website_description:product.product_product_4_product_template
 msgid "Locally handmade"
-msgstr "Изработено ръчно на място"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
-#: model_terms:ir.ui.view,arch_db:product.product_variant_easy_edit_view
 msgid "Logistics"
 msgstr "Логистика"
 
@@ -2285,23 +2453,17 @@ msgid ""
 "Looking for a custom bamboo stain to match existing furniture? Contact us "
 "for a quote."
 msgstr ""
-"Търсите персонализирано бамбуково покритие, което да съответства на "
-"съществуващите мебели? Свържете се с нас за оферта."
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_size_m
 msgid "M"
-msgstr "M"
+msgstr ""
 
 #. module: product
-#: model:ir.model.fields,help:product.field_product_template_attribute_value__exclude_for
+#: model:ir.model.fields,help:product.field_product_template_attribute_value__excluded_value_ids
 msgid ""
-"Make this attribute value not compatible with other values of the product or "
-"some attribute values of optional and accessory products."
+"Make this attribute value not compatible with other values of the product."
 msgstr ""
-"Направете тази стойност на атрибута несъвместима с други стойности на "
-"продукта или с някои стойности на атрибути на допълнителни и съпътстващи "
-"продукти."
 
 #. module: product
 #: model:res.groups,name:product.group_product_variant
@@ -2314,15 +2476,21 @@ msgid "Margins"
 msgstr "Маржове"
 
 #. module: product
-#: model:ir.model.fields,field_description:product.field_product_pricelist_item__price_markup
-#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
-msgid "Markup"
-msgstr "Надценка"
-
-#. module: product
 #: model:product.attribute.value,name:product.pav_color_maroon
 msgid "Maroon"
-msgstr "Бордо"
+msgstr ""
+
+#. module: product
+#: model:product.attribute,name:product.pa_material
+msgid "Material"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,help:product.field_product_pricelist__activity_type_icon
+#: model:ir.model.fields,help:product.field_product_product__activity_type_icon
+#: model:ir.model.fields,help:product.field_product_template__activity_type_icon
+msgid "Material Symbols icon e.g. checklist"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
@@ -2337,7 +2505,7 @@ msgstr "Максимален марж на цена"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_maybelline
 msgid "Maybelline"
-msgstr "Maybelline"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_update_product_attribute_value__message
@@ -2363,17 +2531,12 @@ msgstr "Съобщения"
 #. module: product
 #: model:product.attribute.value,name:product.pav_fabric_metal
 msgid "Metal"
-msgstr "Метал"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__mimetype
 msgid "Mime Type"
 msgstr "Вид Mime"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
-msgid "Min Qty"
-msgstr "Мин. к-во"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
@@ -2393,7 +2556,12 @@ msgstr "Минимално количество"
 #. module: product
 #: model:product.template,description_sale:product.product_product_8_product_template
 msgid "Minimalist wooden desk for executive use"
-msgstr "Минималистично дървено бюро за ръководители"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
+msgid "Minimum Quantity"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_update_product_attribute_value__mode
@@ -2403,24 +2571,23 @@ msgstr "Вид"
 #. module: product
 #: model:product.template,name:product.monitor_stand_product_template
 msgid "Monitor Stand"
-msgstr "Стойка за монитор"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_montblanc
 msgid "Montblanc"
-msgstr "Montblanc"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__product_attribute__display_type__multi
 msgid "Multi-checkbox"
-msgstr "Множествен избор (чекбокс)"
+msgstr ""
 
 #. module: product
 #: model:ir.model.constraint,message:product.constraint_product_attribute_check_multi_checkbox_no_variant
 msgid ""
 "Multi-checkbox display type is not compatible with the creation of variants"
 msgstr ""
-"Дисплеят тип множествен избор не е съвместим със създаването на варианти"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_search_view
@@ -2436,6 +2603,7 @@ msgstr "Краен срок за моята дейност"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute_custom_value__name
+#: model:ir.model.fields,field_description:product.field_product_base_unit__name
 #: model:ir.model.fields,field_description:product.field_product_category__name
 #: model:ir.model.fields,field_description:product.field_product_combo__name
 #: model:ir.model.fields,field_description:product.field_product_document__name
@@ -2443,18 +2611,19 @@ msgstr "Краен срок за моята дейност"
 #: model:ir.model.fields,field_description:product.field_product_product__name
 #: model:ir.model.fields,field_description:product.field_product_tag__name
 #: model:ir.model.fields,field_description:product.field_product_template__name
+#: model_terms:ir.ui.view,arch_db:product.product_attribute_value_form
 msgid "Name"
 msgstr "Име"
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_navy
 msgid "Navy"
-msgstr "Тъмносиньо"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_nestle
 msgid "Nestlé"
-msgstr "Nestlé"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__product_attribute__create_variant__no_variant
@@ -2470,7 +2639,7 @@ msgstr "Нов"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_new_balance
 msgid "New Balance"
-msgstr "New Balance"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist__activity_calendar_event_id
@@ -2503,17 +2672,17 @@ msgstr "Вид на следващо действие"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_nike
 msgid "Nike"
-msgstr "Nike"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_nikon
 msgid "Nikon"
-msgstr "Nikon"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_nivea
 msgid "Nivea"
-msgstr "Nivea"
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -2522,20 +2691,18 @@ msgid ""
 "No product to print, if the product is archived please unarchive it before "
 "printing its label."
 msgstr ""
-"Няма продукт за печат; ако продуктът е архивиран, моля, разархивирайте го "
-"преди да отпечатате етикета му."
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/product_catalog/kanban_renderer.xml:0
 msgid "No products could be found."
-msgstr "Не са намерени продукти."
+msgstr ""
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.xml:0
 msgid "No products found in the report"
-msgstr "Няма намерени продукти в справката"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.actions.act_window,help:product.product_supplierinfo_type_action
@@ -2551,7 +2718,18 @@ msgstr "Не, запазете го"
 #. module: product
 #: model:product.template,description_sale:product.product_template_acoustic_bloc_screens
 msgid "Noise-reducing panels for open spaces"
-msgstr "Шумопоглъщащи панели за открити пространства"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_category_form_view
+msgid "None"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields.selection,name:product.selection__mrp_finished_product_label_layout__zpl_template__normal
+#: model:ir.model.fields.selection,name:product.selection__product_label_layout__zpl_template__normal
+msgid "Normal (2.25\" x 1.25\")"
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -2561,9 +2739,15 @@ msgid "Note:"
 msgstr "Забележка:"
 
 #. module: product
+#. odoo-python
+#: code:addons/product/models/product_product.py:0
+msgid "Note: Some products may be hidden due to access restrictions."
+msgstr ""
+
+#. module: product
 #: model:ir.model.fields.selection,name:product.selection__product_template__service_tracking__no
 msgid "Nothing"
-msgstr "Нищо"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute__number_related_products
@@ -2603,39 +2787,51 @@ msgid "Number of messages with delivery error"
 msgstr "Брой съобщения с грешка при доставка"
 
 #. module: product
+#: model:product.category,name:product.product_category_office
+msgid "Office"
+msgstr ""
+
+#. module: product
 #: model:product.template,name:product.product_delivery_01_product_template
 msgid "Office Chair"
-msgstr "Офис стол"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_12_product_template
 msgid "Office Chair Black"
-msgstr "Офис стол черен"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.office_combo_product_template
 msgid "Office Combo"
-msgstr "Офис комбо"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_order_01_product_template
 msgid "Office Design Software"
-msgstr "Софтуер за офис дизайн"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_delivery_02_product_template
 msgid "Office Lamp"
-msgstr "Офис лампа"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_olay
 msgid "Olay"
-msgstr "Olay"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_olive
 msgid "Olive"
-msgstr "Маслинено"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_product_tree_view
+#: model_terms:ir.ui.view,arch_db:product.product_template_tree_view
+#: model_terms:ir.ui.view,arch_db:product.product_view_list_qty
+msgid "On Hand"
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -2644,8 +2840,6 @@ msgid ""
 "On the product %(product)s you cannot associate the value %(value)s with the "
 "attribute %(attribute)s because they do not match."
 msgstr ""
-"На продукта %(product)s не можете да свържете стойността %(value)s с "
-"атрибута %(attribute)s, защото те не съвпадат."
 
 #. module: product
 #. odoo-python
@@ -2654,14 +2848,18 @@ msgid ""
 "On the product %(product)s you cannot transform the attribute %"
 "(attribute_src)s into the attribute %(attribute_dest)s."
 msgstr ""
-"На продукта %(product)s не можете да трансформирате атрибута %(attribute_src)"
-"s в атрибута %(attribute_dest)s."
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/product_document_kanban/upload_button/upload_button.js:0
 msgid "Oops! '%(fileName)s' didn’t upload since its format isn’t allowed."
-msgstr "Опа! '%(fileName)s' не беше качен, тъй като форматът му не е разрешен."
+msgstr ""
+
+#. module: product
+#. odoo-javascript
+#: code:addons/product/static/src/product_catalog/product_catalog_search_panel.xml:0
+msgid "Open filters"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_combo_item__product_id
@@ -2672,7 +2870,7 @@ msgstr "Настройки"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_oral_b
 msgid "Oral-B"
-msgstr "Oral-B"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_orange
@@ -2682,12 +2880,12 @@ msgstr "Оранжево"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__original_id
 msgid "Original (unoptimized, unresized) attachment"
-msgstr "Оригинален (неоптимизиран, непреоразмерен) прикачен файл"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_combo_item__lst_price
 msgid "Original Price"
-msgstr "Първоначална цена"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__base_pricelist_id
@@ -2697,47 +2895,59 @@ msgid "Other Pricelist"
 msgstr "Други ценови листи"
 
 #. module: product
+#: model:product.category,name:product.product_category_outdoor_furniture
+msgid "Outdoor"
+msgstr ""
+
+#. module: product
 #: model:product.template,name:product.product_template_dining_table
 msgid "Outdoor dining table"
-msgstr "Маса за хранене на открито"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__outgoing_qty
+#: model:ir.model.fields,field_description:product.field_product_template__outgoing_qty
+msgid "Outgoing"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_options_overhead_shelves
 msgid "Overhead shelves"
-msgstr "Горни рафтове"
+msgstr ""
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.report_packagingbarcode
-msgid "Package Type A"
-msgstr "Тип пакет A"
+#: model:ir.model.fields,field_description:product.field_product_label_layout__packaging_id
+#: model:ir.model.fields,field_description:product.field_product_pricelist_item__uom_id
+msgid "Packaging"
+msgstr ""
 
 #. module: product
-#. odoo-python
-#: code:addons/product/models/uom_uom.py:0
+#: model:ir.actions.act_window,name:product.product_uom_action_view_list
+#: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:product.product_uom_list_view
 msgid "Packaging Barcodes"
-msgstr "Баркодове на опаковки"
-
-#. module: product
-#: model:ir.actions.report,name:product.report_product_packaging
-msgid "Packaging Barcodes (PDF)"
-msgstr "Баркодове за опаковане (PDF)"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__uom_ids
 #: model:ir.model.fields,field_description:product.field_product_template__uom_ids
 msgid "Packagings"
-msgstr "Опаковки"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_panasonic
 msgid "Panasonic"
-msgstr "Panasonic"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_pantene
 msgid "Pantene"
-msgstr "Pantene"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_category_form_view
+msgid "Parent"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_category__parent_id
@@ -2750,9 +2960,14 @@ msgid "Parent Path"
 msgstr "Основен"
 
 #. module: product
+#: model:product.attribute,name:product.pa_pattern
+msgid "Pattern"
+msgstr ""
+
+#. module: product
 #: model:product.template,name:product.product_product_9_product_template
 msgid "Pedal Bin"
-msgstr "Кош с педал"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_pepsi
@@ -2760,30 +2975,30 @@ msgid "Pepsi"
 msgstr "Pepsi"
 
 #. module: product
-#: model:ir.model.fields,field_description:product.field_product_pricelist_item__percent_price
-msgid "Percentage Price"
-msgstr "Процентна цена"
-
-#. module: product
 #: model:product.attribute.value,name:product.pav_brand_philips
 msgid "Philips"
-msgstr "Philips"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__product_attribute__display_type__pills
 msgid "Pills"
-msgstr "Хапчета"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_pink
 msgid "Pink"
-msgstr "Розово"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_pricelist_item__is_plain_discount
+msgid "Plain Discount"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.js:0
 msgid "Please enter a positive whole number."
-msgstr "Моля, въведете положително цяло число."
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -2794,28 +3009,24 @@ msgid ""
 "\n"
 "Invalid URL: %s"
 msgstr ""
-"Моля, въведете валиден URL.\n"
-"Пример: https://www.odoo.com\n"
-"\n"
-"Невалиден URL: %s"
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.js:0
 msgid "Please select some products first."
-msgstr "Моля, изберете първо някои продукти."
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_pricelist_item.py:0
 msgid "Please specify the category for which this rule should be applied"
-msgstr "Моля, посочете категорията, за която трябва да се приложи това правило"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_pricelist_item.py:0
 msgid "Please specify the product for which this rule should be applied"
-msgstr "Моля, посочете продукта, за който трябва да се приложи това правило"
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -2823,13 +3034,11 @@ msgstr "Моля, посочете продукта, за който трябв�
 msgid ""
 "Please specify the product variant for which this rule should be applied"
 msgstr ""
-"Моля, посочете продуктовия вариант, за който трябва да се приложи това "
-"правило"
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__res_config_settings__product_weight_in_lbs__1
 msgid "Pounds (lb)"
-msgstr "Паунд (lb)"
+msgstr ""
 
 #. module: product
 #: model_terms:product.template,website_description:product.product_product_4_product_template
@@ -2837,13 +3046,10 @@ msgid ""
 "Press a button and watch your desk glide effortlessly from sitting to "
 "standing height in seconds."
 msgstr ""
-"Натиснете бутон и гледайте как бюрото ви плавно се издига от седнало в право "
-"положение за секунди."
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__price
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_tree_view_from_product
-#: model_terms:ir.ui.view,arch_db:product.product_pricelist_view
 msgid "Price"
 msgstr "Цена"
 
@@ -2851,6 +3057,12 @@ msgstr "Цена"
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__price_discount
 msgid "Price Discount"
 msgstr "Отстъпка от цената"
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__base_unit_price
+#: model:ir.model.fields,field_description:product.field_product_template__base_unit_price
+msgid "Price Per Unit"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__price_round
@@ -2864,21 +3076,10 @@ msgid "Price Rules"
 msgstr "Ценови правила"
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
-msgid "Price Type"
-msgstr "Тип цена"
-
-#. module: product
 #: model:ir.model.fields,help:product.field_product_product__list_price
 #: model:ir.model.fields,help:product.field_product_template__list_price
 msgid "Price at which the product is sold to customers."
-msgstr "Цена, на която продуктът се продава на клиентите."
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_kanban_view
-#: model_terms:ir.ui.view,arch_db:product.product_template_kanban_view
-msgid "Price:"
-msgstr "Цена:"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
@@ -2897,7 +3098,6 @@ msgstr "Ценова листа"
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_pricelist_item__applied_on
-#: model:ir.model.fields,help:product.field_product_pricelist_item__display_applied_on
 msgid "Pricelist Item applicable on selected option"
 msgstr "Ред на ценова листа, приложим към избраната опция"
 
@@ -2913,13 +3113,13 @@ msgstr "Име на ценова листа"
 #: model:ir.actions.server,name:product.action_product_template_price_list_report
 #: model:ir.model,name:product.model_report_product_report_pricelist
 msgid "Pricelist Report"
-msgstr "Справка за ценоразпис"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_pricelist.py:0
 msgid "Pricelist Report Preview"
-msgstr "Преглед на справка за ценоразпис"
+msgstr ""
 
 #. module: product
 #: model:ir.model,name:product.model_product_pricelist_item
@@ -2949,11 +3149,6 @@ msgid "Prices"
 msgstr "Цени"
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_variant_easy_edit_view
-msgid "Pricing"
-msgstr "Ценообразуване"
-
-#. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.xml:0
 #: model_terms:ir.ui.view,arch_db:product.product_label_layout_form
@@ -2965,25 +3160,31 @@ msgstr "Печат"
 #: model:ir.actions.act_window,name:product.action_open_label_layout
 #: model:ir.actions.server,name:product.action_product_print_labels
 #: model:ir.actions.server,name:product.action_product_template_print_labels
+#: model:ir.actions.server,name:product.action_product_uom_print_labels
 msgid "Print Labels"
-msgstr "Печат на етикети"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_label_layout__with_price
+msgid "Print With Price"
+msgstr ""
 
 #. module: product
 #: model:product.template,description_sale:product.product_product_24_product_template
 msgid "Private pod with desk and chair"
-msgstr "Самостоятелна капсула с бюро и стол"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/controllers/pricelist_report.py:0
 #: model:ir.model,name:product.model_product_template
+#: model:ir.model.fields,field_description:product.field_product_catalog_line_mixin__product_id
 #: model:ir.model.fields,field_description:product.field_product_label_layout__product_ids
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__product_tmpl_id
 #: model:ir.model.fields,field_description:product.field_product_product__product_variant_id
 #: model:ir.model.fields,field_description:product.field_product_template__product_variant_id
 #: model:ir.model.fields,field_description:product.field_product_uom__product_id
 #: model:ir.model.fields.selection,name:product.selection__product_pricelist_item__applied_on__1_product
-#: model:ir.model.fields.selection,name:product.selection__product_pricelist_item__display_applied_on__1_product
 #: model_terms:ir.ui.view,arch_db:product.product_kanban_view
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_view_search
 #: model_terms:ir.ui.view,arch_db:product.product_search_form_view
@@ -3010,12 +3211,12 @@ msgstr "Продуктови атрибути"
 #. module: product
 #: model:ir.model,name:product.model_product_attribute_custom_value
 msgid "Product Attribute Custom Value"
-msgstr "Потребителска стойност на атрибут на продукта"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_line__product_template_value_ids
 msgid "Product Attribute Values"
-msgstr "Стойности на атрибути на продукт"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_attribute_line_form
@@ -3029,9 +3230,14 @@ msgid "Product Attributes"
 msgstr "Продуктови атрибути"
 
 #. module: product
+#: model:ir.model,name:product.model_product_catalog_line_mixin
+msgid "Product Catalog Line Mixin"
+msgstr ""
+
+#. module: product
 #: model:ir.model,name:product.model_product_catalog_mixin
 msgid "Product Catalog Mixin"
-msgstr "Product Catalog Mixin"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_category_list_view
@@ -3053,78 +3259,41 @@ msgstr "Категория продукт"
 #. module: product
 #: model:ir.model,name:product.model_product_combo
 msgid "Product Combo"
-msgstr "Продуктово комбо"
+msgstr ""
 
 #. module: product
 #: model:ir.model,name:product.model_product_combo_item
 msgid "Product Combo Item"
-msgstr "Артикул от продуктово комбо"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_combo__combo_item_count
 #: model:ir.model.fields,field_description:product.field_update_product_attribute_value__product_count
 msgid "Product Count"
-msgstr "Брой продукти"
+msgstr ""
 
 #. module: product
 #: model:ir.model,name:product.model_product_document
 msgid "Product Document"
-msgstr "Документ на продукт"
+msgstr ""
 
 #. module: product
-#: model:ir.actions.report,name:product.report_product_template_label_dymo
-msgid "Product Label (PDF)"
-msgstr "Етикет на продукт (PDF)"
+#: model:ir.actions.report,name:product.report_product_template_label_zpl
+msgid "Product Label (ZPL)"
+msgstr ""
 
 #. module: product
-#: model:ir.actions.report,name:product.report_product_template_label_2x7
-msgid "Product Label 2x7 (PDF)"
-msgstr "Етикет на продукт 2x7 (PDF)"
+#: model:ir.actions.report,name:product.action_report_product_label_dymo
+msgid "Product Labels (Dymo)"
+msgstr ""
 
 #. module: product
-#: model:ir.actions.report,name:product.report_product_template_label_4x12
-msgid "Product Label 4x12 (PDF)"
-msgstr "Етикет на продукт 4x12 (PDF)"
+#: model:ir.actions.report,name:product.action_report_product_label_pdf
+msgid "Product Labels (PDF)"
+msgstr ""
 
 #. module: product
-#: model:ir.actions.report,name:product.report_product_template_label_4x12_noprice
-msgid "Product Label 4x12 No Price (PDF)"
-msgstr "Етикет на продукт 4x12 без цена (PDF)"
-
-#. module: product
-#: model:ir.actions.report,name:product.report_product_template_label_4x7
-msgid "Product Label 4x7 (PDF)"
-msgstr "Етикет на продукт 4x7 (PDF)"
-
-#. module: product
-#: model:ir.model,name:product.model_report_product_report_producttemplatelabel_dymo
-msgid "Product Label Report"
-msgstr "Отчет за етикети на продукта"
-
-#. module: product
-#: model:ir.model,name:product.model_report_product_report_producttemplatelabel2x7
-msgid "Product Label Report 2x7"
-msgstr "Справка за етикет на продукт 2x7"
-
-#. module: product
-#: model:ir.model,name:product.model_report_product_report_producttemplatelabel4x12
-msgid "Product Label Report 4x12"
-msgstr "Справка за етикет на продукт 4x12"
-
-#. module: product
-#: model:ir.model,name:product.model_report_product_report_producttemplatelabel4x12noprice
-msgid "Product Label Report 4x12 No Price"
-msgstr "Справка за етикет на продукт 4x12 без цена"
-
-#. module: product
-#: model:ir.model,name:product.model_report_product_report_producttemplatelabel4x7
-msgid "Product Label Report 4x7"
-msgstr "Справка за етикет на продукт 4x7"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_product_view_form_normalized
 #: model_terms:ir.ui.view,arch_db:product.product_template_tree_view
-#: model_terms:ir.ui.view,arch_db:product.product_variant_easy_edit_view
 msgid "Product Name"
 msgstr "Име на продукта:"
 
@@ -3138,56 +3307,50 @@ msgstr "Реквизити на продукта"
 #: model:ir.model,name:product.model_product_tag
 #: model_terms:ir.ui.view,arch_db:product.product_tag_form_view
 msgid "Product Tag"
-msgstr "Продуктов маркер"
+msgstr ""
 
 #. module: product
 #: model:ir.actions.act_window,name:product.product_tag_action
+#: model_terms:ir.ui.view,arch_db:product.product_normal_form_view
 #: model_terms:ir.ui.view,arch_db:product.product_tag_tree_view
 msgid "Product Tags"
-msgstr "Продуктови маркери"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__product_tmpl_id
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__product_tmpl_id
-#: model:ir.model.fields,field_description:product.field_product_template_attribute_exclusion__product_tmpl_id
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_line__product_tmpl_id
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__product_tmpl_id
-#: model_terms:ir.ui.view,arch_db:product.product_search_form_view
 #: model_terms:ir.ui.view,arch_db:product.product_view_search_catalog
 msgid "Product Template"
 msgstr "Шаблон за продукт"
 
 #. module: product
-#: model:ir.model,name:product.model_product_template_attribute_exclusion
-msgid "Product Template Attribute Exclusion"
-msgstr "Изключване на атрибут на продуктов шаблон"
-
-#. module: product
 #: model:ir.model,name:product.model_product_template_attribute_line
 msgid "Product Template Attribute Line"
-msgstr "Ред с атрибут на продуктов шаблон"
+msgstr ""
 
 #. module: product
 #: model:ir.model,name:product.model_product_template_attribute_value
 msgid "Product Template Attribute Value"
-msgstr "Стойност на атрибут на продуктов шаблон"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_tag__product_template_ids
 #: model_terms:ir.ui.view,arch_db:product.product_template_view_tree_tag
 msgid "Product Templates"
-msgstr "Продукти (семейства)"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_label_layout__product_tmpl_ids
 msgid "Product Tmpl"
-msgstr "Продуктов шаблон"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__product_tooltip
 #: model:ir.model.fields,field_description:product.field_product_template__product_tooltip
 msgid "Product Tooltip"
-msgstr "Подсказка за продукт"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__type
@@ -3203,10 +3366,15 @@ msgid "Product Unit of Measure"
 msgstr "Продуктова мерна единица"
 
 #. module: product
+#: model:ir.model.fields,field_description:product.field_product_label_layout__product_uom_ids
+msgid "Product Uom"
+msgstr ""
+
+#. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__import_attribute_values
 #: model:ir.model.fields,field_description:product.field_product_template__import_attribute_values
 msgid "Product Values"
-msgstr "Стойности на продукт"
+msgstr ""
 
 #. module: product
 #: model:ir.model,name:product.model_product_product
@@ -3219,28 +3387,12 @@ msgid "Product Variant"
 msgstr "Продуктов вариант"
 
 #. module: product
-#. odoo-python
-#: code:addons/product/models/product_template_attribute_line.py:0
-msgid "Product Variant Values"
-msgstr "Стойности на продуктов вариант"
-
-#. module: product
-#: model:ir.actions.act_window,name:product.product_normal_action
-#: model:ir.actions.act_window,name:product.product_normal_action_sell
 #: model:ir.actions.act_window,name:product.product_variant_action
 #: model:ir.model.fields,field_description:product.field_product_tag__product_product_ids
 #: model_terms:ir.ui.view,arch_db:product.product_product_tree_view
 #: model_terms:ir.ui.view,arch_db:product.product_product_view_activity
-#: model_terms:ir.ui.view,arch_db:product.product_product_view_tree_tag
 msgid "Product Variants"
 msgstr "Продуктови варианти"
-
-#. module: product
-#. odoo-python
-#: code:addons/product/report/product_label_report.py:0
-msgid "Product model not defined, Please contact your administrator."
-msgstr ""
-"Моделът на продукта не е дефиниран. Моля, свържете се с вашия администратор."
 
 #. module: product
 #. odoo-python
@@ -3255,6 +3407,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
 msgid "Products"
 msgstr "Продукти"
+
+#. module: product
+#: model:ir.module.module,shortdesc:base.module_product
+msgid "Products & Pricelists"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_view_search
@@ -3284,6 +3441,11 @@ msgid "Products: %(category)s"
 msgstr "Продукти: %(category)s"
 
 #. module: product
+#: model:product.template,description_sale:product.product_product_furniture_product_template
+msgid "Professional furniture assembly service"
+msgstr ""
+
+#. module: product
 #: model:ir.model.fields,field_description:product.field_res_config_settings__module_loyalty
 msgid "Promotions, Coupons, Gift Card & Loyalty Program"
 msgstr "Промоции, купони, карти за подарък и програма за лоялност"
@@ -3297,12 +3459,13 @@ msgstr "Свойства"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_puma
 msgid "Puma"
-msgstr "Puma"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__purchase_ok
 #: model:ir.model.fields,field_description:product.field_product_template__purchase_ok
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:product.product_template_search_view
 msgid "Purchase"
 msgstr "Покупка"
 
@@ -3318,10 +3481,16 @@ msgid "Purple"
 msgstr "Лилаво"
 
 #. module: product
+#: model:ir.model.fields.selection,name:product.selection__mrp_finished_product_label_layout__barcode_format__qr
+#: model:ir.model.fields.selection,name:product.selection__product_label_layout__barcode_format__qr
+msgid "QR Code"
+msgstr ""
+
+#. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.xml:0
 msgid "Quantities"
-msgstr "Количества"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
@@ -3337,18 +3506,48 @@ msgstr "Количество"
 #. odoo-python
 #: code:addons/product/controllers/pricelist_report.py:0
 msgid "Quantity (%s UoM)"
-msgstr "Количество (%s М.Е.)"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__qty_available
+#: model:ir.model.fields,field_description:product.field_product_template__qty_available
+msgid "Quantity On Hand"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.js:0
 msgid "Quantity already present (%s)."
-msgstr "Количество вече налично (%s)."
+msgstr ""
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_template_form_view
-msgid "Quotation Description"
-msgstr "Описание на офертата"
+#: model:ir.model.fields,help:product.field_product_product__incoming_qty
+msgid ""
+"Quantity of planned incoming products.\n"
+"In a context with a single Stock Location, this includes goods arriving to "
+"this Location, or any of its children.\n"
+"In a context with a single Warehouse, this includes goods arriving to the "
+"Stock Location of this Warehouse, or any of its children.\n"
+"Otherwise, this includes goods arriving to any Stock Location with "
+"'internal' type."
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,help:product.field_product_product__outgoing_qty
+msgid ""
+"Quantity of planned outgoing products.\n"
+"In a context with a single Stock Location, this includes goods leaving this "
+"Location, or any of its children.\n"
+"In a context with a single Warehouse, this includes goods leaving the Stock "
+"Location of this Warehouse, or any of its children.\n"
+"Otherwise, this includes goods leaving any Stock Location with 'internal' "
+"type."
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,help:product.field_product_template__free_qty
+msgid "Quantity on hand minus outgoing quantity."
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__product_attribute__display_type__radio
@@ -3356,15 +3555,20 @@ msgid "Radio"
 msgstr "Радио"
 
 #. module: product
+#: model:ir.model.fields.selection,name:product.selection__product_attribute__display_type__range
+msgid "Range"
+msgstr ""
+
+#. module: product
 #: model:product.attribute.value,name:product.pav_brand_rayban
 msgid "Ray-Ban"
-msgstr "Ray-Ban"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_pricelist_item.py:0
 msgid "Recursive pricelist rules detected: %s"
-msgstr "Открити са рекурсивни правила за ценоразпис: %s"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_red
@@ -3374,13 +3578,19 @@ msgstr "Червен"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_reebok
 msgid "Reebok"
-msgstr "Reebok"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__code
 #: model_terms:ir.ui.view,arch_db:product.product_template_only_form_view
 msgid "Reference"
-msgstr "Идентификатор"
+msgstr "Индетификатор"
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__base_unit_count
+#: model:ir.model.fields,field_description:product.field_product_template__base_unit_count
+msgid "Reference Unit"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.actions.act_window,help:product.product_supplierinfo_type_action
@@ -3388,35 +3598,37 @@ msgid ""
 "Register the prices requested by your vendors for each product, based on the "
 "quantity and the period."
 msgstr ""
-"Регистрирайте цените, заявени от вашите доставчици за всеки продукт, въз "
-"основа на количеството и периода."
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute__product_tmpl_ids
 msgid "Related Products"
-msgstr "Свързани продукти"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_value__ptav_product_variant_ids
 msgid "Related Variants"
-msgstr "Свързани варианти"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__ir_attachment_id
 msgid "Related attachment"
-msgstr "Свързан прикачен файл"
-
-#. module: product
-#. odoo-javascript
-#: code:addons/product/static/src/product_catalog/order_line/order_line.xml:0
-msgid "Remove"
-msgstr "Премахнете"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.xml:0
 msgid "Remove quantity"
-msgstr "Премахване на количество"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_document__res_access_read
+msgid "Res Access Read"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_document__res_access_write
+msgid "Res Access Write"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__res_field
@@ -3448,22 +3660,22 @@ msgstr "Отговорник"
 #. module: product
 #: model:product.template,name:product.expense_product_product_template
 msgid "Restaurant Expenses"
-msgstr "Ресторантски разходи"
+msgstr ""
 
 #. module: product
 #: model:product.template,description_sale:product.product_product_5_product_template
 msgid "Right-aligned desk with storage"
-msgstr "Бюро с дясно подравняване и място за съхранение"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_rolex
 msgid "Rolex"
-msgstr "Rolex"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "Round off to"
-msgstr "Закръгли до"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_label_layout__rows
@@ -3473,19 +3685,24 @@ msgstr "Редици"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__rule_tip
 msgid "Rule Tip"
-msgstr "Подсказка за правилото"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_view
+msgid "Rules"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_size_s
 msgid "S"
-msgstr "S"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__sale_ok
 #: model:ir.model.fields,field_description:product.field_product_template__sale_ok
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_view_search
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:product.product_template_search_view
-#: model_terms:ir.ui.view,arch_db:product.product_variant_easy_edit_view
 msgid "Sales"
 msgstr "Продажби"
 
@@ -3493,22 +3710,16 @@ msgstr "Продажби"
 #: model:ir.model.fields,field_description:product.field_product_product__description_sale
 #: model:ir.model.fields,field_description:product.field_product_template__description_sale
 msgid "Sales Description"
-msgstr "Описание за продажби"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__list_price
 #: model:ir.model.fields,field_description:product.field_product_template__list_price
 #: model:ir.model.fields.selection,name:product.selection__product_pricelist_item__base__list_price
-#: model_terms:ir.ui.view,arch_db:product.product_product_tree_view
+#: model_terms:ir.ui.view,arch_db:product.product_label_layout_form
 #: model_terms:ir.ui.view,arch_db:product.product_template_tree_view
-#: model_terms:ir.ui.view,arch_db:product.product_variant_easy_edit_view
 msgid "Sales Price"
 msgstr "Продажна цена"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_pricelist_view
-msgid "Sales Prices"
-msgstr "Продажни цени"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__lst_price
@@ -3518,13 +3729,7 @@ msgstr "Продажна цена"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_samsung
 msgid "Samsung"
-msgstr "Samsung"
-
-#. module: product
-#. odoo-javascript
-#: code:addons/product/static/src/product_name_and_description/product_name_and_description.js:0
-msgid "Search a product"
-msgstr "Трърсене на продукт"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__product_attribute__display_type__select
@@ -3542,6 +3747,7 @@ msgstr "Изберете"
 #: model:ir.model.fields,field_description:product.field_product_tag__sequence
 #: model:ir.model.fields,field_description:product.field_product_template__sequence
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_line__sequence
+#: model:ir.model.fields,field_description:product.field_product_template_attribute_value__sequence
 msgid "Sequence"
 msgstr "Последователност"
 
@@ -3551,8 +3757,10 @@ msgid "Service"
 msgstr "Обслужване"
 
 #. module: product
+#: model:product.category,name:product.product_category_services
 #: model_terms:ir.ui.view,arch_db:product.product_template_search_view
 #: model_terms:ir.ui.view,arch_db:product.product_view_search_catalog
+#: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
 msgid "Services"
 msgstr "Услуги"
 
@@ -3563,26 +3771,54 @@ msgid ""
 "Rounding is applied after the discount and before the surcharge.\n"
 "To have prices that end in 9.99, round off to 10.00 and set an extra at -0.01"
 msgstr ""
-"Задава цената така, че да е кратна на тази стойност.\n"
-"Закръгляването се прилага след отстъпката и преди надбавката.\n"
-"За да имате цени, завършващи на 9.99, закръглете до 10.00 и задайте надбавка "
-"на -0.01"
 
 #. module: product
 #: model:product.attribute,name:product.pa_shoe_size
 msgid "Shoes size"
-msgstr "Размер на обувки"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_template_form_view
+msgid "Short Description"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_template_attribute_value__show_price_extra
+msgid "Show Extra Price"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.xml:0
 msgid "Show Name"
-msgstr "Показване на име"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__show_qty_update_button
+#: model:ir.model.fields,field_description:product.field_product_template__show_qty_update_button
+msgid "Show Qty Update Button"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__show_sales_price_page
+#: model:ir.model.fields,field_description:product.field_product_template__show_sales_price_page
+msgid "Show Sales Price Page"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_search_view
 msgid "Show all records whose next activity date is past"
-msgstr "Покажи всички записи, чиято дата на следваща дейност е в миналото"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,help:product.field_product_template_attribute_value__show_price_extra
+msgid "Show separately the extra price for this attribute value."
+msgstr ""
+
+#. module: product
+#: model:product.attribute,name:product.pa_sides
+msgid "Sides"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_silver
@@ -3595,20 +3831,20 @@ msgid "Size"
 msgstr "Размер"
 
 #. module: product
+#: model:ir.model.fields.selection,name:product.selection__mrp_finished_product_label_layout__zpl_template__small
+#: model:ir.model.fields.selection,name:product.selection__product_label_layout__zpl_template__small
+msgid "Small (1.25\" x 1.00\")"
+msgstr ""
+
+#. module: product
 #: model:product.template,description_sale:product.product_product_9_product_template
 msgid "Soft-close pedal bin for office use"
-msgstr "Кош за отпадъци с плавно затваряне и педал за офис"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_sony
 msgid "Sony"
-msgstr "Sony"
-
-#. module: product
-#: model:ir.model.fields,field_description:product.field_res_partner__specific_property_product_pricelist
-#: model:ir.model.fields,field_description:product.field_res_users__specific_property_product_pricelist
-msgid "Specific Property Product Pricelist"
-msgstr "Специфичен ценоразпис за продукта"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_pricelist_item__categ_id
@@ -3644,8 +3880,6 @@ msgid ""
 "Specify the fixed amount to add or subtract (if negative) to the amount "
 "calculated with the discount."
 msgstr ""
-"Укажете фиксираната сума, която да се добави или извади (ако е отрицателна) "
-"към сумата, изчислена с отстъпката."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_pricelist_item__price_max_margin
@@ -3656,6 +3890,12 @@ msgstr "Определете максималния размер на маржа
 #: model:ir.model.fields,help:product.field_product_pricelist_item__price_min_margin
 msgid "Specify the minimum amount of margin over the base price."
 msgstr "Определете минималния размер на маржа спрямо базовата цена."
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_normal_form_view
+#: model_terms:ir.ui.view,arch_db:product.product_template_only_form_view
+msgid "Specify unit"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__date_start
@@ -3674,9 +3914,6 @@ msgid ""
 "Starting datetime for the pricelist item validation\n"
 "The displayed value depends on the timezone set in your preferences."
 msgstr ""
-"Начална дата и час за валидиране на елемента от ценоразписа\n"
-"Показаната стойност зависи от часовата зона, зададена във вашите "
-"предпочитания."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_pricelist__activity_state
@@ -3696,12 +3933,12 @@ msgstr ""
 #. module: product
 #: model:product.attribute.value,name:product.pav_legs_steel
 msgid "Steel"
-msgstr "Стомана"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_7_product_template
 msgid "Storage Box"
-msgstr "Кутия за съхранение"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__store_fname
@@ -3712,6 +3949,13 @@ msgstr "Stored Filename"
 #: model:ir.model,name:product.model_product_supplierinfo
 msgid "Supplier Pricelist"
 msgstr "Ценова листа на доставчик"
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_pricelist_item__price_markup
+#: model:ir.model.fields.selection,name:product.selection__product_pricelist_item__compute_price__markup
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
+msgid "Surcharge"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_tag_form_view
@@ -3735,34 +3979,52 @@ msgstr "Маркери"
 #. module: product
 #: model_terms:ir.actions.act_window,help:product.product_tag_action
 msgid "Tags are used to search product for a given theme."
-msgstr "Етикетите се използват за търсене на продукт по дадена тема."
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_tan
 msgid "Tan"
-msgstr "Бежово"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_teal
 msgid "Teal"
-msgstr "Тюркоазено"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute__template_value_ids
 msgid "Template Values"
-msgstr "Стойности на шаблона"
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_pricelist.py:0
+msgid "Template for Pricelists"
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_template.py:0
+msgid "Template for Products"
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_supplierinfo.py:0
+msgid "Template for Vendor Pricelists"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_template.py:0
 msgid "The Internal Reference '%s' already exists."
-msgstr "Вътрешната референция „%s“ вече съществува."
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_product.py:0
 msgid "The Reference '%s' already exists."
-msgstr "Референцията '%s' вече съществува."
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -3771,8 +4033,6 @@ msgid ""
 "The attribute %(attribute)s must have at least one value for the product %"
 "(product)s."
 msgstr ""
-"Атрибутът %(attribute)s трябва да има поне една стойност за продукта %"
-"(product)s."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_attribute_value__attribute_id
@@ -3780,15 +4040,13 @@ msgid ""
 "The attribute cannot be changed once the value is used on at least one "
 "product."
 msgstr ""
-"Атрибутът не може да бъде променен, след като стойността е използвана поне "
-"на един продукт."
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_product.py:0
 #: code:addons/product/models/product_template.py:0
 msgid "The cost of a product can't be negative."
-msgstr "Себестойността на продукт не може да е отрицателна."
+msgstr ""
 
 #. module: product
 #: model:product.template,description_sale:product.desk_organizer_product_template
@@ -3797,16 +4055,13 @@ msgid ""
 "since the 5 boxes are loose, you can move and place them in the way that "
 "suits you and your things best."
 msgstr ""
-"Органайзерът за бюро е идеален за съхранение на всякакви дребни предмети и "
-"тъй като 5-те кутии са свободни, можете да ги местите и подреждате така, "
-"както е най-удобно за вас и вашите вещи."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_attribute__display_type
 #: model:ir.model.fields,help:product.field_product_attribute_value__display_type
 #: model:ir.model.fields,help:product.field_product_template_attribute_value__display_type
 msgid "The display type used in the Product Configurator."
-msgstr "Типът на показване, използван в Конфигуратора на продукти."
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -3816,8 +4071,6 @@ msgid ""
 "is not equivalent to \"%(existing_values)s\" for \"%(external_id)s\", \"%"
 "(id)s\""
 msgstr ""
-"Съществуващият продукт има различна стойност на атрибута. „%(imported_values)"
-"s“ не е еквивалентно на „%(existing_values)s“ за „%(external_id)s“, „%(id)s“"
 
 #. module: product
 #: model_terms:product.template,website_description:product.product_product_4_product_template
@@ -3825,14 +4078,12 @@ msgid ""
 "The minimum height is 65 cm, and for standing work the maximum height "
 "position is 125 cm."
 msgstr ""
-"Минималната височина е 65 см, а за работа в право положение максималната "
-"височина е 125 см."
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_pricelist_item.py:0
 msgid "The minimum margin should be lower than the maximum margin."
-msgstr "Минималният марж трябва да е по-нисък от максималния марж."
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_combo__base_price
@@ -3842,10 +4093,6 @@ msgid ""
 "combo product. This heuristic ensures that whatever product the user chooses "
 "in a combo, it will always be the same price."
 msgstr ""
-"Минималната цена сред продуктите в това комбо. Тази стойност ще се използва "
-"за пропорционално разпределяне на цената на това комбо спрямо другите комба "
-"в комбо продукт. Тази евристика гарантира, че който и продукт да избере "
-"потребителят в комбо, цената винаги ще е една и съща."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_category__product_count
@@ -3863,10 +4110,6 @@ msgid ""
 "the sales order. To do so, open the form view of attributes and change the "
 "mode of *Create Variants*."
 msgstr ""
-"Броят на вариантите за генериране надвишава допустимия лимит. Трябва или да "
-"не генерирате варианти за всяка комбинация, или да ги генерирате при "
-"поискване от търговската поръчка. За да направите това, отворете изгледа на "
-"формуляра на атрибутите и сменете режима на *Създаване на варианти*."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_supplierinfo__price
@@ -3878,7 +4121,6 @@ msgstr "Цената за закупуване на продукт"
 #: code:addons/product/models/product_template.py:0
 msgid "The product template is archived so no combination is possible."
 msgstr ""
-"Шаблонът на продукта е архивиран, така че не е възможна никаква комбинация."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_supplierinfo__min_qty
@@ -3887,27 +4129,20 @@ msgid ""
 "a vendor unit is set, quantity should be specified in this unit, otherwise "
 "it should be specified in the default unit of the product."
 msgstr ""
-"Количеството за закупуване от този доставчик, за да се възползвате от "
-"единичната цена. Ако е зададена доставчикова единица, количеството трябва да "
-"се посочи в тази единица, в противен случай трябва да се посочи в мерната "
-"единица по подразбиране на продукта."
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_pricelist_item.py:0
 msgid "The rounding method must be strictly positive."
-msgstr "Методът на закръгляне трябва да е строго положителен."
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_combo_item__lst_price
 #: model:ir.model.fields,help:product.field_product_product__lst_price
 msgid ""
-"The sale price is managed from the product template. Click on the 'Configure "
-"Variants' button to set the extra attribute prices."
+"The sale price can be set manually or computed from the product template. "
+"Click on the 'Configure Variants' button to set the extra attribute prices."
 msgstr ""
-"Продажната цена се управлява от шаблона на продукта. Кликнете върху бутона "
-"'Конфигуриране на варианти', за да зададете цените на допълнителните "
-"атрибути."
 
 #. module: product
 #. odoo-python
@@ -3916,26 +4151,40 @@ msgid ""
 "The value %(value)s is not defined for the attribute %(attribute)s on the "
 "product %(product)s."
 msgstr ""
-"Стойността %(value)s не е дефинирана за атрибута %(attribute)s на продукта %"
-"(product)s."
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_product.py:0
+msgid ""
+"The value of Base Unit Count must be greater than 0. Use 0 to hide the price "
+"per unit on this product."
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_catalog_mixin.py:0
+msgid ""
+"There are multiple lines with the same product, please update those one by "
+"one and not through the catalog."
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_template.py:0
 msgid "There are no possible combination."
-msgstr "Няма възможна комбинация."
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_template.py:0
 msgid "There are no remaining closest combination."
-msgstr "Няма оставаща най-близка комбинация."
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_template.py:0
 msgid "There are no remaining possible combination."
-msgstr "Няма оставаща възможна комбинация."
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -3945,9 +4194,6 @@ msgid ""
 "to no possible variant. Please archive or delete your product directly if "
 "intended."
 msgstr ""
-"Тази конфигурация на продуктови атрибути, стойности и изключения би довела "
-"до липса на възможен вариант. Моля, архивирайте или изтрийте продукта си "
-"директно, ако това е целта."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_product__price_extra
@@ -3957,12 +4203,12 @@ msgstr "Това е сумата на допълнителната цена на
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "This note is added to sales orders and invoices."
-msgstr "Тази бележка се добавя към поръчките за продажба и фактурите."
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "This note is only for internal purposes."
-msgstr "Тази бележка е само за вътрешни цели."
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -3970,8 +4216,6 @@ msgstr "Тази бележка е само за вътрешни цели."
 msgid ""
 "This product is part of a combo, so its type can't be changed to \"combo\"."
 msgstr ""
-"Този продукт е част от комбо, така че типът му не може да бъде променен на „"
-"комбо“."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_supplierinfo__product_code
@@ -3999,7 +4243,7 @@ msgstr "Миниатюра"
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_tide
 msgid "Tide"
-msgstr "Tide"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_search_view
@@ -4007,17 +4251,36 @@ msgid "Today Activities"
 msgstr "Днешни дейности"
 
 #. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_view_list_qty
+msgid "Total Forecasted"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_product_tree_view
+#: model_terms:ir.ui.view,arch_db:product.product_template_tree_view
+#: model_terms:ir.ui.view,arch_db:product.product_view_list_qty
+msgid "Total On Hand"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_product__is_storable
+#: model:ir.model.fields,field_description:product.field_product_template__is_storable
+msgid "Track Inventory"
+msgstr ""
+
+#. module: product
 #: model:product.template,name:product.consu_delivery_01_product_template
 msgid "Two-Seat Sofa"
-msgstr "Двуместен диван"
+msgstr ""
 
 #. module: product
 #: model:product.template,description_sale:product.consu_delivery_01_product_template
 msgid "Two-Seater Sofa with Oak Wood Frame"
-msgstr "Двуместен диван с рамка от дъбово дърво"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__type
+#: model:ir.model.fields,field_description:product.field_product_label_layout__barcode_format
 msgid "Type"
 msgstr "Вид"
 
@@ -4033,13 +4296,12 @@ msgstr "Вид на изключение на дейност в базата."
 #: code:addons/product/controllers/pricelist_report.py:0
 #: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
 msgid "UOM"
-msgstr "Мерна единица"
+msgstr ""
 
 #. module: product
-#. odoo-python
-#: code:addons/product/wizard/product_label_layout.py:0
-msgid "Unable to find report template for %s format"
-msgstr "Не е намерен шаблон за справка за формат %s"
+#: model:res.groups,name:product.group_show_uom_price
+msgid "UOM price display"
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -4048,8 +4310,6 @@ msgid ""
 "Unable to import products with attribute value without attribute name "
 "(defined as: attribute:value): %s"
 msgstr ""
-"Не могат да се импортират продукти със стойност на атрибут без име на "
-"атрибут (дефинирано като: attribute:value): %s"
 
 #. module: product
 #. odoo-python
@@ -4058,27 +4318,25 @@ msgid ""
 "Unable to import products with attribute values but without name of product "
 "set"
 msgstr ""
-"Не могат да се импортират продукти със стойности на атрибути, но без име на "
-"продуктов набор"
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_underarmour
 msgid "Under Armour"
-msgstr "Under Armour"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_options_under_desk_pedestals
 msgid "Under-desk pedestals"
-msgstr "Контейнери под бюрото"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_uniqlo
 msgid "Uniqlo"
-msgstr "Uniqlo"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__uom_id
-#: model:ir.model.fields,field_description:product.field_product_supplierinfo__product_uom_id
+#: model:ir.model.fields,field_description:product.field_product_supplierinfo__uom_id
 #: model:ir.model.fields,field_description:product.field_product_template__uom_id
 #: model:ir.model.fields,field_description:product.field_product_uom__uom_id
 msgid "Unit"
@@ -4087,25 +4345,31 @@ msgstr "Единица"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__product_uom_ids
 msgid "Unit Barcode"
-msgstr "Баркод на единица"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__product_uom_name
 #: model:ir.model.fields,field_description:product.field_product_product__uom_name
 #: model:ir.model.fields,field_description:product.field_product_template__uom_name
 msgid "Unit Name"
-msgstr "Име на единица"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__price
 #: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_form_view
+#: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "Unit Price"
 msgstr "Единична цена"
 
 #. module: product
+#: model:ir.model,name:product.model_product_base_unit
+msgid "Unit of Measure for price per unit on products."
+msgstr ""
+
+#. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/product_catalog/kanban_model.js:0
-#: model_terms:ir.ui.view,arch_db:product.report_packagingbarcode
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "Units"
 msgstr "Единици"
 
@@ -4117,34 +4381,44 @@ msgstr "Мерни единици"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_res_config_settings__group_uom
 msgid "Units of Measure & Packagings"
-msgstr "Мерни единици и опаковки"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.product_view_list_qty
+msgid "Update Quantities"
+msgstr ""
+
+#. module: product
+#: model:ir.actions.act_window,name:product.product_variant_edit_qty_action
+msgid "Update Variant Quantities"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_attribute_view_form
 msgid "Update extra prices"
-msgstr "Актуализиране на допълнителните цени"
+msgstr ""
 
 #. module: product
 #: model:ir.model,name:product.model_update_product_attribute_value
 msgid "Update product attribute value"
-msgstr "Актуализирай стойност на продуктов атрибут"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_attribute_value.py:0
 msgid "Update product extra prices"
-msgstr "Актуализирай допълнителните цени на продукта"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields.selection,name:product.selection__update_product_attribute_value__mode__update_extra_price
 msgid "Update the extra price on existing products"
-msgstr "Актуализирай допълнителната цена на съществуващи продукти"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/product_document_kanban/upload_button/upload_button.xml:0
 msgid "Upload"
-msgstr "Качване"
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -4163,29 +4437,18 @@ msgid "Url"
 msgstr "URL адрес"
 
 #. module: product
-#: model:ir.model.fields,help:product.field_product_pricelist_item__compute_price
-msgid ""
-"Use the discount rules and activate the discount settings in order to show "
-"discount to customer."
-msgstr ""
-"Използвайте правилата за отстъпки и активирайте настройките за отстъпки, за "
-"да показвате отстъпка на клиента."
-
-#. module: product
 #. odoo-python
 #: code:addons/product/models/product_template.py:0
 msgid ""
 "Use this feature to store any files you would like to share with your "
 "customers"
 msgstr ""
-"Използвайте тази функция, за да съхранявате файлове, които искате да "
-"споделите с клиентите си"
 
 #. module: product
 #: model:ir.model.fields,help:product.field_res_partner__property_product_pricelist
 #: model:ir.model.fields,help:product.field_res_users__property_product_pricelist
 msgid "Used for sales to the current partner"
-msgstr "Използва се за продажби към текущия партньор"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__is_used_on_products
@@ -4199,20 +4462,24 @@ msgid "Username"
 msgstr "Потребителско име"
 
 #. module: product
+#: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
+msgid "VINT_1000"
+msgstr ""
+
+#. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__valid_product_template_attribute_line_ids
 #: model:ir.model.fields,field_description:product.field_product_template__valid_product_template_attribute_line_ids
 msgid "Valid Product Attribute Lines"
-msgstr "Валидни редове с продуктови атрибути"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_form_view
-msgid "Validity"
-msgstr "Валидност"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
-msgid "Validity Period"
-msgstr "Срок на валидност"
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_tree_view
+#: model_terms:ir.ui.view,arch_db:product.product_pricelist_view
+#: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_form_view
+#: model_terms:ir.ui.view,arch_db:product.product_template_form_view
+msgid "Validity"
+msgstr "Валидност"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute_value__name
@@ -4223,7 +4490,7 @@ msgstr "Стойност"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_template_attribute_line__value_count
 msgid "Value Count"
-msgstr "Брой стойности"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_product__standard_price
@@ -4234,10 +4501,6 @@ msgid ""
 "inventory adjustment).\n"
 "        Used to compute margins on sale orders."
 msgstr ""
-"Стойност на продукта (автоматично изчислена в AVCO).\n"
-"        Използва се за оценяване на продукта, когато покупната себестойност "
-"не е известна (напр. корекция на инвентара).\n"
-"        Използва се за изчисляване на маржове по продажбени поръчки."
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute__value_ids
@@ -4249,10 +4512,15 @@ msgstr "Стойности"
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_pricelist_item__product_id
-#: model_terms:ir.ui.view,arch_db:product.product_document_kanban
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_view_search
+#: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "Variant"
 msgstr "Вариант"
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_document__variant_attribute_value_ids
+msgid "Variant Attribute Value"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__product_variant_count
@@ -4262,7 +4530,7 @@ msgstr "Брой варианти"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_attribute__create_variant
 msgid "Variant Creation"
-msgstr "Създаване на варианти"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__image_variant_1920
@@ -4290,11 +4558,6 @@ msgid "Variant Image 512"
 msgstr "Изображение на вариант 512"
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_variant_easy_edit_view
-msgid "Variant Information"
-msgstr "Информация за вариант"
-
-#. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__price_extra
 msgid "Variant Price Extra"
 msgstr "Допълнителна цена на вариант"
@@ -4303,24 +4566,24 @@ msgstr "Допълнителна цена на вариант"
 #: model:ir.model.fields,field_description:product.field_product_product__variant_seller_ids
 #: model:ir.model.fields,field_description:product.field_product_template__variant_seller_ids
 msgid "Variant Seller"
-msgstr "Продавач на варианта"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__additional_product_tag_ids
 msgid "Variant Tags"
-msgstr "Етикети на варианта"
+msgstr ""
 
 #. module: product
-#: model:ir.model.fields,field_description:product.field_product_product__product_template_variant_value_ids
 #: model_terms:ir.ui.view,arch_db:product.attribute_tree_view
 msgid "Variant Values"
 msgstr "Стойности на варианти"
 
 #. module: product
-#. odoo-python
-#: code:addons/product/models/product_pricelist_item.py:0
-msgid "Variant: %s"
-msgstr "Вариант: %s"
+#: model:ir.model.fields,help:product.field_product_product__extra_uom_ids
+msgid ""
+"Variant-specific additional packagings for this product which can be used "
+"for sales"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_res_config_settings__group_product_variant
@@ -4332,19 +4595,20 @@ msgstr "Варианти"
 #. module: product
 #: model:product.attribute.value,name:product.pav_fabric_velvet
 msgid "Velvet"
-msgstr "Кадифе"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_supplierinfo__partner_id
 #: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_form_view
 #: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_search_view
+#: model_terms:ir.ui.view,arch_db:product.product_view_search_catalog
 msgid "Vendor"
 msgstr "Търговец"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "Vendor Bills"
-msgstr "Фактури за покупка"
+msgstr "Дневник на покупките"
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_form_view
@@ -4374,15 +4638,20 @@ msgid "Vendors"
 msgstr "Доставчици"
 
 #. module: product
+#: model:res.groups.privilege,placeholder:product.res_groups_privilege_product
+msgid "View"
+msgstr ""
+
+#. module: product
 #: model:product.template,name:product.product_product_2_product_template
 msgid "Virtual Home Staging"
-msgstr "Виртуална подготовка на дома"
+msgstr ""
 
 #. module: product
 #: model:product.template,name:product.product_product_1_product_template
 #: model_terms:ir.ui.view,arch_db:product.report_pricelist_page
 msgid "Virtual Interior Design"
-msgstr "Виртуален интериорен дизайн"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_combo_view_form
@@ -4390,17 +4659,17 @@ msgstr "Виртуален интериорен дизайн"
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_view
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "Visible to all"
-msgstr "Видимо за всички"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_tag__visible_to_customers
 msgid "Visible to customers"
-msgstr "Видимо за клиентите"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_document__voice_ids
 msgid "Voice"
-msgstr "Глас"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__volume
@@ -4413,7 +4682,7 @@ msgstr "Обем"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_res_config_settings__product_volume_volume_in_cubic_feet
 msgid "Volume unit of measure"
-msgstr "Мерна единица за обем"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__volume_uom_name
@@ -4432,8 +4701,6 @@ msgid ""
 "We pay special attention to detail, which is why our desks are of a superior "
 "quality."
 msgstr ""
-"Обръщаме специално внимание на детайла, затова бюрата ни са с превъзходно "
-"качество."
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__weight
@@ -4445,7 +4712,7 @@ msgstr "Тегло"
 #. module: product
 #: model:ir.model.fields,field_description:product.field_res_config_settings__product_weight_in_lbs
 msgid "Weight unit of measure"
-msgstr "Мерна единица за тегло"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__weight_uom_name
@@ -4458,17 +4725,22 @@ msgstr "Етикет на мерната единица за тегло"
 #: code:addons/product/models/product_product.py:0
 #: code:addons/product/models/product_template.py:0
 msgid "What to expect ?"
-msgstr "Какво да очаквате?"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,help:product.field_product_pricelist_item__is_plain_discount
+msgid "Whether the rule lowers the price by exactly its discount percentage."
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_tag__visible_to_customers
 msgid "Whether the tag is displayed to customers."
-msgstr "Дали етикетът се показва на клиентите."
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_whirlpool
 msgid "Whirlpool"
-msgstr "Whirlpool"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_white
@@ -4479,12 +4751,18 @@ msgstr "Бял"
 #: model:product.attribute.value,name:product.pav_fabric_wood
 #: model:product.attribute.value,name:product.pav_legs_wood
 msgid "Wood"
-msgstr "Дърво"
+msgstr ""
 
 #. module: product
 #: model:ir.model.fields,field_description:product.field_product_product__write_date
 msgid "Write Date"
-msgstr "Дата на промяна"
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_catalog_mixin.py:0
+msgid "Wrong catalog child field!"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_size_xl
@@ -4494,7 +4772,7 @@ msgstr "XL"
 #. module: product
 #: model:product.attribute.value,name:product.pav_size_xs
 msgid "XS"
-msgstr "XS"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_color_yellow
@@ -4508,14 +4786,12 @@ msgid ""
 "You are about to add the value \"%(attribute_value)s\" to %(product_count)s "
 "products."
 msgstr ""
-"На път сте да добавите стойността „%(attribute_value)s“ към %(product_count)"
-"s продукта."
 
 #. module: product
 #. odoo-python
 #: code:addons/product/wizard/update_product_attribute_value.py:0
 msgid "You are about to update the extra price of %s products."
-msgstr "На път сте да актуализирате допълнителната цена на %s продукта."
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -4524,19 +4800,6 @@ msgid ""
 "You are deactivating the pricelist feature. Every active pricelist will be "
 "archived."
 msgstr ""
-"Деактивирате функцията за ценоразписи. Всеки активен ценоразпис ще бъде "
-"архивиран."
-
-#. module: product
-#: model:ir.model.fields,help:product.field_product_pricelist_item__percent_price
-#: model:ir.model.fields,help:product.field_product_pricelist_item__price_discount
-msgid "You can apply a mark-up by setting a negative discount."
-msgstr "Можете да приложите надценка, като зададете отрицателна отстъпка."
-
-#. module: product
-#: model:ir.model.fields,help:product.field_product_pricelist_item__price_markup
-msgid "You can apply a mark-up on the cost"
-msgstr "Можете да приложите надценка върху себестойността"
 
 #. module: product
 #: model_terms:ir.actions.act_window,help:product.product_pricelist_action2
@@ -4544,8 +4807,6 @@ msgid ""
 "You can assign pricelists to your customers or select one when creating a "
 "new sales quotation."
 msgstr ""
-"Можете да присвоите ценоразписи на клиентите си или да изберете един при "
-"създаване на нова оферта за продажба."
 
 #. module: product
 #: model:ir.model.fields,help:product.field_product_document__type
@@ -4557,20 +4818,40 @@ msgstr ""
 "интернет линк във файла си."
 
 #. module: product
+#. odoo-python
+#: code:addons/product/models/product_uom.py:0
+msgid ""
+"You can only print labels for packaging barcodes using the same packaging."
+msgstr ""
+
+#. module: product
 #: model:ir.model.fields,help:product.field_product_attribute_value__image
 #: model:ir.model.fields,help:product.field_product_template_attribute_value__image
 msgid ""
 "You can upload an image that will be used as the color of the attribute "
 "value."
 msgstr ""
-"Можете да качите изображение, което ще се използва като цвят на стойността "
-"на атрибута."
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/product_catalog/order_line/order_line.xml:0
 msgid "You can't edit this product in the catalog."
-msgstr "Не можете да редактирате този продукт в каталога."
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_catalog_mixin.py:0
+msgid "You cannot add or remove products from this record."
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_product.py:0
+#: code:addons/product/models/product_template.py:0
+msgid ""
+"You cannot archive a product that is part of a combo. Please remove it from "
+"the following combos first: %s"
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -4578,8 +4859,6 @@ msgstr "Не можете да редактирате този продукт в
 msgid ""
 "You cannot archive this attribute as there are still products linked to it"
 msgstr ""
-"Не можете да архивирате този атрибут, тъй като все още има свързани с него "
-"продукти"
 
 #. module: product
 #. odoo-python
@@ -4589,9 +4868,6 @@ msgid ""
 "because it is used on the following products:\n"
 "%(products)s"
 msgstr ""
-"Не можете да промените режима на създаване на варианти на атрибута %"
-"(attribute)s, защото той се използва в следните продукти:\n"
-"%(products)s"
 
 #. module: product
 #. odoo-python
@@ -4600,8 +4876,22 @@ msgid ""
 "You cannot change the attribute of the value %(value)s because it is used on "
 "the following products: %(products)s"
 msgstr ""
-"Не можете да промените атрибута на стойността %(value)s, защото се използва "
-"в следните продукти: %(products)s"
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_category.py:0
+msgid ""
+"You cannot change the company of %(categories)s as they hold products shared "
+"between companies or belonging to other companies."
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_category.py:0
+msgid ""
+"You cannot change the company of %(category)s as it holds products shared "
+"between companies or belonging to other companies."
+msgstr ""
 
 #. module: product
 #. odoo-python
@@ -4610,8 +4900,6 @@ msgid ""
 "You cannot change the product of the value %(value)s set on product %"
 "(product)s."
 msgstr ""
-"Не можете да промените продукта на стойността %(value)s, зададена за продукт "
-"%(product)s."
 
 #. module: product
 #. odoo-python
@@ -4620,14 +4908,6 @@ msgid ""
 "You cannot change the value of the value %(value)s set on product %"
 "(product)s."
 msgstr ""
-"Не можете да промените стойността на стойността %(value)s, зададена за "
-"продукт %(product)s."
-
-#. module: product
-#. odoo-python
-#: code:addons/product/models/product_category.py:0
-msgid "You cannot create recursive categories."
-msgstr "Не можете да създавате рекурсивни категории."
 
 #. module: product
 #. odoo-python
@@ -4638,10 +4918,6 @@ msgid ""
 "They are used within pricelist(s):\n"
 "%(other_pricelists)s"
 msgstr ""
-"Не можете да изтриете ценоразпис(и):\n"
-"(%(pricelists)s)\n"
-"Те се използват в рамките на ценоразпис(и):\n"
-"%(other_pricelists)s"
 
 #. module: product
 #. odoo-python
@@ -4651,9 +4927,6 @@ msgid ""
 "following products:\n"
 "%(products)s"
 msgstr ""
-"Не можете да изтриете атрибута %(attribute)s, защото той се използва в "
-"следните продукти:\n"
-"%(products)s"
 
 #. module: product
 #. odoo-python
@@ -4663,9 +4936,6 @@ msgid ""
 "products:\n"
 "%(products)s\n"
 msgstr ""
-"Не можете да изтриете стойността %(value)s, защото тя се използва в следните "
-"продукти:\n"
-"%(products)s\n"
 
 #. module: product
 #. odoo-python
@@ -4674,8 +4944,6 @@ msgid ""
 "You cannot move the attribute %(attribute)s from the product %(product_src)s "
 "to the product %(product_dest)s."
 msgstr ""
-"Не можете да преместите атрибута %(attribute)s от продукта %(product_src)s "
-"към продукта %(product_dest)s."
 
 #. module: product
 #. odoo-python
@@ -4684,8 +4952,6 @@ msgid ""
 "You cannot update related variants from the values. Please update related "
 "values from the variants."
 msgstr ""
-"Не можете да актуализирате свързани варианти от стойностите. Моля, "
-"актуализирайте свързаните стойности от вариантите."
 
 #. module: product
 #. odoo-javascript
@@ -4695,12 +4961,8 @@ msgid ""
 "                            whether it's a storable product, a consumable or "
 "a service."
 msgstr ""
-"Трябва да дефинирате продукт за всичко, което продавате или купувате,\n"
-"                            независимо дали е складируем продукт, консуматив "
-"или услуга."
 
 #. module: product
-#: model_terms:ir.actions.act_window,help:product.product_normal_action
 #: model_terms:ir.actions.act_window,help:product.product_template_action
 msgid ""
 "You must define a product for everything you sell or purchase,\n"
@@ -4719,61 +4981,380 @@ msgid ""
 "                price, notes in the quotation, accounting data, procurement "
 "methods, etc."
 msgstr ""
-"Трябва да дефинирате продукт за всичко, което продавате или купувате,\n"
-"                независимо дали е складируем продукт, консуматив или "
-"услуга.\n"
-"                Формулярът на продукта съдържа информация за опростяване на "
-"процеса на продажба:\n"
-"                цена, бележки в офертата, счетоводни данни, методи за "
-"снабдяване и т.н."
-
-#. module: product
-#: model_terms:ir.actions.act_window,help:product.product_normal_action_sell
-msgid ""
-"You must define a product for everything you sell, whether it's a physical "
-"product,\n"
-"                a consumable or a service you offer to customers.\n"
-"                The product form contains information to simplify the sale "
-"process:\n"
-"                price, notes in the quotation, accounting data, procurement "
-"methods, etc."
-msgstr ""
-"Трябва да дефинирате продукт за всичко, което продавате, независимо дали е "
-"физически продукт,\n"
-"                консуматив или услуга, която предлагате на клиентите.\n"
-"                Формулярът на продукта съдържа информация за опростяване на "
-"процеса на продажба:\n"
-"                цена, бележки в офертата, счетоводни данни, методи за "
-"снабдяване и т.н."
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.js:0
 msgid "You must leave at least one quantity."
-msgstr "Трябва да оставите поне едно количество."
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/wizard/product_label_layout.py:0
 msgid "You need to set a positive quantity."
-msgstr "Трябва да зададете положително количество."
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields.selection,name:product.selection__mrp_finished_product_label_layout__print_format__zpl
+#: model:ir.model.fields.selection,name:product.selection__product_label_layout__print_format__zpl
+msgid "ZPL Labels"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_label_layout__zpl_preview
+msgid "ZPL Preview"
+msgstr ""
+
+#. module: product
+#: model:ir.model.fields,field_description:product.field_product_label_layout__zpl_template
+msgid "ZPL Template"
+msgstr ""
 
 #. module: product
 #: model:product.attribute.value,name:product.pav_brand_zara
 msgid "Zara"
-msgstr "Zara"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_jewelry_label
+msgid "^FO108,29,0^A0N,15,13^TBN,320,16^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_jewelry_label
+msgid "^FO108,49,0^A0N,15,13^TBN,320,16^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_jewelry_label
+msgid "^FO108,4^A0N,20^TBN,322,21^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_alternative_label
+msgid "^FO12,51^BY2^BCN,64,Y,N,N^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_small_label
+msgid "^FO132,50,0^A0N,16,13^TBN,116,17^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_small_label
+msgid "^FO132,72,0^A0N,16,13^TBN,116,17^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_alternative_label
+msgid "^FO155,21^A0N,22^TBN,246,23^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_alternative_label
+msgid "^FO155,44,0^A0N,16,13^TBN,246,17^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_alternative_label
+msgid "^FO155,64,0^A0N,16,13^TBN,246,17^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_normal_label
+msgid "^FO174,35^A0N,27^TBN,277,28^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_normal_label
+msgid "^FO174,66,0^A0N,18,15^TBN,277,19^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_normal_label
+msgid "^FO174,91,0^A0N,18,15^TBN,277,19^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_jewelry_label
+msgid "^FO18,4^BXN,4,200,20,20^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_jewelry_label
+msgid "^FO18,8^BY1^BCN,76,Y,N,N^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_jewelry_label
+msgid "^FO210,29,0^A0N,15,13^TBN,232,16^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_jewelry_label
+msgid "^FO210,44,0^A0N,15,13^TBN,232,16^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_jewelry_label
+msgid "^FO210,8,0^A0N,20^TBN,232,21^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_small_label
+msgid "^FO248,145,1^A0N,25^TBN,108,26^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_small_label
+msgid "^FO248,170,1^A0N,14^TBN,108,15^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_small_label
+msgid "^FO249,151,1^A0N,14^TBN,108,15^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_small_label
+msgid "^FO249,151,1^A0N,25^TBN,108,26^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_small_label
+msgid "^FO249,176,1^A0N,14^TBN,108,15^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_small_label
+msgid "^FO30,46^BY1^BCN,70,Y,N,N^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_normal_label
+msgid "^FO30,54^BY2^BCN,80,Y,N,N^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_alternative_label
+msgid "^FO401,135,1^A0N,30^TBN,187,31^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_alternative_label
+msgid "^FO401,153,1^A0N,30^TBN,187,31^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_alternative_label
+msgid "^FO401,156,1^A0N,16^TBN,187,17^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_alternative_label
+msgid "^FO401,160,1^A0N,16^TBN,187,17^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_alternative_label
+msgid "^FO401,178,1^A0N,16^TBN,187,17^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_jewelry_label
+msgid "^FO435,64,1^A0N,24^TBN,201,25^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_jewelry_label
+msgid "^FO435,86,1^A0N,12^TBN,201,13^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_jewelry_label
+msgid "^FO442,60,1^A0N,24^TBN,201,25^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_jewelry_label
+msgid "^FO442,84,1^A0N,12^TBN,201,13^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_normal_label
+msgid "^FO451,160,1^A0N,38^TBN,165,40^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_normal_label
+msgid "^FO451,195,1^A0N,18^TBN,165,19^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_normal_label
+msgid "^FO452,188,1^A0N,18^TBN,165,19^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_normal_label
+msgid "^FO452,188,1^A0N,38^TBN,165,40^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_normal_label
+msgid "^FO452,223,1^A0N,18^TBN,165,19^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_small_label
+msgid "^FO5,151^A0N,14,12^TBN,102,15^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_alternative_label
+msgid "^FO5,156^A0N,16,13^TBN,172,17^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_small_label
+msgid "^FO5,166^A0N,14,12^TBN,102,15^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_alternative_label
+msgid "^FO5,173^A0N,16,13^TBN,172,17^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_normal_label
+msgid "^FO5,188^A0N,18,15^TBN,195,19^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_normal_label
+msgid "^FO5,208^A0N,18,15^TBN,195,19^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_alternative_label
+msgid "^FO5,21^BXN,7,200,20,20^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_normal_label
+msgid "^FO6,35^BXN,8,200,20,20^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_small_label
+msgid "^FO6,46^BXN,6,200,20,20^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_alternative_label
+#: model_terms:ir.ui.view,arch_db:product.barcode_jewelry_label
+#: model_terms:ir.ui.view,arch_db:product.barcode_normal_label
+#: model_terms:ir.ui.view,arch_db:product.barcode_small_label
+#: model_terms:ir.ui.view,arch_db:product.qr_alternative_label
+#: model_terms:ir.ui.view,arch_db:product.qr_jewelry_label
+#: model_terms:ir.ui.view,arch_db:product.qr_normal_label
+#: model_terms:ir.ui.view,arch_db:product.qr_small_label
+msgid "^FS"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_jewelry_label
+msgid ""
+"^FS\n"
+"^FO13,86^A0N,12^FB94,1,0,C^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_alternative_label
+msgid ""
+"^FS\n"
+"^FO5,165^A0N,16^FB140,1,0,C^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_small_label
+msgid ""
+"^FS\n"
+"^FO6,173^A0N,14^FB120,1,0,C^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_normal_label
+msgid ""
+"^FS\n"
+"^FO6,200^A0N,20^FB160,1,0,C^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_small_label
+msgid ""
+"^PW254\n"
+"^LL203\n"
+"^FO5,13^A0N,25^FB244,1,0,C^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_small_label
+msgid ""
+"^PW254\n"
+"^LL203\n"
+"^FO6,15^A0N,25,16^FB242,1,0,C^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_alternative_label
+msgid ""
+"^PW406\n"
+"^LL203"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_alternative_label
+msgid ""
+"^PW406\n"
+"^LL203\n"
+"^FO5,9^A0N,27^FB396,1,0,C^FH^FD"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_jewelry_label
+#: model_terms:ir.ui.view,arch_db:product.qr_jewelry_label
+msgid ""
+"^PW447\n"
+"^LL102"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.qr_normal_label
+msgid ""
+"^PW457\n"
+"^LL254"
+msgstr ""
+
+#. module: product
+#: model_terms:ir.ui.view,arch_db:product.barcode_normal_label
+msgid ""
+"^PW457\n"
+"^LL254\n"
+"^FO0,13^A0N,30^FB457,1,0,C^FH^FD"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_attribute.py:0
 msgid "attribute_id"
-msgstr "attribute_id"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.xml:0
 msgid "csv"
-msgstr "csv"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_form_view
@@ -4790,18 +5371,18 @@ msgstr "отстъпка"
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_product_view_form_normalized
 msgid "e.g. 1234567890"
-msgstr "напр. 1234567890"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_combo_view_form
 msgid "e.g. Burger Choice"
-msgstr "напр. Burger Choice"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_product_view_form_normalized
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "e.g. Cheese Burger"
-msgstr "напр. Cheese Burger"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_category_form_view
@@ -4809,14 +5390,9 @@ msgid "e.g. Lamps"
 msgstr "напр. лампи"
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_variant_easy_edit_view
-msgid "e.g. Odoo Enterprise Subscription"
-msgstr "напр. Абонамент за Odoo Enterprise"
-
-#. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "e.g. Starter - Meal - Desert"
-msgstr "напр. Предястие - Основно ястие - Десерт"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_view
@@ -4824,63 +5400,65 @@ msgid "e.g. USD Retailers"
 msgstr "напр. търговци на дребно, търгуващи с USD"
 
 #. module: product
-#. odoo-python
-#: code:addons/product/models/product_template_attribute_line.py:0
-msgid "id"
-msgstr "id"
-
-#. module: product
-#. odoo-python
-#: code:addons/product/models/product_pricelist_item.py:0
-msgid "markup"
-msgstr "надценка"
-
-#. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_document_form
-msgid "on"
-msgstr "на"
+#: model_terms:ir.ui.view,arch_db:product.uom_uom_view_form
+msgid "each variant"
+msgstr ""
 
 #. module: product
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.xml:0
 msgid "pdf"
-msgstr "pdf"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 #: model_terms:ir.ui.view,arch_db:product.product_template_form_view
 msgid "per"
-msgstr "на"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_product.py:0
 #: code:addons/product/models/product_template.py:0
 msgid "product"
-msgstr "продукт"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_pricelist_item.py:0
 msgid "product cost"
-msgstr "себестойност на продукта"
+msgstr ""
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
-msgid "round off to 10.00 and set an extra at -0.01"
-msgstr "закръгляне до 10.00 и задаване на допълнителна стойност -0.01"
+#. odoo-python
+#: code:addons/product/models/product_product.py:0
+msgid "product: %(name)s"
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_product.py:0
+msgid "product: %(product_name)s"
+msgstr ""
+
+#. module: product
+#. odoo-python
+#: code:addons/product/models/product_product.py:0
+msgid "product: %(product_name)s with variant: %(variant_name)s"
+msgstr ""
 
 #. module: product
 #. odoo-python
 #: code:addons/product/models/product_pricelist_item.py:0
 #: model_terms:ir.ui.view,arch_db:product.product_pricelist_item_form_view
 msgid "sales price"
-msgstr "продажна цена"
+msgstr ""
 
 #. module: product
-#: model_terms:ir.ui.view,arch_db:product.product_variant_easy_edit_view
-msgid "the product template."
-msgstr "шаблона на продукта."
+#. odoo-python
+#: code:addons/product/models/product_pricelist_item.py:0
+msgid "surcharge"
+msgstr ""
 
 #. module: product
 #: model_terms:ir.ui.view,arch_db:product.product_supplierinfo_form_view
@@ -4891,164 +5469,19 @@ msgstr "до"
 #. odoo-javascript
 #: code:addons/product/static/src/js/pricelist_report/product_pricelist_report.xml:0
 msgid "xlsx"
-msgstr "xlsx"
+msgstr ""
 
-#~ msgid "42"
-#~ msgstr "42"
+#~ msgid "<span>%</span>"
+#~ msgstr "<span>%</span>"
 
-#~ msgid "%s %% discount"
-#~ msgstr "%s%%отстъпка"
+#~ msgid "<span>on</span>"
+#~ msgstr "<span>на</span>"
 
-#~ msgid "2 year"
-#~ msgstr "2 години"
+#~ msgid "All Categories"
+#~ msgstr "Всички категории"
 
-#~ msgid ""
-#~ "Allows to manage different prices based on rules per category of "
-#~ "customers.\n"
-#~ "                Example: 10% for retailers, promotion of 5 EUR on this "
-#~ "product, etc."
-#~ msgstr ""
-#~ "Позволява управлението на различни цени въз основа на правила за всяка "
-#~ "категория клиенти.\n"
-#~ "                Пример: 10% за тарговци на дребно, промоция от 5 евро за "
-#~ "този продукт и т.н."
+#~ msgid "Formula"
+#~ msgstr "Формула"
 
-#~ msgid "Applicable On"
-#~ msgstr "Приложимо за"
-
-#~ msgid "Availability"
-#~ msgstr "Наличност"
-
-#~ msgid "Can be Purchased"
-#~ msgstr "Може да се закупи"
-
-#~ msgid "Can be Sold"
-#~ msgstr "Може да се продаде"
-
-#~ msgid "Computation"
-#~ msgstr "Изчисление"
-
-#~ msgid "Conditions"
-#~ msgstr "Условия"
-
-#~ msgid "Configuration"
-#~ msgstr "Конфигурация "
-
-#~ msgid "Consumable"
-#~ msgstr "Консуматив"
-
-#~ msgid "Contact Us"
-#~ msgstr "Свържете се с нас"
-
-#~ msgid "Decimal Precision"
-#~ msgstr "Десетична точност"
-
-#~ msgid "Delivery Lead Time"
-#~ msgstr "Време на лийда за доставка"
-
-#~ msgid "Discount included in the price"
-#~ msgstr "Отстъпка, включена в цената"
-
-#~ msgid "Discount on lines"
-#~ msgstr "Отстъпка на редове"
-
-#~ msgid "Discounts"
-#~ msgstr "Отстъпки "
-
-#~ msgid "Gives the different ways to package the same product."
-#~ msgstr "Дава различни начини за опаковане на един и същ продукт."
-
-#~ msgid "Group By"
-#~ msgstr "Групиране по"
-
-#~ msgid "Kilograms"
-#~ msgstr "Килограма"
-
-#~ msgid "Manage Product Packaging"
-#~ msgstr "Управлявайте опаковането на продуктите"
-
-#~ msgid "Normal"
-#~ msgstr "Нормален"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Брой съобщения, които изискват внимание"
-
-#~ msgid "Packaging"
-#~ msgstr "Опаковане"
-
-#~ msgid "Pounds"
-#~ msgstr "Паунди"
-
-#~ msgid "Price Computation"
-#~ msgstr "Изчисляване на цена"
-
-#~ msgid "Price Surcharge"
-#~ msgstr "Ценова такса"
-
-#~ msgid "Pricelists are managed on"
-#~ msgstr "Ценови листи се управляват в"
-
-#~ msgid "Product Packages"
-#~ msgstr "Продуктови опаковки"
-
-#~ msgid "Product Packaging"
-#~ msgstr "Продуктово опаковане"
-
-#~ msgid "Rounding Method"
-#~ msgstr "Метод на закръгляне"
-
-#~ msgid ""
-#~ "Sets the price so that it is a multiple of this value.\n"
-#~ "Rounding is applied after the discount and before the surcharge.\n"
-#~ "To have prices that end in 9.99, set rounding 10, surcharge -0.01"
-#~ msgstr ""
-#~ "Настройва цената, така че да е кратна на тази стойност.\n"
-#~ "Закръгляване се прилага, след отстъпка и преди увеличение.\n"
-#~ "За да са цените катот тази 9.99, определете закръгляване 10, доплащане "
-#~ "-0,01"
-
-#~ msgid "Show all records which has next action date is before today"
-#~ msgstr ""
-#~ "Показване на всички записи, на които следващата дата на действие е преди "
-#~ "днес"
-
-#~ msgid "Show public price & discount to the customer"
-#~ msgstr "Покажете общодостъпна цена & отстъпка на клиента"
-
-#~ msgid "Tag Name"
-#~ msgstr "Име на маркер"
-
-#~ msgid ""
-#~ "The computed price is expressed in the default Unit of Measure of the "
-#~ "product."
-#~ msgstr ""
-#~ "Изчислената цена е изразена в стандартната мерна единица на продукта."
-
-#~ msgid "The first in the sequence is the default one."
-#~ msgstr "Първият в последователността е стандартния."
-
-#~ msgid ""
-#~ "This pricelist will be used, instead of the default one, for sales to the "
-#~ "current partner"
-#~ msgstr ""
-#~ "Тази ценова листа ще бъде използвана вместо стандартната ценова листа за "
-#~ "продажби на настоящия контрагент"
-
-#~ msgid "Unit of Measure"
-#~ msgstr "Мерна единица"
-
-#~ msgid "UoM"
-#~ msgstr "Мерна единица"
-
-#~ msgid "Warning!"
-#~ msgstr "Предупреждение!"
-
-#~ msgid ""
-#~ "You cannot define the decimal precision of 'Account' as greater than the "
-#~ "rounding factor of the company's main currency"
-#~ msgstr ""
-#~ "Не можете да определите десетичната точност на 'Профил' по-голяма от "
-#~ "фактора на закръгляне на основната валута на компанията"
-
-#~ msgid "the parent company"
-#~ msgstr "компанията-майка"
+#~ msgid "Percentage Price"
+#~ msgstr "Процентна цена"

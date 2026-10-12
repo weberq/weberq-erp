@@ -20,7 +20,6 @@ const IMG_SELECTOR_C3 = `${IMG_SELECTOR}[src*='c1=o-color-3'][src*='c2=${COLOR_2
 registerWebsitePreviewTour(
     "website_dynamic_svg_theme_colors",
     {
-        url: "/",
         edition: true,
     },
     () => [

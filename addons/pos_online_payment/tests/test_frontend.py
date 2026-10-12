@@ -19,6 +19,8 @@ import odoo.tests
 @odoo.tests.tagged('post_install', '-at_install', 'is_tour')
 class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     def _get_url(self):
         return f"/pos/ui/{self.pos_config.id}"
 
@@ -60,13 +62,13 @@ class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
             'code': 'X1012.POSOP',
             'name': 'Debtors - (POSOP)',
             'account_type': 'asset_receivable',
-            'reconcile': True,
         })
         cls.company.account_default_pos_receivable_account_id = cls.account_default_pos_receivable_account_id
         cls.receivable_cash_account = cls.copy_account(cls.company.account_default_pos_receivable_account_id, {'name': 'POS OP Test Receivable Cash'})
 
         cls.cash_payment_method = cls.env['pos.payment.method'].create({
             'name': 'Cash',
+            'type': 'cash',
             'journal_id': cls.cash_journal.id,
             'receivable_account_id': cls.receivable_cash_account.id,
             'company_id': cls.company.id,
@@ -84,7 +86,7 @@ class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
 
         cls.online_payment_method = cls.env['pos.payment.method'].create({
             'name': 'Online payment',
-            'is_online_payment': True,
+            'type': 'online',
             'online_payment_provider_ids': [Command.set([cls.payment_provider.id])],
         })
 
@@ -98,7 +100,6 @@ class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
         cls.pos_config = cls.env['pos.config'].create({
             'name': 'POS OP Test Shop',
             'module_pos_restaurant': False,
-            'invoice_journal_id': cls.sales_journal.id,
             'journal_id': cls.sales_journal.id,
             'payment_method_ids': [Command.link(cls.cash_payment_method.id), Command.link(cls.online_payment_method.id)],
         })
@@ -203,7 +204,6 @@ class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
                 'price_unit': product.list_price,
                 'price_subtotal': untax,
                 'price_subtotal_incl': untax + atax,
-                'pack_lot_ids': [],
             }]],
             'payment_ids': [],
         }
@@ -237,11 +237,13 @@ class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
         self.assertTrue('paid_order' in op_data)
 
         # Simulate the cashier closing the session (to detect eventual accounting issues)
-        total_cash_payment = sum(current_session.order_ids.filtered(lambda o: o.state != 'cancel').payment_ids.filtered(lambda payment: payment.payment_method_id.type == 'cash').mapped('amount'))
-        current_session.post_closing_cash_details(total_cash_payment)
-        close_result = current_session.close_session_from_ui()
+        cash_pm = self.pos_config._get_cash_payment_method()
+        closing_data = current_session.get_closing_control_data()
+        cash_details = closing_data['default_cash_details']
+        expected_cashbox_amount = cash_details['payment_amount']
+        close_result = current_session.close_session_from_ui({cash_pm.id: expected_cashbox_amount})
 
-        self.assertTrue(close_result['successful'])
+        self.assertTrue(close_result['status'])
         self.assertEqual(current_session.state, 'closed', 'Session was not properly closed')
 
         self.assertEqual(order.state, 'done', "Validated order has payment of " + str(order.amount_paid) + " and total of " + str(order.amount_total))
@@ -280,10 +282,6 @@ class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
     def test_errors_tour(self):
         self.pos_config.with_user(self.pos_user).open_ui()
         self.start_pos_tour('OnlinePaymentErrorsTour', login="pos_op_user")
-
-    def test_customer_display_online_payment(self):
-        self.start_tour(f"/pos_customer_display/{self.main_pos_config.id}/{self.main_pos_config.access_token}?access_token={self.main_pos_config.access_token}",
-                        'CustomerDisplayTourOnlinePayment', login="pos_user")
 
     def test_refuse_online_payment_without_accounting_payment(self):
         """
@@ -325,7 +323,7 @@ class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
             self.assertIn("Cannot create a POS online payment without an accounting payment", str(e))
             # Make sure that we can close the session
             session.order_ids.filtered(lambda o: o.state == 'draft').unlink()
-            session.action_pos_session_close()
+            session.close_session_from_ui()
             self.assertEqual(session.state, 'closed')
 
     def test_selected_customer_after_adding_payment_sync(self):
@@ -343,14 +341,14 @@ class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
         which payment method requires a customer.
         """
         self.env['res.partner'].create({'name': 'A Test Partner'})
-        online_pm = self.pos_config.payment_method_ids.search([('is_online_payment', '=', True)], limit=1)
+        online_pm = self.pos_config.payment_method_ids.search([('type', '=', 'online')], limit=1)
         self.pos_config.with_user(self.pos_admin).open_ui()
 
         def _get_customer_required_providers_code_patch(self):
             return ['none']
 
         with patch.object(self.env.registry.models['pos.payment.method'], "_get_customer_required_providers_code", _get_customer_required_providers_code_patch):
-            loaded_data = self.pos_config.current_session_id.load_data([])
+            loaded_data = self.pos_config.current_session_id.load_data({'only_records': True})
             config_online_pm_data = [record.get('_customer_required') for record in loaded_data['pos.payment.method'] if record['id'] == online_pm.id]
             self.assertTrue(all(config_online_pm_data))
             self.start_pos_tour('test_payment_method_customer_required')
@@ -408,7 +406,6 @@ class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
                 'price_unit': 15.28,
                 'price_subtotal': 15.28,
                 'price_subtotal_incl': 15.28,
-                'pack_lot_ids': [],
             }]],
             'payment_ids': [[0, 0, {
                 'amount': 10.0,
@@ -439,27 +436,11 @@ class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
         self.assertAlmostEqual(order.amount_paid, 15.28)
 
         # Simulate the cashier closing the session (to detect eventual accounting issues)
+        cash_pm = self.pos_config._get_cash_payment_method()
         total_cash_payment = sum(current_session.order_ids.filtered(lambda o: o.state != 'cancel').payment_ids.filtered(lambda payment: payment.payment_method_id.type == 'cash').mapped('amount'))
-        current_session.post_closing_cash_details(total_cash_payment)
-        close_result = current_session.close_session_from_ui()
-        self.assertTrue(close_result['successful'])
+        current_session.close_session_from_ui({cash_pm.id: total_cash_payment})
         self.assertEqual(current_session.state, 'closed', 'Session was not properly closed')
         self.assertEqual(order.state, 'done')
-
-    def test_online_payment_amount_updated_after_order_modification(self):
-        self.pos_config.with_user(self.pos_admin).open_ui()
-        self.start_pos_tour('test_online_payment_amount_updated_after_order_modification', login="pos_admin")
-        order = self.pos_config.current_session_id.order_ids.sorted(lambda o: o.id, reverse=True)[0]
-        self.assertEqual(order.state, "draft", "The order should still be in draft state, awaiting the online payment.")
-        self.assertEqual(order.amount_total, 96.0, "The increased order total should be synced to the server.")
-
-    def test_restaurant_online_payment_flow(self):
-        self.pos_config.with_user(self.pos_admin).open_ui()
-        self.start_pos_tour('RestaurantOnlinePaymentTour', login="pos_admin")
-        order = self.pos_config.current_session_id.order_ids.sorted(lambda o: o.id, reverse=True)[0]
-        self.assertEqual(order.state, "paid", "The order should be paid.")
-        self.assertEqual(len(order.payment_ids), 1, "There should be one payment line in the order.")
-        self.assertEqual(order.payment_ids[0].payment_method_id.id, self.cash_payment_method.id, "The payment should be Cash.")
 
     @classmethod
     def tearDownClass(cls):
@@ -478,4 +459,3 @@ class TestUi(TestPointOfSaleHttpCommon, OnlinePaymentCommon):
         cls.cash_payment_method.unlink()
         cls.receivable_cash_account.unlink()
         cls.cash_journal.unlink()
-        cls.account_default_pos_receivable_account_id.unlink()

@@ -15,6 +15,9 @@ class ResCompany(models.Model):
         domain="[('code', 'in', [1, 4, 6])]", related='partner_id.l10n_ar_afip_responsibility_type_id', readonly=False)
     l10n_ar_company_requires_vat = fields.Boolean(compute='_compute_l10n_ar_company_requires_vat', string='Company Requires Vat?')
     l10n_ar_afip_start_date = fields.Date('Activities Start')
+    l10n_ar_arca_activity_id = fields.Many2one(
+        'l10n_ar.arca.activity', string='Principal Activity',
+        help="Principal registered activity of the company. This is used to generate the IVA Simple CSV Tax Reports.")
 
     @api.onchange('country_id')
     def onchange_country(self):
@@ -33,6 +36,3 @@ class ResCompany(models.Model):
         """ Argentinean localization use documents """
         self.ensure_one()
         return self.chart_template in {'ar_base', 'ar_ex', 'ar_ri'} or self.account_fiscal_country_id.code == "AR" or super()._localization_use_documents()
-
-    def _is_latam(self):
-        return super()._is_latam() or self.country_code == 'AR'

@@ -2,13 +2,13 @@
 <templates xml:space="preserve">
     <t t-name="website.PlacesAutoComplete">
         <AutoCompleteWithPages
-            sources="sources"
-            targetDropdown="props.targetDropdown"
+            sources="this.sources"
+            targetDropdown="this.props.targetDropdown"
             menuCssClass="'o_website_ui_autocomplete pac-container'"
         >
             <t t-set-slot="option" t-slot-scope="optionScope">
                 <span class="pac-icon pac-icon-marker"/>
-                <span class="pac-item-query" t-out="optionScope.label"/>
+                <span class="pac-item-query" t-out="optionScope.data.label"/>
             </t>
         </AutoCompleteWithPages>
     </t>

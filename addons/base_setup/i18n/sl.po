@@ -10,20 +10,16 @@
 # Matjaz Mozetic <m.mozetic@matmoz.si>, 2022
 # matjaz k <matjaz@mentis.si>, 2022
 # Jasmina Macur <jasmina@hbs.si>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-10 11:11+0000\n"
-"Last-Translator: Jan Zorko <jan.zorko@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 16:28+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "base_setup/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -34,11 +30,16 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 
 #. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
+#: model:ir.module.module,description:base.module_base_setup
 msgid ""
-"<span class=\"fa fa-lg fa-users\" aria-label=\"Number of active users\"/>"
+"\n"
+"This module helps to configure the system at the installation of a new "
+"database.\n"
+"================================================================================\n"
+"\n"
+"Shows you a list of applications features to install from.\n"
+"\n"
 msgstr ""
-"<span class=\"fa fa-lg fa-users\" aria-label=\"Number of active users\"/>"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -136,7 +137,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid ""
 "<strong>Save</strong> this page and come back here to set up the feature."
-msgstr "<strong>Shranite</strong> to stran in se vrnite za nastavitev funkcije."
+msgstr ""
+"<strong>Shranite</strong> to stran in se vrnite za nastavitev funkcije."
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -172,11 +174,6 @@ msgstr "Dodaj jezike"
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Add fun feedback and motivate your employees"
 msgstr "Dodajte zabavne povratne informacije in motivirajte svoje zaposlene"
-
-#. module: base_setup
-#: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_mail_plugin
-msgid "Allow integration with the mail plugins"
-msgstr "Dovoli integracijo z vtičniki za pošto"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_google_calendar
@@ -268,22 +265,13 @@ msgstr "Konfigurirajte postavitev dokumenta"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid ""
-"Configure company rules to automatically create SO/PO when one of your "
-"company sells/buys to another of your company."
-msgstr ""
-"Konfigurirajte pravila podjetja za samodejno ustvarjanje SO/PO ko eno od "
-"vaših podjetij proda/kupi drugemu vašemu podjetju."
-
-#. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Contacts"
 msgstr "Stiki"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__company_country_group_codes
 msgid "Country Group Codes"
-msgstr "Kode skupin držav"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -291,8 +279,6 @@ msgid ""
 "Create corresponding in/out orders and bills when you sell/buy between your "
 "companies"
 msgstr ""
-"Ustvarite ustrezna prodajna in nabavna naročila ter račune, ko med svojimi "
-"podjetji prodajate/kupujete"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__report_footer
@@ -308,7 +294,7 @@ msgstr "Privzete pravice dostopa"
 #. odoo-python
 #: code:addons/base_setup/models/res_config_settings.py:0
 msgid "Default access for new users"
-msgstr "Privzeti dostop za nove uporabnike"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_ir_http__display_name
@@ -337,7 +323,7 @@ msgstr "Uredi izgled"
 #. odoo-python
 #: code:addons/base_setup/models/res_config_settings.py:0
 msgid "Edit new user default group"
-msgstr "Uredi privzeto skupino novega uporabnika"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -371,13 +357,13 @@ msgstr "Geolokaliziraj"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid "Geolocate your partners"
-msgstr "Geolokirajte svoje partnerje"
+msgid "Geolocation"
+msgstr "Geolokacija"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid "Geolocation"
-msgstr "Geolokacija"
+msgid "Get the latitude and the longitude of your partners"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_google_address_autocomplete
@@ -403,9 +389,9 @@ msgid "Import & Export"
 msgstr "Uvoz in izvoz"
 
 #. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid "Integrate with mail client plugins"
-msgstr "Integracija z vtičniki poštnega odjemalca"
+#: model:ir.module.module,shortdesc:base.module_base_setup
+msgid "Initial Setup Tools"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -425,7 +411,7 @@ msgstr "Je korensko podjetje"
 #. module: base_setup
 #: model:ir.model,name:base_setup.model_kpi_provider
 msgid "KPI Provider"
-msgstr "Ponudnik KPI"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_auth_ldap
@@ -442,11 +428,6 @@ msgstr "Jeziki"
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Layout"
 msgstr "Postavitev"
-
-#. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid "Mail Plugin"
-msgstr "Vtičnik za pošto"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -492,6 +473,11 @@ msgstr "Število družb"
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__language_count
 msgid "Number of Languages"
 msgstr "Število jezikov"
+
+#. module: base_setup
+#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
+msgid "Number of active users"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -552,7 +538,7 @@ msgstr "Zaščitite svoje obrazce s CF turnstile."
 #. odoo-javascript
 #: code:addons/base_setup/static/src/views/module_views.xml:0
 msgid "Reset Updating States"
-msgstr "Ponastavi stanja posodabljanja"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_sms
@@ -663,23 +649,9 @@ msgstr "Za uporabo te funkcije morate namestiti aplikacijo Discuss."
 msgid "reCAPTCHA"
 msgstr "reCAPTCHA"
 
-#~ msgid "Asterisk (VoIP)"
-#~ msgstr "Asterisk (VoIP)"
-
 #~ msgid ""
-#~ "By default, new users get highest access rights for all installed apps."
+#~ "<span class=\"oi oi-lg oi-filled\" data-icon=\"group\" aria-"
+#~ "label=\"Number of active users\"/>"
 #~ msgstr ""
-#~ "Privzeto je, da novi uporabniki dobijo najvišje pravice za vse nameščene "
-#~ "aplikacije."
-
-#~ msgid "Documentation"
-#~ msgstr "Dokumentacija"
-
-#~ msgid "GeoLocalize your partners"
-#~ msgstr "Geolokalizirajte svoje partnerje"
-
-#~ msgid "Google Calendar"
-#~ msgstr "Google koledar"
-
-#~ msgid "Synchronize your calendar with Google Calendar"
-#~ msgstr "Sinhroniziraj svoj koledar z Google koledarjem"
+#~ "<span class=\"oi oi-lg oi-filled\" data-icon=\"group\" aria-"
+#~ "label=\"Number of active users\"/>"

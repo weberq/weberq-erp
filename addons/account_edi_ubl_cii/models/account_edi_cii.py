@@ -1,5 +1,3 @@
-from stdnum.fr import siret
-
 from odoo import models, Command
 from odoo.tools import formatLang, frozendict, html2plaintext
 from odoo.tools.misc import NON_BREAKING_SPACE
@@ -264,7 +262,7 @@ class AccountEdiCii(models.AbstractModel):
             },
             'ram:SpecifiedLineTradeDelivery': {
                 'ram:BilledQuantity': {
-                    'unitCode': self._get_uom_unece_code(base_line['product_uom_id']),
+                    'unitCode': base_line['product_uom_id']._get_unece_code(),
                     '_text': base_line['quantity'],
                 },
             },
@@ -273,16 +271,17 @@ class AccountEdiCii(models.AbstractModel):
 
     def _cii_get_line_specified_trade_product_node(self, vals, base_line):
         product = base_line['product_id']
+        description = base_line['name']
         return {
             'ram:GlobalID': {
                 '_text': product.barcode,
                 'schemeID': "0160",
             } if product.barcode else None,
             'ram:SellerAssignedID': {'_text': product.default_code} if product.default_code else None,
-            'ram:Name': {'_text': base_line['name']},
+            'ram:Name': {'_text': product.name or description},
             'ram:Description': {
-                '_text': html2plaintext(product.description),
-            } if product.description else None,
+                '_text': description,
+            } if product else None,
         }
 
     def _cii_get_gross_price_product_trade_price_node(self, vals, base_line):
@@ -467,10 +466,10 @@ class AccountEdiCii(models.AbstractModel):
         supplier = vals['supplier']
         commercial_partner = supplier.commercial_partner_id
         scheme_id = None
-        legal_organization_val = commercial_partner.company_registry
-        if siret.is_valid(legal_organization_val):
+        legal_organization_val = False
+        if siret := commercial_partner._get_additional_identifier('FR_SIRET'):
             scheme_id = "0002"
-            legal_organization_val = legal_organization_val[:9]
+            legal_organization_val = siret[:9]
         supplier_vat = invoice.fiscal_position_id.foreign_vat or commercial_partner.vat
         return self._cii_get_partner_trade_party_node(vals, {
             'gln': False,
@@ -489,8 +488,8 @@ class AccountEdiCii(models.AbstractModel):
                 'city': supplier.city,
                 'country_code': supplier.country_id.code,
             },
-            'peppol_eas': supplier.peppol_eas,
-            'peppol_endpoint': supplier.peppol_endpoint,
+            'routing_scheme': supplier.routing_scheme,
+            'routing_endpoint': supplier.routing_endpoint,
             'partner_tax_registration': supplier_vat,
         })
 
@@ -511,10 +510,10 @@ class AccountEdiCii(models.AbstractModel):
             'ram:PostalTradeAddress': self._cii_get_postal_trade_address_node(vals, partner_values['address_values']),
             'ram:URIUniversalCommunication': {
                 'ram:URIID': {
-                    'schemeID': partner_values['peppol_eas'],
-                    '_text': partner_values['peppol_endpoint'],
+                    'schemeID': partner_values['routing_scheme'],
+                    '_text': partner_values['routing_endpoint'],
                 },
-            } if partner_values['peppol_eas'] and partner_values['peppol_endpoint'] else None,
+            } if partner_values['routing_scheme'] and partner_values['routing_endpoint'] else None,
             'ram:SpecifiedTaxRegistration': {
                 'ram:ID': {
                     '_text': partner_values['partner_tax_registration'],
@@ -550,10 +549,10 @@ class AccountEdiCii(models.AbstractModel):
         commercial_partner = customer.commercial_partner_id
         name = customer.display_name if customer.name else commercial_partner.display_name
         scheme_id = None
-        legal_organization_val = commercial_partner.company_registry
-        if siret.is_valid(legal_organization_val):
+        legal_organization_val = False
+        if siret := commercial_partner._get_additional_identifier('FR_SIRET'):
             scheme_id = "0002"
-            legal_organization_val = legal_organization_val[:9]
+            legal_organization_val = siret[:9]
         return self._cii_get_partner_trade_party_node(vals, {
             'gln': False,
             'name': name,
@@ -571,8 +570,8 @@ class AccountEdiCii(models.AbstractModel):
                 'city': customer.city,
                 'country_code': customer.country_id.code,
             },
-            'peppol_eas': customer.peppol_eas,
-            'peppol_endpoint': customer.peppol_endpoint,
+            'routing_scheme': customer.routing_scheme,
+            'routing_endpoint': customer.routing_endpoint,
             'partner_tax_registration': customer.vat,
         })
 
@@ -604,19 +603,23 @@ class AccountEdiCii(models.AbstractModel):
                 'city': partner_shipping.city,
                 'country_code': partner_shipping.country_id.code,
             },
-            'peppol_eas': False,
-            'peppol_endpoint': False,
+            'routing_scheme': False,
+            'routing_endpoint': False,
             'partner_tax_registration': False,
         })
 
     def _cii_get_applicable_header_trade_settlement_node(self, vals):
         invoice = vals['invoice']
+        has_sepa_mandate = (
+            self.module_installed('account_sepa_direct_debit')
+            and invoice.reconciled_payment_ids.mandate_id.filtered(lambda m: m.mandate_type == 'sepa')
+        )
         return {
             'ram:PaymentReference': {'_text': invoice.payment_reference},
             'ram:InvoiceCurrencyCode': {'_text': vals['currency_id'].name},
             'ram:SpecifiedTradeSettlementPaymentMeans': {
                 'ram:TypeCode': {'_text': PAYMENT_MEAN_CODES['SEPA direct debit']
-                    if self.env['account.payment']._fields.get('sdd_mandate_id') and invoice.reconciled_payment_ids.sdd_mandate_id
+                    if has_sepa_mandate
                     else PAYMENT_MEAN_CODES['Payment to bank account'],
                 },
                 'ram:PayeePartyCreditorFinancialAccount': self._cii_get_payee_party_creditor_financial_account_node(vals),
@@ -629,13 +632,13 @@ class AccountEdiCii(models.AbstractModel):
 
     def _cii_get_payee_party_creditor_financial_account_node(self, vals):
         invoice = vals['invoice']
-        if invoice.partner_bank_id.acc_type == 'iban':
+        if invoice.partner_bank_id.account_type == 'iban':
             return {
-                'ram:IBANID': {'_text': invoice.partner_bank_id.sanitized_acc_number}
+                'ram:IBANID': {'_text': invoice.partner_bank_id.sanitized_account_number}
             }
         else:
             return {
-                'ram:ProprietaryID': {'_text': invoice.partner_bank_id.sanitized_acc_number}
+                'ram:ProprietaryID': {'_text': invoice.partner_bank_id.sanitized_account_number}
             }
 
     def _cii_get_applicable_trade_tax_nodes(self, vals):
@@ -821,7 +824,7 @@ class AccountEdiCii(models.AbstractModel):
                     vals['invoice'], 'partner_bank_id'
                 ),
                 'seller_payment_instructions_2': self._check_required_fields(
-                    vals['invoice']['partner_bank_id'], 'sanitized_acc_number',
+                    vals['invoice']['partner_bank_id'], 'sanitized_account_number',
                     self.env._("The field 'Sanitized Account Number' is required on the Recipient Bank.")
                 ),
             })
@@ -973,9 +976,9 @@ class AccountEdiCii(models.AbstractModel):
 
         # Peppol EAS/Endpoint.
         if (node := party_node.find(".//{*}URIUniversalCommunication/{*}URIID")) is not None:
-            customer_values['peppol_endpoint'] = node.text
-            if peppol_eas := node.attrib.get('schemeID'):
-                customer_values['peppol_eas'] = peppol_eas
+            customer_values['routing_endpoint'] = node.text
+            if routing_scheme := node.attrib.get('schemeID'):
+                customer_values['routing_scheme'] = routing_scheme
 
         # fallback to an unqualified tax registration only when no VA entry was found
         if not customer_values['vat']:
@@ -1180,8 +1183,8 @@ class AccountEdiCii(models.AbstractModel):
     def _import_cii_invoice_line_add_name(self, collected_values):
         line_tree = collected_values['line_tree']
         name = collected_values['name'] = (
-            line_tree.findtext('.//{*}SpecifiedTradeProduct/{*}Name')
-            or line_tree.findtext('.//{*}SpecifiedTradeProduct/{*}Description')
+            line_tree.findtext('.//{*}SpecifiedTradeProduct/{*}Description')
+            or line_tree.findtext('.//{*}SpecifiedTradeProduct/{*}Name')
         )
         if name:
             collected_values['to_write']['name'] = name
@@ -1430,6 +1433,9 @@ class AccountEdiCii(models.AbstractModel):
             if tax_values:
                 taxes_values.append(tax_values)
 
+    def _import_cii_invoice_predict_values(self, collected_values):
+        self._import_invoice_predict_values(collected_values)
+
     def _import_cii_invoice_retrieve_products(self, collected_values):
         self._import_invoice_retrieve_products(collected_values)
 
@@ -1438,6 +1444,9 @@ class AccountEdiCii(models.AbstractModel):
 
     def _import_cii_invoice_retrieve_accounts(self, collected_values):
         self._import_invoice_retrieve_accounts(collected_values)
+
+    def _import_cii_invoice_retrieve_analytic_distribution(self, collected_values):
+        self._import_invoice_retrieve_analytic_distribution(collected_values)
 
     def _import_cii_invoice_retrieve_taxes(self, collected_values):
         self._import_invoice_retrieve_taxes(collected_values)
@@ -1534,9 +1543,11 @@ class AccountEdiCii(models.AbstractModel):
 
         # Invoice lines values.
         self._import_cii_invoice_add_invoice_line_values(collected_values)
+        self._import_cii_invoice_predict_values(collected_values)
         self._import_cii_invoice_retrieve_products(collected_values)
         self._import_cii_invoice_retrieve_product_uoms(collected_values)
         self._import_cii_invoice_retrieve_accounts(collected_values)
+        self._import_cii_invoice_retrieve_analytic_distribution(collected_values)
         self._import_cii_invoice_retrieve_taxes(collected_values)
         self._import_cii_invoice_add_base_lines(collected_values)
 

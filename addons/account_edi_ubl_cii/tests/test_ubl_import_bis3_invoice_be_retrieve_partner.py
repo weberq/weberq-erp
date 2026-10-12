@@ -8,6 +8,8 @@ from freezegun import freeze_time
 @tagged('post_install_l10n', 'post_install', '-at_install')
 class TestUblImportBis3InvoiceBERetrievePartner(TestUblImportBis3InvoiceBE):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @freeze_time('2020-01-01')
     def test_import_partner_creation(self):
         self.partner_be.unlink()
@@ -25,8 +27,7 @@ class TestUblImportBis3InvoiceBERetrievePartner(TestUblImportBis3InvoiceBE):
             'city': "Bidule",
             'zip': "6713",
             'vat': 'BE0477472701',
-            'peppol_eas': '0208',
-            'peppol_endpoint': '0477472701',
+            'routing_identifier': '0208:0477472701',
         }])
 
         # Test the partner has been retrieved.
@@ -42,10 +43,7 @@ class TestUblImportBis3InvoiceBERetrievePartner(TestUblImportBis3InvoiceBE):
         Ensure that a CH partner can be created and re-matched on subsequent imports,
         including when the partner's stored VAT uses a different language suffix
         (TVA/IVA/MWST) than the one present in the EDI document.
-        Requires `base_vat` to be installed for CH VAT variant generation.
         """
-        if self.env['ir.module.module']._get('base_vat').state != 'installed':
-            self.skipTest("base_vat module is not installed")
         self.assertFalse(self.env['res.partner']._retrieve_partner(vat='CHE-107.787.577 TVA'))
 
         # Test the partner has been created.
@@ -60,8 +58,7 @@ class TestUblImportBis3InvoiceBERetrievePartner(TestUblImportBis3InvoiceBE):
             'city': "Swiss",
             'zip': "12345",
             'vat': 'CHE-107.787.577 TVA',
-            'peppol_eas': '9927',
-            'peppol_endpoint': 'CHE-107.787.577TVA',
+            'routing_identifier': '9927:CHE-107.787.577TVA',
         }])
 
         # Test the partner has been retrieved.
@@ -103,8 +100,8 @@ class TestUblImportBis3InvoiceBERetrievePartner(TestUblImportBis3InvoiceBE):
             'city': "Bidule",
             'zip': "6713",
             'vat': 'BE0477472701',
-            'peppol_eas': 'EM',
-            'peppol_endpoint': 'info@belgium.test',
+            'routing_scheme': 'EM',
+            'routing_endpoint': 'info@belgium.test',
         }])
 
         # Test the partner has been retrieved.
@@ -143,7 +140,7 @@ class TestUblImportBis3InvoiceBERetrievePartner(TestUblImportBis3InvoiceBE):
     def test_partial_import_partner_retrieval_bank_account_number(self):
         """Check that the bank account number is used to retrieve the partner when importing a Bis 3 xml."""
         partner_bank = self.env['res.partner.bank'].create({
-            'acc_number': 'BE43200112345678',
+            'account_number': 'BE43200112345678',
             'partner_id': self.partner_a.id,
             'allow_out_payment': True,
         })
@@ -186,7 +183,7 @@ class TestUblImportBis3InvoiceBERetrievePartner(TestUblImportBis3InvoiceBE):
         and use the bank account already trusted by the supplier instead of a "random" one
         """
         supplier = self._create_partner_be(
-            bank_ids=[Command.create({'acc_number': 'BE00001', 'allow_out_payment': True})],
+            bank_ids=[Command.create({'account_number': 'BE00001', 'allow_out_payment': True})],
         )
         trusted_bank = supplier.bank_ids
         invoice = self._import_invoice_as_attachment_on(test_name='test_import_bill_multiple_payment_means')
@@ -196,7 +193,7 @@ class TestUblImportBis3InvoiceBERetrievePartner(TestUblImportBis3InvoiceBE):
             'partner_bank_id': trusted_bank.id,
         }])
         self.assertEqual(
-            set(supplier.bank_ids.mapped('sanitized_acc_number')),
+            set(supplier.bank_ids.mapped('sanitized_account_number')),
             {'BE00001', 'BE00002', 'BE00003'},
         )
         self.assertEqual(supplier.bank_ids.filtered('allow_out_payment'), trusted_bank)

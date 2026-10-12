@@ -11,17 +11,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.5alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-02 18:02+0000\n"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-09-09 14:10+0000\n"
 "Last-Translator: \"Kira Petersen François (peti)\" <peti@odoo.com>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-master/"
 "base_geolocalize/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: base_geolocalize
+#: model:ir.module.module,description:base.module_base_geolocalize
+msgid ""
+"\n"
+"Partners Geolocation\n"
+"========================\n"
+msgstr ""
 
 #. module: base_geolocalize
 #: model:ir.model.fields,field_description:base_geolocalize.field_res_config_settings__geoloc_provider_id
@@ -39,11 +47,6 @@ msgstr ""
 "API-nøgle for GeoCoding (steder) påkrævet.\n"
 "Se https://developers.google.com/maps/documentation/geocoding/get-api-key "
 "for yderligere oplysninger."
-
-#. module: base_geolocalize
-#: model_terms:ir.ui.view,arch_db:base_geolocalize.res_config_settings_view_form
-msgid "API:"
-msgstr "API:"
 
 #. module: base_geolocalize
 #: model_terms:ir.ui.view,arch_db:base_geolocalize.view_crm_partner_geo_form
@@ -100,14 +103,14 @@ msgid "Geo Coder"
 msgstr "Geo-koder"
 
 #. module: base_geolocalize
-#: model_terms:ir.ui.view,arch_db:base_geolocalize.view_crm_partner_geo_form
-msgid "Geo Location"
-msgstr "Geolokalisering"
-
-#. module: base_geolocalize
 #: model:ir.model,name:base_geolocalize.model_base_geo_provider
 msgid "Geo Provider"
-msgstr "Geo-udbyder"
+msgstr "Geo udbyder"
+
+#. module: base_geolocalize
+#: model:ir.actions.server,name:base_geolocalize.ir_cron_geolocalize_required_partners_ir_actions_server
+msgid "Geolocalize Partners"
+msgstr ""
 
 #. module: base_geolocalize
 #: model_terms:ir.ui.view,arch_db:base_geolocalize.view_crm_partner_geo_form
@@ -117,8 +120,8 @@ msgstr "Geolokalisering"
 #. module: base_geolocalize
 #: model:ir.model.fields,field_description:base_geolocalize.field_res_partner__date_localization
 #: model:ir.model.fields,field_description:base_geolocalize.field_res_users__date_localization
-msgid "Geolocation Date"
-msgstr "Dato for geolokalisering"
+msgid "Geolocation Updated On"
+msgstr "Geolokalisering opdateret den"
 
 #. module: base_geolocalize
 #: model:ir.model.fields,field_description:base_geolocalize.field_res_config_settings__geoloc_provider_googlemap_key
@@ -134,9 +137,17 @@ msgid "ID"
 msgstr "ID"
 
 #. module: base_geolocalize
+#: model:ir.model.fields,help:base_geolocalize.field_res_partner__should_be_geolocalized
+#: model:ir.model.fields,help:base_geolocalize.field_res_users__should_be_geolocalized
+msgid ""
+"Indicates whether the partner's address has changed, so we should "
+"geolocalize them from their new address."
+msgstr ""
+
+#. module: base_geolocalize
 #: model_terms:ir.ui.view,arch_db:base_geolocalize.res_config_settings_view_form
-msgid "Key:"
-msgstr "Nøgle:"
+msgid "Key"
+msgstr ""
 
 #. module: base_geolocalize
 #: model:ir.model.fields,field_description:base_geolocalize.field_base_geo_provider__write_uid
@@ -147,16 +158,6 @@ msgstr "Sidst opdateret af"
 #: model:ir.model.fields,field_description:base_geolocalize.field_base_geo_provider__write_date
 msgid "Last Updated on"
 msgstr "Sidst opdateret den"
-
-#. module: base_geolocalize
-#: model_terms:ir.ui.view,arch_db:base_geolocalize.view_crm_partner_geo_form
-msgid "Lat :"
-msgstr "Breddegrad:"
-
-#. module: base_geolocalize
-#: model_terms:ir.ui.view,arch_db:base_geolocalize.view_crm_partner_geo_form
-msgid "Long:"
-msgstr "Længdegrad:"
 
 #. module: base_geolocalize
 #: model:ir.model.fields,field_description:base_geolocalize.field_base_geo_provider__name
@@ -181,10 +182,20 @@ msgid "Partner Assignment"
 msgstr "Partnertildeling"
 
 #. module: base_geolocalize
+#: model:ir.module.module,shortdesc:base.module_base_geolocalize
+msgid "Partners Geolocation"
+msgstr ""
+
+#. module: base_geolocalize
+#: model_terms:ir.ui.view,arch_db:base_geolocalize.res_config_settings_view_form
+msgid "Provider"
+msgstr ""
+
+#. module: base_geolocalize
 #. odoo-python
 #: code:addons/base_geolocalize/models/base_geocoder.py:0
 msgid "Provider %s is not implemented for geolocation service."
-msgstr "Udbyderen %s er ikke understøttet for geolokaliseringstjenesten."
+msgstr "Udbyder %s er ikke implementeret for geolokaliserings tjeneste."
 
 #. module: base_geolocalize
 #: model_terms:ir.ui.view,arch_db:base_geolocalize.view_crm_partner_geo_form
@@ -192,9 +203,10 @@ msgid "Refresh"
 msgstr "Opdatér"
 
 #. module: base_geolocalize
-#: model_terms:ir.ui.view,arch_db:base_geolocalize.view_crm_partner_geo_form
-msgid "Refresh Localization"
-msgstr "Opdatér lokalisering"
+#: model:ir.model.fields,field_description:base_geolocalize.field_res_partner__should_be_geolocalized
+#: model:ir.model.fields,field_description:base_geolocalize.field_res_users__should_be_geolocalized
+msgid "Should Be Geolocalized"
+msgstr ""
 
 #. module: base_geolocalize
 #: model:ir.model.fields,field_description:base_geolocalize.field_base_geo_provider__tech_name
@@ -214,12 +226,12 @@ msgid ""
 "Then, go to Developer Console, and enable the APIs:\n"
 "Geocoding, Maps Static, Maps Javascript.\n"
 msgstr ""
-"Kunne ikke geolokalisere. Modtog følgende fejl:\n"
+"Ude af stand til at geolokalisere, modtog fejl:\n"
 "%s\n"
 "\n"
-"Google har gjort denne funktion betalingspligtig.\n"
-"Du bør først aktivere fakturering på din Google-konto.\n"
-"Derefter skal du gå til Udviklerkonsollen og aktivere API’erne:\n"
+"Google har gjort dette til en betalt funktion.\n"
+"Du bør først aktiverer fakturering for din Google konto.\n"
+"Derefter gå til Udvikler konsol, og aktiver API'er:\n"
 "Geocoding, Maps Static, Maps Javascript.\n"
 
 #. module: base_geolocalize
@@ -230,8 +242,8 @@ msgstr "Ukendt"
 
 #. module: base_geolocalize
 #: model_terms:ir.ui.view,arch_db:base_geolocalize.view_crm_partner_geo_form
-msgid "Updated on:"
-msgstr "Opdateret den:"
+msgid "Updated on"
+msgstr "Opdateret den"
 
 #. module: base_geolocalize
 #: model:ir.model.fields,help:base_geolocalize.field_res_config_settings__geoloc_provider_googlemap_key
@@ -247,6 +259,3 @@ msgstr ""
 #: code:addons/base_geolocalize/models/res_partner.py:0
 msgid "Warning"
 msgstr "Advarsel"
-
-#~ msgid "Error with geolocation server:"
-#~ msgstr "Fejl med geolokaliserings server:"

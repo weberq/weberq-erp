@@ -1,6 +1,6 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from types import MappingProxyType
+from odoo.tools import frozendict
 
 OAUTH_URL = "https://payu.api.odoo.com/api/payu/1"
 OAUTH_RETURN_ROUTE = "/payment/payu/oauth/return"
@@ -17,20 +17,10 @@ WEBHOOK_ROUTE = "/payment/payu/webhook"
 SUPPORTED_CURRENCIES = ["INR"]
 
 # The codes of the default primary payment methods to activate
-DEFAULT_PAYMENT_METHOD_CODES = {
-    # Primary payment methods
-    "card",
-    "netbanking",
-    "upi",
-    # Brand payment methods
-    "amex",
-    "mastercard",
-    "rupay",
-    "visa",
-}
+DEFAULT_PAYMENT_METHOD_CODES = {"card", "netbanking", "upi"}
 
 # Mapping of payment method codes to PayU codes
-PAYMENT_METHODS_MAPPING = MappingProxyType({
+PAYMENT_METHODS_MAPPING = frozendict({
     "card": "creditcard | debitcard",
     "emi_india": "emi",
     "netbanking": "netbanking",
@@ -40,7 +30,7 @@ PAYMENT_METHODS_MAPPING = MappingProxyType({
 })
 
 # Mapping of payment method codes to PayU response codes
-PAYMENT_METHODS_RESPONSE_MAPPING = MappingProxyType({
+PAYMENT_METHODS_RESPONSE_MAPPING = frozendict({
     "emi_india": "EMI",
     "netbanking": "NB",
     "paylater_india": "BNPL",
@@ -49,7 +39,7 @@ PAYMENT_METHODS_RESPONSE_MAPPING = MappingProxyType({
 })
 
 # The keys of the values to use in the calculation of the signature
-SIGNATURE_KEYS = MappingProxyType({
+SIGNATURE_KEYS = frozendict({
     "outgoing": (
         "key",
         "txnid",
@@ -92,7 +82,7 @@ SIGNATURE_KEYS = MappingProxyType({
 })
 
 # Mapping of transaction states to PayU payment statuses
-PAYMENT_STATUS_MAPPING = MappingProxyType({
+PAYMENT_STATUS_MAPPING = frozendict({
     "pending": ("pending",),
     "done": ("success",),
     "error": ("failure",),

@@ -1,16 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * pos_mollie
+# 	* pos_mollie
 #
-# Ulevičienė <vilma.uleviciene@mededu.lt>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.2a1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-10 17:36+0000\n"
-"PO-Revision-Date: 2026-10-06 09:37+0000\n"
-"Last-Translator: Ulevičienė <vilma.uleviciene@mededu.lt>\n"
-"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-08-31 15:23+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-s19-4/"
 "pos_mollie/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
@@ -24,13 +23,13 @@ msgstr ""
 #. module: pos_mollie
 #: model:ir.model.fields,field_description:pos_mollie.field_pos_payment_method__display_name
 msgid "Display Name"
-msgstr "Rodomas vardas"
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "Failed to initiate payment: %s"
-msgstr "Nepavyko inicijuoti mokėjimo: %s"
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript
@@ -44,6 +43,16 @@ msgid "ID"
 msgstr ""
 
 #. module: pos_mollie
+#: model:ir.module.module,summary:base.module_pos_mollie
+msgid "Integrate your POS with a Mollie payment terminal"
+msgstr ""
+
+#. module: pos_mollie
+#: model_terms:ir.ui.view,arch_db:pos_mollie.pos_payment_method_view_form_inherit_pos_mollie
+msgid "Mollie"
+msgstr ""
+
+#. module: pos_mollie
 #. odoo-javascript
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "Mollie Error"
@@ -52,7 +61,7 @@ msgstr ""
 #. module: pos_mollie
 #: model:ir.model.fields,field_description:pos_mollie.field_pos_payment_method__mollie_payment_provider_id
 msgid "Mollie Payment Provider"
-msgstr "Mollie mokėjimų teikėjas"
+msgstr ""
 
 #. module: pos_mollie
 #: model:ir.model.fields,field_description:pos_mollie.field_pos_payment_method__mollie_terminal_id
@@ -64,7 +73,11 @@ msgstr ""
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "No internet connection. Waiting for recovery to confirm the payment..."
 msgstr ""
-"Nėra interneto ryšio. Laukiama atkūrimo, kad būtų patvirtintas mokėjimas..."
+
+#. module: pos_mollie
+#: model:ir.module.module,shortdesc:base.module_pos_mollie
+msgid "POS Mollie"
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-python
@@ -73,25 +86,23 @@ msgid ""
 "Please set the API key on the Mollie payment provider before making a "
 "payment."
 msgstr ""
-"Prieš atlikdami mokėjimą, nustatykite API raktą mokėjimo paslaugų teikėjo „"
-"Mollie“ sistemoje."
 
 #. module: pos_mollie
 #: model:ir.model,name:pos_mollie.model_pos_payment_method
-msgid "Point of Sale Payment Methods"
-msgstr "Pardavimo taško mokėjimo būdai"
+msgid "Point of Sale Payment Method"
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "The payment failed for an unknown reason."
-msgstr "Mokėjimas nepavyko dėl nežinomos priežasties."
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "The payment has timed out."
-msgstr "Mokėjimo laikas pasibaigė."
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript

@@ -1,6 +1,6 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from datetime import date
+from datetime import date, UTC
 from odoo import api, fields, models
 from odoo.fields import Domain
 from odoo.exceptions import ValidationError
@@ -18,6 +18,11 @@ class HrVersion(models.Model):
     # TODO BIOUTIFY ME (the whole file :)
     _inherit = 'hr.version'
     _description = 'Employee Contract'
+
+    def _get_hr_responsible_domain(self):
+        return [('share', '=', False), ('company_ids', 'in', self.env.company.ids), ('all_group_ids', 'in', self.env.ref('hr_holidays.group_hr_holidays_user').id)]
+    hr_responsible_id = fields.Many2one(domain=lambda self: self._get_hr_responsible_domain())
+    allocation_from_working_schedule_id = fields.Many2one('hr.leave.allocation', string="Allocation from working schedule", copy=False, groups="hr.group_hr_user")
 
     @api.constrains('contract_date_start', 'contract_date_end')
     def _check_contracts(self):
@@ -52,6 +57,7 @@ class HrVersion(models.Model):
             # to keep creation order, not ideal but ok for now.
             if not is_created:
                 created_versions |= super().create([vals])
+            created_versions._action_trigger_accrual_plan_working_schedule()
         try:
             if all_new_leave_vals:
                 self._create_all_new_leave(all_new_leave_origin, all_new_leave_vals)
@@ -64,6 +70,12 @@ class HrVersion(models.Model):
                            "these leaves in such a way the employee no longer has the required allocation for "
                            "them. Please review these leaves and/or allocations before changing the contract.\n\n"
                            "This error has been triggered by:\n") + str(e))
+
+        for employee in created_versions.grouped('employee_id'):
+            for version in employee.version_ids.filtered(lambda v: v.allocation_from_working_schedule_id):
+                if version.allocation_from_working_schedule_id.date_to != version.date_end:
+                    version.allocation_from_working_schedule_id.write({'date_to': version.date_end})
+
         return created_versions
 
     def write(self, vals):
@@ -88,7 +100,7 @@ class HrVersion(models.Model):
             min_date = max(new_contract_date_start, new_date_version)
             contract_leaves[contract.id] = contract._get_leaves(extra_domain=extra_domain, min_date=min_date)
 
-        res = super().write(vals)
+        result = super().write(vals)
 
         # Process leaves now that DB reflects new contract state
         for contract in self:
@@ -100,29 +112,31 @@ class HrVersion(models.Model):
                         all_new_leave_origin, all_new_leave_vals, overlapping_contracts, leave, leaves_state)
                 else:
                     self._update_leave_calendar(leave, overlapping_contracts)
+
         try:
             if all_new_leave_vals:
                 self._create_all_new_leave(all_new_leave_origin, all_new_leave_vals)
         except ValidationError as e:
             # In case a validation error is thrown due to holiday creation with the new resource calendar (which can
             # increase their duration), we catch this error to display a more meaningful error message.
-            raise ValidationError(self.env._("Changing the contract on this employee changes their working schedule in a period "
-                                    "they already took leaves. Changing this working schedule changes the duration of "
-                                    "these leaves in such a way the employee no longer has the required allocation for "
-                                    "them. Please review these leaves and/or allocations before changing the contract.\n\n"
-                                    "This error has been triggered by:\n") + str(e))
+            raise ValidationError(
+                self.env._("Changing the contract on this employee changes their working schedule in a period "
+                           "they already took leaves. Changing this working schedule changes the duration of "
+                           "these leaves in such a way the employee no longer has the required allocation for "
+                           "them. Please review these leaves and/or allocations before changing the contract.\n\n"
+                           "This error has been triggered by:\n") + str(e))
 
         if 'resource_calendar_id' in vals:
             # Hour-based allocations store their duration in number_of_days, from
-            # which the accrued hours (number_of_hours_display) are derived using
+            # which the accrued hours (number_of_hours) are derived using
             # the employee's hours per day. When the working schedule changes
             # number_of_days is left stale: the next accrual adds to it and
-            # number_of_hours_display is then recomputed at the new hours per day,
+            # number_of_hours is then recomputed at the new hours per day,
             # revaluing the hours accrued under the old schedule and losing part of
             # the balance. Recompute number_of_days now from the still-correct
-            # number_of_hours_display so the accrued hours are preserved. It is set
+            # number_of_hours so the accrued hours are preserved. It is set
             # explicitly rather than through the compute graph because
-            # number_of_days and number_of_hours_display depend on each other and
+            # number_of_days and number_of_hours depend on each other and
             # the recomputation order is not guaranteed.
             allocations = self.env['hr.leave.allocation'].search([
                 ('employee_id', 'in', self.employee_id.ids),
@@ -131,8 +145,11 @@ class HrVersion(models.Model):
             for allocation in hour_allocations:
                 hours_per_day = allocation.employee_id._get_hours_per_day(allocation.date_from)
                 if hours_per_day:
-                    allocation.number_of_days = allocation.number_of_hours_display / hours_per_day
-        return res
+                    allocation.number_of_days = allocation.number_of_hours / hours_per_day
+
+            self._action_trigger_accrual_plan_working_schedule()
+
+        return result
 
     def _get_leaves(self, extra_domain=None, min_date=None):
         if min_date is None:
@@ -150,8 +167,9 @@ class HrVersion(models.Model):
         return self.env['hr.leave'].search(domain)
 
     def _get_leaves_from_vals(self, vals):
-        contract_date_start = fields.Date.from_string(vals.get('contract_date_start') or vals.get('date_version', fields.Date.today()))
-        version_date_start = fields.Date.from_string(vals.get('date_version', fields.Date.today()))
+        today = fields.Date.context_today(self)
+        contract_date_start = fields.Date.from_string(vals.get('contract_date_start') or vals.get('date_version', today))
+        version_date_start = fields.Date.from_string(vals.get('date_version', today))
         relevant_start_date = max(contract_date_start, version_date_start)
         domain = [
             ('state', 'not in', ['refuse', 'cancel']),
@@ -173,23 +191,23 @@ class HrVersion(models.Model):
         if leave.resource_calendar_id == first_contract.resource_calendar_id:
             return
         leave.resource_calendar_id = first_contract.resource_calendar_id
-        if not leave.request_unit_hours:
-            leave.with_context(leave_skip_date_check=True, leave_skip_state_check=True)._compute_date_from_to()
+        if leave.work_entry_type_request_unit != 'hour':
+            leave.with_context(
+                leave_fast_create=True,
+                leave_skip_date_check=True,
+                leave_skip_state_check=True,
+            )._compute_date_from_to()
             if leave.state == 'validate':
                 leave._validate_leave_request()
 
-    def _refuse_leave(self, leave, leaves_state):
+    def _update_leave_state(self, leave, leaves_state, refuse_leave=False):
         if leave.id not in leaves_state:
             leaves_state[leave.id] = leave.state
         if leave.state not in ['refuse', 'confirm']:
-            leave.action_refuse()
-        return leaves_state
-
-    def _set_leave_draft(self, leave, leaves_state):
-        if leave.id not in leaves_state:
-            leaves_state[leave.id] = leave.state
-        if leave.state not in ['refuse', 'confirm']:
-            leave.action_back_to_approval()
+            if refuse_leave:
+                leave.action_refuse()
+            else:
+                leave.action_back_to_approval()
         return leaves_state
 
     def _populate_all_new_leave_vals_from_split_leave(self, all_new_leave_origin, all_new_leave_vals, overlapping_contracts, leave, leaves_state):
@@ -213,6 +231,7 @@ class HrVersion(models.Model):
         return all_new_leave_origin, all_new_leave_vals
 
     def _create_all_new_leave(self, all_new_leave_origin, all_new_leave_vals):
+        # seems 'tracking_disable' is wanted to speedup leaves batch creation
         new_leaves = self.env['hr.leave'].with_context(
             tracking_disable=True,
             mail_activity_automation_skip=True,
@@ -227,12 +246,101 @@ class HrVersion(models.Model):
                 subtype_xmlid='mail.mt_note',
             )
 
-    def _update_leave_state(self, leave, leaves_state, refuse_leave=False):
-        if leave.id not in leaves_state:
-            leaves_state[leave.id] = leave.state
-        if leave.state not in ['refuse', 'confirm']:
-            if refuse_leave:
-                leave.action_refuse()
-            else:
-                leave.action_back_to_approval()
-        return leaves_state
+    # override to add work_entry_type from leave
+    def _get_leave_work_entry_type(self, leave):
+        if leave.holiday_id:
+            return leave.holiday_id.work_entry_type_id
+        else:
+            return leave.work_entry_type_id
+
+    def _get_more_vals_leave_interval(self, interval, leaves):
+        result = super()._get_more_vals_leave_interval(interval, leaves)
+        for leave in leaves:
+            if interval[0] >= leave[0] and interval[1] <= leave[1]:
+                if leave[2].holiday_id:
+                    result.append(('leave_ids', leave[2].holiday_id))
+        return result
+
+    def _get_interval_leave_work_entry_type(self, interval, leaves, bypassing_codes):
+        # returns the work entry time related to the leave that
+        # includes the whole interval.
+        # Overriden in hr_work_entry_holiday to select the
+        # global time off first (eg: Public Holiday > Home Working)
+        self.ensure_one()
+        if 'work_entry_type_id' in interval[2]:
+            work_entry_types = interval[2].work_entry_type_id
+            if work_entry_types and work_entry_types[:1].code in bypassing_codes:
+                return work_entry_types[:1]
+
+        interval_start = interval[0].astimezone(UTC).replace(tzinfo=None)
+        interval_stop = interval[1].astimezone(UTC).replace(tzinfo=None)
+        including_rcleaves = [l[2] for l in leaves if l[2] and interval_start >= l[2][0].date_from and interval_stop <= l[2][0].date_to]
+        including_global_rcleaves = [l for l in including_rcleaves if not l.holiday_id]
+        including_holiday_rcleaves = [l for l in including_rcleaves if l.holiday_id]
+        rc_leave = False
+
+        # Example: In CP200: Long term sick > Public Holidays (which is global)
+        if bypassing_codes:
+            bypassing_rc_leave = [l for l in including_holiday_rcleaves if l.holiday_id.work_entry_type_id.code in bypassing_codes]
+        else:
+            bypassing_rc_leave = []
+
+        if bypassing_rc_leave:
+            rc_leave = bypassing_rc_leave[0]
+        elif including_global_rcleaves:
+            rc_leave = including_global_rcleaves[0]
+        elif including_holiday_rcleaves:
+            rc_leave = including_holiday_rcleaves[0]
+        if rc_leave:
+            return self._get_leave_work_entry_type_dates(rc_leave, interval_start, interval_stop, self.employee_id)
+        return self.env.ref('hr_work_entry.generic_work_entry_type_leave')
+
+    def _get_sub_leave_domain(self):
+        # see https://github.com/odoo/enterprise/pull/15091
+        return super()._get_sub_leave_domain() | Domain('holiday_id.employee_id', 'in', self.employee_id.ids)
+
+    @api.model
+    def _generate_work_entries_postprocess_adapt_to_calendar(self, vals):
+        res = super()._generate_work_entries_postprocess_adapt_to_calendar(vals)
+        if 'work_entry_type_id' not in vals or not vals.get('leave_ids'):
+            return res
+        # time rule output leaves already carry the correct WET and span; skip calendar adaptation
+        if vals['leave_ids'].source_leave_id:
+            return False
+        work_entry_type = vals['work_entry_type_id']
+        return res or (work_entry_type.count_as == 'absence' or work_entry_type.request_unit != 'hour')
+
+    @api.model
+    def _get_work_entry_source_fields(self):
+        return super()._get_work_entry_source_fields() + ['leave_ids']
+
+    def _action_trigger_accrual_plan_working_schedule(self):
+
+        for version in self:
+            previous_allocation = version.allocation_from_working_schedule_id
+            working_schedule = version.resource_calendar_id
+
+            if previous_allocation:
+                try:
+                    previous_allocation.with_context(allocation_skip_state_check=True).unlink()
+                except ValidationError as e:
+                    raise ValidationError(
+                        self.env._("Can't change current working schedule while there are already validated leaves"
+                                   "that were created with allocations coming from the working schedule"
+                                   "Please review these leaves and/or allocations before changing anything\n\n"
+                                   "This error has been triggered by:\n") + str(e))
+
+            if not working_schedule or (working_schedule.work_time_rate <= 1.0 or not working_schedule.leave_accrual_plan_id):
+                continue
+
+            version.allocation_from_working_schedule_id = self.env['hr.leave.allocation'].create({
+                'name': 'Compensatory Allocations for the difference in working schedules',
+                'accrual_plan_id': working_schedule.leave_accrual_plan_id.id,
+                'employee_id': version.employee_id.id,
+                'work_entry_type_id': working_schedule.leave_accrual_plan_id.work_entry_type_id.id,
+                'date_from': version.date_version,
+                'date_to': version.date_end,
+                'state': 'confirm',
+            })
+            version.allocation_from_working_schedule_id._update_accrual()
+            version.allocation_from_working_schedule_id.action_approve()

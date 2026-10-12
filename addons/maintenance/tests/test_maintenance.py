@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-import pytz
 import time
-
-from datetime import datetime
-from freezegun import freeze_time
 
 from odoo.tests import Form
 from odoo.tests.common import tagged, TransactionCase
 from odoo import fields
+from datetime import timedelta
+from odoo.exceptions import ValidationError
 
 
 class TestEquipmentCommon(TransactionCase):
@@ -45,6 +43,7 @@ class TestEquipmentCommon(TransactionCase):
         })
 
 
+@tagged('at_install', '-post_install')  # LEGACY at_install
 class TestEquipment(TestEquipmentCommon):
 
     def test_10_equipment_request_category(self):
@@ -67,7 +66,7 @@ class TestEquipment(TestEquipmentCommon):
         # Create new maintenance request
         maintenance_request_01 = self.maintenance_request.with_user(self.user).create({
             'name': 'Resolution is bad',
-            'user_id': self.user.id,
+            'user_ids': [self.user.id],
             'owner_user_id': self.user.id,
             'equipment_id': equipment_01.id,
             'color': 7,
@@ -90,7 +89,7 @@ class TestEquipment(TestEquipmentCommon):
     def test_forever_maintenance_repeat_type(self):
         """
         Test that a maintenance request with repeat_type = forever will be duplicated when it
-        is moved to a 'done' stage, and the new request will be placed in the first stage.
+        is marked as 'done', and the state of the new request will be set to 'normal'.
         """
         maintenance_request = self.env['maintenance.request'].create({
             'name': 'Test forever maintenance',
@@ -98,55 +97,9 @@ class TestEquipment(TestEquipmentCommon):
             'maintenance_type': 'preventive',
             'recurring_maintenance': True,
         })
-        done_maintenance_stage = self.env['maintenance.stage'].create({
-            'name': 'Test Done',
-            'done': True,
-        })
-        maintenance_stages = self.env['maintenance.stage'].search([])
-        maintenance_request.with_context(default_stage_id=maintenance_stages[1].id).stage_id = done_maintenance_stage
-        new_maintenance = self.env['maintenance.request'].search([('name', '=', 'Test forever maintenance'), ('stage_id', '=', maintenance_stages[0].id)])
-        self.assertTrue(new_maintenance)
-
-    def test_update_multiple_maintenance_request_record(self):
-        """
-        Test that multiple records of the model 'maintenance.request' can be written simultaneously.
-        """
-        maintenance_requests = self.env['maintenance.request'].create([
-            {
-                'name': 'm_1',
-                'maintenance_type': 'preventive',
-                'kanban_state': 'normal',
-            },
-            {
-                'name': 'm_2',
-                'maintenance_type': 'preventive',
-                'kanban_state': 'normal',
-            },
-        ])
-        maintenance_requests.write({'kanban_state': 'blocked', 'stage_id': self.ref('maintenance.stage_0')})
-        self.assertRecordValues(maintenance_requests, [
-            {'kanban_state': 'blocked', 'stage_id': self.ref('maintenance.stage_0')},
-            {'kanban_state': 'blocked', 'stage_id': self.ref('maintenance.stage_0')},
-        ])
-
-    @freeze_time('2024-01-10 05:00:00')
-    def test_activity_deadline_timezone(self):
-        """Ensure the activity deadline matches the schedule date in the user's timezone"""
-        self.user.tz = 'Pacific/Auckland'
-        tz = pytz.timezone('Pacific/Auckland')
-        tomorrow_local = tz.localize(datetime(2024, 1, 11, 8, 0, 0))
-        schedule_date_utc = tomorrow_local.astimezone(pytz.UTC).replace(tzinfo=None)
-        request = self.maintenance_request.with_user(self.user).create({
-            'name': 'Test timezone activity deadline',
-            'user_id': self.user.id,
-            'schedule_date': schedule_date_utc,
-            'maintenance_team_id': self.ref('maintenance.equipment_team_maintenance'),
-        })
-        activity = request.activity_ids.filtered(
-            lambda a: a.activity_type_id == self.env.ref('maintenance.mail_act_maintenance_request'))
-        self.assertEqual(
-            activity.date_deadline, tomorrow_local.date(),
-            "The activity deadline should match the scheduled date in the user's timezone")
+        maintenance_request.state = 'done'
+        new_maintenance_count = self.env['maintenance.request'].search_count([('name', '=', 'Test forever maintenance'), ('state', '=', 'normal')])
+        self.assertGreater(new_maintenance_count, 0)
 
 
 @tagged("post_install", "-at_install")
@@ -174,64 +127,97 @@ class TestEquipmentPostInstall(TestEquipmentCommon):
             form = Form(self.env['maintenance.equipment'].browse(equipment.id))
             self.assertEqual(form.name, equipment_name)
 
-    def test_done_maintenance_no_close_or_request_date(self):
+    def test_done_maintenance_no_close_or_schedule_date(self):
         """
         Ensure equipment with done maintenance requests that have
-        `close_date` or `request_date` set to False can still be opened.
+        `close_date` or `schedule_date` set to False can still be opened.
         In theory this should never happen, but we should fail gracefully
         in case these dates are forced set to False.
         """
-
         form = Form(self.env['maintenance.equipment'].with_user(self.manager))
         form.name = "brain"
         equipment = form.save()
+
         form = Form(self.env['maintenance.request'].with_user(self.manager))
         form.name = "improve efficiency"
         form.equipment_id = equipment
         form.maintenance_type = 'corrective'
         maintenance = form.save()
-        self.assertTrue(maintenance.request_date)
+
+        self.assertTrue(maintenance.schedule_date)
+        self.assertTrue(maintenance.schedule_end)
         self.assertFalse(maintenance.close_date)
 
-        maintenance.stage_id = self.ref('maintenance.stage_3')
-        self.assertTrue(maintenance.request_date)
+        maintenance.write({
+            'schedule_date': False,
+            'schedule_end': False
+        })
+
+        maintenance.state = 'done'
+        self.assertFalse(maintenance.schedule_date)
         self.assertTrue(maintenance.close_date)
         form = Form(equipment)
 
         # this shouldn't happen unless it's forced
         maintenance.close_date = False
         form = Form(equipment)
+
         maintenance.close_date = fields.Date.today()
-        maintenance.request_date = False
         form = Form(equipment)
+
         maintenance.close_date = False
         form = Form(equipment)
 
-    def test_no_duplicate_activity_on_stage_change(self):
+    def test_maintenance_request_default_schedule_dates(self):
         """
-        Ensure that changing the stage of a maintenance request does not create duplicate activities.
+        Ensure a newly created maintenance request gets valid scheduled dates by default.
+        When a maintenance request is created, `schedule_date` should be set automatically,
+        and `schedule_end` should be set to one hour after `schedule_date`.
         """
-        maintenance_request = self.env['maintenance.request'].create({
-            'name': 'Test activity duplication',
-            'maintenance_type': 'preventive',
-            'recurring_maintenance': True,
-            'repeat_type': 'forever',
-            'schedule_date': fields.Date.today(),
+        form = Form(self.env['maintenance.equipment'].with_user(self.manager))
+        form.name = "brain"
+        equipment = form.save()
+
+        before = fields.Datetime.now()
+        form = Form(self.env['maintenance.request'].with_user(self.manager))
+        form.name = "improve efficiency"
+        form.equipment_id = equipment
+        form.maintenance_type = 'corrective'
+        maintenance = form.save()
+        after = fields.Datetime.now()
+
+        self.assertTrue(maintenance.schedule_date)
+        self.assertTrue(maintenance.schedule_end)
+        self.assertGreaterEqual(maintenance.schedule_date, before)
+        self.assertLessEqual(maintenance.schedule_date, after)
+        self.assertEqual(maintenance.schedule_end, maintenance.schedule_date + timedelta(hours=1))
+
+    def test_schedule_date_and_end_must_be_set_together(self):
+        request = self.maintenance_request.create({
+            'name': 'Valid maintenance request',
+            'user_ids': [self.user.id],
+            'owner_user_id': self.user.id,
+            'maintenance_team_id': self.ref('maintenance.equipment_team_maintenance'),
+            'equipment_id': self.env['maintenance.equipment'].create({
+                'name': 'Samsung Monitor "17',
+                'category_id': self.equipment_monitor.id,
+            }).id,
+            'schedule_date': fields.Datetime.now(),
         })
-        maintenance_done_stage = self.env['maintenance.stage'].create({
-            'name': 'Done Stage',
-            'done': True,
-        })
-        self.assertEqual(len(maintenance_request.activity_ids), 1, "There should be one activity created for the maintenance request.")
-        maintenance_request.write({'stage_id': maintenance_done_stage.id})
-        new_request = self.env['maintenance.request'].search([
-            ('id', '!=', maintenance_request.id),
-            ('name', '=', maintenance_request.name),
-        ])
-        self.assertEqual(len(new_request), 1, "A recurring maintenance request should be created.")
-        self.assertEqual(
-            len(new_request.activity_ids),
-            1,
-            "The recurring maintenance request should have one activity.",
-        )
-        self.assertEqual(len(maintenance_request.activity_ids), 0, "There should be no activities after moving to a done stage.")
+
+        with self.assertRaises(ValidationError):
+            self.maintenance_request.create({
+                'name': 'Invalid maintenance request',
+                'user_ids': [self.user.id],
+                'owner_user_id': self.user.id,
+                'maintenance_team_id': self.ref('maintenance.equipment_team_maintenance'),
+                'equipment_id': request.equipment_id.id,
+                'schedule_date': False,
+                'schedule_end': fields.Datetime.now(),
+            })
+
+        with self.assertRaises(ValidationError):
+            request.write({
+                'schedule_date': False,
+                'schedule_end': fields.Datetime.now(),
+            })

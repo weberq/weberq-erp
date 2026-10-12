@@ -2,23 +2,64 @@
 # This file contains the translation of the following modules:
 # * account_debit_note
 #
-# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025, 2026.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
 # "Fernanda Alvarez (mfar)" <mfar@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 17:35+0000\n"
-"PO-Revision-Date: 2026-08-07 05:37+0000\n"
+"POT-Creation-Date: 2026-09-25 17:37+0000\n"
+"PO-Revision-Date: 2026-10-05 17:40+0000\n"
 "Last-Translator: \"Fernanda Alvarez (mfar)\" <mfar@odoo.com>\n"
 "Language-Team: Spanish (Latin America) <https://translate.odoo.com/projects/"
-"odoo-19/account_debit_note/es_419/>\n"
+"odoo-20/account_debit_note/es_419/>\n"
 "Language: es_419\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: account_debit_note
+#: model:ir.module.module,description:base.module_account_debit_note
+msgid ""
+"\n"
+"In a lot of countries, a debit note is used as an increase of the amounts of "
+"an existing invoice\n"
+"or in some specific cases to cancel a credit note.\n"
+"It is like a regular invoice, but we need to keep track of the link with the "
+"original invoice.\n"
+"The wizard used is similar as the one for the credit note.\n"
+msgstr ""
+"\n"
+"En muchos países, una nota de débito se usa para aumentar los importes de "
+"una factura existente\n"
+"o, en algunos casos específicos, para cancelar una nota de crédito.\n"
+"Es como una factura normal, pero debemos conservar el vínculo con la factura "
+"original.\n"
+"El asistente utilizado es similar al de la nota de crédito.\n"
+
+#. module: account_debit_note
+#: model_terms:ir.ui.view,arch_db:account_debit_note.view_move_form_debit
+msgid ""
+"<span class=\"o_stat_text\" invisible=\"debit_origin_move_type != "
+"'out_invoice'\">Invoice</span>\n"
+"                        <span class=\"o_stat_text\" "
+"invisible=\"debit_origin_move_type != 'in_invoice'\">Vendor Bill</span>\n"
+"                        <span class=\"o_stat_text\" "
+"invisible=\"debit_origin_move_type != 'out_refund'\">Credit Note</span>\n"
+"                        <span class=\"o_stat_text\" "
+"invisible=\"debit_origin_move_type != 'in_refund'\">Refund</span>"
+msgstr ""
+"<span class=\"o_stat_text\" invisible=\"debit_origin_move_type != "
+"'out_invoice'\">Factura de cliente</span>\n"
+"                    <span class=\"o_stat_text\" "
+"invisible=\"debit_origin_move_type != 'in_invoice'\">Factura de proveedor</"
+"span>\n"
+"                    <span class=\"o_stat_text\" "
+"invisible=\"debit_origin_move_type != 'out_refund'\">Nota de crédito</span>\n"
+"                    <span class=\"o_stat_text\" "
+"invisible=\"debit_origin_move_type != 'in_refund'\">Reembolso</span>"
 
 #. module: account_debit_note
 #: model_terms:ir.ui.view,arch_db:account_debit_note.view_move_form_debit
@@ -39,11 +80,6 @@ msgstr "<strong>Fecha de factura</strong>"
 #: model:ir.model,name:account_debit_note.model_account_debit_note
 msgid "Add Debit Note wizard"
 msgstr "Asistente para agregar nota de débito"
-
-#. module: account_debit_note
-#: model_terms:ir.ui.view,arch_db:account_debit_note.view_account_debit_note
-msgid "Cancel"
-msgstr "Cancelar"
 
 #. module: account_debit_note
 #: model_terms:ir.ui.view,arch_db:account_debit_note.report_invoice_document_inherit_debit_note
@@ -120,9 +156,17 @@ msgstr "Fecha de nota de débito"
 #: code:addons/account_debit_note/wizard/account_debit_note.py:0
 #: model:ir.model.fields,field_description:account_debit_note.field_account_bank_statement_line__debit_note_ids
 #: model:ir.model.fields,field_description:account_debit_note.field_account_move__debit_note_ids
+#: model:ir.module.module,shortdesc:base.module_account_debit_note
+#: model:ir.module.module,summary:base.module_account_debit_note
 #: model_terms:ir.ui.view,arch_db:account_debit_note.view_account_invoice_filter_debit
 msgid "Debit Notes"
 msgstr "Notas de débito"
+
+#. module: account_debit_note
+#: model:ir.model.fields,field_description:account_debit_note.field_account_bank_statement_line__debit_origin_move_type
+#: model:ir.model.fields,field_description:account_debit_note.field_account_move__debit_origin_move_type
+msgid "Debit Origin Move Type"
+msgstr "Tipo de movimiento de origen de la nota de débito"
 
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_journal__debit_sequence
@@ -183,6 +227,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_debit_note.report_invoice_document_inherit_debit_note
 msgid "Invoice"
 msgstr "Factura"
+
+#. module: account_debit_note
+#. odoo-python
+#: code:addons/account_debit_note/models/account_move.py:0
+msgid "Invoices"
+msgstr "Facturas"
 
 #. module: account_debit_note
 #: model:ir.model,name:account_debit_note.model_account_journal
@@ -262,15 +312,15 @@ msgid "The debit notes created for this invoice"
 msgstr "Notas de débito creadas para esta factura"
 
 #. module: account_debit_note
-#. odoo-python
-#: code:addons/account_debit_note/models/account_move.py:0
-msgid "This debit note was created from: %s"
-msgstr "Esta nota de débito se creó desde: %s"
-
-#. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_debit_note__journal_id
 msgid "Use Specific Journal"
 msgstr "Utilizar diario específico"
+
+#. module: account_debit_note
+#. odoo-python
+#: code:addons/account_debit_note/models/account_move.py:0
+msgid "Vendor Bills"
+msgstr "Facturas de proveedores"
 
 #. module: account_debit_note
 #. odoo-python
@@ -298,8 +348,20 @@ msgstr ""
 "No puede crear una nota de débito para una factura que ya está vinculada a "
 "otra nota."
 
-#. module: account_debit_note
-#. odoo-python
-#: code:addons/account_debit_note/models/account_move.py:0
-msgid "debit_origin_id"
-msgstr "debit_origin_id"
+#~ msgid ""
+#~ "<span class=\"o_stat_text\" invisible=\"debit_origin_move_type != "
+#~ "'out_invoice'\">Invoice</span>\n"
+#~ "                        <span class=\"o_stat_text\" "
+#~ "invisible=\"debit_origin_move_type != 'in_invoice'\">Vendor Bill</span>"
+#~ msgstr ""
+#~ "<span class=\"o_stat_text\" invisible=\"debit_origin_move_type != "
+#~ "'out_invoice'\">Factura de cliente</span>\n"
+#~ "                    <span class=\"o_stat_text\" "
+#~ "invisible=\"debit_origin_move_type != 'in_invoice'\">Factura de "
+#~ "proveedor</span>"
+
+#~ msgid "This debit note was created from: %s"
+#~ msgstr "Esta nota de débito se creó desde: %s"
+
+#~ msgid "debit_origin_id"
+#~ msgstr "debit_origin_id"

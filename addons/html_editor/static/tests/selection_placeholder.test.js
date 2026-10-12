@@ -2,7 +2,12 @@ import { expect, test } from "@odoo/hoot";
 import { testEditor } from "./_helpers/editor";
 import { unformat } from "./_helpers/format";
 import { animationFrame, press, tick } from "@odoo/hoot-dom";
-import { insertText, simulateArrowKeyPress, splitBlock } from "./_helpers/user_actions";
+import {
+    ensureDistinctHistoryCommit,
+    insertText,
+    simulateArrowKeyPress,
+    splitBlock,
+} from "./_helpers/user_actions";
 import { getContent } from "./_helpers/selection";
 import { closestElement } from "@html_editor/utils/dom_traversal";
 import { isTableCell } from "@html_editor/utils/dom_info";
@@ -454,7 +459,7 @@ test("enter in a selection placeholder persists it", async () => {
 });
 
 test.tags("focus required");
-test("can undo/redo the persiting of selection placeholders", async () => {
+test("can undo/redo the persisting of selection placeholders", async () => {
     const makeContent = (inTable = "", placeholder = "") =>
         unformat(
             `<p>a</p>
@@ -471,6 +476,7 @@ test("can undo/redo the persiting of selection placeholders", async () => {
         contentBeforeEdit: makeContent("b[]", '<p data-selection-placeholder=""><br></p>'),
         stepFunction: async (editor) => {
             await insertText(editor, "c");
+            await ensureDistinctHistoryCommit();
             expect(getContent(editor.editable)).toBe(
                 makeContent("bc[]", '<p data-selection-placeholder=""><br></p>'),
                 {
@@ -575,7 +581,7 @@ test("selection placeholders are vertically positioned in the middle between it 
             <p data-selection-placeholder="" style="margin: -6px 0px 5px;"><br></p>`
         ),
         stepFunction: async (editor) => {
-            style.innerText = `
+            style.textContent = `
                 *[contenteditable=true] {
                     border: 1px solid blue;
                 }
@@ -601,7 +607,7 @@ test("selection placeholder margins remain correct when an element gets added", 
             <table style="margin: 10px"><tbody><tr><td>[]a</td></tr></tbody></table>`
         ),
         stepFunction: async (editor) => {
-            style.innerText = `
+            style.textContent = `
                 *[contenteditable=true] {
                     border: 1px solid blue;
                 }
@@ -618,7 +624,7 @@ test("selection placeholder margins remain correct when an element gets added", 
                 `<table style="margin: 100px"><tbody><tr><td>[]a</td></tr></tbody></table>`
             ).firstChild;
             editor.editable.append(table);
-            editor.shared.history.addStep();
+            editor.shared.history.commit();
             await animationFrame();
         },
         contentAfterEdit: unformat(

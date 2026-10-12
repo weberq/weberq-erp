@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+from odoo.tests import tagged
+
 from .test_project_base import TestProjectCommon
+
 
 class TestTaskFollow(TestProjectCommon):
 
@@ -51,7 +54,8 @@ class TestTaskFollow(TestProjectCommon):
 
     def test_batch_activity_creation_multi_project_follower(self):
         """ Test batch activity creation on tasks from different projects with a shared follower """
-        (self.project_pigs | self.project_goats).message_subscribe(partner_ids=self.user_projectuser.partner_id.ids)
+        self.project_pigs.message_subscribe(partner_ids=self.user_projectuser.partner_id.ids)
+        self.project_goats.message_subscribe(partner_ids=self.user_projectuser.partner_id.ids)
         self.task_2.project_id = self.project_goats
         activity_type = self.env['mail.activity.type'].search([], limit=1)
         wizard = self.env['mail.activity.schedule'].with_context(

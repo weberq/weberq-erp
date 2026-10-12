@@ -3,28 +3,52 @@
 # * account_debit_note
 #
 # "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
-# Weblate <noreply-mt-weblate@weblate.org>, 2026.
 # "Kira Petersen François (peti)" <peti@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 17:35+0000\n"
-"PO-Revision-Date: 2026-08-04 01:00+0000\n"
+"POT-Creation-Date: 2026-09-25 17:37+0000\n"
+"PO-Revision-Date: 2026-09-09 13:53+0000\n"
 "Last-Translator: \"Kira Petersen François (peti)\" <peti@odoo.com>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-master/"
 "account_debit_note/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: account_debit_note
+#: model:ir.module.module,description:base.module_account_debit_note
+msgid ""
+"\n"
+"In a lot of countries, a debit note is used as an increase of the amounts of "
+"an existing invoice\n"
+"or in some specific cases to cancel a credit note.\n"
+"It is like a regular invoice, but we need to keep track of the link with the "
+"original invoice.\n"
+"The wizard used is similar as the one for the credit note.\n"
+msgstr ""
+
+#. module: account_debit_note
+#: model_terms:ir.ui.view,arch_db:account_debit_note.view_move_form_debit
+msgid ""
+"<span class=\"o_stat_text\" invisible=\"debit_origin_move_type != "
+"'out_invoice'\">Invoice</span>\n"
+"                        <span class=\"o_stat_text\" "
+"invisible=\"debit_origin_move_type != 'in_invoice'\">Vendor Bill</span>\n"
+"                        <span class=\"o_stat_text\" "
+"invisible=\"debit_origin_move_type != 'out_refund'\">Credit Note</span>\n"
+"                        <span class=\"o_stat_text\" "
+"invisible=\"debit_origin_move_type != 'in_refund'\">Refund</span>"
+msgstr ""
 
 #. module: account_debit_note
 #: model_terms:ir.ui.view,arch_db:account_debit_note.view_move_form_debit
 msgid "<span class=\"o_stat_text\">Debit Notes</span>"
-msgstr "<span class=\"o_stat_text\">Debetnotaer</span>"
+msgstr "<span class=\"o_stat_text\">Debit Noter</span>"
 
 #. module: account_debit_note
 #: model_terms:ir.ui.view,arch_db:account_debit_note.report_invoice_document_inherit_debit_note
@@ -39,12 +63,7 @@ msgstr "<strong>Fakturadato</strong>"
 #. module: account_debit_note
 #: model:ir.model,name:account_debit_note.model_account_debit_note
 msgid "Add Debit Note wizard"
-msgstr "Assistent til tilføjelse af debiteringer"
-
-#. module: account_debit_note
-#: model_terms:ir.ui.view,arch_db:account_debit_note.view_account_debit_note
-msgid "Cancel"
-msgstr "Annullér"
+msgstr "Tilføj Debit Note Guide"
 
 #. module: account_debit_note
 #: model_terms:ir.ui.view,arch_db:account_debit_note.report_invoice_document_inherit_debit_note
@@ -78,7 +97,7 @@ msgstr ""
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_debit_note__copy_lines
 msgid "Copy Lines"
-msgstr "Kopiér linjer"
+msgstr "Kopier Linjer"
 
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_debit_note__country_code
@@ -89,7 +108,7 @@ msgstr "Landekode"
 #: model:ir.actions.act_window,name:account_debit_note.action_view_account_move_debit
 #: model_terms:ir.ui.view,arch_db:account_debit_note.view_account_debit_note
 msgid "Create Debit Note"
-msgstr "Opret debetnota"
+msgstr "Opret Debit Note"
 
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_debit_note__create_uid
@@ -107,13 +126,13 @@ msgstr "Oprettet den"
 #: model_terms:ir.ui.view,arch_db:account_debit_note.view_account_move_line_filter_debit
 #: model_terms:ir.ui.view,arch_db:account_debit_note.view_move_form_debit
 msgid "Debit Note"
-msgstr "Debetnota"
+msgstr "Debit Note"
 
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_debit_note__date
 #: model_terms:ir.ui.view,arch_db:account_debit_note.view_account_debit_note
 msgid "Debit Note Date"
-msgstr "Debetnotadato"
+msgstr "Debit Note Dato"
 
 #. module: account_debit_note
 #. odoo-python
@@ -121,9 +140,17 @@ msgstr "Debetnotadato"
 #: code:addons/account_debit_note/wizard/account_debit_note.py:0
 #: model:ir.model.fields,field_description:account_debit_note.field_account_bank_statement_line__debit_note_ids
 #: model:ir.model.fields,field_description:account_debit_note.field_account_move__debit_note_ids
+#: model:ir.module.module,shortdesc:base.module_account_debit_note
+#: model:ir.module.module,summary:base.module_account_debit_note
 #: model_terms:ir.ui.view,arch_db:account_debit_note.view_account_invoice_filter_debit
 msgid "Debit Notes"
-msgstr "Debetnotaer"
+msgstr "Debetnoter"
+
+#. module: account_debit_note
+#: model:ir.model.fields,field_description:account_debit_note.field_account_bank_statement_line__debit_origin_move_type
+#: model:ir.model.fields,field_description:account_debit_note.field_account_move__debit_origin_move_type
+msgid "Debit Origin Move Type"
+msgstr "Debettype for oprindelige bevægelse"
 
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_journal__debit_sequence
@@ -150,7 +177,7 @@ msgstr "Fakturakladde"
 #. module: account_debit_note
 #: model_terms:ir.ui.view,arch_db:account_debit_note.report_invoice_document_inherit_debit_note
 msgid "Draft Proforma Debit Note"
-msgstr "Kladde til proforma-debiteringsnota"
+msgstr "Kladde til proforma-debetnota"
 
 #. module: account_debit_note
 #: model_terms:ir.ui.view,arch_db:account_debit_note.report_invoice_document_inherit_debit_note
@@ -167,9 +194,7 @@ msgstr "ID"
 #. module: account_debit_note
 #: model:ir.model.fields,help:account_debit_note.field_account_debit_note__journal_id
 msgid "If empty, uses the journal of the journal entry to be debited."
-msgstr ""
-"Hvis feltet er tomt, bruges journalen fra den journalpostering, der skal "
-"debiteres."
+msgstr "Hvis tom, bruges journalen for journalposteringen der skal debiteres."
 
 #. module: account_debit_note
 #: model:ir.model.fields,help:account_debit_note.field_account_debit_note__copy_lines
@@ -177,14 +202,20 @@ msgid ""
 "In case you need to do corrections for every line, it can be in handy to "
 "copy them.  We won't copy them for debit notes from credit notes. "
 msgstr ""
-"Hvis du skal foretage rettelser for alle linjer, kan det være nyttigt at "
-"kopiere dem. Linjer fra debetnotaer oprettet ud fra kreditnotaer kopieres "
-"dog ikke. "
+"I tilfælde af at du skal foretage rettelser for samtlige linjer, kan det "
+"være nyttigt at kopiere dem. Vi vil ikke kopiere dem for debit noter fra "
+"kredit noter. "
 
 #. module: account_debit_note
 #: model_terms:ir.ui.view,arch_db:account_debit_note.report_invoice_document_inherit_debit_note
 msgid "Invoice"
 msgstr "Faktura"
+
+#. module: account_debit_note
+#. odoo-python
+#: code:addons/account_debit_note/models/account_move.py:0
+msgid "Invoices"
+msgstr "Fakturaer"
 
 #. module: account_debit_note
 #: model:ir.model,name:account_debit_note.model_account_journal
@@ -194,12 +225,12 @@ msgstr "Journal"
 #. module: account_debit_note
 #: model:ir.model,name:account_debit_note.model_account_move
 msgid "Journal Entry"
-msgstr "Journalpostering"
+msgstr "Journalbilag"
 
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_debit_note__journal_type
 msgid "Journal Type"
-msgstr "Journaltype"
+msgstr "Journal Type"
 
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_debit_note__write_uid
@@ -214,24 +245,24 @@ msgstr "Sidst opdateret den"
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_debit_note__move_ids
 msgid "Move"
-msgstr "Bogføringspost"
+msgstr "Bevægelse"
 
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_debit_note__move_type
 msgid "Move Type"
-msgstr "Bogføringsposttype"
+msgstr "Bevægelses type"
 
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_bank_statement_line__debit_note_count
 #: model:ir.model.fields,field_description:account_debit_note.field_account_move__debit_note_count
 msgid "Number of Debit Notes"
-msgstr "Antal debetnotaer"
+msgstr "Antal Debit Noter"
 
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_bank_statement_line__debit_origin_id
 #: model:ir.model.fields,field_description:account_debit_note.field_account_move__debit_origin_id
 msgid "Original Invoice Debited"
-msgstr "Oprindelig faktura debiteret"
+msgstr "Oprindelig Faktura Debiteret"
 
 #. module: account_debit_note
 #: model_terms:ir.ui.view,arch_db:account_debit_note.report_invoice_document_inherit_debit_note
@@ -261,18 +292,18 @@ msgstr ""
 #: model:ir.model.fields,help:account_debit_note.field_account_bank_statement_line__debit_note_ids
 #: model:ir.model.fields,help:account_debit_note.field_account_move__debit_note_ids
 msgid "The debit notes created for this invoice"
-msgstr "Debetnotaerne oprettet for denne faktura"
-
-#. module: account_debit_note
-#. odoo-python
-#: code:addons/account_debit_note/models/account_move.py:0
-msgid "This debit note was created from: %s"
-msgstr "Denne debetnota er oprettet fra: %s"
+msgstr "Debit noterne oprettet for denne faktura"
 
 #. module: account_debit_note
 #: model:ir.model.fields,field_description:account_debit_note.field_account_debit_note__journal_id
 msgid "Use Specific Journal"
 msgstr "Anvend specifik journal"
+
+#. module: account_debit_note
+#. odoo-python
+#: code:addons/account_debit_note/models/account_move.py:0
+msgid "Vendor Bills"
+msgstr "Leverandørfakturaer"
 
 #. module: account_debit_note
 #. odoo-python
@@ -282,13 +313,13 @@ msgid ""
 "Note, a Vendor Bill or a Vendor Credit Note."
 msgstr ""
 "Du kan kun lave en debetnota for en kundefaktura, en kundekreditnota, en "
-"leverandørregning eller en leverandørkreditnota."
+"leverandørfaktura eller en leverandørkreditnota."
 
 #. module: account_debit_note
 #. odoo-python
 #: code:addons/account_debit_note/wizard/account_debit_note.py:0
 msgid "You can only debit posted moves."
-msgstr "Du kan kun debitere bogførte poster."
+msgstr "Du kan kun debitere posteret bevægelser."
 
 #. module: account_debit_note
 #. odoo-python
@@ -297,11 +328,20 @@ msgid ""
 "You can't make a debit note for an invoice that is already linked to a debit "
 "note."
 msgstr ""
-"Du kan ikke oprette en debetnota for en faktura, der allerede er tilknyttet "
-"en debetnota."
+"Du kan ikke lave en debit nota for en faktura, der allerede er knyttet til "
+"en debit nota."
 
-#. module: account_debit_note
-#. odoo-python
-#: code:addons/account_debit_note/models/account_move.py:0
-msgid "debit_origin_id"
-msgstr "debit_origin_id"
+#~ msgid ""
+#~ "<span class=\"o_stat_text\" invisible=\"debit_origin_move_type != "
+#~ "'out_invoice'\">Invoice</span>\n"
+#~ "                        <span class=\"o_stat_text\" "
+#~ "invisible=\"debit_origin_move_type != 'in_invoice'\">Vendor Bill</span>"
+#~ msgstr ""
+#~ "<span class=\"o_stat_text\" invisible=\"debit_origin_move_type != "
+#~ "'out_invoice'\">Faktura</span>\n"
+#~ "                        <span class=\"o_stat_text\" "
+#~ "invisible=\"debit_origin_move_type != 'in_invoice'\">leverandørfaktura</"
+#~ "span>"
+
+#~ msgid "This debit note was created from: %s"
+#~ msgstr "Denne debit note er oprettet fra: %s"

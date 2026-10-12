@@ -5,12 +5,12 @@ class AccountMoveSend(models.AbstractModel):
     _inherit = 'account.move.send'
 
     @api.model
-    def _get_default_sending_methods(self, move) -> str:
+    def _get_default_sending_methods(self, move) -> list:
         # EXTENDS 'account_peppol' to not select Peppol / PDP for B2C invoices
         partner = move.commercial_partner_id.with_company(move.company_id)
         if move.company_id._get_peppol_proxy_type() != 'pdp' or not partner._l10n_fr_pdp_is_b2c():
             return super()._get_default_sending_methods(move)
-        return {'email'}
+        return ['email']
 
     # -------------------------------------------------------------------------
     # SENDING METHODS
@@ -20,8 +20,7 @@ class AccountMoveSend(models.AbstractModel):
         # EXTENDS 'account'
         if (
             'peppol' in kwargs.get('sending_methods', [])
-            and move.company_id._get_peppol_proxy_type() == 'pdp'
-            and move.partner_id._get_pdp_receiver_identification_info()[0] == 'pdp'
+            and move.partner_id.with_company(move.company_id).l10n_fr_is_pdp
         ):
             return 'ubl_21_fr'
         return super()._get_default_invoice_edi_format(move, **kwargs)

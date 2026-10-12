@@ -1,16 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * pos_edi_ubl
+# 	* pos_edi_ubl
 #
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server saas~19.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-20 18:35+0000\n"
-"PO-Revision-Date: 2026-10-07 14:29+0000\n"
-"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>\n"
-"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-08-31 15:21+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-s19-4/"
 "pos_edi_ubl/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -21,16 +20,36 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 
 #. module: pos_edi_ubl
+#: model:ir.module.module,description:base.module_pos_edi_ubl
+msgid ""
+"\n"
+"\n"
+"This module provides helpers for exporting POS orders in various UBL 2.1 "
+"formats.\n"
+"\n"
+msgstr ""
+
+#. module: pos_edi_ubl
 #: model:ir.model.fields,field_description:pos_edi_ubl.field_pos_edi_xml_ubl_21__display_name
 msgid "Display Name"
-msgstr "Назва для відображення"
+msgstr ""
 
 #. module: pos_edi_ubl
 #: model:ir.model.fields,field_description:pos_edi_ubl.field_pos_edi_xml_ubl_21__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: pos_edi_ubl
 #: model:ir.model,name:pos_edi_ubl.model_pos_edi_xml_ubl_21
 msgid "PoS Order UBL 2.1 builder"
-msgstr "Конструктор PoS замовлення UBL 2.1"
+msgstr ""
+
+#. module: pos_edi_ubl
+#: model:ir.module.module,shortdesc:base.module_pos_edi_ubl
+msgid "Point of Sale UBL"
+msgstr ""
+
+#. module: pos_edi_ubl
+#: model:ir.module.module,summary:base.module_pos_edi_ubl
+msgid "UBL in the Point of Sale "
+msgstr ""

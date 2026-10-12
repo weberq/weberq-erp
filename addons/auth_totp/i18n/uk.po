@@ -2,17 +2,15 @@
 # This file contains the translation of the following modules:
 # * auth_totp
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Vlad Patenko <vlad.patenko@gmail.com>, 2026.
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-08 07:11+0000\n"
-"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>\n"
-"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 14:00+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-s19-4/"
 "auth_totp/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: auth_totp
+#: model:ir.module.module,description:base.module_auth_totp
+msgid ""
+"\n"
+"Two-Factor Authentication (TOTP)\n"
+"================================\n"
+"Allows users to configure two-factor authentication on their user account\n"
+"for extra security, using time-based one-time passwords (TOTP).\n"
+"\n"
+"Once enabled, the user will need to enter a 6-digit code as provided\n"
+"by their authenticator app before being granted access to the system.\n"
+"All popular authenticator apps are supported.\n"
+"\n"
+"Note: logically, two-factor prevents password-based RPC access for users\n"
+"where it is enabled. In order to be able to execute RPC scripts, the user\n"
+"can setup API keys to replace their main password.\n"
+msgstr ""
 
 #. module: auth_totp
 #. odoo-python
@@ -40,31 +56,23 @@ msgid "2-Factor authentication is now enabled."
 msgstr "Двофакторну аутентифікацію тепер увімкнено."
 
 #. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_field
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_form
 msgid ""
-"<i class=\"fa fa-check text-success\"/>\n"
-"                        <span class=\"fw-bold ms-1 me-2\">\n"
-"                            Enabled\n"
-"                        </span>"
-msgstr ""
-"<i class=\"fa fa-check text-success\"/>\n"
-"                        <span class=\"fw-bold ms-1 me-2\">\n"
-"                            Увімкнено\n"
-"                        </span>"
-
-#. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_form
-msgid ""
-"<i class=\"fa fa-remove text-danger\"/>\n"
+"<i class=\"oi text-danger\" data-icon=\"close\"/>\n"
 "                        <span class=\"fw-bold ms-1\">\n"
 "                            Disabled\n"
 "                        </span>"
 msgstr ""
-"<i class=\"fa fa-remove text-danger\"/>\n"
-"                        <span class=\"fw-bold ms-1\">\n"
-"                            Відключено\n"
+
+#. module: auth_totp
+#: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_field
+#: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_form
+msgid ""
+"<i class=\"oi text-success\" data-icon=\"check\"/>\n"
+"                        <span class=\"fw-bold ms-1 me-2\">\n"
+"                            Enabled\n"
 "                        </span>"
+msgstr ""
 
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_field
@@ -74,24 +82,22 @@ msgid ""
 "                            Recommended for extra security.\n"
 "                        </span>"
 msgstr ""
-"<span class=\"text-muted\">\n"
-"                            Рекомендовано для додаткового захисту.\n"
-"                        </span>"
 
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Add this key in your Authenticator app"
-msgstr "Додайте цей ключ у свій додаток Authenticator"
-
-#. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
-msgid "Authentication Code"
-msgstr "Код аутентифікації"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model,name:auth_totp.model_auth_totp_device
 msgid "Authentication Device"
 msgstr "Пристрій аутентифікації"
+
+#. module: auth_totp
+#. odoo-javascript
+#: code:addons/auth_totp/static/src/services/check_identity/check_identity.xml:0
+msgid "Authentication code"
+msgstr ""
 
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
@@ -102,6 +108,13 @@ msgstr "Скасувати"
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Cannot scan it?"
 msgstr "Не можете відсканувати його?"
+
+#. module: auth_totp
+#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
+msgid ""
+"Check your Authenticator app for your code.\n"
+"                        <br/>"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields.selection,name:auth_totp.selection__auth_totp_rate_limit_log__limit_type__code_check
@@ -142,14 +155,10 @@ msgid "Disable two-factor authentication"
 msgstr "Вимкнути двофакторну аутентифікацію"
 
 #. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
-msgid "Discard"
-msgstr "Відмінити"
-
-#. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_device__display_name
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_rate_limit_log__display_name
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_wizard__display_name
+#: model:ir.model.fields,field_description:auth_totp.field_ir_http__display_name
 #: model:ir.model.fields,field_description:auth_totp.field_res_users__display_name
 msgid "Display Name"
 msgstr "Назва для відображення"
@@ -168,7 +177,17 @@ msgstr "Увімкнути 2FA"
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Enable Two-Factor Authentication"
-msgstr "Увімкнути двофакторну автентифікацію"
+msgstr ""
+
+#. module: auth_totp
+#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
+msgid "Enter code"
+msgstr ""
+
+#. module: auth_totp
+#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
+msgid "Enter verification code"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_device__expiration_date
@@ -176,9 +195,15 @@ msgid "Expiration Date"
 msgstr "Термін дії"
 
 #. module: auth_totp
+#: model:ir.model,name:auth_totp.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_device__id
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_rate_limit_log__id
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_wizard__id
+#: model:ir.model.fields,field_description:auth_totp.field_ir_http__id
 #: model:ir.model.fields,field_description:auth_totp.field_res_users__id
 msgid "ID"
 msgstr "ID"
@@ -207,11 +232,6 @@ msgid "Last Updated on"
 msgstr "Останнє оновлення"
 
 #. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
-msgid "Learn More"
-msgstr "Детальніше"
-
-#. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_rate_limit_log__limit_type
 msgid "Limit Type"
 msgstr "Тип ліміту"
@@ -222,6 +242,14 @@ msgid "Log in"
 msgstr "Вхід"
 
 #. module: auth_totp
+#. odoo-javascript
+#: code:addons/auth_totp/static/src/services/check_identity/check_identity.xml:0
+msgid ""
+"Open your two-factor authenticator (TOTP) app or browser extension to view "
+"your authentication code."
+msgstr ""
+
+#. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_wizard__qrcode
 msgid "Qrcode"
 msgstr "Qr-код"
@@ -229,7 +257,7 @@ msgstr "Qr-код"
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Scan this barcode in your Authenticator app"
-msgstr "Відскануйте цей штрих-код у своєму додатку Authenticator"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_device__scope
@@ -258,20 +286,9 @@ msgid "The verification code should only contain numbers"
 msgstr "Код верифікації має містити лише цифри"
 
 #. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
-msgid ""
-"To login, enter below the six-digit authentication code provided by your "
-"Authenticator app.\n"
-"                        <br/>"
-msgstr ""
-"Щоб увійти, введіть нижче шестизначний код аутентифікації, який надає ваш "
-"додаток Аутентифікатор.\n"
-"                        <br/>"
-
-#. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users__totp_last_counter
 msgid "Totp Last Counter"
-msgstr "Останній лічильник Totp"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users__totp_secret
@@ -284,13 +301,17 @@ msgid "Trusted Devices"
 msgstr "Надійні пристрої"
 
 #. module: auth_totp
+#: model:ir.module.module,shortdesc:base.module_auth_totp
+msgid "Two-Factor Authentication (TOTP)"
+msgstr ""
+
+#. module: auth_totp
 #. odoo-python
 #: code:addons/auth_totp/models/res_users.py:0
 msgid "Two-Factor Authentication Activation"
 msgstr "Активація двофакторної аутентифікації"
 
 #. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_field
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_form
 msgid "Two-factor Authentication"
@@ -335,6 +356,12 @@ msgid "Url"
 msgstr "Url-адреса"
 
 #. module: auth_totp
+#. odoo-javascript
+#: code:addons/auth_totp/static/src/services/check_identity/check_identity.xml:0
+msgid "Use your authenticator app"
+msgstr ""
+
+#. module: auth_totp
 #: model:ir.model,name:auth_totp.model_res_users
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_device__user_id
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_rate_limit_log__user_id
@@ -350,7 +377,7 @@ msgstr "Код перевірки"
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Verification code"
-msgstr "Код верифікації"
+msgstr ""
 
 #. module: auth_totp
 #. odoo-python
@@ -364,12 +391,23 @@ msgstr "Верифікація не вдалася, перевірте ще ра
 #: code:addons/auth_totp/models/res_users.py:0
 msgid "Verification failed, please use the latest 6-digit code"
 msgstr ""
-"Не вдалося підтвердити, будь ласка, скористайтеся останнім 6-значним кодом"
+
+#. module: auth_totp
+#. odoo-javascript
+#: code:addons/auth_totp/static/src/services/check_identity/check_identity.xml:0
+msgid "Verify"
+msgstr ""
 
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Write the code given by your app"
-msgstr "Напишіть код, наданий вашим модулем"
+msgstr ""
+
+#. module: auth_totp
+#. odoo-javascript
+#: code:addons/auth_totp/static/src/services/check_identity/check_identity.xml:0
+msgid "XXXXXX"
+msgstr ""
 
 #. module: auth_totp
 #. odoo-python
@@ -378,8 +416,6 @@ msgid ""
 "You reached the limit of authentication mails sent for your account, please "
 "try again later."
 msgstr ""
-"Ви досягли ліміту надісланих листів для автентифікації вашого облікового "
-"запису. Спробуйте ще раз пізніше."
 
 #. module: auth_totp
 #. odoo-python
@@ -388,10 +424,21 @@ msgid ""
 "You reached the limit of code verifications for your account, please try "
 "again later."
 msgstr ""
-"Ви досягли ліміту перевірок коду для вашого облікового запису. Спробуйте ще "
-"раз пізніше."
 
-#. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
-msgid "e.g. 123456"
-msgstr "напр., 123456"
+#~ msgid "Authentication Code"
+#~ msgstr "Код аутентифікації"
+
+#~ msgid "Learn More"
+#~ msgstr "Детальніше"
+
+#~ msgid ""
+#~ "To login, enter below the six-digit authentication code provided by your "
+#~ "Authenticator app.\n"
+#~ "                        <br/>"
+#~ msgstr ""
+#~ "Щоб увійти, введіть нижче шестизначний код аутентифікації, який надає ваш "
+#~ "додаток Аутентифікатор.\n"
+#~ "                        <br/>"
+
+#~ msgid "e.g. 123456"
+#~ msgstr "напр., 123456"

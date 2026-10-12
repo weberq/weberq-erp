@@ -1,16 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * project_mrp
+# 	* project_mrp
 #
-# Ulevičienė <vilma.uleviciene@mededu.lt>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-30 18:37+0000\n"
-"PO-Revision-Date: 2026-10-05 16:50+0000\n"
-"Last-Translator: Ulevičienė <vilma.uleviciene@mededu.lt>\n"
-"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 17:53+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-s19-4/"
 "project_mrp/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
@@ -32,20 +31,10 @@ msgid "Bill of Material"
 msgstr ""
 
 #. module: project_mrp
-#. odoo-python
-#: code:addons/project_mrp/models/project_project.py:0
 #: model:ir.embedded.actions,name:project_mrp.project_embedded_action_bills_of_materials
 #: model:ir.embedded.actions,name:project_mrp.project_embedded_action_bills_of_materials_dashboard
+#: model_terms:ir.ui.view,arch_db:project_mrp.project_view_form_inherit_project_mrp
 msgid "Bills of Materials"
-msgstr ""
-
-#. module: project_mrp
-#. odoo-python
-#: code:addons/project_mrp/models/project_project.py:0
-msgid ""
-"Bills of materials allow you to define the list of required raw materials "
-"used to make a finished product; through a manufacturing order or a pack of "
-"products."
 msgstr ""
 
 #. module: project_mrp
@@ -55,7 +44,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:project_mrp.field_stock_move__display_name
 #: model:ir.model.fields,field_description:project_mrp.field_stock_rule__display_name
 msgid "Display Name"
-msgstr "Rodomas vardas"
+msgstr ""
 
 #. module: project_mrp
 #: model:ir.model.fields,field_description:project_mrp.field_mrp_bom__id
@@ -67,22 +56,25 @@ msgid "ID"
 msgstr ""
 
 #. module: project_mrp
+#: model:ir.module.module,shortdesc:base.module_project_mrp
+msgid "MRP Project"
+msgstr ""
+
+#. module: project_mrp
 #: model:ir.model,name:project_mrp.model_mrp_production
 msgid "Manufacturing Order"
 msgstr ""
 
 #. module: project_mrp
-#. odoo-python
-#: code:addons/project_mrp/models/project_project.py:0
 #: model:ir.embedded.actions,name:project_mrp.project_embedded_action_manufacturing_orders
 #: model:ir.embedded.actions,name:project_mrp.project_embedded_action_manufacturing_orders_dashboard
+#: model_terms:ir.ui.view,arch_db:project_mrp.project_view_form_inherit_project_mrp
 msgid "Manufacturing Orders"
 msgstr ""
 
 #. module: project_mrp
-#. odoo-python
-#: code:addons/project_mrp/models/project_project.py:0
-msgid "No bill of materials found. Let's create one."
+#: model:ir.module.module,summary:base.module_project_mrp
+msgid "Monitor MRP using project"
 msgstr ""
 
 #. module: project_mrp

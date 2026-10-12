@@ -4,7 +4,6 @@ import ast
 import re
 
 from odoo import api, fields, models, _
-from odoo.exceptions import ValidationError
 from odoo.fields import Domain
 
 
@@ -112,11 +111,6 @@ class HrDepartment(models.Model):
         for department in self:
             department.plans_count = plans_count.get(department.id, 0) + plans_count.get(False, 0)
 
-    @api.constrains('parent_id')
-    def _check_parent_id(self):
-        if self._has_cycle():
-            raise ValidationError(_('You cannot create recursive departments.'))
-
     @api.model_create_multi
     def create(self, vals_list):
         return super(HrDepartment, self.with_context(mail_create_nosubscribe=True)).create(vals_list)
@@ -146,8 +140,8 @@ class HrDepartment(models.Model):
             ])
         employees.write({'parent_id': manager_id})
 
-    def get_formview_action(self, access_uid=None):
-        res = super().get_formview_action(access_uid=access_uid)
+    def get_record_default_action(self, access_uid=None):
+        res = super().get_record_default_action(access_uid=access_uid)
         if (not self.env.user.has_group('hr.group_hr_user') and
            self.env.context.get('open_employees_kanban', False)):
             res.update({

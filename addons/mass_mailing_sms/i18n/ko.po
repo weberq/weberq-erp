@@ -2,24 +2,24 @@
 # This file contains the translation of the following modules:
 # * mass_mailing_sms
 #
-# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025, 2026.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
 # "Kwanghee Park (kwpa)" <kwpa@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-10 18:37+0000\n"
-"PO-Revision-Date: 2026-08-04 02:59+0000\n"
-"Last-Translator: \"Kwanghee Park (kwpa)\" <kwpa@odoo.com>\n"
-"Language-Team: Korean <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-04 17:44+0000\n"
+"PO-Revision-Date: 2026-08-31 14:21+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Korean <https://translate.odoo.com/projects/odoo-s19-4/"
 "mass_mailing_sms/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: mass_mailing_sms
 #. odoo-javascript
@@ -41,6 +41,12 @@ msgstr " (수신 거부 링크 포함)"
 
 #. module: mass_mailing_sms
 #. odoo-python
+#: code:addons/mass_mailing_sms/wizard/mailing_contact_to_list.py:0
+msgid "%(count)s ignored (no email/phone)"
+msgstr ""
+
+#. module: mass_mailing_sms
+#. odoo-python
 #: code:addons/mass_mailing_sms/models/mailing_mailing.py:0
 msgid "24H Stats of %(mailing_type)s \"%(mailing_name)s\""
 msgstr "%(mailing_type)s \"%(mailing_name)s\"의 24시간 통계"
@@ -50,31 +56,17 @@ msgstr "%(mailing_type)s \"%(mailing_name)s\"의 24시간 통계"
 msgid ""
 "<br/>\n"
 "                    <span class=\"text-muted\">\n"
-"                        <i class=\"fa fa-phone\"/> Contacts\n"
+"                        <i class=\"oi oi-filled\" data-icon=\"phone\"/> "
+"Contacts\n"
 "                    </span>"
 msgstr ""
-"<br/>\n"
-"                    <span class=\"text-muted\">\n"
-"                        <i class=\"fa fa-phone\"/> 연락처\n"
-"                    </span>"
 
 #. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
+#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_contact_view_kanban
 msgid ""
-"<span name=\"canceled_text_sms\" invisible=\"mailing_type != 'sms'\">SMS "
-"Text Message have been cancelled and will not be sent.</span>"
+"<i class=\"oi oi-filled text-primary me-2\" data-icon=\"phone\" "
+"title=\"Phone\"/>"
 msgstr ""
-"<span name=\"canceled_text_sms\" invisible=\"mailing_type != 'sms'\">SMS "
-"문자 메시지가 취소되었으며 전송되지 않습니다.</span>"
-
-#. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
-msgid ""
-"<span name=\"failed_text_sms\" invisible=\"mailing_type != 'sms'\">SMS Text "
-"Messages could not be delivered.</span>"
-msgstr ""
-"<span name=\"failed_text_sms\" invisible=\"mailing_type != 'sms'\">SMS 문자 "
-"메시지를 전송할 수 없습니다.</span>"
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
@@ -82,8 +74,8 @@ msgid ""
 "<span name=\"next_departure_text\" invisible=\"mailing_type != 'sms'\">This "
 "SMS marketing is scheduled for </span>"
 msgstr ""
-"<span name=\"next_departure_text\" invisible=\"mailing_type != 'sms'\">"
-"다음과 같이 SMS 마케팅이 예정되어 있습니다: </span>"
+"<span name=\"next_departure_text\" invisible=\"mailing_type != 'sms'\">다음"
+"과 같이 SMS 마케팅이 예정되어 있습니다: </span>"
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
@@ -100,17 +92,8 @@ msgid ""
 "<span name=\"scheduled_text_sms\" invisible=\"mailing_type != 'sms'\">SMS "
 "Text Messages are in queue and will be sent soon.</span>"
 msgstr ""
-"<span name=\"scheduled_text_sms\" invisible=\"mailing_type != 'sms'\">SMS "
-"문자 메시지가 대기 중이며 곧 발송될 예정입니다.</span>"
-
-#. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
-msgid ""
-"<span name=\"sent_sms\" invisible=\"mailing_type != 'sms'\">SMS Text "
-"Messages have been sent.</span>"
-msgstr ""
-"<span name=\"sent_sms\" invisible=\"mailing_type != 'sms'\">SMS 문자 "
-"메시지가 전송되었습니다.</span>"
+"<span name=\"scheduled_text_sms\" invisible=\"mailing_type != 'sms'\">SMS 문"
+"자 메시지가 대기 중이며 곧 발송될 예정입니다.</span>"
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_form_sms
@@ -139,8 +122,8 @@ msgid ""
 "                        </strong>"
 msgstr ""
 "<strong>\n"
-"                            SMS 계정이 이미 등록되어 있습니다. 계정을 "
-"설정하려면 여기를 클릭하세요.\n"
+"                            SMS 계정이 이미 등록되어 있습니다. 계정을 설정하"
+"려면 여기를 클릭하세요.\n"
 "                        </strong>"
 
 #. module: mass_mailing_sms
@@ -185,6 +168,11 @@ msgstr "A/B 테스트: %s"
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__message_needaction
 msgid "Action Needed"
 msgstr "조치 필요"
+
+#. module: mass_mailing_sms
+#: model:ir.model,name:mass_mailing_sms.model_mailing_contact_to_list
+msgid "Add (Mailing) Contacts to Mailing List"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
@@ -297,6 +285,11 @@ msgid "Configuration"
 msgstr "설정"
 
 #. module: mass_mailing_sms
+#: model:ir.model,name:mass_mailing_sms.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_country_not_supported
 msgid "Country Not Supported"
 msgstr "지원되지 않는 국가입니다."
@@ -305,6 +298,11 @@ msgstr "지원되지 않는 국가입니다."
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_registration_needed
 msgid "Country-specific Registration Required"
 msgstr "국가별로 등록해야 합니다."
+
+#. module: mass_mailing_sms
+#: model:ir.model,website_form_label:mass_mailing_sms.model_res_partner
+msgid "Create a Customer"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.actions.act_window,help:mass_mailing_sms.mailing_list_action_sms
@@ -332,28 +330,35 @@ msgid "Created on"
 msgstr "작성일자"
 
 #. module: mass_mailing_sms
+#: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_database_non_active
+msgid "Database non active"
+msgstr ""
+
+#. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_tree_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.utm_campaign_view_form
 msgid "Date"
 msgstr "날짜"
 
 #. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_sms_test_view_form
-msgid "Discard"
-msgstr "취소"
+#: model:ir.module.module,summary:base.module_mass_mailing_sms
+msgid "Design, send and track SMS"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__display_name
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact_to_list__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_list__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_sms_test__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_trace__display_name
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_res_partner__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_res_users__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_composer__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_sms__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_tracker__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_campaign__display_name
-#: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_medium__display_name
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_mixin__display_name
 msgid "Display Name"
 msgstr "표시명"
 
@@ -390,8 +395,8 @@ msgid ""
 "Field used to store sanitized phone number. Helps speeding up searches and "
 "comparisons."
 msgstr ""
-"삭제된 전화 번호를 저장하는 데 사용되는 필드입니다. 검색 및 비교 속도를 "
-"높이는 데 도움이 됩니다."
+"삭제된 전화 번호를 저장하는 데 사용되는 필드입니다. 검색 및 비교 속도를 높이"
+"는 데 도움이 됩니다."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__message_follower_ids
@@ -438,16 +443,18 @@ msgstr "가장 높은 클릭율"
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__id
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact_to_list__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_list__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_sms_test__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_trace__id
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_res_partner__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_res_users__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_composer__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_sms__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_tracker__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_campaign__id
-#: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_medium__id
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_mixin__id
 msgid "ID"
 msgstr "ID"
 
@@ -468,14 +475,15 @@ msgid ""
 "If the sanitized phone number is on the blacklist, the contact won't receive "
 "mass mailing sms anymore, from any list"
 msgstr ""
-"검증한 전화번호가 블랙리스트에 있는 번호인 경우, 어느 목록에서도 해당 "
-"연락처에 대해서는 더 이상 대량 발송 SMS를 보내지 않게 됩니다."
+"검증한 전화번호가 블랙리스트에 있는 번호인 경우, 어느 목록에서도 해당 연락처"
+"에 대해서는 더 이상 대량 발송 SMS를 보내지 않게 됩니다."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,help:mass_mailing_sms.field_mailing_mailing__sms_force_send
 msgid ""
 "Immediately send the SMS Mailing instead of queuing up. Use at your own risk."
-msgstr "대기 없이 즉시 SMS 메일링을 전송합니다. 관련 책임은 모두 본인에게 있습니다."
+msgstr ""
+"대기 없이 즉시 SMS 메일링을 전송합니다. 관련 책임은 모두 본인에게 있습니다."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__sms_allow_unsubscribe
@@ -495,9 +503,9 @@ msgid ""
 "distinguish which number is blacklisted             when there is both a "
 "mobile and phone field in a model."
 msgstr ""
-"해당 전화번호가 블랙리스트에 오른 번호인지 여부를 나타냅니다. 모델에 "
-"핸드폰과 유선전화 필드 양쪽이 있는 경우 블랙리스트에 올라 있는 번호를 "
-"구분하는데 사용합니다."
+"해당 전화번호가 블랙리스트에 오른 번호인지 여부를 나타냅니다. 모델에 핸드폰"
+"과 유선전화 필드 양쪽이 있는 경우 블랙리스트에 올라 있는 번호를 구분하는데 사"
+"용합니다."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_credit
@@ -557,15 +565,15 @@ msgid "Mailing Contact"
 msgstr "메일링 연락처"
 
 #. module: mass_mailing_sms
+#: model:ir.actions.act_window,name:mass_mailing_sms.mailing_contact_action_sms
+#: model:ir.ui.menu,name:mass_mailing_sms.mailing_contact_menu_sms
+msgid "Mailing Contacts"
+msgstr ""
+
+#. module: mass_mailing_sms
 #: model:ir.model,name:mass_mailing_sms.model_mailing_list
 msgid "Mailing List"
 msgstr "메일링 목록"
-
-#. module: mass_mailing_sms
-#: model:ir.actions.act_window,name:mass_mailing_sms.mailing_contact_action_sms
-#: model:ir.ui.menu,name:mass_mailing_sms.mailing_contact_menu_sms
-msgid "Mailing List Contacts"
-msgstr "메일링 목록 연락처"
 
 #. module: mass_mailing_sms
 #: model:ir.actions.act_window,name:mass_mailing_sms.mailing_list_action_sms
@@ -595,8 +603,8 @@ msgid ""
 "Mailing contacts allow you to separate your marketing audience from your "
 "contact directory."
 msgstr ""
-"메일링 연락처를 사용하면 마케팅 대상을 연락처 디렉토리에서 분리할 수 "
-"있습니다."
+"메일링 연락처를 사용하면 마케팅 대상을 연락처 디렉토리에서 분리할 수 있습니"
+"다."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__utm_campaign__ab_testing_sms_winner_selection__manual
@@ -648,6 +656,12 @@ msgstr "휴대폰 번호"
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_search_sms
 msgid "My SMS Marketing"
 msgstr "나의 SMS 마케팅"
+
+#. module: mass_mailing_sms
+#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_list_view_kanban
+#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.utm_campaign_view_form
+msgid "New SMS"
+msgstr "새 SMS"
 
 #. module: mass_mailing_sms
 #: model_terms:ir.actions.act_window,help:mass_mailing_sms.mailing_trace_report_action_sms
@@ -714,8 +728,8 @@ msgid ""
 "Once you send these text messages, they'll be making a grand entrance in all "
 "pockets, creating quite the bzzzzz!"
 msgstr ""
-"문자 메시지를 전송합니다. 수신자를 대상으로 모든 내용이 빠짐없이 "
-"입력되었는지 확인하세요!"
+"문자 메시지를 전송합니다. 수신자를 대상으로 모든 내용이 빠짐없이 입력되었는"
+"지 확인하세요!"
 
 #. module: mass_mailing_sms
 #. odoo-python
@@ -732,11 +746,6 @@ msgid ""
 msgstr "죄송합니다! 잘못된 전화번호입니다. 국가 번호를 같이 입력하세요."
 
 #. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_tree_sms
-msgid "Open Recipient"
-msgstr "받는 사람 열기"
-
-#. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_optout
 msgid "Opted Out"
 msgstr "선택하지 않음"
@@ -750,6 +759,11 @@ msgstr "옵션"
 #: model:ir.model,name:mass_mailing_sms.model_sms_sms
 msgid "Outgoing SMS"
 msgstr "발신 SMS"
+
+#. module: mass_mailing_sms
+#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_contact_view_form
+msgid "Phone"
+msgstr "전화"
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__phone_sanitized_blacklisted
@@ -844,6 +858,7 @@ msgstr "SMS ID"
 #. odoo-python
 #: code:addons/mass_mailing_sms/models/res_users.py:0
 #: model:ir.actions.act_window,name:mass_mailing_sms.mailing_mailing_action_sms
+#: model:ir.module.module,shortdesc:base.module_mass_mailing_sms
 #: model:ir.ui.menu,name:mass_mailing_sms.mass_mailing_sms_menu_mass_sms
 #: model:ir.ui.menu,name:mass_mailing_sms.mass_mailing_sms_menu_root
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_tree_sms
@@ -917,12 +932,6 @@ msgstr "직접 전송"
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
 msgid "Send Now"
 msgstr "지금 보내기"
-
-#. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_list_view_form
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.utm_campaign_view_form
-msgid "Send SMS"
-msgstr "SMS 보내기"
 
 #. module: mass_mailing_sms
 #: model:ir.model,name:mass_mailing_sms.model_sms_composer
@@ -1005,16 +1014,6 @@ msgid "Test SMS successfully sent to %s"
 msgstr "테스트 SMS가 %s로 성공적으로 전송되었습니다"
 
 #. module: mass_mailing_sms
-#. odoo-python
-#: code:addons/mass_mailing_sms/models/utm.py:0
-msgid ""
-"The UTM medium '%s' cannot be deleted as it is used in some main functional "
-"flows, such as the SMS Marketing."
-msgstr ""
-"UTM 매체 '%s'는 SMS 마케팅과 같은 일부 주요 기능 프로세스에서 사용되므로 "
-"삭제할 수 없습니다."
-
-#. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.blacklist_main
 msgid "There was an error when trying to unsubscribe"
 msgstr "구독 취소 중 오류가 발생했습니다"
@@ -1024,8 +1023,8 @@ msgstr "구독 취소 중 오류가 발생했습니다"
 msgid ""
 "This phone number is blacklisted for SMS Marketing. Click to unblacklist."
 msgstr ""
-"이 전화번호는 SMS 마케팅에서 블랙리스트에 올라있습니다. 블랙리스트를 "
-"해제하려면 클릭하세요."
+"이 전화번호는 SMS 마케팅에서 블랙리스트에 올라있습니다. 블랙리스트를 해제하려"
+"면 클릭하세요."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__sms_subject
@@ -1052,9 +1051,9 @@ msgid "UTM Campaign"
 msgstr "UTM 캠페인"
 
 #. module: mass_mailing_sms
-#: model:ir.model,name:mass_mailing_sms.model_utm_medium
-msgid "UTM Medium"
-msgstr "UTM 매체"
+#: model:ir.model,name:mass_mailing_sms.model_utm_mixin
+msgid "UTM Mixin"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_acc
@@ -1093,16 +1092,6 @@ msgid "Valid SMS Recipients"
 msgstr "유효한 SMS 수신자"
 
 #. module: mass_mailing_sms
-#: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__website_message_ids
-msgid "Website Messages"
-msgstr "웹사이트 메시지"
-
-#. module: mass_mailing_sms
-#: model:ir.model.fields,help:mass_mailing_sms.field_mailing_contact__website_message_ids
-msgid "Website communication history"
-msgstr "웹사이트 대화 이력"
-
-#. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
 msgid "Winner Selection"
 msgstr "당첨자 선택"
@@ -1111,7 +1100,8 @@ msgstr "당첨자 선택"
 #: model_terms:ir.actions.act_window,help:mass_mailing_sms.mailing_mailing_action_sms
 msgid ""
 "Write an appealing SMS Text Message, define recipients and track its results."
-msgstr "차별화된 SMS 관리를 통해 적합한 대상자에게 발송한 후 결과를 추적해 보세요."
+msgstr ""
+"차별화된 SMS 관리를 통해 적합한 대상자에게 발송한 후 결과를 추적해 보세요."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_number_format
@@ -1138,9 +1128,40 @@ msgstr "성공적으로 블랙리스트에 추가했음"
 msgid "has been successfully removed from"
 msgstr "다음에서 성공적으로 제거했습니다."
 
-#~ msgid ""
-#~ "+32 495 85 85 77\n"
-#~ "+33 545 55 55 55"
-#~ msgstr ""
-#~ "+32 495 85 85 77\n"
-#~ "+33 545 55 55 55"
+#. module: mass_mailing_sms
+#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_contact_view_tree
+msgid "📵 Blacklisted"
+msgstr ""
+
+msgid ""
+"<span name=\"canceled_text_sms\" invisible=\"mailing_type != 'sms'\">SMS "
+"Text Message have been cancelled and will not be sent.</span>"
+msgstr ""
+"<span name=\"canceled_text_sms\" invisible=\"mailing_type != 'sms'\">SMS 문"
+"자 메시지가 취소되었으며 전송되지 않습니다.</span>"
+
+msgid ""
+"<span name=\"failed_text_sms\" invisible=\"mailing_type != 'sms'\">SMS Text "
+"Messages could not be delivered.</span>"
+msgstr ""
+"<span name=\"failed_text_sms\" invisible=\"mailing_type != 'sms'\">SMS 문자 "
+"메시지를 전송할 수 없습니다.</span>"
+
+msgid ""
+"<span name=\"sent_sms\" invisible=\"mailing_type != 'sms'\">SMS Text "
+"Messages have been sent.</span>"
+msgstr ""
+"<span name=\"sent_sms\" invisible=\"mailing_type != 'sms'\">SMS 문자 메시지"
+"가 전송되었습니다.</span>"
+
+msgid "Mailing List Contacts"
+msgstr "메일링 목록 연락처"
+
+msgid "Open Recipient"
+msgstr "받는 사람 열기"
+
+msgid "Website Messages"
+msgstr "웹사이트 메시지"
+
+msgid "Website communication history"
+msgstr "웹사이트 대화 이력"

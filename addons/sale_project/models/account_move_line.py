@@ -67,7 +67,7 @@ class AccountMoveLine(models.Model):
                 orders |= orders_per_project.get(project, self.env['sale.order'])
             if not orders:
                 continue
-            orders = orders.sorted('create_date')
+            orders = orders.sorted('create_date', reverse=True)
             in_sale_state_orders = orders.filtered(lambda s: s.state == 'sale')
 
             mapping[move_line.id] = in_sale_state_orders[0] if in_sale_state_orders else orders[0]

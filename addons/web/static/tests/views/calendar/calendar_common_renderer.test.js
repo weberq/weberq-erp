@@ -15,6 +15,7 @@ import { CallbackRecorder } from "@web/search/action_hook";
 
 const FAKE_PROPS = {
     model: FAKE_MODEL,
+    initialDate: FAKE_MODEL.date,
     createRecord() {},
     deleteRecord() {},
     editRecord() {},
@@ -152,7 +153,14 @@ test("Week: check dates across a DST transition happening at local midnight (Afr
     // make FullCalendar's Luxon timezone plugin resolve that day's header to the
     // previous day (duplicating its weekday name).
     mockTimeZone("Africa/Cairo");
-    await start({ model: { ...FAKE_MODEL, scale: "week", date: luxon.DateTime.local(2027, 4, 25) } });
+
+    await start({
+        model: {
+            ...FAKE_MODEL,
+            scale: "week",
+        },
+        initialDate: luxon.DateTime.local(2027, 4, 25),
+    });
 
     expect(`.fc-col-header-cell.fc-day`).toHaveCount(7);
     expect(queryAllTexts(`.fc-col-header-cell .o_cw_day_name`)).toEqual([

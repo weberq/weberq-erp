@@ -9,20 +9,16 @@
 # Matjaz Mozetic <m.mozetic@matmoz.si>, 2022
 # Jasmina Macur <jasmina@hbs.si>, 2022
 # Martin Trigaux, 2022
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.5alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-05 19:30+0000\n"
-"PO-Revision-Date: 2026-09-14 11:24+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 14:02+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "website_links/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +27,17 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 2026.8.1\n"
+
+#. module: website_links
+#: model:ir.module.module,description:base.module_website_links
+msgid ""
+"\n"
+"Generate short links with analytics trackers (UTM) to share your pages "
+"through marketing campaigns.\n"
+"Those trackers can be used in Google Analytics to track clicks and visitors, "
+"or in Odoo reports to analyze the efficiency of those campaigns in terms of "
+"lead generation, related revenues (sales orders), recruitment, etc.\n"
+msgstr ""
 
 #. module: website_links
 #. odoo-javascript
@@ -42,15 +49,23 @@ msgstr "# klikov"
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 msgid ""
 "<a class=\"copy-to-clipboard btn btn-success text-nowrap "
-"o_translate_inline\"><i class=\"fa fa-copy me-2\"/>Copy</a>"
+"o_translate_inline\"><i class=\"oi me-2\" data-icon=\"content_copy\"/>Copy</"
+"a>\n"
+"                                        <a class=\"download-qr-code btn btn-"
+"info text-nowrap o_translate_inline\"><i class=\"oi align-middle me-2\" data-"
+"icon=\"qr_code\"/>Download QR Code</a>"
 msgstr ""
-"<a class=\"copy-to-clipboard btn btn-success text-nowrap "
-"o_translate_inline\"><i class=\"fa fa-copy me-2\"/>Kopiraj</a>"
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
-msgid "<i class=\"fa fa-copy me-2\"/>Copy"
-msgstr "<i class=\"fa fa-copy me-2\"/>Kopiraj"
+msgid ""
+"<i class=\"oi align-middle me-2\" data-icon=\"qr_code\"/>Download QR Code"
+msgstr ""
+
+#. module: website_links
+#: model_terms:ir.ui.view,arch_db:website_links.graphs
+msgid "<i class=\"oi me-2\" data-icon=\"content_copy\"/>Copy"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
@@ -64,14 +79,6 @@ msgid ""
 "a>\n"
 "                                    </span>"
 msgstr ""
-"<span class=\"o_website_links_edit_tools\">\n"
-"                                        <a role=\"button\" "
-"class=\"o_website_links_ok_edit btn btn-sm btn-primary o_translate_inline\" "
-"href=\"#\">v redu</a> ali\n"
-"                                        <a "
-"class=\"o_website_links_cancel_edit o_translate_inline\" href=\"#\">"
-"prekliči</a>\n"
-"                                    </span>"
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
@@ -89,23 +96,11 @@ msgid ""
 "a>\n"
 "                                        </span>"
 msgstr ""
-"<span class=\"o_website_links_short_url d-flex align-items-center text-"
-"nowrap text-truncate\" id=\"short_url\"><span id=\"short-url-host\" "
-"class=\"text-truncate\"/><span id=\"o_website_links_code\"/></span>\n"
-"                                        <span "
-"class=\"o_website_links_edit_tools text-nowrap d-none\">\n"
-"                                            <a role=\"button\" "
-"class=\"o_website_links_ok_edit btn btn-sm btn-primary o_translate_inline\" "
-"href=\"#\">v redu</a> ali\n"
-"                                            <a "
-"class=\"o_website_links_cancel_edit o_translate_inline\" href=\"#\">"
-"prekliči</a>\n"
-"                                        </span>"
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 msgid "<span class=\"text-muted me-1\">Sort By:</span>"
-msgstr "<span class=\"text-muted me-1\">Razvrsti po:</span>"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
@@ -115,7 +110,7 @@ msgstr "<strong>Kampanija</strong>"
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
 msgid "<strong>Medium</strong>"
-msgstr "<strong>Srednji</strong>"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
@@ -125,12 +120,12 @@ msgstr "<strong>Naziv</strong>"
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
 msgid "<strong>Original URL</strong>"
-msgstr "<strong>Izvorni URL</strong>"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
 msgid "<strong>Redirected URL</strong>"
-msgstr "<strong>Preusmerjeni URL</strong>"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
@@ -140,12 +135,12 @@ msgstr "<strong>Vir:</strong>"
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
 msgid "<strong>Tracked Link</strong>"
-msgstr "<strong>Spremljana povezava</strong>"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
 msgid "All Time"
-msgstr "Vse"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
@@ -161,18 +156,18 @@ msgstr "Kopiraj"
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 msgid "Create a Link tracker"
-msgstr "Ustvarite sledilnik povezav"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 msgid "Create another Tracker"
-msgstr "Ustvari še en sledilnik"
+msgstr ""
 
 #. module: website_links
 #. odoo-javascript
 #: code:addons/website_links/static/src/xml/website_links_tags_wrapper.xml:0
 msgid "Create option \""
-msgstr "Ustvari možnost \""
+msgstr ""
 
 #. module: website_links
 #: model:ir.model.fields,field_description:website_links.field_link_tracker__display_name
@@ -183,12 +178,17 @@ msgstr "Prikazani naziv"
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
 msgid "Edit code"
-msgstr "Uredi kodo"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 msgid "Generate Link Tracker"
-msgstr "Ustvari sledilnik povezav"
+msgstr ""
+
+#. module: website_links
+#: model:ir.module.module,summary:base.module_website_links
+msgid "Generate trackable & short URLs"
+msgstr ""
 
 #. module: website_links
 #: model:ir.model.fields,field_description:website_links.field_link_tracker__id
@@ -198,7 +198,7 @@ msgstr "ID"
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 msgid "Last Clicks"
-msgstr "Zadnji kliki"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
@@ -219,6 +219,7 @@ msgstr "Povezava kopirana!"
 
 #. module: website_links
 #: model:ir.model,name:website_links.model_link_tracker
+#: model:ir.module.module,shortdesc:base.module_website_links
 #: model:ir.ui.menu,name:website_links.menu_link_tracker
 #: model_terms:ir.ui.view,arch_db:website_links.graphs
 msgid "Link Tracker"
@@ -251,8 +252,6 @@ msgid ""
 "Only letters (A–Z, a–z), numbers (0–9), underscores (_) and hyphens (-) are "
 "allowed. No spaces."
 msgstr ""
-"Dovoljene so samo črke (A–Z, a–z), številke (0–9), podčrtaji (_) in vezaji "
-"(-). Brez presledkov."
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
@@ -265,8 +264,8 @@ msgid ""
 "Share this page with a <strong>short link</strong> that includes "
 "<strong>analytics trackers</strong>."
 msgstr ""
-"Souporabi to stran s <strong>kratko povezavo</strong> , ki vključuje <strong>"
-"analitične sledilnike</strong>."
+"Souporabi to stran s <strong>kratko povezavo</strong> , ki vključuje "
+"<strong>analitične sledilnike</strong>."
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
@@ -282,13 +281,13 @@ msgstr "Statistike"
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 msgid "Target Link"
-msgstr "Ciljni URL"
+msgstr ""
 
 #. module: website_links
 #. odoo-javascript
 #: code:addons/website_links/static/src/interactions/website_links_code_editor.js:0
 msgid "The code cannot be left empty"
-msgstr "Kode ni mogoče pustiti prazne"
+msgstr ""
 
 #. module: website_links
 #. odoo-javascript
@@ -300,7 +299,7 @@ msgstr "Ni podatkov za prikaz"
 #. odoo-javascript
 #: code:addons/website_links/static/src/interactions/website_links_code_editor.js:0
 msgid "This code is already taken"
-msgstr "Ta koda je že zasedena"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
@@ -308,14 +307,11 @@ msgid ""
 "Those trackers can be used in Google Analytics to track clicks and visitors, "
 "or in Odoo reports to track opportunities and related revenues."
 msgstr ""
-"Te sledilnike je mogoče uporabiti v Google Analytics za sledenje klikom in "
-"obiskovalcem ali v poročilih Odoo za sledenje priložnostim in povezanim "
-"prihodkom."
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 msgid "Tracked Link"
-msgstr "Sledilna povezava"
+msgstr ""
 
 #. module: website_links
 #. odoo-javascript
@@ -327,18 +323,18 @@ msgstr "Nedoločeno"
 #. odoo-javascript
 #: code:addons/website_links/static/src/xml/recent_link.xml:0
 msgid "Visit Link"
-msgstr "Obišči povezavo"
+msgstr ""
 
 #. module: website_links
 #. odoo-python
 #: code:addons/website_links/models/link_tracker.py:0
 msgid "Visit Webpage Statistics"
-msgstr "Obiščite statistiko spletne strani"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 msgid "Your tracked links"
-msgstr "Vaše sledene povezave"
+msgstr ""
 
 #. module: website_links
 #. odoo-javascript
@@ -351,56 +347,32 @@ msgstr "klikov"
 #. odoo-javascript
 #: code:addons/website_links/static/src/interactions/website_links_charts.js:0
 msgid "countries"
-msgstr "Države"
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 msgid "e.g. \"Black Friday Mailing Campaign\""
-msgstr "Poštna kampanja za črni petek"
+msgstr ""
 
 #. module: website_links
 #. odoo-javascript
 #: code:addons/website_links/static/src/interactions/website_links.js:0
 msgid "e.g. InMails, Ads, Social, ..."
-msgstr "npr. InMails, oglasi, družbena omrežja, ..."
+msgstr ""
 
 #. module: website_links
 #. odoo-javascript
 #: code:addons/website_links/static/src/interactions/website_links.js:0
 msgid "e.g. June Sale, Paris Roadshow, ..."
-msgstr "npr. junijska razprodaja, predstavitev v Parizu, ..."
+msgstr ""
 
 #. module: website_links
 #. odoo-javascript
 #: code:addons/website_links/static/src/interactions/website_links.js:0
 msgid "e.g. LinkedIn, Facebook, Leads, ..."
-msgstr "npr. LinkedIn, Facebook, potencialne stranke, ..."
+msgstr ""
 
 #. module: website_links
 #: model_terms:ir.ui.view,arch_db:website_links.create_shorten_url
 msgid "e.g. https://www.odoo.com/contactus"
 msgstr "npr. https://www.odoo.com/contactus"
-
-#~ msgid " clicks"
-#~ msgstr "klikov"
-
-#~ msgid "Copied"
-#~ msgstr "Kopirano"
-
-#~ msgid "Icon"
-#~ msgstr "Ikona"
-
-#~ msgid "No data"
-#~ msgstr "Ni podatkov"
-
-#~ msgid "Stats"
-#~ msgstr "Statistika"
-
-#~ msgid "URL"
-#~ msgstr "URL"
-
-#~ msgid "cancel"
-#~ msgstr "preklic"
-
-#~ msgid "or"
-#~ msgstr "ali"

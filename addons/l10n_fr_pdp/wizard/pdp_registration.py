@@ -27,9 +27,8 @@ class PdpRegistration(models.TransientModel):
     )
     pdp_identifier = fields.Char(
         compute="_compute_pdp_identifier",
-        inverse="_inverse_pdp_identifier",
+        store=True,
         readonly=False,
-        required=True,
         help="The identifier starts with the SIREN, the part after the SIREN is optional. The expected format of the identifier is: SIREN, SIREN_SIRET, SIREN_SIRET_CodeRoutage or SIREN_SuffixeAdressage",
     )
     # DEPRECATED - was for the pre-prod phase
@@ -52,7 +51,6 @@ class PdpRegistration(models.TransientModel):
     )
     account_peppol_proxy_state = fields.Selection(
         related='company_id.account_peppol_proxy_state',
-        readonly=False,
     )
     warnings = fields.Json(
         string="Warnings",
@@ -97,7 +95,11 @@ class PdpRegistration(models.TransientModel):
     @api.depends('company_id.pdp_identifier')
     def _compute_pdp_identifier(self):
         for wizard in self:
-            wizard.pdp_identifier = wizard.company_id.pdp_identifier or wizard.company_id.partner_id._get_suggested_pdp_identifier()
+            wizard.pdp_identifier = (
+                wizard.company_id.pdp_identifier
+                or wizard.company_id.partner_id._get_additional_identifier('FR_CTC')
+                or wizard.company_id.partner_id._l10n_fr_pdp_get_siren()
+            )
 
     def _inverse_pdp_identifier(self):
         for record in self:
@@ -172,12 +174,14 @@ class PdpRegistration(models.TransientModel):
     # -------------------------------------------------------------------------
 
     def _get_kyc_siren(self):
-        kyc_siren_param = self.env['ir.config_parameter'].sudo().get_param('l10n_fr_pdp.kyc_siren', default='')
+        kyc_siren_param = self.env['ir.config_parameter'].sudo().get_str('l10n_fr_pdp.kyc_siren')
         match = PDP_identifier_re.match(kyc_siren_param)
         kyc_siren = match and match.group(1)
         return kyc_siren or self.siren_number
 
     def _ensure_mandatory_fields(self):
+        if not self.pdp_identifier:
+            raise ValidationError(self.env._("The Identifier is required."))
         if not self.contact_email:
             raise ValidationError(self.env._("The contact email is required."))
 
@@ -187,7 +191,7 @@ class PdpRegistration(models.TransientModel):
             next_action = self.env['account.move'].browse(move_ids).action_send_and_print()
             next_action['views'] = [(False, 'form')]
         else:
-            next_action = {'type': 'ir.actions.act_window_close'}
+            next_action = {'type': 'ir.actions.client', 'tag': 'reload'}
 
         return {
             'type': 'ir.actions.client',
@@ -200,18 +204,6 @@ class PdpRegistration(models.TransientModel):
             }
         }
 
-    def _check_can_register(self):
-        """ No longer used, need to remove in master """
-        if not self.env.user.totp_enabled and not bool(self.env['ir.config_parameter'].sudo().get_param('auth_totp.policy')) and self.edi_mode != 'demo':
-            raise RedirectWarning(
-                message=self.env._("To be able to register, you need to enable the two-factor authentication."),
-                action=self.env.user._get_records_action(
-                    target='new',
-                    views=[(self.env.ref('base.view_users_form_simple_modif').id, "form")],
-                ),
-                button_text=self.env._("Go to the Preferences panel"),
-            )
-
     def _action_open_pdp_form(self, reopen=True):
         self.ensure_one()
         return self._get_records_action(
@@ -219,6 +211,13 @@ class PdpRegistration(models.TransientModel):
             target='new',
             view_mode='form',
         )
+
+    @api.model
+    def _get_company_details(self, company):
+        return {
+            **self.env['peppol.registration']._get_company_details(company),
+            'pdp_pilot_phase': self.company_id.l10n_fr_pdp_pilot_phase,
+        }
 
     # -------------------------------------------------------------------------
     # BUSINESS ACTIONS
@@ -237,21 +236,21 @@ class PdpRegistration(models.TransientModel):
             raise ValidationError(self.env._("Invalid email address '%s'", self.contact_email))
         base_url = self.company_id._pdp_get_iap_url()
         if self.env['res.company'].search_count([
-            ('peppol_eas', '=', '0225'),
-            ('peppol_endpoint', '=like', f'{self.siren_number}%'),
+            ('routing_scheme', '=', '0225'),
+            ('routing_endpoint', '=like', f'{self.siren_number}%'),
             ('account_peppol_proxy_state', 'in', ('receiver', 'smp_registration')),
         ], limit=1):
             # Another company/branch on same db registered with the same siren (and so will do the same kyc)
             return self.button_register_pdp_participant()
 
         response = iap_tools.iap_jsonrpc(f'{base_url}/api/id_authentication/1/authentication', params={
-            'db_uuid': self.env['ir.config_parameter'].sudo().get_param('database.uuid'),
+            'db_uuid': self.env['ir.config_parameter'].sudo().get_str('database.uuid'),
             'vat': self._get_kyc_siren(),
             'auth_email': self.contact_email,
             'company_name': self.company_id.name,
             'localization': 'FR',
             'db_url': self.get_base_url(),
-        })
+        }, raise_user_error=True)
         if error := response.get('error'):
             raise UserError(error)
 
@@ -320,11 +319,11 @@ class PdpRegistration(models.TransientModel):
         self.ensure_one()
         base_url = self.company_id._pdp_get_iap_url()
         response = iap_tools.iap_jsonrpc(f'{base_url}/api/id_authentication/1/get_authentication_hash', params={
-            'db_uuid': self.env['ir.config_parameter'].sudo().get_param('database.uuid'),
+            'db_uuid': self.env['ir.config_parameter'].sudo().get_str('database.uuid'),
             'vat': self._get_kyc_siren(),
             'auth_email': self.contact_email,
             'object_uuid': self.pdp_authentication_uuid,
-        })
+        }, raise_user_error=True)
         if error := response.get('error'):
             raise UserError(error)
 
@@ -365,7 +364,7 @@ class PdpRegistration(models.TransientModel):
         if not self.env["res.company"]._check_pdp_identifier(self.pdp_identifier):
             raise UserError(self.env._("The Identifier is not valid. The expected format is: SIREN, SIREN_SIRET, SIREN_SIRET_CodeRoutage or SIREN_SuffixeAdressage"))
 
-        self.company_id.pdp_identifier = self.pdp_identifier  # For the initial compute the inverse is not triggered.
+        self.company_id.pdp_identifier = self.pdp_identifier
         edi_user = self.edi_user_id or self.env['account_edi_proxy_client.user']._register_proxy_user(self.company_id, 'pdp', self.edi_mode)
 
         # if there is an error when activating the participant below,

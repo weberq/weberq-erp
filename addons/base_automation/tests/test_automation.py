@@ -67,7 +67,7 @@ class TestAutomation(TransactionCaseWithUserDemo):
         action.flush_recordset()
         automation.write({"action_server_ids": [Command.link(action.id)]})
         # action cached was cached with admin, force CacheMiss
-        automation.env.clear()
+        automation.env.transaction.clear()
 
         self_portal = self.env["ir.filters"].with_user(self.user_demo.id)
         # verify the portal user can create ir.filters but can not read base.automation
@@ -105,7 +105,7 @@ class TestAutomation(TransactionCaseWithUserDemo):
         })
         automation.write({"action_server_ids": [Command.link(action.id)]})
         # action cached was cached with admin, force CacheMiss
-        automation.env.clear()
+        automation.env.transaction.clear()
 
         self_portal = self.env["ir.filters"].with_user(self.user_demo.id)
 
@@ -135,7 +135,7 @@ class TestAutomation(TransactionCaseWithUserDemo):
         action.flush_recordset()
         automation.write({"action_server_ids": [Command.link(action.id)]})
         # action cached was cached with admin, force CacheMiss
-        automation.env.clear()
+        automation.env.transaction.clear()
 
         server_action = self.env["ir.actions.server"].create({
             "name": "Empty write",

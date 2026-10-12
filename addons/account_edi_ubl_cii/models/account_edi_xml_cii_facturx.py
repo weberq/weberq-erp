@@ -55,7 +55,7 @@ class AccountEdiXmlCii(models.AbstractModel):
                     vals['record'], 'partner_bank_id'
                 ),
                 'seller_payment_instructions_2': self._check_required_fields(
-                    vals['record']['partner_bank_id'], 'sanitized_acc_number',
+                    vals['record']['partner_bank_id'], 'sanitized_account_number',
                     _("The field 'Sanitized Account Number' is required on the Recipient Bank.")
                 ),
             })
@@ -181,8 +181,10 @@ class AccountEdiXmlCii(models.AbstractModel):
             'scheduled_delivery_time': self._get_scheduled_delivery_time(invoice),
             'intracom_delivery': False,
             'ExchangedDocument_vals': self._get_exchanged_document_vals(invoice),
-            'seller_specified_legal_organization': invoice.company_id.company_registry,
-            'buyer_specified_legal_organization': invoice.commercial_partner_id.company_registry,
+            # FIXME cii_22_templates hard-codes SpecifiedLegalOrganization/ID with schemeID="0002"
+            # (FR SIRENE), so only emit it when the party is French and has a SIREN/SIRET.
+            'seller_specified_legal_organization': invoice.company_id.partner_id._get_all_identifiers(enrich=True).get('FR_SIREN'),  # will retrieve SIREN from SIRET if available
+            'buyer_specified_legal_organization': invoice.commercial_partner_id._get_all_identifiers(enrich=True).get('FR_SIREN'),  # will retrieve SIREN from SIRET if available
             'ship_to_trade_party': invoice.partner_shipping_id if 'partner_shipping_id' in invoice._fields and invoice.partner_shipping_id
                 else invoice.commercial_partner_id,
             # Chorus Pro fields
@@ -197,7 +199,7 @@ class AccountEdiXmlCii(models.AbstractModel):
         # data used for IncludedSupplyChainTradeLineItem / SpecifiedLineTradeSettlement
         for line_vals in template_values['invoice_line_vals_list']:
             line = line_vals['line']
-            line_vals['unece_uom_code'] = self._get_uom_unece_code(line.product_uom_id)
+            line_vals['unece_uom_code'] = line.product_uom_id._get_unece_code()
 
             if line._fields.get('deferred_start_date') and (line.deferred_start_date or line.deferred_end_date):
                 line_vals['billing_start'] = line.deferred_start_date
@@ -251,7 +253,10 @@ class AccountEdiXmlCii(models.AbstractModel):
         template_values['tax_basis_total_amount'] = tax_details['base_amount_currency']
         template_values['tax_total_amount'] = tax_details['tax_amount_currency']
 
-        if self.env['account.payment']._fields.get('sdd_mandate_id') and invoice.reconciled_payment_ids.sdd_mandate_id:
+        if (
+            self.module_installed('account_sepa_direct_debit')
+            and invoice.reconciled_payment_ids.mandate_id.filtered(lambda m: m.mandate_type == 'sepa')
+        ):
             template_values['payment_means_code'] = PAYMENT_MEAN_CODES['SEPA direct debit']
         else:
             template_values['payment_means_code'] = PAYMENT_MEAN_CODES['Payment to bank account']
@@ -260,7 +265,7 @@ class AccountEdiXmlCii(models.AbstractModel):
 
     def _export_invoice(self, invoice):
         if str2bool(
-            self.env['ir.config_parameter'].sudo().get_param('account_edi_ubl_cii.use_new_dict_to_xml_helpers', True),
+            self.env['ir.config_parameter'].sudo().get_bool('account_edi_ubl_cii.use_new_dict_to_xml_helpers', True),
             default=True,
         ):
             return self._export_invoice_new(invoice)
@@ -485,10 +490,10 @@ class AccountEdiXmlCii(models.AbstractModel):
 
         customer_values = collected_values['customer_values']
         if (
-                (peppol_eas := customer_values.get('peppol_eas'))
-                and (peppol_endpoint := customer_values.get('peppol_endpoint'))
+                (routing_scheme := customer_values.get('routing_scheme'))
+                and (routing_endpoint := customer_values.get('routing_endpoint'))
         ):
-            partner_create_values['peppol_eas'] = peppol_eas
-            partner_create_values['peppol_endpoint'] = peppol_endpoint
+            partner_create_values['routing_scheme'] = routing_scheme
+            partner_create_values['routing_endpoint'] = routing_endpoint
 
         return partner_create_values

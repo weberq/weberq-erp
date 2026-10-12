@@ -7,16 +7,17 @@
 # Friederike Fasterling-Nesselbosch, 2022
 # Larissa Manderfeld, 2023
 #
-# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025, 2026.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
 # "Larissa Manderfeld (lman)" <lman@odoo.com>, 2025, 2026.
+# Odoo Translation Bot <c3p@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~15.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-04 12:20+0000\n"
-"Last-Translator: \"Larissa Manderfeld (lman)\" <lman@odoo.com>\n"
-"Language-Team: German <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-10-08 08:42+0000\n"
+"Last-Translator: Odoo Translation Bot <c3p@odoo.com>\n"
+"Language-Team: German <https://translate.odoo.com/projects/odoo-20/"
 "crm_livechat/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -33,8 +34,13 @@ msgstr "Neuer Lead von %s"
 
 #. module: crm_livechat
 #: model_terms:ir.ui.view,arch_db:crm_livechat.crm_lead_view_form
-msgid "<span class=\"o_stat_text\">View chat</span>"
-msgstr "<span class=\"o_stat_text\">Chat anzeigen</span>"
+msgid "<span class=\"o_stat_text\">View Live Chat</span>"
+msgstr "<span class=\"o_stat_text\">Livechat anzeigen</span>"
+
+#. module: crm_livechat
+#: model:ir.module.module,shortdesc:base.module_crm_livechat
+msgid "CRM Livechat"
+msgstr "CRM & Livechat"
 
 #. module: crm_livechat
 #: model:ir.model,name:crm_livechat.model_chatbot_script
@@ -54,15 +60,10 @@ msgid "Create Lead"
 msgstr "Lead erstellen"
 
 #. module: crm_livechat
-#: model:ir.model.fields.selection,name:crm_livechat.selection__chatbot_script_step__step_type__create_lead_and_forward
-msgid "Create Lead & Forward"
-msgstr "Lead erstellen & weiterleiten"
-
-#. module: crm_livechat
 #. odoo-javascript
 #: code:addons/crm_livechat/static/src/core/channel_commands.js:0
 msgid "Create a new lead (/lead lead title)"
-msgstr "Einen neuen Lead erstellen (/Lead Leadtitel)"
+msgstr "Neuen Lead erstellen (/Lead Leadbezeichnung)"
 
 #. module: crm_livechat
 #. odoo-python
@@ -80,11 +81,14 @@ msgid "Create an Opportunity"
 msgstr "Verkaufschance erstellen"
 
 #. module: crm_livechat
-#. odoo-python
-#: code:addons/crm_livechat/models/chatbot_script_step.py:0
-#: code:addons/crm_livechat/models/discuss_channel.py:0
-msgid "Created a new lead: %s"
-msgstr "Neuer Lead erstellt: %s"
+#: model:ir.module.module,summary:base.module_crm_livechat
+msgid "Create lead from livechat conversation"
+msgstr ""
+
+#. module: crm_livechat
+#: model:ir.module.module,description:base.module_crm_livechat
+msgid "Create new lead with using /lead command in the channel"
+msgstr ""
 
 #. module: crm_livechat
 #: model:ir.model,name:crm_livechat.model_discuss_channel
@@ -109,18 +113,17 @@ msgstr "Anzahl generierter Leads"
 #. module: crm_livechat
 #: model:ir.model.fields,field_description:crm_livechat.field_discuss_channel__has_crm_lead
 msgid "Has Crm Lead"
-msgstr "Hat CRM Lead"
+msgstr "Hat CRM-Lead"
 
 #. module: crm_livechat
 #: model_terms:chatbot.script.step,message:crm_livechat.chatbot_script_lead_generation_step_welcome
 msgid "Hi there, what brings you to our website today? 👋"
-msgstr "Guten Tag, was führt Sie heute auf unsere Website? 👋"
+msgstr "Guten Tag! Was führt Sie heute zu unserer Website? 👋"
 
 #. module: crm_livechat
 #: model_terms:chatbot.script.step,message:crm_livechat.chatbot_script_lead_generation_step_noone_available
 msgid "Hu-ho, it looks like none of our operators are available 🙁"
-msgstr ""
-"Oh oh, es sieht so aus, als ob keiner unserer Mitarbeiter verfügbar ist 🙁"
+msgstr "Oh oh! Es scheint, dass keiner unserer Mitarbeiter verfügbar ist 🙁"
 
 #. module: crm_livechat
 #: model:ir.model.fields,field_description:crm_livechat.field_chatbot_script__id
@@ -161,7 +164,7 @@ msgstr "Livechat, aus dem der Lead erstellt wurde"
 #. module: crm_livechat
 #: model:ir.model,name:crm_livechat.model_im_livechat_report_channel
 msgid "Livechat Support Channel Report"
-msgstr "Kanalbericht zum Livechat-Support"
+msgstr "Bericht zum Livechat-Supportkanal"
 
 #. module: crm_livechat
 #. odoo-javascript
@@ -182,7 +185,7 @@ msgstr "Schritttyp"
 #. module: crm_livechat
 #: model_terms:chatbot.script.step,message:crm_livechat.chatbot_script_welcome_step_just_looking
 msgid "Thank you, you should hear back from us very soon!"
-msgstr "Vielen Dank, Sie sollten sehr bald von uns hören!"
+msgstr "Vielen Dank. Sie sollten sehr bald von uns hören!"
 
 #. module: crm_livechat
 #: model:ir.model.fields,help:crm_livechat.field_discuss_channel__lead_ids
@@ -228,6 +231,12 @@ msgid ""
 msgstr ""
 "Sie können ein Lead nicht aktualisieren und mit einem Kanal verknüpfen, auf "
 "den Sie keinen Zugriff haben."
+
+#. module: crm_livechat
+#. odoo-python
+#: code:addons/crm_livechat/models/discuss_channel.py:0
+msgid "created a new lead: %s"
+msgstr "hat einen neuen Lead erstellt: %s"
 
 #. module: crm_livechat
 #. odoo-javascript

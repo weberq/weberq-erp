@@ -8,170 +8,100 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-08 01:51+0000\n"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-09-09 14:06+0000\n"
 "Last-Translator: \"Kira Petersen François (peti)\" <peti@odoo.com>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-master/"
 "spreadsheet_dashboard_pos_restaurant/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "# Orders"
-msgstr "# Ordrer"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "# Tables"
-msgstr "# Borde"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "#Orders"
-msgstr "#Ordrer"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Always"
-msgstr "Altid"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Average discount"
-msgstr "Gennemsnitlig rabat"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Average net revenue / sitting "
-msgstr "Gennemsnitlig nettoomsætning pr. besøg "
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "Average per table"
-msgstr "Gennemsnit pr. bord"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Average revenue per order"
-msgstr "Gennemsnitlig omsætning pr. ordre"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Average total revenue / sitting"
-msgstr "Gennemsnitlig samlet omsætning pr. besøg"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Average total revenue per order"
-msgstr "Gennemsnitlig samlet omsætning pr. ordre"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Average untaxed revenue per order"
-msgstr "Gennemsnitlig skattefri omsætning pr. ordre"
+msgid "Avg Revenue per Guest"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Avg revenue per guest"
-msgstr "Gennemsnitlig omsætning pr. gæst"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Avg revenue per order"
-msgstr "Gennemsnitlig omsætning pr. ordre"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Category "
-msgstr "Kategori "
+msgid "Avg Revenue per Order"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "Daily Total Revenue"
-msgstr "Daglig samlet omsætning"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
-msgid "Date"
-msgstr "Dato"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "Day of the week"
-msgstr "Ugedag"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "Discount Rate"
-msgstr "Rabat"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "Hourly Total Revenue"
-msgstr "Samlet omsætning pr. time"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Margin"
-msgstr "Margen"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Measure"
-msgstr "Mål"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Net revenue"
-msgstr "Nettoomsætning"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Orders"
-msgstr "Ordrer"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #: model:spreadsheet.dashboard,name:spreadsheet_dashboard_pos_restaurant.spreadsheet_dashboard_pos_restaurant
 msgid "POS - Restaurant"
-msgstr "POS – Restaurant"
+msgstr ""
+
+#. module: spreadsheet_dashboard_pos_restaurant
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
+msgid "Period"
+msgstr ""
+
+#. module: spreadsheet_dashboard_pos_restaurant
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
+msgid "Point of Sale"
+msgstr ""
+
+#. module: spreadsheet_dashboard_pos_restaurant
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
+msgid "Preset"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
@@ -181,137 +111,115 @@ msgstr "Produkt"
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Product "
-msgstr "Produkt "
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 msgid "Product Category"
 msgstr "Produktkategori"
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Quantity"
-msgstr "Mængde"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Quantity Sold"
-msgstr "Solgte mængde"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Responsible"
-msgstr "Ansvarlig"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "Revenue"
-msgstr "Omsætning"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Revenue "
-msgstr "Omsætning"
+msgstr "Indtægter"
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "Revenue per day"
-msgstr "Omsætning pr. dag"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "Revenue per hour"
-msgstr "Omsætning pr. time"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Table"
-msgstr "Bord"
+#: model:ir.module.module,description:base.module_spreadsheet_dashboard_pos_restaurant
+#: model:ir.module.module,summary:base.module_spreadsheet_dashboard_pos_restaurant
+msgid "Spreadsheet"
+msgstr ""
+
+#. module: spreadsheet_dashboard_pos_restaurant
+#: model:ir.module.module,shortdesc:base.module_spreadsheet_dashboard_pos_restaurant
+msgid "Spreadsheet dashboard for restaurants"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "Time"
-msgstr "Klokkeslæt"
+msgstr "Tid"
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Tip"
-msgstr "Tip"
+#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
+msgid "Top"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Top 15 Products per Category"
-msgstr "Top 15 produkter pr. kategori"
+#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
+msgid "Top Categories"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Top 15 Products per Margin"
-msgstr "Top 15 produkter pr. margen"
-
-#. module: spreadsheet_dashboard_pos_restaurant
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Top 15 Tables per Revenue"
-msgstr "Top 15 borde pr. omsætning"
+msgid "Top Products per Margin"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
 msgid "Top Responsibles"
-msgstr "Topansvarlige"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Total revenue"
-msgstr "Samlet omsætning"
+msgid "Top Tables per Revenue"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Untaxed revenue"
-msgstr "Ubeskattet omsætning"
+msgid "Total Guests"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Untaxed revenue per guest"
-msgstr "Ubeskattet omsætning pr. gæst"
+msgid "Total Revenue"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
-msgid "Untaxed revenue per order"
-msgstr "Ubeskattet omsætning pr. ordre"
+msgid "Untaxed Revenue"
+msgstr ""
+
+#. module: spreadsheet_dashboard_pos_restaurant
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
+msgid "Untaxed Revenue per Guest"
+msgstr ""
+
+#. module: spreadsheet_dashboard_pos_restaurant
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_sample_dashboard.json:0
+msgid "Untaxed Revenue per Order"
+msgstr ""
 
 #. module: spreadsheet_dashboard_pos_restaurant
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_pos_restaurant/data/files/pos_restaurant_dashboard.json:0
 msgid "Waiter"
-msgstr "Tjener"
+msgstr ""

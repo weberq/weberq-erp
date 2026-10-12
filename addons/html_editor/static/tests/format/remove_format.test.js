@@ -8,6 +8,7 @@ import { expandToolbar } from "../_helpers/toolbar";
 import { unformat } from "../_helpers/format";
 import { expectElementCount } from "../_helpers/ui_expectations";
 import { FONT_SIZE_CLASSES } from "@html_editor/utils/formatting";
+import { insertText } from "../_helpers/user_actions";
 
 test("should do nothing if no format is set", async () => {
     await testEditor({
@@ -828,35 +829,6 @@ test("should remove gradient color from span element", async () => {
     });
 });
 
-test("should remove text color from empty element", async () => {
-    await testEditor({
-        contentBefore:
-            '<p><font data-oe-zws-empty-inline="" style="color: rgb(255, 0, 0);">[]\u200B</font></p>',
-        stepFunction: (editor) => execCommand(editor, "removeFormat"),
-        contentAfterEdit: `<p o-we-hint-text='Type "/" for commands' class="o-we-hint">\u200b[]</p>`,
-    });
-});
-
-test("should remove text color from empty element in a single selected cell", async () => {
-    await testEditor({
-        contentBefore: unformat(`
-            <table class="table table-bordered o_table o_selected_table"><tbody>
-                <tr><td class="o_selected_td"><p><font data-oe-zws-empty-inline="" style="color: rgb(255, 0, 0);">[]\u200B</font></p></td></tr>
-                <tr><td><p><br></p></td></tr>
-            </tbody></table>
-        `),
-        stepFunction: (editor) => execCommand(editor, "removeFormat"),
-        contentAfterEdit: unformat(`
-            <p data-selection-placeholder=""><br></p>
-            <table class="table table-bordered o_table o_selected_table"><tbody>
-                <tr><td class="o_selected_td"><p o-we-hint-text='Type "/" for commands' class="o-we-hint">\u200b[]</p></td></tr>
-                <tr><td><p><br></p></td></tr>
-            </tbody></table>
-            <p data-selection-placeholder="" style="margin: -9px 0px 8px;"><br></p>
-        `),
-    });
-});
-
 test("should remove all formats when having multiple formats", async () => {
     await testEditor({
         contentBefore:
@@ -904,6 +876,14 @@ test("Remove format not remove text color if applied on .btn element", async () 
     });
 });
 
+test("should remove format of a editable text within contenteditable false block", async () => {
+    await testEditor({
+        contentBefore: `<div contenteditable="false"><div contenteditable="true"><p><font style="background-color: red;"><font style="background-color: blue;">ab[cd]ef</font></font></p></div></div>`,
+        stepFunction: (editor) => execCommand(editor, "removeFormat"),
+        contentAfter: `<div contenteditable="false"><div contenteditable="true"><p><font style="background-color: red;"><font style="background-color: blue;">ab</font></font>[cd]<font style="background-color: red;"><font style="background-color: blue;">ef</font></font></p></div></div>`,
+    });
+});
+
 describe("Toolbar", () => {
     async function removeFormatClick() {
         await expandToolbar();
@@ -931,7 +911,7 @@ describe("Toolbar", () => {
         expect(getContent(el)).toBe(
             `<p>this <span style="color:red">is</span>[ a ]<span style="color:red">UX</span> test.</p>`
         );
-        await click(".btn .fa-eraser");
+        await click(".btn [data-icon='ink_eraser']");
         expect(getContent(el)).toBe(
             `<p>this <span style="color:red">is</span>[ a ]<span style="color:red">UX</span> test.</p>`
         );
@@ -1061,12 +1041,58 @@ describe("Toolbar", () => {
         );
     });
 
-    test("Should remove text-align style from a block", async () => {
+    test("remove format button should be disabled for a partially selected aligned block", async () => {
+        await setupEditor('<p style="text-align: center;">ab[c]</p>');
+        await expandToolbar();
+        expect(".btn[name='remove_format']").toHaveClass("disabled");
+    });
+
+    test("remove format button should be enabled for a fully selected aligned block", async () => {
+        await setupEditor('<p style="text-align: center;">[abc]</p>');
+        await expandToolbar();
+        expect(".btn[name='remove_format']").not.toHaveClass("disabled");
+    });
+
+    test("remove format button should be enabled for a partially selected aligned block containing another format", async () => {
+        await setupEditor('<p style="text-align: center;">ab<b>[c]</b></p>');
+        await expandToolbar();
+        expect(".btn[name='remove_format']").not.toHaveClass("disabled");
+    });
+
+    test("remove format button should be disabled when multiple aligned blocks are only partially selected", async () => {
+        await setupEditor(
+            '<p style="text-align: center;">ab[c</p><p style="text-align: right;">de]f</p>'
+        );
+        await expandToolbar();
+        expect(".btn[name='remove_format']").toHaveClass("disabled");
+    });
+
+    test("remove format button should be enabled when multiple aligned blocks are fully selected", async () => {
+        await setupEditor(
+            '<p style="text-align: center;">[abc</p><p style="text-align: right;">def]</p>'
+        );
+        await expandToolbar();
+        expect(".btn[name='remove_format']").not.toHaveClass("disabled");
+    });
+
+    test("Should remove alignment from a fully selected aligned block", async () => {
+        const { el } = await setupEditor('<p style="text-align: center;">[abc]</p>');
+        await removeFormatClick();
+        expect(getContent(el)).toBe("<p>[abc]</p>");
+    });
+
+    test("Should remove other formats but keep alignment on a partially selected aligned block", async () => {
+        const { el } = await setupEditor('<p style="text-align: center;">ab<b>[c]</b></p>');
+        await removeFormatClick();
+        expect(getContent(el)).toBe('<p style="text-align: center;">ab[c]</p>');
+    });
+
+    test("Should remove alignment from multiple aligned blocks when all blocks are fully selected", async () => {
         const { el } = await setupEditor(
             `<p style="text-align: right;">[test</p><p style="text-align: right;"><br>]</p>`
         );
         await removeFormatClick();
-        expect(getContent(el)).toBe(`<p style="">[test</p><p style=""><br>]</p>`);
+        expect(getContent(el)).toBe(`<p>[test</p><p><br>]</p>`);
     });
 });
 
@@ -1250,26 +1276,17 @@ describe("typography classes", () => {
     });
 });
 
-test("should remove format on content with colored icon element", async () => {
-    const { el, editor } = await setupEditor(
-        '<p>[<i class="fa fa-user bg-o-color-1" contenteditable="false"></i>]</p>'
-    );
-    execCommand(editor, "removeFormat");
-    expect(el.querySelector("i.fa").classList.contains("bg-o-color-1")).toBe(false);
+test("remove format on a collapsed cursor removes format from next typed char", async () => {
+    const { editor, el } = await setupEditor(`<p><strong>ab[]cd</strong></p>`);
+    await press(["control", "Space"]);
+    await insertText(editor, "x");
+    expect(getContent(el)).toBe(`<p><strong>ab</strong>x[]<strong>cd</strong></p>`);
 });
 
-test("should remove format around unsplittable if fully selected", async () => {
-    await testEditor({
-        contentBefore: '<p>a[b<i>c<a href="a.com">de</a>f</i>g]h</p>',
-        stepFunction: (editor) => execCommand(editor, "removeFormat"),
-        contentAfter: '<p>a[bc<a href="a.com">de</a>fg]h</p>',
-    });
-});
-
-test("should not remove format around unsplittable if partially selected", async () => {
-    await testEditor({
-        contentBefore: '<p>ab<u>c<a href="a.com">d[e</a>f</u>g]h</p>',
-        stepFunction: (editor) => execCommand(editor, "removeFormat"),
-        contentAfter: '<p>ab<u>c<a href="a.com">d[e</a></u>fg]h</p>',
-    });
+test("remove format discards a pending format intent", async () => {
+    const { editor, el } = await setupEditor(`<p>ab[]cd</p>`);
+    await press(["ctrl", "b"]); // pending bold, no DOM
+    await press(["control", "space"]); // should drop the pending intent
+    await insertText(editor, "x");
+    expect(getContent(el)).toBe(`<p>abx[]cd</p>`);
 });

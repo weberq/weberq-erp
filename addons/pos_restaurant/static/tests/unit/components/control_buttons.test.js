@@ -1,22 +1,31 @@
-import { test, expect } from "@odoo/hoot";
+import { expect, test } from "@odoo/hoot";
 import { mountWithCleanup } from "@web/../tests/web_test_helpers";
-import { ControlButtons } from "@point_of_sale/app/screens/product_screen/control_buttons/control_buttons";
+import { setupPosEnv } from "@point_of_sale/../tests/unit/utils";
 import { definePosModels } from "@point_of_sale/../tests/unit/data/generate_model_definitions";
-import { setupPosEnv, getFilledOrder } from "@point_of_sale/../tests/unit/utils";
+import { ControlButtons } from "@point_of_sale/app/screens/product_screen/control_buttons/control_buttons";
 
 definePosModels();
 
-test("clickPrintBill syncs the order so it isn't lost on a data reload", async () => {
+test("showAddCourse", async () => {
     const store = await setupPosEnv();
-    const order = await getFilledOrder(store);
-    store.printReceipt = async () => true;
+    const order = store.addNewOrder();
+    const comp = await mountWithCleanup(ControlButtons, { props: {} });
 
-    const component = await mountWithCleanup(ControlButtons, {});
-    expect(order.isSynced).toBe(false);
+    expect(comp.showAddCourse).toBe(true);
 
-    await component.clickPrintBill();
+    store.config.module_pos_restaurant = false;
+    expect(comp.showAddCourse).toBe(false);
+    store.config.module_pos_restaurant = true;
+    order.is_refund = true;
+    expect(comp.showAddCourse).toBe(false);
+    order.is_refund = false;
 
-    expect(order.isSynced).toBe(true);
-    expect(order.isDirty()).toBe(false);
-    expect(store.getPendingOrder().orderToCreate).toHaveLength(0);
+    store.config.use_course_allocation = true;
+    expect(comp.showAddCourse).toBe(false);
+    store.config.use_course_allocation = false;
+
+    const compWithRemainingButtons = await mountWithCleanup(ControlButtons, {
+        props: { showRemainingButtons: true },
+    });
+    expect(compWithRemainingButtons.showAddCourse).toBe(false);
 });

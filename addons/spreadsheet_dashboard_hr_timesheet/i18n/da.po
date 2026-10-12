@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-02 19:31+0000\n"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-09-09 13:59+0000\n"
 "Last-Translator: \"Kira Petersen François (peti)\" <peti@odoo.com>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-master/"
 "spreadsheet_dashboard_hr_timesheet/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
@@ -29,8 +29,14 @@ msgstr " dage"
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
-msgid "Assignee"
-msgstr "Tildelingsansvarlige"
+msgid "% of allocated hours"
+msgstr ""
+
+#. module: spreadsheet_dashboard_hr_timesheet
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+msgid "Allocated Hours"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
@@ -42,7 +48,7 @@ msgstr "Ansvarlige"
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
 msgid "Current"
-msgstr "Nuværende"
+msgstr "Aktuel"
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
@@ -54,17 +60,18 @@ msgstr "Kunde"
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
 msgid "Days to assign"
-msgstr "Date til tildeling"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
 msgid "Days to close"
-msgstr "Dage til lukning"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Hours Logged"
 msgstr "Timer registreret"
 
@@ -100,10 +107,15 @@ msgid "Project"
 msgstr "Projekt"
 
 #. module: spreadsheet_dashboard_hr_timesheet
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
-msgid "Tag"
-msgstr "Tag"
+#: model:ir.module.module,description:base.module_spreadsheet_dashboard_hr_timesheet
+#: model:ir.module.module,summary:base.module_spreadsheet_dashboard_hr_timesheet
+msgid "Spreadsheet"
+msgstr ""
+
+#. module: spreadsheet_dashboard_hr_timesheet
+#: model:ir.module.module,shortdesc:base.module_spreadsheet_dashboard_hr_timesheet
+msgid "Spreadsheet dashboard for time sheets"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
@@ -114,6 +126,7 @@ msgstr "Tags"
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Tasks"
 msgstr "Opgaver"
 
@@ -121,58 +134,66 @@ msgstr "Opgaver"
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
 msgid "Tasks by Stage"
-msgstr "Opgaver efter fase"
+msgstr "Opgaver ud fra fase"
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
 msgid "Tasks by State"
-msgstr "Opgaver efter status"
+msgstr "Opgaver ud fra status"
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Time to Assign"
 msgstr "Tid til tildeling"
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Time to Close"
-msgstr "Tid til lukning"
+msgstr "Tid til at lukke"
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Top Assignees"
-msgstr "Bedste tildelingsansvarlige"
+msgstr "Top opgaveansvarlige"
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Top Customers"
-msgstr "Bedste kunder"
+msgstr "Top kunder"
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Top Projects"
-msgstr "Bedste projekter"
+msgstr "Top projekter"
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Top Tags"
-msgstr "Bedste tags"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "last period"
 msgstr "sidste periode"
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "since last period"
-msgstr "siden forrige periode"
+msgstr "siden sidste periode"

@@ -186,7 +186,7 @@ class TestPortalThreadController(MailControllerThreadCommon):
             with self.subTest(user=user.name, kw=route_kw):
                 self._authenticate_pseudo_user(user)
                 result = self.make_jsonrpc_request(
-                    "/mail/data",
+                    "/mail/store",
                     {
                         "fetch_params": [
                             [
@@ -201,17 +201,9 @@ class TestPortalThreadController(MailControllerThreadCommon):
                         ]
                     },
                 )
-                self.assertEqual(
-                    result,
-                    {
-                        "mail.thread": [
-                            {
-                                "id": record.id,
-                                "model": record._name,
-                                "canPostOnReadonly": False,
-                                "hasReadAccess": False,
-                                "hasWriteAccess": False,
-                            },
-                        ],
-                    },
-                )
+                thread_data = result["mail.thread"][0]
+                self.assertNotIn("mail.followers", result)
+                self.assertNotIn("followersCount", thread_data)
+                self.assertFalse(thread_data["canPostOnReadonly"])
+                self.assertFalse(thread_data["hasReadAccess"])
+                self.assertFalse(thread_data["hasWriteAccess"])

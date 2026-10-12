@@ -1,4 +1,4 @@
-import { Component, useState } from "@odoo/owl";
+import { Component, proxy, useProps, t } from "@odoo/owl";
 import { AlertDialog } from "@web/core/confirmation_dialog/confirmation_dialog";
 import { Dialog } from "@web/core/dialog/dialog";
 import { _t } from "@web/core/l10n/translation";
@@ -21,17 +21,17 @@ const LOVE_CODE_REGEX = /^([xX]{1}[0-9]{2,6}|[0-9]{3,7})$/;
 export class EcpayInfoPopup extends Component {
     static template = "l10n_tw_edi_ecpay_pos.EcpayInfoPopup";
     static components = { Dialog };
-    static props = {
-        getPayload: Function,
-        close: Function,
-    };
+    props = useProps({
+        getPayload: t.function(),
+        close: t.function(),
+    });
 
     setup() {
         this.pos = usePos();
         this.dialog = useService("dialog");
         const order = this.pos.getOrder();
         this.data = {};
-        this.state = useState({
+        this.state = proxy({
             isDonate: Boolean(order.l10n_tw_edi_love_code),
             loveCode: order.l10n_tw_edi_love_code || "",
             carrierType: order.l10n_tw_edi_carrier_type || CARRIER_TYPES.MEMBER_ACCOUNT,

@@ -227,7 +227,7 @@ class DeliveryCarrier(models.Model):
         product_lines = move_lines.filtered(lambda line: line.product_id.type == 'consu')
         for product, lines in groupby(product_lines, lambda x: x.product_id):
             unit_quantity = sum(
-                line.product_uom_id._compute_quantity(
+                line.uom_id._compute_quantity(
                     line.quantity,
                     product.uom_id)
                 for line in lines)
@@ -239,7 +239,7 @@ class DeliveryCarrier(models.Model):
         return commodities
 
     def _product_price_to_company_currency(self, quantity, product, company):
-        return company.currency_id._convert(quantity * product.standard_price, product.currency_id, company, fields.Date.today())
+        return company.currency_id._convert(quantity * product.standard_price, product.currency_id, company)
 
     # ------------------------------------------------ #
     # Fixed price shipping, aka a very simple provider #

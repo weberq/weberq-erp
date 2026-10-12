@@ -1,6 +1,5 @@
 {
     'name': "Latvia - Accounting",
-    'version': '1.0.0',
     'icon': '/account/static/description/l10n.png',
     'countries': ['lv'],
     'description': """
@@ -20,7 +19,6 @@ co-author is Chick.Farm (visit for more information https://www.myacc.cloud)
     'category': 'Accounting/Localizations/Account Charts',
     'depends': [
         'account',
-        'base_vat',
         'account_edi_ubl_cii',
     ],
     'auto_install': ['account'],

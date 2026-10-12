@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import fields, models, tools
+from odoo.tools import SQL
 
 
 class ReportStockQuantity(models.Model):
@@ -13,7 +13,7 @@ class ReportStockQuantity(models.Model):
         'product.product': ['product_tmpl_id'],
         'product.template': ['type'],
         'stock.location': ['parent_path'],
-        'stock.move': ['company_id', 'date', 'location_dest_id', 'location_final_id', 'location_id', 'product_id', 'product_qty', 'state'],
+        'stock.move': ['company_id', 'date', 'location_dest_id', 'forecasted_location_id', 'location_id', 'product_id', 'product_qty', 'state'],
         'stock.quant': ['company_id', 'location_id', 'product_id', 'quantity'],
         'stock.warehouse': ['view_location_id'],
     }
@@ -31,7 +31,7 @@ class ReportStockQuantity(models.Model):
     warehouse_id = fields.Many2one('stock.warehouse', readonly=True)
 
     def _get_product_qty_col(self):
-        return "q.quantity"
+        return SQL("q.quantity")
 
     def init(self):
         """
@@ -46,8 +46,9 @@ class ReportStockQuantity(models.Model):
             - the dest warehouse is kept if the SM is not the duplicated one and is not an interwarehouse
                 OR the SM is the duplicated one and is an interwarehouse
         """
+        report_period = self.env['ir.config_parameter'].sudo().get_int('stock.report_stock_quantity_period') or 3
         tools.drop_view_if_exists(self.env.cr, 'report_stock_quantity')
-        query = f"""
+        query = SQL("""
 CREATE or REPLACE VIEW report_stock_quantity AS (
 WITH
     warehouse_cte AS(
@@ -64,12 +65,12 @@ WITH
         FROM stock_move m
         LEFT JOIN warehouse_cte source ON source.sl_id = m.location_id
         LEFT JOIN warehouse_cte dest ON dest.sl_id = CASE
-            WHEN m.state != 'done' THEN COALESCE(m.location_final_id, m.location_dest_id)
+            WHEN m.state != 'done' THEN COALESCE(m.forecasted_location_id, m.location_dest_id)
             ELSE m.location_dest_id
         END
         LEFT JOIN product_product pp on pp.id=m.product_id
         LEFT JOIN product_template pt on pt.id=pp.product_tmpl_id
-        LEFT JOIN uom_uom uom_move ON uom_move.id = m.product_uom
+        LEFT JOIN uom_uom uom_move ON uom_move.id = m.uom_id
         LEFT JOIN uom_uom uom_product ON uom_product.id = pt.uom_id
         WHERE pt.is_storable = true AND
             source.w_id IS DISTINCT FROM dest.w_id AND
@@ -142,7 +143,7 @@ FROM (SELECT
         pp.product_tmpl_id,
         'forecast' as state,
         date.*::date,
-        {self._get_product_qty_col()} as product_qty,
+        %(product_qty_col)s as product_qty,
         q.company_id,
         wh.id as warehouse_id
     FROM
@@ -189,6 +190,5 @@ FROM (SELECT
         m.product_qty != 0 OR (m.state = 'done' AND m.quantity != 0)) AS forecast_qty
 GROUP BY product_id, product_tmpl_id, state, date, company_id, warehouse_id
 );
-"""
-        report_period = self.env['ir.config_parameter'].sudo().get_param('stock.report_stock_quantity_period', default='3')
-        self.env.cr.execute(query, {'report_period': int(report_period)})
+""", product_qty_col=self._get_product_qty_col(), report_period=report_period)
+        self.env.cr.execute(query)

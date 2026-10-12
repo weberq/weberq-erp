@@ -9,7 +9,7 @@ class AccountMoveReversal(models.TransientModel):
         if is_modify:
             moves = self.move_ids.filtered(lambda m: m.move_type == 'out_invoice')
             timesheets_sudo = self.env['account.analytic.line'].sudo().search([
-                ('timesheet_invoice_id', 'in', moves.ids),
+                ('reinvoice_move_id', 'in', moves.ids),
             ])
         reverse = super().reverse_moves(is_modify)
         if is_modify and timesheets_sudo:
@@ -22,5 +22,5 @@ class AccountMoveReversal(models.TransientModel):
                 lambda t: move_per_so_line.get(t.so_line.id)
             ).items():
                 if move:
-                    timesheets.timesheet_invoice_id = move
+                    timesheets.reinvoice_move_id = move
         return reverse

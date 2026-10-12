@@ -16,27 +16,30 @@ from odoo.addons.stock_account.tests.test_anglo_saxon_valuation_reconciliation_c
 @tagged('post_install', '-at_install')
 class TestSaleExpectedDate(ValuationReconciliationTestCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     def test_sale_order_expected_date(self):
         """ Test expected date and effective date of Sales Orders """
         Product = self.env['product.product']
 
+        unit = self.ref('uom.product_uom_unit')
         product_A = Product.create({
             'name': 'Product A',
             'is_storable': True,
             'sale_delay': 5,
-            'uom_id': 1,
+            'uom_id': unit,
         })
         product_B = Product.create({
             'name': 'Product B',
             'is_storable': True,
             'sale_delay': 10,
-            'uom_id': 1,
+            'uom_id': unit,
         })
         product_C = Product.create({
             'name': 'Product C',
             'is_storable': True,
             'sale_delay': 15,
-            'uom_id': 1,
+            'uom_id': unit,
         })
 
         self.env['stock.quant']._update_available_quantity(product_A, self.company_data['default_warehouse'].lot_stock_id, 10)
@@ -149,6 +152,9 @@ class TestSaleExpectedDate(ValuationReconciliationTestCommon):
         self.assertEqual(sale_order.expected_date, fields.Datetime.now() + timedelta(days=sale_delay))
 
     def test_invoice_delivery_date(self):
+        """Check correct computation of the invoice delivery date. This value should get derived
+        from the earliest effective delivery date on a sale order, and not change on confirmation.
+        """
         self.env['stock.quant']._update_available_quantity(
             self.test_product_order,
             self.company_data['default_warehouse'].lot_stock_id,

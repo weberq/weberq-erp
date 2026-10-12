@@ -12,6 +12,8 @@ from odoo.tests.common import HttpCase
 @tagged('post_install', '-at_install')
 class TestPurchaseOrderSuggest(PurchaseTestCommon, HttpCase):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -74,7 +76,7 @@ class TestPurchaseOrderSuggest(PurchaseTestCommon, HttpCase):
                     'location_id': delivery_type.default_location_src_id.id,
                     'location_dest_id': delivery_type.default_location_dest_id.id,
                     'product_id': product.id,
-                    'product_uom': self.uom.id,
+                    'uom_id': self.uom.id,
                     'product_uom_qty': qty,
                 }) for (product, qty) in products_and_quantities],
             })
@@ -402,7 +404,7 @@ class TestPurchaseOrderSuggest(PurchaseTestCommon, HttpCase):
                 'location_id': self.supplier_location.id,
                 'location_dest_id': self.stock_location.id,
                 'product_id': self.product_1.id,
-                'product_uom': self.uom.id,
+                'uom_id': self.uom.id,
                 'product_uom_qty': 6,
             })],
         })
@@ -451,7 +453,7 @@ class TestPurchaseOrderSuggest(PurchaseTestCommon, HttpCase):
                 'location_id': self.supplier_location.id,
                 'location_dest_id': self.stock_location.id,
                 'product_id': product_ad.id,
-                'product_uom': self.uom.id,
+                'uom_id': self.uom.id,
                 'product_uom_qty': 4,
             })],
         })
@@ -660,7 +662,10 @@ class TestPurchaseOrderSuggest(PurchaseTestCommon, HttpCase):
         self._create_and_process_delivery_at_date(
             [(test_product, 1)], date=today - relativedelta(days=1), warehouse=other_warehouse
         )
-        self.start_tour('/odoo/purchase', "test_purchase_order_suggest_search_panel_ux", login='admin')
+        self.start_tour(
+            '/odoo/purchase', "test_purchase_order_suggest_search_panel_ux", login='admin',
+            cookies={"cids": f"{self.company.id}"},
+        )
 
     def test_monthly_demand_interwarehouse_two_step_delivery(self):
         """Ensure that monthly demand is correctly counted for waiting outgoing
@@ -675,10 +680,17 @@ class TestPurchaseOrderSuggest(PurchaseTestCommon, HttpCase):
         orderpoint = self.env['stock.warehouse.orderpoint'].create({
             'product_id': product.id,
             'location_id': other_warehouse.lot_stock_id.id,
-            'qty_to_order': 20,
+            'product_min_qty': 10,
+            'product_max_qty': 20,
             'route_id': other_warehouse.resupply_route_ids.id,
         })
         orderpoint.action_replenish()
+        pick_move = self.env['stock.move'].search([('origin', '=', orderpoint.name), ('location_id', '=', warehouse.lot_stock_id.id)])
+        pick_move.write({
+            'quantity': 20,
+            'picked': 20,
+        })
+        pick_move.picking_id.button_validate()
 
         # Monthly demand should be 20.0 as only the outgoing move is counted with two-step delivery.
         self.assertEqual(product.with_context(warehouse_id=warehouse.id).monthly_demand, 20.0)
@@ -690,7 +702,7 @@ class TestPurchaseOrderSuggest(PurchaseTestCommon, HttpCase):
         '''
         today = fields.Datetime.now()
         # Update supplier info.
-        self.product_1.seller_ids.product_uom_id = self.uom_pack_of_6
+        self.product_1.seller_ids.uom_id = self.uom_pack_of_6
         self.env['stock.quant']._update_available_quantity(self.product_1, self.stock_location, 18)
         self._create_and_process_delivery_at_date(
             [(self.product_1, 18)], today - relativedelta(days=3)
@@ -703,6 +715,6 @@ class TestPurchaseOrderSuggest(PurchaseTestCommon, HttpCase):
                 'product_id': self.product_1.id,
                 'product_qty': 3,
                 'product_uom_qty': 18,
-                'product_uom_id': self.uom_pack_of_6.id,
+                'uom_id': self.uom_pack_of_6.id,
             },
         ])

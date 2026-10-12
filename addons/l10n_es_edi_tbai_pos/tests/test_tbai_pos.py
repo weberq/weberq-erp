@@ -10,6 +10,8 @@ from odoo.tests import tagged
 
 @tagged('post_install_l10n', 'post_install', '-at_install')
 class TestPosEdi(TestEsEdiTbaiCommonGipuzkoa, CommonPosEsEdiTest):
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def pay_pos_order(self, pos_order, with_error=False):
         context_make_payment = {
@@ -67,9 +69,9 @@ class TestPosEdi(TestEsEdiTbaiCommonGipuzkoa, CommonPosEsEdiTest):
 
         def sync_device_order(device_identifier, uuid):
             order = {
-                "amount_tax": 0.0,
-                "amount_total": 100.0,
-                "amount_paid": 100.0,
+                "amount_tax": 21.0,
+                "amount_total": 121.0,
+                "amount_paid": 121.0,
                 "amount_return": 0.0,
                 "session_id": self.pos_config_usd.current_session_id.id,
                 "pos_reference": f"26{device_identifier}-{self.pos_config_usd.id}-000001",
@@ -85,7 +87,7 @@ class TestPosEdi(TestEsEdiTbaiCommonGipuzkoa, CommonPosEsEdiTest):
                 ],
                 "payment_ids": [
                     Command.create({
-                        "amount": 100.0,
+                        "amount": 121.0,
                         "name": fields.Datetime.now(),
                         "payment_method_id": self.pos_config_usd.payment_method_ids[0].id,
                     }),
@@ -226,7 +228,7 @@ class TestPosEdi(TestEsEdiTbaiCommonGipuzkoa, CommonPosEsEdiTest):
         program.pos_report_print_id = self.env.ref("loyalty.report_gift_card")
         loyalty_card = self.env['loyalty.card'].create({  # noqa: OLS03001
             'program_id': program_id,
-            'points': -loyalty_price,
+            'points': -loyalty_price * 2,
         })
 
         self.pos_config_usd.open_ui()
@@ -263,7 +265,7 @@ class TestPosEdi(TestEsEdiTbaiCommonGipuzkoa, CommonPosEsEdiTest):
                         "price_subtotal_incl": loyalty_price * 1.21,
                         "is_reward_line": True,
                         "reward_id": program.reward_ids.ids[0],
-                        "coupon_id": loyalty_card.id,
+                        "card_id": loyalty_card.id,
                         "points_cost": -loyalty_price,
                 }),
             ],

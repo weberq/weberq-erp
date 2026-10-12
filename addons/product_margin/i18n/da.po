@@ -11,27 +11,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.5alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-07 12:37+0000\n"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-09-09 14:12+0000\n"
 "Last-Translator: \"Kira Petersen François (peti)\" <peti@odoo.com>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-master/"
 "product_margin/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: product_margin
+#: model:ir.module.module,description:base.module_product_margin
+msgid ""
+"\n"
+"Adds a reporting menu in products that computes sales, purchases, margins "
+"and other interesting indicators based on invoices.\n"
+"=============================================================================================================================\n"
+"\n"
+"The wizard to launch the report has several options to help you get the data "
+"you need.\n"
+msgstr ""
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__purchase_num_invoiced
 msgid "# Invoiced in Purchase"
-msgstr "# Faktureret i Indkøb"
+msgstr "# Faktureret i indkøb"
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__sale_num_invoiced
 msgid "# Invoiced in Sale"
-msgstr "# Faktureret i Salg"
+msgstr "# Faktureret i salg"
 
 #. module: product_margin
 #: model_terms:ir.ui.view,arch_db:product_margin.view_product_margin_tree
@@ -41,7 +53,7 @@ msgstr "# Købt"
 #. module: product_margin
 #: model_terms:ir.ui.view,arch_db:product_margin.view_product_margin_form
 msgid "Analysis Criteria"
-msgstr "Analysekriterier"
+msgstr "Analyse kriterie"
 
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__sale_avg_price
@@ -51,32 +63,27 @@ msgstr "Gns. pris på kundefakturaer."
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__purchase_avg_price
 msgid "Avg. Price in Vendor Bills"
-msgstr "Gns. pris på leverandørfakturaer"
+msgstr ""
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__purchase_avg_price
 msgid "Avg. Purchase Unit Price"
-msgstr "Gns. købspris pr. enhed"
+msgstr "Gns. enheds købspris"
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__sale_avg_price
 msgid "Avg. Sale Unit Price"
-msgstr "Gns. salgspris pr. enhed"
+msgstr "Gns. enheds salgspris"
 
 #. module: product_margin
 #: model_terms:ir.ui.view,arch_db:product_margin.view_product_margin_form
 msgid "Avg. Unit Price"
-msgstr "Gns. pris pr. enhed"
-
-#. module: product_margin
-#: model_terms:ir.ui.view,arch_db:product_margin.product_margin_form_view
-msgid "Cancel"
-msgstr "Annullér"
+msgstr "Gns. enhedspris"
 
 #. module: product_margin
 #: model_terms:ir.ui.view,arch_db:product_margin.view_product_margin_form
 msgid "Catalog Price"
-msgstr "Katalogpris"
+msgstr "Listepris"
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_margin__create_uid
@@ -98,7 +105,7 @@ msgstr "Visningsnavn"
 #: model:ir.model.fields.selection,name:product_margin.selection__product_margin__invoice_state__draft_open_paid
 #: model:ir.model.fields.selection,name:product_margin.selection__product_product__invoice_state__draft_open_paid
 msgid "Draft, Open and Paid"
-msgstr "Kladde, åben og betalt"
+msgstr "Kladde, Åben og Betalt"
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__expected_margin
@@ -118,12 +125,12 @@ msgstr "Forventet salg"
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__expected_margin
 msgid "Expected Sale - Normal Cost"
-msgstr "Forventet salg – normal kost"
+msgstr "Forventet salg - normal kost"
 
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__sales_gap
 msgid "Expected Sale - Turn Over"
-msgstr "Forventet salg – omsætning"
+msgstr "Forventet salg - omsætning"
 
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__expected_margin_rate
@@ -150,7 +157,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:product_margin.field_product_margin__invoice_state
 #: model:ir.model.fields,field_description:product_margin.field_product_product__invoice_state
 msgid "Invoice State"
-msgstr "Fakturastatus"
+msgstr "Faktura stadie"
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_margin__write_uid
@@ -165,17 +172,22 @@ msgstr "Sidst opdateret den"
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__date_from
 msgid "Margin Date From"
-msgstr "Avancedato fra"
+msgstr "Avance dato fra"
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__date_to
 msgid "Margin Date To"
-msgstr "Avancedato til"
+msgstr "Avance dato til"
 
 #. module: product_margin
 #: model_terms:ir.ui.view,arch_db:product_margin.view_product_margin_form
 msgid "Margins"
 msgstr "Avancer"
+
+#. module: product_margin
+#: model:ir.module.module,shortdesc:base.module_product_margin
+msgid "Margins by Products"
+msgstr ""
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__normal_cost
@@ -185,12 +197,12 @@ msgstr "Normal kost"
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__purchase_gap
 msgid "Normal Cost - Total Cost"
-msgstr "Normal kost – total kost"
+msgstr "Normal kost - total kost"
 
 #. module: product_margin
 #: model_terms:ir.ui.view,arch_db:product_margin.product_margin_form_view
 msgid "Open Margins"
-msgstr "Åbne avancer"
+msgstr "Åben avancer"
 
 #. module: product_margin
 #: model:ir.model.fields.selection,name:product_margin.selection__product_margin__invoice_state__open_paid
@@ -207,7 +219,7 @@ msgstr "Betalt"
 #. module: product_margin
 #: model:ir.model,name:product_margin.model_product_margin
 msgid "Product Margin"
-msgstr "Produktavance"
+msgstr "Produkt avance"
 
 #. module: product_margin
 #. odoo-python
@@ -217,22 +229,22 @@ msgstr "Produktavance"
 #: model_terms:ir.ui.view,arch_db:product_margin.view_product_margin_graph
 #: model_terms:ir.ui.view,arch_db:product_margin.view_product_margin_tree
 msgid "Product Margins"
-msgstr "Produktavancer"
+msgstr "Produkt avance"
 
 #. module: product_margin
 #: model:ir.ui.menu,name:product_margin.menu_action_product_margin
 msgid "Product Margins…"
-msgstr "Produktavancer …"
+msgstr ""
 
 #. module: product_margin
 #: model:ir.model,name:product_margin.model_product_product
 msgid "Product Variant"
-msgstr "Produktvariant"
+msgstr "Varevariant"
 
 #. module: product_margin
 #: model_terms:ir.ui.view,arch_db:product_margin.product_margin_form_view
 msgid "Properties categories"
-msgstr "Egenskabskategorier"
+msgstr "Egenskabs kategorier"
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__purchase_gap
@@ -253,36 +265,36 @@ msgstr "Salg"
 #: model:ir.model.fields,field_description:product_margin.field_product_product__sales_gap
 #: model_terms:ir.ui.view,arch_db:product_margin.view_product_margin_tree
 msgid "Sales Gap"
-msgstr "Salgsdifference"
+msgstr "Salgs difference"
 
 #. module: product_margin
 #: model_terms:ir.ui.view,arch_db:product_margin.view_product_margin_form
 msgid "Standard Price"
-msgstr "Standardpris"
+msgstr "Standard pris"
 
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__normal_cost
 msgid "Sum of Multiplication of Cost price and quantity of Vendor Bills"
-msgstr "Samlet beløb af leverandørfakturaer baseret på kostpris og mængde"
+msgstr ""
+"Summen af leverandørfakturaer hvor kostpris er multipliceret med mængde"
 
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__turnover
 msgid ""
 "Sum of Multiplication of Invoice price and quantity of Customer Invoices"
-msgstr "Summen af produktet af fakturaprisen og antallet af kundefakturaer"
+msgstr "Sum af fakturapris x antal på kundefakturaer"
 
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__total_cost
 msgid "Sum of Multiplication of Invoice price and quantity of Vendor Bills "
 msgstr ""
-"Summen af leverandørfakturaer, hvor fakturaprisen er multipliceret med "
-"mængden "
+"Summen af leverandørfakturaer hvor fakturapris er multipliceret med mængde "
 
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__sale_expected
 msgid ""
 "Sum of Multiplication of Sale Catalog price and quantity of Customer Invoices"
-msgstr "Summen af listeprisen ganget med antallet af kundefakturaer"
+msgstr "Sum af listepris x antal på kundefakturaer"
 
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__sale_num_invoiced
@@ -303,23 +315,23 @@ msgstr "Til"
 #: model:ir.model.fields,field_description:product_margin.field_product_product__total_cost
 #: model_terms:ir.ui.view,arch_db:product_margin.view_product_margin_tree
 msgid "Total Cost"
-msgstr "Samlede omkostninger"
+msgstr "Total kostbeløb"
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__total_margin
 #: model_terms:ir.ui.view,arch_db:product_margin.view_product_margin_tree
 msgid "Total Margin"
-msgstr "Samlet avance"
+msgstr "Total avance"
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__total_margin_rate
 msgid "Total Margin Rate(%)"
-msgstr "Samlet avancerate (%)"
+msgstr "Total avance rate (%)"
 
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__total_margin_rate
 msgid "Total margin * 100 / Turnover"
-msgstr "Samlet avance * 100/omsætning"
+msgstr "Total avance * 100/omsætning"
 
 #. module: product_margin
 #: model:ir.model.fields,field_description:product_margin.field_product_product__turnover
@@ -330,10 +342,4 @@ msgstr "Omsætning"
 #. module: product_margin
 #: model:ir.model.fields,help:product_margin.field_product_product__total_margin
 msgid "Turnover - Total cost"
-msgstr "Omsætning – Samlede omkostninger"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Sidst ændret den"
-
-#~ msgid "Turnover - Standard price"
-#~ msgstr "Omsætning - listepris"
+msgstr ""

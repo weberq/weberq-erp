@@ -10,6 +10,8 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 @tagged('post_install', '-at_install')
 class TestPurchaseInvoice(AccountTestInvoicingCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -161,7 +163,7 @@ class TestPurchaseInvoice(AccountTestInvoicingCommon):
         uom_dozen = self.env.ref('uom.product_uom_dozen')
 
         product.with_user(product_manager).uom_id = uom_dozen
-        self.assertEqual(purchase_order.order_line.product_uom_id, uom_dozen)
+        self.assertEqual(purchase_order.order_line.uom_id, uom_dozen)
 
     def test_prepare_purchase_order_line_from_branch_company(self):
         """Check that a purchase order line can be created from a nested branch company."""
@@ -186,3 +188,16 @@ class TestPurchaseInvoice(AccountTestInvoicingCommon):
             product, 1, product.uom_id, nested_branch, vendor, order,
         )
         self.assertTrue(PurchaseOrder.order_line.create(po_line_vals))
+
+    def test_demo_user_creates_purchase_order_with_tracked_product(self):
+        """Verify user with product view access can confirm purchase order with tracked product."""
+        self.product.write({
+            'type': 'consu',
+            'is_storable': True,
+        })
+        purchase_order = self.env['purchase.order'].with_user(self.purchase_user).create({
+            'partner_id': self.vendor.id,
+            'order_line': [Command.create({'product_id': self.product.id})],
+        })
+        purchase_order.button_confirm()
+        self.assertEqual(purchase_order.state, 'purchase')

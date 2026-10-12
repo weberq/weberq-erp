@@ -6,8 +6,8 @@ from odoo.addons.payment import utils as payment_utils
 class PaymentProvider(models.Model):
     _inherit = 'payment.provider'
 
-    def _get_compatible_providers(self, *args, sale_order_id=None, report=None, **kwargs):
-        providers = super()._get_compatible_providers(
+    def _find_available_providers(self, *args, sale_order_id=None, report=None, **kwargs):
+        providers = super()._find_available_providers(
             *args, sale_order_id=sale_order_id, report=report, **kwargs
         )
         if not sale_order_id:

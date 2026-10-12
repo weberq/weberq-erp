@@ -2,12 +2,14 @@ import base64
 import textwrap
 import uuid
 
-from odoo import Command
+from odoo import Command, fields
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 from odoo.tools import config, file_open
 
 
 class TestUblCiiCommon(AccountTestInvoicingCommon):
+
+    _test_user_groups = None  # FIXME list needed groups
 
     @classmethod
     def setUpClass(cls):
@@ -44,8 +46,8 @@ class TestUblCiiCommon(AccountTestInvoicingCommon):
             'zip': "1367",
             'city': "Ramillies",
             'vat': 'BE0477472701',
-            'company_registry': '0477472701',
-            'bank_ids': [Command.create({'acc_number': 'BE90735788866632', 'allow_out_payment': True})],
+            'additional_identifiers': {'BE_EN': '0477472701'},
+            'bank_ids': [Command.create({'account_number': 'BE90735788866632', 'allow_out_payment': True})],
             'country_id': cls.env.ref('base.be').id,
             **kwargs,
         })
@@ -58,11 +60,8 @@ class TestUblCiiCommon(AccountTestInvoicingCommon):
             'street': "bd de la Foire",
             'zip': "L-1528",
             'city': "Luxembourg",
-            'vat': None,
-            'company_registry': None,
+            'vat': 'LU12345613',
             'country_id': cls.env.ref('base.lu').id,
-            'peppol_eas': '9938',
-            'peppol_endpoint': '00005000041',
             **kwargs,
         })
 
@@ -75,10 +74,9 @@ class TestUblCiiCommon(AccountTestInvoicingCommon):
             'zip': "1000",
             'city': "Amsterdam",
             'vat': 'NL000099998B57',
-            'company_registry': None,
+            'additional_identifiers': {'NL_KVK': '77777677'},
             'country_id': cls.env.ref('base.nl').id,
-            'peppol_eas': '0106',
-            'peppol_endpoint': '77777677',
+            'routing_identifier': '0106:77777677',
             **kwargs,
         })
 
@@ -92,7 +90,7 @@ class TestUblCiiCommon(AccountTestInvoicingCommon):
             'city': "Canberra",
             'vat': '53 930 548 027',
             'country_id': cls.env.ref('base.au').id,
-            'bank_ids': [Command.create({'acc_number': '93999574162167', 'allow_out_payment': True})],
+            'bank_ids': [Command.create({'account_number': '93999574162167', 'allow_out_payment': True})],
             **kwargs,
         })
 
@@ -105,8 +103,7 @@ class TestUblCiiCommon(AccountTestInvoicingCommon):
             'zip': "75000",
             'city': "Paris",
             'vat': 'FR05677404089',
-            'company_registry': None,
-            'bank_ids': [Command.create({'acc_number': 'FR15001559627230', 'allow_out_payment': True})],
+            'bank_ids': [Command.create({'account_number': 'FR15001559627230', 'allow_out_payment': True})],
             'country_id': cls.env.ref('base.fr').id,
             **kwargs,
         })
@@ -271,6 +268,8 @@ class TestUblCiiCommon(AccountTestInvoicingCommon):
 
 class TestUblCiiBECommon(TestUblCiiCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def _create_company(cls, **create_values):
         company = super()._create_company(**create_values)
@@ -280,9 +279,9 @@ class TestUblCiiBECommon(TestUblCiiCommon):
             'zip': "1367",
             'city': "Ramillies",
             'vat': 'BE0202239951',
-            'company_registry': '0202239951',
+            'additional_identifiers': {'BE_EN': '0202239951'},
             'country_id': cls.env.ref('base.be').id,
-            'bank_ids': [Command.create({'acc_number': 'BE15001559627230', 'allow_out_payment': True})],
+            'bank_ids': [Command.create({'account_number': 'BE15001559627230', 'allow_out_payment': True})],
         })
         return company
 
@@ -294,6 +293,8 @@ class TestUblCiiBECommon(TestUblCiiCommon):
 
 class TestUblCiiFRCommon(TestUblCiiCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def _create_company(cls, **create_values):
         company = super()._create_company(**create_values)
@@ -303,7 +304,7 @@ class TestUblCiiFRCommon(TestUblCiiCommon):
             'zip': "35400",
             'city': "Saint-Malo",
             'vat': 'FR23334175221',
-            'company_registry': '40678483500521',
+            'additional_identifiers': {'FR_SIRET': '40678483500521'},
             'country_id': cls.env.ref('base.fr').id,
         })
         return company
@@ -314,13 +315,50 @@ class TestUblCiiFRCommon(TestUblCiiCommon):
         return subfolder_format, subfolder_document, 'fr'
 
 
+class TestUblCiiNOCommon(TestUblCiiCommon):
+
+    _test_user_groups = None  # FIXME list needed groups
+
+    @classmethod
+    def _create_company(cls, **create_values):
+        company = super()._create_company(**create_values)
+        company.partner_id.write({
+            'street': "Drammensveien 1",
+            'zip': "0271",
+            'city': "Oslo",
+            'vat': 'NO179728982MVA',
+            'country_id': cls.env.ref('base.no').id,
+        })
+        return company
+
+
 class TestUblBis3Common(TestUblCiiCommon):
+
+    _test_user_groups = None  # FIXME list needed groups
 
     @classmethod
     def _create_partner_default_values(cls):
         values = super()._create_partner_default_values()
         values['invoice_edi_format'] = 'ubl_bis3'
         return values
+
+    def _create_sdd_mandate(self, partner, account_number, start_date=None, end_date=None):
+        partner_bank = self.env['res.partner.bank'].create({
+            'account_number': account_number,
+            'partner_id': partner.id,
+            'company_id': self.env.company.id,
+            'allow_out_payment': True,
+        })
+        mandate = self.env['account.direct.debit.mandate'].create({  # noqa: OLS03001
+            'mandate_type': 'sepa',
+            'name': f'mandate_{partner.name}_{account_number[-4:]}',
+            'partner_id': partner.id,
+            'partner_bank_id': partner_bank.id,
+            'start_date': start_date or fields.Date.today(),
+            'end_date': end_date,
+            'company_id': self.env.company.id,
+        })
+        mandate.action_validate_mandate()
 
     # -------------------------------------------------------------------------
     # EXPORT HELPERS

@@ -1,42 +1,41 @@
-import { useService } from '@web/core/utils/hooks';
-import { formatMonetary } from "@web/views/fields/formatters";
-import { Component, onWillStart, useState, onWillUpdateProps } from "@odoo/owl";
+import { Component, onWillStart, proxy, usePlugin } from "@odoo/owl";
+import { DebugModePlugin } from '@web/core/debug_mode_plugin';
 import { Domain } from "@web/core/domain";
+import { useBus, useService } from '@web/core/utils/hooks';
+import { formatMonetary } from "@web/views/fields/formatters";
 
 export class ExpenseDashboard extends Component {
     static template = "hr_expense.ExpenseDashboard";
-    static props = {};
+
+    debugMode = usePlugin(DebugModePlugin);
 
     setup() {
         super.setup();
         this.orm = useService('orm');
         this.actionService = useService("action");
+        this.state = proxy({ expenses: {} });
+        useBus(this.env.searchModel, "update", async () => { await this.fetchExpenseDashboardData(); });
 
-        this.state = useState({
-            expenses: {}
-        });
-
-        onWillStart(async () => {
-            await this.fetchExpenseDashboardData();
-        });
-
-        onWillUpdateProps(async () => {
-            await this.fetchExpenseDashboardData();
-        });
+        onWillStart(this.fetchExpenseDashboardData);
     }
 
     renderMonetaryField(value, currency_id) {
-        return formatMonetary(value, { currencyId: currency_id});;
+        return formatMonetary(value, { currencyId: currency_id});
     }
 
     async fetchExpenseDashboardData() {
         const domain = this.env.searchModel?.domain ?? [];
-        const expense_states = await this.orm.call(
-            "hr.expense",
-            'get_expense_dashboard',
-            [],
-            { context: { domain: domain }}
-        );
+        const expense_states = await this.orm
+            .cache({
+                type: "disk",
+                update: "always",
+                callback: (freshData, hasChanged) => {
+                    if (hasChanged) {
+                        this.state.expenses = freshData;
+                    }
+                },
+            })
+            .call("hr.expense", 'get_expense_dashboard', [domain]);
 
         this.state.expenses = expense_states;
     }

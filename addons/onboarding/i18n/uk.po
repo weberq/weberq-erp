@@ -1,17 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * onboarding
+# 	* onboarding
 #
-# Vlad Patenko <vlad.patenko@gmail.com>, 2026.
-# Denys Nykula <nykula@ukr.net>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-02 11:20+0000\n"
-"Last-Translator: Denys Nykula <nykula@ukr.net>\n"
-"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:44+0000\n"
+"PO-Revision-Date: 2026-08-31 14:31+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-s19-4/"
 "onboarding/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -19,12 +17,20 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: onboarding
+#: model:ir.module.module,description:base.module_onboarding
+msgid ""
+"\n"
+"This module allows to manage onboardings and their progress\n"
+"================================================================================\n"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.model.fields,help:onboarding.field_onboarding_onboarding__progress_ids
 msgid "All Onboarding Progress Records (across companies)."
-msgstr "Всі записи прогресу адаптації (всі компанії)."
+msgstr ""
 
 #. module: onboarding
 #: model_terms:ir.ui.view,arch_db:onboarding.onboarding_step
@@ -34,7 +40,7 @@ msgstr ""
 #. module: onboarding
 #: model:ir.model.fields,help:onboarding.field_onboarding_onboarding_step__progress_ids
 msgid "All related Onboarding Progress Step Records (across companies)"
-msgstr "Всі пов'язані записи прогресу адаптації (всі компанії)"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_onboarding_step__step_image_alt
@@ -57,11 +63,6 @@ msgstr ""
 #. module: onboarding
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_onboarding_step__button_text
 msgid "Button text"
-msgstr "Текст кнопки"
-
-#. module: onboarding
-#: model_terms:ir.ui.view,arch_db:onboarding.onboarding_container
-msgid "Cancel"
 msgstr ""
 
 #. module: onboarding
@@ -77,7 +78,7 @@ msgstr ""
 #. module: onboarding
 #: model_terms:ir.ui.view,arch_db:onboarding.onboarding_container
 msgid "Close the onboarding panel"
-msgstr "Закрити панель адаптації"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_onboarding__panel_close_action_name
@@ -118,6 +119,11 @@ msgid "Description"
 msgstr ""
 
 #. module: onboarding
+#: model_terms:ir.ui.view,arch_db:onboarding.onboarding_container
+msgid "Discard"
+msgstr ""
+
+#. module: onboarding
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_onboarding__display_name
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_onboarding_step__display_name
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_progress__display_name
@@ -134,11 +140,6 @@ msgid "Done"
 msgstr ""
 
 #. module: onboarding
-#: model:ir.model.fields,field_description:onboarding.field_onboarding_onboarding_step__done_icon
-msgid "Font Awesome Icon when completed"
-msgstr ""
-
-#. module: onboarding
 #: model_terms:ir.ui.view,arch_db:onboarding.onboarding_container
 msgid "Get them out of my sight!"
 msgstr ""
@@ -146,7 +147,7 @@ msgstr ""
 #. module: onboarding
 #: model_terms:ir.ui.view,arch_db:onboarding.onboarding_container
 msgid "Hide Onboarding Tips"
-msgstr "Приховати поради з адаптації"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_onboarding__id
@@ -190,6 +191,11 @@ msgstr ""
 #: code:addons/onboarding/models/onboarding_onboarding_step.py:0
 #: model_terms:ir.ui.view,arch_db:onboarding.onboarding_step
 msgid "Let's do it"
+msgstr ""
+
+#. module: onboarding
+#: model:ir.model.fields,field_description:onboarding.field_onboarding_onboarding_step__done_icon
+msgid "Material Symbols Icon when completed"
 msgstr ""
 
 #. module: onboarding
@@ -261,44 +267,49 @@ msgstr ""
 #. module: onboarding
 #: model:ir.model,name:onboarding.model_onboarding_progress
 msgid "Onboarding Progress Tracker"
-msgstr "Трекер процесу адаптації"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.model.fields,help:onboarding.field_onboarding_onboarding__current_progress_id
 msgid "Onboarding Progress for the current context (company)."
-msgstr "Прогрес адаптації для вибраного контексту (компанія)."
+msgstr ""
 
 #. module: onboarding
 #: model:ir.model,name:onboarding.model_onboarding_onboarding_step
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_progress_step__step_id
 msgid "Onboarding Step"
-msgstr "Кроки адаптації"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_progress_step__step_state
 msgid "Onboarding Step Progress"
-msgstr "Прогрес кроків адаптації"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.actions.act_window,name:onboarding.action_view_onboarding_step
 #: model_terms:ir.ui.view,arch_db:onboarding.onboarding_onboarding_step_view_tree
 msgid "Onboarding Steps"
-msgstr "Кроки адаптації"
+msgstr ""
+
+#. module: onboarding
+#: model:ir.module.module,shortdesc:base.module_onboarding
+msgid "Onboarding Toolbox"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.model.constraint,message:onboarding.constraint_onboarding_onboarding_route_name_uniq
 msgid "Onboarding alias must be unique."
-msgstr "Псевдонім для процесу адаптації має бути унікальним."
+msgstr ""
 
 #. module: onboarding
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_progress__onboarding_state
 msgid "Onboarding progress"
-msgstr "Прогрес адаптації"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_onboarding__step_ids
 msgid "Onboarding steps"
-msgstr "Кроки адаптації"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.actions.act_window,name:onboarding.action_view_onboarding_onboarding
@@ -307,12 +318,12 @@ msgstr "Кроки адаптації"
 #: model_terms:ir.ui.view,arch_db:onboarding.onboarding_onboarding_step_view_form
 #: model_terms:ir.ui.view,arch_db:onboarding.onboarding_onboarding_view_tree
 msgid "Onboardings"
-msgstr "Адаптації"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.ui.menu,name:onboarding.menu_onboarding_step
 msgid "Onboardings Steps"
-msgstr "Кроки адаптації"
+msgstr ""
 
 #. module: onboarding
 #: model:ir.model.fields,field_description:onboarding.field_onboarding_onboarding__route_name

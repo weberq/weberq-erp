@@ -2,7 +2,8 @@ name: Build and Deploy
 
 on:
   push:
-    branches: ["main"]
+    # main deploys; weberq-* branches only build an image, for testing
+    branches: ["main", "weberq-*"]
 
 env:
   DOMAIN: "erp.weberq.in"
@@ -41,12 +42,18 @@ jobs:
           # Fingerprint of the Odoo core and all addons. The deploy upgrades every
           # module when it differs from the running release's.
           CORE_REV=$(git rev-parse HEAD:odoo HEAD:addons HEAD:custom_addons/odoomates-apps | sha1sum | cut -c1-12)
-          docker build --no-cache --label weberq.core-rev=$CORE_REV -t $IMAGE_SHA -t $IMAGE_LATEST .
+          # Odoo series (e.g. 20.0). The deploy never rolls back across series.
+          SERIES=$(sed -nE 's/^version_info = \(([0-9]+), ([0-9]+),.*/\1.\2/p' odoo/release.py)
+          docker build --no-cache --label weberq.core-rev=$CORE_REV --label weberq.odoo-series=$SERIES -t $IMAGE_SHA .
           docker push $IMAGE_SHA
-          docker push $IMAGE_LATEST
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            docker tag $IMAGE_SHA $IMAGE_LATEST
+            docker push $IMAGE_LATEST
+          fi
 
   deploy:
     needs: build
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -67,7 +74,7 @@ jobs:
           script: |
             DOMAIN="erp.weberq.in"
             APP_NAME="weberq-erp"
-            DB_NAME="$DB_USER"
+            DB_NAME="weberq"
             DATA_VOLUME="odoo_data"
             UPGRADE_MODULES="weberq_branding"
             OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
@@ -159,14 +166,25 @@ jobs:
               echo "Deploy failed: $1"
               docker logs --tail 100 "$APP_NAME" 2>/dev/null || true
               docker rm -f "$APP_NAME" 2>/dev/null || true
-              if [ -n "$PREV_IMAGE" ]; then
+              # An older Odoo series must never start on a database this one has
+              # already upgraded
+              if [ -n "$PREV_IMAGE" ] && [ -n "$PREV_SERIES" ] && [ "$PREV_SERIES" = "$NEW_SERIES" ]; then
                 echo "Rolling back to $PREV_IMAGE..."
                 start_erp "$PREV_IMAGE"
+              elif [ -n "$PREV_IMAGE" ]; then
+                echo "Not rolling back: $PREV_IMAGE runs Odoo ${PREV_SERIES:-unknown}, this release ${NEW_SERIES:-unknown}. Restore manually."
               fi
               exit 1
             }
 
+            image_label() {
+              docker inspect -f "{{index .Config.Labels \"$2\"}}" "$1" 2>/dev/null | grep -v '<no value>' || true
+            }
+
             PREV_IMAGE=$(docker inspect -f '{{.Config.Image}}' "$APP_NAME" 2>/dev/null || true)
+            NEW_SERIES=$(image_label "$IMAGE" weberq.odoo-series)
+            PREV_SERIES=""
+            [ -n "$PREV_IMAGE" ] && PREV_SERIES=$(image_label "$PREV_IMAGE" weberq.odoo-series)
 
             echo "Stop old container..."
             docker stop "$APP_NAME" 2>/dev/null || true
@@ -190,12 +208,9 @@ jobs:
 
             # Odoo core or addon code changed since the running release (or the
             # release is unknown): update every module so data and view fixes apply
-            core_rev() {
-              docker inspect -f '{{index .Config.Labels "weberq.core-rev"}}' "$1" 2>/dev/null | grep -v '<no value>' || true
-            }
-            NEW_REV=$(core_rev "$IMAGE")
+            NEW_REV=$(image_label "$IMAGE" weberq.core-rev)
             PREV_REV=""
-            [ -n "$PREV_IMAGE" ] && PREV_REV=$(core_rev "$PREV_IMAGE")
+            [ -n "$PREV_IMAGE" ] && PREV_REV=$(image_label "$PREV_IMAGE" weberq.core-rev)
             if [ -z "$NEW_REV" ] || [ "$NEW_REV" != "$PREV_REV" ]; then
               UPGRADE_MODULES="all"
             fi

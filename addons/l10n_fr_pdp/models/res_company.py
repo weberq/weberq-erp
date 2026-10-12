@@ -105,29 +105,27 @@ class ResCompany(models.Model):
             return self.env._("French e-invoicing identifier")
         return super()._get_einvoicing_identifier_name()
 
-    @api.depends('peppol_eas', 'peppol_endpoint')
+    @api.depends('partner_id.routing_identifier')
     def _compute_pdp_identifier(self):
         for record in self:
             partner = record.partner_id
-            record.pdp_identifier = partner.peppol_endpoint if partner.peppol_eas == '0225' else False
+            record.pdp_identifier = partner.routing_endpoint if partner.routing_scheme == '0225' else False
 
     def _inverse_pdp_identifier(self):
         for record in self:
             if not record.pdp_identifier:
                 continue
             match = PDP_identifier_re.match(record.pdp_identifier or '')
-            update = {
-                'peppol_eas': '0225',
-                'peppol_endpoint': record.pdp_identifier,  # Will be verified by `_check_peppol_fields` constraint
-            }
             siren = match and match.group(1)
             if not siren:
                 raise UserError(self.env._("The identifier %s is not valid. The expected format is: SIREN, SIREN_SIRET, SIREN_SIRET_CodeRoutage or SIREN_SuffixeAdressage", record.pdp_identifier))
-            if not record.company_registry:
-                siret = match.group(2)[1:] if match and match.group(2) else False  # Remove `_` at the start
-                update['company_registry'] = siret or siren
-
-            record.partner_id.write(update)
+            siret = match.group(2)[1:] if match and match.group(2) else False  # Remove `_` at the start
+            # Set the registry identifier first: writes `additional_identifiers`, which
+            # would recompute `routing_scheme`/`routing_endpoint` and overwrite the 0225
+            # routing set below otherwise.
+            if registry := (siret or siren):
+                record.partner_id._set_additional_identifier('FR_SIRET' if len(registry) == 14 else 'FR_SIREN', registry)
+            record.partner_id.write({'routing_identifier': f'0225:{record.pdp_identifier}'})
 
     @api.depends('l10n_fr_pdp_annuaire_start_date', 'account_peppol_proxy_state')
     def _compute_l10n_fr_pdp_registered(self):
@@ -229,7 +227,7 @@ class ResCompany(models.Model):
 
     def _pdp_get_flow_10_start_date(self):
         self.ensure_one()
-        if (param_start_date := self.env['ir.config_parameter'].sudo().get_param(
+        if (param_start_date := self.env['ir.config_parameter'].sudo().get_str(
             f'l10n_fr_pdp.flow10.start.date.{self.id}',
         )):
             period_data = self.env['l10n.fr.pdp.reports.flow']._get_period_flow_properties(
@@ -277,12 +275,10 @@ class ResCompany(models.Model):
         base_url = self._pdp_get_iap_url()
         response = iap_tools.iap_jsonrpc(f'{base_url}/api/signaturit_id_authentication/1/kyc_status', params={
             'object_uuid': self.pdp_authentication_uuid,
-        })
+        }, raise_user_error=True)
         kyc_status = response.get('kyc_status')
         if kyc_status == 'success':
             self.pdp_kyc_status = kyc_status
-            if self.env['account.move']._can_commit():
-                self.env.cr.commit()
             if not send_bus:  # If called manually from the wizard we do not need the JS to handle it
                 return
             # We are getting the last registration wizard creator to send him the notification.
@@ -293,3 +289,8 @@ class ResCompany(models.Model):
                     'auth_done',
                     {'pdp_registration_id': pdp_registration.id},
                 )
+
+    def _action_open_pdp_form(self):
+        self.ensure_one()
+        registration_wizard = self.env['pdp.registration'].create({'company_id': self.id})
+        return registration_wizard._action_open_pdp_form()

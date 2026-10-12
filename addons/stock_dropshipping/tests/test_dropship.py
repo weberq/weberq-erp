@@ -247,15 +247,9 @@ class TestDropship(common.TransactionCase):
         picking_dropship.button_validate()
         self.assertEqual(sale_order.order_line.qty_delivered, 3.0)
         self.assertEqual(purchase_order.order_line.qty_received, 3.0)
-        stock_return_picking_form = Form(self.env['stock.return.picking'].with_context(
-            active_ids=picking_dropship.ids,
-            active_id=picking_dropship.id,
-            active_model='stock.picking'
-        ))
-        return_wiz = stock_return_picking_form.save()
-        return_wiz.product_return_moves.quantity = 3
-        res = return_wiz.action_create_returns()
-        return_picking = self.env['stock.picking'].browse(res['res_id'])
+        return_picking = picking_dropship._create_return()
+        return_picking.move_ids.product_uom_qty = 3
+        return_picking.action_assign()
         return_picking.button_validate()
         self.assertEqual(sale_order.order_line.qty_delivered, 0)
         self.assertEqual(purchase_order.order_line.qty_received, 0)
@@ -334,7 +328,7 @@ class TestDropship(common.TransactionCase):
         subcontracted_service = self.env['product.product'].create({
             'name': 'SuperService',
             'type': 'service',
-            'service_to_purchase': True,
+            'service_tracking': 'subcontract',
             'seller_ids': [(0, 0, {'partner_id': supplier.id})],
         })
 
@@ -353,7 +347,7 @@ class TestDropship(common.TransactionCase):
         po.order_line = [(0, 0, {
             'product_id': self.dropship_product.id,
             'product_qty': 1.00,
-            'product_uom_id': self.dropship_product.uom_id.id,
+            'uom_id': self.dropship_product.uom_id.id,
         })]
         po.button_confirm()
         dropship = po.picking_ids
@@ -538,7 +532,7 @@ class TestDropshipPostInstall(common.TransactionCase):
         ])
         cls.dropship_product = cls.env['product.product'].create({
             'name': 'Dropshipped Product',
-            'tracking': 'none',
+            'is_storable': True,
             'standard_price': 20,
             'invoice_policy': 'delivery',
             'seller_ids': [Command.create({
@@ -591,15 +585,9 @@ class TestDropshipPostInstall(common.TransactionCase):
         dropship_picking.button_validate()
         self.assertEqual(sale_order.order_line.qty_delivered, 2)
         self.assertEqual(purchase_order.order_line.qty_received, 2)
-        stock_return_picking_form = Form(self.env['stock.return.picking'].with_context(
-            active_ids=dropship_picking.ids,
-            active_id=dropship_picking.id,
-            active_model='stock.picking',
-        ))
-        return_wiz = stock_return_picking_form.save()
-        return_wiz.product_return_moves.quantity = 2
-        res = return_wiz.action_create_returns()
-        return_picking = self.env['stock.picking'].browse(res['res_id'])
+        return_picking = dropship_picking._create_return()
+        return_picking.move_ids.product_uom_qty = 2
+        return_picking.action_assign()
         return_picking.button_validate()
         self.assertEqual(sale_order.order_line.qty_delivered, 0)
         self.assertEqual(purchase_order.order_line.qty_received, 0)
@@ -646,10 +634,6 @@ class TestDropshipPostInstall(common.TransactionCase):
         Check that the destination address is set on the purchase order when
         its picking type is manually changed to the dropshipping picking type.
         """
-        mto_route = self.env.ref('stock.route_warehouse0_mto')
-        mto_route.action_unarchive()
-        buy_route = self.env.ref('purchase_stock.route_warehouse0_buy')
-        self.dropship_product.route_ids += buy_route
 
         so = self.env['sale.order'].create({
             'partner_id': self.customer.id,
@@ -661,7 +645,7 @@ class TestDropshipPostInstall(common.TransactionCase):
         })
         so.action_confirm()
         po = so.order_line.purchase_line_ids.order_id
-        po.picking_type_id = buy_route.rule_ids.picking_type_id[-1]
+        po.picking_type_id = po._default_picking_type()
         self.assertFalse(po.dest_address_id)
         po.picking_type_id = self.env['stock.picking.type'].search([('name', '=', 'Dropship'), ('company_id', '=', self.env.company.id)], limit=1)
         self.assertEqual(po.dest_address_id, self.customer)

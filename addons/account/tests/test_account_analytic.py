@@ -8,6 +8,8 @@ from odoo import Command
 @tagged('post_install', '-at_install')
 class TestAccountAnalyticAccount(AccountTestInvoicingCommon, AnalyticCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -33,17 +35,6 @@ class TestAccountAnalyticAccount(AccountTestInvoicingCommon, AnalyticCommon):
         return self.env['account.analytic.line'].search([
             ('move_line_id', 'in', invoice.line_ids.ids),
         ]).sorted('amount')
-
-    def create_invoice(self, partner, product):
-        return self.env['account.move'].create([{
-            'move_type': 'out_invoice',
-            'partner_id': partner.id,
-            'date': '2017-01-01',
-            'invoice_date': '2017-01-01',
-            'invoice_line_ids': [Command.create({
-                'product_id': product.id,
-            })]
-        }])
 
     def test_changing_analytic_company(self):
         """ Ensure you can't change the company of an account.analytic.account if there are analytic lines linked to
@@ -248,19 +239,19 @@ class TestAccountAnalyticAccount(AccountTestInvoicingCommon, AnalyticCommon):
         }])
 
         # Partner and product match, score 2
-        invoice = self.create_invoice(self.partner_a, self.product_a)
+        invoice = self._create_invoice_one_line(partner_id=self.partner_a, product_id=self.product_a)
         self.assertEqual(invoice.invoice_line_ids.analytic_distribution, {str(self.analytic_account_4.id): 100})
 
         # Match the partner but not the product, score 0
-        invoice = self.create_invoice(self.partner_a, self.product_b)
+        invoice = self._create_invoice_one_line(partner_id=self.partner_a, product_id=self.product_b)
         self.assertEqual(invoice.invoice_line_ids.analytic_distribution, False)
 
         # Product match, score 1
-        invoice = self.create_invoice(self.partner_b, self.product_a)
+        invoice = self._create_invoice_one_line(partner_id=self.partner_b, product_id=self.product_a)
         self.assertEqual(invoice.invoice_line_ids.analytic_distribution, {str(self.analytic_account_3.id): 100})
 
         # No rule match with the product, score 0
-        invoice = self.create_invoice(self.partner_b, self.product_b)
+        invoice = self._create_invoice_one_line(partner_id=self.partner_b, product_id=self.product_b)
         self.assertEqual(invoice.invoice_line_ids.analytic_distribution, False)
 
     def test_model_application(self):
@@ -275,7 +266,7 @@ class TestAccountAnalyticAccount(AccountTestInvoicingCommon, AnalyticCommon):
             'company_id': False,
         }])
 
-        invoice = self.create_invoice(self.env['res.partner'], self.product_a)
+        invoice = self._create_invoice_one_line(partner_id=self.env['res.partner'], product_id=self.product_a)
         # No model is found, don't put anything
         self.assertEqual(invoice.invoice_line_ids.analytic_distribution, False)
 
@@ -304,7 +295,7 @@ class TestAccountAnalyticAccount(AccountTestInvoicingCommon, AnalyticCommon):
         self.assertEqual(invoice.invoice_line_ids.analytic_distribution, {str(self.analytic_account_4.id): 100})
 
     def test_mandatory_plan_validation(self):
-        invoice = self.create_invoice(self.partner_b, self.product_a)
+        invoice = self._create_invoice_one_line(partner_id=self.partner_b, product_id=self.product_a)
         self.analytic_plan_2.write({
             'applicability_ids': [Command.create({
                 'business_domain': 'invoice',
@@ -340,8 +331,8 @@ class TestAccountAnalyticAccount(AccountTestInvoicingCommon, AnalyticCommon):
         In case of mass posting, we should still check for mandatory analytic plans. This may raise a RedirectWarning,
         if more than one entry was selected for posting, or a ValidationError if only one entry was selected.
         """
-        invoice1 = self.create_invoice(self.partner_a, self.product_a)
-        invoice2 = self.create_invoice(self.partner_b, self.product_a)
+        invoice1 = self._create_invoice_one_line(partner_id=self.partner_a, product_id=self.product_a)
+        invoice2 = self._create_invoice_one_line(partner_id=self.partner_b, product_id=self.product_a)
         self.analytic_plan_2.write({
             'applicability_ids': [Command.create({
                 'business_domain': 'invoice',
@@ -584,7 +575,7 @@ class TestAccountAnalyticAccount(AccountTestInvoicingCommon, AnalyticCommon):
             'company_id': False,
         }])
         accounts_by_code = self.env['account.account'].search([('code', 'ilike', '6%')]).grouped('code')
-        invoice = self.create_invoice(self.env['res.partner'], self.product_a)
+        invoice = self._create_invoice_one_line(partner_id=self.env['res.partner'], product_id=self.product_a)
         # No model is found, don't put anything
         self.assertEqual(invoice.invoice_line_ids.analytic_distribution, False)
         invoice.invoice_line_ids.account_id = accounts_by_code.get('611000')
@@ -765,7 +756,6 @@ class TestAccountAnalyticAccount(AccountTestInvoicingCommon, AnalyticCommon):
             'name': 'Discount Expense',
             'code': 'DIS',
             'account_type': 'expense',
-            'reconcile': False,
         })
 
         # Create invoice with 2 lines: each has a discount and analytic distribution
@@ -892,7 +882,7 @@ class TestAccountAnalyticAccount(AccountTestInvoicingCommon, AnalyticCommon):
     def test_zero_balance_invoice_with_analytic_line(self):
         """ Test that creating an analytic line on a 0-amount invoice does not crash and updates analytic_distribution safely. """
         self.product_a.list_price = 0.0
-        invoice = self.create_invoice(self.partner_a, self.product_a)
+        invoice = self._create_invoice_one_line(partner_id=self.partner_a, product_id=self.product_a)
         invoice.action_post()
         self.env['account.analytic.line'].create({
             'name': 'Zero Balance Test',
@@ -1284,7 +1274,7 @@ class TestAccountAnalyticAccount(AccountTestInvoicingCommon, AnalyticCommon):
         """Ensure that posting an invoice with an archived analytic account
         in its distribution raises a UserError.
         """
-        invoice = self.create_invoice(self.partner_a, self.product_a)
+        invoice = self._create_invoice_one_line(partner_id=self.partner_a, product_id=self.product_a)
         invoice.invoice_line_ids.analytic_distribution = {
             str(self.analytic_account_1.id): 100,
         }
@@ -1328,3 +1318,22 @@ class TestAccountAnalyticAccount(AccountTestInvoicingCommon, AnalyticCommon):
         credit_note.with_context(validate_analytic=True).action_post()
 
         self.assertEqual(credit_note.state, 'posted')
+
+    def test_analytic_distribution_prefix_placeholder_computation(self):
+        """Ensure the placeholder uses the default prefixes when no expense
+        account code exists, and uses prefixes derived from the account code otherwise.
+        """
+        company = self.env['res.company'].create({'name': 'Demo Company'})
+        expense_account = self.env['account.account'].with_company(company).create({
+            'name': 'Expense Account',
+            'account_type': 'expense',
+        })
+
+        def _get_prefix_placeholder():
+            return Form(
+                self.env['account.analytic.distribution.model'].with_company(company),
+            ).prefix_placeholder
+
+        self.assertEqual(_get_prefix_placeholder(), 'e.g. 60, 61, 62')
+        expense_account.write({'code': '78900'})
+        self.assertEqual(_get_prefix_placeholder(), 'e.g. 78, 79, 80')

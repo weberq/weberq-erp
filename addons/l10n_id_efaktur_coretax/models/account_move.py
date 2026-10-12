@@ -157,7 +157,7 @@ class AccountMove(models.Model):
     )
 
     l10n_id_coretax_efaktur_available = fields.Boolean(compute="_compute_l10n_id_coretax_efaktur_available")
-    l10n_id_coretax_document = fields.Many2one('l10n_id_efaktur_coretax.document', readonly=True, copy=False, string="e-Faktur Document (Coretax)")
+    l10n_id_coretax_document = fields.Many2one('l10n_id_efaktur_coretax.document', readonly=True, copy=False, string="e-Faktur Document (Coretax)", index='btree_not_null')
     l10n_id_coretax_custom_doc = fields.Char(help="Additional documentation when choosing kode 07 or 08")
     l10n_id_coretax_custom_doc_month_year = fields.Date(string="Custom Document Month and Year")
     l10n_id_kode_transaksi = fields.Selection(
@@ -183,8 +183,7 @@ class AccountMove(models.Model):
         """
         for move in self:
             move.l10n_id_coretax_efaktur_available = (
-                move.partner_id.l10n_id_pkp
-                and move.country_code == 'ID'
+                move.country_code == 'ID'
                 and move.move_type == 'out_invoice'
                 and move.line_ids.tax_ids
             )
@@ -228,10 +227,11 @@ class AccountMove(models.Model):
             exempt_group = self.env['account.chart.template'].with_company(move.company_id.id).ref("l10n_id_tax_group_exempt", raise_if_not_found=False)
             stlg_group = self.env['account.chart.template'].with_company(move.company_id.id).ref("l10n_id_tax_group_stlg", raise_if_not_found=False)
             default_group = self.env['account.chart.template'].with_company(move.company_id.id).ref("default_tax_group", raise_if_not_found=False)
+            vat_collector_group = self.env['account.chart.template'].with_company(move.company_id.id).ref("l10n_id_tax_group_vat_collector", raise_if_not_found=False)
             product_lines = move.line_ids.filtered(lambda line: line.display_type == 'product')
             all_taxes = product_lines.mapped('tax_ids')
             tax_groups = set(all_taxes.mapped('tax_group_id'))
-            ppn_groups = {non_luxury_group, luxury_group, zero_group, exempt_group, default_group}
+            ppn_groups = {non_luxury_group, luxury_group, zero_group, exempt_group, default_group, vat_collector_group}
             ppn_groups.discard(False)
             ppn_tax_groups = [g for g in tax_groups if g in ppn_groups]
             stlg_tax_groups = [g for g in tax_groups if g == stlg_group]
@@ -303,8 +303,6 @@ class AccountMove(models.Model):
         # check for every customer
         for partner in self.partner_id:
             comm = partner.commercial_partner_id
-            if not comm.l10n_id_pkp:
-                err_messages.append(_("Customer %s is not taxable, tick ID PKP if necessary", comm.name))
             if comm.l10n_id_buyer_document_type != 'TIN' and not comm.l10n_id_buyer_document_number:
                 err_messages.append(_("Document number for customer %s hasn't been filled in", comm.name))
             if not comm.vat:
@@ -328,6 +326,17 @@ class AccountMove(models.Model):
             if record.l10n_id_kode_transaksi == "08":
                 if not (record.l10n_id_coretax_add_info_08 and record.l10n_id_coretax_facility_info_08):
                     err_messages.append(_("Invoice %s doesn't contain the Additional info and Facility Stamp yet (Kode 08)", record.name))
+            if record.invoice_line_ids._get_downpayment_lines():
+                err_messages.append(_("Coretax e-Faktur does not support XML uploads for transactions involving down payments. Please enter these transactions manually into the Coretax system"))
+            if record.invoice_line_ids.filtered(lambda line: line.tax_ids and line._l10n_id_coretax_is_negative_line()):
+                _base_lines, remaining_negative_base_lines = record._l10n_id_coretax_dispatch_negative_lines()
+                if remaining_negative_base_lines:
+                    err_messages.append(_(
+                        "Invoice %s contains a negative line that could not be distributed over the other lines, "
+                        "because no other line carries the same taxes or because it exceeds their total. Please "
+                        "align the taxes or enter this transaction manually into the Coretax system",
+                        record.name,
+                    ))
 
         # Check tax groups
         err_messages.extend(self._validate_tax_groups())
@@ -389,15 +398,15 @@ class AccountMove(models.Model):
             "CustomDocMonthYear": self.l10n_id_coretax_custom_doc_month_year and self.l10n_id_coretax_custom_doc_month_year.strftime("%m%Y") or "",
             "FacilityStamp": "",
             "RefDesc": self.name,
-            "SellerIDTKU": self.company_id.vat + (self.company_id.partner_id.l10n_id_tku or '000000'),
+            "SellerIDTKU": self.company_id.vat + self.company_id.partner_id._l10n_id_efaktur_tku_branch(),
             "BuyerDocument": l10n_id_buyer_document_type_mapping_to_xml.get(partner.l10n_id_buyer_document_type, partner.l10n_id_buyer_document_type),
             "BuyerTin": partner.vat if partner.l10n_id_buyer_document_type == "TIN" else "0000000000000000",
             "BuyerCountry": COUNTRY_CODE_MAP.get(partner.country_id.code),
-            "BuyerDocumentNumber": partner.l10n_id_buyer_document_number if partner.l10n_id_buyer_document_type != "TIN" else "",
+            "BuyerDocumentNumber": partner.l10n_id_buyer_document_number or "",
             "BuyerName": self.partner_id.name,
-            "BuyerAdress": self.partner_id.contact_address.replace('\n', ' ').strip(),
+            "BuyerAdress": self.partner_id._display_address(separator=' '),
             "BuyerEmail": partner.email or "",
-            "BuyerIDTKU": partner.vat + (partner.l10n_id_tku or '000000'),
+            "BuyerIDTKU": partner.vat + partner._l10n_id_efaktur_tku_branch(),
         })
 
         if trx_code == '07':
@@ -407,18 +416,44 @@ class AccountMove(models.Model):
             vals['AddInfo'] = self.l10n_id_coretax_add_info_08
             vals['FacilityStamp'] = self.l10n_id_coretax_facility_info_08
 
+    def _l10n_id_coretax_dispatch_negative_lines(self):
+        """ Distribute the invoice's negative lines into the positive ones sharing the same taxes."""
+        self.ensure_one()
+
+        base_lines, _tax_lines = self._get_rounded_base_and_tax_lines()
+        base_lines = [
+            base_line for base_line in base_lines
+            if base_line['tax_ids'] and base_line['record'].display_type == 'product'
+        ]
+        # Coretax rejects any negative amount, so every negative line is treated as a global
+        # discount, not only the ones coming from the Global Discount feature.
+        for base_line in base_lines:
+            if not base_line['special_type'] and base_line['record']._l10n_id_coretax_is_negative_line():
+                base_line['special_type'] = 'global_discount'
+
+        base_lines = self.env['account.tax']._dispatch_global_discount_lines(base_lines, self.company_id)
+        self.env['account.tax']._squash_global_discount_lines(base_lines, self.company_id)
+        self.env['account.tax']._add_and_round_raw_gross_total_excluded_and_discount(base_lines, self.company_id, in_foreign_currency=False, account_discount_base_lines=True)
+        self.env['account.tax']._round_raw_gross_total_excluded_and_discount(base_lines, self.company_id, in_foreign_currency=False)
+
+        remaining_negative_base_lines = [
+            base_line for base_line in base_lines
+            if self.company_currency_id.compare_amounts(base_line['tax_details']['total_excluded'], 0.0) < 0
+        ]
+        return base_lines, remaining_negative_base_lines
+
     def prepare_efaktur_vals(self):
         """ Get information required from invoice and lines to generate E-Faktur that will be used
         to load in the XML template later on"""
         invoice_vals = []
-        idr = self.env.ref('base.IDR')
 
         for move in self.filtered(lambda m: m.state == 'posted'):
             vals = {}
             move._l10n_id_coretax_build_invoice_vals(vals)
 
-            for line in move.invoice_line_ids.filtered(lambda ml: ml.tax_ids):
-                line._l10n_id_coretax_build_invoice_line_vals(vals)
+            base_lines, _remaining = move._l10n_id_coretax_dispatch_negative_lines()
+            for base_line in base_lines:
+                base_line['record']._l10n_id_coretax_build_invoice_line_vals(vals, base_line)
 
             invoice_vals.append(vals)
 

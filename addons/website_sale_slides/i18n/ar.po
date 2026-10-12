@@ -6,17 +6,16 @@
 # Martin Trigaux, 2022
 # Niyas Raphy, 2022
 # Malaz Abuidris <msea@odoo.com>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025, 2026.
-# "Malaz Siddig Elsayed Abuidris (msea)" <msea@odoo.com>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-09-10 13:45+0000\n"
-"Last-Translator: \"Malaz Siddig Elsayed Abuidris (msea)\" <msea@odoo.com>\n"
-"Language-Team: Arabic <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 15:04+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Arabic <https://translate.odoo.com/projects/odoo-s19-4/"
 "website_sale_slides/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -28,13 +27,13 @@ msgstr ""
 
 #. module: website_sale_slides
 #: model_terms:ir.ui.view,arch_db:website_sale_slides.course_option_buy_course_now
-msgid "<i class=\"fa fa-bolt\"/> Buy Now"
-msgstr "<i class=\"fa fa-bolt\"/> اشترِ الآن"
+msgid "<i class=\"oi\" data-icon=\"flash_on\"/> Buy Now"
+msgstr "<i class=\"oi\" data-icon=\"flash_on\"/> اشترِ الآن"
 
 #. module: website_sale_slides
 #: model_terms:ir.ui.view,arch_db:website_sale_slides.course_buy_course_button
-msgid "<i class=\"fa fa-shopping-cart\"/> Add to Cart"
-msgstr "<i class=\"fa fa-shopping-cart\"/> إضافة إلى عربة التسوق"
+msgid "<i class=\"oi\" data-icon=\"shopping_cart\"/> Add to Cart"
+msgstr "<i class=\"oi\" data-icon=\"shopping_cart\"/> إضافة إلى عربة التسوق"
 
 #. module: website_sale_slides
 #. odoo-python
@@ -57,13 +56,13 @@ msgstr "زر الشراء الآن"
 #. odoo-javascript
 #: code:addons/website_sale_slides/static/src/xml/website_sale_slides_quiz.xml:0
 msgid "Buy the course to validate your answers!"
-msgstr "قم بشراء الدورة لتصديق إجاباتك!"
+msgstr ""
 
 #. module: website_sale_slides
 #. odoo-javascript
 #: code:addons/website_sale_slides/static/src/xml/slide_course_join.xml:0
 msgid "Buy this Course"
-msgstr "شراء هذه الدورة"
+msgstr ""
 
 #. module: website_sale_slides
 #: model_terms:ir.actions.act_window,help:website_sale_slides.sale_report_action_slides
@@ -83,7 +82,7 @@ msgstr "الوصول إلى الدورة"
 
 #. module: website_sale_slides
 #. odoo-javascript
-#: code:addons/website_sale_slides/static/src/website_builder/course_page_option_plugin.js:0
+#: code:addons/website_sale_slides/static/src/website_builder/course_page_option.xml:0
 msgid "Course Page"
 msgstr "صفحة الدورة"
 
@@ -164,7 +163,7 @@ msgstr "المشاركة في الدورة"
 msgid ""
 "Leaving the course and re-enrolling afterwards means that you'll be charged "
 "again."
-msgstr "مغادرة الدورة ثم التسجيل مجدداً بعد ذلك يعني أنه عليك الدفع مجدداً."
+msgstr ""
 
 #. module: website_sale_slides
 #: model_terms:ir.ui.view,arch_db:website_sale_slides.course_buy_course_button
@@ -231,19 +230,34 @@ msgstr "أمر البيع"
 #. module: website_sale_slides
 #: model:ir.model,name:website_sale_slides.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "بند أمر البيع"
+msgstr ""
+
+#. module: website_sale_slides
+#: model:ir.module.module,shortdesc:base.module_website_sale_slides
+msgid "Sell Courses"
+msgstr ""
+
+#. module: website_sale_slides
+#: model:ir.module.module,summary:base.module_website_sale_slides
+msgid "Sell your courses online"
+msgstr ""
+
+#. module: website_sale_slides
+#: model:ir.module.module,description:base.module_website_sale_slides
+msgid "Sell your courses using the e-commerce features of the website."
+msgstr ""
 
 #. module: website_sale_slides
 #. odoo-javascript
 #: code:addons/website_sale_slides/static/src/xml/slide_course_join.xml:0
 msgid "Sign in"
-msgstr "تسجيل الدخول"
+msgstr ""
 
 #. module: website_sale_slides
 #. odoo-javascript
 #: code:addons/website_sale_slides/static/src/xml/website_sale_slides_quiz.xml:0
 msgid "Sign in and buy the course to take the quiz"
-msgstr "قم بتسجيل الدخول وشراء الدورة للخضوع للاختبار القصير"
+msgstr ""
 
 #. module: website_sale_slides
 #: model_terms:ir.ui.view,arch_db:website_sale_slides.course_buy_course_button
@@ -274,7 +288,7 @@ msgstr "لا يمكن شراء هذه الدورة لأن بها منتج مرت
 #. odoo-javascript
 #: code:addons/website_sale_slides/static/src/xml/website_slides_unsubscribe.xml:0
 msgid "This course is paid."
-msgstr "هذه الدورة مدفوعة."
+msgstr ""
 
 #. module: website_sale_slides
 #: model_terms:ir.ui.view,arch_db:website_sale_slides.slide_channel_view_tree_report
@@ -326,20 +340,3 @@ msgstr "خطوة (خطوات)"
 #: model_terms:ir.ui.view,arch_db:website_sale_slides.course_buy_course_link
 msgid "to access resources"
 msgstr "للوصول إلى الموارد"
-
-#~ msgid ""
-#~ "A storable product is a product for which you manage stock. The Inventory "
-#~ "app has to be installed.\n"
-#~ "A consumable product is a product for which stock is not managed.\n"
-#~ "A service is a non-material product you provide."
-#~ msgstr ""
-#~ "المنتج القابل للتخزين هو المنتج الذي يمكن إدارة مخزونه. يجب أن يكون تطبيق "
-#~ "المخزون مثبتاً.\n"
-#~ "المنتج القابل للاستهلاء هو المنتج الذي لا يمكن إدارة مخزونه.\n"
-#~ "الخدمة هي منتج غير مادي تقوم بتقديمه. "
-
-#~ msgid "Product Type"
-#~ msgstr "نوع المنتج"
-
-#~ msgid "Website"
-#~ msgstr "الموقع الإلكتروني"

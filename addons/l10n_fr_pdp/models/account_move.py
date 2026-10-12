@@ -170,8 +170,7 @@ class AccountMove(models.Model):
             move.pdp_can_send_response = (
                 bool(move.peppol_message_uuid)
                 and move.peppol_is_sent
-                and move.company_id._get_peppol_proxy_type() == 'pdp'
-                and move.partner_id._get_pdp_receiver_identification_info()[0] == 'pdp'
+                and move.partner_id.with_company(move.company_id).l10n_fr_is_pdp
             )
 
     @api.depends('pdp_can_send_response')
@@ -298,7 +297,7 @@ class AccountMove(models.Model):
         return wizard._get_records_action(name=self.env._("Send Response Message"), target='new')
 
     def _post(self, soft=True):
-        res = super(AccountMove, self.with_context(l10n_fr_pdp_skip_ereporting_tracking=True))._post(soft)
+        res = super()._post(soft)
         pdp_moves = self.filtered(lambda move: move.state == 'posted')
         # The e-reporting chatter message must use the final values in the same transaction.
         # Recompute the chained fields in dependency order before logging it.
@@ -308,31 +307,23 @@ class AccountMove(models.Model):
         pdp_moves._compute_l10n_fr_pdp_has_error()
         pdp_moves._compute_l10n_fr_pdp_last_flow_id()
         pdp_moves._compute_l10n_fr_pdp_status()
-        for move in pdp_moves:
-            if not move.l10n_fr_pdp_flow_10_report_type:
-                continue
-            move._l10n_fr_pdp_message_log_ereporting_status()
         for company, moves in self.filtered('pdp_can_send_response').grouped('company_id').items():
             company.account_peppol_edi_user._pdp_send_response(moves, 'AP')
         return res
 
-    def _message_track(self, fields_iter, initial_values_dict):
-        tracked_fields = set(fields_iter)
-        pdp_fields = tracked_fields & PDP_TRACKED_FIELDS
-        if not pdp_fields:
-            return super()._message_track(fields_iter, initial_values_dict)
-
-        tracking = super()._message_track(tracked_fields - pdp_fields, initial_values_dict)
-        if self.env.context.get('l10n_fr_pdp_skip_ereporting_tracking'):
-            return tracking
-        for move in self:
-            initial_values = initial_values_dict.get(move.id, {})
-            if any(
-                field_name in initial_values and initial_values[field_name] != move[field_name]
-                for field_name in pdp_fields
-            ):
-                move._l10n_fr_pdp_message_log_ereporting_status()
-        return tracking
+    def _track_execute(self, track_init_values, trackings, track_records=None):
+        filtered_trackings = {}
+        for rec_id, (changes, tracking_values) in trackings.items():
+            changes = set(changes)
+            if changes & PDP_TRACKED_FIELDS:
+                move = self.browse(rec_id).exists()
+                if move:
+                    move._l10n_fr_pdp_message_log_ereporting_status()
+            filtered_trackings[rec_id] = (
+                changes - PDP_TRACKED_FIELDS,
+                [tv for tv in tracking_values if tv.get('field_name') not in PDP_TRACKED_FIELDS],
+            )
+        super()._track_execute(track_init_values, filtered_trackings, track_records=track_records)
 
     def _l10n_fr_pdp_message_log_ereporting_status(self):
         self.ensure_one()
@@ -502,7 +493,7 @@ class AccountMove(models.Model):
     )
     def _compute_l10n_fr_pdp_flow_10_report_type(self):
         for move in self:
-            if move.pdp_is_sent:
+            if move.state != 'draft' and move.pdp_is_sent:
                 if move.l10n_fr_pdp_sent_in_flow_ids and move.l10n_fr_pdp_flow_10_report_type:
                     # The previous e-report must be rectified before clearing its scope.
                     self.env['l10n.fr.pdp.reports.flow']._get_open_flow_and_create_if_needed(move)
@@ -715,14 +706,6 @@ class AccountMove(models.Model):
                 # considered as sent in previous flow, and allow the current flow to be sent even if
                 # it's the only diffrence between the 2 flows.
                 move.l10n_fr_pdp_sent_in_flow_ids = False
-                # Ensure RE flow exist for current move period.
+                # ensure RE flow exist for current move period (if move is never posted again)
                 self.env['l10n.fr.pdp.reports.flow']._get_open_flow_and_create_if_needed(move)
         return super().button_draft()
-
-    def _get_import_file_type(self, file_data):
-        """ Identify UBL files. """
-        # EXTENDS 'account'
-        if (tree := file_data['xml_tree']) is not None:
-            if tree.findtext('{*}CustomizationID') == 'urn:cen.eu:en16931:2017#conformant#urn.cpro.gouv.fr:1p0:extended-ctc-fr':
-                return 'account.edi.xml.ubl_21_fr'
-        return super()._get_import_file_type(file_data)

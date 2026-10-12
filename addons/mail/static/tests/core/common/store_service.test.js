@@ -5,14 +5,25 @@ import { defineMailModels, start, startServer } from "@mail/../tests/mail_test_h
 import { expect, test } from "@odoo/hoot";
 
 import {
-    asyncStep,
+    destroyApp,
     getService,
     patchWithCleanup,
     serverState,
-    waitForSteps,
 } from "@web/../tests/web_test_helpers";
 
 defineMailModels();
+
+test("destroying the app disposes the store", async () => {
+    await start();
+    const store = getService("mail.store");
+    store.onChange(
+        () => [],
+        () => () => expect.step("store disposed")
+    );
+    await expect.waitForSteps([]);
+    destroyApp();
+    await expect.waitForSteps(["store disposed"]);
+});
 
 test("store.insert can delete record", async () => {
     await start();
@@ -27,24 +38,24 @@ test("store.insert deletes record without creating it", async () => {
     patchWithCleanup(Message, {
         new() {
             const message = super.new(...arguments);
-            asyncStep(`new-${message.id}`);
+            expect.step(`new-${message.id}`);
             return message;
         },
     });
     await start();
     const store = getService("mail.store");
     store.insert({ "mail.message": [{ id: 1, _DELETE: true }] });
-    await waitForSteps([]);
+    await expect.waitForSteps([]);
     expect(store["mail.message"].get({ id: 1 })?.id).toBe(undefined);
     store.insert({ "mail.message": [{ id: 2 }] });
-    await waitForSteps(["new-2"]);
+    await expect.waitForSteps(["new-2"]);
 });
 
 test("store.insert deletes record after relation created it", async () => {
     patchWithCleanup(Message, {
         new() {
             const message = super.new(...arguments);
-            asyncStep(`new-${message.id}`);
+            expect.step(`new-${message.id}`);
             return message;
         },
     });
@@ -56,7 +67,7 @@ test("store.insert deletes record after relation created it", async () => {
         "mail.link.preview": [{ id: 1 }],
         "mail.message.link.preview": [{ id: 1, link_preview_id: 1, message_id: 1 }],
     });
-    await waitForSteps(["new-1"]);
+    await expect.waitForSteps(["new-1"]);
     expect(store["mail.message"].get({ id: 1 })?.id).toBe(undefined);
 });
 
@@ -70,15 +81,22 @@ test("store.insert different PY model having same JS model", async () => {
         ],
         "mail.thread": [
             { id: 1, model: "discuss.channel" },
-            { id: 3, name: "R&D", model: "discuss.channel" },
+            { id: 3, model: "discuss.channel" },
+            { id: 4, model: "res.partner" },
+            { id: 5, model: "res.partner" },
+            { id: 6, model: "res.partner" },
         ],
     };
 
     store.insert(data);
-    expect(store.Thread.records).toHaveLength(6); // 3 mailboxes + 3 channels
-    expect(Boolean(store.Thread.get({ id: 1, model: "discuss.channel" }))).toBe(true);
-    expect(Boolean(store.Thread.get({ id: 2, model: "discuss.channel" }))).toBe(true);
-    expect(Boolean(store.Thread.get({ id: 3, model: "discuss.channel" }))).toBe(true);
+    expect(store["mail.thread"].records).toHaveLength(6); // 3 partners + 3 channels
+    expect(Boolean(store["mail.thread"].get({ id: 1, model: "discuss.channel" }))).toBe(true);
+    expect(Boolean(store["mail.thread"].get({ id: 2, model: "discuss.channel" }))).toBe(true);
+    expect(Boolean(store["mail.thread"].get({ id: 3, model: "discuss.channel" }))).toBe(true);
+    expect(store["discuss.channel"].records).toHaveLength(3); // 3 channels
+    expect(Boolean(store["discuss.channel"].get(1))).toBe(true);
+    expect(Boolean(store["discuss.channel"].get(2))).toBe(true);
+    expect(Boolean(store["discuss.channel"].get(3))).toBe(true);
 });
 
 test("no push notification while user is busy", async () => {
@@ -87,7 +105,7 @@ test("no push notification while user is busy", async () => {
     patchWithCleanup(navigator.serviceWorker, {
         controller: {
             postMessage(data) {
-                asyncStep(data);
+                expect.step(data);
             },
         },
     });
@@ -108,13 +126,13 @@ test("no push notification while user is busy", async () => {
             })
         );
     // online
-    store.self_partner.im_status = "online";
+    store.self_user.im_status = "online";
     requestDisplay();
-    await waitForSteps([]);
+    await expect.waitForSteps([]);
     // busy
-    store.self_partner.im_status = "busy";
+    store.self_user.im_status = "busy";
     requestDisplay();
-    await waitForSteps([
+    await expect.waitForSteps([
         { type: "notification-display-response", payload: { correlationId: "push" } },
     ]);
 });

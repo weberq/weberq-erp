@@ -2,24 +2,22 @@
 # This file contains the translation of the following modules:
 # * auth_timeout
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Toma Tomov <toma.tomov@gmail.com>, 2026.
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-03 12:29+0000\n"
-"Last-Translator: Toma Tomov <toma.tomov@gmail.com>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-08-31 14:00+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "auth_timeout/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: auth_timeout
 #: model:ir.model,name:auth_timeout.model_res_groups
@@ -27,34 +25,19 @@ msgid "Access Groups"
 msgstr "Групи за Достъп"
 
 #. module: auth_timeout
+#: model:ir.module.module,summary:base.module_auth_timeout
+msgid "Ask for authentication after user inactivity"
+msgstr ""
+
+#. module: auth_timeout
+#: model:ir.module.module,shortdesc:base.module_auth_timeout
+msgid "Auth Timeout"
+msgstr ""
+
+#. module: auth_timeout
 #: model:ir.model,name:auth_timeout.model_auth_totp_device
 msgid "Authentication Device"
 msgstr "Устройство за автентикация"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Authentication code"
-msgstr "Код за автентикация"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Authentication code via email"
-msgstr "Код за автентикация по имейл"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Confirm"
-msgstr "Потвърждение"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-#: model_terms:ir.ui.view,arch_db:auth_timeout.check_identity
-msgid "Confirm access"
-msgstr "Потвърждаване на достъпа"
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_auth_totp_device__display_name
@@ -70,28 +53,11 @@ msgstr "Име за показване"
 msgid ""
 "Enable two-factor authentication when the inactivity timeout is reached."
 msgstr ""
-"Активирайте двуфакторна автентификация при изтичане на времето при "
-"неактивност."
 
 #. module: auth_timeout
 #: model:ir.model.fields,help:auth_timeout.field_res_groups__lock_timeout_mfa
 msgid "Enable two-factor authentication when the session timeout is reached."
 msgstr ""
-"Активирайте двуфакторна автентификация при изтичане на времето за сесията."
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Enter below the six-digit authentication code just sent to your email"
-msgstr ""
-"Въведете по-долу шестцифрения код за автентикация, който току-що беше "
-"изпратен на имейла ви"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Forgot password?"
-msgstr "Забравена парола?"
 
 #. module: auth_timeout
 #: model:ir.model,name:auth_timeout.model_ir_http
@@ -101,18 +67,12 @@ msgstr "HTTP Маршрутизиране"
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__has_lock_timeout
 msgid "Has Lock Timeout"
-msgstr "Има изтичане на времето за заключване"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__has_lock_timeout_inactivity
 msgid "Has Lock Timeout Inactivity"
-msgstr "Има изтичане на времето за заключване при неактивност"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Having problems ?"
-msgstr "Имате проблеми?"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_auth_totp_device__id
@@ -124,122 +84,102 @@ msgid "ID"
 msgstr "ID"
 
 #. module: auth_timeout
-#: model_terms:ir.ui.view,arch_db:auth_timeout.auth_passkey_groups_form
-msgid "Inactivity"
-msgstr "Неактивност"
-
-#. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__lock_timeout_inactivity
 msgid "Inactivity timeout"
-msgstr "Изтичане на времето при неактивност"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__lock_timeout_2fa_selection
 msgid "Lock Timeout 2Fa Selection"
-msgstr "Избор на 2FA при изтичане на времето за заключване"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__lock_timeout_delay_in_unit
 msgid "Lock Timeout Delay In Unit"
-msgstr "Забавяне за заключване в единици"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__lock_timeout_delay_unit
 msgid "Lock Timeout Delay Unit"
-msgstr "Единица за забавянето за заключване"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__lock_timeout_inactivity_2fa_selection
 msgid "Lock Timeout Inactivity 2Fa Selection"
-msgstr "Избор на 2FA при заключване поради неактивност"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__lock_timeout_inactivity_delay_in_unit
 msgid "Lock Timeout Inactivity Delay In Unit"
-msgstr "Забавяне за заключване при неактивност в единици"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__lock_timeout_inactivity_delay_unit
 msgid "Lock Timeout Inactivity Delay Unit"
-msgstr "Единица за забавянето за заключване при неактивност"
+msgstr ""
+
+#. module: auth_timeout
+#: model_terms:ir.ui.view,arch_db:auth_timeout.auth_passkey_groups_form
+msgid "Lock screen"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields.selection,name:auth_timeout.selection__res_groups__lock_timeout_2fa_selection__without_2fa
+#: model_terms:ir.ui.view,arch_db:auth_timeout.auth_passkey_groups_form
 msgid "Logout"
 msgstr "Изход"
 
 #. module: auth_timeout
 #: model:ir.model.fields.selection,name:auth_timeout.selection__res_groups__lock_timeout_2fa_selection__with_2fa
 msgid "Logout with two-factor authentication"
-msgstr "Изход с двуфакторна автентификация"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid ""
-"Open your two-factor authenticator (TOTP) app or browser extension to view "
-"your authentication code."
 msgstr ""
-"Отворете приложението или разширението за браузър за двуфакторна "
-"автентикация (TOTP), за да видите кода си за автентикация."
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Passkey"
-msgstr "Ключ за достъп"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Password"
-msgstr "Парола"
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__lock_timeout_inactivity_mfa
 msgid "Require MFA on inactivity timeout"
-msgstr "Изискване за MFA при изтичане на времето при неактивност"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__lock_timeout_mfa
 msgid "Require MFA on session timeout"
-msgstr "Изискване за MFA при изтичане на времето за сесията"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,help:auth_timeout.field_res_groups__has_lock_timeout_inactivity
 msgid "Requires re-authentication after a period of user inactivity"
-msgstr "Изисква повторна автентикация след период на неактивност на потребителя"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,help:auth_timeout.field_res_groups__has_lock_timeout
 msgid "Requires re-authentication after the user's last connection"
-msgstr "Изисква повторна автентикация след последното свързване на потребителя"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields.selection,name:auth_timeout.selection__res_groups__lock_timeout_inactivity_2fa_selection__without_2fa
 msgid "Screen lock"
-msgstr "Заключване на екрана"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields.selection,name:auth_timeout.selection__res_groups__lock_timeout_inactivity_2fa_selection__with_2fa
 msgid "Screen lock with two-factor authentication"
-msgstr "Заключване на екрана с двуфакторна автентификация"
-
-#. module: auth_timeout
-#: model_terms:ir.ui.view,arch_db:auth_timeout.auth_passkey_groups_form
-msgid "Session"
-msgstr "Сесия"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,field_description:auth_timeout.field_res_groups__lock_timeout
 msgid "Session timeout"
-msgstr "Изтичане на времето за сесията"
+msgstr ""
 
 #. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Signed in as"
-msgstr "Влезли сте като"
+#: model_terms:ir.ui.view,arch_db:auth_timeout.auth_passkey_groups_form
+msgid ""
+"The screen of the users in this group will be locked after a defined delay"
+msgstr ""
+
+#. module: auth_timeout
+#: model_terms:ir.ui.view,arch_db:auth_timeout.auth_passkey_groups_form
+msgid ""
+"The users in this group will be automatically logout at regular intervals"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields,help:auth_timeout.field_res_groups__lock_timeout_inactivity
@@ -247,8 +187,6 @@ msgid ""
 "Time (in minutes) of user inactivity after which re-authentication is "
 "required."
 msgstr ""
-"Време (в минути) на неактивност на потребителя, след което се изисква "
-"повторна автентикация."
 
 #. module: auth_timeout
 #: model:ir.model.fields,help:auth_timeout.field_res_groups__lock_timeout
@@ -256,43 +194,16 @@ msgid ""
 "Time interval (in minutes) after which re-authentication is required, "
 "regardless of inactivity."
 msgstr ""
-"Интервал от време (в минути), след който се изисква повторна автентикация, "
-"независимо от неактивността."
 
 #. module: auth_timeout
 #: model_terms:ir.ui.view,arch_db:auth_timeout.auth_passkey_groups_form
 msgid "Timeouts"
-msgstr "Времена за изтичане"
+msgstr ""
 
 #. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Use an authentication code sent by email"
-msgstr "Използване на код за автентикация, изпратен по имейл"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Use passkey"
-msgstr "Използване на ключ за достъп"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Use your authenticator app"
-msgstr "Използвайте приложението си за автентикация"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Use your passkey"
-msgstr "Използвайте своя ключ за достъп"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Use your password"
-msgstr "Използвайте паролата си"
+#: model_terms:ir.ui.view,arch_db:auth_timeout.auth_passkey_groups_form
+msgid "Two-factor authentication"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model,name:auth_timeout.model_res_users
@@ -300,27 +211,9 @@ msgid "User"
 msgstr "Потребител"
 
 #. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "Verify"
-msgstr "Потвърди"
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "When you are ready, authenticate using the button below."
-msgstr "Когато сте готови, удостоверете се с бутона по-долу."
-
-#. module: auth_timeout
-#. odoo-javascript
-#: code:addons/auth_timeout/static/src/services/check_identity/check_identity.xml:0
-msgid "XXXXXX"
-msgstr "XXXXXX"
-
-#. module: auth_timeout
 #: model_terms:ir.ui.view,arch_db:auth_timeout.auth_passkey_groups_form
 msgid "after"
-msgstr "след"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields.selection,name:auth_timeout.selection__res_groups__lock_timeout_delay_unit__days
@@ -331,7 +224,7 @@ msgstr "дни"
 #. module: auth_timeout
 #: model_terms:ir.ui.view,arch_db:auth_timeout.auth_passkey_groups_form
 msgid "every"
-msgstr "на всеки"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model.fields.selection,name:auth_timeout.selection__res_groups__lock_timeout_delay_unit__hours
@@ -348,9 +241,12 @@ msgstr "минути"
 #. module: auth_timeout
 #: model_terms:ir.ui.view,arch_db:auth_timeout.auth_passkey_groups_form
 msgid "of inactivity"
-msgstr "неактивност"
+msgstr ""
 
 #. module: auth_timeout
 #: model:ir.model,name:auth_timeout.model_ir_websocket
 msgid "websocket message handling"
-msgstr "обработка на съобщения по websocket"
+msgstr ""
+
+msgid "Session"
+msgstr "Сесия"

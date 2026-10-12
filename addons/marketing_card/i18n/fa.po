@@ -2,52 +2,55 @@
 # This file contains the translation of the following modules:
 # * marketing_card
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Aliraza Habibitanha <alireza.habibitanha@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:35+0000\n"
-"PO-Revision-Date: 2026-08-09 11:33+0000\n"
-"Last-Translator: Aliraza Habibitanha <alireza.habibitanha@gmail.com>\n"
-"Language-Team: Persian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-08-31 20:24+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Persian <https://translate.odoo.com/projects/odoo-s19-4/"
 "marketing_card/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: marketing_card
 #. odoo-python
 #: code:addons/marketing_card/models/card_campaign.py:0
 msgid "%(card_campaign_name)s Mailings"
-msgstr "ارسال‌های %(card_campaign_name)s"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_kanban
 msgid ""
-"<i class=\"fa fa-fw fa-mouse-pointer\" aria-label=\"Clicks\" role=\"img\" "
+"<i class=\"oi oi-fw\" data-icon=\"mouse\" aria-label=\"Clicks\" role=\"img\" "
 "title=\"Clicks\"/>"
 msgstr ""
-"<i class=\"fa fa-fw fa-mouse-pointer\" aria-label=\"کلیک‌ها\" role=\"img\" "
-"title=\"کلیک‌ها\"/>"
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_kanban
 msgid ""
-"<i class=\"fa fa-fw fa-share\" aria-label=\"Shares\" role=\"img\" "
+"<i class=\"oi oi-fw\" data-icon=\"share\" aria-label=\"Shares\" role=\"img\" "
 "title=\"Shares\"/>"
 msgstr ""
-"<i class=\"fa fa-fw fa-share\" aria-label=\"اشتراک‌ها\" role=\"img\" "
-"title=\"اشتراک‌ها\"/>"
+
+#. module: marketing_card
+#: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_linkedin_share_composer
+msgid ""
+"<i class=\"oi\" data-icon=\"warning\"/>\n"
+"                    <span>We were not able to get an authorization to post "
+"in your stead.</span>"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_preview
 msgid "<small>Where does this link to?</small>"
-msgstr "<small>این لینک به کجا وارد می‌شود؟</small>"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
@@ -56,9 +59,6 @@ msgid ""
 "                                Cards\n"
 "                            </span>"
 msgstr ""
-"<span class=\"o_stat_text\">\n"
-"                                کارت\n"
-"                            </span>"
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
@@ -67,9 +67,6 @@ msgid ""
 "                                Clicks\n"
 "                            </span>"
 msgstr ""
-"<span class=\"o_stat_text\">\n"
-"                                کلیک\n"
-"                            </span>"
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
@@ -78,9 +75,6 @@ msgid ""
 "                                Mailings\n"
 "                            </span>"
 msgstr ""
-"<span class=\"o_stat_text\">\n"
-"                                ارسال\n"
-"                            </span>"
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
@@ -89,9 +83,6 @@ msgid ""
 "                                Opened\n"
 "                            </span>"
 msgstr ""
-"<span class=\"o_stat_text\">\n"
-"                                باز شده\n"
-"                            </span>"
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
@@ -100,9 +91,6 @@ msgid ""
 "                                Shared\n"
 "                            </span>"
 msgstr ""
-"<span class=\"o_stat_text\">\n"
-"                                اشتراک‌گذاری شده\n"
-"                            </span>"
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__message_needaction
@@ -126,6 +114,11 @@ msgid "Activity Exception Decoration"
 msgstr "دکوراسیون استثنایی فعالیت"
 
 #. module: marketing_card
+#: model:ir.model.fields,field_description:marketing_card.field_card_campaign__activity_plans_ids
+msgid "Activity Plans"
+msgstr ""
+
+#. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__activity_state
 msgid "Activity State"
 msgstr "وضعیت فعالیت"
@@ -139,11 +132,9 @@ msgstr "آیکون نوع فعالیت"
 #. odoo-python
 #: code:addons/marketing_card/models/card_campaign.py:0
 msgid ""
-"An error occured while rendering a card for %(record_name)s. Try again or "
+"An error occurred while rendering a card for %(record_name)s. Try again or "
 "check the server logs for more details."
 msgstr ""
-"هنگام ایجاد کارت برای %(record_name)s خطایی رخ داد. دوباره تلاش کنید یا برای "
-"جزئیات بیشتر لاگ‌های سرور را بررسی کنید."
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
@@ -154,7 +145,7 @@ msgstr "بایگانی شده"
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.mailing_mailing_view_form_inherit_marketing_card
 msgid "Are you sure you want to update all cards of the campaign?"
-msgstr "از به‌روزرسانی همه کارت‌های کمین مطمئن هستید؟"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__message_attachment_count
@@ -164,7 +155,7 @@ msgstr "تعداد پیوست ها"
 #. module: marketing_card
 #: model:card.template,name:marketing_card.card_template_avatar_highlight
 msgid "Avatar Highlight"
-msgstr "آواتار برجسته"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_background
@@ -209,50 +200,62 @@ msgstr "کارت"
 #: model:ir.actions.act_window,name:marketing_card.card_campaign_action
 #: model:ir.model.fields,field_description:marketing_card.field_mailing_mailing__card_campaign_id
 msgid "Card Campaign"
-msgstr "کمپین کارت"
+msgstr ""
 
 #. module: marketing_card
 #. odoo-python
 #: code:addons/marketing_card/models/mailing_mailing.py:0
 msgid "Card Campaign Mailing should target model %(model_name)s"
-msgstr "ارسال کمپین کارت باید مدل %(model_name)s را هدف قرار دهد"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__card_click_count
 msgid "Card Click Count"
-msgstr "تعداد کلیک‌های کارت"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__card_count
 msgid "Card Count"
-msgstr "تعداد کارت‌ها"
+msgstr ""
+
+#. module: marketing_card
+#: model:ir.model.fields,field_description:marketing_card.field_mailing_mailing__card_lang
+msgid "Card Language"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "Card Layout"
-msgstr "طرح کارت"
+msgstr ""
 
 #. module: marketing_card
 #. odoo-python
 #: code:addons/marketing_card/models/card_campaign.py:0
 msgid "Card Preview"
-msgstr "پیش‌نمایش کارت"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_mailing_mailing__card_requires_sync_count
 msgid "Card Requires Sync Count"
-msgstr "تعداد کارت‌های نیازمند همگام‌سازی"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__card_share_count
 msgid "Card Share Count"
-msgstr "تعداد اشتراک‌گذاری‌های کارت"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.actions.act_window,name:marketing_card.card_template_action
 #: model:ir.ui.menu,name:marketing_card.cards_template_menu
 msgid "Card Template"
-msgstr "قالب کارت"
+msgstr ""
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/models/card_campaign.py:0
+#: model:card.campaign,content_header:marketing_card.card_campaign_campaign_1
+msgid "Card Title"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.mailing_mailing_view_form_inherit_marketing_card
@@ -265,14 +268,19 @@ msgid "Center"
 msgstr "مرکز"
 
 #. module: marketing_card
+#: model_terms:card.campaign,reward_message:marketing_card.card_campaign_campaign_1
+msgid "Check out odoo.com for more!"
+msgstr ""
+
+#. module: marketing_card
 #: model:card.template,name:marketing_card.card_template_circles
 msgid "Circles"
-msgstr "دایره‌ها"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_preview
 msgid "Click here for your reward!"
-msgstr "برای دریافت جایزه اینجا کلیک کنید!"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign_tag__color
@@ -282,22 +290,22 @@ msgstr "رنگ"
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.mailing_mailing_view_form_inherit_marketing_card
 msgid "Confirm Cards Update"
-msgstr "تأیید به‌روزرسانی کارت‌ها"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.actions.act_window,help:marketing_card.cards_card_action
 msgid "Create a Card Campaign to send cards to your partners"
-msgstr "با ایجاد کمپین کارت، کارت‌ها را به طرف‌های همکار ارسال کنید."
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.actions.act_window,help:marketing_card.card_campaign_action
 msgid "Create a Sharing Campaign!"
-msgstr "یک کمپین اشتراک‌گذاری ایجاد کنید!"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.actions.act_window,help:marketing_card.card_template_action
 msgid "Create a design to use in Card Campaigns"
-msgstr "طرحی برای استفاده در کمپین‌های کارت ایجاد کنید."
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__create_uid
@@ -323,17 +331,24 @@ msgstr "تاریک"
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_template__default_background
 msgid "Default Background"
-msgstr "پس‌زمینه پیش‌فرض"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,help:marketing_card.field_card_campaign__post_suggestion
-msgid "Description below the card and default text when sharing on X"
-msgstr "توضیحات زیر کارت و متن پیش‌فرض هنگام اشتراک‌گذاری در X"
+msgid ""
+"Description below the card and default text when sharing on X and LinkedIn"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__card_template_id
 msgid "Design"
 msgstr "طراحی"
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/models/card_campaign.py:0
+msgid "Details"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__display_name
@@ -350,32 +365,62 @@ msgstr "نام نمایشی"
 #. module: marketing_card
 #: model:card.template,name:marketing_card.card_template_drawings
 msgid "Drawings"
-msgstr "طراحی‌ها"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "Dynamic Field?"
-msgstr "فیلد پویا؟"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_image1_path
 msgid "Dynamic Image 1"
-msgstr "تصویر پویا 1"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_image2_path
 msgid "Dynamic Image 2"
-msgstr "تصویر پویا 2"
+msgstr ""
 
 #. module: marketing_card
-#: model:ir.model.constraint,message:marketing_card.constraint_card_card_campaign_record_unique
-msgid "Each record should be unique for a campaign"
-msgstr "هر رکورد باید برای یک کمپین منحصر به فرد باشد."
+#: model:ir.model.constraint,message:marketing_card.constraint_card_card_campaign_record_lang_unique
+msgid "Each record should be unique for a campaign and language"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model,name:marketing_card.model_mail_compose_message
 msgid "Email composition wizard"
 msgstr "ویزارد ایجاد ایمیل"
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/utils/linkedin_api.py:0
+msgid "Error on generating an authorization url: %(iap_error_string)s"
+msgstr ""
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/utils/linkedin_api.py:0
+msgid "Error when fetching user info"
+msgstr ""
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/utils/linkedin_api.py:0
+msgid "Error when posting an image"
+msgstr ""
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/utils/linkedin_api.py:0
+msgid "Error when registering an image upload"
+msgstr ""
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/utils/linkedin_api.py:0
+msgid "Error when uploading an image"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__message_follower_ids
@@ -388,14 +433,14 @@ msgid "Followers (Partners)"
 msgstr "پیروان (شرکاء)"
 
 #. module: marketing_card
-#: model:ir.model.fields,help:marketing_card.field_card_campaign__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr "آیکون فونت عالی به عبارتی fa-tasks"
+#: model:ir.module.module,summary:base.module_marketing_card
+msgid "Generate dynamic shareable cards"
+msgstr ""
 
 #. module: marketing_card
 #: model:card.template,name:marketing_card.card_template_geometric
 msgid "Geometric"
-msgstr "هندسی"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__has_message
@@ -415,25 +460,25 @@ msgstr "رنگ سر صفحه"
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_header_path
 msgid "Header Path"
-msgstr "مسیر سربرگ"
-
-#. module: marketing_card
-#. odoo-python
-#: code:addons/marketing_card/models/card_campaign.py:0
-msgid "Hello everyone"
-msgstr "سلام به همه"
+msgstr ""
 
 #. module: marketing_card
 #. odoo-python
 #: code:addons/marketing_card/models/card_campaign.py:0
 msgid "Help us share the news"
-msgstr "در اشتراک‌گذاری خبر به ما کمک کنید"
+msgstr ""
 
 #. module: marketing_card
 #. odoo-python
 #: code:addons/marketing_card/models/card_campaign.py:0
-msgid "Here's the link to advertise your participation."
-msgstr "این لینک برای تبلیغ مشارکت شماست."
+msgid "Hi everyone!"
+msgstr ""
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/models/card_campaign.py:0
+msgid "Home page"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__id
@@ -477,32 +522,32 @@ msgstr "تصویر"
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__image_preview
 msgid "Image Preview"
-msgstr "پیش‌نمایش تصویر"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_header_dyn
 msgid "Is Dynamic Header"
-msgstr "سربرگ پویا است"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_section_dyn
 msgid "Is Dynamic Section"
-msgstr "بخش پویا است"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_sub_header_dyn
 msgid "Is Dynamic Sub-Header"
-msgstr "زیر سربرگ پویا است"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_sub_section1_dyn
 msgid "Is Dynamic Sub-Section 1"
-msgstr "زیر بخش 1 پویا است"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_sub_section2_dyn
 msgid "Is Dynamic Sub-Section 2"
-msgstr "زیر بخش 2 پویا است"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__message_is_follower
@@ -512,12 +557,19 @@ msgstr "آیا دنبال می کند"
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "Join me at this event!"
-msgstr "در این رویداد به من بپیوندید!"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__lang
+#: model:ir.model.fields,field_description:marketing_card.field_card_card__lang
+#: model_terms:ir.ui.view,arch_db:marketing_card.card_card_view_search
 msgid "Language"
 msgstr "زبان"
+
+#. module: marketing_card
+#: model:ir.model.fields,help:marketing_card.field_mailing_mailing__card_lang
+msgid "Language in which the cards will be rendered"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__write_uid
@@ -543,7 +595,7 @@ msgstr "روشن"
 #. module: marketing_card
 #: model:card.template,name:marketing_card.card_template_lila
 msgid "Lila"
-msgstr "لیلا"
+msgstr ""
 
 #. module: marketing_card
 #: model:card.template,name:marketing_card.card_template_lines
@@ -563,51 +615,51 @@ msgstr "ارسال ایمیل"
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__mailing_count
 msgid "Mailing Count"
-msgstr "تعداد ارسال‌ها"
-
-#. module: marketing_card
-#. odoo-python
-#: code:addons/marketing_card/models/card_campaign.py:0
-msgid "Many thanks"
-msgstr "با سپاس"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model,name:marketing_card.model_card_card
+#: model:ir.module.module,shortdesc:base.module_marketing_card
 #: model:ir.ui.menu,name:marketing_card.card_menu
 #: model:ir.ui.menu,name:marketing_card.marketing_card_menu_technical
 #: model:res.groups.privilege,name:marketing_card.res_groups_privilege_marketing_card
 msgid "Marketing Card"
-msgstr "کارت بازاریابی"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model,name:marketing_card.model_card_campaign
 msgid "Marketing Card Campaign"
-msgstr "کمپین کارت بازاریابی"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model,name:marketing_card.model_card_campaign_tag
 msgid "Marketing Card Campaign Tag"
-msgstr "برچسب کمپین کارت بازاریابی"
+msgstr ""
 
 #. module: marketing_card
 #: model:res.groups,name:marketing_card.marketing_card_group_manager
 msgid "Marketing Card Manager"
-msgstr "مدیریت کارت بازاریابی"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model,name:marketing_card.model_card_template
 msgid "Marketing Card Template"
-msgstr "قالب کارت بازاریابی"
+msgstr ""
 
 #. module: marketing_card
 #: model:res.groups,name:marketing_card.marketing_card_group_user
 msgid "Marketing Card User"
-msgstr "کاربر کارت بازاریابی"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model,name:marketing_card.model_mailing_mailing
 msgid "Mass Mailing"
 msgstr "ایمیل دسته‌جمعی"
+
+#. module: marketing_card
+#: model:ir.model.fields,help:marketing_card.field_card_campaign__activity_type_icon
+msgid "Material Symbols icon e.g. checklist"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__message_has_error
@@ -618,6 +670,25 @@ msgstr "خطای تحویل پیام"
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__message_ids
 msgid "Messages"
 msgstr "پیام ها"
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/utils/linkedin_api.py:0
+msgid "Missing LinkedIn app credentials."
+msgstr ""
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/models/mailing_mailing.py:0
+msgid ""
+"Missing target language for card campaign mailings:\n"
+"\t- %(mailing_names)s"
+msgstr ""
+
+#. module: marketing_card
+#: model:ir.model,name:marketing_card.model_ir_model
+msgid "Model"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__res_model
@@ -631,12 +702,6 @@ msgstr "نام مدل"
 msgid ""
 "Model of campaign %(campaign)s may not be changed as it already has cards"
 msgstr ""
-"مدل کمپین %(campaign)s را نمی‌توان تغییر داد، زیرا از قبل دارای کارت است."
-
-#. module: marketing_card
-#: model:ir.model,name:marketing_card.model_ir_model
-msgid "Models"
-msgstr "مدل ها"
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__my_activity_date_deadline
@@ -676,9 +741,14 @@ msgid "Next Activity Type"
 msgstr "نوع فعالیت بعدی"
 
 #. module: marketing_card
+#: model:res.groups.privilege,placeholder:marketing_card.res_groups_privilege_marketing_card
+msgid "No"
+msgstr ""
+
+#. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "No button"
-msgstr "بدون دکمه"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__message_needaction_counter
@@ -688,7 +758,7 @@ msgstr "تعداد اقدامات"
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__target_url_click_count
 msgid "Number of Clicks"
-msgstr "تعداد کلیک‌ها"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__message_has_error_counter
@@ -718,36 +788,42 @@ msgid ""
 "usually be a placeholder expression that provides the appropriate language, "
 "e.g. {{ object.partner_id.lang }}."
 msgstr ""
-"زبان ترجمه اختیاری (کد ISO) برای انتخاب هنگام ارسال ایمیل. اگر تنظیم نشود، "
-"از زبان اصلی طرف همکار استفاده خواهد شد. این معمولاً باید یک عبارت جایگزین "
-"باشد که زبان مناسب را فراهم می‌کند، به عنوان مثال {{ object.partner_id.lang }}"
-"."
 
 #. module: marketing_card
 #: model:card.template,name:marketing_card.card_template_organic
 msgid "Organic"
-msgstr "ارگانیک"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__target_url
 msgid "Post Link"
-msgstr "لینک پست"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__post_suggestion
 msgid "Post Suggestion"
-msgstr "پیشنهاد پست"
+msgstr ""
+
+#. module: marketing_card
+#: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_linkedin_share_composer
+msgid "Post Text"
+msgstr ""
+
+#. module: marketing_card
+#: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_linkedin_share_composer
+msgid "Post on LinkedIn"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_preview
 msgid "Powered By"
-msgstr "قدرت گرفته از"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.actions.act_window,help:marketing_card.card_campaign_action
 msgid ""
 "Prepare a design and some content and let your community spread the word!"
-msgstr "طرح و محتوایی آماده کنید و اجازه دهید جامعه شما آن را منتشر کند!"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
@@ -757,12 +833,12 @@ msgstr "پیش‌نمایش"
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__preview_record_ref
 msgid "Preview On"
-msgstr "پیش‌نمایش روی"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "Preview on..."
-msgstr "پیش‌نمایش روی..."
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_template__primary_color
@@ -772,7 +848,7 @@ msgstr "رنگ اصلی"
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_template__primary_text_color
 msgid "Primary Text Color"
-msgstr "رنگ متن اصلی"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.template_1
@@ -781,7 +857,7 @@ msgstr "رنگ متن اصلی"
 #: model_terms:ir.ui.view,arch_db:marketing_card.template_4
 #: model_terms:ir.ui.view,arch_db:marketing_card.template_5
 msgid "Profile Picture"
-msgstr "تصویر پروفایل"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__rating_ids
@@ -791,7 +867,7 @@ msgstr "رتبه‌ها"
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "Recipient Message"
-msgstr "پیام گیرنده"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
@@ -799,14 +875,16 @@ msgid "Recipients"
 msgstr "گیرندگان"
 
 #. module: marketing_card
-#: model:ir.model.fields,field_description:marketing_card.field_mailing_mailing__mailing_model_id
-msgid "Recipients Model"
-msgstr ""
-
-#. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_card__res_id
 msgid "Record ID"
 msgstr "شناسه رکورد"
+
+#. module: marketing_card
+#: model:ir.model.fields,help:marketing_card.field_card_campaign__target_url
+msgid ""
+"Redirection link for clicks on the cards, defaults to the relevant record or "
+"the home page."
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__render_model
@@ -821,12 +899,12 @@ msgstr "درخواست"
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__request_description
 msgid "Request Description"
-msgstr "توضیحات درخواست"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_card__requires_sync
 msgid "Requires Sync"
-msgstr "نیازمند همگام‌سازی"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__user_id
@@ -842,7 +920,7 @@ msgstr "کاربر مسئول"
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__reward_target_url
 msgid "Reward Link"
-msgstr "لینک جایزه"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__message_has_sms_error
@@ -852,17 +930,17 @@ msgstr "خطای تحویل پیامک"
 #. module: marketing_card
 #: model:card.template,name:marketing_card.card_template_safari
 msgid "Safari"
-msgstr "سافاری"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_card_view_search
 msgid "Search Card"
-msgstr "جستجوی کارت"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_search
 msgid "Search Share Campaign"
-msgstr "جستجوی کمپین اشتراک‌گذاری"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_template__secondary_color
@@ -872,7 +950,7 @@ msgstr "رنگ ثانویه"
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_template__secondary_text_color
 msgid "Secondary Text Color"
-msgstr "رنگ متن ثانویه"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_section
@@ -882,17 +960,17 @@ msgstr "بخش"
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_section_path
 msgid "Section Path"
-msgstr "مسیر بخش"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "Select a field"
-msgstr "یک فیلد انتخاب کنید"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_preview
 msgid "Select where to share"
-msgstr "مکان اشتراک‌گذاری را انتخاب کنید"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
@@ -903,22 +981,22 @@ msgstr "ارسال"
 #. odoo-python
 #: code:addons/marketing_card/models/card_campaign.py:0
 msgid "Send Cards"
-msgstr "ارسال کارت‌ها"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "Share Campaign"
-msgstr "اشتراک‌گذاری کمپین"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_card_view_list
 msgid "Share Card"
-msgstr "اشتراک‌گذاری کارت"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_card__share_status
 msgid "Share Status"
-msgstr "وضعیت اشتراک‌گذاری"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_template_view_form
@@ -926,15 +1004,25 @@ msgid "Share Template"
 msgstr "قالب را به اشتراک بگذارید"
 
 #. module: marketing_card
+#: model:card.campaign,request_title:marketing_card.card_campaign_campaign_1
+msgid "Share the news with your community"
+msgstr ""
+
+#. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_preview
 msgid "Share with your community!"
-msgstr "با جامعه خود به اشتراک بگذارید!"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields.selection,name:marketing_card.selection__card_card__share_status__shared
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_card_view_search
 msgid "Shared"
 msgstr "به اشتراک گذاشته شده"
+
+#. module: marketing_card
+#: model_terms:ir.ui.view,arch_db:marketing_card.card_card_view_search
+msgid "Status"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,help:marketing_card.field_card_campaign__activity_state
@@ -952,37 +1040,37 @@ msgstr ""
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_sub_header_color
 msgid "Sub Header Color"
-msgstr "رنگ زیر سربرگ"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_sub_header
 msgid "Sub-Header"
-msgstr "زیر سربرگ"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_sub_header_path
 msgid "Sub-Header Path"
-msgstr "مسیر زیر سربرگ"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_sub_section1
 msgid "Sub-Section 1"
-msgstr "زیر بخش 1"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_sub_section1_path
 msgid "Sub-Section 1 Path"
-msgstr "مسیر زیر بخش 1"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_sub_section2
 msgid "Sub-Section 2"
-msgstr "زیر بخش 2"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__content_sub_section2_path
 msgid "Sub-Section 2 Path"
-msgstr "مسیر زیر بخش 2"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__tag_ids
@@ -993,12 +1081,34 @@ msgstr "برچسب‌ها"
 #. module: marketing_card
 #: model:ir.model.constraint,message:marketing_card.constraint_card_campaign_tag_name_uniq
 msgid "Tags may not reuse existing names."
-msgstr "برچسب‌ها نمی‌توانند دوباره نام‌های موجود استفاده کنند."
+msgstr ""
+
+#. module: marketing_card
+#: model:ir.model.fields,field_description:marketing_card.field_card_campaign__target_url_placeholder
+msgid "Target Url Placeholder"
+msgstr ""
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/models/card_campaign.py:0
+msgid "Target record (if published) or Home page"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,field_description:marketing_card.field_card_campaign__reward_message
 msgid "Thank You Message"
-msgstr "پیام تشکر"
+msgstr ""
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/models/card_campaign.py:0
+msgid "Thanks for your support."
+msgstr ""
+
+#. module: marketing_card
+#: model:card.campaign,request_description:marketing_card.card_campaign_campaign_1
+msgid "That will help us"
+msgstr ""
 
 #. module: marketing_card
 #. odoo-python
@@ -1007,8 +1117,17 @@ msgid ""
 "The UTM source '%s' cannot be deleted as it is used to promote marketing "
 "cards campaigns."
 msgstr ""
-"منبع UTM '%s' نمی‌تواند حذف شود زیرا برای تبلیغ کمپین‌های کارت بازاریابی "
-"استفاده می‌شود."
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/utils/linkedin_api.py:0
+msgid "The image is too large: %(image_size_human_readable)s"
+msgstr ""
+
+#. module: marketing_card
+#: model:card.campaign,content_section:marketing_card.card_campaign_campaign_1
+msgid "This section is static"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,help:marketing_card.field_card_campaign__activity_exception_decoration
@@ -1028,34 +1147,44 @@ msgstr "به روز رسانی"
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.mailing_mailing_view_form_inherit_marketing_card
 msgid "Update Cards"
-msgstr "به‌روزرسانی کارت‌ها"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields.selection,name:marketing_card.selection__card_card__share_status__visited
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_card_view_search
 msgid "Visited"
-msgstr "بازدید شده"
+msgstr ""
 
 #. module: marketing_card
 #: model:card.template,name:marketing_card.card_template_waves
 msgid "Waves"
-msgstr "موج‌ها"
+msgstr ""
 
 #. module: marketing_card
-#: model:ir.model.fields,field_description:marketing_card.field_card_campaign__website_message_ids
-msgid "Website Messages"
-msgstr "پیام های وب سایت"
+#. odoo-python
+#: code:addons/marketing_card/models/card_campaign.py:0
+msgid ""
+"We'd love your help in getting the word out. Feel free to post these on your "
+"social channels!"
+msgstr ""
 
 #. module: marketing_card
-#: model:ir.model.fields,help:marketing_card.field_card_campaign__website_message_ids
-msgid "Website communication history"
-msgstr "تاریخچه ارتباط با وبسایت"
+#. odoo-python
+#: code:addons/marketing_card/models/card_campaign.py:0
+msgid ""
+"We've created these personalized cards to make it easy for you to share your "
+"involvement with your network."
+msgstr ""
+
+#. module: marketing_card
+#: model:card.campaign,content_sub_header:marketing_card.card_campaign_campaign_1
+msgid "Welcome to Odoo"
+msgstr ""
 
 #. module: marketing_card
 #: model:ir.model.fields,help:marketing_card.field_card_card__requires_sync
 msgid "Whether the image needs to be updated to match the campaign template."
 msgstr ""
-"اینکه آیا باید تصویر به‌روزرسانی شود تا با قالب کمپین مطابقت داشته باشد."
 
 #. module: marketing_card
 #: model:card.template,name:marketing_card.card_template_world_map
@@ -1063,23 +1192,22 @@ msgid "World Map"
 msgstr "نقشه جهان"
 
 #. module: marketing_card
+#: model_terms:card.campaign,reward_message:marketing_card.card_campaign_campaign_1
+msgid "You just leveled up your exposure!"
+msgstr ""
+
+#. module: marketing_card
+#. odoo-python
+#: code:addons/marketing_card/utils/linkedin_api.py:0
+msgid "You must be authentified with LinkedIn to do this."
+msgstr ""
+
+#. module: marketing_card
 #. odoo-python
 #: code:addons/marketing_card/models/mailing_mailing.py:0
 msgid ""
 "You should update all the cards for %(mailing)s before scheduling a mailing."
 msgstr ""
-"باید همه کارت‌های %(mailing)s را قبل از زمان‌بندی ارسال به‌روزرسانی کنید."
-
-#. module: marketing_card
-#: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
-msgid "Your Home Page"
-msgstr "صفحه اصلی شما"
-
-#. module: marketing_card
-#. odoo-python
-#: code:addons/marketing_card/models/card_campaign.py:0
-msgid "Your help with this promotion would be greatly appreciated!"
-msgstr "بسیار قدردان شما در همکاری‌تان در این تبلیغ هستیم!"
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.template_2
@@ -1087,49 +1215,55 @@ msgstr "بسیار قدردان شما در همکاری‌تان در این ت
 #: model_terms:ir.ui.view,arch_db:marketing_card.template_4
 #: model_terms:ir.ui.view,arch_db:marketing_card.template_5
 msgid "button text"
-msgstr "متن دکمه"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "e.g. \"Thanks for sharing, here is your reward!\""
-msgstr "مثال: با تشکر از اشتراک‌گذاری شما، این جایزه شماست!"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "e.g. \"https://www.mycompany.com/reward\""
-msgstr "مثال: \"https://www.mycompany.com/reward\""
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "e.g. Aug 24, Brussels Expo"
-msgstr "مثال: 24 اردیبهشت، نمایشگاه تهران"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "e.g. By Lionel Messy"
-msgstr "مثال: توسط علی احمدی"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "e.g. CFO Chief Football Officer"
-msgstr "مثال: مدیر ارشد مالی فوتبال"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "e.g. Join Odoo Experience 2024"
-msgstr "مثال: به اودوو اکسپریینس 2024 بپیوندید"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "e.g. Odoo Experience Talks"
-msgstr "مثال: سخنرانی‌های اودوو اکسپریینس"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "e.g. Sample Talk"
-msgstr "مثال: گفتگوی نمونه"
+msgstr ""
 
 #. module: marketing_card
 #: model_terms:ir.ui.view,arch_db:marketing_card.card_campaign_view_form
 msgid "e.g. Why people should share on their network?"
-msgstr "مثال: چرا مردم باید در شبکه خود به اشتراک بگذارند؟"
+msgstr ""
+
+msgid "Website Messages"
+msgstr "پیام های وب سایت"
+
+msgid "Website communication history"
+msgstr "تاریخچه ارتباط با وبسایت"

@@ -7,10 +7,12 @@ FAKE_UUID = 'yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy'
 @tagged('-at_install', 'post_install')
 class TestPeppolAccountMove(AccountTestInvoicingCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env['ir.config_parameter'].sudo().set_param('account_peppol.edi.mode', 'test')
+        cls.env['ir.config_parameter'].sudo().set_str('account_peppol.edi.mode', 'test')
 
     def _peppol_invoice(self, post=False):
         move = self._create_invoice(post=post)

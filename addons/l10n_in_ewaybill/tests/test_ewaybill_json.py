@@ -2,14 +2,15 @@
 
 from freezegun import freeze_time
 
-from odoo import _
-from odoo.fields import Command
+from odoo import Command, _
 from odoo.addons.l10n_in.tests.common import L10nInTestInvoicingCommon
 from odoo.tests import tagged
 
 
 @tagged("post_install_l10n", "post_install", "-at_install")
 class TestEwaybillJson(L10nInTestInvoicingCommon):
+
+    _test_user_groups = None  # FIXME list needed groups
 
     @classmethod
     def setUpClass(cls):
@@ -93,7 +94,7 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
             {
               "productName": "product_a",
               "hsnCode": "111111",
-              "productDesc": "product_a",
+              "productDesc": "",
               "quantity": 1.0,
               "qtyUnit": "UNT",
               "taxableAmount": 900.0,
@@ -103,7 +104,7 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
             {
               "productName": "product_with_cess",
               "hsnCode": "333333",
-              "productDesc": "product_with_cess",
+              "productDesc": "",
               "quantity": 1.0,
               "qtyUnit": "UNT",
               "taxableAmount": 900.0,
@@ -134,7 +135,7 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
                 {
                   "productName": "product_a",
                   "hsnCode": "111111",
-                  "productDesc": "product_a",
+                  "productDesc": "",
                   "quantity": 1.0,
                   "qtyUnit": "DOZ",
                   "taxableAmount": 900.0 * 12,
@@ -144,7 +145,7 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
                 {
                   "productName": "product_with_cess",
                   "hsnCode": "333333",
-                  "productDesc": "product_with_cess",
+                  "productDesc": "",
                   "quantity": 1.0,
                   "qtyUnit": "DOZ",
                   "taxableAmount": 900.0 * 12,
@@ -161,7 +162,7 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
         expected.update({
             "docNo": "INV/18-19/0002",
             "itemList": [{
-                "productName": "product_a", "hsnCode": "111111", "productDesc": "product_a", "quantity": 1.0,
+                "productName": "product_a", "hsnCode": "111111", "productDesc": "", "quantity": 1.0,
                 "qtyUnit": "UNT", "taxableAmount": 0.0, "cgstRate": 0.0, "sgstRate": 0.0, 'igstRate': 0.0,
             }],
             "totalValue": 0.0,
@@ -180,7 +181,7 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
         expected.update({
             "docNo": "INV/18-19/0003",
             "itemList": [{
-                "productName": "product_a", "hsnCode": "111111", "productDesc": "product_a", "quantity": 0.0,
+                "productName": "product_a", "hsnCode": "111111", "productDesc": "", "quantity": 0.0,
                 "qtyUnit": "UNT", "taxableAmount": 0.0, "cgstRate": 0.0, "sgstRate": 0.0, 'igstRate': 0.0,
             }],
             "totalValue": 0.0,
@@ -201,7 +202,7 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
                 {
                     "productName": "product_a",
                     "hsnCode": "111111",
-                    "productDesc": "product_a",
+                    "productDesc": "",
                     "quantity": 1.0,
                     "qtyUnit": "UNT",
                     "taxableAmount": 1000.0,
@@ -319,7 +320,7 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
             "itemList": [{
                 "productName": "product_a",
                 "hsnCode": "111111",
-                "productDesc": "product_a",
+                "productDesc": "",
                 "quantity": 1.0,
                 "qtyUnit": "UNT",
                 "taxableAmount": 1000.0,
@@ -385,7 +386,7 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
             "itemList": [{
                 "productName": "product_a",
                 "hsnCode": "111111",
-                "productDesc": "product_a",
+                "productDesc": "",
                 "quantity": 1.0,
                 "qtyUnit": "UNT",
                 "taxableAmount": 1000.0,
@@ -453,7 +454,7 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
             {
               "productName": "product_a",
               "hsnCode": "111111",
-              "productDesc": "product_a",
+              "productDesc": "",
               "quantity": 1.0,
               "qtyUnit": "UNT",
               "taxableAmount": 900.0,
@@ -463,7 +464,7 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
             {
               "productName": "product_with_cess",
               "hsnCode": "333333",
-              "productDesc": "product_with_cess",
+              "productDesc": "",
               "quantity": 1.0,
               "qtyUnit": "UNT",
               "taxableAmount": 900.0,
@@ -501,8 +502,40 @@ class TestEwaybillJson(L10nInTestInvoicingCommon):
         expected_msg = _('- Transporter %s does not have a valid GST Number', self.partner_b.name)
         self.assertEqual(ewaybill_invoice_2._check_transporter(), [expected_msg])
 
+    def test_ewaybill_cancel(self):
+        ewaybill_invoice = self.env['l10n.in.ewaybill'].create({
+            "name": "123456789012",
+            "account_move_id": self.invoice.id,
+            "cancel_reason": "1",
+        })
+        expected = {
+            "ewbNo": 123456789012,
+            "cancelRsnCode": 1,
+        }
+
+        with self.subTest(scenario="without remarks"):
+            cancel_json_value = ewaybill_invoice._get_cancellation_request_vals()
+            self.assertDictEqual(
+                cancel_json_value,
+                expected,
+                "Indian EDI cancellation JSON values do not match the expected values",
+            )
+
+        ewaybill_invoice.write({
+            "cancel_remarks": "Test Cancel Remarks",
+        })
+        expected['cancelRmrk'] = "Test Cancel Remarks"
+
+        with self.subTest(scenario="with remarks"):
+            cancel_json_value = ewaybill_invoice._get_cancellation_request_vals()
+            self.assertDictEqual(
+                cancel_json_value,
+                expected,
+                "Indian EDI cancellation JSON values with remarks do not match the expected values",
+            )
+
     def test_ewaybill_access_accounting_user(self):
-        self.env.user.group_ids = [Command.set([self.env.ref('account.group_account_invoice').id])]
+        self.env.user.group_ids = self.env.ref('account.group_account_invoice')
         ewaybill = self.env['l10n.in.ewaybill'].create({
             'account_move_id': self.invoice.id,
             'mode': False,

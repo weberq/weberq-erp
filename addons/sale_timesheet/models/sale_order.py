@@ -153,11 +153,7 @@ class SaleOrder(models.Model):
             if line.has_displayed_warning_upsell and line.product_uom_id and float_compare(line.qty_delivered, line.product_uom_qty, precision_digits=precision) == 0:
                 line.has_displayed_warning_upsell = False
 
-    def _create_invoices(self, grouped=False, final=False, date=None):
-        """Link timesheets to the created invoices. Date interval is injected in the
-        context in sale_make_invoice_advance_inv wizard.
-        """
-        moves = super()._create_invoices(grouped=grouped, final=final, date=date)
-        moves._link_timesheets_to_invoice(self.env.context.get("timesheet_start_date"), self.env.context.get("timesheet_end_date"))
+    def _create_invoices(self, *args, **kwargs):
+        moves = super()._create_invoices(*args, **kwargs)
         self._reset_has_displayed_warning_upsell_order_lines()
         return moves

@@ -6,6 +6,8 @@ from odoo.tests import tagged
 @tagged('post_install_l10n', 'post_install', '-at_install')
 class TestCIIUS(TestUBLCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -54,7 +56,7 @@ class TestCIIUS(TestUBLCommon):
         should create the correct invoice
         """
         self.env['res.partner.bank'].sudo().create({
-            'acc_number': 'FR76 1254 2547 2569 8542 5874 698',
+            'account_number': 'FR76 1254 2547 2569 8542 5874 698',
             'partner_id': self.company_data['company'].partner_id.id,
         })
         self._assert_imported_invoice_from_file(

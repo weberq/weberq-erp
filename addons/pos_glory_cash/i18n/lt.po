@@ -3,15 +3,14 @@
 # * pos_glory_cash
 #
 # Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Ulevičienė <vilma.uleviciene@mededu.lt>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-03 17:36+0000\n"
-"PO-Revision-Date: 2026-10-06 09:37+0000\n"
-"Last-Translator: Ulevičienė <vilma.uleviciene@mededu.lt>\n"
-"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 19:10+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-s19-4/"
 "pos_glory_cash/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +37,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Cancelling payment"
-msgstr "Mokėjimo atšaukimas"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -52,6 +51,11 @@ msgid "Cash Machine IP"
 msgstr ""
 
 #. module: pos_glory_cash
+#: model:ir.model.fields,field_description:pos_glory_cash.field_pos_payment_method__glory_use_lna
+msgid "Cash Machine Local Network Access"
+msgstr ""
+
+#. module: pos_glory_cash
 #: model:ir.model.fields,field_description:pos_glory_cash.field_pos_payment_method__glory_password
 msgid "Cash Machine Password"
 msgstr ""
@@ -59,18 +63,6 @@ msgstr ""
 #. module: pos_glory_cash
 #: model:ir.model.fields,field_description:pos_glory_cash.field_pos_payment_method__glory_username
 msgid "Cash Machine Username"
-msgstr "Bankomato vartotojo vardas"
-
-#. module: pos_glory_cash
-#. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
-msgid "Cash deposited: %s"
-msgstr ""
-
-#. module: pos_glory_cash
-#. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/screens/payment_screen/payment_lines/payment_lines.xml:0
-msgid "Cash inserted:"
 msgstr ""
 
 #. module: pos_glory_cash
@@ -93,13 +85,8 @@ msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
-msgid "Change given: %s"
-msgstr ""
-
-#. module: pos_glory_cash
-#. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/components/cancel_dialog.xml:0
+#, fuzzy
 msgid "Close"
 msgstr "Uždaryti"
 
@@ -187,18 +174,6 @@ msgid ""
 msgstr ""
 
 #. module: pos_glory_cash
-#. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
-msgid "GLORY TRANSACTION CANCELLED"
-msgstr ""
-
-#. module: pos_glory_cash
-#. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
-msgid "GLORY TRANSACTION SUCCESSFUL"
-msgstr ""
-
-#. module: pos_glory_cash
 #: model_terms:ir.ui.view,arch_db:pos_glory_cash.pos_payment_method_view_form_inherit_pos_glory_cash
 msgid "Glory Settings"
 msgstr ""
@@ -221,6 +196,11 @@ msgid "Initializing"
 msgstr ""
 
 #. module: pos_glory_cash
+#: model:ir.module.module,summary:base.module_pos_glory_cash
+msgid "Integrate your POS with a Glory automatic cash payment device"
+msgstr ""
+
+#. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
 msgid "Only managers can withdraw cash from the cash machine."
@@ -233,6 +213,11 @@ msgid "Open Admin Page"
 msgstr ""
 
 #. module: pos_glory_cash
+#: model:ir.module.module,shortdesc:base.module_pos_glory_cash
+msgid "POS Glory Cash Machines"
+msgstr ""
+
+#. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/backend/glory_admin_buttons/glory_admin_buttons.js:0
 msgid "Please configure the IP address before opening the admin page"
@@ -240,8 +225,8 @@ msgstr ""
 
 #. module: pos_glory_cash
 #: model:ir.model,name:pos_glory_cash.model_pos_payment_method
-msgid "Point of Sale Payment Methods"
-msgstr "Pardavimo taško mokėjimo būdai"
+msgid "Point of Sale Payment Method"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -271,7 +256,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Starting payment"
-msgstr "Pradinis mokėjimas"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -299,8 +284,6 @@ msgid ""
 "The cash machine is currently in collection/replenishment mode, please "
 "finish this process on the machine before making a payment."
 msgstr ""
-"Bankomatas šiuo metu veikia surinkimo/papildymo režimu, prieš atlikdami "
-"mokėjimą, prašome užbaigti šį procesą bankomate."
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -333,14 +316,12 @@ msgid ""
 "The payment failed due to an unrecoverable error - see the cash machine "
 "screen for details."
 msgstr ""
-"Mokėjimas nepavyko dėl neištaisomos klaidos – išsamią informaciją rasite "
-"bankomato ekrane."
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
 msgid "The payment failed for an unknown reason: %s"
-msgstr "Mokėjimas nepavyko dėl nežinomos priežasties: %s"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -354,14 +335,6 @@ msgstr ""
 msgid ""
 "There is insufficient change in the cash machine to handle the payment. It "
 "must be cancelled to continue."
-msgstr ""
-"Bankomate nėra pakankamai grąžos, kad būtų galima atlikti mokėjimą. Norint "
-"tęsti, mokėjimą reikia atšaukti."
-
-#. module: pos_glory_cash
-#. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
-msgid "Transaction ID: %s"
 msgstr ""
 
 #. module: pos_glory_cash
@@ -405,9 +378,3 @@ msgstr ""
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Waiting for inventory"
 msgstr ""
-
-#~ msgid "Discard"
-#~ msgstr "Atmesti"
-
-#~ msgid "Reset"
-#~ msgstr "Atstatyti"

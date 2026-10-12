@@ -22,13 +22,13 @@ class PaymentProvider(models.Model):
 
     # === CONSTRAINT METHODS === #
 
-    @api.constrains("state")
-    def _check_payu_credentials_are_set_before_enabling(self):
-        """Check that the PayU credentials are valid when the provider is enabled.
+    @api.constrains("is_live")
+    def _check_payu_credentials_are_set_if_live(self):
+        """Check that the PayU credentials are valid when the provider is set to live mode.
 
-        :raise ValidationError: If the PayU credentials are not set
+        :raise ValidationError: If the PayU credentials are not valid.
         """
-        for provider in self.filtered(lambda p: p.code == "payu" and p.state != "disabled"):
+        for provider in self.filtered(lambda p: p.code == "payu" and p.is_live):
             if not provider.payu_key_id or not provider.payu_merchant_salt:
                 raise ValidationError(
                     self.env._(
@@ -135,7 +135,7 @@ class PaymentProvider(models.Model):
         if payu_access_token:
             return urljoin(const.PARTNER_API_URL, endpoint)
 
-        if self.state == "enabled":
+        if self.is_live:
             base_url = const.PAYMENT_API_LIVE_URL
         else:  # test
             base_url = const.PAYMENT_API_TEST_URL

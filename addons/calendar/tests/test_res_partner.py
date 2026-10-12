@@ -1,10 +1,10 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo.tests.common import TransactionCase
-from odoo.tests.common import new_test_user
+from odoo.tests.common import new_test_user, tagged, TransactionCase
 from odoo.addons.mail.tests.common import mail_new_test_user
 
 
+@tagged('at_install', '-post_install')  # LEGACY at_install
 class TestResPartner(TransactionCase):
 
     def test_meeting_count(self):
@@ -55,12 +55,13 @@ class TestResPartner(TransactionCase):
 
         #Test rule to see if ir.rules are applied
         calendar_event_model_id = self.env['ir.model']._get('calendar.event').id
-        self.env['ir.rule'].create({'name': 'test_rule',
-                                    'model_id': calendar_event_model_id,
-                                    'domain_force': [('name', 'not in', ['event_9', 'event_10'])],
-                                    'perm_read': True,
-                                    'perm_create': False,
-                                    'perm_write': False})
+        self.env['ir.access'].create({
+            'name': 'test_rule',
+            'model_id': calendar_event_model_id,
+            'operation': 'r',
+            'domain': [('name', 'not in', ['event_9', 'event_10'])],
+        })
+
         # create generally requires read -> prevented by above test rule
         Event.sudo().create({'name': 'event_9',
                       'partner_ids': [(6, 0, [test_partner_2.id,

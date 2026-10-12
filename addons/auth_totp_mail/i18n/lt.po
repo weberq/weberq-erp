@@ -2,16 +2,15 @@
 # This file contains the translation of the following modules:
 # * auth_totp_mail
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Ulevičienė <vilma.uleviciene@mededu.lt>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-10-05 14:33+0000\n"
-"Last-Translator: Ulevičienė <vilma.uleviciene@mededu.lt>\n"
-"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 16:09+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-s19-4/"
 "auth_totp_mail/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
@@ -23,10 +22,27 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 
 #. module: auth_totp_mail
+#: model:ir.module.module,description:base.module_auth_totp_mail
+msgid ""
+"\n"
+"2FA Invite mail\n"
+"===============\n"
+"Allow the users to invite another user to use Two-Factor authentication\n"
+"by sending an email to the target user. This email redirects them to:\n"
+"- the users security settings if the user is internal.\n"
+"- the portal security settings page if the user is not internal.\n"
+msgstr ""
+
+#. module: auth_totp_mail
 #: model_terms:ir.ui.view,arch_db:auth_totp_mail.auth_totp_mail_form
 msgid ""
 ".\n"
 "                <br/>"
+msgstr ""
+
+#. module: auth_totp_mail
+#: model:ir.module.module,shortdesc:base.module_auth_totp_mail
+msgid "2FA Invite mail"
 msgstr ""
 
 #. module: auth_totp_mail
@@ -57,30 +73,6 @@ msgid ""
 "</div>\n"
 "        "
 msgstr ""
-"<div style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"        Gerb. <t t-out=\"object.partner_id.name or ''\"/><br/><br/>\n"
-"        <t t-out=\"user.name  or ''\"/> paprašė, kad aktyvuotumėte dviejų "
-"veiksnių autentifikavimą, siekiant apsaugoti savo paskyrą.<br/><br/>\n"
-"        Dviejų veiksnių autentifikavimas („2FA“) yra dvigubo autentifikavimo "
-"sistema.\n"
-"        Pirmasis veiksnys atliekamas naudojant jūsų slaptažodį, o antrasis – "
-"kodą, kurį gaunate iš specialios mobiliojo telefono programėlės.\n"
-"        Populiariausios iš jų yra „Authy“, „Google Authenticator“ arba „"
-"Microsoft Authenticator“.\n"
-"\n"
-"       </p><p style=\"margin: 16px 0px 16px 0px; text-align: center;\"> \n"
-"           <a t-att-href=\"object.get_totp_invite_url()\" t-attf-"
-"style=\"background-color:{{object.company_id.email_secondary_color or "
-"'#875A7B'}}; padding: 8px 16px 8px 16px; text-decoration: none; color: {"
-"{object.company_id.email_primary_color or '#FFFFFF'}}; border-radius: "
-"5px;\"> \n"
-"                Įjungti dviejų veiksnių autentifikavimą\n"
-"           </a>\n"
-"        </p> \n"
-"    \n"
-"</div>\n"
-"        "
 
 #. module: auth_totp_mail
 #: model:mail.template,body_html:auth_totp_mail.mail_template_totp_mail_code
@@ -104,9 +96,8 @@ msgid ""
 "    <span t-out=\"code\" style=\"background-color:#faf9fa; border: 1px solid "
 "#dad8de; padding: 8px 16px 8px 16px; font-size: 24px; color: #875A7B; border-"
 "radius: 5px;\"/>\n"
+"    <p><small>Expires in <t t-out=\"expiration\"/>.</small></p>\n"
 "</div>\n"
-"<small>Please note that this code expires in <t t-out=\"expiration\"/>.</"
-"small>\n"
 "\n"
 "<p style=\"margin: 16px 0px 16px 0px;\">\n"
 "    If you did NOT initiate this log-in,\n"
@@ -127,56 +118,6 @@ msgid ""
 "</p>\n"
 "</div>\n"
 "        "
-msgstr ""
-"<div style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"Gerb. <t t-out=\"object.partner_id.name or ''\"/><br/><br/>\n"
-"<p> Kažkas bando prisijungti prie jūsų paskyros iš naujo įrenginio.</p>\n"
-"<ul>\n"
-"   <t t-set=\"not_available\"> N/A</t>\n"
-"    <li>Vieta: <t t-out=\"ctx.get('location') or not_available\"/></li>\n"
-"   <li> Įrenginys: <t t-out=\"ctx.get('device') or not_available\"/></li>\n"
-"   <li> Naršyklė: <t t-out=\"ctx.get('browser') or not_available\"/></li>\n"
-"   <li> IP adresas: <t t-out=\"ctx.get('ip') or not_available\"/></li>\n"
-"</ul>\n"
-"<p>Jei tai esate jūs, įveskite šį kodą, kad užbaigtumėte prisijungimą:</p>\n"
-"<t t-set=\"code_expiration\" t-value=\"object._get_totp_mail_code()\"/>\n"
-"<t t-set=\"code\" t-value=\"code_expiration[0]\"/>\n"
-"<t t-set=\"expiration\" t-value=\"code_expiration[1]\"/>\n"
-"<div style=\"margin: 16px 0px 16px 0px; text-align: center;\">\n"
-"    <span t-out=\"code\" style=\"background-color:#faf9fa; border: 1px solid "
-"#dad8de; padding: 8px 16px 8px 16px; font-size: 24px; color: #875A7B; border-"
-"radius: 5px;\"/>\n"
-"</div>\n"
-"<small>Atkreipkite dėmesį, kad šio kodo galiojimas baigsis <t t-"
-"out=\"expiration\"/>.</small>\n"
-"\n"
-"<p style=\"margin: 16px 0px 16px 0px;\">\n"
-"    Jei šio prisijungimo NEINICIAVOTE,\n"
-"    turėtumėte nedelsdami pakeisti slaptažodį, kad užtikrintumėte paskyros "
-"saugumą.\n"
-"</p>\n"
-"\n"
-"<p style=\"margin: 16px 0px 16px 0px;\">\n"
-"    Taip pat labai rekomenduojame įjungti dviejų veiksnių autentifikavimą "
-"naudojant autentifikavimo programėlę, kad jūsų paskyra būtų saugesnė.\n"
-"</p>\n"
-"\n"
-"<p style=\"margin: 16px 0px 16px 0px; text-align: center;\">\n"
-"   <a t-att-href=\"object.get_totp_invite_url()\" style=\"background-"
-"color:#875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: "
-"#fff; border-radius: 5px;\"> \n"
-"        Įjungti dviejų veiksnių autentifikavimą\n"
-"   </a>\n"
-"</p> \n"
-"</div>\n"
-"        "
-
-#. module: auth_totp_mail
-#: model_terms:ir.ui.view,arch_db:auth_totp_mail.auth_totp_mail_form
-msgid ""
-"<i class=\"fa fa-envelope-o\"/>\n"
-"                To login, enter below the six-digit authentication code just "
-"sent via email to"
 msgstr ""
 
 #. module: auth_totp_mail
@@ -224,6 +165,17 @@ msgstr ""
 "adreso."
 
 #. module: auth_totp_mail
+#: model_terms:ir.ui.view,arch_db:auth_totp_mail.auth_totp_mail_form
+msgid "Check your inbox! We sent a code to"
+msgstr ""
+
+#. module: auth_totp_mail
+#. odoo-javascript
+#: code:addons/auth_totp_mail/static/src/services/check_identity/check_identity.xml:0
+msgid "Check your mailbox"
+msgstr ""
+
+#. module: auth_totp_mail
 #: model_terms:ir.ui.view,arch_db:auth_totp_mail.res_users_view_form
 msgid "Click to enable 2FA."
 msgstr ""
@@ -235,6 +187,7 @@ msgstr "Konfigūracijos nustatymai"
 
 #. module: auth_totp_mail
 #: model:ir.model.fields,field_description:auth_totp_mail.field_auth_totp_device__display_name
+#: model:ir.model.fields,field_description:auth_totp_mail.field_ir_http__display_name
 #: model:ir.model.fields,field_description:auth_totp_mail.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:auth_totp_mail.field_res_users__display_name
 msgid "Display Name"
@@ -257,9 +210,6 @@ msgid ""
 "users (including portal users) if they didn't enable any other two-factor "
 "authentication method."
 msgstr ""
-"Reikalauti, kad darbuotojai arba visi naudotojai (įskaitant portalo "
-"naudotojus) patvirtintų tapatybę el. paštu gautu kodu, jei nėra įjungę kito "
-"dviejų veiksnių autentifikavimo būdo."
 
 #. module: auth_totp_mail
 #: model:ir.model.fields,field_description:auth_totp_mail.field_res_config_settings__auth_totp_enforce
@@ -267,7 +217,13 @@ msgid "Enforce two-factor authentication"
 msgstr ""
 
 #. module: auth_totp_mail
+#: model:ir.model,name:auth_totp_mail.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: auth_totp_mail
 #: model:ir.model.fields,field_description:auth_totp_mail.field_auth_totp_device__id
+#: model:ir.model.fields,field_description:auth_totp_mail.field_ir_http__id
 #: model:ir.model.fields,field_description:auth_totp_mail.field_res_config_settings__id
 #: model:ir.model.fields,field_description:auth_totp_mail.field_res_users__id
 msgid "ID"
@@ -295,11 +251,6 @@ msgstr ""
 #: model:ir.actions.server,name:auth_totp_mail.action_invite_totp
 msgid "Invite to use two-factor authentication"
 msgstr ""
-
-#. module: auth_totp_mail
-#: model_terms:ir.ui.view,arch_db:auth_totp_mail.auth_totp_mail_form
-msgid "Learn More"
-msgstr "Sužinoti daugiau"
 
 #. module: auth_totp_mail
 #. odoo-python
@@ -352,6 +303,12 @@ msgid "Settings: 2Fa New Login"
 msgstr ""
 
 #. module: auth_totp_mail
+#. odoo-javascript
+#: code:addons/auth_totp_mail/static/src/services/check_identity/check_identity.xml:0
+msgid "Six-digit authentication code"
+msgstr ""
+
+#. module: auth_totp_mail
 #: model_terms:ir.ui.view,arch_db:auth_totp_mail.res_users_view_form
 msgid "Two-factor Authentication"
 msgstr "Dviejų Žingsnių Autentifikacija"
@@ -374,6 +331,12 @@ msgid "Two-factor authentication has been deactivated on your account"
 msgstr ""
 
 #. module: auth_totp_mail
+#. odoo-javascript
+#: code:addons/auth_totp_mail/static/src/services/check_identity/check_identity.xml:0
+msgid "Use an authentication code sent by email"
+msgstr ""
+
+#. module: auth_totp_mail
 #: model:ir.model,name:auth_totp_mail.model_res_users
 msgid "User"
 msgstr "Vartotojas"
@@ -385,11 +348,15 @@ msgid "Verification failed, please double-check the 6-digit code"
 msgstr ""
 
 #. module: auth_totp_mail
-#: model_terms:ir.ui.view,arch_db:auth_totp_mail.auth_totp_mail_form
-msgid ""
-"We strongly recommend enabling the two-factor authentication using an "
-"authenticator app to help secure your account.\n"
-"                <br/>"
+#. odoo-javascript
+#: code:addons/auth_totp_mail/static/src/services/check_identity/check_identity.xml:0
+msgid "Verify"
+msgstr ""
+
+#. module: auth_totp_mail
+#. odoo-javascript
+#: code:addons/auth_totp_mail/static/src/services/check_identity/check_identity.xml:0
+msgid "We sent a 6-digit code to your email address."
 msgstr ""
 
 #. module: auth_totp_mail
@@ -401,3 +368,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:auth_totp_mail.account_security_alert
 msgid "activating Two-factor Authentication"
 msgstr ""
+
+#~ msgid "Learn More"
+#~ msgstr "Sužinoti daugiau"

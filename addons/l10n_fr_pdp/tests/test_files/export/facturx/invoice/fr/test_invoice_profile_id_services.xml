@@ -94,7 +94,7 @@
       <ram:BuyerTradeParty>
         <ram:Name>SUPER FRENCH PARTNER</ram:Name>
         <ram:SpecifiedLegalOrganization>
-            <ram:ID>96851575905823</ram:ID>
+            <ram:ID schemeID="0002">968515759</ram:ID>
         </ram:SpecifiedLegalOrganization>
         <ram:DefinedTradeContact>
             <ram:PersonName>SUPER FRENCH PARTNER</ram:PersonName>
@@ -109,7 +109,7 @@
             <ram:CountryID>FR</ram:CountryID>
         </ram:PostalTradeAddress>
         <ram:URIUniversalCommunication>
-            <ram:URIID schemeID="0225">968515759_96851575905823</ram:URIID>
+            <ram:URIID schemeID="0225">968515759_96851575905808</ram:URIID>
         </ram:URIUniversalCommunication>
         <ram:SpecifiedTaxRegistration>
             <ram:ID schemeID="VA">FR23334175221</ram:ID>

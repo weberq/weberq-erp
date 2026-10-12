@@ -1,117 +1,145 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * payment_payu
+# 	* payment_payu
 #
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.5a1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-10 17:38+0000\n"
-"PO-Revision-Date: 2026-09-15 08:33+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
-"payment_payu/sl/>\n"
-"Language: sl\n"
+"POT-Creation-Date: 2026-08-28 17:44+0000\n"
+"PO-Revision-Date: 2026-07-10 17:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 2026.8.1\n"
+"Plural-Forms: \n"
 
 #. module: payment_payu
 #. odoo-python
 #: code:addons/payment_payu/models/payment_transaction.py:0
 msgid "%(code)s: %(explanation)s"
-msgstr "%(code)s: %(explanation)s"
+msgstr ""
+
+#. module: payment_payu
+#: model:ir.module.module,summary:base.module_payment_payu
+msgid "A payment provider covering India."
+msgstr ""
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_amex
+msgid "American Express"
+msgstr ""
 
 #. module: payment_payu
 #: model_terms:ir.ui.view,arch_db:payment_payu.authorization_error
 msgid "An error occurred"
-msgstr "Pojavila se je napaka"
+msgstr ""
 
 #. module: payment_payu
 #: model_terms:ir.ui.view,arch_db:payment_payu.authorization_error
 msgid "An error occurred while linking your PayU account with Odoo."
-msgstr "Pri povezovanju vašega računa PayU z Odoo je prišlo do napake."
+msgstr ""
 
 #. module: payment_payu
 #: model_terms:ir.ui.view,arch_db:payment_payu.payment_provider_form
 msgid "Are you sure you want to disconnect?"
-msgstr "Ali ste prepričani, da želite prekiniti povezavo?"
+msgstr ""
 
 #. module: payment_payu
 #: model_terms:ir.ui.view,arch_db:payment_payu.authorization_error
 msgid "Back to the PayU provider"
-msgstr "Nazaj na ponudnika PayU"
+msgstr ""
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_card
+msgid "Card"
+msgstr ""
 
 #. module: payment_payu
 #: model:ir.model.fields,field_description:payment_payu.field_payment_provider__code
 msgid "Code"
-msgstr "Oznaka"
+msgstr ""
 
 #. module: payment_payu
 #: model_terms:ir.ui.view,arch_db:payment_payu.payment_provider_form
 msgid "Connect"
-msgstr "Povežite"
+msgstr ""
 
 #. module: payment_payu
 #. odoo-python
 #: code:addons/payment_payu/controllers/onboarding.py:0
 msgid "Could not find PayU provider with id %s"
-msgstr "Ponudnika PayU z ID-jem %s ni bilo mogoče najti"
+msgstr ""
 
 #. module: payment_payu
 #: model_terms:ir.ui.view,arch_db:payment_payu.payment_provider_form
 msgid "Disconnect"
-msgstr "Prekini povezavo"
+msgstr ""
 
 #. module: payment_payu
 #: model:ir.model.fields,field_description:payment_payu.field_payment_provider__display_name
 #: model:ir.model.fields,field_description:payment_payu.field_payment_transaction__display_name
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr ""
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_emi_india
+msgid "EMI"
+msgstr ""
 
 #. module: payment_payu
 #: model:ir.model.fields,field_description:payment_payu.field_payment_provider__id
 #: model:ir.model.fields,field_description:payment_payu.field_payment_transaction__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: payment_payu
 #: model_terms:ir.ui.view,arch_db:payment_payu.payment_provider_form
 msgid "Key ID"
-msgstr "ID ključa"
+msgstr ""
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_mastercard
+msgid "MasterCard"
+msgstr ""
 
 #. module: payment_payu
 #: model_terms:ir.ui.view,arch_db:payment_payu.payment_provider_form
 msgid "Merchant Salt"
-msgstr "Trgovčeva sol"
+msgstr ""
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_netbanking
+msgid "Netbanking"
+msgstr ""
 
 #. module: payment_payu
 #. odoo-python
 #: code:addons/payment_payu/models/payment_provider.py:0
 msgid "Other Payment Providers"
-msgstr "Drugi ponudniki plačil"
+msgstr ""
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_paylater_india
+msgid "Pay Later"
+msgstr ""
 
 #. module: payment_payu
 #: model:ir.model.fields.selection,name:payment_payu.selection__payment_provider__code__payu
 msgid "PayU"
-msgstr "PayU"
+msgstr ""
 
 #. module: payment_payu
 #: model:ir.model.fields,field_description:payment_payu.field_payment_provider__payu_key_id
 msgid "PayU Key Id"
-msgstr "ID ključa PayU"
+msgstr ""
 
 #. module: payment_payu
 #: model:ir.model.fields,field_description:payment_payu.field_payment_provider__payu_merchant_salt
 msgid "PayU Merchant Salt"
-msgstr "PayU trgovčeva sol"
+msgstr ""
 
 #. module: payment_payu
 #. odoo-python
@@ -120,8 +148,6 @@ msgid ""
 "PayU credentials are missing. Click the \"Connect\" button to set up your "
 "account."
 msgstr ""
-"Poverilnice za PayU manjkajo. Kliknite gumb »Poveži«, da nastavite svoj "
-"račun."
 
 #. module: payment_payu
 #. odoo-python
@@ -129,26 +155,49 @@ msgstr ""
 msgid ""
 "PayU is not available in your country; please use another payment provider."
 msgstr ""
-"PayU v vaši državi ni na voljo, zato uporabite drugega ponudnika plačilnih "
-"storitev."
 
 #. module: payment_payu
 #: model:ir.model,name:payment_payu.model_payment_provider
 msgid "Payment Provider"
-msgstr "Ponudnik plačil"
+msgstr ""
+
+#. module: payment_payu
+#: model:ir.module.module,shortdesc:base.module_payment_payu
+msgid "Payment Provider: PayU"
+msgstr ""
 
 #. module: payment_payu
 #: model:ir.model,name:payment_payu.model_payment_transaction
 msgid "Payment Transaction"
-msgstr "Plačilna transakcija"
+msgstr ""
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_rupay
+msgid "RuPay"
+msgstr ""
 
 #. module: payment_payu
 #: model:ir.model.fields,help:payment_payu.field_payment_provider__code
 msgid "The technical code of this payment provider."
-msgstr "Tehnična koda tega ponudnika plačil."
+msgstr ""
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_upi
+msgid "UPI"
+msgstr ""
 
 #. module: payment_payu
 #. odoo-python
 #: code:addons/payment_payu/models/payment_transaction.py:0
 msgid "Unknown status code: %s"
-msgstr "Neznana koda stanja: %s"
+msgstr ""
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_visa
+msgid "VISA"
+msgstr ""
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_wallets_india
+msgid "Wallets India"
+msgstr ""

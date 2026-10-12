@@ -21,7 +21,7 @@ class TestSyncOdoo2GoogleMail(TestTokenAccess, TestSyncGoogle, MailCommon):
     def setUpClass(cls):
         super().setUpClass()
         # Make sure this test will work for the next 30 years
-        cls.env['ir.config_parameter'].set_param('google_calendar.sync.range_days', 10000)
+        cls.env['ir.config_parameter'].set_int('google_calendar.sync.range_days', 10000)
 
     @patch_api
     def test_alarm_ids_sync_limit_message(self):
@@ -104,7 +104,7 @@ class TestSyncOdoo2GoogleMail(TestTokenAccess, TestSyncGoogle, MailCommon):
                     'overrides': [{'method': 'popup', 'minutes': alarm.duration_minutes} for alarm in alarms.sorted('id')[:5]],
                 },
             }
-            synced_event_over_limit = self.env['calendar.event']._sync_google2odoo(GoogleEvent([google_values]))
+            synced_event_over_limit = self.env['calendar.event']._sync_google2odoo(GoogleEvent([google_values]), user.primary_calendar_id)
             self.assertEqual(synced_event_over_limit, event_over_limit)
             self.assertEqual(len(event_over_limit.alarm_ids), 7)
             assert_alarm_message(event_over_limit, 2)
@@ -113,7 +113,7 @@ class TestSyncOdoo2GoogleMail(TestTokenAccess, TestSyncGoogle, MailCommon):
                 'updated': event_over_limit.write_date.replace(tzinfo=timezone.utc).isoformat(),
                 'reminders': {'useDefault': False, 'overrides': [{'method': 'popup', 'minutes': 2000}]},
             })
-            self.env['calendar.event']._sync_google2odoo(GoogleEvent([google_values]))
+            self.env['calendar.event']._sync_google2odoo(GoogleEvent([google_values]), user.primary_calendar_id)
             self.assertEqual(len(event_over_limit.alarm_ids), 8)
             assert_alarm_message(event_over_limit, 3)
 
@@ -124,6 +124,8 @@ class TestSyncOdoo2GoogleMail(TestTokenAccess, TestSyncGoogle, MailCommon):
         user_root = self.env.ref('base.user_root')
         organizer1.google_calendar_token = 'abc'
         organizer2.google_calendar_token = False
+        organizer1.primary_calendar_id.google_id = 'primary_calendar_id'
+        organizer2.primary_calendar_id.google_id = 'primary_calendar2'
         event_values = {
             'name': "Event",
             'start': datetime(2020, 1, 15, 8, 0),
@@ -132,7 +134,7 @@ class TestSyncOdoo2GoogleMail(TestTokenAccess, TestSyncGoogle, MailCommon):
         partner = self.env['res.partner'].create({'name': 'Jean-Luc', 'email': 'jean-luc@opoo.com'})
         for create_user, organizer, responsible, expect_mail, is_public in [
             (user_root, organizer1, organizer1, False, True), (user_root, None, user_root, True, True),
-                (organizer1, None, organizer1, False, False), (organizer1, organizer2, organizer1, False, True)]:
+            (organizer1, None, organizer1, False, False), (organizer1, organizer2, organizer1, False, True)]:
             with self.subTest(create_uid=create_user.name if create_user else None, user_id=organizer.name if organizer else None):
                 with self.mock_mail_gateway(), self.mock_google_sync(user_id=responsible):
                     self.env['calendar.event'].with_user(create_user).create({
@@ -150,7 +152,7 @@ class TestSyncOdoo2GoogleMail(TestTokenAccess, TestSyncGoogle, MailCommon):
                         'guestsCanModify': is_public,
                         'organizer': {'email': organizer.email, 'self': False} if organizer else False,
                         'summary': 'Event',
-                        'reminders': {'useDefault': False, 'overrides': []},
+                        'reminders': {'useDefault': False, 'overrides': [{'method': 'popup', 'minutes': 15}]},
                     }, timeout=3)
                 else:
                     self.assertGoogleEventNotInserted()

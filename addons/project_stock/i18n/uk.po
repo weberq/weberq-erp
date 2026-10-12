@@ -1,17 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * project_stock
+# 	* project_stock
 #
-# Oleksii Lytvynov <oleksii.lytvynov@self-erp.com>, 2026.
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-10-07 19:39+0000\n"
-"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>\n"
-"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 14:52+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-s19-4/"
 "project_stock/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +23,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:project_stock.field_project_project__display_name
 #: model:ir.model.fields,field_description:project_stock.field_stock_picking__display_name
 msgid "Display Name"
-msgstr "Відобразити назву"
+msgstr ""
 
 #. module: project_stock
 #. odoo-python
@@ -33,19 +31,29 @@ msgstr "Відобразити назву"
 #: model:ir.embedded.actions,name:project_stock.project_embedded_action_from_wh
 #: model:ir.embedded.actions,name:project_stock.project_embedded_action_from_wh_dashboard
 msgid "From WH"
-msgstr "З WH"
+msgstr ""
 
 #. module: project_stock
 #: model:ir.model.fields,field_description:project_stock.field_project_project__id
 #: model:ir.model.fields,field_description:project_stock.field_stock_picking__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
+
+#. module: project_stock
+#: model:ir.module.module,summary:base.module_project_stock
+msgid "Link Stock pickings to Project"
+msgstr ""
 
 #. module: project_stock
 #: model:ir.model,name:project_stock.model_project_project
 #: model:ir.model.fields,field_description:project_stock.field_stock_picking__project_id
 msgid "Project"
-msgstr "Проєкт"
+msgstr ""
+
+#. module: project_stock
+#: model:ir.module.module,shortdesc:base.module_project_stock
+msgid "Project Stock"
+msgstr ""
 
 #. module: project_stock
 #. odoo-python
@@ -53,7 +61,7 @@ msgstr "Проєкт"
 #: model:ir.embedded.actions,name:project_stock.project_embedded_action_all_pickings
 #: model:ir.embedded.actions,name:project_stock.project_embedded_action_all_pickings_dashboard
 msgid "Stock Moves"
-msgstr "Складські переміщення"
+msgstr ""
 
 #. module: project_stock
 #. odoo-python
@@ -61,9 +69,9 @@ msgstr "Складські переміщення"
 #: model:ir.embedded.actions,name:project_stock.project_embedded_action_to_wh
 #: model:ir.embedded.actions,name:project_stock.project_embedded_action_to_wh_dashboard
 msgid "To WH"
-msgstr "До WH"
+msgstr ""
 
 #. module: project_stock
 #: model:ir.model,name:project_stock.model_stock_picking
 msgid "Transfer"
-msgstr "Переміщення"
+msgstr ""

@@ -6,6 +6,8 @@ from odoo.tests.common import tagged
 @tagged('post_install', '-at_install')
 class TestPosInvoiceConsolidation(TestPoSCommon, CommonPosTest):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     def setUp(cls):
         super().setUp()
         cls.config = cls.basic_config
@@ -16,9 +18,10 @@ class TestPosInvoiceConsolidation(TestPoSCommon, CommonPosTest):
         cls.product2 = cls.create_product('Product 2', cls.categ_basic, 20.0)
 
     def _close_session(self):
-        cash_payments = self.pos_session.order_ids.payment_ids.filtered(lambda p: p.payment_method_id.is_cash_count)
-        self.pos_session.post_closing_cash_details(sum(cash_payments.mapped('amount')))
-        self.pos_session.close_session_from_ui()
+        cash_payments = self.pos_session.order_ids.payment_ids.filtered(
+            lambda p: p.payment_method_id.type == 'cash'
+        )
+        self.pos_session.close_session_from_ui({self.cash_pm1.id: sum(cash_payments.mapped('amount'))})
 
     def _refund_order(self, order):
         """ Refund `order` entirely and pay the refund back in cash, as the POS UI does. """
@@ -222,18 +225,24 @@ class TestPosInvoiceConsolidation(TestPoSCommon, CommonPosTest):
             'rounding_method': rounding.id,
         })
 
-        non_cash_pm = self.config.payment_method_ids.filtered(lambda pm: not pm.is_cash_count)[:1]
+        non_cash_pm = self.config.payment_method_ids.filtered(lambda pm: pm.type != 'cash')[:1]
         self.assertTrue(non_cash_pm, "Need at least one non-cash payment method on the POS config.")
-
+        self.product2.lst_price = 9.99
         with self.with_user(self.user1.login):
             orders = self._create_orders([
                 {'pos_order_lines_ui_args': [(self.product1, 1)], 'customer': self.customer, 'is_invoiced': False},
-                {'pos_order_lines_ui_args': [(self.product1, -1)], 'customer': self.customer, 'is_invoiced': False},
+                {
+                    'pos_order_lines_ui_args': [(self.product2, 1)],
+                    'customer': self.customer,
+                    'is_invoiced': False,
+                    'payments': [(self.cash_pm1, 10)]},
             ])
             orders = sum(orders.values(), self.env['pos.order'])
 
-        orders.payment_ids.write({'payment_method_id': non_cash_pm.id})
-        orders.payment_ids[:1].write({'amount': orders.payment_ids[:1].amount + 1})
-
+        self.assertEqual(len(orders), 2, "Should have created 2 orders")
+        self.assertEqual(orders.mapped('amount_total'), [10.0, 9.99])
+        self.assertEqual(orders.mapped('amount_paid'), [10.0, 10.0])
+        self.assertEqual(orders.mapped('amount_difference'), [0.0, 0.01])
+        self.assertEqual(orders.mapped('amount_return'), [0.0, 0.0])
         self.env['pos.make.invoice'].create({'consolidated_billing': True}).with_context(active_ids=orders.ids).action_create_invoices()
         self.assertEqual(len(orders.account_move), 1)

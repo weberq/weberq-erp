@@ -10,20 +10,16 @@
 # Tadej Lupšina <tadej@hbs.si>, 2022
 # Matjaz Mozetic <m.mozetic@matmoz.si>, 2022
 # Tomaž Jug <tomaz@editor.si>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-14 08:36+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/rating/"
-"sl/>\n"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 20:16+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
+"rating/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,9 +29,16 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 
 #. module: rating
+#: model:ir.module.module,description:base.module_rating
+msgid ""
+"\n"
+"This module allows a customer to give rating.\n"
+msgstr ""
+
+#. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_external_page_invalid_partner
 msgid "\" or someone from the same company can give it a rating."
-msgstr " ali pa lahko oceno poda nekdo iz istega podjetja."
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_parent_mixin__rating_count
@@ -44,23 +47,26 @@ msgstr "Ocene"
 
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_external_page_view
-msgid "<i class=\"fa fa-arrow-left me-1\"/> Back to the Homepage"
-msgstr "<i class=\"fa fa-arrow-left me-1\"/> Nazaj na domačo stran"
+msgid "<i class=\"oi me-1\" data-icon=\"arrow_back\"/> Back to the Homepage"
+msgstr ""
 
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_rating_view_kanban_stars
-msgid "<i class=\"fa fa-clock-o me-2\" aria-label=\"Create date\"/>"
-msgstr "<i class=\"fa fa-clock-o me-2\" aria-label=\"Create date\"/>"
+msgid ""
+"<i class=\"oi me-2\" data-icon=\"schedule\" aria-label=\"Create date\"/>"
+msgstr ""
 
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_rating_view_kanban_stars
-msgid "<i class=\"fa fa-folder me-2\" aria-label=\"Open folder\"/>"
-msgstr "<i class=\"fa fa-folder me-2\" aria-label=\"Open folder\"/>"
+msgid ""
+"<i class=\"oi oi-filled me-2\" data-icon=\"folder\" aria-label=\"Open "
+"folder\"/>"
+msgstr ""
 
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_rating_view_kanban_stars
 msgid "A star"
-msgstr "Zvezdica"
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_mixin__message_needaction
@@ -100,6 +106,11 @@ msgid "Customer"
 msgstr "Stranka"
 
 #. module: rating
+#: model:ir.module.module,shortdesc:base.module_rating
+msgid "Customer Rating"
+msgstr ""
+
+#. module: rating
 #: model:ir.model.fields,field_description:rating.field_mail_message__display_name
 #: model:ir.model.fields,field_description:rating.field_mail_thread__display_name
 #: model:ir.model.fields,field_description:rating.field_rating_mixin__display_name
@@ -127,12 +138,12 @@ msgstr "Obravnava z elektronsko pošto"
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_external_page_submit
 msgid "Feel free to share feedback on your experience:"
-msgstr "Brez zadržkov delite povratne informacije o svoji izkušnji:"
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_rating__consumed
 msgid "Filled Rating"
-msgstr "Izpolnjena ocena"
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_mixin__message_follower_ids
@@ -147,12 +158,11 @@ msgstr "Sledilci (partnerji)"
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_rating_view_kanban_stars
 msgid "Half a star"
-msgstr "Pol zvezdice"
+msgstr ""
 
 #. module: rating
 #. odoo-python
 #: code:addons/rating/controllers/main.py:0
-#: model:ir.model.fields.selection,name:rating.selection__discuss_channel__rating_avg_text__top
 #: model:ir.model.fields.selection,name:rating.selection__product_template__rating_avg_text__top
 #: model:ir.model.fields.selection,name:rating.selection__project_task__rating_avg_text__top
 #: model:ir.model.fields.selection,name:rating.selection__rating_mixin__rating_avg_text__top
@@ -206,7 +216,7 @@ msgstr "Slika"
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_rating__rating_image_url
 msgid "Image URL"
-msgstr "URL slike"
+msgstr ""
 
 #. module: rating
 #. odoo-python
@@ -215,14 +225,12 @@ msgid ""
 "Incorrect rating: should be %(rating_unhappy)d, %(rating_neutral)d or %"
 "(rating_happy)d (received %(rate)d)"
 msgstr ""
-"Napačna ocena: morala bi biti %(rating_unhappy)d, %(rating_neutral)d ali %"
-"(rating_happy)d (prejeta %(rate)d)"
 
 #. module: rating
 #. odoo-python
 #: code:addons/rating/models/mail_thread.py:0
 msgid "Invalid token or rating."
-msgstr "Neveljaven žeton ali ocena."
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_mixin__message_is_follower
@@ -283,7 +291,6 @@ msgstr "Naziv"
 #. module: rating
 #. odoo-python
 #: code:addons/rating/controllers/main.py:0
-#: model:ir.model.fields.selection,name:rating.selection__discuss_channel__rating_avg_text__ok
 #: model:ir.model.fields.selection,name:rating.selection__product_template__rating_avg_text__ok
 #: model:ir.model.fields.selection,name:rating.selection__project_task__rating_avg_text__ok
 #: model:ir.model.fields.selection,name:rating.selection__rating_mixin__rating_avg_text__ok
@@ -296,17 +303,16 @@ msgstr "Nevtralno"
 #. module: rating
 #: model_terms:ir.actions.act_window,help:rating.rating_rating_action
 msgid "No rating yet"
-msgstr "Še ni ocene"
+msgstr ""
 
 #. module: rating
-#: model:ir.model.fields.selection,name:rating.selection__discuss_channel__rating_avg_text__none
 #: model:ir.model.fields.selection,name:rating.selection__product_template__rating_avg_text__none
 #: model:ir.model.fields.selection,name:rating.selection__project_task__rating_avg_text__none
 #: model:ir.model.fields.selection,name:rating.selection__rating_mixin__rating_avg_text__none
 #: model:ir.model.fields.selection,name:rating.selection__rating_rating__rating_text__none
 #: model:ir.model.fields.selection,name:rating.selection__slide_channel__rating_avg_text__none
 msgid "Not Rated yet"
-msgstr "Še ni ocenjeno"
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_mixin__message_needaction_counter
@@ -331,7 +337,7 @@ msgstr "Število sporočil, ki niso bila pravilno dostavljena."
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_external_page_invalid_partner
 msgid "Only the customer of \""
-msgstr "Samo stranka \""
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_rating__parent_res_id
@@ -351,17 +357,17 @@ msgstr "Ime nadrejenega dokumenta"
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_rating_view_form
 msgid "Parent Holder"
-msgstr "Nadrejeni nosilec"
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_rating__parent_ref
 msgid "Parent Ref"
-msgstr "Referenca nadrejenega"
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_rating__parent_res_model_id
 msgid "Parent Related Document Model"
-msgstr "Model nadrejenega povezanega dokumenta"
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,help:rating.field_rating_parent_mixin__rating_percentage_satisfaction
@@ -372,13 +378,13 @@ msgstr "Odstotek zadovoljnih ocen"
 #: model:ir.model.fields,field_description:rating.field_rating_rating__rated_on
 #: model_terms:ir.ui.view,arch_db:rating.rating_rating_view_search
 msgid "Rated On"
-msgstr "Ocenjeno dne"
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_rating__rated_partner_id
 #: model_terms:ir.ui.view,arch_db:rating.rating_rating_view_search
 msgid "Rated Operator"
-msgstr "Ocenjeni operater"
+msgstr ""
 
 #. module: rating
 #: model:ir.model,name:rating.model_rating_rating
@@ -419,12 +425,12 @@ msgstr "Ocena zadnje vrednosti"
 #. module: rating
 #: model:ir.model,name:rating.model_rating_mixin
 msgid "Rating Mixin"
-msgstr "Mešanica ocenjevanja"
+msgstr ""
 
 #. module: rating
 #: model:ir.model,name:rating.model_rating_parent_mixin
 msgid "Rating Parent Mixin"
-msgstr "Mešanica nadrejene ocene"
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_mixin__rating_percentage_satisfaction
@@ -452,13 +458,13 @@ msgstr "Število ocen"
 #. module: rating
 #: model:ir.model.constraint,message:rating.constraint_rating_rating_rating_range
 msgid "Rating should be between 0 and 5"
-msgstr "Ocena mora biti med 0 in 5"
+msgstr ""
 
 #. module: rating
 #. odoo-javascript
 #: code:addons/rating/static/src/core/web/notification_item_patch.xml:0
 msgid "Rating:"
-msgstr "Ocena:"
+msgstr ""
 
 #. module: rating
 #: model:ir.actions.act_window,name:rating.rating_rating_action
@@ -473,15 +479,16 @@ msgstr "Ocena:"
 #: model:ir.model.fields,field_description:rating.field_gamification_badge_user__rating_ids
 #: model:ir.model.fields,field_description:rating.field_gamification_challenge__rating_ids
 #: model:ir.model.fields,field_description:rating.field_iap_account__rating_ids
+#: model:ir.model.fields,field_description:rating.field_ir_access__rating_ids
 #: model:ir.model.fields,field_description:rating.field_ir_actions_server__rating_ids
 #: model:ir.model.fields,field_description:rating.field_ir_cron__rating_ids
 #: model:ir.model.fields,field_description:rating.field_lunch_supplier__rating_ids
 #: model:ir.model.fields,field_description:rating.field_mail_blacklist__rating_ids
 #: model:ir.model.fields,field_description:rating.field_mail_thread__rating_ids
 #: model:ir.model.fields,field_description:rating.field_mail_thread_blacklist__rating_ids
-#: model:ir.model.fields,field_description:rating.field_mail_thread_cc__rating_ids
 #: model:ir.model.fields,field_description:rating.field_mail_thread_main_attachment__rating_ids
 #: model:ir.model.fields,field_description:rating.field_mail_thread_phone__rating_ids
+#: model:ir.model.fields,field_description:rating.field_mail_thread_subject_suggested__rating_ids
 #: model:ir.model.fields,field_description:rating.field_mail_tracking_duration_mixin__rating_ids
 #: model:ir.model.fields,field_description:rating.field_maintenance_equipment__rating_ids
 #: model:ir.model.fields,field_description:rating.field_maintenance_request__rating_ids
@@ -524,7 +531,7 @@ msgstr "Vir"
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_rating__resource_ref
 msgid "Resource Ref"
-msgstr "Sklic vira"
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_rating__res_name
@@ -550,22 +557,21 @@ msgstr "Oddano na"
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_external_page_submit
 msgid "Thank you for rating our services!"
-msgstr "Hvala, ker ste ocenili naše storitve!"
+msgstr ""
 
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_external_page_view
 msgid "Thank you for your feedback!"
-msgstr "Hvala za vaše povratne informacije!"
+msgstr ""
 
 #. module: rating
 #: model_terms:ir.actions.act_window,help:rating.rating_rating_action
 msgid "There is no rating for this object at the moment."
-msgstr "Trenutno za ta objekt ni ocen."
+msgstr ""
 
 #. module: rating
 #. odoo-python
 #: code:addons/rating/controllers/main.py:0
-#: model:ir.model.fields.selection,name:rating.selection__discuss_channel__rating_avg_text__ko
 #: model:ir.model.fields.selection,name:rating.selection__product_template__rating_avg_text__ko
 #: model:ir.model.fields.selection,name:rating.selection__project_task__rating_avg_text__ko
 #: model:ir.model.fields.selection,name:rating.selection__rating_mixin__rating_avg_text__ko
@@ -573,7 +579,7 @@ msgstr "Trenutno za ta objekt ni ocen."
 #: model:ir.model.fields.selection,name:rating.selection__slide_channel__rating_avg_text__ko
 #: model_terms:ir.ui.view,arch_db:rating.rating_rating_view_search
 msgid "Unhappy"
-msgstr "Nezadovoljstvo"
+msgstr ""
 
 #. module: rating
 #: model:ir.model.fields,field_description:rating.field_rating_rating__is_internal
@@ -584,12 +590,12 @@ msgstr "Vidno samo interno"
 #. odoo-python
 #: code:addons/rating/models/mail_thread.py:0
 msgid "Wrong rating value. A rate should be between 0 and 5 (received %d)."
-msgstr "Napačna vrednost ocene. Ocena mora biti med 0 in 5 (prejeto %d)."
+msgstr ""
 
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_external_page_invalid_partner
 msgid "You cannot rate this"
-msgstr "Tega ne morete oceniti"
+msgstr ""
 
 #. module: rating
 #: model_terms:ir.ui.view,arch_db:rating.rating_rating_view_kanban
@@ -605,21 +611,3 @@ msgstr "za"
 #: model_terms:ir.ui.view,arch_db:rating.rating_rating_view_kanban
 msgid "on"
 msgstr "na"
-
-#~ msgid "Date"
-#~ msgstr "Datum"
-
-#~ msgid "Group By"
-#~ msgstr "Združi po"
-
-#~ msgid "Last 30 days"
-#~ msgstr "Zadnjih 30 dni"
-
-#~ msgid "Last 7 days"
-#~ msgstr "Zadnjih 7 dni"
-
-#~ msgid "Satisfied"
-#~ msgstr "Zadovoljen"
-
-#~ msgid "Today"
-#~ msgstr "Danes"

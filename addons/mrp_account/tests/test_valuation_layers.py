@@ -1,23 +1,32 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 """ Implementation of "INVENTORY VALUATION TESTS (With valuation layers)" spreadsheet. """
 
-from odoo import fields
 from odoo.fields import Command
 from odoo.addons.mrp_account.tests.common import TestBomPriceCommon
-from odoo.tests import Form
+from odoo import fields
+from odoo.tests import Form, tagged
 from odoo.tests.common import new_test_user
 
 PRICE = 718.75 - 100  # total price minus glass
 
 
 class TestMrpValuationStandard(TestBomPriceCommon):
+    _test_user_groups = (
+        'mrp.group_mrp_user',  # subject: manufacturing orders drive the valuation layers (implies stock.group_stock_user)
+        'stock.group_stock_manager',  # setup: _make_in_move sets value_manual -> inverse creates product.value (stock.group_stock_manager)
+        'account.group_account_invoice',  # subject: stock valuation journal entries asserted by the tests
+        'product.group_product_manager',  # subject: action_bom_cost recomputes product standard_price (test_kit_product_valuation)
+    )
+
+    _test_user_name = 'Test User'
+
     def _get_production_cost_move_lines(self):
         return self.env['account.move.line'].search([
             ('account_id', '=', self.account_production.id),
         ], order='date, id')
 
     def test_mo_journal_entry_ref_matches_mo_name(self):
-        self.glass.categ_id = self.category_fifo_auto
+        self.glass.sudo().categ_id = self.category_fifo_auto  # setup master-data
 
         self._make_in_move(self.glass, 1, 10)
         mo = self._create_mo(self.bom_1, 1)
@@ -29,8 +38,8 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(set(account_moves.mapped('ref')), {mo.name})
 
     def test_fifo_fifo_1(self):
-        self.glass.categ_id = self.category_fifo
-        self.dining_table.categ_id = self.category_fifo
+        self.glass.sudo().categ_id = self.category_fifo  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_fifo  # setup master-data
 
         self._make_in_move(self.glass, 1, 10)
         self._make_in_move(self.glass, 1, 20)
@@ -48,7 +57,7 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(self.dining_table.total_value, 2 * PRICE + 10 + 20)
 
     def test_fifo_fifo_2(self):
-        self.glass.categ_id = self.category_fifo
+        self.glass.sudo().categ_id = self.category_fifo  # setup master-data
 
         self._make_in_move(self.glass, 1, 10)
         self._make_in_move(self.glass, 1, 20)
@@ -60,11 +69,37 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self._make_out_move(self.dining_table, 1)
         self.assertEqual(self.dining_table.total_value, (2 * PRICE + 10 + 20) / 2)
 
+    def _assert_incoming_component_value_update_revalues_finished_product(self, category):
+        self.glass.sudo().categ_id = category  # setup master-data
+        self.dining_table.sudo().categ_id = category  # setup master-data
+
+        incoming_move = self._make_in_move(self.glass, 1, 10)
+        mo = self._create_mo(self.bom_1, 1)
+        self._produce(mo)
+        mo.button_mark_done()
+
+        component_move = mo.move_raw_ids.filtered(lambda move: move.product_id == self.glass)
+        finished_move = mo.move_finished_ids.filtered(lambda move: move.product_id == self.dining_table)
+        self.assertEqual(component_move.value, -10)
+        self.assertEqual(finished_move.value, PRICE + 10)
+
+        incoming_move.value_manual = 100
+
+        self.assertEqual(component_move.value, -100)
+        self.assertEqual(finished_move.value, PRICE + 100)
+        self.assertEqual(self.dining_table.total_value, PRICE + 100)
+
+    def test_avco_incoming_component_value_update_revalues_finished_product(self):
+        self._assert_incoming_component_value_update_revalues_finished_product(self.category_avco)
+
+    def test_fifo_incoming_component_value_update_revalues_finished_product(self):
+        self._assert_incoming_component_value_update_revalues_finished_product(self.category_fifo)
+
     def test_fifo_unbuild(self):
         """ This test creates an MO and then creates an unbuild
         orders and checks the stock valuation.
         """
-        self.glass.categ_id = self.category_fifo
+        self.glass.sudo().categ_id = self.category_fifo  # setup master-data
         # ---------------------------------------------------
         #       MO
         # ---------------------------------------------------
@@ -83,7 +118,7 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(self.glass.total_value, 30)
 
     def test_fifo_produce_deliver_return_unbuild(self):
-        self.glass.categ_id = self.category_fifo
+        self.glass.sudo().categ_id = self.category_fifo  # setup master-data
         self._make_in_move(self.glass, 1, 10)
 
         mo = self._create_mo(self.bom_1, 1)
@@ -100,14 +135,14 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         moves = self.env['stock.move'].search([('product_id', '=', self.dining_table.id)])
         self.assertRecordValues(moves, [
             {'value': PRICE + 10, 'quantity': 1.0, 'is_in': True, 'remaining_value': 0.0, 'remaining_qty': 0.0},
-            {'value': PRICE + 10, 'quantity': 1.0, 'is_in': False, 'remaining_value': 0.0, 'remaining_qty': 0.0},
+            {'value': -(PRICE + 10), 'quantity': 1.0, 'is_in': False, 'remaining_value': 0.0, 'remaining_qty': 0.0},
             {'value': PRICE + 10, 'quantity': 1.0, 'is_in': True, 'remaining_value': 0.0, 'remaining_qty': 0.0},
-            {'value': PRICE + 10, 'quantity': 1.0, 'is_in': False, 'remaining_value': 0.0, 'remaining_qty': 0.0},
+            {'value': -(PRICE + 10), 'quantity': 1.0, 'is_in': False, 'remaining_value': 0.0, 'remaining_qty': 0.0},
         ])
 
     def test_fifo_avco_1(self):
-        self.glass.categ_id = self.category_fifo
-        self.dining_table.categ_id = self.category_avco
+        self.glass.sudo().categ_id = self.category_fifo  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_avco  # setup master-data
 
         self._make_in_move(self.glass, 1, 10)
         self._make_in_move(self.glass, 1, 20)
@@ -126,9 +161,9 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(self.dining_table.total_value, 2 * PRICE + 10 + 20)
 
     def test_fifo_avco_2(self):
-        self.glass.categ_id = self.category_fifo
-        self.dining_table.categ_id = self.category_avco
-        self.dining_table.categ_id = self.category_fifo
+        self.glass.sudo().categ_id = self.category_fifo  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_avco  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_fifo  # setup master-data
 
         self._make_in_move(self.glass, 1, 10)
         self._make_in_move(self.glass, 1, 20)
@@ -141,26 +176,28 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(self.dining_table.total_value, (PRICE * 2 + 10 + 20) / 2)
 
     def test_fifo_std_1(self):
-        self.glass.categ_id = self.category_fifo
-        self.dining_table.categ_id = self.category_standard
-        self.dining_table.standard_price = 8.8
+        self.glass.sudo().categ_id = self.category_fifo  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_standard  # setup master-data
+        self.dining_table.sudo().standard_price = 8.8  # setup master-data
 
         self._make_in_move(self.glass, 1, 10)
         self._make_in_move(self.glass, 1, 20)
         mo = self._create_mo(self.bom_1, 2)
         self._produce(mo, 1)
-        mo._post_inventory()
+        action = mo.button_mark_done()
+        backorder = Form(self.env['mrp.production.backorder'].with_context(**action['context']))
+        backorder.save().action_backorder()
+        mo = mo.production_group_id.production_ids[-1]
         self.assertEqual(self.glass.total_value, 20)
         self.assertEqual(self.dining_table.total_value, 8.8)
-        self._produce(mo)
         mo.button_mark_done()
         self.assertEqual(self.glass.total_value, 0)
         self.assertEqual(self.dining_table.total_value, 8.8 * 2)
 
     def test_fifo_std_2(self):
-        self.glass.categ_id = self.category_fifo
-        self.dining_table.categ_id = self.category_standard
-        self.dining_table.standard_price = 8.8
+        self.glass.sudo().categ_id = self.category_fifo  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_standard  # setup master-data
+        self.dining_table.sudo().standard_price = 8.8  # setup master-data
 
         self._make_in_move(self.glass, 1, 10)
         self._make_in_move(self.glass, 1, 20)
@@ -173,14 +210,17 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(self.dining_table.total_value, 8.8)
 
     def test_std_avco_1(self):
-        self.glass.categ_id = self.category_standard
-        self.dining_table.categ_id = self.category_avco
+        self.glass.sudo().categ_id = self.category_standard  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_avco  # setup master-data
 
         self._make_in_move(self.glass, 1)
         self._make_in_move(self.glass, 1)
         mo = self._create_mo(self.bom_1, 2)
         self._produce(mo, 1)
-        mo._post_inventory()
+        action = mo.button_mark_done()
+        backorder = Form(self.env['mrp.production.backorder'].with_context(**action['context']))
+        backorder.save().action_backorder()
+        mo = mo.production_group_id.production_ids[-1]
         self.assertEqual(self.glass.total_value, 100)
         self.assertEqual(self.dining_table.total_value, PRICE + 100)
         self._produce(mo)
@@ -189,8 +229,8 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(self.dining_table.total_value, 2 * (PRICE + 100))
 
     def test_std_avco_2(self):
-        self.glass.categ_id = self.category_standard
-        self.dining_table.categ_id = self.category_avco
+        self.glass.sudo().categ_id = self.category_standard  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_avco  # setup master-data
 
         self._make_in_move(self.glass, 1)
         self._make_in_move(self.glass, 1)
@@ -205,7 +245,7 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(self.dining_table.total_value, PRICE + 100)
 
         # Update component price
-        self.glass.standard_price = 0
+        self.glass.sudo().standard_price = 0  # setup master-data
 
         self._make_in_move(self.glass, 3)
         mo = self._create_mo(self.bom_1, 3)
@@ -215,14 +255,17 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(self.dining_table.standard_price, (4 * PRICE + 100) / 4)
 
     def test_std_std_1(self):
-        self.glass.categ_id = self.category_standard
-        self.dining_table.categ_id = self.category_standard
+        self.glass.sudo().categ_id = self.category_standard  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_standard  # setup master-data
 
         self._make_in_move(self.glass, 1)
         self._make_in_move(self.glass, 1)
         mo = self._create_mo(self.bom_1, 2)
         self._produce(mo, 1)
-        mo._post_inventory()
+        action = mo.button_mark_done()
+        backorder = Form(self.env['mrp.production.backorder'].with_context(**action['context']))
+        backorder.save().action_backorder()
+        mo = mo.production_group_id.production_ids[-1]
         self.assertEqual(self.glass.total_value, 100)
         self.assertEqual(self.dining_table.total_value, 1000)
         self._produce(mo)
@@ -231,8 +274,8 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(self.dining_table.total_value, 2000)
 
     def test_std_std_2(self):
-        self.glass.categ_id = self.category_standard
-        self.dining_table.categ_id = self.category_standard
+        self.glass.sudo().categ_id = self.category_standard  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_standard  # setup master-data
 
         self._make_in_move(self.glass, 1)
         self._make_in_move(self.glass, 1)
@@ -245,14 +288,17 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(self.dining_table.total_value, 1000)
 
     def test_avco_avco_1(self):
-        self.glass.categ_id = self.category_avco
-        self.dining_table.categ_id = self.category_avco
+        self.glass.sudo().categ_id = self.category_avco  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_avco  # setup master-data
 
         self._make_in_move(self.glass, 1, 10)
         self._make_in_move(self.glass, 1, 20)
         mo = self._create_mo(self.bom_1, 2)
         self._produce(mo, 1)
-        mo._post_inventory()
+        action = mo.button_mark_done()
+        backorder = Form(self.env['mrp.production.backorder'].with_context(**action['context']))
+        backorder.save().action_backorder()
+        mo = mo.production_group_id.production_ids[-1]
         self.assertEqual(self.glass.total_value, 15)
         self.assertEqual(self.dining_table.total_value, PRICE + 15)
         self._produce(mo)
@@ -261,8 +307,8 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         self.assertEqual(self.dining_table.total_value, 2 * PRICE + 30)
 
     def test_avco_avco_2(self):
-        self.glass.categ_id = self.category_avco
-        self.dining_table.categ_id = self.category_avco
+        self.glass.sudo().categ_id = self.category_avco  # setup master-data
+        self.dining_table.sudo().categ_id = self.category_avco  # setup master-data
 
         self._make_in_move(self.glass, 1, 10)
         self._make_in_move(self.glass, 1, 20)
@@ -280,8 +326,8 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         validate it. From client side, such a behaviour is possible with
         the Barcode app.
         """
-        self.plywood_sheet.qty_available = 0
-        self.plywood_sheet.categ_id = self.category_avco
+        self.plywood_sheet.sudo().qty_available = 0  # setup master-data
+        self.plywood_sheet.sudo().categ_id = self.category_avco  # setup master-data
 
         receipt = self.env['stock.picking'].create({
             'location_id': self.customer_location.id,
@@ -291,7 +337,7 @@ class TestMrpValuationStandard(TestBomPriceCommon):
             'move_line_ids': [(0, 0, {
                 'product_id': self.table_head.id,
                 'quantity': 12,
-                'product_uom_id': self.table_head.uom_id.id,
+                'uom_id': self.table_head.uom_id.id,
                 'location_id': self.customer_location.id,
                 'location_dest_id': self.stock_location.id,
             })],
@@ -306,7 +352,7 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         """Create move into/out of a production location, test we create account
         entries with the Production Cost account.
         """
-        self.dining_table.categ_id.property_cost_method = 'standard'
+        self.dining_table.categ_id.sudo().property_cost_method = 'standard'  # setup master-data
 
         # move into production location
         self._make_out_move(self.dining_table, 1, location_dest_id=self.prod_location.id)
@@ -346,12 +392,12 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         in the quantity history report with total value of zero.
         """
         self.assertRecordValues(self.table_head, [{'standard_price': 300, 'total_value': 0}])
-        old_stock_value = sum(self.env.company.stock_value().values())
+        self.assertTrue(self.table_head not in self.env.company._get_accounts_by_product())
+        old_stock_value = sum(self.env.company.get_inventory_value().values())
         self.table_head.action_bom_cost()
         self.assertRecordValues(self.table_head, [{'standard_price': 468.75, 'total_value': 0}])
-        self.assertEqual(old_stock_value, sum(self.env.company.stock_value().values()))
-        action = self.env['stock.quantity.history'].create({}).open_at_date()
-        products = self.env[action['res_model']].with_context(action['context']).search(action['domain'])
+        self.assertEqual(old_stock_value, sum(self.env.company.get_inventory_value().values()))
+        products = self.table_head.with_context(to_date=fields.Datetime.now())
         self.assertRecordValues(
             products & self.table_head,
             [{
@@ -389,7 +435,7 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         super_product.with_company(company_1).standard_price = 50
         self.env['stock.quant']._update_available_quantity(super_product, self.stock_location, 10)
 
-        self.env['mrp.bom'].with_company(company_2).create({
+        self.env['mrp.bom'].sudo().with_company(company_2).create({
             'product_id': super_product.id,
             'product_tmpl_id': super_product.product_tmpl_id.id,
             'product_qty': 1.0,
@@ -424,7 +470,7 @@ class TestMrpValuationStandard(TestBomPriceCommon):
                 'categ_id': self.category_avco.id,
             },
         ])
-        bom = self.env['mrp.bom'].create({
+        bom = self.env['mrp.bom'].sudo().create({
             'product_id': final_product.id,
             'product_tmpl_id': final_product.product_tmpl_id.id,
             'product_qty': 1.0,
@@ -451,100 +497,3 @@ class TestMrpValuationStandard(TestBomPriceCommon):
         mo.button_mark_done()
         self.assertEqual(mo.state, 'done')
         self.assertEqual(final_product.with_company(self.branch).standard_price, 20.0)
-
-    def test_kit_variation_lines_specific_valuation(self):
-        """ Check that when
-        - the kit is the only product linked to a valuation account
-        - its components are linked to another valuation account,
-        - we buy the comp, receive and bill
-        - we sell the kit, deliver and invoice
-        -> the variation lines are correct and the entry generated balances everything out
-        """
-        variation_account = self.category_avco_auto.account_stock_variation_id
-        account_kit = self.env['account.account'].create({
-            'name': 'Stock Valuation kit',
-            'code': 'VAL.Kit',
-            'account_type': 'asset_current',
-            'account_stock_variation_id': variation_account.id,
-        })
-        self.category_avco_auto_kit = self.category_avco.copy({
-            'name': 'Avco Auto Kit',
-            'property_valuation': 'real_time',
-            'property_stock_valuation_account_id': account_kit.id
-        })
-        final_product, component = self.env['product.product'].create([
-            {'name': 'Final product', 'is_storable': True, 'categ_id': self.category_avco_auto_kit.id},
-            {'name': 'Component', 'is_storable': True, 'categ_id': self.category_avco_auto.id},
-        ])
-        self.env['mrp.bom'].create({
-            'product_id': final_product.id,
-            'product_tmpl_id': final_product.product_tmpl_id.id,
-            'product_qty': 1.0,
-            'type': 'phantom',
-            'bom_line_ids': [Command.create({'product_id': component.id, 'product_qty': 1})],
-        })
-        closing_move = self.env['account.move'].browse(self.env.company.action_close_stock_valuation()['res_id'])
-        closing_move._post()
-        self.assertEqual(self.env['stock_account.stock.valuation.report'].get_report_values()['data']['stock_variation']['value'], 0)
-
-        # Receive 1 component at 10 and bill: this debits 10 to stock valuation and adds 10 to inventory value
-        self._make_in_move(component, 1, 10)
-        final_product.action_bom_cost()
-        bill_comp = self.env['account.move'].create({
-            'move_type': 'in_invoice',
-            'partner_id': self.partner.id,
-            'invoice_date': fields.Date.today(),
-            'invoice_line_ids': [Command.create({
-                'product_id': component.id,
-                'quantity': 1,
-                'price_unit': 10,
-            })],
-        })
-        bill_comp.action_post()
-
-        # Deliver one kit (move will be for the component) and invoice 1 kit: this credits 10 from 'stock valuation kit' and removes 10 from inventory value
-        type_out = self.env['stock.picking.type'].search([
-            ('company_id', '=', self.env.company.id),
-            ('name', '=', 'Delivery Orders')])
-        delivery = self.env['stock.picking'].create({
-            'picking_type_id': type_out.id,
-            'move_ids': [Command.create({
-                'product_id': final_product.id,
-                'product_uom_qty': 1.0,
-            })],
-        })
-        delivery.action_confirm()
-        delivery.move_ids.move_line_ids.quantity = 1
-        delivery.button_validate()
-        invoice_kit = self.env['account.move'].create({
-            'move_type': 'out_invoice',
-            'partner_id': self.partner.id,
-            'invoice_date': fields.Date.today(),
-            'invoice_line_ids': [Command.create({
-                'product_id': final_product.id,
-                'quantity': 1,
-                'price_unit': 10,
-            })],
-        })
-        invoice_kit.action_post()
-
-        # No quantities are left in stock and everything is billed/invoiced so initial balance and ending stock should be the same.
-        # Particularity here is that bill debited 'stock valuation' whereas invoice credited 'stock valuation kit'.
-        # So, variation lines should just be there to compensate this difference.
-        val_data = self.env['stock_account.stock.valuation.report'].get_report_values()['data']
-        self.assertEqual((val_data['initial_balance']['value']), val_data['ending_stock']['value'])
-        variation_lines = sorted(val_data['stock_variation']['lines'], key=lambda l: (l['credit'], l['debit']))
-        self.assertListEqual(variation_lines, [
-            {'account_id': account_kit.id,                                                    'debit': 10.0, 'credit': 0.0},
-            {'account_id': self.category_avco_auto.property_stock_valuation_account_id.id,    'debit': 0.0, 'credit': 10.0},
-            {'account_id': variation_account.id,                                              'debit': 10.0, 'credit': 10.0},
-        ])
-        # We also check that closing lines generated are correct
-        closing_move_2 = self.env['account.move'].browse(self.env.company.action_close_stock_valuation()['res_id'])
-        closing_lines = closing_move_2.line_ids.sorted(lambda l: (l.credit, l.account_id.id == variation_account.id))
-        self.assertRecordValues(closing_lines, [
-            {'account_id': account_kit.id,                                                    'debit': 10.0, 'credit': 0.0},
-            {'account_id': variation_account.id,                                              'debit': 10.0, 'credit': 0.0},
-            {'account_id': self.category_avco_auto.property_stock_valuation_account_id.id,    'debit': 0.0, 'credit': 10.0},
-            {'account_id': variation_account.id,                                              'debit': 0.0, 'credit': 10.0},
-        ])

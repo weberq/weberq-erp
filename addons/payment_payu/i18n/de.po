@@ -5,25 +5,35 @@
 # "Larissa Manderfeld (lman)" <lman@odoo.com>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.5a1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-10 17:38+0000\n"
-"PO-Revision-Date: 2026-08-10 15:10+0000\n"
+"POT-Creation-Date: 2026-08-28 17:44+0000\n"
+"PO-Revision-Date: 2026-09-11 07:50+0000\n"
 "Last-Translator: \"Larissa Manderfeld (lman)\" <lman@odoo.com>\n"
-"Language-Team: German <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: German <https://translate.odoo.com/projects/odoo-master/"
 "payment_payu/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: payment_payu
 #. odoo-python
 #: code:addons/payment_payu/models/payment_transaction.py:0
 msgid "%(code)s: %(explanation)s"
 msgstr "%(code)s: %(explanation)s"
+
+#. module: payment_payu
+#: model:ir.module.module,summary:base.module_payment_payu
+msgid "A payment provider covering India."
+msgstr "Ein Zahlungsanbieter, der Indien abdeckt."
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_amex
+msgid "American Express"
+msgstr "American Express"
 
 #. module: payment_payu
 #: model_terms:ir.ui.view,arch_db:payment_payu.authorization_error
@@ -45,6 +55,11 @@ msgstr "Sind Sie sicher, dass Sie die Verbindung trennen möchten?"
 #: model_terms:ir.ui.view,arch_db:payment_payu.authorization_error
 msgid "Back to the PayU provider"
 msgstr "Zurück zum PayU-Anbieter"
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_card
+msgid "Card"
+msgstr "Karte"
 
 #. module: payment_payu
 #: model:ir.model.fields,field_description:payment_payu.field_payment_provider__code
@@ -74,6 +89,11 @@ msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_emi_india
+msgid "EMI"
+msgstr "EMI"
+
+#. module: payment_payu
 #: model:ir.model.fields,field_description:payment_payu.field_payment_provider__id
 #: model:ir.model.fields,field_description:payment_payu.field_payment_transaction__id
 msgid "ID"
@@ -85,15 +105,30 @@ msgid "Key ID"
 msgstr "Schlüssel-ID"
 
 #. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_mastercard
+msgid "MasterCard"
+msgstr "MasterCard"
+
+#. module: payment_payu
 #: model_terms:ir.ui.view,arch_db:payment_payu.payment_provider_form
 msgid "Merchant Salt"
 msgstr "Händler-Sicherheitsschlüssel"
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_netbanking
+msgid "Netbanking"
+msgstr "Netbanking"
 
 #. module: payment_payu
 #. odoo-python
 #: code:addons/payment_payu/models/payment_provider.py:0
 msgid "Other Payment Providers"
 msgstr "Andere Zahlungsanbieter"
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_paylater_india
+msgid "Pay Later"
+msgstr "Später bezahlen"
 
 #. module: payment_payu
 #: model:ir.model.fields.selection,name:payment_payu.selection__payment_provider__code__payu
@@ -135,9 +170,19 @@ msgid "Payment Provider"
 msgstr "Zahlungsanbieter"
 
 #. module: payment_payu
+#: model:ir.module.module,shortdesc:base.module_payment_payu
+msgid "Payment Provider: PayU"
+msgstr "Zahlungsanbieter: PayU"
+
+#. module: payment_payu
 #: model:ir.model,name:payment_payu.model_payment_transaction
 msgid "Payment Transaction"
 msgstr "Zahlungstransaktion"
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_rupay
+msgid "RuPay"
+msgstr "RuPay"
 
 #. module: payment_payu
 #: model:ir.model.fields,help:payment_payu.field_payment_provider__code
@@ -145,7 +190,22 @@ msgid "The technical code of this payment provider."
 msgstr "Der technische Code dieses Zahlungsanbieters."
 
 #. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_upi
+msgid "UPI"
+msgstr "UPI"
+
+#. module: payment_payu
 #. odoo-python
 #: code:addons/payment_payu/models/payment_transaction.py:0
 msgid "Unknown status code: %s"
 msgstr "Unbekannter Statuscode: %s"
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_visa
+msgid "VISA"
+msgstr "VISA"
+
+#. module: payment_payu
+#: model:payment.method,name:payment_payu.payment_method_wallets_india
+msgid "Wallets India"
+msgstr "Wallets India"

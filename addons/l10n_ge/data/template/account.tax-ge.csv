@@ -27,7 +27,7 @@
 "","","","","","","","","","","","ge_account_333002","","tax","invoice","7(T)","100","",""
 "","","","","","","","","","","","","","base","refund","7(B)","100","",""
 "","","","","","","","","","","","ge_account_333002","","tax","refund","7(T)","100","",""
-"ge_vat_sale_18_repairs","18% R","sale","18","18% Repairs of Own Fixed Assets","","","ge_fiscal_position_vat","Carrying out repairs of own fixed assets (buildings/structures), where the right to input VAT deduction would be fully or partially restricted if such services were acquired from a third party","საკუთარი ძირითადი საშუალების (შენობის/ნაგებობის) რემონტის განხორციელება, თუ ამ მომსახურების სხვა პირისგან შეძენის შემთხვევაში სრულად ან ნაწილობრივ შეიზღუდებოდა ჩათვლის","ge_tax_group_vat_18","","percent","base","invoice","8(B)","100","","on_invoice"
+"ge_vat_sale_18_repairs","18% R","sale","18","18% Repairs of Own Fixed Assets","","","ge_fiscal_position_vat","Carrying out repairs of own fixed assets (buildings/structures), where the right to input VAT deduction would be fully or partially restricted if such services were acquired from a third party","საკუთარი ძირითადი საშუალების (შენობის/ნაგებობის) რემონტის განხორციელება, თუ ამ მომსახურების სხვა პირისგან შეძენის შემთხვევაში სრულად ან ნაწილობრივ შეიზღუდებოდა ჩათვლის უფლება","ge_tax_group_vat_18","","percent","base","invoice","8(B)","100","","on_invoice"
 "","","","","","","","","","","","ge_account_333002","","tax","invoice","8(T)","100","",""
 "","","","","","","","","","","","","","base","refund","8(B)","100","",""
 "","","","","","","","","","","","ge_account_333002","","tax","refund","8(T)","100","",""

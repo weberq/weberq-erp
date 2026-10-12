@@ -12,7 +12,7 @@ class StockPicking(models.Model):
 
     @api.constrains("date_done")
     def _check_backdate_allowed(self):
-        if self.env['ir.config_parameter'].sudo().get_param('stock_account.skip_lock_date_check'):
+        if self.env['ir.config_parameter'].sudo().get_bool('stock_account.skip_lock_date_check'):
             return
         for picking in self:
             if picking._is_date_in_lock_period():
@@ -30,3 +30,8 @@ class StockPicking(models.Model):
         if self.date_done:
             lock += self.company_id._get_lock_date_violations(self.date_done.date(), fiscalyear=True, sale=False, purchase=False, tax=False, hard=True)
         return bool(lock)
+
+    def _prepare_return_move_default_values(self, move_id):
+        vals = super()._prepare_return_move_default_values(move_id)
+        vals['to_refund'] = move_id.to_refund
+        return vals

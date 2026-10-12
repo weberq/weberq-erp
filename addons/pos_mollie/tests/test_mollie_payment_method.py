@@ -15,7 +15,8 @@ class TestMolliePaymentMethod(TestPointOfSaleHttpCommon):
             "payment_method_ids": [
                 (0, 0, {
                     "name": "Mollie",
-                    "use_payment_terminal": "mollie",
+                    "type": "bank",
+                    "payment_provider": "mollie",
                     "mollie_terminal_id": "MOLLIE123",
                     "mollie_payment_provider_id": payment_provider.id,
                     "payment_method_type": "terminal",
@@ -23,7 +24,7 @@ class TestMolliePaymentMethod(TestPointOfSaleHttpCommon):
                 }),
             ],
         })
-        cls.mollie_payment_method = cls.main_pos_config.payment_method_ids.filtered(lambda pm: pm.use_payment_terminal == "mollie")
+        cls.mollie_payment_method = cls.main_pos_config.payment_method_ids.filtered(lambda pm: pm.payment_provider == "mollie")
 
     def test_payment(self):
         with patch(

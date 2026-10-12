@@ -147,19 +147,27 @@ class AccountEdiUBLPint(models.AbstractModel):
     def _ubl_add_party_endpoint_id_node(self, vals):
         super()._ubl_add_party_endpoint_id_node(vals)
         partner = vals['party_vals']['partner']
-        commercial_partner = partner.commercial_partner_id
-        if commercial_partner.peppol_endpoint and commercial_partner.peppol_eas:
-            vals['party_node']['cbc:EndpointID']['_text'] = commercial_partner.peppol_endpoint
-            vals['party_node']['cbc:EndpointID']['schemeID'] = commercial_partner.peppol_eas
+        identifier_vals = partner._get_preferred_routing_identifier_vals()
+        if identifier_vals:
+            normalized_value = self.env['res.partner']._validate_identifier_by_scheme(identifier_vals['scheme'], identifier_vals['value']).get('value')
+            vals['party_node']['cbc:EndpointID']['_text'] = normalized_value
+            vals['party_node']['cbc:EndpointID']['schemeID'] = identifier_vals['scheme']
 
     def _ubl_add_party_identification_nodes(self, vals):
         super()._ubl_add_party_identification_nodes(vals)
-        self._ubl_add_party_identification_nodes_iso_6523_icd(vals)
 
         nodes = vals['party_node']['cac:PartyIdentification']
         partner = vals['party_vals']['partner']
         commercial_partner = partner.commercial_partner_id
         country_code = commercial_partner.country_code
+
+        if country_code == 'BE' and (be_en := commercial_partner._get_additional_identifier('BE_EN')):
+            nodes.append({
+                'cbc:ID': {
+                    '_text': be_en,
+                    'schemeID': '0208',
+                },
+            })
 
         if not nodes and commercial_partner.ref and country_code != 'DK':  # DK-R-013
             nodes.append({
@@ -180,12 +188,12 @@ class AccountEdiUBLPint(models.AbstractModel):
         partner = vals['party_vals']['partner']
         commercial_partner = partner.commercial_partner_id
         nodes = vals['party_node']['cac:PartyTaxScheme']
-        if not nodes and commercial_partner.peppol_endpoint and commercial_partner.peppol_eas:
-            # Fallback: TaxScheme based on partner's EAS/Endpoint (removed with multi-id)
+        if not nodes and commercial_partner.routing_scheme and commercial_partner.routing_endpoint:
+            # TaxScheme based on partner's Scheme/Endpoint. (removed with multi-id)
             nodes.append({
-                'cbc:CompanyID': {'_text': commercial_partner.peppol_endpoint},
+                'cbc:CompanyID': {'_text': commercial_partner.routing_endpoint},
                 'cac:TaxScheme': {
-                    'cbc:ID': {'_text': commercial_partner.peppol_eas},
+                    'cbc:ID': {'_text': commercial_partner.routing_scheme},
                 },
             })
 
@@ -284,6 +292,9 @@ class AccountEdiUBLPint(models.AbstractModel):
         # produce discrepancies between the tax's base amount and the sum of base amount of lines.
         node = super()._ubl_get_tax_subtotal_node(vals, tax_subtotal)
 
+        # Not allowed by PINT.
+        node['cbc:Percent']['_text'] = None
+
         # [BR-S-08]/[BR-E-08]/[BR-Z-08]/... cac:TaxSubtotal -> cbc:TaxableAmount should be
         # computed based on the cbc:LineExtensionAmount of each line linked to the tax.
         # This applies to all tax category codes (S, E, Z, AE, etc.) as each has a
@@ -328,9 +339,6 @@ class AccountEdiUBLPint(models.AbstractModel):
                 '_text': FloatFmt(sum(corresponding_line_node_amounts), min_dp=currency.decimal_places),
                 'currencyID': currency.name,
             }
-
-        # Percent is not reported in TaxSubtotal
-        node['cbc:Percent']['_text'] = None
 
         return node
 
@@ -524,8 +532,7 @@ class AccountEdiUBLPint(models.AbstractModel):
 
             # [IBR-022] - Each Invoice line (ibg-25) MUST have an invoiced quantity (ibt-129).
             qty_node = line['cbc:InvoicedQuantity'] if is_invoice else line.get('cbc:CreditedQuantity', {})
-            qty_text = qty_node.get('_text')
-            if qty_text is None or qty_text is False:
+            if qty_node.get('_text') in [None, False]:
                 constraints[f'ibr_022_line_qty_required_{line_idx}'] = self.env._(
                     "Line %s: Invoiced quantity is missing [IBR-022].", line_idx
                 )
@@ -544,7 +551,7 @@ class AccountEdiUBLPint(models.AbstractModel):
 
             line_item = line['cac:Item']
             # [IBR-025] - Each Invoice line (ibg-25) MUST contain the Item name (ibt-153).
-            if not (line_item.get('cbc:Name') or {}).get('_text'):
+            if not line_item['cbc:Name']['_text']:
                 constraints[f'ibr_025_item_name_required_{line_idx}'] = self.env._(
                     "Line %s: Item name is missing [IBR-025].", line_idx
                 )
@@ -612,10 +619,10 @@ class AccountEdiUBLPint(models.AbstractModel):
 
         customer_values = collected_values['customer_values']
         if (
-                (peppol_eas := customer_values.get('peppol_eas'))
-                and (peppol_endpoint := customer_values.get('peppol_endpoint'))
+                (routing_scheme := customer_values.get('routing_scheme'))
+                and (routing_endpoint := customer_values.get('routing_endpoint'))
         ):
-            partner_create_values['peppol_eas'] = peppol_eas
-            partner_create_values['peppol_endpoint'] = peppol_endpoint
+            partner_create_values['routing_scheme'] = routing_scheme
+            partner_create_values['routing_endpoint'] = routing_endpoint
 
         return partner_create_values

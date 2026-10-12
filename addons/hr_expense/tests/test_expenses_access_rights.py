@@ -1,6 +1,5 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import http
 from odoo.exceptions import AccessError, UserError
 from odoo.tests import HttpCase, new_test_user, tagged
 from odoo.tools import mute_logger
@@ -10,6 +9,8 @@ from odoo.addons.hr_expense.tests.common import TestExpenseCommon
 
 @tagged('-at_install', 'post_install')
 class TestExpensesAccessRights(TestExpenseCommon, HttpCase):
+
+    _test_user_groups = None  # FIXME list needed groups
 
     def test_expense_access_rights(self):
         """ The expense employee can't be able to create an expense for someone else. """
@@ -142,7 +143,7 @@ class TestExpensesAccessRights(TestExpenseCommon, HttpCase):
         user_response = self.url_open(
             "/web/binary/upload_attachment",
             {
-                'csrf_token': http.Request.csrf_token(self),
+                'csrf_token': self.csrf_token(),
                 'id': expense.id,
                 'model': 'hr.expense',
             },
@@ -162,7 +163,7 @@ class TestExpensesAccessRights(TestExpenseCommon, HttpCase):
             response = self.url_open(
                 "/web/binary/upload_attachment",
                 {
-                    'csrf_token': http.Request.csrf_token(self),
+                    'csrf_token': self.csrf_token(),
                     'id': expense.id,
                     'model': 'hr.expense',
                 },
@@ -179,7 +180,7 @@ class TestExpensesAccessRights(TestExpenseCommon, HttpCase):
         manager_response = self.url_open(
             "/web/binary/upload_attachment",
             {
-                'csrf_token': http.Request.csrf_token(self),
+                'csrf_token': self.csrf_token(),
                 'id': expense.id,
                 'model': 'hr.expense',
             },
@@ -199,7 +200,7 @@ class TestExpensesAccessRights(TestExpenseCommon, HttpCase):
         admin_response = self.url_open(
             "/web/binary/upload_attachment",
             {
-                'csrf_token': http.Request.csrf_token(self),
+                'csrf_token': self.csrf_token(),
                 'id': expense.id,
                 'model': 'hr.expense',
             },
@@ -224,7 +225,7 @@ class TestExpensesAccessRights(TestExpenseCommon, HttpCase):
             user_response_after_approval = self.url_open(
                 "/web/binary/upload_attachment",
                 {
-                    'csrf_token': http.Request.csrf_token(self),
+                    'csrf_token': self.csrf_token(),
                     'id': expense.id,
                     'model': 'hr.expense',
                 },
@@ -241,7 +242,7 @@ class TestExpensesAccessRights(TestExpenseCommon, HttpCase):
             manager_response_after_approval = self.url_open(
                 "/web/binary/upload_attachment",
                 {
-                    'csrf_token': http.Request.csrf_token(self),
+                    'csrf_token': self.csrf_token(),
                     'id': expense.id,
                     'model': 'hr.expense',
                 },
@@ -256,7 +257,7 @@ class TestExpensesAccessRights(TestExpenseCommon, HttpCase):
             admin_response_after_approval = self.url_open(
                 "/web/binary/upload_attachment",
                 {
-                    'csrf_token': http.Request.csrf_token(self),
+                    'csrf_token': self.csrf_token(),
                     'id': expense.id,
                     'model': 'hr.expense',
                 },

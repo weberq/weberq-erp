@@ -8,51 +8,68 @@
 # Igor Sheludko <igor.sheludko@gmail.com>, 2023
 # Martin Trigaux, 2023
 # Maria Boyadjieva <marabo2000@gmail.com>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-05 19:29+0000\n"
-"PO-Revision-Date: 2026-08-02 16:34+0000\n"
-"Last-Translator: \"Tiffany Chang (tic)\" <tic@odoo.com>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 15:15+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "mrp_account/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: mrp_account
+#: model:ir.module.module,description:base.module_mrp_account
+msgid ""
+"\n"
+"Analytic Accounting in MRP\n"
+"==========================\n"
+"\n"
+"* Cost structure report\n"
+"\n"
+"Also, allows to compute the cost of the product based on its BoM, using the "
+"costs of its components and work center operations.\n"
+"It adds a button on the product itself but also an action in the list view "
+"of the products.\n"
+"If the automated inventory valuation is active, the necessary accounting "
+"entries will be created.\n"
+"\n"
+msgstr ""
 
 #. module: mrp_account
 #. odoo-python
 #: code:addons/mrp_account/models/stock_move.py:0
 msgid "%(value)s for %(quantity)s %(unit)s from %(production)s"
-msgstr "%(value)s за %(quantity)s %(unit)s от %(production)s"
+msgstr ""
 
 #. module: mrp_account
 #. odoo-python
 #: code:addons/mrp_account/models/mrp_production.py:0
 msgid "%s - Labour"
-msgstr "%s - Труд"
+msgstr ""
 
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.view_move_form_inherit_mrp_account
 msgid "<span class=\"o_stat_text\">Manufacturing</span>"
-msgstr "<span class=\"o_stat_text\">Производство</span>"
+msgstr ""
 
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.mrp_production_form_view_inherited
 msgid "<span class=\"o_stat_text\">WIP</span>"
-msgstr "<span class=\"o_stat_text\">Незавършено производство</span>"
+msgstr ""
 
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.report_wip
 msgid "<span style=\"margin-right: 15px;\">Total</span>"
-msgstr "<span style=\"margin-right: 15px;\">Общо</span>"
+msgstr ""
 
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.report_wip
@@ -67,7 +84,7 @@ msgstr "<span>Дата</span>"
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.report_wip
 msgid "<span>Product</span>"
-msgstr "<span>Продукт</span>"
+msgstr ""
 
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.report_wip
@@ -77,17 +94,17 @@ msgstr "<span>Количество</span>"
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.report_wip
 msgid "<span>Ref.</span>"
-msgstr "<span>Реф.</span>"
+msgstr ""
 
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.report_wip
 msgid "<span>Unit of Measure</span>"
-msgstr "<span>Мерна единица</span>"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.constraint,message:mrp_account.constraint_mrp_account_wip_accounting_line_check_debit_credit
 msgid "A single line cannot be both credit and debit."
-msgstr "Един ред не може да бъде едновременно кредит и дебит."
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting_line__account_id
@@ -97,14 +114,12 @@ msgstr "Сметка"
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_workcenter_productivity__account_move_line_id
 msgid "Account Move Line"
-msgstr "Ред от счетоводна статия"
+msgstr ""
 
 #. module: mrp_account
-#: model:ir.model,name:mrp_account.model_mrp_account_wip_accounting_line
-msgid "Account move line to be created when posting WIP account move"
+#: model:ir.module.module,shortdesc:base.module_mrp_account
+msgid "Accounting - MRP"
 msgstr ""
-"Ред от счетоводна операция, който се създава при осчетоводяване на "
-"счетоводна операция за незавършено производство"
 
 #. module: mrp_account
 #: model:ir.model,name:mrp_account.model_account_analytic_account
@@ -132,6 +147,21 @@ msgid "Analytic Precision"
 msgstr "Аналитична Точност"
 
 #. module: mrp_account
+#: model:ir.module.module,summary:base.module_mrp_account
+msgid "Analytic accounting in Manufacturing"
+msgstr ""
+
+#. module: mrp_account
+#: model:ir.model,name:mrp_account.model_report_mrp_report_bom_structure
+msgid "BOM Overview Report"
+msgstr ""
+
+#. module: mrp_account
+#: model:ir.model,name:mrp_account.model_mrp_bom
+msgid "Bill of Material"
+msgstr ""
+
+#. module: mrp_account
 #. odoo-python
 #: code:addons/mrp_account/models/analytic_account.py:0
 #: model_terms:ir.ui.view,arch_db:mrp_account.account_analytic_account_view_form_mrp
@@ -141,12 +171,12 @@ msgstr "Списъци с материали"
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_account_analytic_account__bom_count
 msgid "BoM Count"
-msgstr "Брой спецификации"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_account_analytic_account__bom_ids
 msgid "Bom"
-msgstr "Спецификация"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_account_analytic_line__category
@@ -155,28 +185,31 @@ msgstr "Категория"
 
 #. module: mrp_account
 #: model:ir.model,name:mrp_account.model_res_company
-msgid "Companies"
-msgstr "Фирми"
+msgid "Company"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.actions.server,name:mrp_account.action_compute_price_bom_product
 #: model:ir.actions.server,name:mrp_account.action_compute_price_bom_template
 #: model_terms:ir.ui.view,arch_db:mrp_account.product_product_ext_form_view2
 #: model_terms:ir.ui.view,arch_db:mrp_account.product_product_view_form_normal_inherit_extended
-#: model_terms:ir.ui.view,arch_db:mrp_account.product_variant_easy_edit_view_bom_inherit
 msgid "Compute Price from BoM"
-msgstr "Изчисляване на цена от спецификацията"
+msgstr ""
 
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.product_product_ext_form_view2
 #: model_terms:ir.ui.view,arch_db:mrp_account.product_product_view_form_normal_inherit_extended
-#: model_terms:ir.ui.view,arch_db:mrp_account.product_variant_easy_edit_view_bom_inherit
 msgid ""
 "Compute the price of the product using products and operations of related "
 "bill of materials, for manufactured products only."
 msgstr ""
 "Изчислете цената на продукта, като използвате продукти и операции от "
 "свързана фактура за покупка на материали, само за производствени продукти."
+
+#. module: mrp_account
+#: model:ir.model.fields,field_description:mrp_account.field_mrp_production__consolidation_currency_id
+msgid "Consolidation Currency"
+msgstr ""
 
 #. module: mrp_account
 #. odoo-javascript
@@ -190,7 +223,7 @@ msgstr "стойност на продукцията"
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_workcenter__costs_hour_account_ids
 msgid "Costs Hour Account"
-msgstr "Сметка за разход на час"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting__create_uid
@@ -211,6 +244,7 @@ msgstr "Кредит"
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting_line__currency_id
+#: model:ir.model.fields,field_description:mrp_account.field_mrp_bom__currency_id
 msgid "Currency"
 msgstr "Валута"
 
@@ -225,18 +259,15 @@ msgid "Debit"
 msgstr "Дебит"
 
 #. module: mrp_account
-#: model_terms:ir.ui.view,arch_db:mrp_account.view_wip_accounting_form
-msgid "Discard"
-msgstr "Отхвърлете"
-
-#. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_account_analytic_account__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_account_analytic_applicability__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_account_analytic_line__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_account_move__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:mrp_account.field_account_stock_valuation_report__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting_line__display_name
+#: model:ir.model.fields,field_description:mrp_account.field_mrp_bom__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_production__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_workcenter__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_workcenter_productivity__display_name
@@ -244,9 +275,9 @@ msgstr "Отхвърлете"
 #: model:ir.model.fields,field_description:mrp_account.field_product_category__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_product_product__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_product_template__display_name
+#: model:ir.model.fields,field_description:mrp_account.field_report_mrp_report_bom_structure__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_report_mrp_report_mo_overview__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_res_company__display_name
-#: model:ir.model.fields,field_description:mrp_account.field_stock_account_stock_valuation_report__display_name
 #: model:ir.model.fields,field_description:mrp_account.field_stock_move__display_name
 msgid "Display Name"
 msgstr "Име за показване"
@@ -267,9 +298,23 @@ msgid "Expense Account"
 msgstr "Разходна сметка"
 
 #. module: mrp_account
+#: model_terms:ir.ui.view,arch_db:mrp_account.mo_overview_components
+msgid "Extra BoM Cost"
+msgstr ""
+
+#. module: mrp_account
+#. odoo-javascript
+#: code:addons/mrp_account/static/src/components/bom_overview_extra_bom_cost_line/bom_overview_extra_bom_cost_line.xml:0
+#: code:addons/mrp_account/static/src/components/mo_overview_extra_bom_cost_line/mo_overview_extra_bom_cost_line.xml:0
+#: model:ir.model.fields,field_description:mrp_account.field_mrp_bom__extra_cost
+#: model_terms:ir.ui.view,arch_db:mrp_account.mrp_account_inherits_mrp_bom_form_view
+msgid "Extra Cost"
+msgstr ""
+
+#. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_production__extra_cost
 msgid "Extra Unit Cost"
-msgstr "Допълнителен разход за единица"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_account_analytic_account__id
@@ -277,8 +322,10 @@ msgstr "Допълнителен разход за единица"
 #: model:ir.model.fields,field_description:mrp_account.field_account_analytic_line__id
 #: model:ir.model.fields,field_description:mrp_account.field_account_move__id
 #: model:ir.model.fields,field_description:mrp_account.field_account_move_line__id
+#: model:ir.model.fields,field_description:mrp_account.field_account_stock_valuation_report__id
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting__id
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting_line__id
+#: model:ir.model.fields,field_description:mrp_account.field_mrp_bom__id
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_production__id
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_workcenter__id
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_workcenter_productivity__id
@@ -286,9 +333,9 @@ msgstr "Допълнителен разход за единица"
 #: model:ir.model.fields,field_description:mrp_account.field_product_category__id
 #: model:ir.model.fields,field_description:mrp_account.field_product_product__id
 #: model:ir.model.fields,field_description:mrp_account.field_product_template__id
+#: model:ir.model.fields,field_description:mrp_account.field_report_mrp_report_bom_structure__id
 #: model:ir.model.fields,field_description:mrp_account.field_report_mrp_report_mo_overview__id
 #: model:ir.model.fields,field_description:mrp_account.field_res_company__id
-#: model:ir.model.fields,field_description:mrp_account.field_stock_account_stock_valuation_report__id
 #: model:ir.model.fields,field_description:mrp_account.field_stock_move__id
 msgid "ID"
 msgstr "ID"
@@ -307,6 +354,11 @@ msgstr "Записи в Дневника"
 #: model:ir.model,name:mrp_account.model_account_move_line
 msgid "Journal Item"
 msgstr "Счетоводна Операция"
+
+#. module: mrp_account
+#: model:ir.model,name:mrp_account.model_mrp_account_wip_accounting_line
+msgid "Journal item to be created when posting WIP journal entry"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting_line__label
@@ -328,24 +380,24 @@ msgstr "Последно актуализирано на"
 #. module: mrp_account
 #: model:ir.model,name:mrp_account.model_report_mrp_report_mo_overview
 msgid "MO Overview Report"
-msgstr "Отчет за преглед на ПН"
+msgstr ""
 
 #. module: mrp_account
 #. odoo-python
 #: code:addons/mrp_account/wizard/mrp_wip_accounting.py:0
 msgid "Manual Entry"
-msgstr "Ръчно въвеждане"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model,name:mrp_account.model_mrp_production
 #: model:ir.model.fields.selection,name:mrp_account.selection__account_analytic_applicability__business_domain__manufacturing_order
-#: model:ir.model.fields.selection,name:mrp_account.selection__account_analytic_line__category__manufacturing_order
 msgid "Manufacturing Order"
 msgstr "Производствена поръчка"
 
 #. module: mrp_account
 #. odoo-python
 #: code:addons/mrp_account/models/analytic_account.py:0
+#: model:ir.model.fields.selection,name:mrp_account.selection__account_analytic_line__category__manufacturing_order
 #: model_terms:ir.ui.view,arch_db:mrp_account.account_analytic_account_view_form_mrp
 msgid "Manufacturing Orders"
 msgstr "Производствена поръчка"
@@ -355,45 +407,44 @@ msgstr "Производствена поръчка"
 #: model:ir.model.fields,field_description:mrp_account.field_account_bank_statement_line__wip_production_count
 #: model:ir.model.fields,field_description:mrp_account.field_account_move__wip_production_count
 msgid "Manufacturing Orders Count"
-msgstr "Брой производствени поръчки"
+msgstr ""
 
 #. module: mrp_account
 #. odoo-python
 #: code:addons/mrp_account/wizard/mrp_wip_accounting.py:0
 msgid "Manufacturing WIP - %(orders_list)s"
-msgstr "Незавършено производство - %(orders_list)s"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting__mo_ids
 msgid "Mo"
-msgstr "Поръчка за производство"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_workorder__mo_analytic_account_line_ids
 msgid "Mo Analytic Account Line"
-msgstr "Аналитичен ред на поръчка за производство"
+msgstr ""
 
 #. module: mrp_account
 #. odoo-python
 #: code:addons/mrp_account/wizard/mrp_wip_accounting.py:0
 msgid "Please make sure the total credit amount equals the total debit amount."
 msgstr ""
-"Моля, уверете се, че общата сума на кредита е равна на общата сума на дебита."
 
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.view_wip_accounting_form
 msgid "Post Manufacturing WIP"
-msgstr "Осчетоводяване на производствено НП"
+msgstr ""
 
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.view_wip_accounting_form
 msgid "Post WIP"
-msgstr "Осчетоводяване на НП"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.actions.act_window,name:mrp_account.action_wip_accounting
 msgid "Post WIP Accounting Entry"
-msgstr "Осчетоводи счетоводен запис за незавършено производство"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model,name:mrp_account.model_product_template
@@ -417,19 +468,25 @@ msgstr "Продукция"
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_product_category__property_stock_account_production_cost_id
+#: model:ir.model.fields,field_description:mrp_account.field_res_company__stock_account_production_cost_id
 msgid "Production Account"
-msgstr "Сметка за производство"
+msgstr ""
+
+#. module: mrp_account
+#: model:ir.model.fields,field_description:mrp_account.field_mrp_production__consolidation_rate
+msgid "Rate"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting__reference
 msgid "Reference"
-msgstr "Идентификатор"
+msgstr "Индетификатор"
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_account_bank_statement_line__wip_production_ids
 #: model:ir.model.fields,field_description:mrp_account.field_account_move__wip_production_ids
 msgid "Relevant WIP MOs"
-msgstr "Релевантни производствени поръчки в незавършено производство"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting__reversal_date
@@ -440,7 +497,7 @@ msgstr "Дата на анулиране"
 #. odoo-python
 #: code:addons/mrp_account/wizard/mrp_wip_accounting.py:0
 msgid "Reversal date must be after the posting date."
-msgstr "Датата на сторнирането трябва да е след датата на осчетоводяване."
+msgstr ""
 
 #. module: mrp_account
 #. odoo-python
@@ -449,9 +506,15 @@ msgid "Reversal of: %s"
 msgstr "Анулиране на: %s"
 
 #. module: mrp_account
+#: model:ir.model.fields,help:mrp_account.field_mrp_bom__extra_cost
+msgid ""
+"Set an additional cost per manufactured unit (e.g. labour, energy, packaging)"
+msgstr ""
+
+#. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_production__show_valuation
 msgid "Show Valuation"
-msgstr "Показване на остойностяване"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model,name:mrp_account.model_stock_move
@@ -459,7 +522,7 @@ msgid "Stock Move"
 msgstr "Движение в склада"
 
 #. module: mrp_account
-#: model:ir.model,name:mrp_account.model_stock_account_stock_valuation_report
+#: model:ir.model,name:mrp_account.model_account_stock_valuation_report
 msgid "Stock Valuation"
 msgstr "Оценка на запасите"
 
@@ -470,8 +533,6 @@ msgid ""
 "The MOs that this WIP entry was based on. Expected to be set at time of WIP "
 "entry creation."
 msgstr ""
-"ПН-ата, на които се основава този WIP запис. Очаква се да бъдат зададени при "
-"създаването на WIP записа."
 
 #. module: mrp_account
 #: model:ir.model.fields,help:mrp_account.field_mrp_workcenter__expense_account_id
@@ -480,9 +541,6 @@ msgid ""
 "If not set, it is the expense account of the final product that will be used "
 "instead."
 msgstr ""
-"Разходът се отчита, когато производствената поръчка е маркирана като "
-"завършена. Ако не е зададено, се използва разходната сметка на крайния "
-"продукт вместо това."
 
 #. module: mrp_account
 #: model:ir.model.fields,help:mrp_account.field_product_category__property_stock_account_production_cost_id
@@ -492,10 +550,6 @@ msgid ""
 "                If there are any workcenter/employee costs, this value will "
 "remain on the account once the production is completed."
 msgstr ""
-"Тази сметка ще се използва като контрагентна сметка за оценка както на "
-"компонентите, така и на крайните продукти за производствените нареждания.\n"
-"                Ако има разходи за работен център/служител, тази стойност ще "
-"остане по сметката след завършване на производството."
 
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.view_wip_accounting_form
@@ -511,65 +565,65 @@ msgstr "Общ дебит"
 #. odoo-python
 #: code:addons/mrp_account/wizard/mrp_wip_accounting.py:0
 msgid "WIP - Component Value"
-msgstr "НПР - Стойност на компонент"
+msgstr ""
 
 #. module: mrp_account
 #. odoo-python
 #: code:addons/mrp_account/wizard/mrp_wip_accounting.py:0
 msgid "WIP - Overhead"
-msgstr "НПР - Режийни разходи"
+msgstr ""
 
 #. module: mrp_account
 #. odoo-python
 #: code:addons/mrp_account/models/mrp_production.py:0
 msgid "WIP Entries of %s"
-msgstr "Записи на НПР на %s"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_production__wip_move_count
 msgid "WIP Journal Entry Count"
-msgstr "Брой счетоводни записи за незавършено производство"
+msgstr ""
 
 #. module: mrp_account
 #. odoo-python
 #: code:addons/mrp_account/models/account_move.py:0
 msgid "WIP MOs of %s"
-msgstr "Поръчки за производство в НПР на %s"
+msgstr ""
 
 #. module: mrp_account
 #: model_terms:ir.ui.view,arch_db:mrp_account.report_wip
 msgid "WIP Report for"
-msgstr "Отчет за НПР за"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting__line_ids
 msgid "WIP accounting lines"
-msgstr "Счетоводни редове за незавършено производство"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_account_wip_accounting_line__wip_accounting_id
 msgid "WIP accounting wizard"
-msgstr "Помощник за счетоводно отчитане на незавършено производство"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.actions.report,name:mrp_account.wip_report
 msgid "WIP report"
-msgstr "Отчет за НПР"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_workorder__wc_analytic_account_line_ids
 msgid "Wc Analytic Account Line"
-msgstr "Аналитичен ред на работен център"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_mrp_production__wip_move_ids
 msgid "Wip Move"
-msgstr "Движение на незавършено производство"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model,name:mrp_account.model_mrp_account_wip_accounting
-msgid "Wizard to post Manufacturing WIP account move"
-msgstr "Помощник за осчетоводяване на счетоводен запис за НПР в производството"
+msgid "Wizard to post Manufacturing WIP journal entry"
+msgstr ""
 
 #. module: mrp_account
 #: model:ir.model,name:mrp_account.model_mrp_workcenter
@@ -584,7 +638,7 @@ msgstr "Работна поръчка"
 #. module: mrp_account
 #: model:ir.model.fields,field_description:mrp_account.field_account_analytic_account__workorder_count
 msgid "Work Order Count"
-msgstr "Брой работни поръчки"
+msgstr ""
 
 #. module: mrp_account
 #. odoo-python
@@ -607,25 +661,10 @@ msgstr "Регистър за производителност на работе
 #: code:addons/mrp_account/models/mrp_production.py:0
 #: code:addons/mrp_account/models/mrp_workorder.py:0
 msgid "[WC] %s"
-msgstr "[WC] %s"
+msgstr ""
 
 #~ msgid "Laptop"
 #~ msgstr "Лаптоп"
 
 #~ msgid "Units"
 #~ msgstr "Единици"
-
-#~ msgid "2023-08-15"
-#~ msgstr "2023-08-15"
-
-#~ msgid "Bill of Material"
-#~ msgstr "Фактура за покупка на материали"
-
-#~ msgid "Production Order"
-#~ msgstr "Производствена поръчка"
-
-#~ msgid "Stock Rule"
-#~ msgstr "Правило зс наличност"
-
-#~ msgid "Work Center Usage"
-#~ msgstr "Използване на работен център"

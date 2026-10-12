@@ -13,8 +13,12 @@ export class ProductTemplateAttributeValue extends models.ServerModel {
             "is_custom",
             "html_color",
             "image",
-            "exclude_for",
+            "excluded_value_ids",
         ];
+    }
+
+    _load_pos_data_dependencies() {
+        return ["product.attribute"];
     }
     _records = [
         {
@@ -22,6 +26,7 @@ export class ProductTemplateAttributeValue extends models.ServerModel {
             name: "Chocolate",
             attribute_id: 10,
             attribute_line_id: 3,
+            write_date: "2023-06-01 10:00:00",
         },
         {
             id: 6,
@@ -29,6 +34,7 @@ export class ProductTemplateAttributeValue extends models.ServerModel {
             attribute_id: 10,
             attribute_line_id: 3,
             price_extra: 5,
+            write_date: "2023-06-01 10:00:00",
         },
         {
             id: 7,
@@ -36,24 +42,28 @@ export class ProductTemplateAttributeValue extends models.ServerModel {
             is_custom: true,
             attribute_id: 11,
             attribute_line_id: 4,
+            write_date: "2023-06-01 10:00:00",
         },
         {
             id: 8,
             name: "S",
             attribute_id: 7,
             attribute_line_id: 5,
+            write_date: "2023-06-01 10:00:00",
         },
         {
             id: 9,
             name: "M",
             attribute_id: 7,
             attribute_line_id: 5,
+            write_date: "2023-06-01 10:00:00",
         },
         {
             id: 10,
             name: "Standard",
             attribute_id: 12,
             attribute_line_id: 6,
+            write_date: "2023-06-01 10:00:00",
         },
         {
             id: 11,
@@ -67,7 +77,7 @@ export class ProductTemplateAttributeValue extends models.ServerModel {
             name: "Male",
             is_custom: false,
             attribute_id: 8,
-            attribute_line_id: 8,
+            attribute_line_id: 108,
         },
     ];
 }

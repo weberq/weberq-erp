@@ -2,17 +2,15 @@
 # This file contains the translation of the following modules:
 # * google_gmail
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2026.
-# Vlad Patenko <vlad.patenko@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-19 17:33+0000\n"
-"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>\n"
-"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 19:42+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-s19-4/"
 "google_gmail/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -25,17 +23,19 @@ msgstr ""
 #. module: google_gmail
 #: model_terms:ir.ui.view,arch_db:google_gmail.fetchmail_server_view_form
 #: model_terms:ir.ui.view,arch_db:google_gmail.ir_mail_server_view_form
-msgid "<i class=\"fa fa-cog\" title=\"Edit Settings\"/>"
-msgstr "<i class=\"fa fa-cog\" title=\"Edit Settings\"/>"
+msgid ""
+"<i class=\"oi oi-filled\" data-icon=\"settings\" title=\"Edit Settings\"/>"
+msgstr ""
+"<i class=\"oi oi-filled\" data-icon=\"settings\" title=\"Edit Settings\"/>"
 
 #. module: google_gmail
 #: model_terms:ir.ui.view,arch_db:google_gmail.fetchmail_server_view_form
 #: model_terms:ir.ui.view,arch_db:google_gmail.ir_mail_server_view_form
 msgid ""
-"<i class=\"oi oi-arrow-right\"/>\n"
+"<i class=\"oi\" data-icon=\"east\"/>\n"
 "                        Connect your Gmail account"
 msgstr ""
-"<i class=\"oi oi-arrow-right\"/>\n"
+"<i class=\"oi\" data-icon=\"east\"/>\n"
 "                        Підключіться до вашого облікового запису Gmail"
 
 #. module: google_gmail
@@ -89,7 +89,7 @@ msgstr "Активно"
 #. odoo-python
 #: code:addons/google_gmail/controllers/main.py:0
 msgid "An error occurred during the authentication process."
-msgstr "Під час процесу автентифікації сталася помилка."
+msgstr ""
 
 #. module: google_gmail
 #. odoo-python
@@ -145,7 +145,7 @@ msgstr "Назва для відображення"
 #. module: google_gmail
 #: model:ir.model.fields.selection,name:google_gmail.selection__res_users__outgoing_mail_server_type__gmail
 msgid "Gmail"
-msgstr "Gmail"
+msgstr ""
 
 #. module: google_gmail
 #: model:ir.model.fields,field_description:google_gmail.field_res_config_settings__google_gmail_client_identifier
@@ -164,9 +164,19 @@ msgid "Gmail OAuth Authentication"
 msgstr "Аутентифікація Gmail OAuth"
 
 #. module: google_gmail
+#: model:ir.module.module,description:base.module_google_gmail
+msgid "Gmail support for incoming / outgoing mail servers"
+msgstr ""
+
+#. module: google_gmail
 #: model_terms:ir.ui.view,arch_db:google_gmail.google_gmail_oauth_error
 msgid "Go back"
 msgstr "Поверніться"
+
+#. module: google_gmail
+#: model:ir.module.module,shortdesc:base.module_google_gmail
+msgid "Google Gmail"
+msgstr ""
 
 #. module: google_gmail
 #: model:ir.model,name:google_gmail.model_google_gmail_mixin
@@ -200,8 +210,6 @@ msgid ""
 "Incorrect Connection Security for Gmail mail server “%s”. Please set it to "
 "\"TLS (STARTTLS)\"."
 msgstr ""
-"Неправильні налаштування безпеки з’єднання для поштового сервера Gmail "
-"\"%s\". Будь ласка, встановіть значення \"TLS (STARTTLS)\"."
 
 #. module: google_gmail
 #: model:ir.model,name:google_gmail.model_ir_mail_server
@@ -219,8 +227,6 @@ msgstr "Лише адміністратор може приєднати пошт
 #: code:addons/google_gmail/models/google_gmail_mixin.py:0
 msgid "Oops, we could not authenticate you. Please try again later."
 msgstr ""
-"На жаль, нам не вдалося вас автентифікувати. Будь ласка, спробуйте ще раз "
-"пізніше."
 
 #. module: google_gmail
 #. odoo-python
@@ -229,13 +235,11 @@ msgid ""
 "Oops, you're creating an authorization to send from %(email_login)s but your "
 "address is %(email_server)s. Make sure your addresses match!"
 msgstr ""
-"Ой, ви створюєте авторизацію для надсилання з %(email_login)s але ваша "
-"адреса є %(email_server)s. Переконайтеся, ща ваша адреса співпадає!"
 
 #. module: google_gmail
 #: model:ir.model.fields,field_description:google_gmail.field_res_users__outgoing_mail_server_type
 msgid "Outgoing Mail Server Type"
-msgstr "Тип сервера вихідної пошти"
+msgstr ""
 
 #. module: google_gmail
 #. odoo-python
@@ -247,7 +251,7 @@ msgstr "Налаштуйте ваші облікові дані Gmail."
 #. odoo-python
 #: code:addons/google_gmail/models/google_gmail_mixin.py:0
 msgid "Please enter a valid email address."
-msgstr "Введіть дійсну адресу електронної пошти."
+msgstr ""
 
 #. module: google_gmail
 #. odoo-python
@@ -268,8 +272,6 @@ msgid ""
 "Please leave the password field empty for Gmail mail server “%s”. The OAuth "
 "process does not require it"
 msgstr ""
-"Будь ласка, залиште поле пароля порожнім для поштового сервера Gmail \"%s\". "
-"Процес OAuth не потребує його"
 
 #. module: google_gmail
 #: model_terms:ir.ui.view,arch_db:google_gmail.ir_mail_server_view_form
@@ -287,7 +289,7 @@ msgstr "Токен оновлення"
 #. odoo-python
 #: code:addons/google_gmail/models/fetchmail_server.py:0
 msgid "SSL is required for server “%s”."
-msgstr "SSL потрібен для сервера “%s”."
+msgstr ""
 
 #. module: google_gmail
 #: model_terms:ir.ui.view,arch_db:google_gmail.res_config_settings_view_form
@@ -308,7 +310,7 @@ msgstr "Тип сервера"
 #. odoo-python
 #: code:addons/google_gmail/tools.py:0
 msgid "Something went wrong. Try again later"
-msgstr "Щось пішло не так. Cпробуйте ще раз пізніше"
+msgstr ""
 
 #. module: google_gmail
 #: model:ir.model.fields,help:google_gmail.field_fetchmail_server__google_gmail_uri
@@ -333,4 +335,4 @@ msgstr "Користувач"
 #. odoo-python
 #: code:addons/google_gmail/tools.py:0
 msgid "You don't have an active subscription"
-msgstr "У вас немає активної підписки"
+msgstr ""

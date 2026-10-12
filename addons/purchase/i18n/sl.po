@@ -15,21 +15,17 @@
 # Martin Trigaux, 2022
 # matjaz k <matjaz@mentis.si>, 2022
 # Matjaz Mozetic <m.mozetic@matmoz.si>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
-# Tadej Vengust <tadej.vengust@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# Odoo Translation Bot <c3p@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-10 18:37+0000\n"
-"PO-Revision-Date: 2026-09-22 11:33+0000\n"
-"Last-Translator: Tadej Vengust <tadej.vengust@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-10-02 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 20:20+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "purchase/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -48,8 +44,8 @@ msgid ""
 "                'Purchase Order - %s' % (object.name))"
 msgstr ""
 "\n"
-"                (object.state in ('draft', 'sent') and 'Zahtevek za "
-"ponudbo - %s' % (object.name) or\n"
+"                (object.state in ('draft', 'sent') and 'Zahtevek za ponudbo "
+"- %s' % (object.name) or\n"
 "                'Nabavni nalog - %s' % (object.name))"
 
 #. module: purchase
@@ -64,6 +60,34 @@ msgstr "št. postavk"
 
 #. module: purchase
 #. odoo-python
+#: code:addons/purchase/models/account_invoice.py:0
+msgid "%(added_lines_count)s PO lines added to the bill."
+msgstr ""
+
+#. module: purchase
+#. odoo-python
+#: code:addons/purchase/models/account_invoice.py:0
+msgid ""
+"%(matched_lines_count)s bill lines matched, %(unmatched_lines_count)s "
+"unmatched remaining."
+msgstr ""
+
+#. module: purchase
+#. odoo-python
+#: code:addons/purchase/wizard/accrued_orders.py:0
+msgid ""
+"%(order)s - %(order_line)s; %(quantity_billed)s Billed, %"
+"(quantity_received)s Received at %(unit_price)s each"
+msgstr ""
+
+#. module: purchase
+#. odoo-python
+#: code:addons/purchase/wizard/accrued_orders.py:0
+msgid "%(order)s - %(order_line)s; price difference for %(product)s"
+msgstr ""
+
+#. module: purchase
+#. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "%(product)s from %(original_receipt_date)s to %(new_receipt_date)s"
 msgstr "%(product)s od %(original_receipt_date)s do %(new_receipt_date)s"
@@ -72,7 +96,7 @@ msgstr "%(product)s od %(original_receipt_date)s do %(new_receipt_date)s"
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "%s modified receipt dates for the following products:"
-msgstr "%s spremenjenih datumov prejema za naslednje izdelke:"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_orders
@@ -91,14 +115,18 @@ msgid ""
 ", it's 100% free! You'll save time creating beautiful quotations and track "
 "sales."
 msgstr ""
-", je 100 % brezplačno! Prihranili boste čas pri ustvarjanju čudovitih ponudb "
-"in spremljanju prodaje."
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.track_po_line_qty_received_template
 #: model_terms:ir.ui.view,arch_db:purchase.track_po_line_template
 msgid "-&gt;"
-msgstr "-&gt;"
+msgstr ""
+
+#. module: purchase
+#. odoo-python
+#: code:addons/purchase/models/account_invoice.py:0
+msgid "0 bill lines matched with this PO."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
@@ -142,57 +170,15 @@ msgid ""
 "color: #875A7B; border: 1px solid #875A7B; border-radius: 3px\">\n"
 "            Acknowledge</a>\n"
 "        <br/><br/>\n"
-"        <t t-if=\"not is_html_empty(object.user_id.signature)\" data-o-mail-"
-"quote-container=\"1\">\n"
+"        <t t-if=\"not is_html_empty(object.user_id.signature)\">\n"
 "            <br/><br/>\n"
 "            <div data-o-mail-quote=\"1\">--<br data-o-mail-quote=\"1\"/><t t-"
-"out=\"object.user_id.signature or ''\" data-o-mail-quote=\"1\">Mitchell "
-"Admin</t></div>\n"
+"out=\"object.user_id.signature or ''\">Mitchell Admin</t></div>\n"
 "        </t>\n"
 "        <br/><br/>\n"
 "    </p>\n"
 "</div>"
 msgstr ""
-"<div style=\"margin: 0px; padding: 0px;\">\n"
-"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"        Spoštovani <t t-out=\"object.partner_id.name or ''\">Brandon "
-"Freeman</t>\n"
-"        <t t-if=\"object.partner_id.parent_id\">\n"
-"            (<t t-out=\"object.partner_id.parent_id.name or ''\">Azure "
-"Interior</t>)\n"
-"        </t>\n"
-"        <br/><br/>\n"
-"        Opominjamo vas, da je dobava nabavnega naročila <span style=\"font-"
-"weight:bold;\" t-out=\"object.name or ''\">P00015</span>\n"
-"        <t t-if=\"object.partner_ref\">\n"
-"            <span style=\"font-weight:bold;\">(<t t-out=\"object.partner_ref "
-"or ''\">REF_XXX</t>)</span>\n"
-"        </t>\n"
-"        predvidena za \n"
-"        <t t-if=\"object.date_planned\">\n"
-"            <span style=\"font-weight:bold;\" t-out=\"format_date"
-"(object.date_planned) or ''\">05/05/2021</span>.\n"
-"        </t>\n"
-"         <t t-else=\"\">\n"
-"            <span style=\"font-weight:bold;\">undefined</span>.\n"
-"        </t>\n"
-"        Ali lahko prosim potrdite, da bo dostavljeno pravočasno?\n"
-"        <br/><br/>\n"
-"        <a t-att-href=\"object.get_acknowledge_url()\" target=\"_blank\" "
-"style=\"padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-"
-"color: #875A7B; border: 1px solid #875A7B; border-radius: 3px\">\n"
-"            Potrdi</a>\n"
-"        <br/><br/>\n"
-"        <t t-if=\"not is_html_empty(object.user_id.signature)\" data-o-mail-"
-"quote-container=\"1\">\n"
-"            <br/><br/>\n"
-"            <div data-o-mail-quote=\"1\">--<br data-o-mail-quote=\"1\"/><t t-"
-"out=\"object.user_id.signature or ''\" data-o-mail-quote=\"1\">Mitchell "
-"Admin</t></div>\n"
-"        </t>\n"
-"        <br/><br/>\n"
-"    </p>\n"
-"</div>"
 
 #. module: purchase
 #: model:mail.template,body_html:purchase.email_template_edi_purchase_done
@@ -227,57 +213,15 @@ msgid ""
 "color: #875A7B; border: 1px solid #875A7B; border-radius: 3px\">\n"
 "                Acknowledge</a>\n"
 "        </t>\n"
-"        <t t-if=\"not is_html_empty(object.user_id.signature)\" data-o-mail-"
-"quote-container=\"1\">\n"
+"        <t t-if=\"not is_html_empty(object.user_id.signature)\">\n"
 "            <br/><br/>\n"
 "            <div data-o-mail-quote=\"1\">--<br data-o-mail-quote=\"1\"/><t t-"
-"out=\"object.user_id.signature or ''\" data-o-mail-quote=\"1\">Mitchell "
-"Admin</t></div>\n"
+"out=\"object.user_id.signature or ''\">Mitchell Admin</t></div>\n"
 "        </t>\n"
 "        <br/><br/>\n"
 "    </p>\n"
 "</div>"
 msgstr ""
-"<div style=\"margin: 0px; padding: 0px;\">\n"
-"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"        Spoštovani <t t-out=\"object.partner_id.name or ''\">Brandon "
-"Freeman</t>\n"
-"        <t t-if=\"object.partner_id.parent_id\">\n"
-"            (<t t-out=\"object.partner_id.parent_id.name or ''\">Azure "
-"Interior</t>)\n"
-"        </t>\n"
-"        <br/><br/>\n"
-"        V priponki vam pošiljamo naročilnico <span style=\"font-"
-"weight:bold;\" t-out=\"object.name or ''\">P00015</span>\n"
-"        <t t-if=\"object.partner_ref\">\n"
-"            z referenco: <t t-out=\"object.partner_ref or ''\">REF_XXX</t>\n"
-"        </t>\n"
-"        v znesku <span style=\"font-weight:bold;\" t-out=\"format_amount"
-"(object.amount_total, object.currency_id) or ''\">$ 10.00</span>\n"
-"        podjetja <t t-out=\"object.company_id.name or ''\">YourCompany</t>. "
-"\n"
-"        <br/><br/>\n"
-"        <t t-if=\"object.date_planned\">\n"
-"            Prejem je predviden za <span style=\"font-weight:bold;\" t-"
-"out=\"format_date(object.date_planned) or ''\">05/05/2021</span>.\n"
-"            <br/><br/>\n"
-"            Ali lahko potrdite prejem tega naročila?\n"
-"            <br/><br/>\n"
-"            <a t-att-href=\"object.get_acknowledge_url()\" target=\"_blank\" "
-"style=\"padding: 5px 10px; color: #FFFFFF; text-decoration: none; background-"
-"color: #875A7B; border: 1px solid #875A7B; border-radius: 3px\">\n"
-"                Potrdi</a>\n"
-"        </t>\n"
-"        <t t-if=\"not is_html_empty(object.user_id.signature)\" data-o-mail-"
-"quote-container=\"1\">\n"
-"            <br/><br/>\n"
-"            <div data-o-mail-quote=\"1\">--<br data-o-mail-quote=\"1\"/><t t-"
-"out=\"object.user_id.signature or ''\" data-o-mail-quote=\"1\">Mitchell "
-"Admin</t></div>\n"
-"        </t>\n"
-"        <br/><br/>\n"
-"    </p>\n"
-"</div>"
 
 #. module: purchase
 #: model:mail.template,body_html:purchase.email_template_edi_purchase
@@ -301,93 +245,57 @@ msgid ""
 "        If you have any questions, please do not hesitate to contact us.\n"
 "        <br/><br/>\n"
 "        Best regards,\n"
-"        <t t-if=\"not is_html_empty(object.user_id.signature)\" data-o-mail-"
-"quote-container=\"1\">\n"
+"        <t t-if=\"not is_html_empty(object.user_id.signature)\">\n"
 "            <br/><br/>\n"
 "            <div data-o-mail-quote=\"1\">--<br data-o-mail-quote=\"1\"/><t t-"
-"out=\"object.user_id.signature or ''\" data-o-mail-quote=\"1\">Mitchell "
-"Admin</t></div>\n"
+"out=\"object.user_id.signature or ''\">Mitchell Admin</t></div>\n"
 "        </t>\n"
 "    </p>\n"
 "</div>"
 msgstr ""
-"<div style=\"margin: 0px; padding: 0px;\">\n"
-"    <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
-"        Spoštovani <t t-out=\"object.partner_id.name or ''\">Brandon "
-"Freeman</t>\n"
-"        <t t-if=\"object.partner_id.parent_id\">\n"
-"            (<t t-out=\"object.partner_id.parent_id.name or ''\">Azure "
-"Interior</t>)\n"
-"        </t>\n"
-"        <br/><br/>\n"
-"        V priponki vam pošiljamo zahtevo za ponudbo <span style=\"font-"
-"weight:bold;\" t-out=\"object.name or ''\">P00015</span>\n"
-"        <t t-if=\"object.partner_ref\">\n"
-"            z referenco: <t t-out=\"object.partner_ref or ''\">REF_XXX</t>\n"
-"        </t>\n"
-"        podjetja <t t-out=\"object.company_id.name or ''\">YourCompany</t>.\n"
-"        <br/><br/>\n"
-"        Če imate kakršna koli vprašanja, se brez pomisleka obrnite na nas.\n"
-"        <br/><br/>\n"
-"        Lep pozdrav,\n"
-"        <t t-if=\"not is_html_empty(object.user_id.signature)\" data-o-mail-"
-"quote-container=\"1\">\n"
-"            <br/><br/>\n"
-"            <div data-o-mail-quote=\"1\">--<br data-o-mail-quote=\"1\"/><t t-"
-"out=\"object.user_id.signature or ''\" data-o-mail-quote=\"1\">Mitchell "
-"Admin</t></div>\n"
-"        </t>\n"
-"    </p>\n"
-"</div>"
 
 #. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
-msgid "<i class=\"fa fa-fw fa-check\"/>Paid"
-msgstr "<i class=\"fa fa-fw fa-check\"/> Plačano"
-
-#. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
-msgid "<i class=\"fa fa-fw fa-check\"/>Reversed"
-msgstr "<i class=\"fa fa-fw fa-check\"/>Obrnjeno"
-
-#. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
-msgid "<i class=\"fa fa-fw fa-clock-o\"/>Waiting Payment"
-msgstr "<i class=\"fa fa-fw fa-clock-o\"/>Čakam na plačilo"
+#: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_order
+msgid "<i class=\"oi me-1\" data-icon=\"print\"/>Download / Print"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_orders
 msgid ""
-"<i class=\"fa fa-fw fa-file-text\" role=\"img\" aria-label=\"Waiting for "
-"Bill\" title=\"Waiting for Bill\"/><span class=\"d-none d-md-inline\"> "
-"Waiting for Bill</span>"
+"<i class=\"oi oi-fw oi-filled\" data-icon=\"article\" role=\"img\" aria-"
+"label=\"Waiting for Bill\" title=\"Waiting for Bill\"/><span class=\"d-none "
+"d-md-inline\"> Waiting for Bill</span>"
 msgstr ""
-"<i class=\"fa fa-fw fa-file-text\" role=\"img\" aria-label=\"Čakanje na "
-"račun\" title=\"Čakanje na račun\"/><span class=\"d-none d-md-inline\"> "
-"Čakanje na račun</span>"
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
+msgid "<i class=\"oi oi-fw\" data-icon=\"check\"/>Paid"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
+msgid "<i class=\"oi oi-fw\" data-icon=\"check\"/>Reversed"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_orders
 msgid ""
-"<i class=\"fa fa-fw fa-remove\" role=\"img\" aria-label=\"Cancelled\" "
-"title=\"Cancelled\"/><span class=\"d-none d-md-inline\"> Cancelled</span>"
+"<i class=\"oi oi-fw\" data-icon=\"close\" role=\"img\" aria-"
+"label=\"Cancelled\" title=\"Cancelled\"/><span class=\"d-none d-md-inline\"> "
+"Cancelled</span>"
 msgstr ""
-"<i class=\"fa fa-fw fa-remove\" role=\"img\" aria-label=\"Preklicano\" "
-"title=\"Preklicano\"/><span class=\"d-none d-md-inline\"> Preklicano</span>"
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
+msgid "<i class=\"oi oi-fw\" data-icon=\"schedule\"/>Waiting Payment"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid ""
-"<i class=\"fa fa-lock\"/>\n"
+"<i class=\"oi\" data-icon=\"lock\"/>\n"
 "                        Locked"
 msgstr ""
-"<i class=\"fa fa-lock\"/>\n"
-"                        Zaklenjeno"
-
-#. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_order
-msgid "<i class=\"fa fa-print me-1\"/>Download / Print"
-msgstr "<i class=\"fa fa-print me-1\"/>Prenesi / Natisni"
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_orders
@@ -396,8 +304,6 @@ msgid ""
 "                          <span class=\"d-block d-md-none\">Confirmation</"
 "span>"
 msgstr ""
-"<span class=\"d-none d-md-inline\">Datum potrditve</span>\n"
-"                          <span class=\"d-block d-md-none\">Potrditev</span>"
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_orders
@@ -421,29 +327,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid ""
 "<span class=\"o_form_label\" invisible=\"state not in ('draft', 'sent')"
-"\">Request for Quotation </span>\n"
+"\">Request for Quotation</span>\n"
 "                        <span class=\"o_form_label\" invisible=\"state in "
-"('draft', 'sent')\">Purchase Order </span>"
+"('draft', 'sent')\">Purchase Order</span>"
 msgstr ""
-"<span class=\"o_form_label\" invisible=\"state not in ('draft', 'sent')\">"
-"Zahtevek za ponudbo </span>\n"
-"                        <span class=\"o_form_label\" invisible=\"state in "
-"('draft', 'sent')\">Nabavni nalog </span>"
-
-#. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
-msgid "<span class=\"o_stat_text\">Bill Matching</span>"
-msgstr "<span class=\"o_stat_text\">Povezovanje z računi</span>"
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "<span class=\"o_stat_text\">Price Comparison</span>"
-msgstr "<span class=\"o_stat_text\">Primerjava cen</span>"
-
-#. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.view_move_form_inherit_purchase
-msgid "<span class=\"o_stat_text\">Purchase Matching</span>"
-msgstr "<span class=\"o_stat_text\">Povezovanje z nabavo</span>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.product_normal_form_view_inherit_purchase
@@ -452,9 +344,18 @@ msgid "<span class=\"o_stat_text\">Purchased</span>"
 msgstr "<span class=\"o_stat_text\">Kupljeno</span>"
 
 #. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.view_partner_property_form
-msgid "<span> day(s) before</span>"
-msgstr "<span> dan(i) prej</span>"
+#: model_terms:ir.ui.view,arch_db:purchase.product_normal_form_view_inherit_purchase
+#: model_terms:ir.ui.view,arch_db:purchase.view_product_template_purchase_buttons_from
+msgid ""
+"<span class=\"o_stat_value text-muted\">\n"
+"                                    Incoming\n"
+"                                </span>"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+msgid "<span invisible=\"not receipt_reminder_email\">day(s) before</span>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:web_tour.tour,rainbow_man_message:purchase.purchase_tour
@@ -467,11 +368,6 @@ msgid "<span>Amount</span>"
 msgstr "<span>Znesek</span>"
 
 #. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
-msgid "<span>Ask confirmation</span>"
-msgstr "<span>Zahtevaj potrditev</span>"
-
-#. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
 msgid "<span>Taxes</span>"
 msgstr "<span>Davki</span>"
@@ -479,12 +375,12 @@ msgstr "<span>Davki</span>"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "<span>Warning: this order might be a duplicate of</span>"
-msgstr "<span>Opozorilo: to naročilo je lahko dvojnik</span>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
 msgid "<strong class=\"d-block mb-1\">From:</strong>"
-msgstr "<strong class=\"d-block mb-1\">Od:</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
@@ -492,16 +388,15 @@ msgid "<strong class=\"d-block mb-1\">Invoices</strong>"
 msgstr "<strong class=\"d-block mb-1\">Računi</strong>"
 
 #. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
+msgid "<strong class=\"d-block mb-1\">Shipping address:</strong>"
+msgstr ""
+
+#. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchasequotation_document
 msgid "<strong class=\"d-block mt-3\">Shipping address</strong>"
-msgstr "<strong class=\"d-block mt-3\">Naslov za dostavo</strong>"
-
-#. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
-#: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
-msgid "<strong class=\"mr16\">Subtotal</strong>"
-msgstr "<strong class=\"mr16\">Skupaj</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
@@ -511,12 +406,12 @@ msgstr "<strong>Znesek</strong>"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
 msgid "<strong>Buyer</strong>"
-msgstr "<strong>Kupec</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
 msgid "<strong>Confirmation Date:</strong>"
-msgstr "<strong>Datum potrditve:</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
@@ -527,17 +422,23 @@ msgstr "<strong>Opis</strong>"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
 msgid "<strong>Disc.</strong>"
-msgstr "<strong>Pop.</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
 msgid "<strong>Expected Arrival:</strong>"
-msgstr "<strong>Pričakovani prihod:</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchasequotation_document
 msgid "<strong>Expected Date</strong>"
 msgstr "<strong>Pričakovani datum</strong>"
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:purchase.report_purchasequotation_document
+msgid "<strong>Incoterm:</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
@@ -548,12 +449,12 @@ msgstr "<strong>Datum naročila:</strong>"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
 msgid "<strong>Order Deadline:</strong>"
-msgstr "<strong>Rok za naročilo:</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
 msgid "<strong>Payment Terms: </strong>"
-msgstr "<strong>Plačilni pogoji: </strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
@@ -569,12 +470,12 @@ msgstr "<strong>Datum prejema:</strong>"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
 msgid "<strong>Request For Quotation Date:</strong>"
-msgstr "<strong>Datum zahtevka za ponudbo:</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchasequotation_document
 msgid "<strong>Requested Ship Date:</strong>"
-msgstr "<strong>Zahtevani datum odpreme:</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
@@ -582,14 +483,9 @@ msgid "<strong>Taxes</strong>"
 msgstr "<strong>Davki</strong>"
 
 #. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.track_po_line_template
-msgid "<strong>The ordered quantity has been updated.</strong>"
-msgstr "<strong>Naročena količina je bila posodobljena.</strong>"
-
-#. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.track_po_line_qty_received_template
 msgid "<strong>The received quantity has been updated.</strong>"
-msgstr "<strong>Prejeta količina je bila posodobljena.</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
@@ -599,7 +495,7 @@ msgstr "<strong>Cena enote</strong>"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
 msgid "<strong>Your Order Reference</strong>"
-msgstr "<strong>Referenca vašega naročila</strong>"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
@@ -608,20 +504,22 @@ msgid ""
 "supplier to deliver goods or services to the buyer at a preset price for a "
 "period of time."
 msgstr ""
-"Okvirno naročilo je nabavni sporazum med kupcem in dobaviteljem za dobavo "
-"blaga ali storitev kupcu po vnaprej določeni ceni za določeno časovno "
-"obdobje."
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "A sample email has been sent to %s."
-msgstr "Vzorec e-poštnega sporočila je bil poslan na %s."
+msgstr ""
 
 #. module: purchase
 #: model:res.groups,name:purchase.group_warning_purchase
 msgid "A warning can be set on a product or a customer (Purchase)"
 msgstr "Na izdelek ali stranko je mogoče nastaviti opozorilo (Nabava)"
+
+#. module: purchase
+#: model:ir.model,name:purchase.model_res_groups
+msgid "Access Groups"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__access_warning
@@ -636,10 +534,6 @@ msgid ""
 "  - Manual: the quantity is set manually on the line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
 msgstr ""
-"Glede na konfiguracijo izdelka se lahko prejeta količina samodejno izračuna "
-"z mehanizmom:\n"
-"  - Ročno: količina se ročno nastavi v vrstici\n"
-"  - Skladiščni premiki: količina izhaja iz potrjenih prevzemov"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__account_move_id
@@ -647,19 +541,58 @@ msgid "Account Move"
 msgstr "Premik računa"
 
 #. module: purchase
-#: model:ir.actions.act_window,name:purchase.action_accrued_expense_entry
+#: model:ir.model.fields,help:purchase.field_product_category__property_account_billed_not_received_id
+msgid ""
+"Account holding the accrued value of the goods billed but not received yet. "
+"With perpetual valuation, it counterbalances the stock valuation account at "
+"closing."
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,help:purchase.field_product_category__property_account_bills_to_receive_id
+msgid ""
+"Account holding the accrued value of the goods received but not billed yet. "
+"With perpetual valuation, it counterbalances the stock valuation account at "
+"closing."
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__accrual_move_ids
+msgid "Accrual Entries"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,help:purchase.field_purchase_order_line__accrual_move_ids
+msgid ""
+"Accrual entries generated for this line, so it isn't accrued again while one "
+"is still standing (posted, not yet reversed or cancelled)."
+msgstr ""
+
+#. module: purchase
+#: model:ir.actions.server,name:purchase.action_accrued_expense_entry_purchase_order_line
 msgid "Accrued Expense Entry"
-msgstr "Naraščajoči odhodki"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model,name:purchase.model_account_accrued_orders_wizard
+msgid "Accrued Orders Wizard"
+msgstr ""
+
+#. module: purchase
+#. odoo-python
+#: code:addons/purchase/wizard/accrued_orders.py:0
+msgid "Accrued total"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "Acknowledge"
-msgstr "Potrdi"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__acknowledged
 msgid "Acknowledged"
-msgstr "Potrjeno"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__message_needaction
@@ -674,12 +607,17 @@ msgstr "Aktivnosti"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_search
 msgid "Activities of"
-msgstr "Aktivnosti od"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr "Izjema pri oznaki aktivnosti"
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order__activity_plans_ids
+msgid "Activity Plans"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__activity_state
@@ -699,7 +637,7 @@ msgstr "Tip aktivnosti"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.bill_to_po_wizard_form
 msgid "Add Down Payment"
-msgstr "Dodaj predplačilo"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.bill_to_po_wizard_form
@@ -722,21 +660,36 @@ msgid "Add a section"
 msgstr "Dodaj odsek"
 
 #. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+msgid "Add note"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+msgid "Add product"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+msgid "Add section"
+msgstr ""
+
+#. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
 msgid "Add several variants to the purchase order from a grid"
-msgstr "Dodaj več variant k nabavnemu naročilu iz mreže"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/js/tours/purchase.js:0
 msgid "Add some products or services to your quotation."
-msgstr "Dodajte nekaj izdelkov ali storitev v svoj predračun."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.bill_to_po_wizard_form
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
 msgid "Add to PO"
-msgstr "Dodaj v naročilnico"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -766,44 +719,47 @@ msgstr "Vse"
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "All Days to Order"
-msgstr "Vsi dnevi za naročilo"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "All Draft RFQs"
-msgstr "Vsi osnutki zahtev za ponudbo"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "All Late RFQs"
-msgstr "Vse zapoznele zahteve za ponudbo"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "All Late Receipt POs"
-msgstr "Vsa naročila z zamudo pri prejemu"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "All Not Acknowledged POs"
-msgstr "Vsa nepotrjena naročila"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "All Sent RFQs"
-msgstr "Vsi poslani zahtevki za ponudbo"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.product_supplierinfo_tree_view2
+msgid "All variants"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_res_config_settings__group_send_reminder
 msgid "Allow automatically send email to remind your vendor the receipt date"
 msgstr ""
-"Dovoli samodejno pošiljanje e-pošte za opominjanje dobavitelja o datumu "
-"prejema"
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__res_company__po_lock__edit
@@ -818,7 +774,7 @@ msgstr "Dovoljena enota"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__aml_id
 msgid "Aml"
-msgstr "Aml"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_union__amount
@@ -833,13 +789,11 @@ msgid ""
 "Amount of time between date planned and order by date for each purchase "
 "order line."
 msgstr ""
-"Časovno obdobje med načrtovanim datumom in datumom naročila za vsako vrstico "
-"nabavnega naročila."
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_report__delay
 msgid "Amount of time between purchase approval and order by date."
-msgstr "Čas med odobritvijo nakupa in datumom naročila."
+msgstr ""
 
 #. module: purchase
 #: model:ir.model,name:purchase.model_account_analytic_account
@@ -871,8 +825,11 @@ msgstr "Potrditev"
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_tree
 msgid "Are you sure you want to cancel the selected RFQs/Orders?"
 msgstr ""
-"Ali ste prepričani, da želite preklicati izbrane zahtevke za ponudbo/"
-"naročila?"
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+msgid "Arrival Confirmation"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -882,9 +839,6 @@ msgid ""
 "been used for this product, the change of unit of measure can not be done.If "
 "you want to change it, please archive the product and create a new one."
 msgstr ""
-"Ker so bile za ta izdelek že uporabljene druge merske enote (npr.: %"
-"(problem_uom)s) kot %(uom)s, spremembe merske enote ni mogoče izvesti.Če jo "
-"želite spremeniti, arhivirajte izdelek in ustvarite novega."
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__message_attachment_count
@@ -908,12 +862,6 @@ msgid "Auto-Complete"
 msgstr "Samodejno dokončaj"
 
 #. module: purchase
-#: model:ir.model.fields,field_description:purchase.field_account_bank_statement_line__purchase_vendor_bill_id
-#: model:ir.model.fields,field_description:purchase.field_account_move__purchase_vendor_bill_id
-msgid "Auto-complete"
-msgstr "Samodejno izpolni"
-
-#. module: purchase
 #: model:ir.model.fields,help:purchase.field_account_bank_statement_line__purchase_id
 #: model:ir.model.fields,help:purchase.field_account_move__purchase_id
 msgid "Auto-complete from a past purchase order."
@@ -923,7 +871,7 @@ msgstr "Samodejno izpolni iz preteklega naročila."
 #: model:ir.model.fields,help:purchase.field_account_bank_statement_line__purchase_vendor_bill_id
 #: model:ir.model.fields,help:purchase.field_account_move__purchase_vendor_bill_id
 msgid "Auto-complete from a previous bill, refund, or purchase order."
-msgstr "Samodejno dopolni iz prejšnjega računa, dobropisa ali naročilnice."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
@@ -933,7 +881,7 @@ msgstr "Samodejno zakleni potrjena naročila in prepreči urejanje"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
 msgid "Automatically remind the receipt date to your vendors"
-msgstr "Samodejno opomni svoje dobavitelje na datum prejema"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_res_partner__receipt_reminder_email
@@ -943,8 +891,6 @@ msgid ""
 "Automatically send a confirmation email to the vendor X days before the "
 "expected receipt date, asking him to confirm the exact date."
 msgstr ""
-"Samodejno pošljite potrditveno e-poštno sporočilo dobavitelju X dni pred "
-"pričakovanim datumom prejema, v katerem ga prosite, naj potrdi točen datum."
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__price_average
@@ -962,15 +908,31 @@ msgid "Bill Lines"
 msgstr "Postavke na računu"
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order__bill_matched_ratio
+msgid "Bill Matched Ratio"
+msgstr ""
+
+#. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "Bill Matching"
-msgstr "Povezovanje z računi"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
+msgid "Bill Qty"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model,name:purchase.model_bill_to_po_wizard
 msgid "Bill to Purchase Order"
-msgstr "Račun v nabavno naročilo"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__bill_to_receive
+msgid "Bill to Receive"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__qty_invoiced_at_date
@@ -982,7 +944,18 @@ msgstr "Zaračunano"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__billed_amount_untaxed
 msgid "Billed Amount Untaxed"
-msgstr "Zaračunani znesek brez davka"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_product_category__property_account_billed_not_received_id
+#: model:ir.model.fields,field_description:purchase.field_res_company__account_billed_not_received_id
+msgid "Billed Not Received Account"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_product_category__property_account_billed_not_received_active
+msgid "Billed Not Received Account Active"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__qty_invoiced
@@ -992,7 +965,7 @@ msgstr "Zaračunana kol."
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "Billed Quantity"
-msgstr "Zaračunana količina"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.track_po_line_template
@@ -1006,6 +979,7 @@ msgstr "Status obračuna"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__invoice_ids
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_search
 msgid "Bills"
 msgstr "Računi"
 
@@ -1013,6 +987,17 @@ msgstr "Računi"
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_search
 msgid "Bills Received"
 msgstr "Prejeti računi"
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_product_category__property_account_bills_to_receive_id
+#: model:ir.model.fields,field_description:purchase.field_res_company__account_bills_to_receive_id
+msgid "Bills to Receive Account"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_product_category__property_account_bills_to_receive_active
+msgid "Bills to Receive Account Active"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__user_id
@@ -1078,16 +1063,7 @@ msgid "Commercial Entity"
 msgstr "Poslovni subjekt"
 
 #. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_order
-msgid "Communication history"
-msgstr "Zgodovina komunikacije"
-
-#. module: purchase
 #: model:ir.model,name:purchase.model_res_company
-msgid "Companies"
-msgstr "Podjetja"
-
-#. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__company_id
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_union__company_id
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__company_id
@@ -1127,7 +1103,7 @@ msgstr "Potrdi naročilo"
 #. module: purchase
 #: model:ir.actions.server,name:purchase.action_confirm_rfqs
 msgid "Confirm RFQ"
-msgstr "Potrdite povpraševanje"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__res_company__po_double_validation__one_step
@@ -1137,21 +1113,21 @@ msgstr "Potrdi nabavne naloge v enem koraku"
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/js/tours/purchase.js:0
-msgid "Confirm your purchase."
-msgstr "Potrdite svoj nakup."
+msgid "Confirm the price."
+msgstr ""
 
 #. module: purchase
-#: model:ir.model.fields,field_description:purchase.field_purchase_order__date_approve
+#. odoo-javascript
+#: code:addons/purchase/static/src/js/tours/purchase.js:0
+msgid "Confirm your purchase."
+msgstr ""
+
+#. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__date_approve
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__date_approve
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_search
 msgid "Confirmation Date"
 msgstr "Datum potrditve"
-
-#. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_search
-msgid "Confirmation Date Last Year"
-msgstr "Datum potrditve lani"
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__res_company__po_lock__lock
@@ -1161,13 +1137,18 @@ msgstr "Potrjenih nabavnih nalogov ni mogoče urejati"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_order
 msgid "Connect with your software!"
-msgstr "Povežite se s svojo programsko opremo!"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchasequotation_document
 msgid "Connect your software"
-msgstr "Povežite svojo programsko opremo"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__consolidation_currency_id
+msgid "Consolidation Currency"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model,name:purchase.model_res_partner
@@ -1193,7 +1174,7 @@ msgstr "Koda države"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_tree
 msgid "Create Bills"
-msgstr "Ustvari račune"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model,website_form_label:purchase.model_res_partner
@@ -1201,15 +1182,10 @@ msgid "Create a Customer"
 msgstr "Ustvari stranko"
 
 #. module: purchase
-#: model_terms:ir.actions.act_window,help:purchase.product_product_action
-msgid "Create a new product variant"
-msgstr "Ustvarite novo različico izdelka"
-
-#. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/product_catalog/kanban_renderer.xml:0
 msgid "Create a product"
-msgstr "Ustvarite izdelek"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_bill_to_po_wizard__create_uid
@@ -1245,20 +1221,23 @@ msgid "Customer Portal URL"
 msgstr "URL portala za stranke"
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__date
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_union__date
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_search
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_list_invoice
 msgid "Date"
-msgstr "Datum"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__date_calendar_start
 msgid "Date Calendar Start"
-msgstr "Začetek koledarja datuma"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "Date Updated"
-msgstr "Datum posodobitve"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
@@ -1281,7 +1260,7 @@ msgstr "Dnevi za potrditev"
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "Days to Order"
-msgstr "Dnevi za naročilo"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__delay_pass
@@ -1318,18 +1297,6 @@ msgid ""
 "Delivery date expected from vendor. This date respectively defaults to "
 "vendor pricelist lead time then today's date."
 msgstr ""
-"Pričakovani datum dobave s strani dobavitelja. Ta datum je privzeto določen "
-"najprej na podlagi dobavnega roka v ceniku dobavitelja, nato pa na podlagi "
-"današnjega datuma."
-
-#. module: purchase
-#: model:ir.model.fields,help:purchase.field_purchase_order__date_planned
-msgid ""
-"Delivery date promised by vendor. This date is used to determine expected "
-"arrival of products."
-msgstr ""
-"Datum dobave, ki ga je obljubil dobavitelj. Ta datum se uporablja za "
-"določanje pričakovanega prihoda izdelkov."
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order__date_order
@@ -1338,15 +1305,24 @@ msgid ""
 "Depicts the date within which the Quotation should be confirmed and "
 "converted into a purchase order."
 msgstr ""
-"Prikazuje datum, do katerega je treba ponudbo potrditi in pretvoriti v "
-"naročilo za nabavo."
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__description
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__name
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_search
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_search
 msgid "Description"
 msgstr "Opis"
 
 #. module: purchase
+#: model:ir.model.fields,help:purchase.field_purchase_bill_line_match__qty_to_invoice_raw
+msgid ""
+"Difference between demand and quantity but not affected by invoice policy"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_history_tree
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
 msgid "Disc.%"
@@ -1363,6 +1339,18 @@ msgid "Discount:"
 msgstr "Popust:"
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_account_bank_statement_line__display_auto_complete_field
+#: model:ir.model.fields,field_description:purchase.field_account_move__display_auto_complete_field
+msgid "Display Auto Complete Field"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__display_matching_tag
+msgid "Display Matching Tag"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_account_accrued_orders_wizard__display_name
 #: model:ir.model.fields,field_description:purchase.field_account_analytic_account__display_name
 #: model:ir.model.fields,field_description:purchase.field_account_analytic_applicability__display_name
 #: model:ir.model.fields,field_description:purchase.field_account_move__display_name
@@ -1370,6 +1358,7 @@ msgstr "Popust:"
 #: model:ir.model.fields,field_description:purchase.field_account_tax__display_name
 #: model:ir.model.fields,field_description:purchase.field_bill_to_po_wizard__display_name
 #: model:ir.model.fields,field_description:purchase.field_ir_actions_report__display_name
+#: model:ir.model.fields,field_description:purchase.field_product_category__display_name
 #: model:ir.model.fields,field_description:purchase.field_product_product__display_name
 #: model:ir.model.fields,field_description:purchase.field_product_supplierinfo__display_name
 #: model:ir.model.fields,field_description:purchase.field_product_template__display_name
@@ -1380,6 +1369,7 @@ msgstr "Popust:"
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__display_name
 #: model:ir.model.fields,field_description:purchase.field_res_company__display_name
 #: model:ir.model.fields,field_description:purchase.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:purchase.field_res_groups__display_name
 #: model:ir.model.fields,field_description:purchase.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Prikazani naziv"
@@ -1395,6 +1385,12 @@ msgid "Distribution Analytic Account"
 msgstr "Analitični račun distribucije"
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order__document_tax_mode
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__document_tax_mode
+msgid "Document Tax Mode"
+msgstr ""
+
+#. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_account_analytic_applicability__business_domain
 msgid "Domain"
 msgstr "Domena"
@@ -1408,7 +1404,7 @@ msgstr "Znesek dvojne validacije"
 #. odoo-python
 #: code:addons/purchase/wizard/bill_to_po_wizard.py:0
 msgid "Down Payment (ref: %(ref)s)"
-msgstr "Predplačilo (sklic: %(ref)s)"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -1427,8 +1423,6 @@ msgid ""
 "Drag and drop the request for quotation PDF file into your list of "
 "quotations in Odoo. Enjoy the automation!"
 msgstr ""
-"Povlecite datoteko PDF z zahtevkom za ponudbo in jo spustite na svoj seznam "
-"ponudb v Odoo. Uživajte v avtomatizaciji!"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__dest_address_id
@@ -1443,13 +1437,24 @@ msgstr "Podvojeni dokumenti"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__duplicated_order_ids
 msgid "Duplicated Order"
-msgstr "Podvojeno naročilo"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+msgid "Enter a Description..."
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__date_planned
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__date_planned
 msgid "Expected Arrival"
 msgstr "Pričakovani prihod"
+
+#. module: purchase
+#: model:ir.model.fields,help:purchase.field_purchase_order__date_planned
+msgid ""
+"Expected delivery date of goods by the vendor based on the latest information"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -1464,12 +1469,12 @@ msgid "Fiscal Position"
 msgstr "Davčno območje"
 
 #. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.portal_my_home_purchase
+#: model:portal.entry,description:purchase.portal_purchase_orders
 msgid "Follow orders you have to fulfill"
-msgstr "Spremljajte naročila, ki jih morate izpolniti"
+msgstr ""
 
 #. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.portal_my_home_purchase
+#: model:portal.entry,description:purchase.portal_rfq
 msgid "Follow your Requests for Quotation"
 msgstr "Sledite svojim zahtevkom za ponudbe"
 
@@ -1484,14 +1489,15 @@ msgid "Followers (Partners)"
 msgstr "Sledilci (partnerji)"
 
 #. module: purchase
-#: model:ir.model.fields,help:purchase.field_purchase_order__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Font izjemna ikona npr. fa-tasks"
-
-#. module: purchase
 #: model:ir.model.constraint,message:purchase.constraint_purchase_order_line_non_accountable_null_fields
 msgid "Forbidden values on non-accountable purchase order line"
-msgstr "Prepovedane vrednosti na nezaračunljivi postavki naročila"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.product_product_purchase_tree_view
+#: model_terms:ir.ui.view,arch_db:purchase.product_template_purchase_tree_view
+msgid "Forecasted"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -1503,12 +1509,17 @@ msgstr "From %s"
 #. odoo-python
 #: code:addons/purchase/models/account_invoice.py:0
 msgid "From Electronic Document"
-msgstr "Iz elektronskega dokumenta"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__purchase_order__invoice_status__invoiced
 msgid "Fully Billed"
-msgstr "Obračunano"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields.selection,name:purchase.selection__purchase_order__receipt_status__full
+msgid "Fully Received"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_search
@@ -1520,7 +1531,7 @@ msgstr "Bodoče aktivnosti"
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "Generated Orders"
-msgstr "Ustvarjena naročila"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__res_company__po_double_validation__two_step
@@ -1530,7 +1541,8 @@ msgstr "Pridobite 2 ravni odobritve za potrditev nabavnega naloga"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
 msgid "Get warnings in orders for products or vendors"
-msgstr "Prejemanje opozoril pri naročilih proizvodov ali naročilih dobaviteljem"
+msgstr ""
+"Prejemanje opozoril pri naročilih proizvodov ali naročilih dobaviteljem"
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order_line__product_type
@@ -1538,8 +1550,6 @@ msgid ""
 "Goods are tangible materials and merchandise you provide.\n"
 "A service is a non-material product you provide."
 msgstr ""
-"Blago so otipljivi materiali in trgovsko blago, ki ga zagotavljate.\n"
-"Storitev je nematerialni izdelek, ki ga zagotavljate."
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__weight
@@ -1557,6 +1567,7 @@ msgid "Hide cancelled lines"
 msgstr "Skrij preklicane postavke"
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_account_accrued_orders_wizard__id
 #: model:ir.model.fields,field_description:purchase.field_account_analytic_account__id
 #: model:ir.model.fields,field_description:purchase.field_account_analytic_applicability__id
 #: model:ir.model.fields,field_description:purchase.field_account_move__id
@@ -1564,6 +1575,7 @@ msgstr "Skrij preklicane postavke"
 #: model:ir.model.fields,field_description:purchase.field_account_tax__id
 #: model:ir.model.fields,field_description:purchase.field_bill_to_po_wizard__id
 #: model:ir.model.fields,field_description:purchase.field_ir_actions_report__id
+#: model:ir.model.fields,field_description:purchase.field_product_category__id
 #: model:ir.model.fields,field_description:purchase.field_product_product__id
 #: model:ir.model.fields,field_description:purchase.field_product_supplierinfo__id
 #: model:ir.model.fields,field_description:purchase.field_product_template__id
@@ -1574,6 +1586,7 @@ msgstr "Skrij preklicane postavke"
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__id
 #: model:ir.model.fields,field_description:purchase.field_res_company__id
 #: model:ir.model.fields,field_description:purchase.field_res_config_settings__id
+#: model:ir.model.fields,field_description:purchase.field_res_groups__id
 #: model:ir.model.fields,field_description:purchase.field_res_partner__id
 msgid "ID"
 msgstr "ID"
@@ -1605,8 +1618,6 @@ msgid ""
 "If enabled, activates 3-way matching on vendor bills : the items must be "
 "received in order to pay the invoice."
 msgstr ""
-"Če je omogočeno, aktivira tristransko preverjanje pri računih dobaviteljev: "
-"artikle je treba prejeti, da je račun mogoče plačati."
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
@@ -1614,20 +1625,6 @@ msgid ""
 "If installed, the product variants will be added to purchase orders through "
 "a grid entry."
 msgstr ""
-"Če je nameščeno, bodo različice izdelka dodane v nabavna naročila prek vnosa "
-"v mrežo."
-
-#. module: purchase
-#. odoo-python
-#: code:addons/purchase/models/product.py:0
-msgid "Import Template for Products"
-msgstr "Predloga za uvoz artiklov"
-
-#. module: purchase
-#. odoo-python
-#: code:addons/purchase/models/purchase_order.py:0
-msgid "Import Template for Requests for Quotation"
-msgstr "Uvozna predloga za zahtevke za ponudbo"
 
 #. module: purchase
 #. odoo-python
@@ -1642,34 +1639,41 @@ msgid ""
 "In selected purchase order to merge these details must be same\n"
 "Vendor, currency, destination, dropship address and agreement"
 msgstr ""
-"Pri izbranih nabavnih nalogih, ki jih želite združiti, morajo biti naslednji "
-"podatki enaki: dobavitelj, valuta, cilj, naslov neposredne dostave in dogovor"
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.product_view_search_catalog
 msgid "In the Order"
-msgstr "V naročilu"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__incoterm_id
+#: model_terms:ir.ui.view,arch_db:purchase.view_partner_property_form
 msgid "Incoterm"
 msgstr "Incoterm"
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order__incoterm_location
+#: model_terms:ir.ui.view,arch_db:purchase.view_partner_property_form
+msgid "Incoterm Location"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/js/tours/purchase.js:0
 msgid "Indicate the product quantity you want to order."
-msgstr "Navedite količino izdelka, ki jo želite naročiti."
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_account_bank_statement_line__purchase_warning_text
 #: model:ir.model.fields,help:purchase.field_account_move__purchase_warning_text
 #: model:ir.model.fields,help:purchase.field_purchase_order__purchase_warning_text
 msgid "Internal warning for the partner or the products as set by the user."
-msgstr "Notranje opozorilo za partnerja ali izdelke, kot ga nastavi uporabnik."
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order__incoterm_id
+#: model:ir.model.fields,help:purchase.field_res_partner__purchase_incoterm_id
+#: model:ir.model.fields,help:purchase.field_res_users__purchase_incoterm_id
 msgid ""
 "International Commercial Terms are a series of predefined commercial terms "
 "used in international transactions."
@@ -1699,11 +1703,6 @@ msgid "Is Follower"
 msgstr "Je sledilec"
 
 #. module: purchase
-#: model:ir.model.fields,field_description:purchase.field_product_product__is_in_purchase_order
-msgid "Is In Purchase Order"
-msgstr "Je v nabavnem nalogu"
-
-#. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__is_late
 msgid "Is Late"
 msgstr "Je pozno"
@@ -1712,14 +1711,14 @@ msgstr "Je pozno"
 #: model:ir.model.fields,field_description:purchase.field_account_bank_statement_line__is_purchase_matched
 #: model:ir.model.fields,field_description:purchase.field_account_move__is_purchase_matched
 msgid "Is Purchase Matched"
-msgstr "Ali je nabava usklajena"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order__acknowledged
 msgid ""
 "It indicates that the vendor has acknowledged the receipt of the purchase "
 "order."
-msgstr "Označuje, da je dobavitelj potrdil prejem nabavnega naročila."
+msgstr ""
 
 #. module: purchase
 #: model:ir.model,name:purchase.model_account_move
@@ -1730,6 +1729,11 @@ msgstr "Temeljnica"
 #: model:ir.model,name:purchase.model_account_move_line
 msgid "Journal Item"
 msgstr "Postavka"
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__label
+msgid "Label"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_bill_to_po_wizard__write_uid
@@ -1760,18 +1764,18 @@ msgstr "Aktivnosti z zamudo"
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "Late RFQ"
-msgstr "Zapoznela zahteva za ponudbo"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "Late Receipt"
-msgstr "Pozno potrdilo"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_filter
 msgid "Late Receipts"
-msgstr "Pozna potrdila"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
@@ -1786,8 +1790,6 @@ msgid ""
 "Let's try the Purchase app to manage the flow from purchase to reception and "
 "invoice control."
 msgstr ""
-"Preizkusimo aplikacijo Nabava za upravljanje toka od nabave do prejema in "
-"nadzora računov."
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_res_company__po_double_validation
@@ -1802,17 +1804,22 @@ msgstr "Ravni Odobritev *"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__line_amount_untaxed
 msgid "Line Amount Untaxed"
-msgstr "Znesek vrstice brez davka"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__line_qty
 msgid "Line Qty"
-msgstr "Količina vrstice"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__line_uom_id
 msgid "Line Uom"
-msgstr "Merska enota vrstice"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
+msgid "Link RFQs together and compare them."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
@@ -1832,7 +1839,7 @@ msgstr "Zaklenjeno"
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order__locked
 msgid "Locked Purchase Orders cannot be modified."
-msgstr "Zaklenjenih nabavnih naročil ni mogoče spreminjati."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
@@ -1844,7 +1851,7 @@ msgstr ""
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
 msgid "Manage blanket orders and purchase templates"
-msgstr "Upravljajte okvirna naročila in nabavne predloge"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__purchase_order_line__qty_received_method__manual
@@ -1867,15 +1874,43 @@ msgid "Match"
 msgstr "Ujemanje"
 
 #. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_search
+msgid "Matched"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__matched_invoice_count
+msgid "Matched Invoices Count"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__matching_id
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_search
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
+msgid "Matching"
+msgstr ""
+
+#. module: purchase
+#. odoo-python
+#: code:addons/purchase/models/purchase_order_line.py:0
+msgid "Matching Invoices"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,help:purchase.field_purchase_order__activity_type_icon
+msgid "Material Symbols icon e.g. checklist"
+msgstr ""
+
+#. module: purchase
 #: model:ir.actions.server,name:purchase.action_merger
 msgid "Merge RFQs"
-msgstr "Združevanje zahtev za ponudbo"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "Merged RFQs"
-msgstr "Združene zahteve za ponudbo"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__message_has_error
@@ -1913,13 +1948,13 @@ msgstr "Najmanjši znesek, za katerega je potrebna dvojna validacija"
 #. module: purchase
 #: model:ir.model.constraint,message:purchase.constraint_purchase_order_line_accountable_required_fields
 msgid "Missing required fields on accountable purchase order line."
-msgstr "Manjkajoča obvezna polja na obračunljivi postavki nabavnega naročila."
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "My"
-msgstr "Moje"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_search
@@ -1936,31 +1971,31 @@ msgstr "Moj rok dejavnosti"
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "My Days to Order"
-msgstr "Moji dnevi za naročanje"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "My Draft RFQs"
-msgstr "Moji osnutki zahtev za ponudbo"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "My Late RFQs"
-msgstr "Moje zapoznele zahteve za ponudbo"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "My Late Receipt POs"
-msgstr "Moja naročila z zamudo pri prejemu"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "My Not Acknowledged POs"
-msgstr "Moja nepotrjena naročila"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_search
@@ -1976,7 +2011,7 @@ msgstr "Moji nakupi"
 #. odoo-javascript
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 msgid "My Waiting RFQs"
-msgstr "Moji čakajoči zahtevki za ponudbe"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -2030,15 +2065,20 @@ msgid "Next Activity Type"
 msgstr "Tip naslednje aktivnosti"
 
 #. module: purchase
+#: model:res.groups.privilege,placeholder:purchase.res_groups_privilege_purchase
+msgid "No"
+msgstr ""
+
+#. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/product_catalog/kanban_renderer.xml:0
 msgid "No Products for the selected Vendor."
-msgstr "Za izbranega dobavitelja ni izdelkov."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.actions.act_window,help:purchase.action_purchase_order_report_all
 msgid "No Purchase Analysis"
-msgstr "Ni analize naročil"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -2054,17 +2094,22 @@ msgstr "Ni najdenega izdelka. Ustvarimo enega!"
 #. module: purchase
 #: model_terms:ir.actions.act_window,help:purchase.purchase_form_action
 msgid "No purchase order found. Let's create one!"
-msgstr "Nabavno naročilo ni bilo najdeno. Ustvarimo ga!"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.actions.act_window,help:purchase.action_purchase_history
 msgid "No purchase order were made for this product yet!"
-msgstr "Za ta izdelek še ni bilo ustvarjeno nobeno nabavno naročilo!"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.actions.act_window,help:purchase.purchase_rfq
 msgid "No request for quotation found. Let's create one!"
-msgstr "Ni najdenih zahtev za ponudbo. Ustvarimo jo!"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__non_deductible_tax
+msgid "Non Deductible Tax"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__purchase_order__priority__0
@@ -2076,12 +2121,22 @@ msgstr "Običajno"
 #: code:addons/purchase/static/src/views/purchase_dashboard.xml:0
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_filter
 msgid "Not Acknowledged"
-msgstr "Ni potrjeno"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__qty_to_invoice_raw
+msgid "Not Invoiced Quantity"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields.selection,name:purchase.selection__purchase_order__receipt_status__pending
+msgid "Not Received"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_order
 msgid "Not using Odoo?"
-msgstr "Ne uporabljate Odooja?"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__purchase_order_line__display_type__line_note
@@ -2109,8 +2164,6 @@ msgstr "Število aktivnosti"
 #: model:ir.model.fields,help:purchase.field_res_users__reminder_date_before_receipt
 msgid "Number of days to send reminder email before the promised receipt date"
 msgstr ""
-"Število dni pred obljubljenim datumom prejema za pošiljanje opomnika po e-"
-"pošti"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__message_has_error_counter
@@ -2133,6 +2186,85 @@ msgid "Odoo"
 msgstr "Odoo"
 
 #. module: purchase
+#: model:ir.module.module,description:base.module_purchase
+msgid ""
+"Odoo Supply Chain\n"
+"-----------------\n"
+"\n"
+"Automate requisition-to-pay, control invoicing with the Odoo\n"
+"<a href=\"https://www.odoo.com/app/purchase\">Open Source Supply Chain</a>.\n"
+"\n"
+"Automate procurement propositions, launch request for quotations, track\n"
+"purchase orders, manage vendors' information, control products reception "
+"and\n"
+"check vendors' invoices.\n"
+"\n"
+"Automated Procurement Propositions\n"
+"----------------------------------\n"
+"\n"
+"Reduce inventory level with procurement rules. Get the right purchase\n"
+"proposition at the right time to reduce your inventory level. Improve your\n"
+"purchase and inventory performance with procurement rules depending on "
+"stock\n"
+"levels, logistic rules, sales orders, forecasted manufacturing orders, etc.\n"
+"\n"
+"Send requests for quotations or purchase orders to your vendor in one "
+"click.\n"
+"Get access to product receptions and invoices from your purchase order.\n"
+"\n"
+"Purchase Tenders\n"
+"----------------\n"
+"\n"
+"Launch purchase tenders, integrate vendor's answers in the process and\n"
+"compare propositions. Choose the best offer and send purchase orders "
+"easily.\n"
+"Use reporting to analyse the quality of your vendors afterwards.\n"
+"\n"
+"\n"
+"Email integrations\n"
+"------------------\n"
+"\n"
+"Integrate all vendor's communications on the purchase orders (or RfQs) to "
+"get\n"
+"a strong traceability on the negotiation or after sales service issues. Use "
+"the\n"
+"claim management module to track issues related to vendors.\n"
+"\n"
+"Standard Price, Average Price, FIFO\n"
+"-----------------------------------\n"
+"\n"
+"Use the costing method that reflects your business: standard price, average\n"
+"price, fifo or lifo. Get your accounting entries and the right inventory\n"
+"valuation in real-time; Odoo manages everything for you, transparently.\n"
+"\n"
+"Import Vendor Pricelists\n"
+"--------------------------\n"
+"\n"
+"Take smart purchase decisions using the best prices.  Easily import "
+"vendor's\n"
+"pricelists to make smarter purchase decisions based on promotions, prices\n"
+"depending on quantities and special contract conditions. You can even base "
+"your\n"
+"sale price depending on your vendor's prices.\n"
+"\n"
+"Control Products and Invoices\n"
+"-----------------------------\n"
+"\n"
+"No product or order is left behind, the inventory control allows you to "
+"manage\n"
+"back orders, refunds, product reception and quality control. Choose the "
+"right\n"
+"control method according to your need.\n"
+"\n"
+"Control vendor bills with no effort. Choose the right method according to\n"
+"your need: pre-generate draft invoices based on purchase orders, on "
+"products\n"
+"receptions, create invoices manually and import lines from purchase orders,\n"
+"etc.\n"
+"\n"
+msgstr ""
+
+#. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__product_template__purchase_method__purchase
 msgid "On ordered quantities"
 msgstr "Po naročeni količini"
@@ -2144,8 +2276,6 @@ msgid ""
 "On ordered quantities: Control bills based on ordered quantities.\n"
 "On received quantities: Control bills based on received quantities."
 msgstr ""
-"Pri naročenih količinah: Račune nadzorujte na podlagi naročenih količin.\n"
-"Pri prejetih količinah: Račune nadzorujte na podlagi prejetih količin.\n"
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__product_template__purchase_method__receive
@@ -2159,8 +2289,6 @@ msgid ""
 "Once you get the price from the vendor, you can complete the purchase order "
 "with the right price."
 msgstr ""
-"Ko od dobavitelja prejmete ceno, lahko naročilo za nabavo dokončate s "
-"pravilno ceno."
 
 #. module: purchase
 #: model_terms:ir.actions.act_window,help:purchase.purchase_form_action
@@ -2168,8 +2296,6 @@ msgid ""
 "Once you ordered your products to your supplier, confirm your request for "
 "quotation and it will turn into a purchase order."
 msgstr ""
-"Ko izdelke naročite pri svojem dobavitelju, potrdite svojo zahtevo za "
-"ponudbo in ta se bo spremenila v nabavno naročilo."
 
 #. module: purchase
 #. odoo-python
@@ -2181,25 +2307,27 @@ msgid "Order"
 msgstr "Naroči"
 
 #. module: purchase
-#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__date_order
-#: model:ir.model.fields,field_description:purchase.field_purchase_report__date_order
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_search
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_search
-#: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_filter
-#: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_search
+#: model:ir.model.fields,field_description:purchase.field_purchase_order__date_approve
 msgid "Order Date"
 msgstr "Datum naročila"
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_search
-msgid "Order Date: Last 365 Days"
-msgstr "Datum naročila: Zadnjih 365 dni"
+msgid "Order DeadLine: Last 365 Days"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__date_order
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__date_order
+#: model:ir.model.fields,field_description:purchase.field_purchase_report__date_order
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_rfqs
 msgid "Order Deadline"
 msgstr "Rok za naročilo"
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_search
+msgid "Order Deadline: Last 365 Days"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__order_line
@@ -2219,8 +2347,16 @@ msgid "Ordered Quantity:"
 msgstr "Naročena količina:"
 
 #. module: purchase
+#: model:ir.model.fields,help:purchase.field_purchase_order_line__qty_to_invoice_raw
+msgid ""
+"Ordered quantity not invoiced. This may or may not include quantities that "
+"won't be invoiced, depending on the product's Control Policy."
+msgstr ""
+
+#. module: purchase
 #: model:ir.ui.menu,name:purchase.menu_procurement_management
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
+#: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_search
 msgid "Orders"
 msgstr "Naročila"
 
@@ -2228,22 +2364,37 @@ msgstr "Naročila"
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "Order due %(date)s"
-msgstr "Naročilo zapade %(date)s"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
-msgid "Other Information"
-msgstr "Ostale informacije"
+msgid "Other Info"
+msgstr ""
 
 #. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.portal_my_home_purchase
+#: model:portal.entry,name:purchase.portal_purchase_orders
 msgid "Our Orders"
-msgstr "Naša naročila"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.view_move_form_inherit_purchase
+msgid "PO Matching"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
+msgid "PO Qty"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__parent_id
 msgid "Parent Section Line"
-msgstr "Nadrejena vrstica razdelka"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields.selection,name:purchase.selection__purchase_order__receipt_status__partial
+msgid "Partially Received"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_bill_to_po_wizard__partner_id
@@ -2274,19 +2425,17 @@ msgid ""
 "Please select at least two purchase orders with state RFQ and RFQ sent to "
 "merge."
 msgstr ""
-"Prosimo, izberite vsaj dve nabavni naročilnici s stanjem RFQ in poslano RFQ, "
-"ki ju želite združiti."
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/purchase_bill_line_match.py:0
 msgid "Please select bill lines with the same vendor."
-msgstr "Izberite vrstice računa z istim dobaviteljem."
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__pol_id
 msgid "Pol"
-msgstr "Vrstica nabavnega naročila"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__access_url
@@ -2294,12 +2443,17 @@ msgid "Portal Access URL"
 msgstr "URL dostop do portala"
 
 #. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
-msgid "Preview the reminder email by sending it to yourself."
-msgstr "Predogled e-poštnega opomnika tako, da ga pošljete sebi."
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__prepaid_expense
+msgid "Prepaid Expense"
+msgstr ""
 
 #. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+msgid "Preview the reminder email by sending it to yourself."
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_search
 msgid "Price"
 msgstr "Cena"
 
@@ -2324,6 +2478,7 @@ msgstr "Prioriteta"
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__product_id
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__product_id
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__product_id
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_search
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_search
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_search
@@ -2331,15 +2486,11 @@ msgid "Product"
 msgstr "Proizvod"
 
 #. module: purchase
+#: model:ir.model,name:purchase.model_product_category
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__category_id
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_search
 msgid "Product Category"
 msgstr "Kategorija proizvoda"
-
-#. module: purchase
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
-msgid "Product Description"
-msgstr "Opis izdelka"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__product_tmpl_id
@@ -2354,23 +2505,22 @@ msgstr "Vrsta izdelka"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__product_uom_price
 msgid "Product Uom Price"
-msgstr "Cena EM izdelka"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__product_uom_qty
 msgid "Product Uom Qty"
-msgstr "Količina EM izdelka"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__product_uom_qty_to_invoice
+msgid "Product Uom Qty To Invoice"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model,name:purchase.model_product_product
 msgid "Product Variant"
 msgstr "Različica proizvoda"
-
-#. module: purchase
-#: model:ir.actions.act_window,name:purchase.product_product_action
-#: model:ir.ui.menu,name:purchase.product_product_menu
-msgid "Product Variants"
-msgstr "Različice proizvoda"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__product_no_variant_attribute_value_ids
@@ -2395,10 +2545,10 @@ msgid "Provide a double validation mechanism for purchases"
 msgstr "Zagotovite mehanizem dvojne validacije za nakupe"
 
 #. module: purchase
+#: model:ir.module.module,shortdesc:base.module_purchase
 #: model:ir.ui.menu,name:purchase.menu_purchase_root
 #: model:ir.ui.menu,name:purchase.purchase_report
 #: model:res.groups.privilege,name:purchase.res_groups_privilege_purchase
-#: model_terms:ir.ui.view,arch_db:purchase.product_template_search_view_purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
 msgid "Purchase"
 msgstr "Nabava"
@@ -2409,9 +2559,14 @@ msgid "Purchase Agreements"
 msgstr "Nabavni sporazumi"
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_res_config_settings__module_purchase_alternative
+msgid "Purchase Alternative"
+msgstr ""
+
+#. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__purchase_amount_untaxed
 msgid "Purchase Amount Untaxed"
-msgstr "Nabavni znesek brez davka"
+msgstr ""
 
 #. module: purchase
 #: model:ir.actions.act_window,name:purchase.action_purchase_order_report_all
@@ -2424,13 +2579,13 @@ msgstr "Analiza Naročila"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
 msgid "Purchase Bill Lines"
-msgstr "Postavke nabavnega računa"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "Purchase Comparison for %s"
-msgstr "Primerjava nabav za %s"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.view_product_supplier_inherit
@@ -2440,30 +2595,41 @@ msgstr "Opis za nabavo"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_res_config_settings__module_purchase_product_matrix
 msgid "Purchase Grid Entry"
-msgstr "Vnos nabavne matrike"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/product.py:0
 msgid "Purchase History for %s"
-msgstr "Zgodovina nakupov za %s"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_account_move_line__purchase_line_warn_msg
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__purchase_line_warn_msg
 msgid "Purchase Line Warn Msg"
-msgstr "Opozorilno sporočilo vrstice nabave"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model,name:purchase.model_purchase_bill_line_match
 msgid "Purchase Line and Vendor Bill line matching view"
-msgstr "Pogled za ujemanje postavke naročila in postavke računa dobavitelja"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_account_bank_statement_line__purchase_matched_ratio
+#: model:ir.model.fields,field_description:purchase.field_account_move__purchase_matched_ratio
+msgid "Purchase Matched Ratio"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/account_invoice.py:0
 msgid "Purchase Matching"
-msgstr "Povezovanje z nabavo"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_account_move_line__purchase_matching_issue_msg
+msgid "Purchase Matching Issue Msg"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -2488,6 +2654,7 @@ msgstr "Povezovanje z nabavo"
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_tree
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_activity
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_tree
+#: model_terms:ir.ui.view,arch_db:purchase.view_move_form_inherit_purchase
 msgid "Purchase Order"
 msgstr "Nabavni nalog"
 
@@ -2514,13 +2681,16 @@ msgstr "Število nabavnih nalogov"
 #: model:ir.actions.act_window,name:purchase.action_purchase_history
 #: model:ir.model,name:purchase.model_purchase_order_line
 #: model:ir.model.fields,field_description:purchase.field_account_move_line__purchase_line_id
+#: model:ir.model.fields,field_description:purchase.field_account_tax__purchase_order_line_ids
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_form2
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_view_form_invoice
 msgid "Purchase Order Line"
 msgstr "Postavka nabavnega naloga"
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_list_invoice
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_tree
 msgid "Purchase Order Lines"
 msgstr "Postavke nabavnega naloga"
@@ -2544,8 +2714,6 @@ msgid ""
 "Purchase Order Modification used when you want to purchase order editable "
 "after confirm"
 msgstr ""
-"Sprememba nabavnega naročila, ki se uporablja, ko želite, da je nabavno "
-"naročilo po potrditvi mogoče urejati"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_account_bank_statement_line__purchase_order_name
@@ -2573,11 +2741,17 @@ msgid "Purchase Report"
 msgstr "Poročilo o nakupih"
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_account_bank_statement_line__purchase_vendor_bill_id
+#: model:ir.model.fields,field_description:purchase.field_account_move__purchase_vendor_bill_id
+msgid "Purchase Vendor Bill"
+msgstr ""
+
+#. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_account_bank_statement_line__purchase_warning_text
 #: model:ir.model.fields,field_description:purchase.field_account_move__purchase_warning_text
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__purchase_warning_text
 msgid "Purchase Warning"
-msgstr "Opozorilo pri nabavi"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_res_config_settings__group_warning_purchase
@@ -2595,9 +2769,14 @@ msgid "Purchase orders that include lines not invoiced."
 msgstr "Nabavni nalogi z nezaračunanimi postavkami."
 
 #. module: purchase
+#: model:ir.module.module,summary:base.module_purchase
+msgid "Purchase orders, tenders and agreements"
+msgstr ""
+
+#. module: purchase
 #: model:ir.actions.server,name:purchase.purchase_send_reminder_mail_ir_actions_server
 msgid "Purchase reminder"
-msgstr "Opomnik za nabavni nalog"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
@@ -2612,29 +2791,34 @@ msgstr "Nabava: Nabavni nalog"
 #. module: purchase
 #: model:mail.template,name:purchase.email_template_edi_purchase
 msgid "Purchase: Request For Quotation"
-msgstr "Nabava: Zahtevek za ponudbo"
+msgstr ""
 
 #. module: purchase
 #: model:mail.template,name:purchase.email_template_edi_purchase_reminder
 msgid "Purchase: Vendor Reminder"
-msgstr "Nabava: opomnik za dobavitelja"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_product_product__purchased_product_qty
 #: model:ir.model.fields,field_description:purchase.field_product_template__purchased_product_qty
+#: model_terms:ir.ui.view,arch_db:purchase.product_normal_form_view_inherit_purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
+#: model_terms:ir.ui.view,arch_db:purchase.view_product_template_purchase_buttons_from
 msgid "Purchased"
 msgstr "Kupljeno"
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.product_normal_form_view_inherit_purchase
 #: model_terms:ir.ui.view,arch_db:purchase.view_product_template_purchase_buttons_from
-msgid "Purchased in the last 365 days"
-msgstr "Kupljeno v zadnjih 365 dneh"
+msgid ""
+"Purchased in the last 365 days. Incoming represents confirmed purchase "
+"orders not received, or partially received"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/res_partner.py:0
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_search
 #: model_terms:ir.ui.view,arch_db:purchase.res_partner_view_purchase_buttons
 #: model_terms:ir.ui.view,arch_db:purchase.view_move_form_inherit_purchase
 msgid "Purchases"
@@ -2643,7 +2827,7 @@ msgstr "Nabava"
 #. module: purchase
 #: model:ir.model,name:purchase.model_purchase_bill_union
 msgid "Purchases & Bills Union"
-msgstr "Združitev nabav in računov"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order__dest_address_id
@@ -2651,13 +2835,11 @@ msgid ""
 "Put an address if you want to deliver directly from the vendor to the "
 "customer. Otherwise, keep empty to deliver to your own company."
 msgstr ""
-"Vnesite naslov, če želite dostaviti neposredno od dobavitelja stranki. Sicer "
-"pustite prazno, da dostavite v svoje podjetje."
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__qty_billed
 msgid "Qty Billed"
-msgstr "Zaračunana količina"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__qty_invoiced
@@ -2675,22 +2857,40 @@ msgid "Qty Received"
 msgstr "Prejeta količina"
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__qty_to_invoice_raw
+msgid "Qty not invoiced"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_list_invoice
+msgid "Qty to Invoice"
+msgstr ""
+
+#. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__qty_to_be_billed
 msgid "Qty to be Billed"
 msgstr "Količina za obračun"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__qty_to_invoice
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
 msgid "Qty to invoice"
-msgstr "Kol za obračun"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__product_qty
-#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_history_tree
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_list_invoice
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
 msgid "Quantity"
 msgstr "Količina"
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.view_product_supplier_inherit
+msgid ""
+"Quantity on hand minus outgoing quantity from Sales Orders plus incoming "
+"quantity from Purchase Orders"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
@@ -2725,18 +2925,23 @@ msgstr "Zahteva za ponudbo poslana"
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "RFQ merged with %(oldest_rfq_name)s and %(cancelled_rfq)s"
-msgstr "RFQ združen z %(oldest_rfq_name)s in %(cancelled_rfq)s"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "RFQ merged with %s"
-msgstr "RFQ združen z %s"
+msgstr ""
 
 #. module: purchase
 #: model:ir.actions.act_window,name:purchase.act_res_partner_2_purchase_order
 msgid "RFQs and Purchases"
 msgstr "Povpraševanja in naročila"
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__consolidation_rate
+msgid "Rate"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__rating_ids
@@ -2746,9 +2951,10 @@ msgstr "Ocene"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_order
 msgid "Read the documentation"
-msgstr "Preberite dokumentacijo"
+msgstr ""
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order__receipt_reminder_email
 #: model:ir.model.fields,field_description:purchase.field_res_config_settings__group_send_reminder
 #: model:ir.model.fields,field_description:purchase.field_res_partner__receipt_reminder_email
 #: model:ir.model.fields,field_description:purchase.field_res_users__receipt_reminder_email
@@ -2756,9 +2962,15 @@ msgid "Receipt Reminder"
 msgstr "Opomnik o prejemu"
 
 #. module: purchase
-#: model:ir.model.fields,field_description:purchase.field_purchase_order__receipt_reminder_email
-msgid "Receipt Reminder Email"
-msgstr "Opomnik o prejemu e-pošte"
+#: model:ir.model.fields,field_description:purchase.field_purchase_order__receipt_status
+msgid "Receipt Status"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_tree
+msgid "Receive"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__qty_received_at_date
@@ -2779,11 +2991,10 @@ msgstr "Metoda prejete količine"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "Received Quantity"
-msgstr "Prejeta količina"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.track_po_line_qty_received_template
-#: model_terms:ir.ui.view,arch_db:purchase.track_po_line_template
 msgid "Received Quantity:"
 msgstr "Prejeta količina:"
 
@@ -2803,12 +3014,13 @@ msgid "Reference"
 msgstr "Referenca"
 
 #. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.view_purchase_bill_union_list_invoice
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_bill_union_tree
 msgid "Reference Document"
-msgstr "Referenčni dokument"
+msgstr ""
 
 #. module: purchase
-#: model:ir.model.fields,field_description:purchase.field_purchase_report__product_uom_id
+#: model:ir.model.fields,field_description:purchase.field_purchase_report__uom_id
 msgid "Reference Unit of Measure"
 msgstr "Referenčna enota mere"
 
@@ -2828,9 +3040,6 @@ msgid ""
 "matching when you receive the products as this reference is usually written "
 "on the delivery order sent by your vendor."
 msgstr ""
-"Referenca prodajnega naročila ali ponudbe, ki jo je poslal dobavitelj. "
-"Uporablja se za ujemanje, ko prejmete izdelke, saj je ta referenca običajno "
-"navedena na dobavnici, ki jo pošlje vaš dobavitelj."
 
 #. module: purchase
 #: model:ir.model,name:purchase.model_ir_actions_report
@@ -2859,19 +3068,19 @@ msgstr "Zahtevek za ponudbo #"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
 msgid "Request managers to approve orders above a minimum amount"
-msgstr "Zahtevajte, da vodje odobrijo naročila nad najnižjim zneskom"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_rfqs
 msgid "Requests For Quotation"
-msgstr "Zahtevki za ponudbo"
+msgstr ""
 
 #. module: purchase
 #: model:ir.actions.act_window,name:purchase.action_rfq_form
 #: model:ir.actions.act_window,name:purchase.purchase_rfq
 #: model:ir.ui.menu,name:purchase.menu_purchase_rfq
+#: model:portal.entry,name:purchase.portal_rfq
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_home_menu_purchase
-#: model_terms:ir.ui.view,arch_db:purchase.portal_my_home_purchase
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_search
 msgid "Requests for Quotation"
 msgstr "Zahtevki za ponudbo"
@@ -2884,10 +3093,14 @@ msgid ""
 "                Once an agreement has been found with the supplier, they "
 "will be confirmed and turned into purchase orders."
 msgstr ""
-"Zahtevki za ponudbo so dokumenti, ki bodo poslani vašim dobaviteljem za "
-"pridobitev cen za različne izdelke, o katerih nakupu razmišljate.\n"
-"                Ko je z dobaviteljem dosežen dogovor, bodo potrjeni in "
-"pretvorjeni v nabavna naročila."
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+msgid ""
+"Reset to today's date to recompute expected arrival based on available lead "
+"time                                     and previous information from the "
+"RFQ."
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__activity_user_id
@@ -2898,6 +3111,12 @@ msgstr "Odgovorni uporabnik"
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr "Napaka pri dostavi SMS"
+
+#. module: purchase
+#. odoo-javascript
+#: code:addons/purchase/static/src/js/tours/purchase.js:0
+msgid "Save the line."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
@@ -2914,13 +3133,7 @@ msgstr "Iskanje nabavnega naloga"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_bill_union_filter
 msgid "Search Reference Document"
-msgstr "Iskalni referenčni dokument"
-
-#. module: purchase
-#. odoo-javascript
-#: code:addons/purchase/static/src/js/tours/purchase.js:0
-msgid "Search a vendor name, or create one on the fly."
-msgstr "Poiščite ime dobavitelja ali ga sproti ustvarite."
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__purchase_order_line__display_type__line_section
@@ -2942,23 +3155,27 @@ msgstr "Varnostni žeton"
 #: code:addons/purchase/models/purchase_bill_line_match.py:0
 msgid "Select Vendor Bill lines to add to a Purchase Order"
 msgstr ""
-"Izberite vrstice računa dobavitelja, ki jih želite dodati v nabavno naročilo"
 
 #. module: purchase
-#. odoo-javascript
-#: code:addons/purchase/static/src/js/tours/purchase.js:0
-msgid "Select a product, or create a new one on the fly."
-msgstr "Izberite izdelek ali ustvarite novega."
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+msgid "Select a Product"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.view_move_form_inherit_purchase
 msgid "Select a purchase document"
-msgstr "Izberite nabavni dokument"
+msgstr ""
+
+#. module: purchase
+#. odoo-javascript
+#: code:addons/purchase/static/src/js/tours/purchase.js:0
+msgid "Select price"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__selected_seller_id
 msgid "Selected Seller"
-msgstr "Izbrani prodajalec"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
@@ -2968,28 +3185,33 @@ msgstr "Prodaja in nakup izdelkov v različnih merskih enotah ali pakiranjih"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "Send PO"
-msgstr "Pošlji nabavno naročilo"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "Send RFQ"
-msgstr "Pošlji povpraševanje"
+msgstr ""
 
 #. module: purchase
 #: model:ir.actions.server,name:purchase.action_purchase_send_reminder
 msgid "Send Reminder"
-msgstr "Pošlji opomnik"
+msgstr ""
 
 #. module: purchase
 #: model:res.groups,name:purchase.group_send_reminder
 msgid "Send an automatic reminder email to confirm delivery"
-msgstr "Pošlji samodejno e-poštno sporočilo z opomnikom za potrditev dostave"
+msgstr ""
+
+#. module: purchase
+#: model:ir.actions.act_window,name:purchase.action_purchase_order_mass_mail
+msgid "Send by mail"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/js/tours/purchase.js:0
 msgid "Send the request for quotation to your vendor."
-msgstr "Pošljite zahtevek za ponudbo svojemu dobavitelju."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_filter
@@ -2999,20 +3221,18 @@ msgstr "Poslano"
 #. module: purchase
 #: model:mail.template,description:purchase.email_template_edi_purchase
 msgid "Sent manually to vendor to request a quotation"
-msgstr "Ročno poslano dobavitelju za pridobitev ponudbe"
+msgstr ""
 
 #. module: purchase
 #: model:mail.template,description:purchase.email_template_edi_purchase_done
 msgid "Sent to vendor with the purchase order in attachment"
-msgstr "Poslano dobavitelju z naročilnico v priponki"
+msgstr ""
 
 #. module: purchase
 #: model:mail.template,description:purchase.email_template_edi_purchase_reminder
 msgid ""
 "Sent to vendors before expected arrival, based on the purchase order setting"
 msgstr ""
-"Poslano dobaviteljem pred pričakovanim prihodom na podlagi nastavitve "
-"nabavnega naročila"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__sequence
@@ -3038,14 +3258,18 @@ msgstr "Souporaba"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__show_comparison
 msgid "Show Comparison"
-msgstr "Prikaži primerjavo"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order__show_receive_button
+msgid "Show Receive Button"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_search
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_filter
 msgid "Show all records whose next activity date is past"
 msgstr ""
-"Prikaži vse zapise, pri katerih je datum naslednje aktivnosti že pretekel"
 
 #. module: purchase
 #. odoo-python
@@ -3054,8 +3278,6 @@ msgid ""
 "Some order lines are missing a product, you need to correct them before "
 "going further."
 msgstr ""
-"Nekatere vrstice naročila nimajo izdelka, zato jih morate popraviti, preden "
-"nadaljujete."
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_union__reference
@@ -3072,12 +3294,12 @@ msgstr "Označeno"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_order
 msgid "Start on Odoo"
-msgstr "Začnite uporabljati Odoo"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__state
 msgid "State"
-msgstr "Stanje"
+msgstr "Zvezna država ali regija"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__state
@@ -3104,12 +3326,12 @@ msgstr ""
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__purchase_order_line__display_type__line_subsection
 msgid "Subsection"
-msgstr "Pododdelek"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "Subsection Name"
-msgstr "Ime pododdelka"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__price_subtotal
@@ -3119,27 +3341,27 @@ msgstr "Vmesni seštevek"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_report_view_tree
 msgid "Sum of Qty Billed"
-msgstr "Vsota zaračunane količine"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_report_view_tree
 msgid "Sum of Qty Ordered"
-msgstr "Vsota naročene količine"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_report_view_tree
 msgid "Sum of Qty Received"
-msgstr "Vsota prejete količine"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_report_view_tree
 msgid "Sum of Total"
-msgstr "Vsota skupno"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_report_view_tree
 msgid "Sum of Untaxed Total"
-msgstr "Vsota Neneobljubljenega Skupnega zneska"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_res_partner__property_purchase_currency_id
@@ -3164,6 +3386,16 @@ msgid "Tax Country"
 msgstr "Davčna država"
 
 #. module: purchase
+#: model:ir.model.fields.selection,name:purchase.selection__purchase_order__document_tax_mode__tax_excluded
+msgid "Tax Excl."
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields.selection,name:purchase.selection__purchase_order__document_tax_mode__tax_included
+msgid "Tax Incl."
+msgstr ""
+
+#. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__tax_totals
 msgid "Tax Totals"
 msgstr "Skupni znesek davkov"
@@ -3177,12 +3409,12 @@ msgstr "Metoda zaokroževanja davkov"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "Tax excl.:"
-msgstr "Brez davka:"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
 msgid "Tax incl.:"
-msgstr "Davek vključen:"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__amount_tax
@@ -3193,17 +3425,17 @@ msgstr "Davki"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__technical_price_unit
 msgid "Technical Price Unit"
-msgstr "Tehnična cena na enoto"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order_line__display_type
 msgid "Technical field for UX purpose."
-msgstr "Tehnično polje za namene UX."
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order_line__technical_price_unit
 msgid "Technical field for price computation"
-msgstr "Tehnično polje za izračun cene"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order__tax_country_id
@@ -3211,15 +3443,23 @@ msgid ""
 "Technical field to filter the available taxes depending on the fiscal "
 "country and fiscal position."
 msgstr ""
-"Tehnično polje za filtriranje razpoložljivih davkov glede na davčno državo "
-"in davčni položaj."
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order_line__selected_seller_id
 msgid "Technical field to get the vendor pricelist used to generate this line"
 msgstr ""
-"Tehnično polje za pridobitev cenika dobavitelja, uporabljenega za "
-"ustvarjanje te vrstice"
+
+#. module: purchase
+#. odoo-python
+#: code:addons/purchase/models/product.py:0
+msgid "Template for Products"
+msgstr ""
+
+#. module: purchase
+#. odoo-python
+#: code:addons/purchase/models/purchase_order.py:0
+msgid "Template for Requests for Quotation"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
@@ -3243,7 +3483,25 @@ msgstr ""
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order_line__price_unit_product_uom
 msgid "The Price of one unit of the product's Unit of Measure"
-msgstr "Cena ene enote merske enote izdelka"
+msgstr ""
+
+#. module: purchase
+#. odoo-python
+#: code:addons/purchase/models/purchase_order.py:0
+msgid ""
+"The following purchase orders %(invalid_orders)s can't be received. "
+"Cancelled all receptions."
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.track_po_line_template
+msgid "The ordered quantity and unit price have been updated."
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.track_po_line_template
+msgid "The ordered quantity has been updated."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.actions.act_window,help:purchase.act_res_partner_2_purchase_order
@@ -3253,20 +3511,21 @@ msgid ""
 "control the receipt\n"
 "                    of the products and the vendor bill."
 msgstr ""
-"Zahteva za ponudbo je prvi korak v procesu nabave. Ko jo\n"
-"                    pretvorite v naročilnico, boste lahko nadzorovali "
-"prejem\n"
-"                    izdelkov in račun dobavitelja."
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.track_po_line_template
+msgid "The unit price has been updated."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_orders
 msgid "There are currently no purchase orders for your account."
-msgstr "Za vaš račun trenutno ni nabavnih naročil."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_rfqs
 msgid "There are currently no requests for quotation for your account."
-msgstr "Za vaš račun trenutno ni zahtev za ponudbo."
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -3274,8 +3533,6 @@ msgstr "Za vaš račun trenutno ni zahtev za ponudbo."
 msgid ""
 "There are no products to add to the Purchase Order. Are these Down Payments?"
 msgstr ""
-"Ni izdelkov, ki bi jih bilo mogoče dodati v nabavno naročilo. Ali gre za "
-"predplačila?"
 
 #. module: purchase
 #: model_terms:ir.actions.act_window,help:purchase.action_purchase_order_report_all
@@ -3285,16 +3542,12 @@ msgid ""
 "                You can track your negotiation performance, the delivery "
 "performance of your vendors, etc"
 msgstr ""
-"Ta analiza vam omogoča enostavno preverjanje in analizo zgodovine nakupov in "
-"uspešnosti vašega podjetja.\n"
-"                Spremljate lahko uspešnost svojih pogajanj, uspešnost dostav "
-"vaših dobaviteljev itd."
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_res_partner__property_purchase_currency_id
 #: model:ir.model.fields,help:purchase.field_res_users__property_purchase_currency_id
 msgid "This currency will be used for purchases from the current partner"
-msgstr "Ta valuta bo uporabljena za nakupe pri trenutnem partnerju"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.view_product_supplier_inherit
@@ -3305,13 +3558,13 @@ msgstr "Ta opomba je dodana nabavnim naročilom."
 #. odoo-python
 #: code:addons/purchase/models/account_invoice.py:0
 msgid "This vendor bill has been created from: "
-msgstr "Ta račun dobavitelja je bil ustvarjen iz: "
+msgstr ""
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/account_invoice.py:0
 msgid "This vendor bill has been modified from: "
-msgstr "Ta račun dobavitelja je bil spremenjen iz:"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.actions.act_window,help:purchase.act_res_partner_2_purchase_order
@@ -3322,13 +3575,13 @@ msgstr "Ta prodajalec nima naročila za nakup. Ustvari nov predračun"
 #: model:digest.tip,name:purchase.digest_tip_purchase_0
 #: model_terms:digest.tip,tip_description:purchase.digest_tip_purchase_0
 msgid "Tip: How to keep late receipts under control?"
-msgstr "Namig: Kako imeti pozne prejemke pod nadzorom?"
+msgstr ""
 
 #. module: purchase
 #: model:digest.tip,name:purchase.digest_tip_purchase_1
 #: model_terms:digest.tip,tip_description:purchase.digest_tip_purchase_1
 msgid "Tip: Never miss a purchase order"
-msgstr "Nasvet: Nikoli ne spreglejte nabavnega naročila"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__purchase_order__state__to_approve
@@ -3336,6 +3589,12 @@ msgstr "Nasvet: Nikoli ne spreglejte nabavnega naročila"
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_filter
 msgid "To Approve"
 msgstr "Za potrditi"
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__price_subtotal_to_invoice
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_list_invoice
+msgid "To Invoice"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__qty_to_invoice
@@ -3361,17 +3620,23 @@ msgstr "Skupaj"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
 msgid "Total Billed"
-msgstr "Skupaj zaračunano"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.product_product_purchase_tree_view
+#: model_terms:ir.ui.view,arch_db:purchase.product_template_purchase_tree_view
+msgid "Total Forecasted"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
 msgid "Total Purchased"
-msgstr "Skupaj kupljeno"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_history_pivot
 msgid "Total Qty purchased"
-msgstr "Skupna količina kupljenega"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__product_uom_qty
@@ -3380,8 +3645,9 @@ msgstr "Skupna količina"
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_history_tree
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_list_invoice
 msgid "Total Untaxed"
-msgstr "Skupaj brez davka"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_kpis_tree
@@ -3400,23 +3666,18 @@ msgstr "Skupni znesek"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__amount_total_cc
 msgid "Total in currency"
-msgstr "Skupaj v valuti"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_history_pivot
 msgid "Total purchased amount"
-msgstr "Skupni znesek nakupa"
-
-#. module: purchase
-#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__translated_product_name
-msgid "Translated Product Name"
-msgstr "Prevedeno ime izdelka"
+msgstr ""
 
 #. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/product_catalog/kanban_renderer.xml:0
 msgid "Try removing the top filter to broaden your search"
-msgstr "Poskusite odstraniti zgornji filter, da razširite iskanje"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order__activity_exception_decoration
@@ -3430,25 +3691,24 @@ msgid ""
 "Unable to cancel purchase order(s): %s. You must first cancel their related "
 "vendor bills."
 msgstr ""
-"Nabavnih naročil ni mogoče preklicati: %s. Najprej morate preklicati z njimi "
-"povezane račune dobaviteljev."
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "Unable to cancel purchase order(s): %s. You must first unlock them."
 msgstr ""
-"Naročil za nabavo ni mogoče preklicati: %s. Najprej jih morate odkleniti."
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_line_match__product_uom_id
-#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__product_uom_id
+#: model:ir.model.fields,field_description:purchase.field_purchase_order_line__uom_id
 msgid "Unit"
 msgstr "Enota"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__price_unit
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_history_tree
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_list_invoice
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_portal_content
 msgid "Unit Price"
 msgstr "Cena enote"
@@ -3456,15 +3716,16 @@ msgstr "Cena enote"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__price_unit_discounted
 msgid "Unit Price (Discounted)"
-msgstr "Cena na enoto (s popustom)"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order_line__price_unit_product_uom
 msgid "Unit Price Product UoM"
-msgstr "Cena na enoto v merski enoti izdelka"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase.track_po_line_template
 msgid "Unit Price:"
 msgstr "Cena enote:"
 
@@ -3480,10 +3741,20 @@ msgid "Unlock"
 msgstr "Odkleni"
 
 #. module: purchase
+#: model:ir.actions.server,name:purchase.action_unmatch_lines
+msgid "Unmatch"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_search
+msgid "Unmatched"
+msgstr ""
+
+#. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "Unsupported operator"
-msgstr "Nepodprt operator"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_kpis_tree
@@ -3503,10 +3774,16 @@ msgid "Untaxed Total"
 msgstr "Skupaj brez davka"
 
 #. module: purchase
+#. odoo-python
+#: code:addons/purchase/models/account_invoice.py:0
+msgid "Update"
+msgstr ""
+
+#. module: purchase
 #. odoo-javascript
 #: code:addons/purchase/static/src/components/purchase_file_uploader/purchase_file_uploader.xml:0
 msgid "Upload Bill"
-msgstr "Naloži račun"
+msgstr ""
 
 #. module: purchase
 #: model:ir.model.fields.selection,name:purchase.selection__purchase_order__priority__1
@@ -3519,8 +3796,6 @@ msgid ""
 "Use the above REST URL to get structured data of the purchase order in UBL "
 "format."
 msgstr ""
-"Uporabite zgornji URL REST za pridobitev strukturiranih podatkov nabavnega "
-"naročila v obliki UBL."
 
 #. module: purchase
 #: model:res.groups,name:purchase.group_purchase_user
@@ -3536,16 +3811,19 @@ msgstr "Napaka pri potrjevanju"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_config_settings_view_form_purchase
 msgid "Variant Grid Entry"
-msgstr "Vnos mreže različic"
+msgstr ""
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_product_product__sold_by_vendor_id
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_union__partner_id
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__partner_id
 #: model:ir.model.fields,field_description:purchase.field_purchase_report__partner_id
 #: model_terms:ir.ui.view,arch_db:purchase.product_template_search_view_purchase
-#: model_terms:ir.ui.view,arch_db:purchase.product_view_search_catalog
+#: model_terms:ir.ui.view,arch_db:purchase.product_view_search_catalog_inherit
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_search
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_bill_line_match_tree
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_history_tree
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_list_invoice
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_search
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_tree
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_search
@@ -3557,18 +3835,18 @@ msgstr "Dobavitelj"
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_bill_union__vendor_bill_id
 msgid "Vendor Bill"
-msgstr "Prejeti račun"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/purchase_bill_line_match.py:0
 msgid "Vendor Bill lines can only be added to one Purchase Order."
 msgstr ""
-"Vrstice računa dobavitelja je mogoče dodati samo enemu nabavnemu naročilu."
 
 #. module: purchase
 #: model:ir.actions.act_window,name:purchase.act_res_partner_2_supplier_invoices
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_line_view_form_invoice
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_bill_union_filter
 msgid "Vendor Bills"
 msgstr "Prejeti računi"
@@ -3579,12 +3857,25 @@ msgid "Vendor Country"
 msgstr "Država dobavitelja"
 
 #. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_res_partner__purchase_incoterm_id
+#: model:ir.model.fields,field_description:purchase.field_res_users__purchase_incoterm_id
+msgid "Vendor Incoterm"
+msgstr ""
+
+#. module: purchase
+#: model:ir.model.fields,field_description:purchase.field_res_partner__purchase_incoterm_location
+#: model:ir.model.fields,field_description:purchase.field_res_users__purchase_incoterm_location
+msgid "Vendor Incoterm Location"
+msgstr ""
+
+#. module: purchase
 #: model:ir.ui.menu,name:purchase.menu_product_pricelist_action2_purchase
 msgid "Vendor Pricelists"
 msgstr "Ceniki dobaviteljev"
 
 #. module: purchase
 #: model:ir.model.fields,field_description:purchase.field_purchase_order__partner_ref
+#: model_terms:ir.ui.view,arch_db:purchase.view_purchase_bill_union_list_invoice
 msgid "Vendor Reference"
 msgstr "Sklic dobavitelja"
 
@@ -3601,10 +3892,6 @@ msgid ""
 "                    you receive from your vendor according to the draft\n"
 "                    document in Odoo."
 msgstr ""
-"Računi dobaviteljev se lahko vnaprej ustvarijo na podlagi nakupa\n"
-"                    naročila ali potrdila. To vam omogoča nadzor nad računi\n"
-"                    prejmete od svojega dobavitelja v skladu z osnutkom\n"
-"                    dokumenta v Odooju."
 
 #. module: purchase
 #. odoo-python
@@ -3643,17 +3930,17 @@ msgstr "Računi v čakanju"
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_order
 msgid "Want to import this document in Odoo?"
-msgstr "Želite uvoziti ta dokument v Odoo?"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.view_product_supplier_inherit
 msgid "Warning on Purchase Orders"
-msgstr "Opozorilo na nabavnih naročilih"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_partner_view_purchase_buttons
 msgid "Warning on Purchase Orders and Bills"
-msgstr "Opozorilo pri nabavnih naročilih in računih"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_view_search
@@ -3661,16 +3948,6 @@ msgstr "Opozorilo pri nabavnih naročilih in računih"
 #: model_terms:ir.ui.view,arch_db:purchase.view_purchase_order_filter
 msgid "Warnings"
 msgstr "Opozorila"
-
-#. module: purchase
-#: model:ir.model.fields,field_description:purchase.field_purchase_order__website_message_ids
-msgid "Website Messages"
-msgstr "Sporočila iz spletne strani"
-
-#. module: purchase
-#: model:ir.model.fields,help:purchase.field_purchase_order__website_message_ids
-msgid "Website communication history"
-msgstr "Kronologija komunikacij spletne strani"
 
 #. module: purchase
 #: model_terms:digest.tip,tip_description:purchase.digest_tip_purchase_0
@@ -3682,12 +3959,6 @@ msgid ""
 "dates and keep you informed in case of any delays. To get the vendor's "
 "performance statistics, click on the OTD rate."
 msgstr ""
-"Pri ustvarjanju nabavnega naročila si oglejte dobaviteljevo stopnjo <i>"
-"pravočasne dostave</i>: odstotek izdelkov, odposlanih pravočasno. Če je "
-"prenizka, aktivirajte <i>samodejne opomnike</i>. Nekaj dni pred predvideno "
-"odpremo bo Odoo dobavitelju poslal e-pošto z zahtevo za potrditev datumov "
-"odpreme in vas obvestil v primeru zamud. Če želite pridobiti statistične "
-"podatke o uspešnosti dobavitelja, kliknite stopnjo OTD."
 
 #. module: purchase
 #: model_terms:digest.tip,tip_description:purchase.digest_tip_purchase_1
@@ -3697,10 +3968,6 @@ msgid ""
 "clicking on a button in the email, the information is added on the purchase "
 "order. Use filters to track orders that have not been acknowledged."
 msgstr ""
-"Ko pošljete nabavno naročilo po e-pošti, Odoo dobavitelja prosi, naj potrdi "
-"prejem naročila. Ko dobavitelj potrdi naročilo s klikom na gumb v e-pošti, "
-"se informacije dodajo na nabavno naročilo. Uporabite filtre za sledenje "
-"naročilom, ki niso bila potrjena."
 
 #. module: purchase
 #: model:ir.model.fields,help:purchase.field_purchase_order__partner_id
@@ -3716,7 +3983,7 @@ msgstr ""
 #: code:addons/purchase/models/purchase_order.py:0
 #: code:addons/purchase/static/src/components/purchase_file_uploader/purchase_file_uploader.js:0
 msgid "You can only upload a bill for a single vendor at a time."
-msgstr "Račun lahko naložite samo za enega dobavitelja naenkrat."
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -3725,23 +3992,11 @@ msgid ""
 "You cannot change the type of a purchase order line. Instead you should "
 "delete the current line and create a new line of the proper type."
 msgstr ""
-"Vrste vrstice nabavnega naročila ni mogoče spremeniti. Namesto tega morate "
-"izbrisati trenutno vrstico in ustvariti novo vrstico ustrezne vrste."
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_order
 msgid "You don't use a good CRM software?"
-msgstr "Ne uporabljate dobre programske opreme CRM?"
-
-#. module: purchase
-#: model_terms:ir.actions.act_window,help:purchase.product_product_action
-msgid ""
-"You must define a product for everything you sell or purchase,\n"
-"                whether it's a storable product, a consumable or a service."
 msgstr ""
-"Definirate morate vsak izdelek, katerega prodajate ali kupujete,\n"
-"                ne glede na to, ali gre za izdelek z zalogo, potrošni "
-"material ali storitev."
 
 #. module: purchase
 #: model_terms:ir.actions.act_window,help:purchase.product_normal_action_puchased
@@ -3758,49 +4013,47 @@ msgstr ""
 msgid ""
 "You must select at least one Purchase Order line to match or create bill."
 msgstr ""
-"Za ujemanje ali ustvarjanje računa morate izbrati vsaj eno vrstico nabavnega "
-"naročila."
 
 #. module: purchase
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid ""
-"Your quotation contains products from company %(product_company)s whereas "
-"your quotation belongs to company %(quote_company)s. \n"
-" Please change the company of your quotation or remove the products from "
-"other companies (%(bad_products)s)."
+"Your RFQ contains products from company %(product_company)s whereas your RFQ "
+"belongs to company %(quote_company)s. \n"
+" Please change the company of your RFQ or remove the products from other "
+"companies (%(bad_products)s)."
 msgstr ""
-"Vaša ponudba vsebuje izdelke podjetja %(product_company)s, medtem ko vaša "
-"ponudba pripada podjetju %(quote_company)s. \n"
-"Spremenite podjetje svoje ponudbe ali odstranite izdelke iz drugih podjetij "
-"(%(bad_products)s)."
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
-msgid "day(s) before"
-msgstr "dan(i) prej"
+msgid "billing"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.view_product_supplier_inherit
 msgid "e.g. There is a newer version of this product."
-msgstr "Na voljo je novejša različica tega izdelka."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.res_partner_view_purchase_buttons
 msgid "e.g. This vendor is on vacation until the end of August."
-msgstr "Ta dobavitelj je na dopustu do konca avgusta."
+msgstr ""
+
+#. module: purchase
+#. odoo-python
+#: code:addons/purchase/models/purchase_order_line.py:0
+msgid "id"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.bill_to_po_wizard_form
 msgid "or create new"
-msgstr "ali ustvari novega"
+msgstr ""
 
 #. module: purchase
-#. odoo-python
-#: code:addons/purchase/models/account_invoice.py:0
-#: code:addons/purchase/models/purchase_order.py:0
-msgid "partner_id"
-msgstr "partner_id"
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+msgid "purchase"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -3812,7 +4065,7 @@ msgstr "res_id"
 #. odoo-python
 #: code:addons/purchase/models/purchase_order.py:0
 msgid "res_model_id"
-msgstr "res_model_id"
+msgstr ""
 
 #. module: purchase
 #. odoo-python
@@ -3824,12 +4077,17 @@ msgstr "država"
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchasequotation_document
 msgid "to create quotes automatically."
-msgstr "za samodejno ustvarjanje ponudb."
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.portal_my_purchase_order
 msgid "to learn all the ways to connect your software with"
-msgstr "če želite izvedeti vse načine povezovanja svoje programske opreme z"
+msgstr ""
+
+#. module: purchase
+#: model_terms:ir.ui.view,arch_db:purchase.purchase_order_form
+msgid "tracking"
+msgstr ""
 
 #. module: purchase
 #: model_terms:ir.ui.view,arch_db:purchase.report_purchaseorder_document
@@ -3838,249 +4096,29 @@ msgid "with"
 msgstr "z"
 
 #. module: purchase
-#: model:mail.template,subject:purchase.email_template_edi_purchase
 #: model:mail.template,subject:purchase.email_template_edi_purchase_done
 #: model:mail.template,subject:purchase.email_template_edi_purchase_reminder
 msgid "{{ object.company_id.name }} Order (Ref {{ object.name or 'n/a' }})"
 msgstr ""
-"{{ object.company_id.name }} Naročilo (Sklic {{ object.name or 'n/a' }})"
 
-#~ msgid "<i class=\"fa fa-comment\"/> Send message"
-#~ msgstr "<i class=\"fa fa-comment\"/> Pošlji sporočilo"
+#. module: purchase
+#: model:mail.template,subject:purchase.email_template_edi_purchase
+msgid ""
+"{{ object.company_id.name }} Request for Quotation (Ref {{ object.name or 'n/"
+"a' }})"
+msgstr ""
 
-#~ msgid "<i class=\"fa fa-download\"/> Download"
-#~ msgstr "<i class=\"fa fa-download\"/> Prenesi"
+#~ msgid "<strong class=\"mr16\">Subtotal</strong>"
+#~ msgstr "<strong class=\"mr16\">Skupaj</strong>"
 
-#~ msgid "<i class=\"fa fa-fw fa-check\"/> <b>Paid</b>"
-#~ msgstr "<i class=\"fa fa-fw fa-check\"/> <b>Plačano</b>"
+#~ msgid "Product Description"
+#~ msgstr "Opis izdelka"
 
-#~ msgid "<i class=\"fa fa-fw fa-clock-o\"/> <b>Waiting Payment</b>"
-#~ msgstr "<i class=\"fa fa-fw fa-clock-o\"/> <b>Čakanje plačila</b>"
+#~ msgid "Website Messages"
+#~ msgstr "Sporočila iz spletne strani"
 
-#~ msgid "<i class=\"fa fa-print\"/> Print"
-#~ msgstr "<i class=\"fa fa-print\"/> Natisni"
+#~ msgid "Website communication history"
+#~ msgstr "Kronologija komunikacij spletne strani"
 
-#~ msgid ""
-#~ "<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not in',"
-#~ "('draft','sent'))]}\">Request for Quotation </span>\n"
-#~ "                        <span class=\"o_form_label\" "
-#~ "attrs=\"{'invisible': [('state','in',('draft','sent'))]}\">Purchase Order "
-#~ "</span>"
-#~ msgstr ""
-#~ "<span class=\"o_form_label\" attrs=\"{'invisible': [('state','not in',"
-#~ "('draft','sent'))]}\">Zahtevek za ponudbo </span>\n"
-#~ "                        <span class=\"o_form_label\" "
-#~ "attrs=\"{'invisible': [('state','in',('draft','sent'))]}\">Nabavni nalog "
-#~ "</span>"
-
-#~ msgid "<strong class=\"text-muted\">Purchase Representative</strong>"
-#~ msgstr "<strong class=\"text-muted\">Nabavni zastopnik</strong>"
-
-#~ msgid "<strong>Date Req.</strong>"
-#~ msgstr "<strong>Datum pov.</strong>"
-
-#~ msgid "<strong>Purchase Representative:</strong>"
-#~ msgstr "<strong>Nabavni zastopnik:</strong>"
-
-#~ msgid "<strong>Shipping address:</strong>"
-#~ msgstr "<strong>Naslov za dostavo:</strong>"
-
-#~ msgid "<strong>Your Order Reference:</strong>"
-#~ msgstr "<strong>Vaš sklic naročila:</strong>"
-
-#~ msgid ""
-#~ "A storable product is a product for which you manage stock. The Inventory "
-#~ "app has to be installed.\n"
-#~ "A consumable product is a product for which stock is not managed.\n"
-#~ "A service is a non-material product you provide."
-#~ msgstr ""
-#~ "Izdelek, ki ga je mogoče shraniti, je izdelek, pri katerem upravljate z "
-#~ "zalogami. Namestiti je treba aplikacijo Inventory.\n"
-#~ "Potrošni izdelek je izdelek, pri katerem se zaloge ne upravljajo.\n"
-#~ "Storitev je nematerialni izdelek, ki ga ponujate."
-
-#~ msgid "Accept"
-#~ msgstr "Sprejmi"
-
-#~ msgid "All RFQs"
-#~ msgstr "Vsi zahtevki za nabavo"
-
-#~ msgid "Auto-complete from a past bill / purchase order."
-#~ msgstr "Samodejno izpolni iz preteklega računa / naročila."
-
-#~ msgid "Bill Control"
-#~ msgstr "Nadzor obračuna"
-
-#~ msgid "Blocking Message"
-#~ msgstr "Sporočilo ob blokadi"
-
-#~ msgid "Cannot delete a purchase order line which is in state '%s'."
-#~ msgstr "Postavke nabavnega naloga v stanju '%s' ni mogoče brisati."
-
-#~ msgid "Category"
-#~ msgstr "Kategorija"
-
-#~ msgid "Confirm"
-#~ msgstr "Potrdi"
-
-#~ msgid ""
-#~ "Conversion between Units of Measure can only occur if they belong to the "
-#~ "same category. The conversion will be made based on the ratios."
-#~ msgstr "Pretvorba med enotami mere je možna samo v isti kategoriji."
-
-#~ msgid "Create Bill"
-#~ msgstr "Ustvari račun"
-
-#~ msgid "Days"
-#~ msgstr "Dni"
-
-#~ msgid "Done"
-#~ msgstr "Opravljeno"
-
-#~ msgid "Download"
-#~ msgstr "Prenesi"
-
-#~ msgid "Email composition wizard"
-#~ msgstr "Čarovnik za sestavljanje e-pošte"
-
-#~ msgid "Extended Filters"
-#~ msgstr "Razširjeni filtri"
-
-#~ msgid "Group By"
-#~ msgstr "Združi po"
-
-#~ msgid "History"
-#~ msgstr "Zgodovina"
-
-#~ msgid "Lead Time to Purchase"
-#~ msgstr "Dobavni rok"
-
-#~ msgid "Manage your purchase agreements (call for tenders, blanket orders)"
-#~ msgstr ""
-#~ "Upravljanje nabavnih sporazumov (razpisna povpraševanja, okvirni "
-#~ "sporazumi)"
-
-#~ msgid "My RFQs"
-#~ msgstr "Moji zahtevki za nabavo"
-
-#~ msgid "No Message"
-#~ msgstr "Brez sporočila"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Število sporočil, ki zahtevajo dejavnost"
-
-#~ msgid "Ordered quantities"
-#~ msgstr "Naročena količina"
-
-#~ msgid "Packaging"
-#~ msgstr "Pakiranje"
-
-#~ msgid "Print RFQ"
-#~ msgstr "Natisni zahtevek za ponudbo"
-
-#~ msgid "Product Attributes"
-#~ msgstr "Lastnosti izdelka"
-
-#~ msgid "Product Categories"
-#~ msgstr "Kategorije izdelkov"
-
-#~ msgid "Product Packaging"
-#~ msgstr "Pakiranje proizvoda"
-
-#~ msgid "Purchase Lead Time"
-#~ msgstr "Čas dostave naročila"
-
-#~ msgid "Purchase Representative"
-#~ msgstr "Nabavni zastopnik"
-
-#~ msgid "Quantities billed by vendors"
-#~ msgstr "Količine zaračunane s strani dobaviteljev"
-
-#~ msgid "RFQ Done"
-#~ msgstr "Povpraševanje po poudbi opravljeno"
-
-#~ msgid "RFQs Sent Last 7 Days"
-#~ msgstr "Poslanih zahtev za nabavno zadnjih 7 dni"
-
-#~ msgid "Re-Send by Email"
-#~ msgstr "Ponovno pošljite po e-pošti"
-
-#~ msgid "Received quantities"
-#~ msgstr "Prejeta količina"
-
-#~ msgid "Security Lead Time for Purchase"
-#~ msgstr "Varnostni rok dobave pri nabavi"
-
-#~ msgid "Select a purchase order or an old bill"
-#~ msgstr "Izberite nabavni nalog ali star prejeti račun"
-
-#~ msgid ""
-#~ "Selecting the \"Warning\" option will notify user with the message, "
-#~ "Selecting \"Blocking Message\" will throw an exception with the message "
-#~ "and block the flow. The Message has to be written in the next field."
-#~ msgstr ""
-#~ "Izbira možnosti \"Opozorilo\" uporabnika obvesti s sporočilom. Izbira "
-#~ "\"Sporočila ob blokadi\" povzroči izjemo, izpiše sporočilo in zaustavi "
-#~ "potek. Sporočilo je potrebno zapisati v naslednje polje."
-
-#~ msgid "Send PO by Email"
-#~ msgstr "Pošlji nabavni nalog po e-pošti"
-
-#~ msgid "Send by Email"
-#~ msgstr "Pošlji po e-pošti"
-
-#~ msgid "Show all records which has next action date is before today"
-#~ msgstr ""
-#~ "Prikaži vse zapise z datumom naslednje aktivnosti pred današnjim datumom."
-
-#~ msgid "Source Document"
-#~ msgstr "Izvorni dokument"
-
-#~ msgid "This vendor bill has been created from: %s"
-#~ msgstr "Ta prejeti račun je bil ustvarjen iz: %s"
-
-#~ msgid "This vendor bill has been modified from: %s"
-#~ msgstr "Ta račun prodajalca je bil spremenjen iz: %s"
-
-#~ msgid "To Send"
-#~ msgstr "Za poslati"
-
-#~ msgid ""
-#~ "Unable to cancel this purchase order. You must first cancel the related "
-#~ "vendor bills."
-#~ msgstr ""
-#~ "Tega nabavnega naloga ni mogoče preklicati. Najprej morate preklicati "
-#~ "povezane račune dobaviteljev."
-
-#~ msgid "Unit of Measure"
-#~ msgstr "Enota mere"
-
-#~ msgid "Units of Measure"
-#~ msgstr "Merske enote"
-
-#~ msgid "Units of Measure Categories"
-#~ msgstr "Kategorije enot mere"
-
-#~ msgid "Units of Measures"
-#~ msgstr "Merske enote"
-
-#~ msgid "UoM"
-#~ msgstr "EM"
-
-#~ msgid "Waiting"
-#~ msgstr "V čakanju"
-
-#~ msgid "Warning"
-#~ msgstr "Opozorilo"
-
-#~ msgid "Warning for %s"
-#~ msgstr "Opozorila za %s"
-
-#~ msgid "Warning on the Purchase Order"
-#~ msgstr "Opozorilo na nabavnem nalogu"
-
-#~ msgid "Warning when Purchasing this Product"
-#~ msgstr "Opozorilo ob nabavi tega proizvoda"
-
-#~ msgid "close"
-#~ msgstr "zapri"
+#~ msgid "Communication history"
+#~ msgstr "Zgodovina komunikacije"

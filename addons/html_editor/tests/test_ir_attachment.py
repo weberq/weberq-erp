@@ -8,7 +8,7 @@ class TestIrAttachmentWebEditor(TransactionCase):
             'name': 'test.png',
             'type': 'binary',
             'mimetype': 'image/png',
-            'datas': False,
+            'raw': b'',
         })
         self.assertFalse(attachment.checksum, "Checksum should be False for empty datas")
 

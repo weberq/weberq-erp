@@ -2,16 +2,16 @@
 # This file contains the translation of the following modules:
 # * website_cf_turnstile
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 # "Marta (wacm)" <wacm@odoo.com>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-12 11:13+0000\n"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 20:36+0000\n"
 "Last-Translator: \"Marta (wacm)\" <wacm@odoo.com>\n"
-"Language-Team: Polish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Polish <https://translate.odoo.com/projects/odoo-s19-4/"
 "website_cf_turnstile/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -19,17 +19,15 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: website_cf_turnstile
-#: model_terms:ir.ui.view,arch_db:website_cf_turnstile.res_config_settings_view_form
-msgid "<i class=\"oi oi-arrow-right\"/> More info"
-msgstr "<i class=\"oi oi-arrow-right\"/> Więcej informacji"
-
-#. module: website_cf_turnstile
-#: model_terms:ir.ui.view,arch_db:website_cf_turnstile.res_config_settings_view_form
-msgid "<span class=\"o_form_label\" for=\"\">Cloudflare Turnstile</span>"
-msgstr "<span class=\"o_form_label\" for=\"\">Cloudflare Turnstile</span>"
+#: model:ir.module.module,description:base.module_website_cf_turnstile
+msgid ""
+"\n"
+"This module implements Cloudflare Turnstile so that you can prevent bot spam "
+"on your forms.\n"
+msgstr ""
 
 #. module: website_cf_turnstile
 #: model:ir.model.fields,field_description:website_cf_turnstile.field_res_config_settings__turnstile_secret_key
@@ -40,6 +38,11 @@ msgstr "Tajny klucz CF"
 #: model:ir.model.fields,field_description:website_cf_turnstile.field_res_config_settings__turnstile_site_key
 msgid "CF Site Key"
 msgstr "Klucz witryny CF"
+
+#. module: website_cf_turnstile
+#: model:ir.module.module,shortdesc:base.module_website_cf_turnstile
+msgid "Cloudflare Turnstile"
+msgstr ""
 
 #. module: website_cf_turnstile
 #. odoo-javascript
@@ -129,3 +132,6 @@ msgstr ""
 #: code:addons/website_cf_turnstile/models/ir_http.py:0
 msgid "Your request has timed out, please retry."
 msgstr "Upłynął limit czasu żądania, spróbuj ponownie."
+
+msgid "<i class=\"oi\" data-icon=\"east\"/> More info"
+msgstr "<i class=\"oi\" data-icon=\"east\"/> Więcej informacji"

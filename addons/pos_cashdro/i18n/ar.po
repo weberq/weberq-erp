@@ -1,16 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * pos_cashdro
+# 	* pos_cashdro
 #
-# "Malaz Siddig Elsayed Abuidris (msea)" <msea@odoo.com>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server saas~19.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-05 19:29+0000\n"
-"PO-Revision-Date: 2026-09-19 19:04+0000\n"
-"Last-Translator: \"Malaz Siddig Elsayed Abuidris (msea)\" <msea@odoo.com>\n"
-"Language-Team: Arabic <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 15:19+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Arabic <https://translate.odoo.com/projects/odoo-s19-4/"
 "pos_cashdro/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -24,68 +23,62 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/pos_cashdro/static/src/app/payment_cashdro.js:0
 msgid "Cancellation failed"
-msgstr "فشل الإلغاء"
+msgstr ""
 
 #. module: pos_cashdro
 #. odoo-javascript
 #: code:addons/pos_cashdro/static/src/app/payment_cashdro.js:0
 msgid "Cash Machine Error"
-msgstr "خطأ في جهاز الصراف الآلي"
-
-#. module: pos_cashdro
-#. odoo-javascript
-#: code:addons/pos_cashdro/static/src/app/screens/payment_screen/payment_lines/payment_lines.xml:0
-msgid "Cash inserted:"
-msgstr "المبلغ النقدي الذي تم إدخاله:"
+msgstr ""
 
 #. module: pos_cashdro
 #: model:ir.model.fields,field_description:pos_cashdro.field_pos_payment_method__cashdro_ip
 msgid "Cashdro IP"
-msgstr "Cashdro IP"
+msgstr ""
 
 #. module: pos_cashdro
 #: model:ir.model.fields,field_description:pos_cashdro.field_pos_payment_method__cashdro_use_lna
 msgid "Cashdro Local Network Access"
-msgstr "الوصول إلى الشبكة المحلية لـ Cashdro"
+msgstr ""
 
 #. module: pos_cashdro
 #: model:ir.model.fields,field_description:pos_cashdro.field_pos_payment_method__cashdro_password
 msgid "Cashdro Password"
-msgstr "كلمة مرور Cashdro"
+msgstr ""
 
 #. module: pos_cashdro
 #: model_terms:ir.ui.view,arch_db:pos_cashdro.pos_payment_method_view_form_inherit_pos_cashdro
 msgid "Cashdro Settings"
-msgstr "إعدادات Cashdro"
+msgstr ""
 
 #. module: pos_cashdro
 #: model:ir.model.fields,field_description:pos_cashdro.field_pos_payment_method__cashdro_username
 msgid "Cashdro Username"
-msgstr "اسم مستخدم Cashdro"
+msgstr ""
 
 #. module: pos_cashdro
 #. odoo-javascript
 #: code:addons/pos_cashdro/static/src/app/payment_cashdro.js:0
 msgid "Cashdro cancellation failed: %s"
-msgstr "فشل إلغاء Cashdro: %s"
+msgstr ""
 
 #. module: pos_cashdro
 #. odoo-javascript
 #: code:addons/pos_cashdro/static/src/app/payment_cashdro.js:0
 msgid "Cashdro error: %s"
-msgstr "خطأ Cashdro: %s"
+msgstr ""
 
 #. module: pos_cashdro
 #. odoo-javascript
 #: code:addons/pos_cashdro/static/src/app/payment_cashdro.js:0
 msgid "Cashdro machine is busy"
-msgstr "آلة Cashdro مشغولة"
+msgstr ""
 
 #. module: pos_cashdro
 #. odoo-javascript
 #: code:addons/pos_cashdro/static/src/app/payment_cashdro.js:0
 msgid "Cashdro payment failed: %s"
-msgstr "فشل الدفع عبر Cashdro: %s"
+msgstr ""
 
 #. module: pos_cashdro
 #. odoo-javascript
@@ -98,30 +91,40 @@ msgstr ""
 #. module: pos_cashdro
 #: model:ir.model.fields,field_description:pos_cashdro.field_pos_payment_method__display_name
 msgid "Display Name"
-msgstr "الاسم المعروض"
+msgstr ""
 
 #. module: pos_cashdro
 #. odoo-javascript
 #: code:addons/pos_cashdro/static/src/backend/cashdro_admin_buttons/cashdro_admin_buttons.xml:0
 msgid "Download Logs"
-msgstr "تنزيل السجلات"
+msgstr ""
 
 #. module: pos_cashdro
 #: model:ir.model.fields,field_description:pos_cashdro.field_pos_payment_method__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
+
+#. module: pos_cashdro
+#: model:ir.module.module,summary:base.module_pos_cashdro
+msgid "Integrate your POS with a Cashdro automatic cash payment device"
+msgstr ""
 
 #. module: pos_cashdro
 #. odoo-javascript
 #: code:addons/pos_cashdro/static/src/app/payment_cashdro.js:0
 msgid "No"
-msgstr "لا"
+msgstr ""
 
 #. module: pos_cashdro
 #. odoo-javascript
 #: code:addons/pos_cashdro/static/src/backend/cashdro_admin_buttons/cashdro_admin_buttons.xml:0
 msgid "Open Diagnostics Page"
-msgstr "فتح صفحة التشخيص"
+msgstr ""
+
+#. module: pos_cashdro
+#: model:ir.module.module,shortdesc:base.module_pos_cashdro
+msgid "POS Cashdro Cash Machines"
+msgstr ""
 
 #. module: pos_cashdro
 #. odoo-javascript
@@ -131,8 +134,8 @@ msgstr ""
 
 #. module: pos_cashdro
 #: model:ir.model,name:pos_cashdro.model_pos_payment_method
-msgid "Point of Sale Payment Methods"
-msgstr "Point of Sale Payment Methods"
+msgid "Point of Sale Payment Method"
+msgstr ""
 
 #. module: pos_cashdro
 #. odoo-javascript
@@ -146,4 +149,4 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/pos_cashdro/static/src/app/payment_cashdro.js:0
 msgid "Yes"
-msgstr "نعم"
+msgstr ""

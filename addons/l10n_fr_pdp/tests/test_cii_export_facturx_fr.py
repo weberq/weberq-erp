@@ -15,10 +15,11 @@ class TestL10nFrPdpXmlCii(TestL10nFrPdpCommon):
         cls.partner_a.invoice_edi_format = 'facturx'
         cls.company_data['company'].email = 'my_company@test.com'
         cls.recipient_bank = cls.env['res.partner.bank'].create({
-            'acc_number': 'FR7630004028379876543210943',
+            'account_number': 'FR7630004028379876543210943',
             'partner_id': cls.partner_fr.id,
             'allow_out_payment': True,
         })
+        # cls.company_data['company'].partner_id.additional_identifiers = False
 
     @classmethod
     def subfolders(cls):

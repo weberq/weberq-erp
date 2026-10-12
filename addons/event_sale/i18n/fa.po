@@ -11,23 +11,45 @@
 # Mostafa Barmshory <mostafa.barmshory@gmail.com>, 2023
 # fardin mardani, 2023
 # Hanna Kheradroosta, 2023
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Aliraza Habibitanha <alireza.habibitanha@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-09 10:14+0000\n"
-"Last-Translator: Aliraza Habibitanha <alireza.habibitanha@gmail.com>\n"
-"Language-Team: Persian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 13:37+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Persian <https://translate.odoo.com/projects/odoo-s19-4/"
 "event_sale/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: event_sale
+#: model:ir.module.module,description:base.module_event_sale
+msgid ""
+"\n"
+"Creating registration with sales orders.\n"
+"========================================\n"
+"\n"
+"This module allows you to automate and connect your registration creation "
+"with\n"
+"your main sale flow and therefore, to enable the invoicing feature of "
+"registrations.\n"
+"\n"
+"It defines a new kind of service products that offers you the possibility "
+"to\n"
+"choose an event category associated with it. When you encode a sales order "
+"for\n"
+"that product, you will be able to choose an existing event of that category "
+"and\n"
+"when you confirm your sales order it will automatically create a "
+"registration for\n"
+"this event.\n"
+msgstr ""
 
 #. module: event_sale
 #: model_terms:ir.ui.view,arch_db:event_sale.event_registration_change_exception
@@ -38,8 +60,10 @@ msgstr "<span>ممکن است اقدامات دستی مورد نیاز باشد
 
 #. module: event_sale
 #: model_terms:ir.ui.view,arch_db:event_sale.event_configurator_view_form
-msgid "<i class=\"fa fa-arrow-right\"/> Configure Events &amp; Tickets"
-msgstr "<i class=\"fa fa-arrow-right\"/> پیکربندی رویدادها و بلیط ها"
+msgid ""
+"<i class=\"oi\" data-icon=\"arrow_forward\"/> Configure Events &amp; Tickets"
+msgstr ""
+"<i class=\"oi\" data-icon=\"arrow_forward\"/> پیکربندی رویدادها و بلیط ها"
 
 #. module: event_sale
 #: model_terms:ir.ui.view,arch_db:event_sale.event_registration_ticket_view_form
@@ -62,6 +86,11 @@ msgid "Add"
 msgstr "افزودن"
 
 #. module: event_sale
+#: model:ir.model.fields,field_description:event_sale.field_event_event_configurator__additional_product_ids
+msgid "Additional Products"
+msgstr ""
+
+#. module: event_sale
 #: model_terms:ir.ui.view,arch_db:event_sale.event_configurator_view_form
 #: model_terms:ir.ui.view,arch_db:event_sale.event_sale_report_view_form
 #: model_terms:ir.ui.view,arch_db:event_sale.sale_order_view_form
@@ -81,8 +110,6 @@ msgid ""
 "attendees and the maximum number of tickets registrations are defined for "
 "each time slot instead of the whole event."
 msgstr ""
-"مجاز کردن چند بازه زمانی. پیام‌ها، حداکثر تعداد شرکت‌کنندگان و حداکثر تعداد "
-"ثبت نام بلیت‌ها برای هر بازه زمانی تعریف می‌شوند نه برای کل رویداد."
 
 #. module: event_sale
 #: model:ir.model.fields.selection,name:event_sale.selection__event_sale_report__event_registration_state__done
@@ -130,14 +157,15 @@ msgstr "لغو شد"
 msgid ""
 "Choose an event and it will automatically create a registration for this "
 "event."
-msgstr "رخداد را انتخاب کنید تا به صورت خودکار ثبت نام بای این رخداد انجام گیرد"
+msgstr ""
+"رخداد را انتخاب کنید تا به صورت خودکار ثبت نام بای این رخداد انجام گیرد"
 
 #. module: event_sale
 #: model:ir.model.fields,help:event_sale.field_sale_order_line__event_slot_id
 msgid ""
 "Choose an event slot and it will automatically create a registration for "
 "this event slot."
-msgstr "برای ایجاد خودکار ثبت نام برای بازه زمانی، یک بازه زمانی انتخاب کنید."
+msgstr ""
 
 #. module: event_sale
 #: model:ir.model.fields,help:event_sale.field_sale_order_line__event_ticket_id
@@ -287,7 +315,7 @@ msgstr "رویداد گزارش فروش‌ها"
 #: model:ir.model.fields,field_description:event_sale.field_event_sale_report__event_slot_id
 #: model:ir.model.fields,field_description:event_sale.field_registration_editor_line__event_slot_id
 msgid "Event Slot"
-msgstr "بازه زمانی رویداد"
+msgstr ""
 
 #. module: event_sale
 #: model:ir.model.fields,field_description:event_sale.field_event_sale_report__event_date_begin
@@ -307,6 +335,11 @@ msgstr "بلیط رویداد"
 #: model_terms:ir.ui.view,arch_db:event_sale.event_sale_report_view_search
 msgid "Event Type"
 msgstr "نوع رویداد"
+
+#. module: event_sale
+#: model:ir.module.module,shortdesc:base.module_event_sale
+msgid "Events Sales"
+msgstr ""
 
 #. module: event_sale
 #: model_terms:ir.ui.view,arch_db:event_sale.event_sale_report_view_search
@@ -348,7 +381,6 @@ msgstr "شناسه"
 #: code:addons/event_sale/wizard/event_configurator.py:0
 msgid "Invalid slot choice \"%(slot_name)s\" for event \"%(event_name)s\"."
 msgstr ""
-"انتخاب بازه زمانی «%(slot_name)s» برای رویداد «%(event_name)s» نامعتبر است."
 
 #. module: event_sale
 #. odoo-python
@@ -365,7 +397,7 @@ msgstr "آدرس فاکتور"
 #: model:ir.model.fields,field_description:event_sale.field_event_event_configurator__is_multi_slots
 #: model:ir.model.fields,field_description:event_sale.field_sale_order_line__is_multi_slots
 msgid "Is Multi Slots"
-msgstr "چند بازه زمانی است"
+msgstr ""
 
 #. module: event_sale
 #: model:ir.model.fields,field_description:event_sale.field_event_sale_report__active
@@ -543,7 +575,7 @@ msgstr "فروش ها"
 #. module: event_sale
 #: model:ir.model.fields,field_description:event_sale.field_event_event__sale_price_total
 msgid "Sales (Tax Included)"
-msgstr "فروش (شامل مالیات)"
+msgstr ""
 
 #. module: event_sale
 #: model:ir.model,name:event_sale.model_sale_order
@@ -569,6 +601,13 @@ msgstr "فروشنده"
 #: model:ir.actions.act_window,name:event_sale.event_configurator_action
 msgid "Select an Event"
 msgstr "انتخاب یک رویداد"
+
+#. module: event_sale
+#: model:ir.model.fields,help:event_sale.field_event_event_configurator__additional_product_ids
+msgid ""
+"Select products to include with each registration. They will also show up "
+"separately on Sale Orders."
+msgstr ""
 
 #. module: event_sale
 #. odoo-python
@@ -602,8 +641,6 @@ msgid ""
 "The sale order line with the product %(product_name)s needs an event, a "
 "ticket and a slot in case the event has multiple time slots."
 msgstr ""
-"اگر رویداد دارای چند بازه زمانی باشد، سطر سفارش فروش با محصول %(product_name)"
-"s نیازمند یک رویداد، یک بلیت و یک بازه زمانی است."
 
 #. module: event_sale
 #. odoo-python
@@ -671,7 +708,7 @@ msgstr "ما نتوانستیم بلیت رویداد منطبقی برای ای
 #. module: event_sale
 #: model_terms:ir.ui.view,arch_db:event_sale.event_registration_change_exception
 msgid "changed from"
-msgstr "تغییر یافته از"
+msgstr ""
 
 #. module: event_sale
 #: model_terms:ir.ui.view,arch_db:event_sale.view_event_registration_editor_form
@@ -682,77 +719,3 @@ msgstr "لطفا جزئیات شرکت کنندگان را ارائه دهید"
 #: model_terms:ir.ui.view,arch_db:event_sale.event_registration_change_exception
 msgid "to"
 msgstr "به"
-
-#~ msgid ""
-#~ "A storable product is a product for which you manage stock. The Inventory "
-#~ "app has to be installed.\n"
-#~ "A consumable product is a product for which stock is not managed.\n"
-#~ "A service is a non-material product you provide."
-#~ msgstr ""
-#~ "محصول قابل ذخیره سازی محصولی است که شما موجودی آن را مدیریت می کنید. "
-#~ "برنامه انبار باید نصب شود.\n"
-#~ "کالای مصرفی محصولی است که انبار آن مدیریت نمی شود.\n"
-#~ "خدمات یک محصول غیر مادی است که شما ارائه می کنید."
-
-#~ msgid "Cancel"
-#~ msgstr "لغو"
-
-#~ msgid "Currency"
-#~ msgstr "ارز"
-
-#~ msgid "Description"
-#~ msgstr "توصیف"
-
-#~ msgid "Group By"
-#~ msgstr "گروه‌بندی برمبنای"
-
-#~ msgid "Is Paid"
-#~ msgstr "آیا پرداخت‌شده است"
-
-#~ msgid "Journal Entry"
-#~ msgstr "داده روزنامه"
-
-#~ msgid "Locked"
-#~ msgstr "قفل شده"
-
-#~ msgid "Mobile"
-#~ msgstr "موبایل"
-
-#~ msgid "Not Paid"
-#~ msgstr "پرداخت نشده"
-
-#~ msgid "Ok"
-#~ msgstr "تأیید"
-
-#~ msgid "Order Ref"
-#~ msgstr "مرجع سفارش"
-
-#~ msgid "Paid"
-#~ msgstr "پرداخت شد"
-
-#~ msgid "Price"
-#~ msgstr "قیمت"
-
-#~ msgid "Price Reduce"
-#~ msgstr "کاهش قیمت"
-
-#~ msgid "Price Reduce Tax inc"
-#~ msgstr "کاهش قیمت با مالیات"
-
-#~ msgid "Product Type"
-#~ msgstr "نوع محصول"
-
-#~ msgid "Product Variant"
-#~ msgstr "گونه محصول"
-
-#~ msgid "Quotation Template Line"
-#~ msgstr "سطر قالب پیش‌فاکتور"
-
-#~ msgid "Quotation Template Option"
-#~ msgstr "گزینه قالب پیش‌فاکتور"
-
-#~ msgid "Skip"
-#~ msgstr "رد شدن"
-
-#~ msgid "Transaction"
-#~ msgstr "تراکنش"

@@ -5,35 +5,40 @@
 # Translators:
 # Nikola Iliev, 2023
 # Martin Trigaux, 2023
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2023, 2026.
+# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2023
 # Александра Николова <alexandra1nikolova@gmail.com>, 2023
 # aleksandar ivanov, 2023
 # Maria Boyadjieva <marabo2000@gmail.com>, 2023
 # Albena Mincheva <albena_vicheva@abv.bg>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-06 04:00+0000\n"
-"Last-Translator: \"Tiffany Chang (tic)\" <tic@odoo.com>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 16:27+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "base_setup/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
+#: model:ir.module.module,description:base.module_base_setup
 msgid ""
-"<span class=\"fa fa-lg fa-users\" aria-label=\"Number of active users\"/>"
+"\n"
+"This module helps to configure the system at the installation of a new "
+"database.\n"
+"================================================================================\n"
+"\n"
+"Shows you a list of applications features to install from.\n"
+"\n"
 msgstr ""
-"<span class=\"fa fa-lg fa-users\" aria-label=\"Брой активни потребители\"/>"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -100,8 +105,6 @@ msgid ""
 "<strong>Save</strong> this page and come back here to choose your Geo "
 "Provider."
 msgstr ""
-"<strong>Запазете</strong> тази страница и се върнете тук, за да изберете "
-"вашия доставчик на геолокация."
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -109,8 +112,6 @@ msgid ""
 "<strong>Save</strong> this page and come back here to set up Cloudflare "
 "turnstile."
 msgstr ""
-"<strong>Запазете</strong> тази страница и се върнете тук, за да настроите "
-"Cloudflare turnstile."
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -118,28 +119,22 @@ msgid ""
 "<strong>Save</strong> this page and come back here to set up Google Places "
 "API key"
 msgstr ""
-"<strong>Запазете</strong> тази страница и се върнете тук, за да настроите "
-"Google Places API ключ"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "<strong>Save</strong> this page and come back here to set up reCaptcha."
 msgstr ""
-"<strong>Запазете</strong> тази страница и се върнете тук, за да настроите "
-"reCaptcha."
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid ""
 "<strong>Save</strong> this page and come back here to set up the feature."
 msgstr ""
-"<strong>Запазете</strong> тази страница и се върнете тук, за да настроите "
-"функцията."
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "API Keys"
-msgstr "API ключове"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -147,13 +142,11 @@ msgid ""
 "API Keys allow your users to access Odoo with external tools when multi-"
 "factor authentication is enabled."
 msgstr ""
-"API ключовете позволяват на вашите потребители да достъпват Odoo с външни "
-"инструменти, когато е активирано многофакторно удостоверяване."
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "About"
-msgstr "Относно"
+msgstr ""
 
 #. module: base_setup
 #. odoo-python
@@ -169,12 +162,7 @@ msgstr "Добавяне на езици"
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Add fun feedback and motivate your employees"
-msgstr "Добавете забавна обратна връзка и мотивирайте служителите си"
-
-#. module: base_setup
-#: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_mail_plugin
-msgid "Allow integration with the mail plugins"
-msgstr "Разреши интеграция с имейл плъгините"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_google_calendar
@@ -187,7 +175,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_microsoft_calendar
 msgid "Allow the users to synchronize their calendar with Outlook Calendar"
 msgstr ""
-"Разреши на потребителите да синхронизират календара си с Outlook Calendar"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_base_import
@@ -204,12 +191,12 @@ msgstr "Разрешава работата в среда на мултивал�
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Autocomplete partner addresses with Google Places"
-msgstr "Автоматично попълване на адресите на партньорите чрез Google Places"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Automatically enrich your contact base with company data"
-msgstr "Автоматично обогатяване на вашата база от контакти с фирмени данни"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -217,19 +204,16 @@ msgid ""
 "By default, new users get highest access rights for all installed apps. If "
 "unchecked, new users will only have basic employee access."
 msgstr ""
-"По подразбиране новите потребители получават най-високите права за достъп до "
-"всички инсталирани приложения. Ако опцията не е отметната, новите "
-"потребители ще имат само базов достъп на служител."
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Choose the layout of your documents"
-msgstr "Изберете оформлението на вашите документи"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_website_cf_turnstile
 msgid "Cloudflare Turnstile"
-msgstr "Cloudflare Turnstile"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -244,12 +228,12 @@ msgstr "Фирма"
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__company_country_code
 msgid "Company Country Code"
-msgstr "Код на държавата на фирмата"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__company_informations
 msgid "Company Informations"
-msgstr "Информация за фирмата"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__company_name
@@ -264,17 +248,7 @@ msgstr "Настройки"
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Configure Document Layout"
-msgstr "Конфигуриране на оформлението на документите"
-
-#. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid ""
-"Configure company rules to automatically create SO/PO when one of your "
-"company sells/buys to another of your company."
 msgstr ""
-"Конфигурирайте правила на компанията за автоматично създаване на поръчки за "
-"продажба/покупка, когато една от вашите компании продава/купува на друга от "
-"вашите компании."
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -284,7 +258,7 @@ msgstr "Контакти"
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__company_country_group_codes
 msgid "Country Group Codes"
-msgstr "Кодове на групи държави"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -292,8 +266,6 @@ msgid ""
 "Create corresponding in/out orders and bills when you sell/buy between your "
 "companies"
 msgstr ""
-"Създаване на съответните входящи/изходящи поръчки и фактури при продажба/"
-"покупка между вашите фирми"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__report_footer
@@ -303,13 +275,13 @@ msgstr "Персонализиран долен колонтитул на отч
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Default Access Rights"
-msgstr "Права за достъп по подразбиране"
+msgstr ""
 
 #. module: base_setup
 #. odoo-python
 #: code:addons/base_setup/models/res_config_settings.py:0
 msgid "Default access for new users"
-msgstr "Достъп по подразбиране за нови потребители"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_ir_http__display_name
@@ -322,7 +294,7 @@ msgstr "Име за показване"
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Document Layout"
-msgstr "Оформление на документа"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__external_report_layout_id
@@ -338,7 +310,7 @@ msgstr "Редактирайте оформление"
 #. odoo-python
 #: code:addons/base_setup/models/res_config_settings.py:0
 msgid "Edit new user default group"
-msgstr "Редактиране на групата по подразбиране за нов потребител"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -346,13 +318,11 @@ msgid ""
 "Enable the profiling tool. Profiling may impact performance while being "
 "active."
 msgstr ""
-"Активиране на инструмента за профилиране. Профилирането може да повлияе на "
-"производителността, докато е активно."
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Find free high-resolution images from Unsplash"
-msgstr "Намерете безплатни изображения с висока резолюция от Unsplash"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,help:base_setup.field_res_config_settings__report_footer
@@ -368,12 +338,7 @@ msgstr "Общи настройки"
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_base_geolocalize
 msgid "GeoLocalize"
-msgstr "Геолокализиране"
-
-#. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid "Geolocate your partners"
-msgstr "Геолокирайте вашите партньори"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -381,9 +346,14 @@ msgid "Geolocation"
 msgstr "Геолокация"
 
 #. module: base_setup
+#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
+msgid "Get the latitude and the longitude of your partners"
+msgstr ""
+
+#. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_google_address_autocomplete
 msgid "Google Address Autocomplete"
-msgstr "Автоматично довършване на адрес от Google"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model,name:base_setup.model_ir_http
@@ -401,17 +371,17 @@ msgstr "ID"
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Import & Export"
-msgstr "Импорт и експорт"
+msgstr ""
 
 #. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid "Integrate with mail client plugins"
-msgstr "Интегриране с приставки за имейл клиент"
+#: model:ir.module.module,shortdesc:base.module_base_setup
+msgid "Initial Setup Tools"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Integrations"
-msgstr "Интеграции"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -421,18 +391,18 @@ msgstr "Вътрешнофирмени транзакции"
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__is_root_company
 msgid "Is Root Company"
-msgstr "Главна фирма ли е"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model,name:base_setup.model_kpi_provider
 msgid "KPI Provider"
-msgstr "Доставчик на KPI"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_auth_ldap
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "LDAP Authentication"
-msgstr "LDAP удостоверяване"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -446,18 +416,13 @@ msgstr "Редайтирай изгледа"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid "Mail Plugin"
-msgstr "Пощенска приставка"
-
-#. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Manage API Keys"
-msgstr "Управление на API ключове"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Manage Companies"
-msgstr "Управление на фирмите"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_account_inter_company_rules
@@ -467,12 +432,12 @@ msgstr "Управлявайте интеркомпания"
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Manage Languages"
-msgstr "Управление на езиците"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Manage Users"
-msgstr "Управление на потребителите"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__group_multi_currency
@@ -482,7 +447,7 @@ msgstr "Мултивалути"
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__active_user_count
 msgid "Number of Active Users"
-msgstr "Брой активни потребители"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__company_count
@@ -492,12 +457,17 @@ msgstr "Брой компании"
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__language_count
 msgid "Number of Languages"
-msgstr "Брой езици"
+msgstr ""
+
+#. module: base_setup
+#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
+msgid "Number of active users"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "OAuth Authentication"
-msgstr "OAuth удостоверяване"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -507,7 +477,7 @@ msgstr "Odoo"
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_partner_autocomplete
 msgid "Partner Autocomplete"
-msgstr "Автоматично попълване на партньор"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -517,7 +487,7 @@ msgstr "Производителност"
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Permissions"
-msgstr "Права"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_voip
@@ -527,33 +497,33 @@ msgstr "Телефон"
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Preview Document"
-msgstr "Преглед на документа"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__profiling_enabled_until
 msgid "Profiling enabled until"
-msgstr "Профилирането е активно до"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Progressive Web App"
-msgstr "Прогресивно уеб приложение"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Protect your forms from spam and abuse."
-msgstr "Защитете формулярите си от спам и злоупотреба."
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Protect your forms with CF Turnstile."
-msgstr "Защитете формулярите си с CF Turnstile."
+msgstr ""
 
 #. module: base_setup
 #. odoo-javascript
 #: code:addons/base_setup/static/src/views/module_views.xml:0
 msgid "Reset Updating States"
-msgstr "Нулиране на състоянията на актуализиране"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_sms
@@ -568,12 +538,12 @@ msgstr "Изпращане на SMS"
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Send texts to your contacts"
-msgstr "Изпращайте текстови съобщения до вашите контакти"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Set custom access rights for new users"
-msgstr "Задайте персонализирани права за достъп за нови потребители"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.actions.act_window,name:base_setup.action_general_configuration
@@ -583,7 +553,7 @@ msgstr "Настройки"
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__show_effect
 msgid "Show Effect"
-msgstr "Показване на ефект"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,help:base_setup.field_res_config_settings__company_country_code
@@ -600,28 +570,26 @@ msgid ""
 "This name will be used for the application when Odoo is installed through "
 "the browser."
 msgstr ""
-"Това име ще се използва за приложението, когато Odoo е инсталиран през "
-"браузъра."
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_web_unsplash
 msgid "Unsplash Image Library"
-msgstr "Библиотека с изображения Unsplash"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Update Info"
-msgstr "Актуализиране на информацията"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Use LDAP credentials to log in"
-msgstr "Използване на LDAP идентификационни данни за вход"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Use external accounts to log in (Google, Facebook, etc.)"
-msgstr "Използване на външни акаунти за вход (Google, Facebook и др.)"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_auth_oauth
@@ -651,23 +619,14 @@ msgid ""
 "companies. When selecting one item, the company data and logo are auto-"
 "filled."
 msgstr ""
-"При попълване на вашия адресник Odoo предоставя списък със съвпадащи фирми. "
-"При избор на елемент данните и логото на фирмата се попълват автоматично."
 
 #. module: base_setup
 #. odoo-python
 #: code:addons/base_setup/models/res_users.py:0
 msgid "You have to install the Discuss application to use this feature."
 msgstr ""
-"Трябва да инсталирате приложението Discuss, за да използвате тази функция."
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_google_recaptcha
 msgid "reCAPTCHA"
-msgstr "reCAPTCHA"
-
-#~ msgid "Documentation"
-#~ msgstr "Документация"
-
-#~ msgid "Google Calendar"
-#~ msgstr "Календар на Google "
+msgstr ""

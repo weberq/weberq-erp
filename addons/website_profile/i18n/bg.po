@@ -1,23 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * website_profile
+# 	* website_profile
 #
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-10 18:40+0000\n"
-"PO-Revision-Date: 2026-08-02 11:59+0000\n"
-"Last-Translator: Rosen Vladimirov <vladimirov.rosen@gmail.com>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 13:58+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "website_profile/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
@@ -25,13 +24,17 @@ msgid ""
 "!<br/>\n"
 "            Did not receive it?"
 msgstr ""
-"!<br/>\n"
-"            Не го получихте?"
+
+#. module: website_profile
+#. odoo-python
+#: code:addons/website_profile/models/res_users.py:0
+msgid "%(company_name)s Profile validation"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_header
 msgid "(not verified)"
-msgstr "(непотвърден)"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.rank_badge_main
@@ -39,83 +42,81 @@ msgid ""
 ". Collect points on the forum or on the eLearning platform. Those points "
 "will make you reach new ranks."
 msgstr ""
-". Събирайте точки във форума или в платформата за обучение. Тези точки ще ви "
-"помогнат да достигнете нови рангове."
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.users_page_content
 msgid ". Try another search."
-msgstr ". Опитайте друго търсене."
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_badges
-msgid "<i class=\"fa fa-arrow-right\"/> Get Badges"
-msgstr "<i class=\"fa fa-arrow-right\"/> Вземи значки"
+msgid "<i class=\"oi me-1\" data-icon=\"east\"/>All Badges"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_header
-msgid "<i class=\"fa fa-pencil me-1\"/>EDIT"
-msgstr "<i class=\"fa fa-pencil me-1\"/>РЕДАКТИРАЙ"
+msgid "<i class=\"oi oi-filled me-1\" data-icon=\"edit\"/>EDIT"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_content
-msgid "<i class=\"fa fa-pencil me-1\"/>Edit"
-msgstr "<i class=\"fa fa-pencil me-1\"/>Редактирай"
+msgid "<i class=\"oi oi-filled me-1\" data-icon=\"edit\"/>Edit"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_header
-msgid "<i class=\"fa fa-pencil me-2\"/>EDIT PROFILE"
-msgstr "<i class=\"fa fa-pencil me-2\"/>РЕДАКТИРАЙ ПРОФИЛА"
+msgid "<i class=\"oi oi-filled me-2\" data-icon=\"edit\"/>EDIT PROFILE"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_badges
-msgid "<i class=\"oi oi-arrow-right me-1\"/>All Badges"
-msgstr "<i class=\"oi oi-arrow-right me-1\"/>Всички значки"
+msgid "<i class=\"oi\" data-icon=\"arrow_forward\"/> Get Badges"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_badges
-msgid "<i class=\"oi oi-arrow-right\"/> All Badges"
-msgstr "<i class=\"oi oi-arrow-right\"/> Всички значки"
+msgid "<i class=\"oi\" data-icon=\"east\"/> All Badges"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.badge_content
 msgid "<i class=\"text-muted\"> awarded users</i>"
-msgstr "<i class=\"text-muted\"> наградени потребители</i>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_content
 msgid "<small class=\"fw-bold me-2\">Current rank:</small>"
-msgstr "<small class=\"fw-bold me-2\">Текущ ранг:</small>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_content
 msgid "<small class=\"fw-bold\">Badges</small>"
-msgstr "<small class=\"fw-bold\">Значки</small>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_content
 msgid "<small class=\"fw-bold\">Joined</small>"
-msgstr "<small class=\"fw-bold\">Присъединил се</small>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.all_user_card
 msgid "<span class=\"text-muted small fw-bold\">Badges</span>"
-msgstr "<span class=\"text-muted small fw-bold\">Значки</span>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.all_user_card
 msgid "<span class=\"text-muted small fw-bold\">XP</span>"
-msgstr "<span class=\"text-muted small fw-bold\">XP</span>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.top3_user_card
 msgid "<span class=\"text-muted\">Badges</span>"
-msgstr "<span class=\"text-muted\">Значки</span>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.top3_user_card
 msgid "<span class=\"text-muted\">XP</span>"
-msgstr "<span class=\"text-muted\">XP</span>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
@@ -123,73 +124,24 @@ msgid ""
 "<span id=\"email_validated_message\">Congratulations! Your email has just "
 "been validated.</span>"
 msgstr ""
-"<span id=\"email_validated_message\">Поздравления! Вашият имейл току-що беше "
-"валидиран.</span>"
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.users_page_header
 msgid "<strong class=\"mb-3 text-white me-2\">Rank by:</strong>"
-msgstr "<strong class=\"mb-3 text-white me-2\">Подреди по:</strong>"
+msgstr ""
 
 #. module: website_profile
 #: model:mail.template,body_html:website_profile.validation_email
 msgid ""
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: "
-"16px; background-color: #F1F1F1; color: #454748; width: 100%; border-"
-"collapse:separate;\"><tr><td align=\"center\">\n"
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
-"style=\"padding: 16px; background-color: white; color: #454748; border-"
-"collapse:separate;\">\n"
-"<tbody>\n"
-"    <!-- HEADER -->\n"
-"    <tr>\n"
-"        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
-"width=\"590\" style=\"min-width: 590px; background-color: white; padding: "
-"0px 8px 0px 8px; border-collapse:separate;\">\n"
-"                <tr>\n"
-"                    <td valign=\"middle\">\n"
-"                        <span style=\"font-size: 20px; font-weight: bold;"
-"\">\n"
-"                            <t t-out=\"object.company_id.name or "
-"''\">YourCompany</t> Profile validation\n"
-"                        </span>\n"
-"                    </td>\n"
-"                    <td t-if=\"not user.company_id.uses_default_logo\" "
-"valign=\"middle\" align=\"right\">\n"
-"                        <img t-attf-src=\"/logo.png?"
-"company={{ user.company_id.id }}\" style=\"padding: 0px; margin: 0px; "
-"height: auto; width: 80px;\" t-att-alt=\"user.company_id.name\"/>\n"
-"                    </td>\n"
-"                </tr>\n"
-"                <tr>\n"
-"                    <td colspan=\"2\" style=\"text-align:center;\">\n"
-"                        <hr width=\"100%\" style=\"background-"
-"color:rgb(204,204,204);border:medium none;clear:both;display:block;font-"
-"size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
-"                    </td>\n"
-"                </tr>\n"
-"            </table>\n"
-"        </td>\n"
-"    </tr>\n"
-"    <!-- CONTENT -->\n"
-"    <tr>\n"
-"        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
-"width=\"590\" style=\"min-width: 590px; background-color: white; padding: "
-"0px 8px 0px 8px; border-collapse:separate;\">\n"
-"                <tr>\n"
-"                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                        <p style=\"margin: 0px; padding: 0px; font-size: "
-"13px;\">\n"
+"<t>\n"
 "                            Hello <t t-out=\"object.name or ''\">Marc Demo</"
 "t>,<br/><br/>\n"
 "                            You have been invited to validate your email in "
 "order to get access to \"<t t-out=\"object.company_id.name or "
 "''\">YourCompany</t>\" website.\n"
 "                            To validate your email, please click on the "
-"following link:\n"
-"                            </p><div style=\"margin: 16px 0px 16px 0px;\">\n"
+"button below:\n"
+"                            <div style=\"margin: 32px 0px 32px 0px;\">\n"
 "                                <a t-att-href=\"ctx.get('token_url')\" t-"
 "attf-style=\"background-color: {{object.company_id.email_secondary_color or "
 "'#875A7B'}}; padding: 8px 16px 8px 16px; text-decoration: none; color: "
@@ -199,243 +151,79 @@ msgid ""
 "                                </a>\n"
 "                            </div>\n"
 "                            Thanks for your participation!\n"
-"                        \n"
-"                    </td>\n"
-"                </tr>\n"
-"                <tr>\n"
-"                    <td style=\"text-align:center;\">\n"
-"                        <hr width=\"100%\" style=\"background-"
-"color:rgb(204,204,204);border:medium none;clear:both;display:block;font-"
-"size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
-"                    </td>\n"
-"                </tr>\n"
-"            </table>\n"
-"        </td>\n"
-"    </tr>\n"
-"    <!-- FOOTER -->\n"
-"    <tr>\n"
-"        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
-"width=\"590\" style=\" font-family: 'Verdana Regular'; color: #454748; min-"
-"width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px "
-"8px; border-collapse:separate;\">\n"
-"                <tr>\n"
-"                    <td valign=\"middle\" align=\"left\">\n"
-"                         <t t-out=\"user.company_id.name or "
-"''\">YourCompany</t>\n"
-"                    </td>\n"
-"                    <td valign=\"middle\" align=\"right\" style=\"opacity: "
-"0.7;\">\n"
-"                        <t t-out=\"user.company_id.phone or ''\">+1 "
-"650-123-4567</t>\n"
-"                        <t t-if=\"user.company_id.email\">\n"
-"                            | <a t-attf-href=\"'mailto:%s' % "
-"{{ user.company_id.email }}\" style=\"text-decoration:none; color: "
-"#454748;\" t-out=\"user.company_id.email or ''\">info@yourcompany.com</a>\n"
-"                        </t>\n"
-"                        <t t-if=\"user.company_id.website\">\n"
-"                            | <a t-attf-href=\"{{ user.company_id.website }}"
-"\" style=\"text-decoration:none; color: #454748;\" t-"
-"out=\"user.company_id.website or ''\">http://www.example.com</a>\n"
-"                        </t>\n"
-"                    </td>\n"
-"                </tr>\n"
-"            </table>\n"
-"        </td>\n"
-"    </tr>\n"
-"</tbody>\n"
-"</table>\n"
-"</td></tr>\n"
-"<!-- POWERED BY -->\n"
-"<tr><td align=\"center\" style=\"min-width: 590px;\">\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
-"style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; "
-"padding: 8px; border-collapse:separate;\">\n"
-"        <tr><td style=\"text-align: center; font-size: 13px;\">\n"
-"            Powered by <a target=\"_blank\" href=\"https://www.odoo.com?"
-"utm_source=db&amp;utm_medium=forum\" t-attf-style=\"color: "
-"{{object.company_id.email_secondary_color or '#875A7B'}};\">Odoo</a>\n"
-"        </td></tr>\n"
-"    </table>\n"
-"</td></tr>\n"
-"</table>\n"
-"            "
+"            </t>"
 msgstr ""
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: "
-"16px; background-color: #F1F1F1; color: #454748; width: 100%; border-"
-"collapse:separate;\"><tr><td align=\"center\">\n"
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
-"style=\"padding: 16px; background-color: white; color: #454748; border-"
-"collapse:separate;\">\n"
-"<tbody>\n"
-"    <!-- HEADER -->\n"
-"    <tr>\n"
-"        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
-"width=\"590\" style=\"min-width: 590px; background-color: white; padding: "
-"0px 8px 0px 8px; border-collapse:separate;\">\n"
-"                <tr>\n"
-"                    <td valign=\"middle\">\n"
-"                        <span style=\"font-size: 20px; font-weight: bold;\">"
-"\n"
-"                            <t t-out=\"object.company_id.name or ''\">"
-"YourCompany</t> Валидиране на профил\n"
-"                        </span>\n"
-"                    </td>\n"
-"                    <td t-if=\"not user.company_id.uses_default_logo\" "
-"valign=\"middle\" align=\"right\">\n"
-"                        <img t-attf-src=\"/logo.png?company={{ "
-"user.company_id.id }}\" style=\"padding: 0px; margin: 0px; height: auto; "
-"width: 80px;\" t-att-alt=\"user.company_id.name\"/>\n"
-"                    </td>\n"
-"                </tr>\n"
-"                <tr>\n"
-"                    <td colspan=\"2\" style=\"text-align:center;\">\n"
-"                        <hr width=\"100%\" style=\"background-color:rgb"
-"(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-"
-"height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
-"                    </td>\n"
-"                </tr>\n"
-"            </table>\n"
-"        </td>\n"
-"    </tr>\n"
-"    <!-- CONTENT -->\n"
-"    <tr>\n"
-"        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
-"width=\"590\" style=\"min-width: 590px; background-color: white; padding: "
-"0px 8px 0px 8px; border-collapse:separate;\">\n"
-"                <tr>\n"
-"                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                        <p style=\"margin: 0px; padding: 0px; font-size: "
-"13px;\">\n"
-"                            Здравейте <t t-out=\"object.name or ''\">Marc "
-"Demo</t>,<br/><br/>\n"
-"                            Поканени сте да валидирате имейл адреса си, за "
-"да получите достъп до уебсайта на „<t t-out=\"object.company_id.name or ''\">"
-"YourCompany</t>\".\n"
-"                            За да валидирате имейла си, моля кликнете върху "
-"следния линк:\n"
-"                            </p><div style=\"margin: 16px 0px 16px 0px;\">\n"
-"                                <a t-att-href=\"ctx.get('token_url')\" t-"
-"attf-style=\"background-color: {{object.company_id.email_secondary_color or "
-"'#875A7B'}}; padding: 8px 16px 8px 16px; text-decoration: none; color: {"
-"{object.company_id.email_primary_color or '#FFFFFF'}}; border-radius: 5px; "
-"font-size:13px;\">\n"
-"                                    Валидирай акаунта ми\n"
-"                                </a>\n"
-"                            </div>\n"
-"                            Благодарим за участието!\n"
-"                        \n"
-"                    </td>\n"
-"                </tr>\n"
-"                <tr>\n"
-"                    <td style=\"text-align:center;\">\n"
-"                        <hr width=\"100%\" style=\"background-color:rgb"
-"(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-"
-"height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
-"                    </td>\n"
-"                </tr>\n"
-"            </table>\n"
-"        </td>\n"
-"    </tr>\n"
-"    <!-- FOOTER -->\n"
-"    <tr>\n"
-"        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
-"width=\"590\" style=\" font-family: 'Verdana Regular'; color: #454748; min-"
-"width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px "
-"8px; border-collapse:separate;\">\n"
-"                <tr>\n"
-"                    <td valign=\"middle\" align=\"left\">\n"
-"                         <t t-out=\"user.company_id.name or ''\">"
-"YourCompany</t>\n"
-"                    </td>\n"
-"                    <td valign=\"middle\" align=\"right\" style=\"opacity: "
-"0.7;\">\n"
-"                        <t t-out=\"user.company_id.phone or ''\">+1 650-123-"
-"4567</t>\n"
-"                        <t t-if=\"user.company_id.email\">\n"
-"                            | <a t-attf-href=\"'mailto:%s' % {{ "
-"user.company_id.email }}\" style=\"text-decoration:none; color: #454748;\" t-"
-"out=\"user.company_id.email or ''\">info@yourcompany.com</a>\n"
-"                        </t>\n"
-"                        <t t-if=\"user.company_id.website\">\n"
-"                            | <a t-attf-href=\"{{ user.company_id.website }}"
-"\" style=\"text-decoration:none; color: #454748;\" t-"
-"out=\"user.company_id.website or ''\">http://www.example.com</a>\n"
-"                        </t>\n"
-"                    </td>\n"
-"                </tr>\n"
-"            </table>\n"
-"        </td>\n"
-"    </tr>\n"
-"</tbody>\n"
-"</table>\n"
-"</td></tr>\n"
-"<!-- POWERED BY -->\n"
-"<tr><td align=\"center\" style=\"min-width: 590px;\">\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
-"style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; "
-"padding: 8px; border-collapse:separate;\">\n"
-"        <tr><td style=\"text-align: center; font-size: 13px;\">\n"
-"            Powered by <a target=\"_blank\" href=\"https://"
-"www.odoo.com?utm_source=db&amp;utm_medium=forum\" t-attf-style=\"color: {"
-"{object.company_id.email_secondary_color or '#875A7B'}};\">Odoo</a>\n"
-"        </td></tr>\n"
-"    </table>\n"
-"</td></tr>\n"
-"</table>\n"
-"            "
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
 msgid "<u>Correct your email address</u>"
-msgstr "<u>Коригирайте имейл адреса си</u>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
 msgid "<u>Send Again</u>"
-msgstr "<u>Изпрати отново</u>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
 msgid "<u>here</u>"
-msgstr "<u>тук</u>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_content
 msgid "About"
-msgstr "Относно"
+msgstr ""
+
+#. module: website_profile
+#: model:ir.module.module,summary:base.module_website_profile
+msgid "Access the website profile of the users"
+msgstr ""
 
 #. module: website_profile
 #. odoo-python
 #: code:addons/website_profile/controllers/main.py:0
 msgid "All Courses"
-msgstr "Всички курсове"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.users_page_header
 msgid "All Users"
-msgstr "Всички потребители"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.all_user_card
 #: model_terms:ir.ui.view,arch_db:website_profile.users_page_header
 msgid "All time"
-msgstr "За цялото време"
+msgstr ""
+
+#. module: website_profile
+#: model:ir.module.module,description:base.module_website_profile
+msgid ""
+"Allows to access the website profile of the users and see their statistics "
+"(karma, badges, etc..)"
+msgstr ""
+
+#. module: website_profile
+#: model:ir.model.fields,field_description:website_profile.field_gamification_badge__publish_on
+msgid "Auto publish on"
+msgstr ""
+
+#. module: website_profile
+#: model:ir.model.fields,help:website_profile.field_gamification_badge__publish_on
+msgid "Automatically publish the page on the chosen date and time."
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.badge_content
 #: model_terms:ir.ui.view,arch_db:website_profile.rank_badge_main
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_content
 msgid "Badges"
-msgstr "Значки"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_badges
 msgid "Badges are your collection of achievements. Wear them proudly! <br/>"
-msgstr "Значките са вашата колекция от постижения. Носете ги с гордост! <br/>"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.badge_content
@@ -445,356 +233,369 @@ msgid ""
 "class=\"d-none d-lg-inline-block\"/>Badges\n"
 "                        appear on your profile page, and your posts."
 msgstr ""
-"Освен че печелите репутация с вашите въпроси и отговори,\n"
-"                        получавате значки, когато сте особено полезни.<br "
-"class=\"d-none d-lg-inline-block\"/>Значките\n"
-"                        се показват на профилната ви страница и във вашите "
-"публикации."
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_content
 msgid "Biography"
-msgstr "Биография"
+msgstr ""
 
 #. module: website_profile
 #: model:ir.model.fields,field_description:website_profile.field_gamification_badge__can_publish
 msgid "Can Publish"
-msgstr "Може да публикува"
+msgstr ""
 
 #. module: website_profile
+#. odoo-javascript
 #. odoo-python
 #: code:addons/website_profile/controllers/main.py:0
+#: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
 msgid ""
 "Changing the country is not allowed once document(s) have been issued for "
 "your account. Please contact us directly for this operation."
 msgstr ""
-"Промяната на държавата не е разрешена, след като за профила Ви са издадени "
-"документи. Моля, свържете се директно с нас за тази операция."
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
+#: model:ir.model.fields,field_description:website_profile.field_res_users__city
 msgid "City"
-msgstr "Град"
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
 msgid "Clear"
-msgstr "Изчисти"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
 msgid "Close"
-msgstr "Затвори"
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
+#: model:ir.model.fields,field_description:website_profile.field_res_users__country_id
 msgid "Country"
-msgstr "Държава"
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
 msgid "Country..."
-msgstr "Държава..."
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
 msgid "Discard"
-msgstr "Отхвърлете"
+msgstr ""
 
 #. module: website_profile
 #: model:ir.model.fields,field_description:website_profile.field_gamification_badge__display_name
 #: model:ir.model.fields,field_description:website_profile.field_res_users__display_name
 #: model:ir.model.fields,field_description:website_profile.field_website__display_name
 msgid "Display Name"
-msgstr "Име за показване"
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
 msgid "Edit"
-msgstr "Редактирай"
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.js:0
 msgid "Edit Profile"
-msgstr "Редактиране на профил"
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
 msgid "Email"
-msgstr "Имейл"
+msgstr ""
 
 #. module: website_profile
 #. odoo-python
 #: code:addons/website_profile/controllers/main.py:0
 msgid "Forum"
-msgstr "Форум"
+msgstr ""
 
 #. module: website_profile
 #: model:mail.template,name:website_profile.validation_email
 msgid "Forum: Email Verification"
-msgstr "Форум: Потвърждение на имейл"
+msgstr ""
 
 #. module: website_profile
 #: model:ir.model,name:website_profile.model_gamification_badge
 msgid "Gamification Badge"
-msgstr "Значка за геймификация"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.profile_next_rank_card
 msgid "Get"
-msgstr "Вземи"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_sub_nav
 msgid "Home"
-msgstr "Начало"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.rank_badge_main
 msgid "How do I earn badges?"
-msgstr "Как да спечеля значки?"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.rank_badge_main
 msgid "How do I score more points?"
-msgstr "Как да спечеля повече точки?"
+msgstr ""
 
 #. module: website_profile
 #: model:ir.model.fields,field_description:website_profile.field_gamification_badge__id
 #: model:ir.model.fields,field_description:website_profile.field_res_users__id
 #: model:ir.model.fields,field_description:website_profile.field_website__id
 msgid "ID"
-msgstr "Номер (ID)"
+msgstr ""
 
 #. module: website_profile
 #: model:ir.model.fields,field_description:website_profile.field_gamification_badge__is_published
 msgid "Is Published"
-msgstr "Е публикувано"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.rank_badge_main
 msgid "Keep learning with"
-msgstr "Продължете да учите с"
+msgstr ""
 
 #. module: website_profile
 #: model:ir.model.fields,field_description:website_profile.field_website__karma_profile_min
 msgid "Minimal karma to see other user's profile"
-msgstr "Минимална карма за виждане на профила на друг потребител"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_sub_nav
 msgid "Mobile sub-nav"
-msgstr "Мобилна под-навигация"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_content
 msgid "More info"
-msgstr "Повече информация"
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
 msgid "Name"
-msgstr "Име"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_sub_nav
 msgid "Nav"
-msgstr "Навигация"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_content
 msgid "Next rank:"
-msgstr "Следващ ранг:"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.users_page_main
 msgid "No Leaderboard Yet :("
-msgstr "Все още няма класация :("
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_badges
 msgid "No badges yet!"
-msgstr "Все още няма значки!"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.users_page_content
 msgid "No user found for"
-msgstr "Не е намерен потребител за"
+msgstr ""
 
 #. module: website_profile
 #. odoo-python
 #: code:addons/website_profile/controllers/main.py:0
 msgid "Not have enough karma to view other users' profile."
-msgstr "Нямате достатъчно карма, за да видите профила на други потребители."
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
 msgid "Public Profile"
-msgstr "Публичен профил"
+msgstr ""
+
+#. module: website_profile
+#: model:ir.model.fields,field_description:website_profile.field_gamification_badge__published_date
+msgid "Published date"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.rank_badge_main
 msgid "Ranks"
-msgstr "Рангове"
+msgstr ""
 
 #. module: website_profile
 #. odoo-python
 #: code:addons/website_profile/controllers/main.py:0
 msgid "Ranks and Badges"
-msgstr "Рангове и значки"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.profile_access_denied
 msgid "Return to the website."
-msgstr "Върнете се към уебсайта."
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_sub_nav
 msgid "Search"
-msgstr "Потърсете"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_sub_nav
 msgid "Search users"
-msgstr "Търсене на потребители"
+msgstr ""
 
 #. module: website_profile
 #: model:mail.template,description:website_profile.validation_email
 msgid "Sent to forum visitors to confirm their mail address"
 msgstr ""
-"Изпратено на посетителите на форума за потвърждаване на техния имейл адрес"
 
 #. module: website_profile
 #: model:ir.model.fields,help:website_profile.field_gamification_badge__website_absolute_url
 msgid "The full absolute URL to access the document through the website."
-msgstr "Пълният абсолютен URL за достъп до документа през уебсайта."
+msgstr ""
 
 #. module: website_profile
 #: model:ir.model.fields,help:website_profile.field_gamification_badge__website_url
 msgid "The full relative URL to access the document through the website."
-msgstr "Пълният относителен URL адрес за достъп до документа през уебсайта."
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.users_page_header
 msgid "This month"
-msgstr "Този месец"
+msgstr ""
 
 #. module: website_profile
 #. odoo-python
 #: code:addons/website_profile/controllers/main.py:0
 msgid "This profile is private!"
-msgstr "Този профил е частен!"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.users_page_header
 msgid "This week"
-msgstr "Тази седмица"
-
-#. module: website_profile
-#: model_terms:ir.ui.view,arch_db:website_profile.all_user_card
-#: model_terms:ir.ui.view,arch_db:website_profile.top3_user_card
-msgid "Unpublished"
-msgstr "Непубликуван"
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
 msgid "Update"
-msgstr "Актуализирайте"
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.js:0
 msgid "Update failed."
-msgstr "Актуализацията е неуспешна."
+msgstr ""
 
 #. module: website_profile
 #: model:ir.model,name:website_profile.model_res_users
 msgid "User"
-msgstr "Потребител"
+msgstr ""
 
 #. module: website_profile
 #. odoo-python
 #: code:addons/website_profile/controllers/main.py:0
 msgid "User Profiles"
-msgstr "Потребителски профили"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.top3_user_card
 msgid "User rank"
-msgstr "Ранг на потребителя"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_sub_nav
 msgid "Users"
-msgstr "Потребители"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
 msgid "Verification Email sent to"
-msgstr "Имейл за потвърждение е изпратен на"
+msgstr ""
 
 #. module: website_profile
 #: model:ir.model.fields,field_description:website_profile.field_gamification_badge__website_published
+#: model:ir.model.fields,field_description:website_profile.field_res_users__website_published
 msgid "Visible on current website"
-msgstr "Видимо на текущия уебсайт"
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.xml:0
 #: model:ir.model,name:website_profile.model_website
 msgid "Website"
-msgstr "Уебсайт"
+msgstr ""
 
 #. module: website_profile
 #: model:ir.model.fields,field_description:website_profile.field_gamification_badge__website_absolute_url
 msgid "Website Absolute URL"
-msgstr "Абсолютен URL адрес на уебсайт"
+msgstr ""
+
+#. module: website_profile
+#: model:ir.model.fields,field_description:website_profile.field_res_users__website
+msgid "Website Link"
+msgstr ""
+
+#. module: website_profile
+#: model:ir.model.fields,field_description:website_profile.field_res_users__website_description
+msgid "Website Partner Full Description"
+msgstr ""
 
 #. module: website_profile
 #: model:ir.model.fields,field_description:website_profile.field_gamification_badge__website_url
 msgid "Website URL"
-msgstr "URL адрес на уебсайт"
+msgstr ""
+
+#. module: website_profile
+#: model:ir.module.module,shortdesc:base.module_website_profile
+msgid "Website profile"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.rank_badge_main
 msgid "When you finish a course or reach milestones, you're awarded badges."
-msgstr "Когато завършите курс или достигнете етапи, получавате значки."
+msgstr ""
 
 #. module: website_profile
 #. odoo-javascript
 #: code:addons/website_profile/static/src/components/profile_dialog/profile_dialog.js:0
 msgid "Write a few words about yourself..."
-msgstr "Напишете няколко думи за себе си..."
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.all_user_card
 #: model_terms:ir.ui.view,arch_db:website_profile.top3_user_card
 msgid "XP"
-msgstr "XP"
+msgstr ""
+
+#. module: website_profile
+#. odoo-python
+#: code:addons/website_profile/controllers/main.py:0
+msgid "You are not allowed to edit this user"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.rank_badge_main
 msgid ""
 "You can score more points by answering quizzes at the end of each course "
-"content. Points can also be earned on the forum. Follow this link to the "
-"guidelines of the forum."
+"content. Points can also be earned on the forum."
 msgstr ""
-"Можете да спечелите повече точки, като отговаряте на тестове в края на всяко "
-"съдържание на курса. Точки могат да се печелят и във форума. Последвайте "
-"тази връзка към насоките на форума."
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
@@ -802,60 +603,58 @@ msgid ""
 "Your Account has not yet been verified.<br/>\n"
 "            Click"
 msgstr ""
-"Профилът Ви все още не е потвърден.<br/>\n"
-"            Кликнете"
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
 msgid "Your account does not have an email set up. Please set it up on"
-msgstr "Профилът Ви няма зададен имейл. Моля, задайте го в"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.rank_badge_main
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_sub_nav
 msgid "breadcrumb"
-msgstr "breadcrumb"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
 msgid "or"
-msgstr "или"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.rank_badge_main
 msgid "point"
-msgstr "точка"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.rank_badge_main
 msgid "s"
-msgstr "с"
+msgstr ""
 
 #. module: website_profile
 #. odoo-python
 #: code:addons/website_profile/controllers/main.py:0
 msgid "slides"
-msgstr "slides"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.all_user_card
 msgid "this month"
-msgstr "този месец"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.all_user_card
 msgid "this week"
-msgstr "тази седмица"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
 msgid "to receive a verification email"
-msgstr "за да получите имейл за потвърждение"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.profile_next_rank_card
 msgid "xp"
-msgstr "xp"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.profile_next_rank_card
@@ -863,20 +662,18 @@ msgid ""
 "xp\n"
 "                        to level up!"
 msgstr ""
-"xp\n"
-"                        до следващото ниво!"
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.email_validation_banner
 msgid "your account settings"
-msgstr "настройките на профила Ви"
+msgstr ""
 
 #. module: website_profile
 #: model:mail.template,subject:website_profile.validation_email
 msgid "{{ object.company_id.name }} Profile validation"
-msgstr "{{ object.company_id.name }} Потвърждение на профил"
+msgstr ""
 
 #. module: website_profile
 #: model_terms:ir.ui.view,arch_db:website_profile.user_profile_sub_nav
 msgid "└ Users"
-msgstr "└ Потребители"
+msgstr ""

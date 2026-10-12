@@ -1,11 +1,10 @@
 from collections import defaultdict
 from lxml import etree
-import base64
 
 from odoo import api, fields, models
 from odoo.addons.account.tools import dict_to_xml
 from odoo.addons.l10n_fr_pdp.utils import drom_com_territories
-from odoo.tools import float_is_zero, float_round, frozendict, html2plaintext, ormcache
+from odoo.tools import float_is_zero, float_round, frozendict, html2plaintext
 
 
 VALID_TAX_CODES = {
@@ -43,10 +42,7 @@ class PdpFlow10XMLBuilder(models.AbstractModel):
             node=document,
             nsmap={'xsi': 'http://www.w3.org/2001/XMLSchema-instance'},
         )
-        payload = base64.b64encode(
-            etree.tostring(xml, pretty_print=True, xml_declaration=True, encoding='UTF-8'),
-        )
-        return payload
+        return etree.tostring(xml, pretty_print=True, xml_declaration=True, encoding='UTF-8')
 
     @api.model
     def _add_report_header(self, document, flow):
@@ -301,7 +297,7 @@ class PdpFlow10XMLBuilder(models.AbstractModel):
             }
 
     @api.model
-    @ormcache('move.id')
+    @api.ormcache('move.id')
     def _get_move_tax_data(self, move):
         scopes = set()
         tax_exigibility_on_invoice = False
@@ -581,7 +577,7 @@ class PdpFlow10XMLBuilder(models.AbstractModel):
             res = {
                 'BilledQuantity': {
                     '_text': line.quantity,
-                    'UnitCode': self._get_uom_unece_code(line.product_uom_id),
+                    'UnitCode': line.product_uom_id._get_unece_code(),
                 },
             }
             if sale_line_ids_in_fields:

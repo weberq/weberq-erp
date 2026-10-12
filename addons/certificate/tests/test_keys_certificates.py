@@ -1,15 +1,13 @@
-import base64
-
 from cryptography import x509
 from cryptography.hazmat.primitives import hashes, serialization
-from cryptography.hazmat.primitives.asymmetric import dsa, ec, ed25519, rsa, x25519
+from cryptography.hazmat.primitives.asymmetric import ec, ed25519, rsa
 from cryptography.hazmat.primitives.serialization import pkcs12
 from datetime import datetime, timedelta, timezone
 
 from odoo.addons.certificate.tools import CertificateAdapter
 from odoo.exceptions import UserError
 from odoo.tests import TransactionCase, tagged
-from odoo.tools import file_open
+from odoo.tools import BinaryBytes
 
 
 @tagged('post_install', '-at_install')
@@ -30,7 +28,7 @@ class TestKeysCertificates(TransactionCase):
         private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
         cls.test_key_1 = cls.env['certificate.key'].create({
             'name': 'Test key',
-            'content': base64.b64encode(private_key.private_bytes(
+            'content': BinaryBytes(private_key.private_bytes(
                 encoding=serialization.Encoding.PEM,
                 format=serialization.PrivateFormat.PKCS8,
                 encryption_algorithm=serialization.NoEncryption()
@@ -57,7 +55,7 @@ class TestKeysCertificates(TransactionCase):
         private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
         cls.test_key_2_private = cls.env['certificate.key'].create({
             'name': 'Test key',
-            'content': base64.b64encode(private_key.private_bytes(
+            'content': BinaryBytes(private_key.private_bytes(
                 encoding=serialization.Encoding.PEM,
                 format=serialization.PrivateFormat.PKCS8,
                 encryption_algorithm=serialization.NoEncryption(),
@@ -65,7 +63,7 @@ class TestKeysCertificates(TransactionCase):
         })
         cls.test_key_2_public = cls.env['certificate.key'].create({
             'name': 'Test key',
-            'content': base64.b64encode(private_key.public_key().public_bytes(
+            'content': BinaryBytes(private_key.public_key().public_bytes(
                 encoding=serialization.Encoding.PEM,
                 format=serialization.PublicFormat.SubjectPublicKeyInfo,
             )),
@@ -124,34 +122,37 @@ class TestKeysCertificates(TransactionCase):
 
     def test_ec_key_generated(self):
         private_key = self.env['certificate.key']._generate_ec_private_key(self.env.company)
-        private_key_obj = serialization.load_pem_private_key(base64.b64decode(private_key.pem_key), None)
+        private_key_obj = serialization.load_pem_private_key(private_key.pem_key.content, None)
         self.assertTrue(isinstance(private_key_obj, ec.EllipticCurvePrivateKey))
 
     def test_rsa_key_generated(self):
         private_key = self.env['certificate.key']._generate_rsa_private_key(self.env.company)
-        private_key_obj = serialization.load_pem_private_key(base64.b64decode(private_key.pem_key), None)
+        private_key_obj = serialization.load_pem_private_key(private_key.pem_key.content, None)
         self.assertTrue(isinstance(private_key_obj, rsa.RSAPrivateKey))
 
     def test_ed25519_key_generated(self):
         private_key = self.env['certificate.key']._generate_ed25519_private_key(self.env.company)
-        private_key_obj = serialization.load_pem_private_key(base64.b64decode(private_key.pem_key), None)
+        private_key_obj = serialization.load_pem_private_key(private_key.pem_key.content, None)
         self.assertTrue(isinstance(private_key_obj, ed25519.Ed25519PrivateKey))
 
     def test_key_loading_wrong_password(self):
         correct_password = 'foobar'
         wrong_password = 'barfoo'
-        content = file_open('certificate/tests/data/encrypted_private.key', 'rb').read()
-        key = self.env['certificate.key'].create({'content': base64.b64encode(content)})
+        key_path = 'certificate/tests/data/encrypted_private.key'
+        loading_error = self.env._("This key could not be loaded. Either its content or its password is erroneous.")
+        with self.assertRaises(UserError, msg=loading_error):
+            self.env['certificate.key'].create({'content': self.file_read(key_path)})
+        with self.assertRaises(UserError, msg=loading_error):
+            self.env['certificate.key'].create({'content': self.file_read(key_path), 'password': wrong_password})
+        key = self.env['certificate.key'].create({'content': self.file_read(key_path), 'password': correct_password})
         self.assertEqual(key.loading_error, '')
-        key.password = wrong_password
-        self.assertEqual(key.loading_error, 'This key could not be loaded. Either its content or its password is erroneous.')
-        key.password = correct_password
-        self.assertEqual(key.loading_error, '')
+        with self.assertRaises(UserError, msg=loading_error):
+            key.write({'password': wrong_password})
 
     def test_der_certificate(self):
         certificate = self.env['certificate.certificate'].create({
             'name': 'Test DER Certificate',
-            'content': base64.b64encode(self.certificate_1.public_bytes(encoding=serialization.Encoding.DER)),
+            'content': BinaryBytes(self.certificate_1.public_bytes(encoding=serialization.Encoding.DER)),
             'private_key_id': self.test_key_1.id,
         })
         self.assertEqual(certificate.content_format, 'der')
@@ -159,7 +160,7 @@ class TestKeysCertificates(TransactionCase):
     def test_adapter_load_cert_chain_uses_in_memory_record(self):
         certificate = self.env['certificate.certificate'].create({
             'name': 'Test adapter certificate',
-            'content': base64.b64encode(self.certificate_1.public_bytes(encoding=serialization.Encoding.PEM)),
+            'content': BinaryBytes(self.certificate_1.public_bytes(encoding=serialization.Encoding.PEM)),
             'private_key_id': self.test_key_1.id,
         })
         context = CertificateAdapter().poolmanager.connection_pool_kw['ssl_context']
@@ -175,7 +176,7 @@ class TestKeysCertificates(TransactionCase):
     def test_pem_certificate(self):
         certificate = self.env['certificate.certificate'].create({
             'name': 'Test PEM Certificate',
-            'content': base64.b64encode(self.certificate_1.public_bytes(encoding=serialization.Encoding.PEM)),
+            'content': BinaryBytes(self.certificate_1.public_bytes(encoding=serialization.Encoding.PEM)),
             'private_key_id': self.test_key_1.id,
         })
         self.assertEqual(certificate.content_format, 'pem')
@@ -184,13 +185,13 @@ class TestKeysCertificates(TransactionCase):
         certificate = self.env['certificate.certificate'].create({
             'name': 'Test PKCS12 Certificate',
             'pkcs12_password': 'example',
-            'content': base64.b64encode(file_open('certificate/tests/data/cert.pfx', 'rb').read()),
+            'content': self.file_read('certificate/tests/data/cert.pfx'),
         })
         self.assertEqual(certificate.content_format, 'pkcs12')
 
     def test_is_valid(self):
         private_key = serialization.load_pem_private_key(
-            base64.b64decode(self.test_key_1.pem_key),
+            self.test_key_1.pem_key.content,
             None
         )
 
@@ -213,7 +214,7 @@ class TestKeysCertificates(TransactionCase):
 
         expired_cert = self.env['certificate.certificate'].create({
             'name': 'Test expired Certificate',
-            'content': base64.b64encode(old_certificate.public_bytes(encoding=serialization.Encoding.PEM)),
+            'content': BinaryBytes(old_certificate.public_bytes(encoding=serialization.Encoding.PEM)),
             'private_key_id': self.test_key_1.id,
         })
         self.assertFalse(expired_cert.is_valid)
@@ -222,14 +223,14 @@ class TestKeysCertificates(TransactionCase):
         with self.assertRaises(UserError, msg="The certificate and private key are not compatible."):
             self.env['certificate.certificate'].create({
                 'name': "Test PEM Certificate and key don't match",
-                'content': base64.b64encode(self.certificate_1.public_bytes(encoding=serialization.Encoding.PEM)),
+                'content': BinaryBytes(self.certificate_1.public_bytes(encoding=serialization.Encoding.PEM)),
                 'private_key_id': self.test_key_2_private.id,
             })
 
         with self.assertRaises(UserError, msg="The certificate and public key are not compatible."):
             self.env['certificate.certificate'].create({
                 'name': "Test PEM Certificate and key don't match",
-                'content': base64.b64encode(self.certificate_1.public_bytes(encoding=serialization.Encoding.PEM)),
+                'content': BinaryBytes(self.certificate_1.public_bytes(encoding=serialization.Encoding.PEM)),
                 'public_key_id': self.test_key_2_public.id,
             })
 
@@ -248,7 +249,7 @@ class TestKeysCertificates(TransactionCase):
 
         leaf_record = self.env['certificate.certificate'].create({
             'name': 'Test Chain Upload',
-            'content': base64.b64encode(bundle_pem),
+            'content': BinaryBytes(bundle_pem),
         })[0]
 
         # The intermediate and root should have been created in the background as archived
@@ -261,8 +262,8 @@ class TestKeysCertificates(TransactionCase):
             'subject_common_name': 'Test Leaf',
             'issuer_cert_id': int_record.id,
         }])
-        self.assertRecordValues(int_record, [{'active': False, 'issuer_cert_id': root_record.id}])
-        self.assertRecordValues(root_record, [{'active': False, 'issuer_cert_id': False}])
+        self.assertRecordValues(int_record, [{'active': False, 'scope': 'ca', 'issuer_cert_id': root_record.id}])
+        self.assertRecordValues(root_record, [{'active': False, 'scope': 'ca', 'issuer_cert_id': False}])
 
         # Verify the business method returns the full ordered chain
         chain = leaf_record._get_certificate_chain()
@@ -278,7 +279,7 @@ class TestKeysCertificates(TransactionCase):
 
         leaf_record_2 = self.env['certificate.certificate'].create({
             'name': 'Test Chain Upload 2',
-            'content': base64.b64encode(bundle_pem_2),
+            'content': BinaryBytes(bundle_pem_2),
         })[0]
 
         int_records_after = self._search_certificate('Test Intermediate CA')
@@ -317,7 +318,7 @@ class TestKeysCertificates(TransactionCase):
 
         leaf_record = self.env['certificate.certificate'].create({
             'name': 'Test PKCS12 Chain Upload',
-            'content': base64.b64encode(p12_der),
+            'content': BinaryBytes(p12_der),
             'pkcs12_password': password,
         })[0]
 
@@ -331,8 +332,8 @@ class TestKeysCertificates(TransactionCase):
             'subject_common_name': 'PKCS12 Leaf',
             'issuer_cert_id': int_record.id,
         }])
-        self.assertRecordValues(int_record, [{'active': False, 'issuer_cert_id': root_record.id}])
-        self.assertRecordValues(root_record, [{'active': False, 'issuer_cert_id': False}])
+        self.assertRecordValues(int_record, [{'active': False, 'scope': 'ca', 'issuer_cert_id': root_record.id}])
+        self.assertRecordValues(root_record, [{'active': False, 'scope': 'ca', 'issuer_cert_id': False}])
         self.assertTrue(leaf_record.private_key_id, "Private key should be auto-computed from the PKCS12 archive")
 
         # Verify the business method returns the full ordered chain
@@ -364,13 +365,13 @@ class TestKeysCertificates(TransactionCase):
         leaf_record = self.env['certificate.certificate'].create({
             'name': 'Test PKCS12 Certificate',
             'pkcs12_password': 'example',
-            'content': base64.b64encode(file_open('certificate/tests/data/cert.pfx', 'rb').read()),
+            'content': self.file_read('certificate/tests/data/cert.pfx'),
         })
         self.assertEqual(leaf_record.content_format, 'pkcs12')
 
         # Update the content of the certificate with the chain p12
         leaf_record.write({
-            'content': base64.b64encode(p12_der),
+            'content': BinaryBytes(p12_der),
             'pkcs12_password': password,
         })
 
@@ -382,8 +383,8 @@ class TestKeysCertificates(TransactionCase):
             'content_format': 'pkcs12',
             'issuer_cert_id': int_record.id,
         }])
-        self.assertRecordValues(int_record, [{'active': False, 'issuer_cert_id': root_record.id}])
-        self.assertRecordValues(root_record, [{'active': False, 'issuer_cert_id': False}])
+        self.assertRecordValues(int_record, [{'active': False, 'scope': 'ca', 'issuer_cert_id': root_record.id}])
+        self.assertRecordValues(root_record, [{'active': False, 'scope': 'ca', 'issuer_cert_id': False}])
 
     def test_unrelated_certificates_filtered(self):
         """ Test that unrelated certificates in a bundle are ignored and not created. """
@@ -397,7 +398,7 @@ class TestKeysCertificates(TransactionCase):
 
         leaf_record = self.env['certificate.certificate'].create({
             'name': 'Test Unrelated Upload',
-            'content': base64.b64encode(bundle_pem),
+            'content': BinaryBytes(bundle_pem),
         })[0]
 
         # Ensure the unrelated cert was not created in the database
@@ -407,62 +408,10 @@ class TestKeysCertificates(TransactionCase):
         self.assertFalse(unrelated_record)
         self.assertEqual(len(leaf_record._get_certificate_chain()), 1)
 
-    def test_is_issued_by(self):
-        """ The signature-based issuer check must accept valid issuers across RSA,
-        RSA-PSS, ECDSA, Ed25519 and DSA, and reject impostors and key/algorithm mismatches. """
-        Cert = self.env['certificate.certificate']
-
-        rsa_ca_key, rsa_leaf_key, rsa_other_key = self._generate_keys(3)
-        ec_ca_key, ec_leaf_key = ec.generate_private_key(ec.SECP256R1()), ec.generate_private_key(ec.SECP256R1())
-        ed_ca_key, ed_leaf_key = ed25519.Ed25519PrivateKey.generate(), ed25519.Ed25519PrivateKey.generate()
-        dsa_ca_key, dsa_leaf_key = dsa.generate_private_key(2048), dsa.generate_private_key(2048)
-
-        rsa_ca = self._build_test_cert("RSA CA", "RSA CA", rsa_ca_key)
-        ec_ca = self._build_test_cert("EC CA", "EC CA", ec_ca_key)
-        ed_ca = self._build_test_cert("Ed CA", "Ed CA", ed_ca_key)
-        dsa_ca = self._build_test_cert("DSA CA", "DSA CA", dsa_ca_key)
-
-        valid_chains = [
-            (self._build_test_cert("RSA Leaf", "RSA CA", rsa_leaf_key, rsa_ca_key, rsa_ca_key.public_key()), rsa_ca),  # RSA PKCS#1 v1.5
-            (self._build_test_cert("EC Leaf", "EC CA", ec_leaf_key, ec_ca_key, ec_ca_key.public_key()), ec_ca),       # ECDSA
-            (self._build_test_cert("Ed Leaf", "Ed CA", ed_leaf_key, ed_ca_key, ed_ca_key.public_key()), ed_ca),       # Ed25519
-            (self._build_test_cert("DSA Leaf", "DSA CA", dsa_leaf_key, dsa_ca_key, dsa_ca_key.public_key()), dsa_ca),  # DSA
-        ]
-
-        for child, issuer in valid_chains:
-            self.assertTrue(Cert._is_issued_by(child, issuer))
-
-        # Correct issuer name but signed by a different key.
-        impostor = self._build_test_cert("RSA Leaf", "RSA CA", rsa_leaf_key, rsa_other_key, rsa_other_key.public_key())
-        self.assertFalse(Cert._is_issued_by(impostor, rsa_ca))
-
-        # Issuer name does not match the certificate's issuer.
-        self.assertFalse(Cert._is_issued_by(valid_chains[0][0], ec_ca))
-
-        # Key-type / signature-algorithm mismatch must be rejected without raising.
-        # Ex: Ed25519-signed certificate cannot have been issued by an RSA key.
-        ed_named_rsa = self._build_test_cert("RSA CA", "RSA CA", ed_leaf_key, ed_ca_key, ed_ca_key.public_key())
-        self.assertFalse(Cert._is_issued_by(ed_named_rsa, rsa_ca))
-
-        # A signature we cannot mathematically verify (an issuer key type we do not support for
-        # signatures, here X25519) still resolves the issuer through the AKI/SKI match.
-        x25519_key = x25519.X25519PrivateKey.generate()
-        try:
-            unsupported_ca = self._build_test_cert("X25519 CA", "X25519 CA", x25519_key, rsa_ca_key, rsa_ca_key.public_key())
-        except TypeError:
-            self.skipTest("Installed cryptography does not support X25519 subject keys in CertificateBuilder")
-        unsupported_leaf = self._build_test_cert("X25519 Leaf", "X25519 CA", rsa_leaf_key, rsa_ca_key, x25519_key.public_key())
-
-        # Cannot be proven cryptographically
-        self.assertIsNone(Cert._is_issued_by(unsupported_leaf, unsupported_ca))
-
-        # The certificate still links to the CA through the matching SKI.
-        ca_record = Cert.create({
-            'name': 'X25519 CA',
-            'content': base64.b64encode(unsupported_ca.public_bytes(serialization.Encoding.DER)),
+    def test_write_certificate_password(self):
+        certificate = self.env['certificate.certificate'].create({
+           'name': 'Test PEM Certificate',
+           'content': BinaryBytes(self.certificate_1.public_bytes(encoding=serialization.Encoding.PEM)),
         })
-        leaf_record = Cert.create({
-            'name': 'X25519 Leaf',
-            'content': base64.b64encode(unsupported_leaf.public_bytes(serialization.Encoding.DER)),
-        })
-        self.assertEqual(leaf_record.issuer_cert_id, ca_record)
+        certificate.write({'pkcs12_password': 'newpassword'})
+        self.assertEqual(certificate.pkcs12_password, 'newpassword')

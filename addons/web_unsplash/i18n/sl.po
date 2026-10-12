@@ -2,19 +2,15 @@
 # This file contains the translation of the following modules:
 # * web_unsplash
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-08 17:36+0000\n"
-"PO-Revision-Date: 2026-09-16 07:33+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 19:15+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "web_unsplash/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 2026.8.1\n"
+
+#. module: web_unsplash
+#: model_terms:ir.ui.view,arch_db:web_unsplash.res_config_settings_view_form
+msgid "<i class=\"oi\" data-icon=\"east\"/> Create Unsplash Account"
+msgstr ""
 
 #. module: web_unsplash
 #: model:ir.model.fields,field_description:web_unsplash.field_res_config_settings__unsplash_access_key
@@ -34,7 +35,7 @@ msgstr "Ključ za dostop"
 #: code:addons/web_unsplash/static/src/unsplash_credentials/unsplash_credentials.xml:0
 #: model:ir.model.fields,field_description:web_unsplash.field_res_config_settings__unsplash_app_id
 msgid "Application ID"
-msgstr "ID aplikacije"
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -43,11 +44,17 @@ msgid "Apply"
 msgstr "Uporabi"
 
 #. module: web_unsplash
+#: model:ir.model,name:web_unsplash.model_ir_attachment
+msgid "Attachment"
+msgstr "Priponka"
+
+#. module: web_unsplash
 #: model:ir.model,name:web_unsplash.model_res_config_settings
 msgid "Config Settings"
 msgstr "Uredi nastavitve"
 
 #. module: web_unsplash
+#: model:ir.model.fields,field_description:web_unsplash.field_ir_attachment__display_name
 #: model:ir.model.fields,field_description:web_unsplash.field_ir_qweb_field_image__display_name
 #: model:ir.model.fields,field_description:web_unsplash.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:web_unsplash.field_res_users__display_name
@@ -58,26 +65,35 @@ msgstr "Prikazani naziv"
 #. odoo-python
 #: code:addons/web_unsplash/controllers/main.py:0
 msgid "ERROR: Unknown Unsplash URL!"
-msgstr "NAPAKA: Neznan URL Unsplash!\n"
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-python
 #: code:addons/web_unsplash/controllers/main.py:0
 msgid "ERROR: Unknown Unsplash notify URL!"
-msgstr "NAPAKA: Neznan URL za obvestila Unsplash!\n"
+msgstr ""
 
 #. module: web_unsplash
-#: model_terms:ir.ui.view,arch_db:web_unsplash.res_config_settings_view_form
-msgid "Generate an Access Key"
-msgstr "Ustvari ključ za dostop"
+#: model:ir.module.module,description:base.module_web_unsplash
+msgid ""
+"Explore the free high-resolution image library of Unsplash.com and find "
+"images to use in Odoo. An Unsplash search bar is added to the image library "
+"modal."
+msgstr ""
+
+#. module: web_unsplash
+#: model:ir.module.module,summary:base.module_web_unsplash
+msgid "Find free high-resolution images from Unsplash"
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/unsplash_credentials/unsplash_credentials.xml:0
 msgid "Get an Access key"
-msgstr "Pridobite dostopni ključ"
+msgstr ""
 
 #. module: web_unsplash
+#: model:ir.model.fields,field_description:web_unsplash.field_ir_attachment__id
 #: model:ir.model.fields,field_description:web_unsplash.field_ir_qweb_field_image__id
 #: model:ir.model.fields,field_description:web_unsplash.field_res_config_settings__id
 #: model:ir.model.fields,field_description:web_unsplash.field_res_users__id
@@ -94,19 +110,19 @@ msgstr "Tukaj prilepite svoj ključ za dostop"
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/unsplash_credentials/unsplash_credentials.xml:0
 msgid "Paste your application ID here"
-msgstr "Sem prilepite ID svoje aplikacije"
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/media_dialog/media_dialog.xml:0
 msgid "Photos (via Unsplash)"
-msgstr "Fotografije (prek Unsplash)"
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/media_dialog/image_selector_patch.js:0
 msgid "Please check your Unsplash access key and application ID."
-msgstr "Preverite svoj ključ za dostop do Unsplasha in ID aplikacije."
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -129,7 +145,7 @@ msgstr "Iskanje začasno ni na voljo"
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/media_dialog/image_selector_patch.js:0
 msgid "Setup Unsplash to access royalty free photos."
-msgstr "Nastavite Unsplash za dostop do brezplačnih fotografij brez licenčnin."
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -151,13 +167,24 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/media_dialog/image_selector_patch.js:0
 msgid "Unauthorized Key"
-msgstr "Neavtoriziran ključ"
+msgstr ""
+
+#. module: web_unsplash
+#: model:ir.module.module,shortdesc:base.module_web_unsplash
+msgid "Unsplash Image Library"
+msgstr ""
+
+#. module: web_unsplash
+#. odoo-python
+#: code:addons/web_unsplash/models/ir_attachment.py:0
+msgid "Unsplash attachments must be images."
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/unsplash_service.js:0
 msgid "Uploading %(count)s '%(query)s' images."
-msgstr "Nalaganje %(count)s slik »%(query)s«."
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -174,19 +201,16 @@ msgstr "Uporabnik"
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/unsplash_credentials/unsplash_credentials.xml:0
 msgid "and paste"
-msgstr "in prilepite"
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/unsplash_credentials/unsplash_credentials.xml:0
 msgid "and paste it here:"
-msgstr "in prilepite tukaj:"
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/unsplash_credentials/unsplash_credentials.xml:0
 msgid "here:"
-msgstr "tukaj:"
-
-#~ msgid "Attachment"
-#~ msgstr "Priponka"
+msgstr ""

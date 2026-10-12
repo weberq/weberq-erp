@@ -10,3 +10,4 @@ from . import pos_payment
 from . import res_partner
 from . import account_bank_statement
 from . import single_employee_sales_report
+from . import pos_order_receipt

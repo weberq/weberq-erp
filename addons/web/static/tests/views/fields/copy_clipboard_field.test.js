@@ -1,4 +1,4 @@
-import { Component, xml } from "@odoo/owl";
+import { Component, useProps, xml } from "@odoo/owl";
 import { expect, test } from "@odoo/hoot";
 import {
     contains,
@@ -52,20 +52,21 @@ test("Char Field: Copy to clipboard button", async () => {
     expect(".o_clipboard_button.o_btn_char_copy").toHaveCount(1);
 });
 
-test("Show copy button even on empty field", async () => {
+test("Copy button is hidden on empty field", async () => {
     Partner._records.push({
         char_field: false,
     });
 
     await mountView({ type: "form", resModel: "res.partner", resId: 2 });
 
-    expect(".o_field_CopyClipboardChar[name='char_field'] .o_clipboard_button").toHaveCount(1);
+    expect(".o_field_CopyClipboardChar[name='char_field'] input").toHaveCount(1);
+    expect(".o_field_CopyClipboardChar[name='char_field'] .o_clipboard_button").toHaveCount(0);
 });
 
 test("does not crash when the field is locally updated to false", async () => {
     class ClearButton extends Component {
-        static template = xml`<button class="o_test_clear_button" t-on-click="onClick">Clear</button>`;
-        static props = ["*"];
+        static template = xml`<button class="o_test_clear_button" t-on-click="() => this.onClick()">Clear</button>`;
+        props = useProps();
         onClick() {
             this.props.record.update({ [this.props.name]: false });
         }
@@ -90,7 +91,7 @@ test("does not crash when the field is locally updated to false", async () => {
     expect(".o_field_CopyClipboardChar[name='char_field'] input").toHaveValue("");
 });
 
-test("Show copy button even on readonly empty field", async () => {
+test("Copy button is visible on readonly empty field with default value", async () => {
     Partner._fields.char_field.readonly = true;
     await mountView({
         type: "form",

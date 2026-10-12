@@ -4,8 +4,10 @@ from collections import defaultdict
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from babel.dates import format_date, get_date_format
+from zoneinfo import ZoneInfo
 
 from odoo import api, fields, models
+from odoo.addons.base.models.res_partner import _tz_get
 from odoo.exceptions import ValidationError
 from odoo.tools import get_lang, babel_locale_parse
 
@@ -33,7 +35,7 @@ def format_date_abbr(env, date):
 
 class HrVersion(models.Model):
     _name = 'hr.version'
-    _description = 'Version'
+    _description = 'Employee Record'
     _inherit = ['mail.thread', 'mail.activity.mixin']  # TODO: remove later ? (see if still needed because contract template)
     _mail_post_access = 'read'
     _order = 'date_version'
@@ -49,19 +51,22 @@ class HrVersion(models.Model):
                 or self.env['hr.payroll.structure.type'].sudo().search([('country_id', '=', False)], limit=1)
         )
 
+    def _get_hr_responsible_domain(self):
+        return [('share', '=', False), ('company_ids', 'in', self.env.company.ids), ('all_group_ids', 'in', self.env.ref('hr.group_hr_user').id)]
+
     company_id = fields.Many2one('res.company', compute='_compute_company_id', readonly=False,
-                                 store=True, default=lambda self: self.env.company, tracking=True)
+                                 store=True, index=True, default=lambda self: self.env.company, tracking=1)
     employee_id = fields.Many2one(
         'hr.employee',
         string='Employee',
-        tracking=True,
+        tracking=1,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
         index=True)
-    name = fields.Char(tracking=True)
+    name = fields.Char(tracking=1)
     display_name = fields.Char(compute='_compute_display_name')
-    active = fields.Boolean(default=True, tracking=True)
+    active = fields.Boolean(default=True, tracking=1)
 
-    date_version = fields.Date(required=True, default=fields.Date.today, tracking=True, groups="hr.group_hr_user")
+    date_version = fields.Date(string="Effective Date", required=True, default=fields.Date.context_today, tracking=1, groups="hr.group_hr_user")
     last_modified_uid = fields.Many2one('res.users', string='Last Modified by',
                                         default=lambda self: self.env.uid, required=True, groups="hr.group_hr_user")
     last_modified_date = fields.Datetime(string='Last Modified on', default=fields.Datetime.now, required=True,
@@ -69,40 +74,38 @@ class HrVersion(models.Model):
 
     # Personal Information
     country_id = fields.Many2one(
-        'res.country', 'Nationality (Country)', groups="hr.group_hr_user", tracking=True)
+        'res.country', 'Nationality (Country)', index='btree_not_null', groups="hr.group_hr_user", tracking=1)
     identification_id = fields.Char(
         string='Identification No',
         help="Enter the employee's National Identification Number issued by the government (e.g., Aadhaar, SIN, NIN). This is used for official records and statutory compliance.",
         groups="hr.group_hr_user",
-        tracking=True)
-    ssnid = fields.Char('SSN No', help='Social Security Number', groups="hr.group_hr_user", tracking=True)
-    passport_id = fields.Char('Passport No', groups="hr.group_hr_user", tracking=True)
-    passport_expiration_date = fields.Date('Passport Expiration Date', groups="hr.group_hr_user", tracking=True)
+        tracking=1)
+    passport_id = fields.Char('Passport No', groups="hr.group_hr_user", tracking=1)
+    passport_expiration_date = fields.Date('Passport Expiration Date', groups="hr.group_hr_user", tracking=1)
     sex = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
-        ('other', 'Other'),
-    ], groups="hr.group_hr_user", tracking=True, help="This is the legal sex recognized by the state.", string='Gender')
+    ], groups="hr.group_hr_user", tracking=1, help="This is the legal sex as recognized by the state, used for official and statutory purposes.")
 
-    private_street = fields.Char(string="Private Street", groups="hr.group_hr_user", tracking=True)
-    private_street2 = fields.Char(string="Private Street2", groups="hr.group_hr_user", tracking=True)
-    private_city = fields.Char(string="Private City", groups="hr.group_hr_user", tracking=True)
+    private_street = fields.Char(string="Private Street", groups="hr.group_hr_user", tracking=1)
+    private_street2 = fields.Char(string="Private Street2", groups="hr.group_hr_user", tracking=1)
+    private_city = fields.Char(string="Private City", groups="hr.group_hr_user", tracking=1)
     allowed_country_state_ids = fields.Many2many("res.country.state", compute='_compute_allowed_country_state_ids', groups="hr.group_hr_user")
     private_state_id = fields.Many2one(
         "res.country.state", string="Private State",
         domain="[('id', 'in', allowed_country_state_ids)]",
-        groups="hr.group_hr_user", tracking=True)
-    private_zip = fields.Char(string="Private Zip", groups="hr.group_hr_user", tracking=True)
-    private_country_id = fields.Many2one("res.country", string="Private Country",
-                                         groups="hr.group_hr_user", tracking=True)
+        groups="hr.group_hr_user", tracking=1)
+    private_zip = fields.Char(string="Private Zip", groups="hr.group_hr_user", tracking=1)
+    private_country_id = fields.Many2one("res.country", string="Private Country", index='btree_not_null',
+                                         groups="hr.group_hr_user", tracking=1, default=lambda self: self.env.company.country_id)
 
-    distance_home_work = fields.Integer(string="Home-Work Distance", groups="hr.group_hr_user", tracking=True)
+    distance_home_work = fields.Integer(string="Home-Work Distance", groups="hr.group_hr_user", tracking=1)
     km_home_work = fields.Integer(string="Home-Work Distance in Km", groups="hr.group_hr_user",
-                                  compute="_compute_km_home_work", inverse="_inverse_km_home_work", store=True, tracking=True)
+                                  compute="_compute_km_home_work", inverse="_inverse_km_home_work", store=True, tracking=1)
     distance_home_work_unit = fields.Selection([
         ('kilometers', 'km'),
         ('miles', 'mi'),
-    ], 'Home-Work Distance unit', groups="hr.group_hr_user", default='kilometers', required=True, tracking=True)
+    ], 'Home-Work Distance unit', groups="hr.group_hr_user", default='kilometers', required=True, tracking=1)
 
     marital = fields.Selection(
         selection='_get_marital_status_selection',
@@ -110,24 +113,16 @@ class HrVersion(models.Model):
         groups="hr.group_hr_user",
         default='single',
         required=True,
-        tracking=True)
-    spouse_complete_name = fields.Char(string="Spouse Legal Name", groups="hr.group_hr_user", tracking=True)
-    spouse_birthdate = fields.Date(string="Spouse Birthdate", groups="hr.group_hr_user", tracking=True)
-    children = fields.Integer(string='Dependent Children', groups="hr.group_hr_user", tracking=True)
+        tracking=1)
+    spouse_complete_name = fields.Char(string="Spouse Legal Name", groups="hr.group_hr_user", tracking=1)
+    spouse_birthdate = fields.Date(string="Spouse Birthdate", groups="hr.group_hr_user", tracking=1)
+    children = fields.Integer(string='Dependent Children', groups="hr.group_hr_user", tracking=1)
 
     # Work Information
-    employee_type = fields.Selection([
-            ('employee', 'Employee'),
-            ('worker', 'Worker'),
-            ('student', 'Student'),
-            ('trainee', 'Trainee'),
-            ('contractor', 'Contractor'),
-            ('freelance', 'Freelancer'),
-        ], string='Employee Type', default='employee', required=True, groups="hr.group_hr_user", tracking=True)
-    department_id = fields.Many2one('hr.department', check_company=True, tracking=True, index=True)
+    department_id = fields.Many2one('hr.department', check_company=True, tracking=1, index=True)
     member_of_department = fields.Boolean("Member of department", compute='_compute_part_of_department', search='_search_part_of_department',
         help="Whether the employee is a member of the active user's department or one of it's child department.")
-    job_id = fields.Many2one('hr.job', check_company=True, tracking=True, index=True)
+    job_id = fields.Many2one('hr.job', check_company=True, tracking=1, index=True)
     job_title = fields.Char(compute="_compute_job_title", inverse="_inverse_job_title", store=True, readonly=False,
         string="Job Title", tracking=True)
     is_custom_job_title = fields.Boolean(compute='_compute_is_custom_job_title', store=True, default=False, groups="hr.group_hr_user")
@@ -136,62 +131,64 @@ class HrVersion(models.Model):
         string='Work Address',
         default=_get_default_address_id,
         store=True,
+        index='btree_not_null',
         readonly=False,
         check_company=True,
-        tracking=True)
-    work_location_id = fields.Many2one('hr.work.location', 'Work Location',
-                                       domain="[('address_id', '=', address_id)]", tracking=True)
+        tracking=1)
+    work_location_id = fields.Many2one('hr.work.location', 'Work Location', compute='_compute_work_location_id',
+                                       store=True, readonly=False,
+                                       domain="[('address_id', '=', address_id)]", index=True, tracking=1)
 
-    departure_reason_id = fields.Many2one("hr.departure.reason", string="Departure Reason",
-                                          groups="hr.group_hr_user", copy=False, ondelete='restrict', tracking=True)
-    departure_description = fields.Html(string="Additional Information", groups="hr.group_hr_user", copy=False)
-    departure_date = fields.Date(string="Departure Date", groups="hr.group_hr_user", copy=False, tracking=True)
+    departure_id = fields.Many2one('hr.employee.departure', string="Departure", copy=False, index='btree_not_null')
+    departure_reason_id = fields.Many2one(related='departure_id.departure_reason_id', readonly=False, groups="hr.group_hr_user", tracking=1)
+    departure_description = fields.Html(related='departure_id.departure_description', readonly=False, groups="hr.group_hr_user")
+    dismissal_date = fields.Date(related='departure_id.dismissal_date', readonly=False, groups="hr.group_hr_user", tracking=1)
+    departure_date = fields.Date(related='departure_id.departure_date', readonly=False, groups="hr.group_hr_user", tracking=1)
+    departure_action_date = fields.Date(related='departure_id.action_date', readonly=False, groups="hr.group_hr_user")
+    departure_apply_immediately = fields.Boolean(related='departure_id.apply_immediately', groups="hr.group_hr_user")
+    departure_apply_date = fields.Date(related='departure_id.apply_date', groups="hr.group_hr_user")
 
-    resource_calendar_id = fields.Many2one('resource.calendar', inverse='_inverse_resource_calendar_id', check_company=True, string="Working Hours", tracking=True)
-    is_flexible = fields.Boolean(compute='_compute_is_flexible', store=True, groups="hr.group_hr_user")
-    is_fully_flexible = fields.Boolean(compute='_compute_is_flexible', store=True, groups="hr.group_hr_user")
-    tz = fields.Selection(related='employee_id.tz')
+    resource_calendar_id = fields.Many2one(
+        'resource.calendar', required=True, default=lambda self: self.env.company.resource_calendar_id, inverse='_inverse_resource_calendar_id', string="Working Hours", index='btree_not_null', tracking=1,
+        domain="['|', ('company_id', '=', False), ('company_id.id', 'parent_of', company_id)]")
+    tz = fields.Selection(_tz_get, string='Timezone', required=True, default=lambda self: self.env.context.get('tz') or self.env.user.tz or 'UTC')
 
     # Contract Information
-    contract_date_start = fields.Date('Contract Start Date', tracking=True, groups="hr.group_hr_manager")
+    contract_date_start = fields.Date('Contract Start Date', tracking=1, groups="hr.group_hr_user")
     contract_date_end = fields.Date(
-        'Contract End Date', tracking=True, help="End date of the contract (if it's a fixed-term contract).",
-        groups="hr.group_hr_manager")
+        'Contract End Date', tracking=1, help="End date of the contract (if it's a fixed-term contract).",
+        groups="hr.group_hr_user")
+    fixed_term = fields.Boolean('Fixed Term', tracking=1, groups='hr.group_hr_user')
     trial_date_end = fields.Date('End of Trial Period', help="End date of the trial period (if there is one).",
-                                 groups="hr.group_hr_manager", tracking=True)
-    date_start = fields.Date(compute='_compute_dates', groups="hr.group_hr_manager", search="_search_start_date")
-    date_end = fields.Date(compute='_compute_dates', groups="hr.group_hr_manager", search="_search_end_date")
-    is_current = fields.Boolean(compute='_compute_is_current', groups="hr.group_hr_manager")
-    is_past = fields.Boolean(compute='_compute_is_past', groups="hr.group_hr_manager")
-    is_future = fields.Boolean(compute='_compute_is_future', groups="hr.group_hr_manager")
-    is_in_contract = fields.Boolean(compute='_compute_is_in_contract', groups="hr.group_hr_manager")
+                                 groups="hr.group_hr_user", tracking=1)
+    date_start = fields.Date(compute='_compute_dates', groups="hr.group_hr_user", search="_search_start_date")
+    date_end = fields.Date(compute='_compute_dates', groups="hr.group_hr_user", search="_search_end_date")
+    is_current = fields.Boolean(compute='_compute_is_current', groups="hr.group_hr_user")
+    is_past = fields.Boolean(compute='_compute_is_past', groups="hr.group_hr_user")
+    is_future = fields.Boolean(compute='_compute_is_future', groups="hr.group_hr_user")
+    is_in_contract = fields.Boolean(compute='_compute_is_in_contract', groups="hr.group_hr_user")
 
     contract_template_id = fields.Many2one(
         'hr.version', string="Contract Template", groups="hr.group_hr_user",
-        domain="[('company_id', '=', company_id), ('employee_id', '=', False)]", tracking=True,
+        domain="[('company_id', '=', company_id), ('employee_id', '=', False)]", tracking=1,
         help="Select a contract template to auto-fill the contract form with predefined values. You can still edit the fields as needed after applying the template.")
     structure_type_id = fields.Many2one('hr.payroll.structure.type', string="Salary Structure Type",
-                                        compute="_compute_structure_type_id", readonly=False, store=True, tracking=True,
+                                        compute="_compute_structure_type_id", readonly=False, store=True, index='btree_not_null', tracking=1,
                                         groups="hr.group_hr_manager", default=_default_salary_structure)
     active_employee = fields.Boolean(related="employee_id.active", string="Active Employee", groups="hr.group_hr_user")
     currency_id = fields.Many2one(string="Currency", related='company_id.currency_id', readonly=True)
-    wage = fields.Monetary('Wage', tracking=True, help="Employee's monthly gross wage.", aggregator="avg",
+    wage = fields.Monetary('Wage', tracking=1, help="Employee's monthly gross wage.", aggregator="avg",
                            groups="hr.group_hr_manager")
-    contract_wage = fields.Monetary('Contract Wage', compute='_compute_contract_wage', groups="hr.group_hr_manager")
     # [XBO] TODO: remove me in master
     company_country_id = fields.Many2one('res.country', string="Company country",
                                          related='company_id.country_id', readonly=True)
     country_code = fields.Char(related='company_country_id.code', depends=['company_country_id'], readonly=True)
-    contract_type_id = fields.Many2one('hr.contract.type', "Contract Type", tracking=True,
+    employee_type_id = fields.Many2one('hr.employee.type', "Employee Type", tracking=1, index=True,
                                        groups="hr.group_hr_manager")
-    additional_note = fields.Text(string='Additional Note', groups="hr.group_hr_user", tracking=True, copy=False)
-
-    def _get_hr_responsible_domain(self):
-        return [('share', '=', False), ('company_ids', 'in', self.env.companies.ids), ('all_group_ids', 'in', self.env.ref('hr.group_hr_user').ids)]
 
     hr_responsible_id = fields.Many2one(
-        'res.users', 'HR Responsible', tracking=True,
-        help='Person responsible for validating the employee\'s contracts.', domain=_get_hr_responsible_domain,
+        'res.users', 'HR Responsible', tracking=1,
+        help='Person responsible for validating the employee\'s contracts.', domain=lambda self: self._get_hr_responsible_domain(),
         default=lambda self: self.env.user, required=True, groups="hr.group_hr_user")
 
     _check_contract_start_date_defined = models.Constraint(
@@ -204,11 +201,29 @@ class HrVersion(models.Model):
         'An employee cannot have multiple active versions sharing the same effective date.',
     )
 
+    _check_wage_positive = models.Constraint(
+        'CHECK(wage >= 0)',
+        'The wage must be a positive value.',
+    )
+
     @api.depends('employee_id.company_id')
     def _compute_company_id(self):
         for version in self:
             if version.employee_id:
                 version.company_id = version.employee_id.company_id
+
+    @api.depends('company_id')
+    def _compute_work_location_id(self):
+        for version in self:
+            if version.work_location_id and version.work_location_id.company_id in version.company_id.parent_ids:
+                continue
+            work_locations = self.env['hr.work.location']
+            if version.company_id and self.env['hr.work.location'].has_access('read'):
+                work_locations = self.env['hr.work.location'].search([
+                    ('company_id', 'in', version.company_id.parent_ids.ids),
+                    ('location_type', '=', 'office'),
+                ])
+            version.work_location_id = work_locations if len(work_locations) == 1 else False
 
     @api.depends('job_id.name')
     def _compute_job_title(self):
@@ -300,6 +315,18 @@ class HrVersion(models.Model):
                 )
 
     def write(self, vals):
+        if 'hr_responsible_id' in vals:
+            new_responsible = self.env['res.users'].browse(vals['hr_responsible_id'])
+            for version in self:
+                if version.hr_responsible_id.id != vals['hr_responsible_id'] and version.employee_id:
+                    recipient = version.employee_id.user_id.partner_id or version.employee_id.work_contact_id
+                    if recipient:
+                        self.env['mail.thread'].sudo().message_notify(
+                            body=self.env._("Your HR Responsible has been updated to %s.", new_responsible.name),
+                            partner_ids=recipient.ids,
+                            subject=self.env._('HR Responsible Update'),
+                        )
+
         # Employee Versions Validation
         if 'employee_id' in vals:
             if self.filtered(lambda v: v.employee_id and v.employee_id.version_ids <= self and vals['employee_id'] != v.employee_id.id):
@@ -364,13 +391,13 @@ class HrVersion(models.Model):
 
         return super(HrVersion, multiple_versions).write(new_vals)
 
-    def get_formview_action(self, access_uid=None):
+    def get_record_default_action(self, access_uid=None):
         """
         Override this method in order to redirect many2one towards the right model
             - Contract template -> hr.version
             - Employee record -> hr.employee(.public) with version_id in context
         """
-        res = super().get_formview_action(access_uid=access_uid)
+        res = super().get_record_default_action(access_uid=access_uid)
         context = res.get('context', {})
         if self.employee_id:
             user = self.env.user
@@ -391,17 +418,17 @@ class HrVersion(models.Model):
             version.display_name = version.name if not version.employee_id else format_date_abbr(version.env, version.date_version)
 
     def _compute_is_current(self):
-        today = fields.Date.today()
+        today = fields.Date.context_today(self)
         for version in self:
             version.is_current = version.date_start <= today and (not version.date_end or version.date_end >= today)
 
     def _compute_is_past(self):
-        today = fields.Date.today()
+        today = fields.Date.context_today(self)
         for version in self:
             version.is_past = version.date_end and version.date_end < today
 
     def _compute_is_future(self):
-        today = fields.Date.today()
+        today = fields.Date.context_today(self)
         for version in self:
             version.is_future = version.date_start > today
 
@@ -414,6 +441,14 @@ class HrVersion(models.Model):
         if not self.contract_date_start:
             return False
         return self.date_start <= date and (not self.date_end or self.date_end >= date)
+
+    def _is_flexible(self):
+        self.ensure_one()
+        return self.resource_calendar_id._is_flexible()
+
+    def _is_fully_flexible(self):
+        self.ensure_one()
+        return self.resource_calendar_id._is_fully_flexible()
 
     def _is_overlapping_period(self, date_from, date_to):
         """
@@ -428,22 +463,16 @@ class HrVersion(models.Model):
         contract_end = self.date_end or date.max
         return period_start <= contract_end and self.date_start <= period_end
 
-    def _is_fully_flexible(self):
-        """ return True if the version has a fully flexible working calendar """
+    def _get_reference_calendar(self, date=None):
         self.ensure_one()
-        return not self.resource_calendar_id
-
-    @api.depends('resource_calendar_id.flexible_hours')
-    def _compute_is_flexible(self):
-        for version in self:
-            version.is_fully_flexible = version._is_fully_flexible()
-            version.is_flexible = version.is_fully_flexible or version.resource_calendar_id.flexible_hours
+        version = self.employee_id._get_version(date) if date else self
+        return version.resource_calendar_id.reference_calendar_id or version.company_id.resource_calendar_id
 
     @api.model
     def _get_whitelist_fields_from_template(self):
         # Add here any field that you want to copy from a contract template
-        # Those fields should have tracking=True in hr.version to see the change
-        return ['job_id', 'department_id', 'contract_type_id', 'structure_type_id', 'wage', 'resource_calendar_id', 'hr_responsible_id']
+        # Those fields should have tracking=1 in hr.version to see the change
+        return ['job_id', 'department_id', 'employee_type_id', 'structure_type_id', 'wage', 'resource_calendar_id', 'reference_calendar_id', 'hr_responsible_id']
 
     def get_values_from_contract_template(self, contract_template_id):
         if not contract_template_id:
@@ -456,11 +485,6 @@ class HrVersion(models.Model):
                 for field, value in contract_template_vals.items()
                 if field in whitelist and not self.env['hr.version']._fields[field].related
         }
-
-    @api.depends('wage')
-    def _compute_contract_wage(self):
-        for version in self:
-            version.contract_wage = version._get_contract_wage()
 
     def _get_contract_wage(self):
         if not self:
@@ -497,12 +521,6 @@ class HrVersion(models.Model):
             # the default company employee is most likely the correct one, but fallback to the first if not available
             employee = user_employees.filtered(lambda r: r.company_id == user.company_id) or user_employees[:1]
         return employee
-
-    @api.constrains('ssnid')
-    def _check_ssnid(self):
-        # By default, a Social Security Number is always valid, but each localization
-        # may want to add its own constraints
-        pass
 
     @api.depends_context('uid', 'company')
     @api.depends('department_id')
@@ -560,17 +578,24 @@ class HrVersion(models.Model):
 
     @api.depends(
         'contract_date_start', 'contract_date_end', 'date_version', 'employee_id',
-        'employee_id.version_ids.date_version')
+        'employee_id.version_ids.date_version', 'departure_date')
     def _compute_dates(self):
         for version in self:
             version.date_start = max(version.date_version, version.contract_date_start) \
                 if version.contract_date_start \
                 else version.date_version
 
-            next_version = self.env['hr.version'].search([
-                ('employee_id', 'in', version.employee_id.ids),
-                ('date_version', '>', version.date_version)], limit=1)
-            date_version_end = next_version.date_version + relativedelta(days=-1) if next_version else False
+        all_versions = self.search_fetch([
+            ('employee_id', 'in', self.employee_id.ids),
+            ('active', '=', True),
+            ('date_version', '>', min(self.mapped('date_start'), default=date.today())),
+        ], ['employee_id', 'date_version'], order='date_version').grouped('employee_id')
+        for version in self:
+            date_version_end = False
+            if next_versions := all_versions.get(version.employee_id):
+                date_version_end = next((d for d in next_versions.mapped('date_version') if d > version.date_version), None)
+                if date_version_end:
+                    date_version_end -= relativedelta(days=1)
 
             if date_version_end and version.contract_date_end:
                 version.date_end = min(date_version_end, version.contract_date_end)
@@ -662,6 +687,20 @@ class HrVersion(models.Model):
             ('divorced', self.env._('Divorced')),
         ]
 
+    @api.model
+    def _get_current_versions_domain(self):
+        """
+        Returns employee versions that are currently active
+        """
+        today = fields.Date.context_today(self)
+        return [
+            ("contract_date_start", "<=", today),
+            "|",
+                ("contract_date_end", "=", False),
+                ("contract_date_end", ">=", today),
+            ('employee_id', '!=', False),
+        ]
+
     def _inverse_resource_calendar_id(self):
         for employee, versions in self.grouped('employee_id').items():
             current_version = employee.current_version_id
@@ -679,10 +718,47 @@ class HrVersion(models.Model):
         return self_sudo.structure_type_id and self_sudo.structure_type_id.country_id.code == country_code
 
     def _get_tz(self):
-        if self.resource_calendar_id and self.resource_calendar_id.tz:
-            return self.resource_calendar_id.tz
-        else:
-            return self.tz
+        self.ensure_one()
+        return self.tz or self.employee_id.user_partner_id.tz or self.employee_id.company_id.tz or 'UTC'
+
+    def _get_resources_per_tz(self):
+        version_per_tz = self.grouped(lambda e: ZoneInfo(e._get_tz()))
+        return {
+            tz: versions.employee_id.resource_id
+            for tz, versions in version_per_tz.items()
+        }
+
+    def _get_field_block_start_date(self, field_name):
+        """
+        Return the contract_date_start of the earliest contiguous version
+        that shares the same value for `field_name` as the current version.
+
+        Useful to determine since when a given field value has been
+        continuously active (e.g. salary scale, job position, wage, ...).
+
+        :param field_name: str, the field to track (e.g. 'l10n_be_salary_scale_id')
+        :return: date or None
+        """
+        self.ensure_one()
+        current_value = self[field_name]
+        if not current_value:
+            return None
+
+        versions = self.employee_id.version_ids.sorted(key=lambda v: v.contract_date_start or date.min)
+
+        try:
+            idx = next(i for i, v in enumerate(versions) if v.id == self.id)
+        except StopIteration:
+            idx = len(versions) - 1
+
+        start_version = versions[idx]
+        for j in range(idx - 1, -1, -1):
+            prev = versions[j]
+            if prev[field_name] != current_value:
+                break
+            start_version = prev
+
+        return start_version.contract_date_start
 
     def action_open_version(self):
         self.ensure_one()
@@ -708,5 +784,5 @@ class HrVersion(models.Model):
             'res_id': self.id,
             'views': [[view_id, "form"]],
             'target': 'current',
-            'context': self.env.context,
+            'context': self.env.context
         }

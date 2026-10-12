@@ -1,9 +1,10 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, _
+from odoo.addons.resource.models.utils import extract_comodel_domain
 from odoo.exceptions import ValidationError, AccessError
 from odoo.fields import Domain
-from odoo.tools import SQL
+from odoo.tools import SQL, OrderedSet
 from odoo.tools.misc import unquote
 
 
@@ -22,13 +23,12 @@ class ProjectTask(models.Model):
         ])
         return domain
 
-    sale_order_id = fields.Many2one('sale.order', 'Sales Order', compute='_compute_sale_order_id', store=True, help="Sales order to which the task is linked.", group_expand="_group_expand_sales_order")
+    sale_order_id = fields.Many2one('sale.order', 'Sales Order', compute='_compute_sale_order_id', store=True, index='btree_not_null', help="Sales order to which the task is linked.", group_expand="_group_expand_sales_order")
     sale_line_id = fields.Many2one(
         'sale.order.line', 'Sales Order Item',
         copy=True, tracking=True, index='btree_not_null', recursive=True,
         compute='_compute_sale_line', store=True, readonly=False,
         domain=lambda self: str(self._domain_sale_line_id()),
-        context={'with_remaining_hours': True},
         help="Sales Order Item to which the time spent on this task will be added in order to be invoiced to your customer.\n"
              "By default the sales order item set on the project will be selected. In the absence of one, the last prepaid sales order item that has time remaining will be used.\n"
              "Remove the sales order item in order to make this task non billable. You can also change or remove the sales order item of each timesheet entry individually.")
@@ -40,10 +40,11 @@ class ProjectTask(models.Model):
 
     # Project sharing  fields
     display_sale_order_button = fields.Boolean(string='Display Sales Order', compute='_compute_display_sale_order_button')
+    sale_warning_text = fields.Text('Task Warning', compute='_compute_sale_warning_text', help='Warning for the partner as set by the user.')
 
     @property
     def TASK_PORTAL_READABLE_FIELDS(self):
-        return super().TASK_PORTAL_READABLE_FIELDS | {'allow_billable', 'sale_order_id', 'sale_line_id', 'display_sale_order_button'}
+        return super().TASK_PORTAL_READABLE_FIELDS | {'allow_billable', 'sale_order_id', 'sale_line_id', 'display_sale_order_button', 'sale_order_state'}
 
     @api.model
     def default_get(self, fields):
@@ -63,7 +64,11 @@ class ProjectTask(models.Model):
         scale = self.env.context.get('gantt_scale')
         if not (start_date and scale):
             return sales_orders
-        search_on_comodel = self._search_on_comodel(domain, "sale_order_id", "sale.order")
+        comodel_domain = extract_comodel_domain(self, domain, "sale_order_id")
+        if comodel_domain.is_true():
+            # no field in the domain was related to sale_order_id
+            return sales_orders
+        search_on_comodel = self.env["sale.order"].search(comodel_domain)
         if search_on_comodel:
             return search_on_comodel
         return sales_orders
@@ -97,6 +102,22 @@ class ProjectTask(models.Model):
         billable_task = self.filtered(lambda t: t.allow_billable or (not self._origin and t.parent_id.allow_billable))
         (self - billable_task).partner_id = False
         super(ProjectTask, billable_task)._compute_partner_id()
+
+    @api.depends('partner_id.name', 'partner_id.sale_warn_msg')
+    def _compute_sale_warning_text(self):
+        if not self.env.user.has_group("sale.group_warning_sale"):
+            self.sale_warning_text = ""
+            return
+        for task in self:
+            warnings = OrderedSet()
+            if partner_msg := task.partner_id.sale_warn_msg:
+                warnings.add(
+                    (task.partner_id.name or task.partner_id.display_name) + " - " + partner_msg
+                )
+            if partner_parent_msg := task.partner_id.parent_id.sale_warn_msg:
+                parent = task.partner_id.parent_id
+                warnings.add((parent.name or parent.display_name) + " - " + partner_parent_msg)
+            task.sale_warning_text = "\n".join(warnings)
 
     def _inverse_partner_id(self):
         for task in self:
@@ -151,36 +172,6 @@ class ProjectTask(models.Model):
                         order_id=task.sale_line_id.order_id.name,
                         product_id=task.sale_line_id.product_id.display_name,
                     ))
-
-    def _ensure_sale_order_linked(self, sol_ids):
-        """ Orders created from project/task are supposed to be confirmed to match the typical flow from sales, but since
-        we allow SO creation from the project/task itself we want to confirm newly created SOs immediately after creation.
-        However this would leads to SOs being confirmed without a single product, so we'd rather do it on record save.
-        """
-        quotations = self.env['sale.order.line'].sudo()._read_group(
-            domain=[('state', '=', 'draft'), ('id', 'in', sol_ids)],
-            aggregates=['order_id:recordset'],
-        )[0][0]
-        if quotations:
-            quotations.action_confirm()
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        tasks = super().create(vals_list)
-        sol_ids = {
-            vals['sale_line_id']
-            for vals in vals_list
-            if vals.get('sale_line_id')
-        }
-        if sol_ids:
-            tasks._ensure_sale_order_linked(list(sol_ids))
-        return tasks
-
-    def write(self, vals):
-        task = super().write(vals)
-        if sol_id := vals.get('sale_line_id'):
-            self._ensure_sale_order_linked([sol_id])
-        return task
 
     # ---------------------------------------------------
     # Actions

@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 from odoo import api, fields, models, Command
+from odoo.addons.account.models.chart_template import template
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 
@@ -14,11 +14,12 @@ class AccountChartTemplate(models.AbstractModel):
         fee_partner.property_account_payable_id = account_payable
         return fee_partner
 
-    @api.model
-    def _get_demo_data_move(self, company=False):
+    @template(model='account.move', demo=True)
+    def _get_demo_data_move(self, template_code):
         # EXTEND account
-        move_data = super()._get_demo_data_move(company)
-        if company.account_fiscal_country_id.code != "CL":
+        move_data = super()._get_demo_data_move(template_code)
+        company = self.env.company
+        if template_code != 'cl':
             return move_data
 
         self.env['account.journal'].search([
@@ -421,14 +422,17 @@ class AccountChartTemplate(models.AbstractModel):
 
         return move_data
 
-    def _post_load_demo_data(self, company=False):
-        if company.account_fiscal_country_id.code != "CL":
-            super()._post_load_demo_data(company)
+    def _post_load_demo_data(self, template_code):
+        # EXTEND account
+        if template_code != "cl":
+            super()._post_load_demo_data(template_code)
             return
 
+        company = self.env.company
         moves = self.env['account.move'].search([
             ('company_id', '=', company.id),
             ('partner_id', '!=', False),
+            ('partner_id.l10n_cl_sii_taxpayer_type', '!=', False),
             ('move_type', '!=', 'entry')
         ])
 

@@ -10,6 +10,8 @@ _logger = logging.getLogger(__name__)
 @tagged('post_install_l10n', 'post_install', '-at_install')
 class TestItEdiDDT(TestItEdi):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -65,7 +67,6 @@ class TestItEdiDDT(TestItEdi):
                 'uom_id': uom_unit.id,
                 'default_code': 'FURN_9999',
                 'invoice_policy': 'order',
-                'expense_policy': 'no',
                 'taxes_id': [(6, 0, [])],
                 'supplier_taxes_id': [(6, 0, [])],
             }, {
@@ -78,7 +79,6 @@ class TestItEdiDDT(TestItEdi):
                 'uom_id': uom_unit.id,
                 'default_code': 'FURN_7777',
                 'invoice_policy': 'delivery',
-                'expense_policy': 'no',
                 'taxes_id': [(6, 0, [])],
                 'supplier_taxes_id': [(6, 0, [])],
             }
@@ -97,7 +97,6 @@ class TestItEdiDDT(TestItEdi):
                 'partner_shipping_id': self.italian_partner_a.id,
                 'order_line': [
                     (0, 0, {
-                        'name': product.name,
                         'product_id': product.id,
                         'product_uom_qty': 5,
                         'price_unit': product.list_price,

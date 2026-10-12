@@ -2,41 +2,57 @@
 # This file contains the translation of the following modules:
 # * html_builder
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# Odoo Translation Bot <c3p@odoo.com>, 2026.
+# Martin Dinovski <martin.dinovski@industria.tech>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-24 17:39+0000\n"
-"PO-Revision-Date: 2026-08-08 01:02+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 14:56+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "html_builder/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: html_builder
+#: model:ir.module.module,description:base.module_html_builder
+msgid ""
+"\n"
+"This addon contains a generic html builder application. It is designed to "
+"be\n"
+"used by the website builder and mass mailing editor.\n"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/rating_option_plugin.js:0
+msgid "%(nbActiveIcons)s out of %(nbTotalIcons)s stars"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_format_option_plugin.js:0
 msgid "%spx"
-msgstr "%spx"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_format_option_plugin.js:0
 msgid "%spx (Original)"
-msgstr "%spx (оригинал)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_format_option_plugin.js:0
 msgid "%spx (Suggested)"
-msgstr "%spx (препоръчано)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -45,20 +61,19 @@ msgid ""
 "'Alt tag' specifies an alternate text for an image, if the image cannot be "
 "displayed (slow connection, missing image, screen reader ...)."
 msgstr ""
-"„Alt таг“ задава алтернативен текст за изображението, ако то не може да бъде "
-"показано (бавна връзка, липсващо изображение, екранен четец ...)."
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "'Title tag' is shown as a tooltip when you hover the picture."
-msgstr "„Title таг“ се показва като подсказка при посочване на изображението."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.xml:0
 #: code:addons/html_builder/static/src/plugins/shape/shape_selector.xml:0
 msgid "A"
-msgstr "А"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -67,8 +82,18 @@ msgid ""
 "A technical issue occurred in the builder, you should save or discard your "
 "changes."
 msgstr ""
-"Възникна технически проблем в конструктора. Трябва да запазите или да "
-"отхвърлите промените си."
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/button_style_option.xml:0
+msgid "Aa"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/rating_option.xml:0
+msgid "Active"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -81,148 +106,166 @@ msgstr "Добави"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/add_product_option.js:0
 msgid "Add Product"
-msgstr "Добавяне на продукт"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.xml:0
+msgid "Add Shadow"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/builder_fontfamilypicker.xml:0
 msgid "Add a Custom Font"
-msgstr "Добавяне на персонализиран шрифт"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_option.xml:0
+msgid "Add a background image"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list.xml:0
+msgid "Add a record to the list"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Aden"
-msgstr "Aden"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy"
-msgstr "Ефирни"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 01"
-msgstr "Ефирна 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 02"
-msgstr "Ефирна 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 03"
-msgstr "Ефирна 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 04"
-msgstr "Ефирна 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 05"
-msgstr "Ефирна 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 06"
-msgstr "Ефирна 06"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 07"
-msgstr "Ефирна 07"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 08"
-msgstr "Ефирна 08"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 09"
-msgstr "Ефирна 09"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 10"
-msgstr "Ефирна 10"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 11"
-msgstr "Ефирна 11"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 12"
-msgstr "Ефирна 12"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 13"
-msgstr "Ефирна 13"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Airy 14"
-msgstr "Ефирна 14"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/vertical_alignment_option.xml:0
 #: code:addons/html_builder/static/src/plugins/vertical_justify_option.xml:0
 msgid "Align Bottom"
-msgstr "Подравняване долу"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Align Center"
-msgstr "Подравняване в центъра"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Align Left"
-msgstr "Подравняване вляво"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/vertical_alignment_option.xml:0
 #: code:addons/html_builder/static/src/plugins/vertical_justify_option.xml:0
 msgid "Align Middle"
-msgstr "Подравняване по средата"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Align Right"
-msgstr "Подравняване вдясно"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/vertical_alignment_option.xml:0
 #: code:addons/html_builder/static/src/plugins/vertical_justify_option.xml:0
 msgid "Align Top"
-msgstr "Подравняване горе"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -238,13 +281,12 @@ msgstr "Подравняване"
 #: code:addons/html_builder/static/src/snippets/add_snippet_dialog.xml:0
 msgid "Almost there! Snippets are incoming, grab a coffee and relax!"
 msgstr ""
-"Почти сме готови! Блоковете се зареждат — направете си кафе и се отпуснете!"
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Alt tag"
-msgstr "Alt таг"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -253,98 +295,104 @@ msgid ""
 "Anchor copied to clipboard%(br)s%(open_span)sLink: %(anchor_link)s%"
 "(close_span)s"
 msgstr ""
-"Котвата е копирана в клипборда%(br)s%(open_span)sВръзка: %(anchor_link)s%"
-"(close_span)s"
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/anchor/anchor_dialog.xml:0
 msgid "Anchor name"
-msgstr "Име на котва"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Angular"
-msgstr "Ъглести"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Angular 01"
-msgstr "Ъглеста 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Angular 02"
-msgstr "Ъглеста 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Angular 03"
-msgstr "Ъглеста 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Angular 04"
-msgstr "Ъглеста 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Angular 05"
-msgstr "Ъглеста 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Angular 06"
-msgstr "Ъглеста 06"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Angular 07"
-msgstr "Ъглеста 07"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Angular 08"
-msgstr "Ъглеста 08"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Angular 09"
-msgstr "Ъглеста 09"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Angular 10"
-msgstr "Ъглеста 10"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/background_option/background_position_overlay.xml:0
+#: code:addons/html_builder/static/src/plugins/image/image_position_overlay.xml:0
 msgid "Apply"
 msgstr "Приложи"
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/snippets/snippet_service.js:0
-msgid "Are you sure you want to delete the block %s?"
-msgstr "Сигурни ли сте, че искате да изтриете блока %s?"
+#: code:addons/html_builder/static/src/plugins/font/text_effect_plugin.js:0
+msgid "Apply Text Effects"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/shape/shape_selector.xml:0
-msgid "Back"
-msgstr "Назад"
+#: code:addons/html_builder/static/src/snippets/snippet_service.js:0
+msgid ""
+"Are you sure you want to delete %s from your list of custom blocks?\n"
+"Deleting it will remove it for all users."
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/image/media_size_option.xml:0
+msgid "Auto"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -356,13 +404,19 @@ msgstr "Background"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_position_option.xml:0
 msgid "Background Position"
-msgstr "Позиция на фона"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/background_option/background_shape_option_plugin.js:0
+#: code:addons/html_builder/static/src/plugins/background_option/background_shape_option.xml:0
 msgid "Background Shapes"
-msgstr "Фонови форми"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shape_option.xml:0
+msgid "Background color"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -375,157 +429,157 @@ msgstr "Базов"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 01"
-msgstr "Петно 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 02"
-msgstr "Петно 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 03"
-msgstr "Петно 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 04"
-msgstr "Петно 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 05"
-msgstr "Петно 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 06"
-msgstr "Петно 06"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 07"
-msgstr "Петно 07"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 08"
-msgstr "Петно 08"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 09"
-msgstr "Петно 09"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Blob 1"
-msgstr "Петно 1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 10"
-msgstr "Петно 10"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 11"
-msgstr "Петно 11"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 12"
-msgstr "Петно 12"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 13"
-msgstr "Петно 13"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 14"
-msgstr "Петно 14"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 15"
-msgstr "Петно 15"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blob 16"
-msgstr "Петно 16"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Blob 2"
-msgstr "Петно 2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Blob 3"
-msgstr "Петно 3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Blob 4"
-msgstr "Петно 4"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Blob 5"
-msgstr "Петно 5"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Blob Hard"
-msgstr "Твърдо петно"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Blob Medium"
-msgstr "Средно петно"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Blob Shadow 1"
-msgstr "Петно със сянка 1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Blob Shadow 2"
-msgstr "Петно със сянка 2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Blob Soft"
-msgstr "Меко петно"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -543,40 +597,47 @@ msgstr "Блокирайте"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Block & Rainy"
-msgstr "Блокове и дъжд"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/add_snippet_dialog.xml:0
 msgid "Block Categories"
-msgstr "Категории блокове"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/snippets/snippet_viewer.xml:0
+msgid "Block Viewer"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/builder.xml:0
 msgid "Blocks"
-msgstr "Блокове"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blocks 01"
-msgstr "Блокове 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blocks 02"
-msgstr "Блокове 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blocks 03"
-msgstr "Блокове 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.xml:0
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 #: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
 msgid "Blur"
@@ -584,45 +645,93 @@ msgstr "Размазване"
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.js:0
+msgid "Blurred (Black)"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.js:0
+msgid "Blurred (White)"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blurry"
-msgstr "Размити"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blurry 01"
-msgstr "Размита 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blurry 02"
-msgstr "Размита 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blurry 03"
-msgstr "Размита 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blurry 04"
-msgstr "Размита 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blurry 05"
-msgstr "Размита 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Blurry 06"
-msgstr "Размита 06"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Blurry 07"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Blurry 08"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Blurry 09"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Blurry 10"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Blurry 11"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Blurry 12"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -634,76 +743,77 @@ msgstr "Удебелен"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 01"
-msgstr "Плътна 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 02"
-msgstr "Плътна 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 03"
-msgstr "Плътна 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 04"
-msgstr "Плътна 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 05"
-msgstr "Плътна 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 06"
-msgstr "Плътна 06"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 07"
-msgstr "Плътна 07"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 08"
-msgstr "Плътна 08"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 09"
-msgstr "Плътна 09"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 10"
-msgstr "Плътна 10"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 11"
-msgstr "Плътна 11"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Bold 12"
-msgstr "Плътна 12"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/button_style_option.xml:0
 #: code:addons/html_builder/static/src/plugins/cta_badge_option.xml:0
 #: code:addons/html_builder/static/src/plugins/separator_option.xml:0
 msgid "Border"
@@ -713,67 +823,67 @@ msgstr "Граница"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Brannan"
-msgstr "Brannan"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Bread (R)"
-msgstr "Хляб (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Brightness"
-msgstr "Яркост"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Browser #1"
-msgstr "Браузър #1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Browser #2"
-msgstr "Браузър #2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Browser #3"
-msgstr "Браузър #3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Brush 1"
-msgstr "Четка 1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Brush 2"
-msgstr "Четка 2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Brush 3"
-msgstr "Четка 3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Brush 4"
-msgstr "Четка 4"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Brushed"
-msgstr "С четка"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -781,12 +891,6 @@ msgstr "С четка"
 #: code:addons/html_builder/static/src/utils/utils.js:0
 msgid "Button"
 msgstr "Бутон"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/sidebar/custom_inner_snippet.xml:0
-msgid "Cancel"
-msgstr "Отказ"
 
 #. module: html_builder
 #. odoo-javascript
@@ -801,13 +905,13 @@ msgstr "Център"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/select_many2x.js:0
 msgid "Choose a record..."
-msgstr "Изберете запис..."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/anchor/anchor_dialog.xml:0
 msgid "Choose an anchor name"
-msgstr "Изберете име на котва"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -819,29 +923,30 @@ msgstr "Кръг"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
 msgid "Circles"
-msgstr "Кръгове"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Circuit"
-msgstr "Верига"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/background_option/background_position_overlay.xml:0
-msgid "Click and drag the background to adjust its position!"
-msgstr "Щракнете и плъзнете фона, за да настроите позицията му!"
+#: code:addons/html_builder/static/src/plugins/image/image_position_overlay.xml:0
+msgid "Click and drag the image to adjust its position!"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Clover (R)"
-msgstr "Детелина (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background/background_color_option.xml:0
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.xml:0
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 #: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
 msgid "Color"
@@ -851,7 +956,7 @@ msgstr "Цвят"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_option.xml:0
 msgid "Color Filter"
-msgstr "Цветен филтър"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -876,13 +981,13 @@ msgstr "Графи"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Composites"
-msgstr "Съставни"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Composition"
-msgstr "Композиция"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -894,169 +999,169 @@ msgstr "Потвърждение"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections"
-msgstr "Връзки"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 01"
-msgstr "Връзки 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 02"
-msgstr "Връзки 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 03"
-msgstr "Връзки 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 04"
-msgstr "Връзки 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 05"
-msgstr "Връзки 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 06"
-msgstr "Връзки 06"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 07"
-msgstr "Връзки 07"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 08"
-msgstr "Връзки 08"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 09"
-msgstr "Връзки 09"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 10"
-msgstr "Връзки 10"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 11"
-msgstr "Връзки 11"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 12"
-msgstr "Връзки 12"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 13"
-msgstr "Връзки 13"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 14"
-msgstr "Връзки 14"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 15"
-msgstr "Връзки 15"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 16"
-msgstr "Връзки 16"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 17"
-msgstr "Връзки 17"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 18"
-msgstr "Връзки 18"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 19"
-msgstr "Връзки 19"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Connections 20"
-msgstr "Връзки 20"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Container 01"
-msgstr "Контейнер 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Container 02"
-msgstr "Контейнер 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Container 03"
-msgstr "Контейнер 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Container 04"
-msgstr "Контейнер 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Container 05"
-msgstr "Контейнер 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Container 06"
-msgstr "Контейнер 06"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Containers"
-msgstr "Контейнери"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1068,13 +1173,13 @@ msgstr "Контраст"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Corner Triangle"
-msgstr "Ъглов триъгълник"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Cornered"
-msgstr "Ъглеста"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1086,31 +1191,27 @@ msgstr "Корица"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/select_many2x.xml:0
 msgid "Create \""
-msgstr "Създаване на \""
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/snippets/snippet_service.js:0
-msgid "Create a custom snippet"
-msgstr "Създаване на персонализиран блок"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Creative"
-msgstr "Креативни"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Crop image"
-msgstr "Изрязване на изображението"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/select_number_column.xml:0
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.js:0
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
+#: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
 msgid "Custom"
 msgstr "Персонализиран"
 
@@ -1118,31 +1219,31 @@ msgstr "Персонализиран"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/snippet_service.js:0
 msgid "Custom %s"
-msgstr "Персонализиран блок: %s"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/snippet_service.js:0
 msgid "Custom Button"
-msgstr "Персонализиран бутон"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/block_tab.xml:0
 msgid "Custom Inner Content"
-msgstr "Персонализирано вътрешно съдържание"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.js:0
+msgid "Custom Shadow"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Cut Circle"
-msgstr "Изрязан кръг"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/core/setup_editor_plugin.js:0
-msgid "DRAG BUILDING BLOCKS HERE"
-msgstr "ПЛЪЗНЕТЕ СТРОИТЕЛНИ БЛОКОВЕ ТУК"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1156,72 +1257,79 @@ msgstr "Опасност"
 #: code:addons/html_builder/static/src/plugins/alert_option.xml:0
 #: code:addons/html_builder/static/src/plugins/badge_option.xml:0
 msgid "Dark"
-msgstr "Тъмен"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Darken"
-msgstr "Потъмняване"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/border_configurator_option.xml:0
 msgid "Dashed"
-msgstr "Прекъсната"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/date_time_field_option.xml:0
 msgid "Date"
-msgstr "Дата"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Decorative"
-msgstr "Декоративни"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
-msgid "Default"
-msgstr "Стандартен"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/snippet_viewer.js:0
 msgid "Delete %(snippetName)s"
-msgstr "Изтриване на %(snippetName)s"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/custom_inner_snippet.js:0
 msgid "Delete %(snippetTitle)s"
-msgstr "Изтриване на %(snippetTitle)s"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_fontfamilypicker.js:0
+msgid "Delete & Reload"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/snippets/snippet_service.js:0
+msgid "Delete Block"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_fontfamilypicker.js:0
+msgid "Delete Font"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/builder_list.xml:0
 msgid "Delete item"
-msgstr "Изтриване на елемента"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/snippets/snippet_service.js:0
+msgid "Delete this block?"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/builder_fontfamilypicker.xml:0
 msgid "Delete this font"
-msgstr "Изтриване на този шрифт"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/core/building_blocks/builder_fontfamilypicker.js:0
-msgid ""
-"Deleting a font requires a reload of the page. This will save all your "
-"changes and reload the page, are you sure you want to proceed?"
 msgstr ""
-"Изтриването на шрифт изисква презареждане на страницата. Това ще запази "
-"всичките ви промени и ще презареди страницата. Сигурни ли сте, че искате да "
-"продължите?"
 
 #. module: html_builder
 #. odoo-javascript
@@ -1239,33 +1347,34 @@ msgstr "Устройства"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Diamond"
-msgstr "Ромб"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Diamond (R)"
-msgstr "Ромб (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/anchor/anchor_dialog.xml:0
-#: code:addons/html_builder/static/src/plugins/background_option/background_position_overlay.xml:0
-#: code:addons/html_builder/static/src/snippets/snippet_viewer.js:0
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list_dialog.xml:0
+#: code:addons/html_builder/static/src/plugins/image/image_position_overlay.xml:0
+#: code:addons/html_builder/static/src/sidebar/custom_inner_snippet.xml:0
 msgid "Discard"
 msgstr "Отхвърлете"
+
+#. module: html_builder
+#: model:ir.model.fields,field_description:html_builder.field_ir_qweb__display_name
+#: model:ir.model.fields,field_description:html_builder.field_ir_ui_view__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/snippet_service.js:0
 msgid "Do you want to install %s App?"
-msgstr "Искате ли да инсталирате приложението %s?"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/snippets/snippet_service.js:0
-msgid "Do you want to save this snippet as a custom one?"
-msgstr "Искате ли да запазите този блок като персонализиран?"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1277,7 +1386,7 @@ msgstr "Врата"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Door (R)"
-msgstr "Врата (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1295,13 +1404,13 @@ msgstr "Двойно"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Double Pill"
-msgstr "Двойна капсула"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Double Sonar"
-msgstr "Двоен сонар"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1313,49 +1422,55 @@ msgstr "Бързо двойно натискане, за да редактира
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/block_tab.js:0
 msgid "Drag and drop the building block"
-msgstr "Плъзнете и пуснете строителния блок"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/drag_and_drop_move_handle.js:0
 msgid "Drag and move"
-msgstr "Плъзгане и преместване"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/builder_list.xml:0
 msgid "Drag and sort field"
-msgstr "Плъзгане и подреждане на полето"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/setup_editor_plugin.js:0
+msgid "Drag blocks here"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Duo"
-msgstr "Дуо"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Duo (R)"
-msgstr "Дуо (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Duo Step"
-msgstr "Дуо стъпаловидно"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Duo Step Pill"
-msgstr "Дуо стъпаловидна капсула"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/option_container.xml:0
 msgid "Duplicate this block"
-msgstr "Дублиране на този блок"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1366,9 +1481,14 @@ msgstr "Ранна регистрация"
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/anchor/anchor_plugin.js:0
-#: code:addons/html_builder/static/src/core/building_blocks/color_picker_theme_tab.xml:0
 msgid "Edit"
 msgstr "Редактирай"
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/button_style_option.xml:0
+msgid "Edit color in Theme Tab"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1378,21 +1498,58 @@ msgstr "Редактирай изображение"
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/color_picker_theme_tab.xml:0
+#: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
+msgid "Edit in Theme Tab"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Emerald"
-msgstr "Изумруд"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Emerald (R)"
-msgstr "Изумруд (R)"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/snippets/snippet_viewer.xml:0
+msgid "Enter"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list_dialog.xml:0
+msgid "Exclude all"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list_dialog.xml:0
+msgid "Exclude record"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list_dialog.xml:0
+msgid "Excluded records"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Exclusion"
-msgstr "Изключване"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/button_style_option.xml:0
+msgid "Fill"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1409,15 +1566,21 @@ msgstr "Маркирай"
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/background_option/background_shape_option.xml:0
-msgid "Flip"
-msgstr "Обръщане"
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.js:0
+msgid "Flat"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/drop_zone_plugin.js:0
 msgid "For technical reasons, this block cannot be dropped here"
-msgstr "По технически причини този блок не може да бъде пуснат тук"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/utils/utils.js:0
+msgid "Form"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1429,157 +1592,239 @@ msgstr "Формат"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Galaxy S #1"
-msgstr "Galaxy S #1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Galaxy S #2"
-msgstr "Galaxy S #2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Galaxy S #3"
-msgstr "Galaxy S #3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Galaxy S #4"
-msgstr "Galaxy S #4"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Galaxy S #5"
-msgstr "Galaxy S #5"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Galaxy S #6"
-msgstr "Galaxy S #6"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Gem"
-msgstr "Скъпоценен камък"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Gem (R)"
-msgstr "Скъпоценен камък (R)"
+msgstr ""
+
+#. module: html_builder
+#: model:ir.module.module,summary:base.module_html_builder
+msgid "Generic html builder"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Geometric"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Geometric 01"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Geometric 02"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Geometric 03"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Geometric 04"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Geometric 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Geometrics"
-msgstr "Геометрични"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Geometrics Panels"
-msgstr "Геометрични панели"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Geometrics Rounded"
-msgstr "Геометрични заоблени"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.js:0
+msgid "Glow"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.xml:0
+msgid "Go back to effect selection"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Grid 01"
-msgstr "Мрежа 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Grid 02"
-msgstr "Мрежа 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Grid 03"
-msgstr "Мрежа 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Grid 04"
-msgstr "Мрежа 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Grid 05"
-msgstr "Мрежа 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Grid 06"
-msgstr "Мрежа 06"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Grid 07"
-msgstr "Мрежа 07"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Grid 08"
-msgstr "Мрежа 08"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Grid 09"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Grid 10"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Grids"
-msgstr "Мрежи"
+msgstr ""
+
+#. module: html_builder
+#: model:ir.module.module,shortdesc:base.module_html_builder
+msgid "HTML Builder"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Half Circle"
-msgstr "Полукръг"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Half Galaxy S"
-msgstr "Половин Galaxy S"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
+msgid "Half MacBook"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
+msgid "Half iPhone"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/font/font_plugin.js:0
 msgid "Header 1 Display 2"
-msgstr "Заглавие 1 Display 2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/font/font_plugin.js:0
 msgid "Header 1 Display 3"
-msgstr "Заглавие 1 Display 3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/font/font_plugin.js:0
 msgid "Header 1 Display 4"
-msgstr "Заглавие 1 Display 4"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
 msgid "Hearts"
-msgstr "Сърца"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1591,31 +1836,45 @@ msgstr "Височина"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Heptagon"
-msgstr "Седмоъгълник"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Heptagon (R)"
-msgstr "Седмоъгълник (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Hexagon"
-msgstr "Шестоъгълник"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Hexagon (R)"
-msgstr "Шестоъгълник (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.xml:0
+#: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
+msgid "Horizontal and Vertical offset"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shape_option.xml:0
 #: code:addons/html_builder/static/src/plugins/image/image_shape_option.xml:0
-msgid "Horizontal mirror"
-msgstr "Хоризонтално огледално обръщане"
+msgid "Horizontal flip"
+msgstr ""
+
+#. module: html_builder
+#: model:ir.model.fields,field_description:html_builder.field_ir_qweb__id
+#: model:ir.model.fields,field_description:html_builder.field_ir_ui_view__id
+msgid "ID"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1627,10 +1886,39 @@ msgstr "Икона"
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_image.xml:0
-#: code:addons/html_builder/static/src/plugins/background_option/background_option.xml:0
 #: code:addons/html_builder/static/src/utils/utils.js:0
 msgid "Image"
 msgstr "Изображение"
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/rating_option.xml:0
+msgid "Inactive"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list_dialog.xml:0
+msgid "Include all"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list_dialog.xml:0
+msgid "Include record"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list_dialog.xml:0
+msgid "Included records"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/image/image_format_option.xml:0
+msgid "Increase for more detail, decrease for speed"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1643,83 +1931,81 @@ msgstr "Информация"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Inkwell"
-msgstr "Inkwell"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/block_tab.xml:0
 msgid "Inner Content"
-msgstr "Вътрешно съдържание"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/snippets/add_snippet_dialog.xml:0
+#: code:addons/html_builder/static/src/snippets/add_snippet_dialog.js:0
 msgid "Insert a block"
-msgstr "Вмъкване на блок"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/custom_inner_snippet.xml:0
-#: code:addons/html_builder/static/src/sidebar/snippet.xml:0
 msgid "Insert snippet"
-msgstr "Вмъкване на блок"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
 msgid "Inset"
-msgstr "Вътрешна"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/snippet.xml:0
 msgid "Install"
-msgstr "Инсталирайте"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/snippet_service.js:0
 #: code:addons/html_builder/static/src/snippets/snippet_viewer.js:0
 msgid "Install %s"
-msgstr "Инсталиране на %s"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/invisible_elements_panel.xml:0
 msgid "Invisible Elements"
-msgstr "Невидими елементи"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/version_error_plugin.js:0
 msgid ""
-"It might have caused problem during the editing. Please drag the new version "
-"from the snippet panel to update it."
+"It might cause/have caused problems during the editing. Please drag the new "
+"version from the snippet panel to update it."
 msgstr ""
-"Възможно е да е причинил проблеми при редактирането. Плъзнете новата версия "
-"от панела с блокове, за да го обновите."
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/core/building_blocks/builder_list.js:0
-msgid "Item"
-msgstr "Елемент"
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Kayak"
-msgstr "Каяк"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/snippets/snippet_service.js:0
+msgid "Keep it"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Labyrinth"
-msgstr "Лабиринт"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
+#: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
 #: code:addons/html_builder/static/src/plugins/size_option.xml:0
 msgid "Large"
 msgstr "Голям"
@@ -1728,7 +2014,7 @@ msgstr "Голям"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Layered"
-msgstr "Наслоена"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1744,7 +2030,7 @@ msgstr "Ляв"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Lemon (R)"
-msgstr "Лимон (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1752,25 +2038,73 @@ msgstr "Лимон (R)"
 #: code:addons/html_builder/static/src/plugins/badge_option.xml:0
 #: code:addons/html_builder/static/src/plugins/font/font_plugin.js:0
 msgid "Light"
-msgstr "Светъл"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Lighten"
-msgstr "Изсветляване"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Line 01"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Line 02"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Line 03"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Line 04"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Line 05"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Line 06"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Line 07"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Line 08"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Line 1"
-msgstr "Линия 1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Line 2"
-msgstr "Линия 2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1780,39 +2114,51 @@ msgstr "Линеен"
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Lines"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
 #: code:addons/html_builder/static/src/core/anchor/anchor_dialog.js:0
 msgid "Link Anchor"
-msgstr "Котва за връзка"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "MacBook #1"
-msgstr "MacBook #1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "MacBook #2"
-msgstr "MacBook #2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "MacBook #3"
-msgstr "MacBook #3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_image.xml:0
 msgid "Main Color"
-msgstr "Основен цвят"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list_dialog.xml:0
+msgid "Manage Records"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Maven"
-msgstr "Maven"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1837,91 +2183,121 @@ msgstr "Разнородни"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Miscellaneous 01"
-msgstr "Разни 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Miscellaneous 02"
-msgstr "Разни 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Miscellaneous 03"
-msgstr "Разни 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Miscellaneous 04"
-msgstr "Разни 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Miscellaneous 05"
-msgstr "Разни 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Miscellaneous 06"
-msgstr "Разни 06"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Miscellaneous 07"
-msgstr "Разни 07"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Miscellaneous 08"
-msgstr "Разни 08"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Miscellaneous 09"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Miscellaneous 10"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Miscellaneous 11"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Miscellaneous 12"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Miscellaneous 13"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Mixed 1"
-msgstr "Смесена 1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Mixed 2"
-msgstr "Смесена 2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/builder.xml:0
 msgid "Mobile Preview"
-msgstr "Мобилен преглед"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/snippet_service.js:0
 msgid "More info about this app."
-msgstr "Повече информация за това приложение."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/move_plugin.js:0
 msgid "Move left"
-msgstr "Преместване наляво"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/move_plugin.js:0
 msgid "Move right"
-msgstr "Преместване надясно"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Multiply"
-msgstr "Умножаване"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1931,21 +2307,87 @@ msgstr "Име"
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/snippets/snippet_service.js:0
-msgid "No"
-msgstr "Не"
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Nature"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Nature 01"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Nature 02"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Nature 03"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Nature 04"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Nature 05"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Nature 06"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Nature 07"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Nature 08"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/snippets/snippet_viewer.xml:0
+msgid "Navigate around the blocks with"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.js:0
+msgid "No Shadow"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/block_tab.xml:0
 msgid "No block of this category can be dropped on this page."
-msgstr "Никой блок от тази категория не може да бъде пуснат на тази страница."
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list_dialog.xml:0
+msgid "No record."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/add_snippet_dialog.xml:0
 msgid "No snippets found"
-msgstr "Няма намерени блокове"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -1963,44 +2405,58 @@ msgstr "Никакъв"
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
+#: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
 msgid "Normal"
 msgstr "Нормален"
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.xml:0
 #: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
-msgid "Offset (X, Y)"
-msgstr "Отместване (X, Y)"
+msgid "Offset"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/save_plugin.js:0
+msgid "One or more fields were not valid"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/add_snippet_dialog.xml:0
 msgid "Oops! No snippets found."
-msgstr "Опа! Няма намерени блокове."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/replace_media_option.xml:0
 msgid "Open in New Window"
-msgstr "Отваряне в нов прозорец"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list.xml:0
+msgid "Open the record list manager"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Organic"
-msgstr "Органична"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Organic Caps"
-msgstr "Органични капсули"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Organic Cross"
-msgstr "Органичен кръст"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2012,31 +2468,44 @@ msgstr "Органична точка"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Organic Line"
-msgstr "Органична линия"
+msgstr "Серия „Органик“"
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.js:0
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.xml:0
+msgid "Outline"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
 msgid "Outset"
-msgstr "Външна"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
+msgid "Outset/Inset"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Oval Line"
-msgstr "Овална линия"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Oval Zebra"
-msgstr "Овална зебра"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Overlay"
-msgstr "Наслагване"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2048,86 +2517,86 @@ msgstr "Подложка"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/utils/utils.js:0
 msgid "Page Options"
-msgstr "Опции на страницата"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Pattern 01"
-msgstr "Шарка 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Pattern 02"
-msgstr "Шарка 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Pattern 03"
-msgstr "Шарка 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Pattern 04"
-msgstr "Шарка 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Pattern 05"
-msgstr "Шарка 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Pattern 06"
-msgstr "Шарка 06"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Patterns"
-msgstr "Шарки"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Pentagon"
-msgstr "Петоъгълник"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Pentagon (R)"
-msgstr "Петоъгълник (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Pill (R)"
-msgstr "Капсула (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Planet 1"
-msgstr "Планета 1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Planet 2"
-msgstr "Планета 2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Point"
-msgstr "Точка"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2139,7 +2608,13 @@ msgstr "Позиция"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/builder_urlpicker.xml:0
 msgid "Preview this URL in a new tab"
-msgstr "Преглед на този URL в нов раздел"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/save_plugin.js:0
+msgid "Previous values restored."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2161,74 +2636,80 @@ msgid "Quality"
 msgstr "Качество"
 
 #. module: html_builder
+#: model:ir.model,name:html_builder.model_ir_qweb
+msgid "Qweb"
+msgstr ""
+
+#. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Rain"
-msgstr "Дъжд"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Rainy 01"
-msgstr "Дъждовна 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Rainy 02"
-msgstr "Дъждовна 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Rainy 03"
-msgstr "Дъждовна 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Rainy 04"
-msgstr "Дъждовна 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Rainy 05"
-msgstr "Дъждовна 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Rainy 06"
-msgstr "Дъждовна 06"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Rainy 07"
-msgstr "Дъждовна 07"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Rainy 08"
-msgstr "Дъждовна 08"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Rainy 09"
-msgstr "Дъждовна 09"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/replace_media_option.xml:0
 msgid "Redirect the user elsewhere when he clicks on the media."
-msgstr "Пренасочване на потребителя другаде при щракване върху медията."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/anchor/anchor_dialog.xml:0
+#: code:addons/html_builder/static/src/snippets/snippet_viewer.xml:0
 msgid "Remove"
 msgstr "Премахнете"
 
@@ -2236,37 +2717,62 @@ msgstr "Премахнете"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_image.xml:0
 msgid "Remove image"
-msgstr "Премахване на изображението"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.xml:0
+msgid "Remove shadow"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_option.xml:0
+msgid "Remove the background image"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shape_option.xml:0
+#: code:addons/html_builder/static/src/plugins/image/image_shape_option.xml:0
+msgid "Remove the shape"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/option_container.xml:0
 msgid "Remove this block"
-msgstr "Премахване на този блок"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/snippets/snippet_viewer.xml:0
+msgid "Rename"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/snippet_viewer.js:0
 msgid "Rename %(snippetName)s"
-msgstr "Преименуване на %(snippetName)s"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/custom_inner_snippet.js:0
 msgid "Rename %(snippetTitle)s"
-msgstr "Преименуване на %(snippetTitle)s"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/snippet_viewer.js:0
 msgid "Rename the block"
-msgstr "Преименуване на блока"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_position_option.xml:0
 msgid "Repeat pattern"
-msgstr "Повтаряне на шарката"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2280,79 +2786,49 @@ msgstr "Замени"
 #: code:addons/html_builder/static/src/plugins/image/replace_media_option.js:0
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
 msgid "Replace Icon"
-msgstr "Замяна на иконата"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/replace_media_option.js:0
 msgid "Replace Image"
-msgstr "Замяна на изображението"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/replace_media_option.js:0
 msgid "Replace Media"
-msgstr "Замяна на медията"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/replace_media_option.js:0
 msgid "Replace Video"
-msgstr "Замяна на видеото"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
-#: code:addons/html_builder/static/src/plugins/image/image_transform_option.xml:0
-msgid "Reset"
-msgstr "Нулиране"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Reset crop"
-msgstr "Нулиране на изрязването"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shape_option.xml:0
 msgid "Reset shape transformation"
-msgstr "Нулиране на трансформацията на формата"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_transform_option.xml:0
 msgid "Reset transformation"
-msgstr "Нулиране на трансформацията"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
-msgid "Resize Default"
-msgstr "Размер по подразбиране"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
-msgid "Resize Full"
-msgstr "Пълно преоразмеряване"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
-msgid "Resize Half"
-msgstr "Преоразмеряване на половината"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
-msgid "Resize Quarter"
-msgstr "Преоразмеряване на четвърт"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/block_alignment_option.xml:0
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
+#: code:addons/html_builder/static/src/plugins/rating_option.xml:0
 #: code:addons/html_builder/static/src/plugins/separator_option.xml:0
 #: code:addons/html_builder/static/src/plugins/text_alignment_option.xml:0
 msgid "Right"
@@ -2362,29 +2838,29 @@ msgstr "Дясно"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shape_option.xml:0
 msgid "Rotate left"
-msgstr "Завъртане наляво"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shape_option.xml:0
 msgid "Rotate right"
-msgstr "Завъртане надясно"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/border_configurator_option.xml:0
 msgid "Round Corners"
-msgstr "Заоблени ъгли"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Saturation"
-msgstr "Наситеност"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/snippets/snippet_service.js:0
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list_dialog.xml:0
 #: code:addons/html_builder/static/src/snippets/snippet_viewer.js:0
 msgid "Save"
 msgstr "Запазете"
@@ -2393,19 +2869,19 @@ msgstr "Запазете"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/anchor/anchor_dialog.xml:0
 msgid "Save & Copy"
-msgstr "Запазване и копиране"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/snippet_service.js:0
 msgid "Save and Install"
-msgstr "Запазване и инсталиране"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/save_snippet_plugin.js:0
 msgid "Saved as %s. Find it in your snippets."
-msgstr "Запазено като %s. Ще го намерите сред блоковете си."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2417,50 +2893,74 @@ msgstr "Оценка"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Screen"
-msgstr "Екран"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list_dialog.xml:0
+msgid "Search"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/add_snippet_dialog.xml:0
 msgid "Search for a block"
-msgstr "Търсене на блок"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_search_select.xml:0
+msgid "Search for items..."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/select_many2x.xml:0
 msgid "Search for records..."
-msgstr "Търсене на записи..."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/select_many2x.xml:0
-msgid "Search more..."
-msgstr "Търсене на още..."
+msgid "Search more"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/select_many2x.xml:0
 msgid "Search to show more records"
-msgstr "Търсете, за да се покажат повече записи"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/alert_option.xml:0
 #: code:addons/html_builder/static/src/plugins/badge_option.xml:0
 msgid "Secondary"
-msgstr "Вторичен"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/sidebar/customize_tab.xml:0
 msgid "Select a block on your page to style it."
-msgstr "Изберете блок на страницата, за да го оформите."
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_search_select.js:0
+msgid "Select an option..."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Sepia"
-msgstr "Сепия"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_datetimepicker.xml:0
+msgid "Set today as a relative date"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2471,8 +2971,8 @@ msgstr "Сянка"
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/background_option/background_option.xml:0
 #: code:addons/html_builder/static/src/plugins/background_option/background_shape_option.xml:0
+#: code:addons/html_builder/static/src/plugins/button_style_option.xml:0
 #: code:addons/html_builder/static/src/plugins/image/image_shape_option.xml:0
 msgid "Shape"
 msgstr "Форма"
@@ -2481,48 +2981,49 @@ msgstr "Форма"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Shape: Circle"
-msgstr "Форма: кръг"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Shape: Rounded"
-msgstr "Форма: заоблена"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Shape: Thumbnail"
-msgstr "Форма: миниатюра"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/image/image_shape_option.js:0
+#: code:addons/html_builder/static/src/plugins/image/image_shape_option.xml:0
 msgid "Shapes"
-msgstr "Форми"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shape_option.xml:0
 msgid "Show/Hide on Mobile"
-msgstr "Показване/скриване на мобилни устройства"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Shuriken"
-msgstr "Шурикен"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Shuriken (R)"
-msgstr "Шурикен (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/button_style_option.xml:0
 #: code:addons/html_builder/static/src/plugins/image/image_size.xml:0
-#: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
+#: code:addons/html_builder/static/src/plugins/image/media_size_option.xml:0
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
 #: code:addons/html_builder/static/src/plugins/size_option.xml:0
 msgid "Size"
@@ -2532,12 +3033,13 @@ msgstr "Размер"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Slanted"
-msgstr "Наклонена"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/font/font_plugin.js:0
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
+#: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
 #: code:addons/html_builder/static/src/plugins/size_option.xml:0
 msgid "Small"
 msgstr "Малък"
@@ -2546,37 +3048,43 @@ msgstr "Малък"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Snow"
-msgstr "Сняг"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/border_configurator_option.xml:0
 msgid "Solid"
-msgstr "Плътна"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Solids"
-msgstr "Плътни"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Sonar"
-msgstr "Сонар"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Sonar (R)"
-msgstr "Сонар (R)"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/snippets/snippet_viewer.xml:0
+msgid "Space"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Specials"
-msgstr "Специални"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2590,163 +3098,163 @@ msgstr "Скорост"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/shadow_option.xml:0
 msgid "Spread"
-msgstr "Разширение"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square (R)"
-msgstr "Квадрат (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square 1"
-msgstr "Квадрат 1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square 1 (R)"
-msgstr "Квадрат 1 (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square 2"
-msgstr "Квадрат 2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square 2 (R)"
-msgstr "Квадрат 2 (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square 3"
-msgstr "Квадрат 3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square 4"
-msgstr "Квадрат 4"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square 5"
-msgstr "Квадрат 5"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square 6"
-msgstr "Квадрат 6"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square Dot 1"
-msgstr "Квадратна точка 1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square Dot 2"
-msgstr "Квадратна точка 2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square Dot 3"
-msgstr "Квадратна точка 3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square Dot 4"
-msgstr "Квадратна точка 4"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Square Line"
-msgstr "Квадратна линия"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
 msgid "Squares"
-msgstr "Квадрати"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Star"
-msgstr "Звезда"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Star 1"
-msgstr "Звезда 1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Star 1 (R)"
-msgstr "Звезда 1 (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Star 2"
-msgstr "Звезда 2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Star 2 (R)"
-msgstr "Звезда 2 (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Star 3"
-msgstr "Звезда 3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Star 3 (R)"
-msgstr "Звезда 3 (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Star 4 (R)"
-msgstr "Звезда 4 (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
 msgid "Stars"
-msgstr "Звезди"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shape_option.xml:0
 msgid "Stretch"
-msgstr "Разтягане"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/vertical_alignment_option.xml:0
 msgid "Stretch to Equal Height"
-msgstr "Разтягане до еднаква височина"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2773,43 +3281,56 @@ msgstr "Неделя"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/font/font_plugin.js:0
 msgid "System Fonts"
-msgstr "Системни шрифтове"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/snippets/snippet_viewer.xml:0
+msgid "Tab"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/snippets/add_snippet_dialog.xml:0
 msgid "Take a look at the search bar, there might be a small typo!"
-msgstr "Погледнете лентата за търсене — може да има малка печатна грешка!"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Tear"
-msgstr "Сълза"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Tear (R)"
-msgstr "Сълза (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Tetris"
-msgstr "Tetris"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/color_picker_theme_tab.xml:0
+#: code:addons/html_builder/static/src/plugins/button_style_option.xml:0
 msgid "Text"
 msgstr "Текст"
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/font/text_effect_selector.xml:0
+msgid "Text Shadow"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
 #: code:addons/html_builder/static/src/core/anchor/anchor_dialog.xml:0
 msgid "The chosen name already exists"
-msgstr "Избраното име вече съществува"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2823,26 +3344,33 @@ msgstr "Тема"
 #: code:addons/html_builder/static/src/sidebar/block_tab.xml:0
 #: code:addons/html_builder/static/src/sidebar/custom_inner_snippet.xml:0
 msgid "This block cannot be dropped anywhere on this page."
-msgstr "Този блок не може да бъде пуснат никъде на тази страница."
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_fontfamilypicker.js:0
+msgid ""
+"This change will be applied after saving and reloading the page. Are you "
+"sure you want to continue?"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/builder_fontfamilypicker.xml:0
 msgid "This font is hosted and served to your visitors by Google servers"
 msgstr ""
-"Този шрифт се хоства и доставя на посетителите ви от сървърите на Google"
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/version_error_plugin.js:0
 msgid "This snippet is outdated"
-msgstr "Този блок е остарял"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
 msgid "Thumbs"
-msgstr "Палци"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2854,25 +3382,37 @@ msgstr "Заглавие"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
 msgid "Title Position"
-msgstr "Позиция на заглавието"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Title tag"
-msgstr "Title таг"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Toaster"
-msgstr "Toaster"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_datetimepicker.js:0
+msgid "Today"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/snippets/add_snippet_dialog.xml:0
+msgid "Toggle Mobile Preview"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/builder_row.xml:0
 msgid "Toggle more options"
-msgstr "Показване/скриване на още опции"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2884,60 +3424,116 @@ msgstr "Изскачащо съобщение"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/rating_option.xml:0
 msgid "Top"
-msgstr "Отгоре"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shape_option.xml:0
 #: code:addons/html_builder/static/src/plugins/image/image_shape_option.xml:0
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Transform"
-msgstr "Трансформиране"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_transform_option.xml:0
 msgid "Transform the picture"
-msgstr "Трансформиране на изображението"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Travel"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Travel 01"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Travel 02"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Travel 03"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Travel 04"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Travel 05"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Travel 06"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Travel 07"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
+msgid "Travel 08"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Triangle"
-msgstr "Триъгълник"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Triangle (R)"
-msgstr "Триъгълник (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Triangle Line"
-msgstr "Триъгълна линия"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Trio In (R)"
-msgstr "Трио навътре (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Trio Out (R)"
-msgstr "Трио навън (R)"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Triple Pill"
-msgstr "Тройна капсула"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/alert_option.xml:0
+#: code:addons/html_builder/static/src/plugins/button_style_option.xml:0
 msgid "Type"
 msgstr "Вид"
 
@@ -2945,38 +3541,46 @@ msgstr "Вид"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_tool_option.xml:0
 msgid "Unalign"
-msgstr "Без подравняване"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/core/building_blocks/builder_many2one.xml:0
 msgid "Unselect"
-msgstr "Отмяна на избора"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_list.xml:0
+msgid "Update the list with all records and sort it alphabetically"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Valencia"
-msgstr "Valencia"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/vertical_alignment_option.xml:0
 #: code:addons/html_builder/static/src/plugins/vertical_justify_option.xml:0
 msgid "Vert. Alignment"
-msgstr "Верт. подравняване"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/vertical_alignment_option.xml:0
 #: code:addons/html_builder/static/src/plugins/vertical_justify_option.xml:0
 msgid "Vertical Alignment"
-msgstr "Вертикално подравняване"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/background_option/background_shape_option.xml:0
 #: code:addons/html_builder/static/src/plugins/image/image_shape_option.xml:0
-msgid "Vertical mirror"
-msgstr "Вертикално огледално обръщане"
+msgid "Vertical flip"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -2985,10 +3589,15 @@ msgid "Video"
 msgstr "Видео"
 
 #. module: html_builder
+#: model:ir.model,name:html_builder.model_ir_ui_view
+msgid "View"
+msgstr ""
+
+#. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Walden"
-msgstr "Walden"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -3001,127 +3610,133 @@ msgstr "Внимание"
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Wave 1"
-msgstr "Вълна 1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Wave 2"
-msgstr "Вълна 2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Wave 3"
-msgstr "Вълна 3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Wave 4"
-msgstr "Вълна 4"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy"
-msgstr "Вълнисти"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 01"
-msgstr "Вълниста 01"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 02"
-msgstr "Вълниста 02"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 03"
-msgstr "Вълниста 03"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 04"
-msgstr "Вълниста 04"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 05"
-msgstr "Вълниста 05"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 06"
-msgstr "Вълниста 06"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 07"
-msgstr "Вълниста 07"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 08"
-msgstr "Вълниста 08"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 09"
-msgstr "Вълниста 09"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 10"
-msgstr "Вълниста 10"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 11"
-msgstr "Вълниста 11"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 12"
-msgstr "Вълниста 12"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 13"
-msgstr "Вълниста 13"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_shapes_definition.js:0
 msgid "Wavy 14"
-msgstr "Вълниста 14"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.js:0
 msgid "WebGL is not enabled on your browser."
-msgstr "WebGL не е активиран във вашия браузър."
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_format_option.xml:0
 msgid "WebP compression not supported on this browser"
-msgstr "Компресията WebP не се поддържа от този браузър"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/utils/utils.js:0
+msgid "Website"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
@@ -3133,150 +3748,154 @@ msgstr "Широчина"
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/image/image_shape_option.xml:0
+msgid "Will remove the crop factor"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "Window"
-msgstr "Прозорец"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_filter_option.xml:0
 msgid "Xpro"
-msgstr "Xpro"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/snippets/snippet_service.js:0
-msgid "Yes"
-msgstr "Да"
-
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/core/building_blocks/builder_list.xml:0
-msgid "You don't have any record to add"
-msgstr "Нямате запис за добавяне"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/replace_media_option.xml:0
 msgid "Your URL"
-msgstr "Вашият URL"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/background_option/background_position_option.xml:0
+#: code:addons/html_builder/static/src/plugins/image/media_size_option.xml:0
 msgid "auto"
 msgstr "авто"
 
 #. module: html_builder
 #. odoo-javascript
+#: code:addons/html_builder/static/src/core/building_blocks/builder_sliding_panel.xml:0
+msgid "close"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
+#: code:addons/html_builder/static/src/plugins/image/replace_media_option.xml:0
+msgid "e.g. /page or URL"
+msgstr ""
+
+#. module: html_builder
+#. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iMac #1"
-msgstr "iMac #1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iMac #2"
-msgstr "iMac #2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iMac #3"
-msgstr "iMac #3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPad #1"
-msgstr "iPad #1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPad #2"
-msgstr "iPad #2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPad #3"
-msgstr "iPad #3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPad #4"
-msgstr "iPad #4"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPad #5"
-msgstr "iPad #5"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPad #6"
-msgstr "iPad #6"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPhone #1"
-msgstr "iPhone #1"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPhone #2"
-msgstr "iPhone #2"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPhone #3"
-msgstr "iPhone #3"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPhone #4"
-msgstr "iPhone #4"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPhone #5"
-msgstr "iPhone #5"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/image/image_shapes_definition.js:0
 msgid "iPhone #6"
-msgstr "iPhone #6"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
 #: code:addons/html_builder/static/src/plugins/shape/shape_selector.xml:0
 msgid "nimated"
-msgstr "нимирана"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/image/replace_media_option.xml:0
-msgid "www.example.com"
-msgstr "www.example.com"
+#: code:addons/html_builder/static/src/snippets/snippet_viewer.xml:0
+msgid "or"
+msgstr ""
 
 #. module: html_builder
 #. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/rating_option.xml:0
-msgid "⌙ Active"
-msgstr "⌙ Активни"
+#: code:addons/html_builder/static/src/snippets/snippet_viewer.xml:0
+msgid "or the arrow keys. Select with"
+msgstr ""
 
-#. module: html_builder
-#. odoo-javascript
-#: code:addons/html_builder/static/src/plugins/rating_option.xml:0
-msgid "⌙ Inactive"
-msgstr "⌙ Неактивни"
+#~ msgid "www.example.com"
+#~ msgstr "www.example.com"

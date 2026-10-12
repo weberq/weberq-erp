@@ -8,7 +8,6 @@ from urllib.parse import urlsplit
 import requests
 
 from odoo.addons.base.tests.common import HttpCaseWithUserDemo
-from odoo.http import Request
 from odoo.tests import tagged
 
 
@@ -18,7 +17,7 @@ class TestCloudStorageAttachmentController(HttpCaseWithUserDemo):
     def test_cloud_storage_attachment_zip(self):
         """Downloading a mixed ZIP includes every cloud and local file with its original contents."""
 
-        self.env['ir.config_parameter'].sudo().set_param('cloud_storage_provider', 'dummy')
+        self.env['ir.config_parameter'].sudo().set_str('cloud_storage_provider', 'dummy')
         self.patch(self.env.registry['res.config.settings'], '_get_cloud_storage_configuration',
                    lambda self: {'provider': 'dummy'})
         self.patch(self.env.registry['ir.attachment'], '_generate_cloud_storage_url',
@@ -34,7 +33,7 @@ class TestCloudStorageAttachmentController(HttpCaseWithUserDemo):
             {'name': 'local.txt', 'raw': b'local file', 'mimetype': 'text/plain'},
         ])
         cloud_attachments = attachments[:2]
-        contents = {attachment.name: attachment.raw for attachment in attachments}
+        contents = {attachment.name: attachment.raw.content for attachment in attachments}
         cloud_attachments.sudo()._post_add_create(cloud_storage=True)
 
         def download_cloud_file(url, **kwargs):
@@ -48,7 +47,7 @@ class TestCloudStorageAttachmentController(HttpCaseWithUserDemo):
             response = self.url_open('/mail/attachment/zip', data={
                 'file_ids': ','.join(map(str, attachments.ids)),
                 'zip_name': 'attachments.zip',
-                'csrf_token': Request.csrf_token(self),
+                'csrf_token': self.csrf_token(),
             })
 
         self.assertEqual(response.status_code, 200)

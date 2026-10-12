@@ -11,8 +11,8 @@ class TestMailMail(MassMailCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env['ir.config_parameter'].sudo().set_param("mass_mailing.cancelled_mails_months_limit", 6)
-        cls.env['ir.config_parameter'].sudo().set_param("mail.mail.force.send.limit", 1)  # use queue, no force_send for mass mailings here
+        cls.env['ir.config_parameter'].sudo().set_int("mass_mailing.cancelled_mails_months_limit", 6)
+        cls.env['ir.config_parameter'].sudo().set_int("mail.mail.force.send.limit", 1)  # use queue, no force_send for mass mailings here
 
         cls.mail_template = cls.env['mail.template'].create({
             'body_html': 'Test Mass Composer',
@@ -47,26 +47,21 @@ class TestMailMail(MassMailCommon):
         # do a manual mass mail, which keeps generated mail.messages, creating canceled
         # notification mail.mail -> messages should not be removed with emails
         with self.mock_datetime_and_now(now):
-            mails_2 = partners.message_mail_with_source(
+            valid_mails_2, dupe_mails_2, blocked_mails_2 = partners.message_mail_with_source(
                 self.mail_template,
                 auto_delete=False,
                 auto_delete_keep_log=True,
             )
-        self.assertEqual(len(mails_2), 3)
-        for mail in mails_2:
-            if mail.res_id == partner_bl.id:
-                self.assertFalse(mail.is_notification, 'Blacklisted emails do not appear in chatter -> is_notification set to False, to be removed')
-            else:
-                self.assertTrue(mail.is_notification, 'Messages are kept in chatter')
-        valid_mails_2 = mails_2.filtered(lambda m: m.res_id == partner_real.id)
-        chatter_msgs_2 = mails_2.filtered(lambda m: m.res_id != partner_bl.id).mail_message_id
+        self.assertFalse(blocked_mails_2.is_notification, 'Blacklisted emails do not appear in chatter -> is_notification set to False, to be removed')
+        chatter_mails_2 = valid_mails_2 | dupe_mails_2
+        self.assertEqual(set(chatter_mails_2.mapped('is_notification')), {True}, 'Messages are kept in chatter due to keep log')
+        chatter_msgs_2 = chatter_mails_2.mail_message_id  # or assert with chatter_mails_2.mail_message_id at the end
 
         # now create mailing messages, which skips canceled emails
         mailing = self.env['mailing.mailing'].with_user(self.user_marketing).create({
             'body_html': 'How is your GC going ?',
             'mailing_domain': [('id', 'in', partners.ids)],
             'mailing_model_id': self.env['ir.model']._get('res.partner').id,
-            'name': 'Test GC',
             'reply_to_mode': 'new',
             'subject': 'Test GC',
             'user_id': self.user_marketing.id,

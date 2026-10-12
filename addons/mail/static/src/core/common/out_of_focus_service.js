@@ -28,15 +28,21 @@ export class OutOfFocusService {
         /** @type {import("models").Store} */
         this.store = services["mail.store"];
         this.closeFuncs = [];
+        this.contributingMessageLocalIds = new Set();
+        env.bus.addEventListener("window_focus", () => this.onWindowFocus());
     }
-
     async notify(message, thread) {
+        if (this.contributingMessageLocalIds.has(message.localId)) {
+            return;
+        }
+        this.contributingMessageLocalIds.add(message.localId);
         // Message types the server sends via web push, excluding the author.
         // Keep in sync with mail.thread._notify_get_recipients_for_extra_notifications.
         const messageTypesHandledByPush = [
             "comment",
             "email",
             "notification",
+            "tracking",
             "user_notification",
             "whatsapp_message",
         ];
@@ -49,15 +55,15 @@ export class OutOfFocusService {
         }
         const author = message.author;
         let notificationTitle;
-        let icon = "/mail/static/src/img/odoobot_transparent.png";
+        let icon = "/mail/static/src/img/odoobot_transparent.webp";
         if (!author) {
             notificationTitle = _t("New message");
         } else {
             icon = author.avatarUrl;
-            if (message.thread?.channel_type === "channel") {
+            if (message.thread?.channel?.channel_type === "channel") {
                 notificationTitle = _t("%(author name)s from %(channel name)s", {
                     "author name": message.authorName,
-                    "channel name": message.thread.displayName,
+                    "channel name": message.channel_id.displayName,
                 });
             } else {
                 notificationTitle = message.authorName;
@@ -69,7 +75,7 @@ export class OutOfFocusService {
         );
         await this.sendNotification({
             message: notificationContent,
-            sound: message.thread?.model === "discuss.channel",
+            sound: Boolean(message.channel_id),
             title: notificationTitle,
             type: "info",
             icon,
@@ -178,6 +184,12 @@ export class OutOfFocusService {
 
     get canSendNativeNotification() {
         return Boolean(window.Notification && window.Notification.permission === "granted");
+    }
+    clearUnreadMessage() {
+        this.contributingMessageLocalIds.clear();
+    }
+    onWindowFocus() {
+        this.clearUnreadMessage();
     }
 }
 

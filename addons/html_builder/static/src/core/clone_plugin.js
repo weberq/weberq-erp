@@ -4,7 +4,6 @@ import { _t } from "@web/core/l10n/translation";
 import { isElementInViewport } from "@html_builder/utils/utils";
 import { BuilderAction } from "@html_builder/core/builder_action";
 import { scrollTo } from "@html_builder/utils/scrolling";
-import { isRemovable } from "./remove_plugin";
 
 /**
  * @typedef { Object } CloneShared
@@ -18,15 +17,6 @@ import { isRemovable } from "./remove_plugin";
  * @typedef {((arg: { originalEl: HTMLElement }) => void)[]} on_will_clone_handlers
  * Called on the original element before clone.
  */
-
-// TODO remove in master (kept for stable).
-const clonableSelector =
-    "a.btn:not(.oe_unremovable, .js_subscribe_btn, .s_website_form_send, .s_website_form_submit)";
-
-export function isClonable(el) {
-    // TODO and isDraggable
-    return el.matches(clonableSelector) || isRemovable(el);
-}
 
 export class ClonePlugin extends Plugin {
     static id = "clone";
@@ -57,12 +47,13 @@ export class ClonePlugin extends Plugin {
         this.overlayTarget = target;
         const disabledReason = this.dependencies.builderOptions.getCloneDisabledReason(target);
         buttons.push({
-            class: "o_snippet_clone fa fa-clone",
+            class: "o_snippet_clone oi",
+            icon: "content_copy",
             title: _t("Duplicate"),
             disabledReason,
             handler: async () => {
                 await this.cloneElement(this.overlayTarget, { activateClone: false });
-                this.dependencies.history.addStep();
+                this.dependencies.history.commit();
             },
         });
         return buttons;
@@ -85,7 +76,7 @@ export class ClonePlugin extends Plugin {
         el,
         { position = "afterend", scrollToClone = false, activateClone = true } = {}
     ) {
-        this.dispatchTo("on_will_clone_handlers", { originalEl: el });
+        this.trigger("on_will_clone_handlers", { originalEl: el });
         const cloneEl = el.cloneNode(true);
         this.dependencies.dom.removeSystemProperties(cloneEl); // TODO check that
         el.insertAdjacentElement(position, cloneEl);
@@ -100,9 +91,7 @@ export class ClonePlugin extends Plugin {
             scrollTo(cloneEl);
         }
 
-        for (const onCloned of this.getResource("on_cloned_handlers")) {
-            await onCloned({ cloneEl, originalEl: el });
-        }
+        await Promise.all(this.trigger("on_cloned_handlers", { cloneEl, originalEl: el }));
 
         return cloneEl;
     }
@@ -115,7 +104,7 @@ export class CloneItemAction extends BuilderAction {
         const itemEl = editingElement.querySelector(itemSelector);
         if (itemEl) {
             await this.dependencies.clone.cloneElement(itemEl, { position, scrollToClone: true });
-            this.dependencies.history.addStep();
+            this.dependencies.history.commit();
         }
     }
 }

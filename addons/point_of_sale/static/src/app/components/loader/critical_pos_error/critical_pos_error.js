@@ -1,12 +1,12 @@
-import { Component, useState } from "@odoo/owl";
+import { Component, proxy, useProps, t } from "@odoo/owl";
 import { resetLocalData } from "./reset_local_data";
 
 export class CriticalPOSError extends Component {
     static template = "point_of_sale.CriticalPOSError";
-    static props = { error: Object };
+    props = useProps({ error: t.object() });
 
     setup() {
-        this.state = useState({ expanded: false });
+        this.state = proxy({ expanded: false });
     }
     async fullReset() {
         await resetLocalData();

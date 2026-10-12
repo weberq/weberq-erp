@@ -3,16 +3,13 @@ from __future__ import annotations
 
 import itertools
 import typing
-import warnings
 
 if typing.TYPE_CHECKING:
     from collections.abc import Iterable, Iterator
     from collections.abc import Set as AbstractSet
 
-T = typing.TypeVar('T')
 
-
-def _boundaries(intervals: Intervals[T] | Iterable[tuple[T, T, AbstractSet]], opening: str, closing: str) -> Iterator[tuple[T, str, AbstractSet]]:
+def _boundaries[T](intervals: Intervals[T] | Iterable[tuple[T, T, AbstractSet]], opening: str, closing: str) -> Iterator[tuple[T, str, AbstractSet]]:
     """ Iterate on the boundaries of intervals. """
     for start, stop, recs in intervals:
         if start < stop:
@@ -20,7 +17,7 @@ def _boundaries(intervals: Intervals[T] | Iterable[tuple[T, T, AbstractSet]], op
             yield (stop, closing, recs)
 
 
-class Intervals(typing.Generic[T]):
+class Intervals[T]:
     """ Collection of ordered disjoint intervals with some associated records.
         Each interval is a triple ``(start, stop, records)``, where ``records``
         is a recordset.
@@ -47,8 +44,9 @@ class Intervals(typing.Generic[T]):
                     starts.append(value)
                     if items is None:
                         items = value_items
-                    else:
-                        items = items.union(value_items)
+                    elif value_items:
+                        # make sure we have a copy of items
+                        items = items | value_items
                 else:
                     start = starts.pop()
                     if not starts:
@@ -112,17 +110,7 @@ class Intervals(typing.Generic[T]):
 
         return result
 
-    def remove(self, interval):
-        """ Remove an interval from the set. """
-        warnings.warn("Deprecated since 19.0, do not mutate intervals", DeprecationWarning)
-        self._items.remove(interval)
-
-    def items(self):
-        """ Return the intervals. """
-        warnings.warn("Deprecated since 19.0, just iterate over Intervals", DeprecationWarning)
-        return self._items
-
-    def conflicting(self, other):
+    def overlapping_with(self, other: Intervals) -> Intervals:
         """Return whole intervals from `self` that overlap ANY interval in `other`."""
         result = Intervals()
         append = result._items.append
@@ -160,7 +148,7 @@ class Intervals(typing.Generic[T]):
         return result
 
 
-def intervals_overlap(interval_a: tuple[T, T], interval_b: tuple[T, T]) -> bool:
+def intervals_overlap[T](interval_a: tuple[T, T], interval_b: tuple[T, T]) -> bool:
     """Check whether intervals intersect.
 
     :param interval_a:
@@ -172,7 +160,7 @@ def intervals_overlap(interval_a: tuple[T, T], interval_b: tuple[T, T]) -> bool:
     return start_a < stop_b and stop_a > start_b
 
 
-def invert_intervals(intervals: Iterable[tuple[T, T]], first_start: T, last_stop: T) -> list[tuple[T, T]]:
+def invert_intervals[T](intervals: Iterable[tuple[T, T]], first_start: T, last_stop: T) -> list[tuple[T, T]]:
     """Return the intervals between the intervals that were passed in.
 
     The expected use case is to turn "available intervals" into "unavailable intervals".

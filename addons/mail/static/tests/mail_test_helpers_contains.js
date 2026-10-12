@@ -2,7 +2,7 @@
 
 import { __debug__, after, afterEach, expect, getFixture, globals } from "@odoo/hoot";
 import { queryAll, queryFirst } from "@odoo/hoot-dom";
-import { Deferred, animationFrame, tick } from "@odoo/hoot-mock";
+import { animationFrame, tick } from "@odoo/hoot-mock";
 import { isMacOS } from "@web/core/browser/feature_detection";
 import { isVisible } from "@web/core/utils/ui";
 
@@ -13,17 +13,6 @@ import { isVisible } from "@web/core/utils/ui";
 export const TIMEOUT = 10000;
 const TICK_TIMEOUT = 500;
 const { clearTimeout: unmockedClearTimeout, setTimeout: unmockedSetTimeout } = globals;
-
-/**
- * Use `expect.step` instead
- * @deprecated
- */
-export const step = expect.step;
-/**
- * Use `expect.waitForSteps` instead
- * @deprecated
- */
-export const assertSteps = expect.waitForSteps;
 
 /** @param {EventInit} [args] */
 const mapBubblingEvent = (args) => ({ ...args, bubbles: true });
@@ -217,7 +206,7 @@ function triggerEvent(el, selector, eventType, eventInit, options = {}) {
     const event = new Constructor(eventType, processParams(eventInit));
     target.dispatchEvent(event);
 
-    if (__debug__.debug) {
+    if (__debug__().debug) {
         const group = `%c[${event.type.toUpperCase()}]`;
         console.groupCollapsed(group, "color: #b52c9b");
         console.log(target, event);
@@ -639,11 +628,13 @@ class Contains {
      *
      * Success or failure messages will be logged with HOOT as well.
      *
-     * @returns {Promise}
+     * @returns {Promise<void>}
      */
     run() {
         this.done = false;
-        this.def = new Deferred();
+        const { promise: containsPromise, reject, resolve } = Promise.withResolvers();
+        this._rejectContains = reject;
+        this._resolveContains = resolve;
         this.scrollListeners = new Set();
         this.onBlur = () => this.runOnce("after blur");
         this.onChange = () => this.runOnce("after change");
@@ -655,7 +646,7 @@ class Contains {
                 try {
                     this.runOnce("after mutations");
                 } catch (e) {
-                    this.def.reject(e); // prevents infinite loop in case of programming error
+                    this._rejectContains(e); // prevents infinite loop in case of programming error
                 }
             });
             this.observer.observe(document.body, {
@@ -672,7 +663,7 @@ class Contains {
                 }
             });
         }
-        return this.def;
+        return containsPromise;
     }
 
     /**
@@ -721,7 +712,7 @@ class Contains {
                     }
                 }
                 log(false, message);
-                this.def?.reject(new Error(message));
+                this._rejectContains?.(new Error(message));
                 for (const childContains of this.childrenContains || []) {
                     if (childContains.successMessage) {
                         log(true, childContains.successMessage);
@@ -738,7 +729,7 @@ class Contains {
 
     /**
      * Executes the action(s) given to this constructor on the found element,
-     * prints the success messages, and resolves the main deferred.
+     * prints the success messages, and resolves the main promise.
 
      * @param {HTMLElement} el
      */
@@ -844,7 +835,7 @@ class Contains {
         for (const childContains of this.childrenContains) {
             log(true, childContains.successMessage);
         }
-        this.def?.resolve();
+        this._resolveContains?.();
     }
 
     /**

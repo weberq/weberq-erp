@@ -2,6 +2,7 @@ import { RelationalModel } from "@web/model/relational_model/relational_model";
 
 export class ActivityModel extends RelationalModel {
     static DEFAULT_LIMIT = 100;
+    static withCache = false;
 
     async load(params = {}) {
         this.originalDomain = params.domain ? [...params.domain] : [];
@@ -11,8 +12,6 @@ export class ActivityModel extends RelationalModel {
         if (params && "groupBy" in params) {
             params.groupBy = [];
         }
-        // avoid mismatch between records count (initialLimit) and activity count (params.limit)
-        delete params.limit;
         await Promise.all([this.fetchActivityData(params), super.load(params)]);
     }
 

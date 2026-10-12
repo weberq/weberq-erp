@@ -1,14 +1,17 @@
-import { useRef, onMounted, useState, useEffect, onWillDestroy } from "@odoo/owl";
-import { BaseOptionComponent } from "@html_builder/core/utils";
+import { useLayoutEffect } from "@web/owl2/utils";
+import { onMounted, onWillDestroy, proxy, signal, useApp } from "@odoo/owl";
+import { registry } from "@web/core/registry";
+import { BaseOptionComponent } from "@html_builder/core/base_option_component";
 import { PlacesAutoComplete } from "@website/components/googleplaces_autocomplete/places_autocomplete";
-import wUtils from "@website/js/utils";
+import { mountAutocompleteComponent } from "@website/js/utils";
 
 /** @import { Coordinates, Place } from './google_maps_option_plugin.js' */
 
 export class GoogleMapsOption extends BaseOptionComponent {
+    static id = "google_maps_option";
     static template = "website.GoogleMapsOption";
     static dependencies = ["googleMapsOption"];
-    static selector = ".s_google_map";
+    inputRef = signal.ref();
 
     async setup() {
         super.setup();
@@ -19,19 +22,19 @@ export class GoogleMapsOption extends BaseOptionComponent {
         /** @type {function(Element, Place):void} */
         this.commitPlace = this.dependencies.googleMapsOption.commitPlace;
 
-        this.inputRef = useRef("inputRef");
         /** @type {{ formattedAddress: string }} */
-        this.state = useState({
+        this.state = proxy({
             formattedAddress: this.env.getEditingElement().dataset.pinAddress || "",
         });
-        useEffect(
+        this.app = useApp();
+        useLayoutEffect(
             () => {
                 this.env.getEditingElement().dataset.pinAddress = this.state.formattedAddress;
             },
             () => [this.state.formattedAddress]
         );
         onMounted(async () => {
-            this.initializeAutocomplete(this.inputRef.el);
+            this.initializeAutocomplete(this.inputRef());
         });
         onWillDestroy(() => {
             this.unmountAutocomplete?.();
@@ -45,7 +48,7 @@ export class GoogleMapsOption extends BaseOptionComponent {
      */
     initializeAutocomplete(inputEl) {
         const editingElement = this.env.getEditingElement();
-        this.unmountAutocomplete = wUtils.mountAutocompleteComponent(PlacesAutoComplete, {
+        this.unmountAutocomplete = mountAutocompleteComponent(this.app, PlacesAutoComplete, {
             targetDropdown: inputEl,
             maps: this.getMapsAPI(),
             onPlaceSelected: this.onPlaceSelected.bind(this),
@@ -63,6 +66,9 @@ export class GoogleMapsOption extends BaseOptionComponent {
     }
 
     /**
+     * Retrieve the new place given by Google Places API's autocompletion
+     * whenever it sends a signal that the place changed, and send it to the
+     * plugin.
      *
      * @param {Place} place Place object from Google Maps API
      */
@@ -71,3 +77,5 @@ export class GoogleMapsOption extends BaseOptionComponent {
         this.state.formattedAddress = place?.formatted_address || "";
     }
 }
+
+registry.category("website-options").add(GoogleMapsOption.id, GoogleMapsOption);

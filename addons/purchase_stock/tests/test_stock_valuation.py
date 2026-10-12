@@ -6,6 +6,8 @@ from .common import PurchaseTestCommon
 
 
 class TestPurchaseStockValuation(PurchaseTestCommon):
+    _test_user_groups = None  # FIXME list needed groups
+
     def test_move_value(self):
         """This test ensure the move value is correct. The move value
         doesn't depend on the cost method. It represents the real price
@@ -47,6 +49,20 @@ class TestPurchaseStockValuation(PurchaseTestCommon):
         self._create_bill(purchase_order=po, price_unit=30)
         self.assertEqual(move_in.value, 150)
 
+    def test_move_value_bill_reset_to_draft(self):
+        po = self._create_purchase(self.product_avco, 5, 10)
+        move_in = self._receive(po)
+        self.assertEqual(move_in.value, 50)
+
+        bill = self._create_bill(purchase_order=po, price_unit=20)
+        self.assertEqual(move_in.value, 100)
+
+        bill.button_draft()
+        self.assertEqual(move_in.value, 50)
+
+        bill.action_post()
+        self.assertEqual(move_in.value, 100)
+
     def test_move_value_extra_quantity(self):
         po = self._create_purchase(self.product_avco, 5, 10)
         move_in = self._receive(po, 7)
@@ -69,7 +85,6 @@ class TestPurchaseStockValuation(PurchaseTestCommon):
 
         self.assertEqual(self.product_avco.total_value, 120)
         self.assertEqual(self.product_avco.with_context(to_date="2025-01-01").total_value, 0)
-        # There is no recomputation for the move's value at_date.
         self.assertEqual(self.product_avco.with_context(to_date="2025-01-02").total_value, 120)
         self.assertEqual(self.product_avco.with_context(to_date="2025-01-03").total_value, 120)
 
@@ -91,22 +106,20 @@ class TestPurchaseStockValuation(PurchaseTestCommon):
             ('2025-01-04', 2),
             ('2025-01-05', 3),
         ])
-        with freeze_time('2025-01-01'):
+        with freeze_time('2025-01-02'):
             po = self._create_purchase(self.product_avco, 10, 10, currency_id=self.other_currency.id)
 
-        with freeze_time('2025-01-02'):
+        with freeze_time('2025-01-03'):
             self._receive(purchase_order=po)
-            self.assertEqual(self.product_avco.total_value, 66.7)
 
-        with freeze_time('2025-01-04'):
+        with freeze_time('2025-01-05'):
             self._create_bill(purchase_order=po)
 
         self.assertEqual(self.product_avco.total_value, 50)
-        self.assertEqual(self.product_avco.with_context(to_date="2025-01-01").total_value, 0)
-        # It takes the rate from the existing bill even if it was not exsting at_date
-        self.assertEqual(self.product_avco.with_context(to_date="2025-01-02").total_value, 50)
+        self.assertEqual(self.product_avco.with_context(to_date="2025-01-02").total_value, 0)
+        self.assertEqual(self.product_avco.with_context(to_date="2025-01-03").total_value, 50)
         # Bill date rate
-        self.assertEqual(self.product_avco.with_context(to_date="2025-01-04").total_value, 50)
+        self.assertEqual(self.product_avco.with_context(to_date="2025-01-05").total_value, 50)
 
     def test_move_value_multi_currency_bill_before_receipt(self):
         # rates = [

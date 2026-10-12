@@ -2,20 +2,16 @@
 # This file contains the translation of the following modules:
 # * cloud_storage
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-10 11:11+0000\n"
-"Last-Translator: Jan Zorko <jan.zorko@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 16:24+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "cloud_storage/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +24,7 @@ msgstr ""
 #. module: cloud_storage
 #: model_terms:ir.ui.view,arch_db:cloud_storage.cloud_storage_config_settings_view_form
 msgid "<span>MB</span>"
-msgstr "<span>MB</span>"
+msgstr ""
 
 #. module: cloud_storage
 #: model:ir.model,name:cloud_storage.model_ir_attachment
@@ -37,6 +33,7 @@ msgstr "Priponka"
 
 #. module: cloud_storage
 #: model:ir.model.fields.selection,name:cloud_storage.selection__ir_attachment__type__cloud_storage
+#: model:ir.module.module,shortdesc:base.module_cloud_storage
 #: model_terms:ir.ui.view,arch_db:cloud_storage.cloud_storage_config_settings_view_form
 msgid "Cloud Storage"
 msgstr "Shranjevanje v oblaku"
@@ -81,7 +78,7 @@ msgstr "Prikazani naziv"
 #: code:addons/cloud_storage/models/ir_attachment.py:0
 msgid ""
 "Failed to download attachment (%(id)s) from cloud: %(code)s - %(reason)s"
-msgstr "Prenos priloge (%(id)s) iz oblaka ni uspel: %(code)s - %(reason)s"
+msgstr ""
 
 #. module: cloud_storage
 #: model:ir.model,name:cloud_storage.model_ir_http
@@ -98,12 +95,12 @@ msgstr "ID"
 #. module: cloud_storage
 #: model_terms:ir.ui.view,arch_db:cloud_storage.cloud_storage_config_settings_view_form
 msgid "Minimum File Size"
-msgstr "Najmanjša velikost datoteke"
+msgstr ""
 
 #. module: cloud_storage
 #: model:ir.model.fields,field_description:cloud_storage.field_res_config_settings__cloud_storage_min_file_size_mb
 msgid "Minimum File Size (MB)"
-msgstr "Najmanjša velikost datoteke (v MB)"
+msgstr ""
 
 #. module: cloud_storage
 #: model:ir.model.fields,field_description:cloud_storage.field_res_config_settings__cloud_storage_min_file_size
@@ -113,7 +110,7 @@ msgstr "Najmanjša velikost datoteke (v bajtih)"
 #. module: cloud_storage
 #: model_terms:ir.ui.view,arch_db:cloud_storage.cloud_storage_config_settings_view_form
 msgid "Minimum size for attachments to be stored in the cloud storage"
-msgstr "Minimalna velikost prilog za shranjevanje v oblačnem shranjevanju"
+msgstr ""
 
 #. module: cloud_storage
 #. odoo-python
@@ -127,9 +124,24 @@ msgid "Select the cloud storage provider to store new attachments."
 msgstr "Izberite ponudnika shrambe v oblaku za shranjevanje novih prilog."
 
 #. module: cloud_storage
+#: model:ir.module.module,summary:base.module_cloud_storage
+msgid "Store chatter attachments in the cloud"
+msgstr ""
+
+#. module: cloud_storage
 #: model:ir.model.fields,field_description:cloud_storage.field_ir_attachment__type
 msgid "Type"
 msgstr "Tip"
+
+#. module: cloud_storage
+#: model:ir.model.fields,field_description:cloud_storage.field_res_config_settings__cloud_storage_upload_record_attachments
+msgid "Upload Record Attachments"
+msgstr ""
+
+#. module: cloud_storage
+#: model_terms:ir.ui.view,arch_db:cloud_storage.cloud_storage_config_settings_view_form
+msgid "Upload record attachments to the cloud storage"
+msgstr ""
 
 #. module: cloud_storage
 #. odoo-javascript
@@ -159,12 +171,3 @@ msgstr ""
 "        (v bajtih) kot priloge URL-jev na strežnik in nato naložite datoteko "
 "na\n"
 "        shrambo v oblaku."
-
-#~ msgid "Cloud Storage Settings"
-#~ msgstr "Nastavitve shrambe v oblaku"
-
-#~ msgid ""
-#~ "Minimum size(bytes) for attachments to be stored in the cloud storage"
-#~ msgstr ""
-#~ "Najmanjša velikost (v bajtih) za priloge, ki jih je treba shraniti v "
-#~ "shrambo v oblaku"

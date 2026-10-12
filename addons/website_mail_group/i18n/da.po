@@ -8,31 +8,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-04 18:39+0000\n"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-09-09 14:10+0000\n"
 "Last-Translator: \"Kira Petersen François (peti)\" <peti@odoo.com>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-master/"
 "website_mail_group/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: website_mail_group
 #: model_terms:ir.ui.view,arch_db:website_mail_group.mail_group_view_form
 msgid ""
-"<i class=\"fa fa-fw o_button_icon fa-globe text-success\" title=\"Mail group "
-"accessible on website\"/>"
+"<i class=\"o_button_icon oi oi-fw text-success\" data-icon=\"public\" "
+"title=\"Mail group accessible on website\"/>"
 msgstr ""
-"<i class=\"fa fa-fw o_button_icon fa-globe text-success\" "
+"<i class=\"o_button_icon oi oi-fw text-success\" data-icon=\"public\" "
 "title=\"Distributionsliste tilgængelig på hjemmeside\"/>"
 
 #. module: website_mail_group
 #: model_terms:ir.ui.view,arch_db:website_mail_group.mail_group_view_form
 msgid "<span class=\"o_stat_text\">Go to <br/>Website</span>"
 msgstr "<span class=\"o_stat_text\">Gå til <br/>Hjemmeside</span>"
+
+#. module: website_mail_group
+#: model:ir.module.module,summary:base.module_website_mail_group
+msgid "Add a website snippet for the mail groups."
+msgstr ""
 
 #. module: website_mail_group
 #: model_terms:ir.ui.view,arch_db:website_mail_group.snippets
@@ -53,7 +58,7 @@ msgstr "ID"
 #. odoo-javascript
 #: code:addons/website_mail_group/static/src/website_builder/mail_group_option.xml:0
 msgid "List"
-msgstr "Liste"
+msgstr ""
 
 #. module: website_mail_group
 #: model:ir.model,name:website_mail_group.model_mail_group
@@ -92,6 +97,11 @@ msgstr "Tilmeld"
 #: model_terms:ir.ui.view,arch_db:website_mail_group.s_group
 msgid "Unsubscribe"
 msgstr "Afmeld"
+
+#. module: website_mail_group
+#: model:ir.module.module,shortdesc:base.module_website_mail_group
+msgid "Website Mail Group"
+msgstr ""
 
 #. module: website_mail_group
 #: model_terms:ir.ui.view,arch_db:website_mail_group.s_group

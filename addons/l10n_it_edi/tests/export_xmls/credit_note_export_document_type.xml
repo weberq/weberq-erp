@@ -74,7 +74,7 @@
         <DatiBeniServizi>
             <DettaglioLinee>
                 <NumeroLinea>1</NumeroLinea>
-                <Descrizione>Product A</Descrizione>
+                <Descrizione>product_a Product A</Descrizione>
                 <Quantita>1.00</Quantita>
                 <PrezzoUnitario>-800.40000000</PrezzoUnitario>
                 <PrezzoTotale>-800.40000000</PrezzoTotale>
@@ -93,6 +93,8 @@
                 <ModalitaPagamento>MP05</ModalitaPagamento>
                 <DataScadenzaPagamento>2022-04-01</DataScadenzaPagamento>
                 <ImportoPagamento>800.40</ImportoPagamento>
+                <IstitutoFinanziario>BIG BANK</IstitutoFinanziario>
+                <BIC>BIGGBANQ</BIC>
             </DettaglioPagamento>
         </DatiPagamento>
     </FatturaElettronicaBody>

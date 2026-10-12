@@ -1,5 +1,4 @@
 @mixin o-colorlist($-entry, $-child) {
-    width: var(--ColorListField-width, none);
     padding: var(--ColorListField-padding, 0);
     box-sizing: content-box;
     margin-bottom: var(--ColorListField-marginBottom, 0);
@@ -9,6 +8,9 @@
         --fieldWidget-display: block;
         --ColorListField-Entry-fontSize: 1.4em;
 
+        @include media-breakpoint-up(md) {
+            grid-template-columns: repeat(var(--ColorListField-columns, 12), 1fr);
+        }
         grid-template-columns: repeat(var(--ColorListField-columns, 6), 1fr);
     }
 
@@ -36,8 +38,8 @@
                 justify-content: center;
                 align-items: center;
                 color: var(--color, #{$body-color});
-                font: normal normal normal 1em/1 FontAwesome;
-                content: "\f00c";
+                font: normal normal normal var(--ColorListField-Entry-minWidth, o-to-rem(20px))/1 "Material Symbols Outlined";
+                content: "check";
             }
         }
 
@@ -53,10 +55,6 @@
 
     :not(.o_field_widget) > & {
         justify-content: center;
-    }
-
-    > button {
-        aspect-ratio: 1;
     }
 }
 

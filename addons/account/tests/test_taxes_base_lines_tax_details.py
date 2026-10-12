@@ -6,6 +6,8 @@ from odoo.addons.account.tests.common import TestTaxCommon
 @tagged('post_install', '-at_install')
 class TestTaxesBaseLinesTaxDetails(TestTaxCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -242,6 +244,7 @@ class TestTaxesBaseLinesTaxDetails(TestTaxCommon):
                 'batch': tax_20,
                 'group': AccountTax,
                 'is_reverse_charge': False,
+                'original_price_include': False,
                 'price_include': False,
                 'raw_base_amount': 8000.0,
                 'raw_base_amount_currency': 8000.0,
@@ -277,6 +280,7 @@ class TestTaxesBaseLinesTaxDetails(TestTaxCommon):
                 'base_amount_currency': 9600.0,
                 'group': AccountTax,
                 'is_reverse_charge': False,
+                'original_price_include': False,
                 'batch': tax_18,
                 'price_include': False,
                 'raw_base_amount': 9600.0,

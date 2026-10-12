@@ -1,19 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * pos_mollie
+# 	* pos_mollie
 #
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.2a1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-10 17:36+0000\n"
-"PO-Revision-Date: 2026-09-15 08:33+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-08-31 15:23+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "pos_mollie/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -26,48 +22,61 @@ msgstr ""
 #. module: pos_mollie
 #: model:ir.model.fields,field_description:pos_mollie.field_pos_payment_method__display_name
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "Failed to initiate payment: %s"
-msgstr "Začetek plačila ni uspel: %s"
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "Failed to initiate refund: %s"
-msgstr "Začetek vračila ni uspel: %s"
+msgstr ""
 
 #. module: pos_mollie
 #: model:ir.model.fields,field_description:pos_mollie.field_pos_payment_method__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
+
+#. module: pos_mollie
+#: model:ir.module.module,summary:base.module_pos_mollie
+msgid "Integrate your POS with a Mollie payment terminal"
+msgstr ""
+
+#. module: pos_mollie
+#: model_terms:ir.ui.view,arch_db:pos_mollie.pos_payment_method_view_form_inherit_pos_mollie
+msgid "Mollie"
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "Mollie Error"
-msgstr "Napaka Mollie"
+msgstr ""
 
 #. module: pos_mollie
 #: model:ir.model.fields,field_description:pos_mollie.field_pos_payment_method__mollie_payment_provider_id
 msgid "Mollie Payment Provider"
-msgstr "Ponudnik plačil Mollie"
+msgstr ""
 
 #. module: pos_mollie
 #: model:ir.model.fields,field_description:pos_mollie.field_pos_payment_method__mollie_terminal_id
 msgid "Mollie Terminal ID"
-msgstr "ID terminala Mollie"
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "No internet connection. Waiting for recovery to confirm the payment..."
 msgstr ""
-"Ni internetne povezave. Čakanje na ponovno vzpostavitev povezave za "
-"potrditev plačila..."
+
+#. module: pos_mollie
+#: model:ir.module.module,shortdesc:base.module_pos_mollie
+msgid "POS Mollie"
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-python
@@ -76,27 +85,26 @@ msgid ""
 "Please set the API key on the Mollie payment provider before making a "
 "payment."
 msgstr ""
-"Pred izvedbo plačila nastavite ključ API pri plačilnem ponudniku Mollie."
 
 #. module: pos_mollie
 #: model:ir.model,name:pos_mollie.model_pos_payment_method
-msgid "Point of Sale Payment Methods"
-msgstr "Načini plačila prodajne točke"
+msgid "Point of Sale Payment Method"
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "The payment failed for an unknown reason."
-msgstr "Plačilo ni uspelo iz neznanega razloga."
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "The payment has timed out."
-msgstr "Plačilo je poteklo."
+msgstr ""
 
 #. module: pos_mollie
 #. odoo-javascript
 #: code:addons/pos_mollie/static/src/payment_mollie.js:0
 msgid "You can only refund an order that was paid for with Mollie."
-msgstr "Povračilo lahko izvedete samo za naročilo, ki je bilo plačano z Mollie."
+msgstr ""

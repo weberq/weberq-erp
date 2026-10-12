@@ -4,33 +4,53 @@
 #
 # Translators:
 # Martin Trigaux, 2022
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2023, 2026.
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Vlad Patenko <vlad.patenko@gmail.com>, 2026.
+# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2023
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-10-08 11:33+0000\n"
-"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>\n"
-"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-19/fleet/"
-"uk/>\n"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-08-31 14:48+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-s19-4/"
+"fleet/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 "
-"? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > "
-"14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % "
-"100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "X-Generator: Weblate 2026.8.1\n"
 
 #. module: fleet
+#: model:ir.module.module,description:base.module_fleet
+msgid ""
+"\n"
+"Vehicle, leasing, insurances, cost\n"
+"==================================\n"
+"With this module, Odoo helps you managing all your vehicles, the\n"
+"contracts associated to those vehicle as well as services, costs\n"
+"and many other features necessary to the management of your fleet\n"
+"of vehicle(s)\n"
+"\n"
+"Main Features\n"
+"-------------\n"
+"* Add vehicles to your fleet\n"
+"* Manage contracts for vehicles\n"
+"* Reminder when a contract reach its expiration date\n"
+"* Add services, odometer values for all vehicles\n"
+"* Show all costs associated to a vehicle or to a type of service\n"
+"* Analysis graph for costs\n"
+msgstr ""
+
+#. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_kanban
-msgid "<i class=\"fa fa-map-marker\" title=\"Location\"/>"
-msgstr "<i class=\"fa fa-map-marker\" title=\"Location\"/>"
+msgid "<i class=\"oi\" data-icon=\"location_on\" title=\"Location\"/>"
+msgstr "<i class=\"oi\" data-icon=\"location_on\" title=\"Location\"/>"
 
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_model_view_form
@@ -38,9 +58,11 @@ msgid ""
 "<span class=\"o_stat_value\">New</span>\n"
 "                                <span class=\"o_stat_text\">Vehicle</span>"
 msgstr ""
-"<span class=\"o_stat_value\">Новий</span>\n"
-"                                <span class=\"o_stat_text\">автотранспорт</"
-"span>"
+
+#. module: fleet
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_services_view_kanban
+msgid "<span class=\"text-muted\"> - </span>"
+msgstr ""
 
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.res_config_settings_view_form
@@ -63,19 +85,6 @@ msgid ""
 "A trailer hitch is a device attached to a vehicle's chassis for towing "
 "purposes,             such as pulling trailers, boats, or other vehicles."
 msgstr ""
-"Причіпний пристрій — це пристрій, що кріпиться до шасі транспортного засобу "
-"для буксирування,             наприклад, причепів, човнів або інших "
-"транспортних засобів."
-
-#. module: fleet
-#: model:ir.model.fields,help:fleet.field_fleet_vehicle_model__trailer_hook
-msgid ""
-"A trailer hitch is a device attached to a vehicle's chassis for towing "
-"purposes,            such as pulling trailers, boats, or other vehicles."
-msgstr ""
-"Причіпний пристрій — це пристрій, що кріпиться до шасі транспортного засобу "
-"для буксирування,             наприклад, причепів, човнів або інших "
-"транспортних засобів."
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_1
@@ -135,7 +144,7 @@ msgstr "Дії"
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_search
 msgid "Activities of"
-msgstr "Дії"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__activity_exception_decoration
@@ -144,6 +153,14 @@ msgstr "Дії"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr "Оформлення виключення дії"
+
+#. module: fleet
+#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__activity_plans_ids
+#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contract__activity_plans_ids
+#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services__activity_plans_ids
+#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__activity_plans_ids
+msgid "Activity Plans"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__activity_state
@@ -193,6 +210,14 @@ msgid "Air Filter Replacement"
 msgstr "Заміна фільтру повітря"
 
 #. module: fleet
+#. odoo-javascript
+#: code:addons/fleet/static/src/js/fleet_form.js:0
+msgid ""
+"All services and contracts linked to this vehicle will also be archived.\n"
+"Are you sure you want to proceed?"
+msgstr ""
+
+#. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_search
 msgid "All vehicles"
 msgstr "Всі транспортні засоби"
@@ -200,7 +225,7 @@ msgstr "Всі транспортні засоби"
 #. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_model__drive_type__awd
 msgid "All-Wheel Drive (AWD)"
-msgstr "Повний привід (AWD)"
+msgstr ""
 
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
@@ -213,6 +238,18 @@ msgid "Archive"
 msgstr "Архів"
 
 #. module: fleet
+#. odoo-javascript
+#: code:addons/fleet/static/src/js/fleet_form.js:0
+msgid "Archive Vehicle"
+msgstr ""
+
+#. module: fleet
+#. odoo-javascript
+#: code:addons/fleet/static/src/js/fleet_form.js:0
+msgid "Archive Vehicle & Contracts"
+msgstr ""
+
+#. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_form
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_search
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_services_view_form
@@ -223,11 +260,6 @@ msgstr "Архів"
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_search
 msgid "Archived"
 msgstr "Заархівовано"
-
-#. module: fleet
-#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__next_assignation_date
-msgid "Assignment Date"
-msgstr "Дата призначення"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__log_drivers
@@ -270,9 +302,15 @@ msgid "Automatic"
 msgstr "Автоматичний"
 
 #. module: fleet
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_search
 msgid "Available"
 msgstr "В наявності"
+
+#. module: fleet
+#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__next_assignation_date
+msgid "Available From"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__avatar_1920
@@ -387,7 +425,7 @@ msgstr "Викиди CO2 транспортного засобу"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__co2
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__default_co2
 msgid "CO₂ Emissions"
-msgstr "Викиди CO₂"
+msgstr ""
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_1
@@ -400,17 +438,11 @@ msgid "Can Edit Body"
 msgstr "Можна редагувати тіло"
 
 #. module: fleet
-#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_send_mail_view_form
-msgid "Cancel"
-msgstr "Скасувати"
-
-#. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__write_off_date
 msgid "Cancellation Date"
 msgstr "Дата скасування"
 
 #. module: fleet
-#: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_log_contract__state__closed
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_log_services__state__cancelled
 msgid "Cancelled"
 msgstr "Скасовано"
@@ -432,9 +464,22 @@ msgid "Cars"
 msgstr "Автівки"
 
 #. module: fleet
+#: model:ir.model.fields,field_description:fleet.field_res_partner__partner_cars_count
+#: model:ir.model.fields,field_description:fleet.field_res_users__partner_cars_count
+msgid "Cars Count"
+msgstr ""
+
+#. module: fleet
+#. odoo-python
+#: code:addons/fleet/models/res_partner.py:0
+#: model_terms:ir.ui.view,arch_db:fleet.view_partner_form
+msgid "Cars History"
+msgstr ""
+
+#. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__car_value
-msgid "Catalog Value (VAT Incl.)"
-msgstr "Значення каталогу (з ПДВ)"
+msgid "Catalog Value (Tax Incl.)"
+msgstr ""
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_15
@@ -504,7 +549,13 @@ msgstr ""
 "Виберіть, чи служба стосується контрактів, транспортних засобів або обох"
 
 #. module: fleet
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_form
+msgid "Close"
+msgstr ""
+
+#. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle__contract_state__closed
+#: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_log_contract__state__closed
 msgid "Closed"
 msgstr "Закрито"
 
@@ -512,11 +563,10 @@ msgstr "Закрито"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__co2_emission_unit
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__co2_emission_unit
 msgid "Co2 Emission Unit"
-msgstr "Одиниця вимірювання викидів CO₂"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__color
-#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__color
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_tag__color
 msgid "Color"
 msgstr "Колір"
@@ -529,13 +579,15 @@ msgstr "Колір транспортного засобу"
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_send_mail_view_form
 msgid "Communication about your vehicle."
-msgstr "Комунікація по вашому транспорту."
+msgstr ""
 
 #. module: fleet
+#: model:ir.model.fields,field_description:fleet.field_fleet_service_type__company_id
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__company_id
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_cost_report__company_id
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contract__company_id
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services__company_id
+#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__company_id
 msgid "Company"
 msgstr "Компанія"
 
@@ -549,6 +601,11 @@ msgstr "Налаштування"
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_model_brand_view_kanban
 msgid "Configuration"
 msgstr "Налаштування"
+
+#. module: fleet
+#: model:ir.model,name:fleet.model_res_partner
+msgid "Contact"
+msgstr ""
 
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_model_view_search
@@ -589,6 +646,17 @@ msgid "Contract Start Date"
 msgstr "Початок дії контракту"
 
 #. module: fleet
+#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contract__cost_subtype_id
+msgid "Contract Type"
+msgstr ""
+
+#. module: fleet
+#: model:ir.actions.act_window,name:fleet.fleet_vehicle_contract_types_action
+#: model:ir.ui.menu,name:fleet.fleet_vehicle_contract_types_menu
+msgid "Contract Types"
+msgstr ""
+
+#. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_form
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_tree
 msgid "Contract logs"
@@ -601,6 +669,11 @@ msgid "Contract to Renew"
 msgstr "Контракт до оновлення"
 
 #. module: fleet
+#: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_contract_types_action
+msgid "Contract types define the kinds of vehicle agreements you can track."
+msgstr ""
+
+#. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_kanban
 msgid "Contract(s)"
 msgstr "Контракт(и)"
@@ -608,6 +681,7 @@ msgstr "Контракт(и)"
 #. module: fleet
 #: model:ir.actions.act_window,name:fleet.fleet_vehicle_log_contract_action
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__log_contracts
+#: model:ir.ui.menu,name:fleet.fleet_contracts_configuration
 #: model:ir.ui.menu,name:fleet.fleet_vehicle_log_contract_menu
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
 msgid "Contracts"
@@ -623,6 +697,7 @@ msgstr "Вартість"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_cost_report__cost_type
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_costs_report_view_search
 msgid "Cost Type"
 msgstr "Тип ціни"
 
@@ -657,6 +732,11 @@ msgid "Country Code"
 msgstr "Код країни"
 
 #. module: fleet
+#: model:ir.model,website_form_label:fleet.model_res_partner
+msgid "Create a Customer"
+msgstr ""
+
+#. module: fleet
 #: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_model_category_action
 msgid "Create a new category"
 msgstr "Створити нову категорію"
@@ -685,6 +765,11 @@ msgstr "Створити новий журнал одометра"
 #: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_log_services_action
 msgid "Create a new service entry"
 msgstr "Створити новий запис послуги"
+
+#. module: fleet
+#: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_contract_types_action
+msgid "Create a new type of contract"
+msgstr ""
 
 #. module: fleet
 #: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_service_types_action
@@ -753,9 +838,9 @@ msgstr "Щодня"
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_cost_report__date_start
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contract__date
-#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services__date
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_odometer__date
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_odometer_report__recorded_date
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_services_view_form
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_odometer_report_view_search
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_odometer_view_search
 msgid "Date"
@@ -768,7 +853,7 @@ msgstr "Дата реєстрації автотранспорту"
 
 #. module: fleet
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle_log_contract__date
-#: model:ir.model.fields,help:fleet.field_fleet_vehicle_log_services__date
+#: model:ir.model.fields,help:fleet.field_fleet_vehicle_log_services__date_from
 msgid "Date when the cost has been executed"
 msgstr "Дата, коли вартість була виконана"
 
@@ -808,6 +893,7 @@ msgstr "Амортизація та відсотки"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services__description
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
 msgid "Description"
 msgstr "Опис"
 
@@ -839,11 +925,15 @@ msgstr "Дизель"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_tag__display_name
 #: model:ir.model.fields,field_description:fleet.field_mail_activity_type__display_name
 #: model:ir.model.fields,field_description:fleet.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:fleet.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Назва для відображення"
 
 #. module: fleet
+#: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle__contract_state__done
+#: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_log_contract__state__done
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_log_services__state__done
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_search
 msgid "Done"
 msgstr "Виконано"
 
@@ -860,7 +950,7 @@ msgstr "Зменшено"
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__drive_type
 msgid "Drive Type"
-msgstr "Тип приводу"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__driver_id
@@ -911,13 +1001,6 @@ msgstr ""
 "             (відшкодування, страхування, періодичне обслуговування)."
 
 #. module: fleet
-#: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_service_types_action
-msgid "Each service can used in contracts, as a standalone service or both."
-msgstr ""
-"Кожна послуга може використовуватися в контрактах, як окремий сервіс або "
-"обидва."
-
-#. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle__fuel_type__electric
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_model__default_fuel_type__electric
 msgid "Electric"
@@ -933,7 +1016,7 @@ msgstr "Електрична допомога"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__co2_standard
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__co2_standard
 msgid "Emission Standard"
-msgstr "Стандарти викидів"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle__co2_standard
@@ -941,8 +1024,6 @@ msgid ""
 "Emission Standard specifies the regulatory test procedure             or "
 "guideline under which a vehicle's emissions are measured."
 msgstr ""
-"Стандарт викидів визначає нормативну процедуру випробувань             або "
-"керівні принципи, за якими вимірюються викиди транспортного засобу."
 
 #. module: fleet
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle_model__co2_standard
@@ -950,8 +1031,6 @@ msgid ""
 "Emission Standard specifies the regulatory test procedure or             "
 "guideline under which a vehicle's emissions are measured."
 msgstr ""
-"Стандарт викидів визначає нормативну процедуру випробувань або             "
-"керівні принципи, за якими вимірюються викиди транспортного засобу."
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_16
@@ -980,6 +1059,16 @@ msgid "End Date Contract Alert"
 msgstr "Кінцева дата сповіщення контракту"
 
 #. module: fleet
+#: model:ir.model.constraint,message:fleet.constraint_fleet_vehicle_log_services_check_service_dates
+msgid "End date must be on or after the start date."
+msgstr ""
+
+#. module: fleet
+#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services__date_to
+msgid "End of Service"
+msgstr ""
+
+#. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_model_view_form
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
 msgid "Engine"
@@ -1006,19 +1095,14 @@ msgid "Entry into service tax"
 msgstr "Запис в податок на обслуговування"
 
 #. module: fleet
-#. odoo-javascript
-#: code:addons/fleet/static/src/js/fleet_form.js:0
-msgid ""
-"Every service and contract of this vehicle will be considered as archived. "
-"Are you sure that you want to archive this record?"
-msgstr ""
-"Кожна послуга та договір цього автомобіля будуть вважатися архівними. Ви "
-"впевнені, що хочете заархівувати цей запис?"
-
-#. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_21
 msgid "Exhaust Manifold Replacement"
 msgstr "Заміна вихлопних колекторів"
+
+#. module: fleet
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_search
+msgid "Expiration Date"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle__contract_state__expired
@@ -1043,6 +1127,7 @@ msgid "Fiscality"
 msgstr "Фіскальність"
 
 #. module: fleet
+#: model:ir.module.module,shortdesc:base.module_fleet
 #: model:ir.ui.menu,name:fleet.fleet_vehicle_menu
 #: model:ir.ui.menu,name:fleet.fleet_vehicles
 #: model:ir.ui.menu,name:fleet.menu_root
@@ -1079,7 +1164,7 @@ msgstr "Керівник ремонту"
 #. module: fleet
 #: model:ir.model,name:fleet.model_fleet_vehicle_odometer_report
 msgid "Fleet Odometer Analysis Report"
-msgstr "Звіт про аналіз одометра автотранспорту"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model,name:fleet.model_fleet_service_type
@@ -1113,17 +1198,9 @@ msgid "Followers (Partners)"
 msgstr "Підписники (Партнери)"
 
 #. module: fleet
-#: model:ir.model.fields,help:fleet.field_fleet_vehicle__activity_type_icon
-#: model:ir.model.fields,help:fleet.field_fleet_vehicle_log_contract__activity_type_icon
-#: model:ir.model.fields,help:fleet.field_fleet_vehicle_log_services__activity_type_icon
-#: model:ir.model.fields,help:fleet.field_fleet_vehicle_model__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Іконка з чудовим шрифтом, напр. fa-tasks"
-
-#. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_model__drive_type__4wd
 msgid "Four-Wheel Drive (4WD)"
-msgstr "Повний привід (4WD)"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__frame_size
@@ -1133,7 +1210,7 @@ msgstr "Розмір рамки"
 #. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_model__drive_type__fwd
 msgid "Front-Wheel Drive (FWD)"
-msgstr "Передньопривідний (FWD)"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_cost_report__fuel_type
@@ -1208,7 +1285,7 @@ msgstr "Є повідомлення"
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contract__has_open_contract
 msgid "Has Open Contract"
-msgstr "Є відкритий контракт"
+msgstr ""
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_24
@@ -1245,13 +1322,7 @@ msgstr "Кінські сили"
 #. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_model__power_unit__horsepower
 msgid "Horsepower (hp)"
-msgstr "Кінська сила (hp)"
-
-#. module: fleet
-#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__horsepower_tax
-#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__horsepower_tax
-msgid "Horsepower Taxation"
-msgstr "Оподаткування кінських сил"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle__fuel_type__hydrogen
@@ -1276,6 +1347,7 @@ msgstr "Водень"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_tag__id
 #: model:ir.model.fields,field_description:fleet.field_mail_activity_type__id
 #: model:ir.model.fields,field_description:fleet.field_res_config_settings__id
+#: model:ir.model.fields,field_description:fleet.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -1504,12 +1576,12 @@ msgstr "Шаблон листа"
 #. module: fleet
 #: model:ir.actions.server,name:fleet.action_fleet_vehicle_send_mail
 msgid "Mail to Driver"
-msgstr "Лист водію"
+msgstr ""
 
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
 msgid "Make Vehicle Available"
-msgstr "Надати транспортний засіб"
+msgstr ""
 
 #. module: fleet
 #: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_log_contract_action
@@ -1534,8 +1606,11 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_odometer_reporting_action
 msgid "Manage efficiently your vehicle Odometers with Odoo."
 msgstr ""
-"Ефективно керуйте лічильниками пробігу ваших транспортних засобів за "
-"допомогою Odoo."
+
+#. module: fleet
+#: model:ir.module.module,summary:base.module_fleet
+msgid "Manage your fleet and track car costs"
+msgstr ""
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_10
@@ -1564,6 +1639,19 @@ msgid "Manufacturers"
 msgstr "Виробники"
 
 #. module: fleet
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_form
+msgid "Mark as Done"
+msgstr ""
+
+#. module: fleet
+#: model:ir.model.fields,help:fleet.field_fleet_vehicle__activity_type_icon
+#: model:ir.model.fields,help:fleet.field_fleet_vehicle_log_contract__activity_type_icon
+#: model:ir.model.fields,help:fleet.field_fleet_vehicle_log_services__activity_type_icon
+#: model:ir.model.fields,help:fleet.field_fleet_vehicle_model__activity_type_icon
+msgid "Material Symbols icon e.g. checklist"
+msgstr ""
+
+#. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__message_has_error
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contract__message_has_error
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services__message_has_error
@@ -1582,7 +1670,7 @@ msgstr "Повідомлення"
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_odometer_report__mileage_delta
 msgid "Mileage Delta"
-msgstr "Різниця в пробігу"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__model_id
@@ -1729,14 +1817,9 @@ msgstr "Наступна адреса водія автотранспорту"
 
 #. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_log_contract__cost_frequency__no
+#: model:res.groups.privilege,placeholder:fleet.res_groups_privilege_fleet
 msgid "No"
 msgstr "Ні"
-
-#. module: fleet
-#. odoo-python
-#: code:addons/fleet/models/fleet_vehicle.py:0
-msgid "No Plate"
-msgstr "Немає реєстраційного номеру"
 
 #. module: fleet
 #: model_terms:ir.actions.act_window,help:fleet.fleet_costs_reporting_action
@@ -1746,7 +1829,7 @@ msgstr "Немає даних для аналізу"
 #. module: fleet
 #: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_odometer_reporting_action
 msgid "No data for odometer analysis"
-msgstr "Даних для аналізу одометра немає"
+msgstr ""
 
 #. module: fleet
 #. odoo-python
@@ -1758,11 +1841,6 @@ msgstr "Немає реєстраційного номеру"
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle__service_activity__none
 msgid "None"
 msgstr "Немає"
-
-#. module: fleet
-#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
-msgid "Note"
-msgstr "Примітка"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services__notes
@@ -1782,7 +1860,7 @@ msgstr "Кількість дій"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__doors
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__doors
 msgid "Number of Doors"
-msgstr "Кількість дверей"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle__doors
@@ -1828,7 +1906,7 @@ msgstr "Одометр"
 #. module: fleet
 #: model:ir.actions.act_window,name:fleet.fleet_vehicle_odometer_reporting_action
 msgid "Odometer Analysis"
-msgstr "Аналіз одометра"
+msgstr ""
 
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_odometer_view_form
@@ -1839,7 +1917,7 @@ msgstr "Журнал одометра"
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
 msgid "Odometer Report"
-msgstr "Звіт про пробіг"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__odometer_unit
@@ -1852,11 +1930,6 @@ msgstr "Величина одометра"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_odometer_report__odometer_value
 msgid "Odometer Value"
 msgstr "Значення одометра"
-
-#. module: fleet
-#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_odometer_view_graph
-msgid "Odometer Values Per Vehicle"
-msgstr "Значення одометра кожного транспортного засобу"
 
 #. module: fleet
 #: model:ir.model,name:fleet.model_fleet_vehicle_odometer
@@ -1905,10 +1978,6 @@ msgid ""
 "usually be a placeholder expression that provides the appropriate language, "
 "e.g. {{ object.partner_id.lang }}."
 msgstr ""
-"Опціональна мова перекладу (код ISO), яку слід вибрати під час надсилання "
-"електронного листа. Якщо не вказано, буде використано мову головного "
-"партнера. Зазвичай це має бути замінний вираз, що забезпечує відповідну "
-"мову, наприклад {{ object.partner_id.lang }}."
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_15
@@ -1926,6 +1995,11 @@ msgid "Ordered"
 msgstr "Замовлено"
 
 #. module: fleet
+#: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_model__vehicle_type__other
+msgid "Other"
+msgstr ""
+
+#. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_33
 msgid "Other Maintenance"
 msgstr "Інше технічне обслуговування"
@@ -1941,14 +2015,9 @@ msgid "Oxygen Sensor Replacement"
 msgstr "Заміна датчика кисню"
 
 #. module: fleet
-#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__plan_to_change_bike
-msgid "Plan To Change Bike"
-msgstr "План для зміни велосипеда"
-
-#. module: fleet
-#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__plan_to_change_car
-msgid "Plan To Change Car"
-msgstr "Запланувати змінити авто"
+#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__plan_to_change_vehicle
+msgid "Plan To Change Vehicle"
+msgstr ""
 
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_search
@@ -1987,7 +2056,7 @@ msgstr "Заміна потужності кермового насосу"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__power_unit
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__power_unit
 msgid "Power Unit"
-msgstr "Потужність одиниці"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle__power
@@ -2025,7 +2094,20 @@ msgstr "Діапазон"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__range_unit
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__range_unit
 msgid "Range Unit"
-msgstr "Одиниця виміру"
+msgstr ""
+
+#. module: fleet
+#: model:ir.model.fields,help:fleet.field_fleet_vehicle__vehicle_range
+#: model:ir.model.fields,help:fleet.field_fleet_vehicle_model__vehicle_range
+msgid ""
+"Range represents the maximum distance a vehicle can travel on a full charge "
+"(for EVs) or             a full tank (for fuel-powered vehicles)"
+msgstr ""
+
+#. module: fleet
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_form
+msgid "Reactivate"
+msgstr ""
 
 #. module: fleet
 #: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_action
@@ -2035,7 +2117,7 @@ msgstr "Готові ефективніше керувати своїм авто
 #. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_model__drive_type__rwd
 msgid "Rear-Wheel Drive (RWD)"
-msgstr "Задній привід (RWD)"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contract__cost_generated
@@ -2074,8 +2156,8 @@ msgstr "Модель рендеру"
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_11
-msgid "Rent (Excluding VAT)"
-msgstr "Оренда (без ПДВ)"
+msgid "Rent (Excluding Tax)"
+msgstr ""
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_7
@@ -2109,8 +2191,8 @@ msgstr "Залишкова сума"
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_14
-msgid "Residual value (Excluding VAT)"
-msgstr "Залишкова вартість (без ПДВ)"
+msgid "Residual value (Excluding Tax)"
+msgstr ""
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_18
@@ -2141,6 +2223,12 @@ msgid "Resurface Rotors"
 msgstr "Роторні поверхні"
 
 #. module: fleet
+#. odoo-python
+#: code:addons/fleet/models/fleet_vehicle.py:0
+msgid "Review driver change"
+msgstr ""
+
+#. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_39
 msgid "Rotate Tires"
 msgstr "Обертати шини"
@@ -2165,7 +2253,13 @@ msgstr "Зберегти як новий шаблон"
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__seats
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__seats
 msgid "Seating Capacity"
-msgstr "Кількість місць"
+msgstr ""
+
+#. module: fleet
+#: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle__transmission__semi_automatic
+#: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_model__transmission__semi_automatic
+msgid "Semi-Automatic"
+msgstr ""
 
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_send_mail_view_form
@@ -2181,7 +2275,7 @@ msgstr "Надіслати ел. листа"
 #. module: fleet
 #: model:ir.model,name:fleet.model_fleet_vehicle_send_mail
 msgid "Send mails to Drivers"
-msgstr "Надсилати електронні листи водіям"
+msgstr ""
 
 #. module: fleet
 #: model:fleet.vehicle.tag,name:fleet.vehicle_tag_senior
@@ -2207,15 +2301,24 @@ msgid "Service Activity"
 msgstr "Сервісна діяльність"
 
 #. module: fleet
+#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_cost_report__service_type
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services__service_type_id
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_costs_report_view_search
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_services_view_search
 msgid "Service Type"
 msgstr "Тип послуги"
 
 #. module: fleet
+#: model:ir.actions.act_window,name:fleet.fleet_vehicle_service_types_action
+#: model:ir.ui.menu,name:fleet.fleet_vehicle_service_types_menu
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_service_types_view_tree
 msgid "Service Types"
 msgstr "Типи послуги"
+
+#. module: fleet
+#: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_service_types_action
+msgid "Service types define categories of vehicle maintenance and servicing."
+msgstr ""
 
 #. module: fleet
 #: model:ir.actions.act_window,name:fleet.fleet_vehicle_log_services_action
@@ -2255,7 +2358,7 @@ msgstr "Налаштування"
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_search
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_search
 msgid "Show all records whose next activity date is past"
-msgstr "Показати всі записи, у яких дата наступної дії вже минула"
+msgstr ""
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_6
@@ -2273,14 +2376,6 @@ msgid ""
 "Specifies the total number of doors, including the truck and hatch doors, if "
 "applicable."
 msgstr ""
-"Вказує загальну кількість дверей, включаючи двері вантажного відсіку та "
-"люка, якщо це застосовно."
-
-#. module: fleet
-#. odoo-python
-#: code:addons/fleet/models/fleet_vehicle.py:0
-msgid "Specify the End date of %s"
-msgstr "Визначіть кінцеву дату %s"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services__state
@@ -2289,8 +2384,14 @@ msgstr "Стадія"
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_assignation_log__date_start
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_search
 msgid "Start Date"
 msgstr "Початкова дата"
+
+#. module: fleet
+#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_services__date_from
+msgid "Start of Service"
+msgstr ""
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_42
@@ -2390,18 +2491,28 @@ msgstr ""
 "Ви можете використовувати це поле для швидкого пошуку."
 
 #. module: fleet
+#: model:ir.model.fields,help:fleet.field_fleet_vehicle__next_assignation_date
+msgid ""
+"The date from which this vehicle becomes available for assignment. Leave "
+"empty if it's available immediately."
+msgstr ""
+
+#. module: fleet
 #. odoo-python
 #: code:addons/fleet/wizard/fleet_vehicle_send_mail.py:0
 msgid "The following vehicle drivers are missing an email address: %s."
 msgstr ""
-"У наступних водіїв транспортних засобів відсутня адреса електронної пошти: "
-"%s."
+
+#. module: fleet
+#: model:ir.model.constraint,message:fleet.constraint_fleet_vehicle_unique_license_plate
+msgid "The license plate must be unique"
+msgstr ""
 
 #. module: fleet
 #. odoo-python
 #: code:addons/fleet/models/fleet_vehicle.py:0
 msgid "The odometer value cannot be lower than the previous one."
-msgstr "Значення одометра не може бути нижчим за попереднє."
+msgstr ""
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_43
@@ -2409,20 +2520,10 @@ msgid "Thermostat Replacement"
 msgstr "Заміна термостату"
 
 #. module: fleet
-#: model:ir.model.fields,help:fleet.field_fleet_vehicle__next_assignation_date
-msgid ""
-"This is the date at which the car will be available, if not set it means "
-"available instantly"
-msgstr ""
-"Це дата, коли автомобіль буде доступний, якщо його не встановлено, це "
-"означає, що він доступний миттєво"
-
-#. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
 msgid ""
 "This will allow this vehicle to be selectable for the Salary Configurator"
 msgstr ""
-"Це дозволить вибрати цей транспортний засіб у конфігураторі заробітної плати"
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_44
@@ -2462,8 +2563,8 @@ msgstr "Разом"
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_13
-msgid "Total expenses (Excluding VAT)"
-msgstr "Загальні витрати (без ПДВ)"
+msgid "Total expenses (Excluding Tax)"
+msgstr ""
 
 #. module: fleet
 #: model:fleet.service.type,name:fleet.type_service_service_17
@@ -2483,7 +2584,6 @@ msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle__trailer_hook
-#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__trailer_hook
 msgid "Trailer Hitch"
 msgstr "Трейлерний причіп"
 
@@ -2519,23 +2619,12 @@ msgid "Trapez"
 msgstr "Трапеція"
 
 #. module: fleet
-#: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_log_contract__cost_subtype_id
-msgid "Type"
-msgstr "Тип"
-
-#. module: fleet
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle__activity_exception_decoration
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle_log_contract__activity_exception_decoration
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle_log_services__activity_exception_decoration
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle_model__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr "Тип дії виключення на записі."
-
-#. module: fleet
-#: model:ir.actions.act_window,name:fleet.fleet_vehicle_service_types_action
-#: model:ir.ui.menu,name:fleet.fleet_vehicle_service_types_menu
-msgid "Types"
-msgstr "Типи"
 
 #. module: fleet
 #: model:ir.model.fields,help:fleet.field_fleet_vehicle__vin_sn
@@ -2548,6 +2637,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_odometer__unit
 msgid "Unit"
 msgstr "Одиниці"
+
+#. module: fleet
+#. odoo-python
+#: code:addons/fleet/models/fleet_vehicle.py:0
+msgid "Unnamed Vehicle"
+msgstr ""
+
+#. module: fleet
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
+msgid "Unregistered"
+msgstr ""
 
 #. module: fleet
 #. odoo-python
@@ -2587,11 +2687,6 @@ msgid "Vehicle Description"
 msgstr "Опис транспортного засобу"
 
 #. module: fleet
-#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_model_view_form
-msgid "Vehicle Information"
-msgstr "Інформація транспортного засобу"
-
-#. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_cost_report__name
 msgid "Vehicle Name"
 msgstr "Назва транспортного засобу"
@@ -2599,7 +2694,7 @@ msgstr "Назва транспортного засобу"
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_odometer_report_view_graph
 msgid "Vehicle Odometer Timeline"
-msgstr "Хронологія одометра транспортного засобу"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields,field_description:fleet.field_fleet_vehicle_model__vehicle_properties_definition
@@ -2634,7 +2729,7 @@ msgstr "Тип транспортного засобу"
 #. odoo-python
 #: code:addons/fleet/wizard/fleet_vehicle_send_mail.py:0
 msgid "Vehicle: Mass mail drivers"
-msgstr "Автотранспорт: Водії масової пошти"
+msgstr ""
 
 #. module: fleet
 #. odoo-python
@@ -2684,9 +2779,10 @@ msgstr "Постачальники"
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vechicle_costs_report_view_form
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_log_contract_view_form
+#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_model_view_form
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
 msgid "Visible to all"
-msgstr "Видно всім"
+msgstr ""
 
 #. module: fleet
 #: model:fleet.vehicle.state,name:fleet.fleet_vehicle_state_waiting_list
@@ -2750,8 +2846,10 @@ msgstr "Напишіть тут будь-яку іншу інформацію, �
 
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
-msgid "Write here any other information related to this vehicle"
-msgstr "Напишіть тут будь-яку іншу інформацію щодо цього транспортного засобу"
+msgid ""
+"Write here any other information related to this vehicle to show in salary "
+"configurator"
+msgstr ""
 
 #. module: fleet
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_send_mail_view_form
@@ -2771,7 +2869,8 @@ msgstr "Щорічно"
 #. module: fleet
 #: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_odometer_action
 msgid "You can add various odometer entries for all vehicles."
-msgstr "Ви можете додавати різні записи одометра для всіх транспортних засобів."
+msgstr ""
+"Ви можете додавати різні записи одометра для всіх транспортних засобів."
 
 #. module: fleet
 #: model_terms:ir.actions.act_window,help:fleet.fleet_vehicle_state_action
@@ -2797,7 +2896,6 @@ msgid "e.g. Model S"
 msgstr "наприклад Модель S"
 
 #. module: fleet
-#: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form_quick_create
 msgid "e.g. PAE 326"
 msgstr "наприклад, PAE 326"
@@ -2811,25 +2909,25 @@ msgstr "наприклад, Tesla"
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_model_view_form
 #: model_terms:ir.ui.view,arch_db:fleet.fleet_vehicle_view_form
 msgid "eg. WLTP, Euro 6, or EPA, ..."
-msgstr "наприклад, WLTP, Euro 6 або EPA, ..."
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle__co2_emission_unit__g/km
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_model__co2_emission_unit__g/km
 msgid "g/km"
-msgstr "г/км"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle__co2_emission_unit__g/mi
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_model__co2_emission_unit__g/mi
 msgid "g/mi"
-msgstr "g/mi"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle__power_unit__power
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle_model__power_unit__power
 msgid "kW"
-msgstr "kW"
+msgstr ""
 
 #. module: fleet
 #: model:ir.model.fields.selection,name:fleet.selection__fleet_vehicle__odometer_unit__kilometers
@@ -2860,64 +2958,8 @@ msgstr "показати записи одометру транспортног�
 msgid "show the services logs for this vehicle"
 msgstr "показати журнал обслуговування транспортного засобу"
 
-#~ msgid "<span>g/km</span>"
-#~ msgstr "<span>g/km</span>"
-
-#~ msgid "<span>kW</span>"
-#~ msgstr "<span>kW</span>"
-
-#~ msgid "CO2 Emissions g/km"
-#~ msgstr "Викиди CO2 гр/км"
-
-#~ msgid "Close Contract"
-#~ msgstr "Закрити контракт"
-
-#~ msgid "Co2 Standard"
-#~ msgstr "Стандарт Co2"
-
-#~ msgid "Contact"
-#~ msgstr "Контакт"
-
-#~ msgid "Contains Vehicles"
-#~ msgstr "Містить автотранспорт"
-
-#~ msgid "Date when the vehicle has been immatriculated"
-#~ msgstr "Дата, коли транспортний засіб був нематеріалізований"
-
-#~ msgid "Doors Number"
-#~ msgstr "Кількість дверей"
-
-#~ msgid "Group By"
-#~ msgstr "Групувати за"
-
-#~ msgid "Immatriculation Date"
-#~ msgstr "Дата реєстрації"
-
-#~ msgid "Km"
-#~ msgstr "Км"
-
-#~ msgid "Name of contract to renew soon"
-#~ msgstr "Найближчим часом назвати контракт"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Кількість повідомлень, які потебують дії"
-
-#~ msgid "Reset To Draft"
-#~ msgstr "Зробити чернеткою"
-
-#~ msgid "Seats Number"
-#~ msgstr "Кількість місць"
-
-#~ msgid "Show all records which has next action date is before today"
-#~ msgstr "Показати всі записи, які мають дату наступної дії до сьогоднішньої"
-
-#~ msgid "Start Contract"
-#~ msgstr "Початок договору"
-
-#~ msgid "Total of contracts due or overdue minus one"
-#~ msgstr ""
-#~ "Загальна сума належних або протермінованих контрактів за вирахуванням "
-#~ "одного"
-
-#~ msgid "img"
-#~ msgstr "img"
+#. module: fleet
+#. odoo-python
+#: code:addons/fleet/models/fleet_vehicle.py:0
+msgid "user_id"
+msgstr ""

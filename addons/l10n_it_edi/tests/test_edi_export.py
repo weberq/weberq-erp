@@ -10,6 +10,8 @@ from odoo.addons.l10n_it_edi.tests.common import TestItEdi
 @tagged('post_install_l10n', 'post_install', '-at_install')
 class TestItEdiExport(TestItEdi):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -23,26 +25,22 @@ class TestItEdiExport(TestItEdi):
             'street': 'Via Test PA',
             'zip': '32121',
             'city': 'PA Town',
-            'is_company': True
         })
 
         cls.italian_partner_no_address_codice = cls.env['res.partner'].create({
             'name': 'Alessi',
             'l10n_it_codice_fiscale': '00465840031',
-            'is_company': True,
         })
 
         cls.italian_partner_no_address_VAT = cls.env['res.partner'].create({
             'name': 'Alessi',
             'vat': 'IT00465840031',
-            'is_company': True,
         })
 
         cls.american_partner = cls.env['res.partner'].create({
             'name': 'Alessi',
             'vat': '00465840031',
             'country_id': cls.env.ref('base.us').id,
-            'is_company': True,
         })
 
     def test_vat_not_equals_codice(self):
@@ -300,6 +298,7 @@ class TestItEdiExport(TestItEdi):
             'invoice_date_due': '2022-03-24',
             'partner_id': self.italian_partner_a.id,
             'partner_bank_id': self.test_bank.id,
+            'l10n_it_payment_method': 'MP05',
             'invoice_line_ids': [
                 Command.create({
                     'name': "Product A",
@@ -417,14 +416,14 @@ class TestItEdiExport(TestItEdi):
             'country_id': self.env.ref('base.us').id,
             'zip': '12345',
             'street': '123 Rainbow Road',
-            'is_company': True,
+            'vat': 'OO99999999999',
         })
 
         # =============== create invoices ===============
         usd = self.env.ref('base.USD')
 
         self.env['res.currency.rate'].create({
-            'name': '2024-08-06',
+            'name': '2024-08-05',
             'rate': 1.0789,
             'currency_id': usd.id,
             'company_id': self.company.id,
@@ -503,8 +502,7 @@ class TestItEdiExport(TestItEdi):
 
     @freeze_time("2025-02-03")
     def test_export_invoice_with_two_downpayments(self):
-        if self.env['ir.module.module']._get('sale').state != 'installed':
-            self.skipTest("sale module is not installed")
+        self.ensure_installed('sale')
 
         sale_order = self.env['sale.order'].with_company(self.company).sudo().create({
             'partner_id': self.italian_partner_a.id,
@@ -607,7 +605,6 @@ class TestItEdiExport(TestItEdi):
             'name': 'Alessi',
             'l10n_it_codice_fiscale': 'Mrtmtt91d08f205j',
             'l10n_it_pa_index': 'N8mimm9',
-            'is_company': False,
         })
 
         invoice = self.env['account.move'].with_company(self.company).create({
@@ -731,6 +728,35 @@ class TestItEdiExport(TestItEdi):
         invoice_b.action_post()
         (invoice_b.line_ids + credit_note.line_ids).filtered(lambda line: line.account_type in ('asset_receivable')).reconcile()
         self._assert_export_invoice(credit_note, 'invoice_exclude_postdated_moves.xml')
+
+    def test_export_attachment(self):
+        invoice_a = self.env['account.move'].with_company(self.company).create({
+            'move_type': 'out_invoice',
+            'invoice_date': '2022-03-24',
+            'invoice_date_due': '2022-03-24',
+            'partner_id': self.italian_partner_a.id,
+            'invoice_line_ids': [
+                Command.create({
+                    'name': "Product A",
+                    'price_unit': 800.40,
+                    'tax_ids': [Command.set(self.default_tax.ids)],
+                })
+            ],
+        })
+        invoice_a.action_post()
+        extra_attachment = self.env['ir.attachment'].create({
+            'name': 'goodbye.pdf',
+            'raw': b'i\'ve come to talk with you again',
+        })
+
+        self._assert_export_invoice(invoice_a, 'invoice_with_attachment.xml', pdf_values={
+            'name': 'hello.pdf',
+            'raw': b'hello darkness my old friend',
+        }, extra_attachments=[{
+            'id': extra_attachment.id,
+            'manual': True,
+            'name': extra_attachment.name,
+        }])
 
     def test_export_XML_oss_tax(self):
         be_partner = self.env['res.partner'].create({
@@ -861,7 +887,7 @@ class TestItEdiExport(TestItEdi):
                 self.assertIn('l10n_it_edi_partner_simplified', invoice._l10n_it_edi_export_data_check())
 
                 with self.assertRaises(UserError):
-                    self.env['account.move.send']._generate_and_send_invoices(invoice, sending_methods={'manual'})
+                    self.env['account.move.send']._generate_and_send_invoices(invoice, sending_methods=['manual'])
                 self.assertFalse(invoice.l10n_it_edi_attachment_file)
 
     def test_forced_simplified_uses_simplified_template(self):
@@ -965,12 +991,12 @@ class TestItEdiExport(TestItEdi):
         self.assertIn('l10n_it_edi_partner_vat_codice_fiscale_missing', invoice._l10n_it_edi_export_data_check())
 
         with self.assertRaises(UserError):
-            self.env['account.move.send']._generate_and_send_invoices(invoice, sending_methods={'manual'})
+            self.env['account.move.send']._generate_and_send_invoices(invoice, sending_methods=['manual'])
         self.assertFalse(invoice.l10n_it_edi_attachment_file)
 
     def test_wizard_forced_simplified_success(self):
         """ Test the happy path for the wizard, partner has a VAT number, amount is correct, XML is generated """
         invoice = self._force_simplified(self.italian_partner_a)
         invoice.action_post()
-        self.env['account.move.send']._generate_and_send_invoices(invoice, sending_methods={'manual'}, extra_edis=set())
+        self.env['account.move.send']._generate_and_send_invoices(invoice, sending_methods=['manual'], extra_edis=[])
         self.assertTrue(invoice.l10n_it_edi_attachment_file)

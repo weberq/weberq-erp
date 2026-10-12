@@ -1,10 +1,10 @@
 from odoo import _
 from odoo.exceptions import ValidationError
 
-from odoo.addons.website_sale.controllers import payment
+from odoo.addons.payment.controllers import portal as payment_portal
 
 
-class PaymentPortal(payment.PaymentPortal):
+class PaymentPortal(payment_portal.PaymentPortal):
 
     def _create_transaction(self, *args, **kwargs):
         tx = super()._create_transaction(*args, **kwargs)

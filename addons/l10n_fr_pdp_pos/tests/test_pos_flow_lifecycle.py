@@ -1,4 +1,3 @@
-from contextlib import contextmanager
 from lxml import etree
 from unittest.mock import patch
 
@@ -35,9 +34,9 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
             'l10n_fr_pdp_periodicity': 'normal_monthly',
             'l10n_fr_pdp_send_to_ppf': True,
             'name': 'PDP POS Company',
-            'company_registry': '34057796400024',
             'vat': 'FR23334175221',
         })
+        cls.company.partner_id._set_additional_identifier('FR_SIRET', '34057796400026')
         cls.company.partner_id.write({
             'country_id': cls.env.ref('base.fr').id,
             'street': '1 rue du POS',
@@ -105,25 +104,14 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
         super().setUp()
         self.config = self.basic_config
 
-    @contextmanager
-    def _patch_pos_date(self, date):
-        date = fields.Date.to_date(date)
-        datetime_value = fields.Datetime.to_datetime(f'{date} 12:00:00')
-        with (
-            patch('odoo.fields.Date.context_today', return_value=date),
-            patch('odoo.fields.Date.today', return_value=date),
-            patch('odoo.fields.Datetime.now', return_value=datetime_value),
-        ):
-            yield
-
     def _create_closed_pos_session(self, orders, date='2025-09-03'):
-        with self._patch_pos_date(date):
+        with self.mock_datetime_and_now(date + ' 12:00:00'):
             session = self.open_new_session()
             self.env['pos.order'].sync_from_ui([
                 self.create_ui_order_data(**order_vals)
                 for order_vals in orders
             ])
-            session.action_pos_session_validate()
+            session.close_session_from_ui()
         return session
 
     def _create_pos_order_data(self, lines, payments=None):
@@ -147,7 +135,7 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
 
     def _run_send_cron(self, date, identifier='POS-FLOW-TEST-001'):
         with (
-            patch('odoo.fields.Date.today', return_value=fields.Date.to_date(date)),
+            self.mock_datetime_and_now(fields.Date.to_date(date)),
             patch(
                 'odoo.addons.l10n_fr_pdp.models.pdp_flow.PdpFlow._send_to_proxy',
                 return_value=self._proxy_success_response(identifier),
@@ -158,7 +146,7 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
     def _build_flow_xml(self, flow):
         flow._build_payload()
         self.assertTrue(flow.payload_id)
-        return etree.fromstring(flow.payload_id.raw)
+        return etree.fromstring(flow.payload_id.raw.content)
 
     def _transaction_nodes(self, flow):
         return self._build_flow_xml(flow).findall('./TransactionsReport/Transactions')
@@ -168,16 +156,16 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
             self._create_pos_order_data([(self.pos_product, 1)]),
         ])
 
-        pos_move = session.move_id
-        self.assertTrue(pos_move)
-        self.assertTrue(pos_move._l10n_fr_pdp_reports_pos_is_transaction_entry())
-        self.assertRecordValues(pos_move, [{
-            'move_type': 'entry',
+        pos_moves = session.sale_move_ids
+        self.assertTrue(pos_moves)
+        self.assertTrue(pos_moves._l10n_fr_pdp_reports_pos_is_transaction_entry())
+        self.assertRecordValues(pos_moves, [{
+            'move_type': 'out_invoice',
             'l10n_fr_pdp_flow_10_operation_type': 'sale',
             'l10n_fr_pdp_flow_10_report_type': 'transaction',
             'l10n_fr_pdp_status': 'pending',
         }])
-        self.assertRecordValues(pos_move.l10n_fr_pdp_last_flow_id, [{
+        self.assertRecordValues(pos_moves.l10n_fr_pdp_last_flow_id, [{
             'operation_type': 'sale',
             'report_type': 'transaction',
             'period_start': fields.Date.to_date('2025-09-01'),
@@ -189,7 +177,7 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
             self._create_pos_order_data([(self.pos_product, 1)]),
         ])
 
-        xml = self._build_flow_xml(session.move_id.l10n_fr_pdp_last_flow_id)
+        xml = self._build_flow_xml(session.sale_move_ids.l10n_fr_pdp_last_flow_id)
         self.assertFalse(xml.findall('./TransactionsReport/Invoice'))
         transaction = xml.find('./TransactionsReport/Transactions')
         self.assertEqual(transaction.findtext('CategoryCode'), 'TLB1')
@@ -201,7 +189,7 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
             self._create_pos_order_data([(self.pos_product, 1), (self.pos_service, 1)]),
         ])
 
-        transactions = self._transaction_nodes(session.move_id.l10n_fr_pdp_last_flow_id)
+        transactions = self._transaction_nodes(session.sale_move_ids.l10n_fr_pdp_last_flow_id)
         amounts_by_category = {
             transaction.findtext('CategoryCode'): float(transaction.findtext('TaxExclusiveAmount'))
             for transaction in transactions
@@ -219,8 +207,8 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
             self._create_pos_order_data([(self.pos_product, 2)]),
         ])
 
-        flow = first_session.move_id.l10n_fr_pdp_last_flow_id
-        self.assertEqual(second_session.move_id.l10n_fr_pdp_last_flow_id, flow)
+        flow = first_session.sale_move_ids.l10n_fr_pdp_last_flow_id
+        self.assertEqual(second_session.sale_move_ids.l10n_fr_pdp_last_flow_id, flow)
         transaction = self._transaction_nodes(flow)[0]
         self.assertAlmostEqual(float(transaction.findtext('TaxExclusiveAmount')), 300.0, places=2)
         self.assertAlmostEqual(float(transaction.findtext('TaxTotal')), 60.0, places=2)
@@ -230,7 +218,7 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
             self._create_pos_order_data([(self.pos_product, 1)]),
         ])
 
-        self.assertFalse(session.move_id._l10n_fr_pdp_get_matched_transactions())
+        self.assertFalse(session.sale_move_ids._l10n_fr_pdp_get_matched_transactions())
         payment_flows = self.env['l10n.fr.pdp.reports.flow'].search([
             ('company_id', '=', self.company.id),
             ('operation_type', '=', 'sale'),
@@ -262,13 +250,13 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
             ),
         ])
 
-        transaction_flow = session.move_id.l10n_fr_pdp_last_flow_id
+        transaction_flows = session.sale_move_ids.l10n_fr_pdp_last_flow_id
         self.assertEqual(len(session.order_ids), 5)
-        self.assertEqual(transaction_flow._get_moves(), session.move_id)
+        self.assertEqual(transaction_flows._get_moves(), session.sale_move_ids)
 
         transactions = {
             node.findtext('CategoryCode'): node
-            for node in self._transaction_nodes(transaction_flow)
+            for node in self._transaction_nodes(transaction_flows)
         }
         self.assertEqual(set(transactions), {'TLB1', 'TPS1'})
         self.assertAlmostEqual(float(transactions['TLB1'].findtext('TaxExclusiveAmount')), 400.0, places=2)
@@ -294,7 +282,7 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
         session = self._create_closed_pos_session([
             self._create_pos_order_data([(self.pos_product, 1)]),
         ])
-        flow = session.move_id.l10n_fr_pdp_last_flow_id
+        flow = session.sale_move_ids.l10n_fr_pdp_last_flow_id
 
         self._run_send_cron('2025-09-20', identifier='POS-FLOW-SENT')
 
@@ -303,14 +291,14 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
             'state': 'sent',
         }])
         self.assertTrue(flow.payload_id)
-        self.assertIn(session.move_id, flow.sent_move_ids)
+        self.assertIn(session.sale_move_ids, flow.sent_move_ids)
 
     def test_pos_closing_entry_uses_correct_flow_period(self):
         session = self._create_closed_pos_session([
             self._create_pos_order_data([(self.pos_product, 1)]),
         ], date='2025-09-13')
 
-        self.assertRecordValues(session.move_id.l10n_fr_pdp_last_flow_id, [{
+        self.assertRecordValues(session.sale_move_ids.l10n_fr_pdp_last_flow_id, [{
             'period_start': fields.Date.to_date('2025-09-11'),
             'period_end': fields.Date.to_date('2025-09-20'),
             'due_period_start': fields.Date.to_date('2025-09-30'),
@@ -356,14 +344,15 @@ class TestPdpPosFlowLifecycle(TestPoSCommon):
             'invoice_edi_format': 'ubl_21_fr',
         })
 
-        with self._patch_pos_date('2025-09-03'):
+        with self.mock_datetime_and_now('2025-09-03 12:00:00'):
             session = self.open_new_session()
             order_data = self.create_ui_order_data([(self.pos_product, 1)])
             order_data['partner_id'] = bad_partner.id
             order_data['to_invoice'] = True
             self.env['pos.order'].sync_from_ui([order_data])
-            session.action_pos_session_validate()
+            session.close_session_from_ui()
 
         order = self.env['pos.order'].search([('session_id', '=', session.id)], limit=1)
         self.assertFalse(order.account_move._need_ubl_cii_xml('ubl_21_fr'))
+        self.env['account.move.send']._generate_and_send_invoices(order.account_move, allow_fallback_pdf=True)
         self.assertTrue(order.account_move.invoice_pdf_report_id)

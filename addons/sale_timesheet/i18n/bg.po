@@ -4,7 +4,7 @@
 #
 # Translators:
 # Nikola Iliev, 2023
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2023, 2026.
+# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2023
 # Anton Vassilev, 2023
 # Igor Sheludko <igor.sheludko@gmail.com>, 2023
 # aleksandar ivanov, 2023
@@ -13,23 +13,24 @@
 # Kaloyan Naumov <kaloyan@lumnus.net>, 2023
 # Martin Trigaux, 2023
 # Maria Boyadjieva <marabo2000@gmail.com>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# Odoo Translation Bot <c3p@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-03 02:53+0000\n"
-"Last-Translator: \"Tiffany Chang (tic)\" <tic@odoo.com>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-10-09 17:40+0000\n"
+"PO-Revision-Date: 2026-08-31 19:47+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "sale_timesheet/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: sale_timesheet
 #. odoo-python
@@ -44,14 +45,6 @@ msgid ""
 "                </p>\n"
 "            "
 msgstr ""
-"\n"
-"                <p class=\"o_view_nocontent_smiling_face\">\n"
-"                    Няма намерени дейности. Нека започнем нова!\n"
-"                </p><p>\n"
-"                    Проследявайте работните си часове по проекти всеки ден и "
-"фактурирайте това време на клиентите си.\n"
-"                </p>\n"
-"            "
 
 #. module: sale_timesheet
 #. odoo-python
@@ -70,34 +63,32 @@ msgid ""
 "                </p>\n"
 "            "
 msgstr ""
+
+#. module: sale_timesheet
+#: model:ir.module.module,description:base.module_sale_timesheet
+msgid ""
 "\n"
-"                <p class=\"o_view_nocontent_smiling_face\">\n"
-"                    Записване на работно време\n"
-"                </p><p>\n"
-"                    Можете да регистрирате и проследявате работните си "
-"часове по проект всеки\n"
-"                    ден. Всяко изразходвано време по даден проект ще се "
-"превърне в разход и може да бъде префактурирано на\n"
-"                    клиенти при необходимост.\n"
-"                </p>\n"
-"            "
+"Allows to sell timesheets in your sales order\n"
+"=============================================\n"
+"\n"
+"This module set the right product on all timesheet lines\n"
+"according to the order/contract you work on. This allows to\n"
+"have real delivered quantities in sales orders.\n"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
-#: code:addons/sale_timesheet/models/hr_timesheet.py:0
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
 msgid ""
 "'%(missing_plan_names)s' analytic plan(s) required on the analytic "
 "distribution of the sale order item '%(so_line_name)s' linked to the "
 "timesheet."
 msgstr ""
-"На аналитичното разпределение на реда от поръчката за продажба '%"
-"(so_line_name)s', свързан с графика, се изискват аналитични планове '%"
-"(missing_plan_names)s'."
 
 #. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
-msgid "- Timesheet product"
-msgstr "- Продукт за график"
+#: model:ir.actions.report,print_report_name:sale_timesheet.timesheet_report_account_move
+msgid "('%s Timesheets' % (object.name))"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,job_details:sale_timesheet.job_engineer
@@ -125,7 +116,7 @@ msgstr "12 дни годишно, включвайки <br>6 по ваш изб�
 #: model_terms:hr.job,job_details:sale_timesheet.job_interior_designer
 #: model_terms:hr.job,job_details:sale_timesheet.job_labour
 msgid "2 open days"
-msgstr "2 свободни дни"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,job_details:sale_timesheet.job_engineer
@@ -142,23 +133,21 @@ msgid ""
 "<a href=\"/\" class=\"btn btn-primary o_translate_inline\" "
 "target=\"_blank\"><small><b>READ</b></small></a>"
 msgstr ""
-"<a href=\"/\" class=\"btn btn-primary o_translate_inline\" target=\"_blank\">"
-"<small><b>ПРОЧЕТИ</b></small></a>"
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
 msgid "<b>Daily Cost: </b>"
-msgstr "<b>Дневна стойност: </b>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
 msgid "<b>Unit Price: </b>"
-msgstr "<b>Единична цена: </b>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
 msgid ""
-"<i class=\"fa fa-lightbulb-o\"/>\n"
+"<i class=\"oi\" data-icon=\"lightbulb\"/>\n"
 "                        <span>\n"
 "                            Define the rate at which an employee's time is "
 "billed based on their expertise, skills, or experience.\n"
@@ -166,24 +155,6 @@ msgid ""
 "create separate sales order items.\n"
 "                        </span>"
 msgstr ""
-"<i class=\"fa fa-lightbulb-o\"/>\n"
-"                        <span>\n"
-"                            Определете ставката, по която се таксува времето "
-"на служителя, въз основа на неговия опит, умения или квалификация.\n"
-"                            За да таксувате същата услуга по различна "
-"ставка, създайте отделни редове в поръчката за продажба.\n"
-"                        </span>"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_line_form_inherit
-msgid ""
-"<span class=\"fa fa-exclamation-triangle text-warning\" title=\"The sales "
-"order associated with this timesheet entry has been cancelled.\" "
-"invisible=\"sale_order_state != 'cancel'\"/>"
-msgstr ""
-"<span class=\"fa fa-exclamation-triangle text-warning\" title=\"Поръчката за "
-"продажба, свързана с този запис в графика, е отменена.\" "
-"invisible=\"sale_order_state != 'cancel'\"/>"
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_line_form_inherit
@@ -194,12 +165,20 @@ msgstr "<span class=\"o_stat_text\">Фактура</span>"
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.account_invoice_view_form_inherit_sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.view_order_form_inherit_sale_timesheet
 msgid "<span class=\"o_stat_text\">Recorded</span>"
-msgstr "<span class=\"o_stat_text\">Записани</span>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_line_form_inherit
 msgid "<span class=\"o_stat_text\">Sales Order</span>"
 msgstr "<span class=\"o_stat_text\">Поръчка за продажба</span>"
+
+#. module: sale_timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_line_form_inherit
+msgid ""
+"<span class=\"oi text-warning\" data-icon=\"warning\" title=\"The sales "
+"order associated with this timesheet entry has been cancelled.\" "
+"invisible=\"sale_order_state != 'cancel'\"/>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,job_details:sale_timesheet.job_engineer
@@ -223,39 +202,51 @@ msgid "<span class=\"text-muted small\">Time to Answer</span>"
 msgstr "<span class=\"text-muted small\">Време за отговор</span>"
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
+msgid ""
+"<span class=\"text-muted\">Timesheets without a sales order item are "
+"reported as </span>"
+msgstr ""
+
+#. module: sale_timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.report_timesheet_sale_timesheet
+msgid "<span>Sales Order Item: </span>"
+msgstr ""
+
+#. module: sale_timesheet
+#: model_terms:hr.job,website_rating:sale_timesheet.job_engineer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_labour
 msgid "<strong class=\"s_rating_title\">Administrative Work</strong>"
-msgstr "<strong class=\"s_rating_title\">Административна работа</strong>"
+msgstr ""
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:hr.job,website_rating:sale_timesheet.job_engineer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_labour
 msgid "<strong class=\"s_rating_title\">Autonomy</strong>"
-msgstr "<strong class=\"s_rating_title\">Самостоятелност</strong>"
+msgstr ""
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:hr.job,website_rating:sale_timesheet.job_engineer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_labour
 msgid "<strong class=\"s_rating_title\">Customer Relationship</strong>"
-msgstr "<strong class=\"s_rating_title\">Взаимоотношения с клиенти</strong>"
+msgstr ""
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:hr.job,website_rating:sale_timesheet.job_engineer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_labour
 msgid "<strong class=\"s_rating_title\">Personal Evolution</strong>"
-msgstr "<strong class=\"s_rating_title\">Личностно развитие</strong>"
+msgstr ""
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:hr.job,website_rating:sale_timesheet.job_engineer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_labour
 msgid "<strong class=\"s_rating_title\">Technical Expertise</strong>"
-msgstr "<strong class=\"s_rating_title\">Техническа експертиза</strong>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_task_inherit
@@ -278,9 +269,9 @@ msgid "<strong>Sales Order:</strong>"
 msgstr "<strong>Поръчки за продажба:</strong>"
 
 #. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_timesheet_table_inherit
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_timesheet_table_with_total_inherit
 msgid "<strong>Time Remaining on SO: </strong>"
-msgstr "<strong>Оставащо време по поръчката: </strong>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -298,22 +289,9 @@ msgid ""
 "  - Analytic From expenses: the quantity is the quantity sum from posted "
 "expenses\n"
 "  - Timesheet: the quantity is the sum of hours recorded on tasks linked to "
-"this sale line\n"
+"this line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
 msgstr ""
-"Според конфигурацията на продукта, доставеното количество може да бъде "
-"изчислено автоматично чрез механизъм:\n"
-"  - Ръчно: количеството се задава ръчно на реда\n"
-"  - Аналитично от разходи: количеството е сумата от количествата на "
-"осчетоводените разходи\n"
-"  - Работно време: количеството е сумата от часовете, отчетени по задачите, "
-"свързани с този ред от продажбата\n"
-"  - Складови движения: количеството идва от потвърдените комплектации\n"
-
-#. module: sale_timesheet
-#: model:ir.model,name:sale_timesheet.model_account_move_reversal
-msgid "Account Move Reversal"
-msgstr "Промяна в Движението по Сметката"
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -333,12 +311,12 @@ msgstr "Допълнителни езици"
 #: model:account.analytic.account,name:sale_timesheet.account_analytic_account_project_support
 #: model:project.project,name:sale_timesheet.project_support
 msgid "After-Sales Services"
-msgstr "Следпродажбено обслужване"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_project__allocated_hours
 msgid "Allocated Time"
-msgstr "Разпределено време"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.constraint,message:sale_timesheet.constraint_project_sale_line_employee_map_uniqueness_employee
@@ -346,8 +324,6 @@ msgid ""
 "An employee cannot be selected more than once in the mapping. Please remove "
 "duplicate(s) and try again."
 msgstr ""
-"Един служител не може да бъде избран повече от веднъж в съответствието. "
-"Моля, премахнете дублиранията и опитайте отново."
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_account_analytic_line
@@ -360,41 +336,24 @@ msgid "Analytic lines"
 msgstr "Аналитични Редове"
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:hr.job,description:sale_timesheet.job_engineer
+#: model_terms:hr.job,description:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,description:sale_timesheet.job_labour
 msgid ""
 "As an employee of our company, you will <b>collaborate with each department\n"
-"                        to create and deploy disruptive products.</b> Come "
-"work at a growing company\n"
-"                        that offers great benefits with opportunities to "
-"moving forward and learn\n"
-"                        alongside accomplished leaders. We're seeking an "
-"experienced and outstanding\n"
-"                        member of staff.\n"
-"                        <br><br>\n"
-"                        This position is both <b>creative and rigorous</b> "
-"by nature you need to think\n"
-"                        outside the box. We expect the candidate to be "
-"proactive and have a \"get it done\"\n"
-"                        spirit. To be successful, you will have solid "
-"solving problem skills."
+"to create and deploy disruptive products.</b> Come work at a growing "
+"company\n"
+"that offers great benefits with opportunities to moving forward and learn\n"
+"alongside accomplished leaders. We're seeking an experienced and "
+"outstanding\n"
+"member of staff.\n"
+"<br><br>\n"
+"This position is both <b>creative and rigorous</b> by nature you need to "
+"think\n"
+"outside the box. We expect the candidate to be proactive and have a \"get it "
+"done\"\n"
+"spirit. To be successful, you will have solid solving problem skills."
 msgstr ""
-"Като служител на нашата компания ще <b>си сътрудничите с всеки отдел,\n"
-"                        за да създавате и внедрявате революционни продукти.</"
-"b> Елате да работите в развиваща се компания,\n"
-"                        която предлага страхотни придобивки с възможности за "
-"израстване и учене\n"
-"                        редом с утвърдени лидери. Търсим опитен и "
-"изключителен\n"
-"                        член на екипа.\n"
-"                        <br><br>\n"
-"                        Тази позиция е едновременно <b>творческа и "
-"взискателна</b> по своята същност — трябва да мислите\n"
-"                        нестандартно. Очакваме кандидатът да бъде проактивен "
-"и да има дух на „довеждане на нещата докрай\".\n"
-"                        За да бъдете успешни, ще притежавате солидни умения "
-"за решаване на проблеми."
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -407,55 +366,23 @@ msgstr "Бакалавърска или по-висока степен"
 #. odoo-python
 #: code:addons/sale_timesheet/models/product_template.py:0
 msgid "Based on Timesheets"
-msgstr "Въз основа на работното време"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__allow_billable
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
 msgid "Billable"
-msgstr "Фактурируемо"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__billable_time
 msgid "Billable Time"
-msgstr "Време за фактуриране"
+msgstr ""
 
 #. module: sale_timesheet
-#: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__timesheet_invoice_type
-#: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__timesheet_invoice_type
+#: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__billable_type
 msgid "Billable Type"
-msgstr "Тип фактуриране"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__billable_manual
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__billable_manual
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
-msgid "Billed Manually"
-msgstr "Фактурирано ръчно"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
-msgid "Billed at a Fixed Price"
-msgstr "Фактурирано на фиксирана цена"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__billable_fixed
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__billable_fixed
-msgid "Billed at a Fixed price"
-msgstr "Фактурирано на фиксирана цена"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__billable_milestones
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__billable_milestones
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
-msgid "Billed on Milestones"
-msgstr "Фактурирано по етапи"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__billable_time
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__billable_time
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
-msgid "Billed on Timesheets"
-msgstr "Фактурирано по работно време"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.res_config_settings_view_form
@@ -466,17 +393,17 @@ msgstr "Фактуриране"
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_project__billing_type
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
 msgid "Billing Type"
-msgstr "Тип фактуриране"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.ui.menu,name:sale_timesheet.menu_timesheet_billing_analysis
 msgid "By Billing Type"
-msgstr "По тип фактуриране"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__commercial_partner_id
 msgid "Commercial Partner"
-msgstr "Търговски партньор"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_res_config_settings
@@ -486,7 +413,7 @@ msgstr "Настройки"
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.res_config_settings_view_form
 msgid "Configure your services"
-msgstr "Конфигурирайте вашите услуги"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_sale_line_employee_map__cost
@@ -528,22 +455,17 @@ msgstr "Клиент"
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_service_order_timesheet_product_template
 msgid "Customer Care (Prepaid Hours)"
-msgstr "Обслужване на клиенти (Предплатени часове)"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_kanban_inherit_sale_timesheet
-msgid "Customer Ratings"
-msgstr "Клиентски оценявания"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 msgid "Days Ordered,"
-msgstr "Поръчани дни,"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 msgid "Days Remaining)"
-msgstr "Оставащи дни)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -557,7 +479,9 @@ msgstr "Открийте нашите продукти."
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move_reversal__display_name
+#: model:ir.model.fields,field_description:sale_timesheet.field_account_move_send__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:sale_timesheet.field_hr_employee_departure__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_product__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_template__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_project__display_name
@@ -596,13 +520,6 @@ msgid ""
 "                    sports sessions, team building events, monthly drink, "
 "and much more"
 msgstr ""
-"Всеки служител има възможност да види въздействието на своята работа.\n"
-"                    Можете да допринесете реално за успеха на компанията.\n"
-"                    <br>\n"
-"                    През годината често се организират различни дейности, "
-"като седмични\n"
-"                    спортни занимания, тийм-билдинг събития, месечно питие и "
-"много други"
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -614,7 +531,7 @@ msgstr "Яжте &amp; пийте"
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_product_elevator_installation_product_template
 msgid "Elevator Installation"
-msgstr "Монтаж на асансьор"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_hr_employee
@@ -623,9 +540,14 @@ msgid "Employee"
 msgstr "Служител"
 
 #. module: sale_timesheet
+#: model:ir.model,name:sale_timesheet.model_hr_employee_departure
+msgid "Employee Departure"
+msgstr ""
+
+#. module: sale_timesheet
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__project_project__pricing_type__employee_rate
 msgid "Employee rate"
-msgstr "Ставка по служител"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_sale_advance_payment_inv__date_end_invoice_timesheet
@@ -649,7 +571,7 @@ msgstr "Опит в писането на онлайн съдържание"
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.product_template_view_search_sale_timesheet
 msgid "Fixed price services"
-msgstr "Услуги с фиксирана цена"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -661,7 +583,7 @@ msgstr "Плодове, кафе и<br>осигурени закуски."
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_service_deliver_manual_product_template
 msgid "Furniture Delivery (Manual)"
-msgstr "Доставка на мебели (Ръчно)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -680,12 +602,12 @@ msgstr "Страхотен екип от умни хора, в приятелс�
 #. module: sale_timesheet
 #: model:hr.job,name:sale_timesheet.job_labour
 msgid "Handyman"
-msgstr "Майстор за всичко"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__has_multi_sol
 msgid "Has Multi Sol"
-msgstr "Има няколко реда от продажба"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -697,24 +619,26 @@ msgstr "Силно креативен и автономен"
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_sale_line_employee_map__display_cost
 msgid "Hourly Cost"
-msgstr "Часова себестойност"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 msgid "Hours Ordered,"
-msgstr "Поръчани часове,"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 msgid "Hours Remaining)"
-msgstr "Оставащи часове)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move_line__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move_reversal__id
+#: model:ir.model.fields,field_description:sale_timesheet.field_account_move_send__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_hr_employee__id
+#: model:ir.model.fields,field_description:sale_timesheet.field_hr_employee_departure__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_product__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_template__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_project__id
@@ -732,41 +656,39 @@ msgstr "ID"
 #. module: sale_timesheet
 #: model:hr.job,name:sale_timesheet.job_interior_designer
 msgid "Interior Designer"
-msgstr "Интериорен дизайнер"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_product_interior_designing_product_template
 msgid "Interior Designing"
-msgstr "Интериорен дизайн"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/controllers/portal.py:0
-#: code:addons/sale_timesheet/models/hr_timesheet.py:0
-#: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__timesheet_invoice_id
-#: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__timesheet_invoice_id
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+#: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__reinvoice_move_id
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.report_timesheet_account_move
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
 msgid "Invoice"
 msgstr "Фактура"
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_res_config_settings__invoice_policy
 msgid "Invoice Policy"
-msgstr "Политика на фактуриране"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/models/product_template.py:0
 msgid "Invoice based on timesheets (delivered quantity)."
-msgstr "Фактуриране въз основа на графици (доставено количество)."
+msgstr ""
 
 #. module: sale_timesheet
-#: model:ir.model.fields,help:sale_timesheet.field_account_analytic_line__timesheet_invoice_id
-#: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__timesheet_invoice_id
+#: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__reinvoice_move_id
 msgid "Invoice created from the timesheet"
-msgstr "Фактура, създадена от работното време"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
@@ -782,17 +704,22 @@ msgstr "Счетоводно отчитане"
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__is_project_map_empty
 msgid "Is Project map empty"
-msgstr "Празно ли е съответствието на проекта"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__is_so_line_edited
 msgid "Is Sales Order Item Manually Edited"
-msgstr "Артикулът от продажбената поръчка ръчно редактиран ли е"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_account_move
 msgid "Journal Entry"
 msgstr "Записи в Дневника"
+
+#. module: sale_timesheet
+#: model:ir.model,name:sale_timesheet.model_account_move_reversal
+msgid "Journal Entry Reversal"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_account_move_line
@@ -802,17 +729,17 @@ msgstr "Счетоводна Операция"
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_service_deliver_timesheet_2_product_template
 msgid "Junior Architect (Invoice on Timesheets)"
-msgstr "Младши архитект (Фактуриране по работно време)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_service_deliver_milestones_product_template
 msgid "Kitchen Assembly (Milestones)"
-msgstr "Монтаж на кухня (Етапи)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__last_sol_of_customer
 msgid "Last Sol Of Customer"
-msgstr "Последен ред от поръчка на клиента"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_sale_line_employee_map__write_uid
@@ -842,11 +769,6 @@ msgid ""
 "Create a task and track hours: Create a task on the sales order validation "
 "and track the work hours."
 msgstr ""
-"Ръчно зададени количества по поръчка: Фактура въз основа на ръчно въведеното "
-"количество, без създаване на аналитична сметка. Работни часове по договор: "
-"Фактура въз основа на отчетените часове в съответния работен график. "
-"Създаване на задача и отчитане на часовете: Създаване на задача при "
-"потвърждаване на поръчката за продажба и отчитане на работните часове."
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__margin
@@ -861,20 +783,19 @@ msgid "Master demos of our software"
 msgstr "Магистърски демонстрации на нашия софтуер"
 
 #. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "Materials"
-msgstr "Материaли"
-
-#. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_sale_order_line__qty_delivered_method
 msgid "Method to update delivered qty"
-msgstr "Метод за актуализиране на доставеното количество"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.product_template_view_search_sale_timesheet
 msgid "Milestone services"
-msgstr "Услуги по етапи"
+msgstr ""
+
+#. module: sale_timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_line_search
+msgid "Mine"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -910,7 +831,7 @@ msgstr "Не са намерени дейности"
 #. module: sale_timesheet
 #: model_terms:ir.actions.act_window,help:sale_timesheet.timesheet_action_from_sales_order_item
 msgid "No activities found. Let's start a new one!"
-msgstr "Няма намерени дейности. Нека започнем нова!"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.actions.act_window,help:sale_timesheet.timesheet_action_billing_report
@@ -936,11 +857,9 @@ msgstr ""
 "Без загуба на време в корпоративни процеси, реални отговорности и автономност"
 
 #. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__non_billable
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__non_billable
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
 msgid "Non-Billable"
-msgstr "Нефактурируемо"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_line_form_inherit
@@ -952,32 +871,39 @@ msgstr "Нефактурируемо"
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheets_analysis_report_list_inherited
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.view_calendar_account_analytic_line_multi_create
 msgid "Non-billable"
-msgstr "Нефактурируемо"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__non_billable_time
 msgid "Non-billable Time"
-msgstr "Нефактурируемо време"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 msgid "Not Billed"
-msgstr "Не е фактурирано"
+msgstr ""
+
+#. module: sale_timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.view_product_timesheet_form
+msgid ""
+"Notify the salesperson about an upsell opportunity when completed work "
+"exceeds"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__timesheet_revenues
 msgid "Number of hours spent multiplied by the unit price per hour/day."
-msgstr "Брой изразходвани часове, умножен по единичната цена на час/ден."
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__billable_time
 msgid "Number of hours/days linked to a SOL."
-msgstr "Брой часове/дни, свързани с ред от продажбена поръчка."
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__non_billable_time
 msgid "Number of hours/days not linked to a SOL."
-msgstr "Брой часове/дни, несвързани с ред от продажбена поръчка."
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_sale_advance_payment_inv__date_end_invoice_timesheet
@@ -989,27 +915,11 @@ msgid ""
 "yet invoiced (and validated, if applicable) will be invoiced without "
 "distinction."
 msgstr ""
-"Ще бъдат фактурирани само работните часове от този период, които все още не "
-"са фактурирани (и валидирани, ако е приложимо). Ако периодът не е посочен, "
-"всички все още нефактурирани (и валидирани, ако е приложимо) работни часове "
-"ще бъдат фактурирани без разграничение."
 
 #. module: sale_timesheet
-#: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__order_id
-msgid "Order Reference"
-msgstr "Референция за поръчка"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__other_costs
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__other_costs
-msgid "Other costs"
-msgstr "Други разходи"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__other_revenues
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__other_revenues
-msgid "Other revenues"
-msgstr "Други приходи"
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
+msgid "Order"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1032,9 +942,6 @@ msgid ""
 "Percentage of time delivered compared to the prepaid amount that must be "
 "reached for the upselling opportunity activity to be triggered."
 msgstr ""
-"Процент от доставеното време спрямо предплатената сума, който трябва да бъде "
-"достигнат, за да се задейства дейността за възможност за допълнителна "
-"продажба."
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1065,6 +972,7 @@ msgstr "Ценообразуване"
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_product_template
+#: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__product_id
 msgid "Product"
 msgstr "Продукт"
 
@@ -1084,7 +992,7 @@ msgstr "Проект"
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_project_sale_line_employee_map
 msgid "Project Sales line, employee mapping"
-msgstr "Съответствие на ред от продажба по проект и служител"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_product__project_template_id
@@ -1095,7 +1003,7 @@ msgstr "Проектен шаблон"
 #. module: sale_timesheet
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__project_project__pricing_type__fixed_rate
 msgid "Project rate"
-msgstr "Ставка по проект"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1121,7 +1029,7 @@ msgstr "Реални отговорности и предизвикателст�
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__remaining_hours_available
 #: model:ir.model.fields,field_description:sale_timesheet.field_sale_order_line__remaining_hours_available
 msgid "Remaining Hours Available"
-msgstr "Налични оставащи часове"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1135,18 +1043,11 @@ msgstr "Задължения"
 msgid ""
 "Review your timesheets by billing type and make sure your time is billable."
 msgstr ""
-"Прегледайте работното си време по тип фактуриране и се уверете, че времето "
-"ви е фактурируемо."
 
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_product_roofing_product_template
 msgid "Roofing"
-msgstr "Покривни работи"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
-msgid "S0001"
-msgstr "S0001"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_sale_advance_payment_inv
@@ -1156,7 +1057,7 @@ msgstr "Фактура за продажби с авансово плащане"
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/controllers/portal.py:0
-#: code:addons/sale_timesheet/models/hr_timesheet.py:0
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
 #: model:ir.model,name:sale_timesheet.model_sale_order
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__sale_order_id
 #: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__order_id
@@ -1174,9 +1075,10 @@ msgstr "Поръчка"
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_timesheet_table_inherit
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.report_timesheet_sale_order
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.report_timesheet_sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
 msgid "Sales Order Item"
-msgstr "Артикул от продажбена поръчка"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_sale_order_line
@@ -1184,9 +1086,14 @@ msgid "Sales Order Line"
 msgstr "Ред на поръчка за продажби"
 
 #. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_kanban_inherit_sale_timesheet_so_button
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_card_inherit_sale_timesheet_so_button
 msgid "Sales Orders"
 msgstr "Поръчки за продажби"
+
+#. module: sale_timesheet
+#: model:ir.module.module,shortdesc:base.module_sale_timesheet
+msgid "Sales Timesheet"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_project_project__sale_line_employee_ids
@@ -1203,19 +1110,6 @@ msgid ""
 "timesheets on this project specifically. It will bypass the timesheet cost "
 "set on the employee."
 msgstr ""
-"Артикул от продажбената поръчка, който ще бъде избран по подразбиране в "
-"работното време на съответния служител. Той заобикаля артикула от "
-"продажбената поръчка, дефиниран в проекта и задачата, и може да бъде "
-"променян във всеки запис за работно време при необходимост. С други думи, "
-"той определя ставката, по която се фактурира времето на служителя, въз "
-"основа на неговата експертиза, умения или опит, например.\n"
-"Ако желаете да фактурирате същата услуга по различна ставка, трябва да "
-"създадете два отделни артикула от продажбената поръчка, тъй като всеки "
-"артикул от продажбената поръчка може да има само една единична цена в даден "
-"момент.\n"
-"Можете също така да дефинирате часовата фирмена себестойност на вашите "
-"служители за тяхното работно време специално по този проект. Тя ще заобиколи "
-"себестойността на работното време, зададена на служителя."
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_account_analytic_line__so_line
@@ -1224,27 +1118,28 @@ msgid ""
 "invoiced to your customer. Remove the sales order item for the timesheet "
 "entry to be non-billable."
 msgstr ""
-"Артикул от продажбената поръчка, към който ще бъде добавено изразходваното "
-"време, за да бъде фактурирано на вашия клиент. Премахнете артикула от "
-"продажбената поръчка, за да не бъде фактуриран вписаният в табела за "
-"отчитане на работното време."
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_project_task__sale_order_id
 msgid "Sales order to which the task is linked."
-msgstr "Поръчка за продажба, с която е свързана задачата."
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/controllers/portal.py:0
 msgid "Search in Invoice"
-msgstr "Търсене във фактура"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/controllers/portal.py:0
 msgid "Search in Sales Order Item"
-msgstr "Търсене в артикул от продажбена поръчка"
+msgstr ""
+
+#. module: sale_timesheet
+#: model:ir.module.module,summary:base.module_sale_timesheet
+msgid "Sell based on timesheets"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.res_config_settings_view_form
@@ -1254,18 +1149,12 @@ msgstr "Прекарано време  в продажби и фактури"
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_service_deliver_timesheet_1_product_template
 msgid "Senior Architect (Invoice on Timesheets)"
-msgstr "Старши архитект (Фактуриране по работно време)"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__service_revenues
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__service_revenues
-msgid "Service Revenues"
-msgstr "Приходи от услуги"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.time_product_product_template
 msgid "Service on Timesheets"
-msgstr "Услуга по работно време"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_project_project__timesheet_product_id
@@ -1275,9 +1164,6 @@ msgid ""
 "task. It can be modified on each task individually by selecting a specific "
 "sales order item."
 msgstr ""
-"Услуга, която ще се използва по подразбиране при фактуриране на времето, "
-"изразходвано по дадена задача. Тя може да бъде променена за всяка задача "
-"поотделно, като се избере конкретен артикул от продажбената поръчка."
 
 #. module: sale_timesheet
 #: model:ir.actions.act_window,name:sale_timesheet.product_template_action_default_services
@@ -1286,14 +1172,19 @@ msgid "Services"
 msgstr "Услуги"
 
 #. module: sale_timesheet
+#: model:ir.model,name:sale_timesheet.model_account_move_send
+msgid "Shared Send Invoice Wizard Functions"
+msgstr ""
+
+#. module: sale_timesheet
 #: model:hr.job,name:sale_timesheet.job_engineer
 msgid "Site Manager"
-msgstr "Ръководител на обект"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_product_solar_installation_product_template
 msgid "Solar Panel Installation"
-msgstr "Монтаж на соларни панели"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1327,7 +1218,7 @@ msgstr "Задача"
 #. module: sale_timesheet
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__project_project__pricing_type__task_rate
 msgid "Task rate"
-msgstr "Ставка по задача"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_report_project_task_user
@@ -1342,15 +1233,12 @@ msgid ""
 "The %s product is required by the Timesheets app and cannot be archived, "
 "deleted nor linked to a company."
 msgstr ""
-"Продуктът %s е необходим за приложението Графици и не може да бъде "
-"архивиран, изтрит или свързан с компания."
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/models/sale_order.py:0
 msgid "The Sales Order must contain at least one service product."
 msgstr ""
-"Поръчката за продажба трябва да съдържа поне един продукт от тип услуга."
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_project_project__pricing_type
@@ -1364,13 +1252,6 @@ msgid ""
 "senior consultants would deliver the same service (= consultancy), but at a "
 "different rate because of their level of seniority."
 msgstr ""
-"Ставката по задача е идеална, ако желаете да фактурирате различни услуги на "
-"различни клиенти по различни ставки. Фиксираната ставка е идеална, ако "
-"фактурирате услуга по фиксирана ставка на отработен час или ден, независимо "
-"от служителя, който я е извършил. Ставката по служител е за предпочитане, "
-"ако вашите служители предоставят една и съща услуга по различна ставка. "
-"Например, младши и старши консултанти биха предоставили една и съща услуга "
-"(= консултации), но по различна ставка поради нивото си на старшинство."
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_project_sale_line_employee_map__cost
@@ -1378,32 +1259,25 @@ msgid ""
 "This cost overrides the employee's default employee hourly wage in "
 "employee's HR Settings"
 msgstr ""
-"Тази себестойност заменя стандартното часово възнаграждение на служителя в "
-"HR настройките на служителя"
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "This project is current linked to timesheet."
-msgstr "Този проект в момента е свързан с график."
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_product__service_upsell_threshold
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_template__service_upsell_threshold
 msgid "Threshold"
-msgstr "Праг"
+msgstr ""
 
 #. module: sale_timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.res_config_settings_view_form
 msgid "Time Billing"
-msgstr "Фактуриране на време"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__remaining_hours_so
 #: model:ir.model.fields,field_description:sale_timesheet.field_report_project_task_user__remaining_hours_so
 #: model:ir.model.fields,field_description:sale_timesheet.field_sale_order_line__remaining_hours
 msgid "Time Remaining on SO"
-msgstr "Оставащо време по поръчката"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.view_hr_timesheet_line_graph_employee_per_date
@@ -1414,7 +1288,7 @@ msgstr "Изразходвано време"
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.product_template_view_search_sale_timesheet
 msgid "Time-based services"
-msgstr "Услуги, базирани на време"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.actions.act_window,name:sale_timesheet.timesheet_action_from_plan
@@ -1434,31 +1308,29 @@ msgstr "Дейности в график"
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.view_hr_timesheet_line_graph_employee_per_date
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.view_hr_timesheet_line_pivot_billing_rate
 msgid "Timesheet Costs"
-msgstr "Разходи за работно време"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_project__timesheet_product_id
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__timesheet_product_id
 msgid "Timesheet Product"
-msgstr "Продукт за работно време"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_report_search_sale_timesheet
 msgid "Timesheet Report"
-msgstr "Справка за графиците"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__timesheet_revenues
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__timesheet_revenues
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__timesheet_revenues
 msgid "Timesheet Revenues"
-msgstr "Приходи от работно време"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_bank_statement_line__timesheet_total_duration
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move__timesheet_total_duration
 msgid "Timesheet Total Duration"
-msgstr "Обща продължителност на работното време"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
@@ -1469,6 +1341,7 @@ msgstr "Обща продължителност на работното врем
 #: model:ir.actions.report,name:sale_timesheet.timesheet_report_account_move
 #: model:ir.actions.report,name:sale_timesheet.timesheet_report_sale_order
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__sale_order_line__qty_delivered_method__timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheets_analysis_report_graph_invoice_type
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.view_hr_timesheet_line_pivot_billing_rate
 msgid "Timesheets"
@@ -1476,95 +1349,79 @@ msgstr "Графици"
 
 #. module: sale_timesheet
 #. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "Timesheets (Billed Manually)"
-msgstr "Работно време (Фактурирано ръчно)"
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "Timesheets (Billed on Milestones)"
-msgstr "Работно време (Фактурирано по етапи)"
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "Timesheets (Billed on Timesheets)"
-msgstr "Работно време (Фактурирано по работно време)"
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
 msgid "Timesheets (Fixed Price)"
-msgstr "Работно време (Фиксирана цена)"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+msgid "Timesheets (Manual)"
+msgstr ""
+
+#. module: sale_timesheet
+#. odoo-python
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+msgid "Timesheets (Milestones)"
+msgstr ""
+
+#. module: sale_timesheet
+#. odoo-python
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
 msgid "Timesheets (Non-Billable)"
-msgstr "Графици (нефактурируеми)"
+msgstr ""
+
+#. module: sale_timesheet
+#. odoo-python
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+msgid "Timesheets (Time & Materials)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheets_analysis_report_pivot_invoice_type
 msgid "Timesheets Analysis"
-msgstr "Анализ на графиците"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_timesheets_analysis_report
 msgid "Timesheets Analysis Report"
-msgstr "Справка за анализ на графиците"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.sale_advance_payment_inv_timesheet_view_form
 msgid "Timesheets Period"
-msgstr "Период на графиците"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.actions.act_window,name:sale_timesheet.timesheet_action_billing_report
 msgid "Timesheets by Billing Type"
-msgstr "Графици по тип фактуриране"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
-msgid "Timesheets for the"
-msgstr "Графици за"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/models/project_project.py:0
 msgid "Timesheets of %s"
-msgstr "Графици на %s"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__product_template__service_type__timesheet
 msgid "Timesheets on project (one fare per SO/Project)"
-msgstr "Графици по проект (една тарифа за поръчка/проект)"
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "Timesheets revenues"
-msgstr "Приходи от графици"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__margin
 msgid "Timesheets revenues minus the costs"
-msgstr "Приходи от графици минус разходите"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.res_config_settings_view_form
 msgid "Timesheets taken into account when invoicing your time"
-msgstr "Графици, взети предвид при фактуриране на времето ви"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_res_config_settings__invoice_policy
 msgid "Timesheets taken when invoicing time spent"
-msgstr "Графици, взети предвид при фактуриране на отработеното време"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
-msgid "Timesheets without a sales order item are reported as"
-msgstr "Графиците без ред от поръчка за продажба се отчитат като"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheets_analysis_report_list_inherited
@@ -1579,8 +1436,6 @@ msgid ""
 "Total recorded duration, expressed in the encoding UoM, and rounded to the "
 "unit"
 msgstr ""
-"Обща записана продължителност, изразена в мерната единица за въвеждане и "
-"закръглена до единица"
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_product__service_type
@@ -1595,8 +1450,6 @@ msgid ""
 "Track your working hours by projects every day and invoice this time to your "
 "customers."
 msgstr ""
-"Проследявайте работните си часове по проекти всеки ден и фактурирайте това "
-"време на клиентите си."
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1625,17 +1478,6 @@ msgid ""
 "        Make sure to use the right format and order e.g. Improve the "
 "configuration screen 5h #feature #v16 @Mitchell !"
 msgstr ""
-"Използвайте тези ключови думи в заглавието, за да задавате нови задачи:\n"
-"\n"
-"        30h Заделя 30 часа за задачата\n"
-"        #tags Задава етикети на задачата\n"
-"        @user Възлага задачата на потребител\n"
-"        ! Задава на задачата среден приоритет\n"
-"        !! Задава на задачата висок приоритет\n"
-"        !!! Задава на задачата спешен приоритет\n"
-"\n"
-"        Уверете се, че използвате правилния формат и ред, напр. Подобри "
-"екрана за конфигурация 5h #feature #v16 @Mitchell !"
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1647,20 +1489,13 @@ msgstr "Валидно разрешение за работа за Белгия"
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_invoice_page_inherit
 msgid "View Timesheet"
-msgstr "Преглед на график"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_invoice_page_inherit
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.sale_order_portal_content_inherit
 msgid "View Timesheets"
-msgstr "Преглед на графиците"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.view_product_timesheet_form
-msgid "Warn the salesperson for an upsell when work done exceeds"
 msgstr ""
-"Предупреди търговеца за допълнителна продажба, когато извършената работа "
-"надхвърли"
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1683,8 +1518,6 @@ msgid ""
 "You cannot link a billable project to a sales order item that comes from an "
 "expense or a vendor bill."
 msgstr ""
-"Не можете да свържете фактуриращ проект с ред от поръчка за продажба, който "
-"идва от разход или фактура от доставчик."
 
 #. module: sale_timesheet
 #. odoo-python
@@ -1693,140 +1526,42 @@ msgid ""
 "You cannot link a billable project to a sales order item that is not a "
 "service."
 msgstr ""
-"Не можете да свържете фактуриращ проект с ред от поръчка за продажба, който "
-"не е услуга."
 
 #. module: sale_timesheet
 #. odoo-python
-#: code:addons/sale_timesheet/models/hr_timesheet.py:0
-msgid "You cannot modify timesheets that are already invoiced."
-msgstr "Не можете да променяте графици, които вече са фактурирани."
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+msgid "You cannot modify timsheets that are already invoiced."
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
-#: code:addons/sale_timesheet/models/hr_timesheet.py:0
-msgid "You cannot remove a timesheet that has already been invoiced."
-msgstr "Не можете да премахнете график, който вече е фактуриран."
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+msgid "You cannot remove timsheets that are already invoiced."
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__project_project__billing_type__manually
 msgid "billed manually"
-msgstr "фактурира се ръчно"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/models/sale_order_line.py:0
 msgid "days remaining"
-msgstr "оставащи дни"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__project_project__billing_type__not_billable
 msgid "not billable"
-msgstr "не е фактурируемо"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.view_product_timesheet_form
-msgid "of hours sold."
-msgstr "от продадените часове."
+msgid "of the hours sold."
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/models/account_move.py:0
 msgid "project_id"
-msgstr "project_id"
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/sale_order_line.py:0
-msgid "remaining"
-msgstr "оставащи"
-
-#~ msgid "About us"
-#~ msgstr "За нас"
-
-#~ msgid "Commercial Entity"
-#~ msgstr "Търговски обект"
-
-#~ msgid "Company"
-#~ msgstr "Фирма"
-
-#~ msgid "Create Invoice"
-#~ msgstr "Създайте фактура"
-
-#~ msgid ""
-#~ "Great quotation templates will significantly\n"
-#~ "                                <strong>boost your success rate</strong>. "
-#~ "The\n"
-#~ "                                first section is usually about your "
-#~ "company,\n"
-#~ "                                your references, your methodology or\n"
-#~ "                                guarantees, your team, SLA, terms and "
-#~ "conditions, etc."
-#~ msgstr ""
-#~ "Страхотните шаблони за оферти значително ще\n"
-#~ "                                <strong>подпомогнат ръста на успеха Ви</"
-#~ "strong>.\n"
-#~ "                                Първата секция обикновено е за Вашата "
-#~ "компания,\n"
-#~ "                                Вашите референции, Вашата методология "
-#~ "или\n"
-#~ "                                гаранции, Вашият екип, Споразумение за "
-#~ "нивото на обслужване - SLA, срокове и условия т.н."
-
-#~ msgid "Lines"
-#~ msgstr "Линии"
-
-#~ msgid "Our Offer"
-#~ msgstr "Нашето предложение"
-
-#~ msgid "Our Quality"
-#~ msgstr "Нашето качество"
-
-#~ msgid "Our Service"
-#~ msgstr "Нашата услуга"
-
-#~ msgid "Price"
-#~ msgstr "Цена"
-
-#~ msgid "Remaining"
-#~ msgstr "Оставащи"
-
-#~ msgid "Service"
-#~ msgstr "Обслужване"
-
-#~ msgid "Tasks"
-#~ msgstr "Задачи"
-
-#~ msgid "Timesheet activities"
-#~ msgstr "Дейности в графика"
-
-#~ msgid "Total:"
-#~ msgstr "Общо:"
-
-#~ msgid "Wizard"
-#~ msgstr "Помощник"
-
-#~ msgid ""
-#~ "You can <strong>set a description per product</strong>. Odoo will\n"
-#~ "                        automatically create a quotation using the "
-#~ "descriptions\n"
-#~ "                        of all products in the proposal. The table of "
-#~ "content\n"
-#~ "                        on the left is generated automatically using the "
-#~ "styles you\n"
-#~ "                        used in your description (heading 1, heading "
-#~ "2, ...)"
-#~ msgstr ""
-#~ "Можете да <strong>настроите описание по продукти</strong>. Odoo\n"
-#~ "                        автоматично ще създаде оферта, използваща "
-#~ "описанията\n"
-#~ "                        на всички продукти в предложението. Съдържанието\n"
-#~ "                        влаво се създава автоматично посредством "
-#~ "използваните от Вас\n"
-#~ "                        стилове в описанието (заглавие 1, заглавие 2, ...)"
-
-#~ msgid "days"
-#~ msgstr "дни"
-
-#~ msgid "hours"
-#~ msgstr "часове"
+msgstr ""

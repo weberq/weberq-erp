@@ -10,6 +10,8 @@ import time
 @tagged('post_install', '-at_install')
 class TestTransferWizard(AccountTestInvoicingCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -223,7 +225,6 @@ class TestTransferWizard(AccountTestInvoicingCommon):
             'name': 'Accrual Expense Account',
             'code': '234567',
             'account_type': 'expense',
-            'reconcile': True,
         })
         move_with_tax = self.env['account.move'].create({
             'journal_id': self.journal.id,
@@ -376,13 +377,11 @@ class TestTransferWizard(AccountTestInvoicingCommon):
             'name': 'Expense Accrual Account',
             'code': '113226',
             'account_type': 'asset_prepayments',
-            'reconcile': True,
         })
         self.company_data['company'].revenue_accrual_account_id = self.env['account.account'].create({
             'name': 'Revenue Accrual Account',
             'code': '226113',
             'account_type': 'liability_current',
-            'reconcile': True,
         })
 
         account_with_tax = self.env['account.account'].create({

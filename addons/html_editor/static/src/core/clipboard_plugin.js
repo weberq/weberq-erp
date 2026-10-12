@@ -3,10 +3,12 @@ import {
     isParagraphRelatedElement,
     isEmptyBlock,
     isContentEditable,
+    iconClasses,
+    getTableColgroup,
 } from "../utils/dom_info";
 import { Plugin } from "../plugin";
 import { closestBlock } from "../utils/blocks";
-import { unwrapContents, wrapInlinesInBlocks, splitTextNode, fillEmpty } from "../utils/dom";
+import { unwrapContents, splitTextNode } from "../utils/dom";
 import { fillHtmlTransferData } from "../utils/clipboard";
 import { childNodes, closestElement } from "../utils/dom_traversal";
 import { parseHTML } from "../utils/html";
@@ -22,7 +24,7 @@ import { EMAIL_REGEX } from "@html_editor/main/link/utils";
 /**
  * @typedef { import("./selection_plugin").EditorSelection } EditorSelection
  *
- * @typedef {(() => boolean)[]} bypass_paste_image_files
+ * @typedef {(() => boolean | undefined)[]} should_bypass_paste_image_files_predicates
  */
 
 const CLIPBOARD_BLACKLISTS = {
@@ -64,11 +66,13 @@ export const CLIPBOARD_WHITELISTS = {
         "TBODY",
         "TR",
         "TD",
+        "COLGROUP",
+        "COL",
         // Miscellaneous
         "IMG",
         "BR",
         "A",
-        ".fa",
+        ...iconClasses.map((cls) => `.${cls}`),
     ],
     classes: [
         // Media
@@ -94,10 +98,10 @@ export const CLIPBOARD_WHITELISTS = {
         "oe-nested",
         // Miscellaneous
         /^btn/,
-        /^fa/,
+        ...iconClasses.map((cls) => new RegExp(`^${cls}`)),
     ],
-    attributes: ["class", "href", "src", "target", "colspan", "rowspan"],
-    styledTags: ["SPAN", "B", "STRONG", "I", "S", "U", "FONT", "TD"],
+    attributes: ["class", "href", "src", "target", "colspan", "rowspan", "data-icon"],
+    styledTags: ["SPAN", "B", "STRONG", "I", "S", "U", "FONT", "TD", "COL", "TR", "TH"],
 };
 
 const ONLY_LINK_REGEX = new RegExp(
@@ -111,16 +115,17 @@ const ONLY_LINK_REGEX = new RegExp(
  */
 
 /**
- * @typedef {((img: HTMLImageElement) => void)[]} added_image_handlers
- * @typedef {(() => void)[]} after_paste_handlers
- * @typedef {(() => void)[]} before_paste_handlers
+ * @typedef {((img: HTMLImageElement) => void)[]} on_image_added_handlers
+ * @typedef {(() => void)[]} on_pasted_handlers
+ * @typedef {(() => void)[]} on_will_paste_handlers
  *
  * @typedef {((selection: EditorSelection, text: string) => boolean)[]} paste_text_overrides
+ * @typedef {((selection: EditorSelection, clipboardData: DataTransfer) => boolean | undefined)[]} should_paste_as_text_predicates
  *
  * @typedef {((
  *     clonedContents: DocumentFragment,
  *     selection: EditorSelection
- *   ) => void | clonedContents)[]} clipboard_content_processors
+ *   ) => clonedContents)[]} clipboard_content_processors
  * @typedef {((textContent: string) => string)[]} clipboard_text_processors
  */
 
@@ -148,11 +153,11 @@ export class ClipboardPlugin extends Plugin {
 
     onCut(ev) {
         const selection = this.dependencies.selection.getEditableSelection();
-        this.dispatchTo("before_cut_handlers", selection);
+        this.trigger("on_will_cut_handlers", selection);
         this.onCopy(ev);
-        this.dependencies.history.stageSelection();
+        this.dependencies.selection.stageSelection();
         this.dependencies.delete.deleteSelection();
-        this.dependencies.history.addStep();
+        this.dependencies.history.commit();
     }
 
     /**
@@ -173,15 +178,14 @@ export class ClipboardPlugin extends Plugin {
             return;
         }
         // Prepare text content for clipboard.
-        let textContent = selection.textContent();
-        for (const processor of this.getResource("clipboard_text_processors")) {
-            textContent = processor(textContent);
-        }
+        const textContent = this.processThrough("clipboard_text_processors", selection.toString());
 
         // Prepare html content for clipboard.
-        for (const processor of this.getResource("clipboard_content_processors")) {
-            clonedContents = processor(clonedContents, selection) || clonedContents;
-        }
+        clonedContents = this.processThrough(
+            "clipboard_content_processors",
+            clonedContents,
+            selection
+        );
         this.dependencies.dom.removeSystemProperties(clonedContents);
         fillHtmlTransferData(ev, transferObjectProperty, clonedContents, {
             setEditorTransferData:
@@ -204,21 +208,23 @@ export class ClipboardPlugin extends Plugin {
         }
         ev.preventDefault();
 
-        this.dependencies.history.stageSelection();
+        this.dependencies.selection.stageSelection();
 
-        this.dispatchTo("before_paste_handlers", selection, ev);
+        this.trigger("on_will_paste_handlers", selection, ev);
         // refresh selection after potential changes from `before_paste` handlers
         selection = this.dependencies.selection.getEditableSelection();
 
-        if (!this.delegateTo("paste_overrides", selection, ev.clipboardData)) {
+        if (this.checkPredicates("should_paste_as_text_predicates", selection, ev.clipboardData) ?? false) {
+            this.pasteText(ev.clipboardData.getData("text/plain"));
+        } else {
             this.handlePasteUnsupportedHtml(selection, ev.clipboardData) ||
-                this.handlePasteOdooEditorHtml(ev.clipboardData) ||
+                this.handlePasteOdooEditorHtml(selection, ev.clipboardData) ||
                 this.handlePasteHtml(selection, ev.clipboardData) ||
                 this.handlePasteText(selection, ev.clipboardData);
         }
 
-        this.dispatchTo("after_paste_handlers", selection);
-        this.dependencies.history.addStep();
+        this.trigger("on_pasted_handlers", selection);
+        this.dependencies.history.commit();
     }
     /**
      * @param {EditorSelection} selection
@@ -226,7 +232,11 @@ export class ClipboardPlugin extends Plugin {
      */
     handlePasteUnsupportedHtml(selection, clipboardData) {
         if (!isHtmlContentSupported(selection)) {
-            const text = clipboardData.getData("text/plain");
+            const text = this.processThrough(
+                "clipboard_paste_text_processors",
+                clipboardData.getData("text/plain"),
+                selection
+            );
             this.dependencies.dom.insert(text);
             return true;
         }
@@ -234,7 +244,7 @@ export class ClipboardPlugin extends Plugin {
     /**
      * @param {DataTransfer} clipboardData
      */
-    handlePasteOdooEditorHtml(clipboardData) {
+    handlePasteOdooEditorHtml(selection, clipboardData) {
         const odooEditorHtml = clipboardData.getData("application/vnd.odoo.odoo-editor");
         const textContent = clipboardData.getData("text/plain");
         if (ONLY_LINK_REGEX.test(textContent)) {
@@ -243,11 +253,15 @@ export class ClipboardPlugin extends Plugin {
         if (odooEditorHtml) {
             const fragment = parseHTML(this.document, odooEditorHtml);
             this.dependencies.sanitize.sanitize(fragment);
-            if (this.delegateTo("handle_paste_html_override", fragment)) {
+            if (this.delegateTo("paste_odoo_editor_html_overrides", selection, fragment)) {
                 return true;
             }
             if (fragment.hasChildNodes()) {
-                this.dependencies.dom.insert(fragment);
+                const processedFragment = this.processThrough(
+                    "paste_odoo_editor_html_processors",
+                    fragment
+                );
+                this.dependencies.dom.insert(processedFragment);
             }
             return true;
         }
@@ -257,9 +271,10 @@ export class ClipboardPlugin extends Plugin {
      * @param {DataTransfer} clipboardData
      */
     handlePasteHtml(selection, clipboardData) {
-        const files = this.delegateTo("bypass_paste_image_files")
-            ? []
-            : getImageFiles(clipboardData);
+        const files =
+            this.checkPredicates("should_bypass_paste_image_files_predicates") ?? false
+                ? []
+                : getImageFiles(clipboardData);
         const clipboardHtml = clipboardData.getData("text/html");
         const textContent = clipboardData.getData("text/plain");
         if (ONLY_LINK_REGEX.test(textContent)) {
@@ -267,11 +282,14 @@ export class ClipboardPlugin extends Plugin {
         }
         const fragment = parseHTML(this.document, clipboardHtml);
         this.dependencies.sanitize.sanitize(fragment);
-        if (this.delegateTo("handle_paste_html_override", fragment)) {
+        if (this.delegateTo("paste_odoo_editor_html_overrides", selection, fragment)) {
             return true;
         }
         if (files.length || clipboardHtml) {
             const clipboardElem = this.prepareClipboardData(clipboardHtml);
+            if (this.delegateTo("paste_html_overrides", selection, clipboardElem)) {
+                return true;
+            }
             // @phoenix @todo: should it be handled in table plugin?
             // When copy pasting a table from the outside, a picture of the
             // table can be included in the clipboard as an image file. In that
@@ -281,7 +299,7 @@ export class ClipboardPlugin extends Plugin {
                 // @phoenix @todo: should it be handled in image plugin?
                 return this.addImagesFiles(files).then((html) => {
                     this.dependencies.dom.insert(html);
-                    this.dependencies.history.addStep();
+                    this.dependencies.history.commit();
                 });
             } else if (clipboardElem.hasChildNodes()) {
                 if (closestElement(selection.anchorNode, "a")) {
@@ -349,11 +367,12 @@ export class ClipboardPlugin extends Plugin {
                     ) {
                         // Do something only if blockBefore is not a DIV (which is the no-margin option)
                         // replace blockBefore by a DIV.
-                        const div = this.dependencies.baseContainer.createBaseContainer("DIV");
+                        const div = this.dependencies.baseContainer.createBaseContainer({
+                            nodeName: "DIV",
+                            children: [...childNodes(blockBefore)],
+                        });
                         const cursors = this.dependencies.selection.preserveSelection();
-                        blockBefore.before(div);
-                        div.replaceChildren(...childNodes(blockBefore));
-                        blockBefore.remove();
+                        blockBefore.replaceWith(div);
                         cursors.remapNode(blockBefore, div).restore();
                     }
                 }
@@ -378,7 +397,7 @@ export class ClipboardPlugin extends Plugin {
         for (const tableElement of container.querySelectorAll("table")) {
             tableElement.classList.add("table", "table-bordered", "o_table");
         }
-        if (this.delegateTo("bypass_paste_image_files")) {
+        if (this.checkPredicates("should_bypass_paste_image_files_predicates") ?? false) {
             for (const imgElement of container.querySelectorAll("img")) {
                 imgElement.remove();
             }
@@ -420,7 +439,7 @@ export class ClipboardPlugin extends Plugin {
         // particular case in all of those functions. In fact, this case cannot
         // happen on a new document created using this editor, but will happen
         // instantly when editing a document that was created from Etherpad.
-        wrapInlinesInBlocks(container, {
+        this.dependencies.dom.wrapInlinesInBlocks(container, {
             baseContainerNodeName:
                 closestBaseContainer?.nodeName ||
                 this.dependencies.baseContainer.getDefaultNodeName(),
@@ -477,13 +496,13 @@ export class ClipboardPlugin extends Plugin {
                         if (whiteSpace && !["normal", "nowrap"].includes(whiteSpace)) {
                             node.innerHTML = node.innerHTML.replace(/\n/g, "<br>");
                         }
-                        const baseContainer = this.dependencies.baseContainer.createBaseContainer();
+                        const baseContainer = this.dependencies.baseContainer.createBaseContainer({
+                            children: [...node.childNodes],
+                        });
                         const dir = node.getAttribute("dir");
                         if (dir) {
                             baseContainer.setAttribute("dir", dir);
                         }
-                        baseContainer.append(...node.childNodes);
-
                         node.replaceWith(baseContainer);
                         childrenNodes = childNodes(baseContainer);
                     } else {
@@ -498,7 +517,7 @@ export class ClipboardPlugin extends Plugin {
                 }
             }
         } else if (node.nodeType !== Node.TEXT_NODE) {
-            if (["TD", "TH"].includes(node.nodeName)) {
+            if (["TD", "TH", "COL"].includes(node.nodeName)) {
                 // Convert table headers to cells when they are not
                 // in the first row.
                 if (node.nodeName === "TH" && getRowIndex(node) !== 0) {
@@ -507,12 +526,15 @@ export class ClipboardPlugin extends Plugin {
                 // Insert base container into empty TD.
                 if (isEmptyBlock(node)) {
                     const baseContainer = this.dependencies.baseContainer.createBaseContainer();
-                    fillEmpty(baseContainer);
                     node.replaceChildren(baseContainer);
                 }
 
                 if (node.hasAttribute("bgcolor") && !node.style["background-color"]) {
                     node.style["background-color"] = node.getAttribute("bgcolor");
+                }
+
+                if (node.hasAttribute("width")) {
+                    node.style["width"] = node.getAttribute("width") + "px";
                 }
             } else if (node.nodeName === "FONT") {
                 // FONT tags have some style information in custom attributes,
@@ -559,7 +581,25 @@ export class ClipboardPlugin extends Plugin {
                     CLIPBOARD_WHITELISTS.styledTags.includes(node.nodeName) &&
                     attribute.name === "style"
                 ) {
+                    const width = node.style.width;
+                    const height = node.style.height;
                     node.removeAttribute(attribute.name);
+                    if (["TD", "TH"].includes(node.nodeName) && getRowIndex(node) === 0 && width) {
+                        const table = closestElement(node, "table");
+                        let colgroup = getTableColgroup(table);
+                        if (!colgroup) {
+                            colgroup = this.document.createElement("colgroup");
+                            table.prepend(colgroup);
+                        }
+                        const col = this.document.createElement("col");
+                        colgroup.append(col);
+                        col.style.width = width;
+                    } else if (node.nodeName === "COL" && width) {
+                        node.style.width = width;
+                    }
+                    if (node.nodeName === "TR" && height) {
+                        node.style.height = height;
+                    }
                     if (["SPAN", "FONT"].includes(node.tagName)) {
                         for (const unwrappedNode of unwrapContents(node)) {
                             this.cleanForPaste(unwrappedNode);
@@ -618,7 +658,7 @@ export class ClipboardPlugin extends Plugin {
      */
     onDragStart(ev) {
         const selection = this.dependencies.selection.getEditableSelection();
-        this.dispatchTo("before_drag_handlers", selection);
+        this.trigger("on_will_drag_handlers", selection);
         this.setSelectionTransferData(ev, "dataTransfer");
     }
     /**
@@ -674,10 +714,10 @@ export class ClipboardPlugin extends Plugin {
             this.delegateTo(
                 "html_drop_overrides",
                 this.dependencies.selection.getEditableSelection(),
-                ev.dataTransfer
+                ev.dataTransfer.getData("text")
             )
         ) {
-            this.dependencies.history.addStep();
+            this.dependencies.history.commit();
             return;
         }
         if (odooEditorHtml) {
@@ -685,16 +725,16 @@ export class ClipboardPlugin extends Plugin {
             this.dependencies.sanitize.sanitize(fragment);
             if (fragment.hasChildNodes()) {
                 this.dependencies.dom.insert(fragment);
-                this.dependencies.history.addStep();
+                this.dependencies.history.commit();
             }
         } else if (fileTransferItems.length) {
             const html = await this.addImagesFiles(fileTransferItems);
             this.dependencies.dom.insert(html);
-            this.dependencies.history.addStep();
+            this.dependencies.history.commit();
         } else if (htmlTransferItem) {
             htmlTransferItem.getAsString((pastedText) => {
                 this.dependencies.dom.insert(this.prepareClipboardData(pastedText));
-                this.dependencies.history.addStep();
+                this.dependencies.history.commit();
             });
         }
     }
@@ -709,7 +749,7 @@ export class ClipboardPlugin extends Plugin {
         for (const imageFile of imageFiles) {
             const imageNode = this.document.createElement("img");
             imageNode.classList.add("img-fluid");
-            this.dispatchTo("added_image_handlers", imageNode);
+            this.trigger("on_image_added_handlers", imageNode);
             imageNode.dataset.fileName = imageFile.name;
             promises.push(
                 getImageUrl(imageFile).then((url) => {

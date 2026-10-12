@@ -5,15 +5,11 @@ export function editShopConfiguration(shop) {
             expectUnloadPage: true,
         },
         {
-            trigger: ".o_main_navbar span:contains('Configuration')",
+            trigger: "button.o_switch_view.o_list",
             run: "click",
         },
         {
-            trigger: ".dropdown-item:contains('Point of Sales')",
-            run: "click",
-        },
-        {
-            trigger: `.o_data_cell[data-tooltip=${shop}]`,
+            trigger: `.o_data_cell:text(${shop})`,
             run: "click",
         },
     ];
@@ -58,36 +54,6 @@ export function openProductForm(name) {
         },
         {
             trigger: `.o_form_renderer`,
-        },
-    ];
-}
-
-export function clickNotebookTab(name) {
-    return [
-        {
-            content: `Open the ${name} notebook tab`,
-            trigger: `.o_notebook a.nav-link:contains("${name}")`,
-            run: "click",
-        },
-    ];
-}
-
-export function openListRowFormView(fieldName) {
-    return [
-        {
-            content: `Open the first ${fieldName} record in its form view`,
-            trigger: `.o_field_widget[name="${fieldName}"] .o_data_row .o_list_record_open_form_view`,
-            run: "click",
-        },
-    ];
-}
-
-export function followMany2oneLink(fieldName) {
-    return [
-        {
-            content: `Follow the internal link of ${fieldName}`,
-            trigger: `.o_field_widget[name="${fieldName}"] a`,
-            run: "click",
         },
     ];
 }

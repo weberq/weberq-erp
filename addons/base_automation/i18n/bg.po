@@ -8,24 +8,40 @@
 # Martin Trigaux, 2023
 # Albena Mincheva <albena_vicheva@abv.bg>, 2023
 # Ивайло Малинов <iv.malinov@gmail.com>, 2023
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2023, 2026.
+# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2023
 # Maria Boyadjieva <marabo2000@gmail.com>, 2023
 # Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.5alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-07 05:31+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-08-31 19:37+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "base_automation/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: base_automation
+#: model:ir.module.module,description:base.module_base_automation
+msgid ""
+"\n"
+"This module allows to implement automation rules for any object.\n"
+"================================================================\n"
+"\n"
+"Use automation rules to automatically trigger actions for various screens.\n"
+"\n"
+"**Example:** A lead created by a specific user may be automatically set to a "
+"specific\n"
+"Sales Team, or an opportunity which still has status pending after 14 days "
+"might\n"
+"trigger an automatic reminder email.\n"
+msgstr ""
 
 #. module: base_automation
 #. odoo-javascript
@@ -34,14 +50,12 @@ msgid ""
 "\"\n"
 "                (ID:"
 msgstr ""
-"\"\n"
-"                (ID:"
 
 #. module: base_automation
 #. odoo-javascript
 #: code:addons/base_automation/static/src/group_config_menu_patch.js:0
 msgid "\"%s\" tag is added"
-msgstr "Добавен е етикет \"%s\""
+msgstr ""
 
 #. module: base_automation
 #. odoo-python
@@ -50,25 +64,23 @@ msgid ""
 "\"On live update\" automation rules can only be used with \"Execute Python "
 "Code\" action type."
 msgstr ""
-"Правилата за автоматизация \"При обновяване на живо\" могат да се използват "
-"само с тип действие \"Изпълнение на Python код\"."
 
 #. module: base_automation
 #. odoo-javascript
 #: code:addons/base_automation/static/src/base_automation_actions_one2many_field.js:0
 msgid "%s actions"
-msgstr "%s действия"
+msgstr ""
 
 #. module: base_automation
 #. odoo-javascript
 #: code:addons/base_automation/static/src/base_automation_actions_one2many_field.js:0
 msgid "1 action"
-msgstr "1 действие"
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "<code>env</code>: environment on which the action is triggered"
-msgstr "<code>env</code>: средата, в която се изпълнява действието"
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
@@ -76,8 +88,6 @@ msgid ""
 "<code>model</code>: model of the record on which the action is triggered; is "
 "a void recordset"
 msgstr ""
-"<code>model</code>: моделът на записа, върху който се изпълнява действието; "
-"представлява празен recordset"
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
@@ -85,8 +95,6 @@ msgid ""
 "<code>payload</code>: the payload of the call (GET parameters, JSON body), "
 "as a dict."
 msgstr ""
-"<code>payload</code>: данните на заявката (GET параметри, JSON тяло), под "
-"формата на dict."
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
@@ -94,44 +102,40 @@ msgid ""
 "<code>time</code>, <code>datetime</code>, <code>dateutil</code>, "
 "<code>timezone</code>: useful Python libraries"
 msgstr ""
-"<code>time</code>, <code>datetime</code>, <code>dateutil</code>, <code>"
-"timezone</code>: useful Python libraries"
+"<code>time</code>, <code>datetime</code>, <code>dateutil</code>, "
+"<code>timezone</code>: useful Python libraries"
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_kanban
-msgid "<i class=\"fa fa-2x fa-arrow-right text-primary\" title=\"Actions\"/>"
-msgstr "<i class=\"fa fa-2x fa-arrow-right text-primary\" title=\"Действия\"/>"
+msgid ""
+"<i class=\"oi oi-2x text-primary\" data-icon=\"arrow_forward\" "
+"title=\"Actions\"/>"
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid ""
-"<i class=\"fa fa-info-circle\"/> The default target record getter will work "
-"out-of-the-box for any webhook coming from another Odoo instance."
+"<i class=\"oi\" data-icon=\"info\"/> The default target record getter will "
+"work out-of-the-box for any webhook coming from another Odoo instance."
 msgstr ""
-"<i class=\"fa fa-info-circle\"/> Стандартният механизъм за извличане на "
-"целевия запис ще работи веднага за всеки webhook, идващ от друга Odoo "
-"инстанция."
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid ""
-"<i class=\"fa fa-warning\"/> Automation rules triggered by UI changes will "
-"be executed <em>every time</em> the watched fields change, <em>whether you "
-"save or not</em>."
+"<i class=\"oi\" data-icon=\"warning\"/> Automation rules triggered by UI "
+"changes will be executed <em>every time</em> the watched fields change, "
+"<em>whether you save or not</em>."
 msgstr ""
-"<i class=\"fa fa-warning\"/> Правилата за автоматизация, задействани от "
-"промени в интерфейса, ще се изпълняват <em>всеки път</em>, когато "
-"наблюдаваните полета се променят, <em>независимо дали запазвате или не</em>."
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_server_action_form
 msgid "<span class=\"o_stat_text\">Automation</span>"
-msgstr "<span class=\"o_stat_text\">Авотматизация</span>"
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "<span class=\"text-muted\"> Available variables: </span>"
-msgstr "<span class=\"text-muted\"> Налични променливи: </span>"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__message_needaction
@@ -146,7 +150,7 @@ msgstr "Действия"
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "Actions To Do"
-msgstr "Действия за изпълнение"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__active
@@ -162,6 +166,12 @@ msgstr "Дейности"
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr "Декорация за изключение на дейност"
+
+#. module: base_automation
+#: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_plans_ids
+#, fuzzy
+msgid "Activity Plans"
+msgstr "Планове за дейност"
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_state
@@ -181,12 +191,12 @@ msgstr "След"
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_time_created
 msgid "After creation"
-msgstr "След създаване"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_time_updated
 msgid "After last update"
-msgstr "След последната актуализация"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__filter_domain
@@ -207,7 +217,7 @@ msgstr "Брой Прикачени Файлове"
 #. module: base_automation
 #: model_terms:ir.actions.act_window,help:base_automation.base_automation_act
 msgid "Automate <em>everything</em> with Automation Rules"
-msgstr "Автоматизирайте <em>всичко</em> с правила за автоматизация"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model,name:base_automation.model_base_automation
@@ -221,20 +231,21 @@ msgstr "Правило за автоматизиране"
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__name
 msgid "Automation Rule Name"
-msgstr "Име на правилото за автоматизация"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.actions.act_window,name:base_automation.base_automation_act
+#: model:ir.module.module,shortdesc:base.module_base_automation
 #: model:ir.ui.menu,name:base_automation.menu_base_automation_form
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_kanban
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_tree
 msgid "Automation Rules"
-msgstr "Правила за автоматизация"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.actions.server,name:base_automation.ir_cron_data_base_automation_check_ir_actions_server
 msgid "Automation Rules: check and execute"
-msgstr "Правила за автоматизация: проверка и изпълнение"
+msgstr ""
 
 #. module: base_automation
 #. odoo-javascript
@@ -245,7 +256,7 @@ msgstr "Автоматизации"
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_time
 msgid "Based on date field"
-msgstr "Въз основа на поле за дата"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trg_date_range_mode__before
@@ -286,7 +297,7 @@ msgstr "Закъснение"
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__trg_date_range_mode
 msgid "Delay mode"
-msgstr "Режим на забавяне"
+msgstr ""
 
 #. module: base_automation
 #. odoo-python
@@ -294,19 +305,17 @@ msgstr "Режим на забавяне"
 msgid ""
 "Delay must be positive. Set 'Delay mode' to 'Before' to negate the delay."
 msgstr ""
-"Забавянето трябва да е положително. Задайте 'Режим на забавяне' на 'Преди', "
-"за да отмените забавянето."
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__trg_date_range_type
 msgid "Delay unit"
-msgstr "Единица за забавяне"
+msgstr ""
 
 #. module: base_automation
 #. odoo-javascript
 #: code:addons/base_automation/static/src/base_automation_trigger_selection_field.js:0
 msgid "Deprecated (do not use)"
-msgstr "Остаряло (не използвайте)"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__description
@@ -336,7 +345,7 @@ msgstr "Редактирай"
 #. odoo-javascript
 #: code:addons/base_automation/static/src/base_automation_trigger_selection_field.js:0
 msgid "Email Events"
-msgstr "Имейл събития"
+msgstr ""
 
 #. module: base_automation
 #. odoo-python
@@ -345,9 +354,6 @@ msgid ""
 "Email, follower or activity action types cannot be used when deleting "
 "records, as there are no more records to apply these changes to!"
 msgstr ""
-"Типовете действия за имейл, последовател или дейност не могат да се "
-"използват при изтриване на записи, тъй като вече няма записи, към които да "
-"се приложат тези промени!"
 
 #. module: base_automation
 #. odoo-javascript
@@ -358,7 +364,7 @@ msgstr "Външен"
 #. module: base_automation
 #: model:ir.model.fields,help:base_automation.field_base_automation__on_change_field_ids
 msgid "Fields that trigger the onchange."
-msgstr "Полета, които задействат onchange."
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__message_follower_ids
@@ -374,17 +380,12 @@ msgstr "Последователи (партньори)"
 #. odoo-python
 #: code:addons/base_automation/models/base_automation.py:0
 msgid "Following child actions have warnings: %(children)s"
-msgstr "Следните дъщерни действия имат предупреждения: %(children)s"
-
-#. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Икона, примерно fa-tasks"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__model_is_mail_thread
 msgid "Has Mail Thread"
-msgstr "Има пощенска поредица"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__has_message
@@ -430,8 +431,6 @@ msgid ""
 "If present, this condition must be satisfied before executing the automation "
 "rule."
 msgstr ""
-"Ако е налично, това условие трябва да бъде изпълнено преди изпълнение на "
-"правилото за автоматизация."
 
 #. module: base_automation
 #: model:ir.model.fields,help:base_automation.field_base_automation__filter_pre_domain
@@ -439,8 +438,6 @@ msgid ""
 "If present, this condition must be satisfied before the update of the "
 "record. Not checked on record creation."
 msgstr ""
-"Ако е налично, това условие трябва да бъде изпълнено преди актуализирането "
-"на записа. Не се проверява при създаване на запис."
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
@@ -448,13 +445,11 @@ msgid ""
 "If renewed, update the secret URL in the third-party app that calls this "
 "webhook."
 msgstr ""
-"Ако бъде подновен, актуализирайте тайния URL в приложението на трета страна, "
-"което извиква този webhook."
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_search
 msgid "Include Archived"
-msgstr "Включване на архивираните"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__message_is_follower
@@ -464,12 +459,12 @@ msgstr "е последовател"
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "Keep track of what this automation does and why it exists..."
-msgstr "Проследявайте какво прави тази автоматизация и защо съществува..."
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__last_run
 msgid "Last Run"
-msgstr "Последно изпълнение"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__write_uid
@@ -484,7 +479,7 @@ msgstr "Последно актуализирано на"
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__log_webhook_calls
 msgid "Log Calls"
-msgstr "Регистрирай обажданията"
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
@@ -500,6 +495,11 @@ msgid ""
 msgstr ""
 "Пощенското събитие не може да бъде конфигурирано върху модела %s. Само "
 "модели с дискусионна функция могат да бъдат използвани."
+
+#. module: base_automation
+#: model:ir.model.fields,help:base_automation.field_base_automation__activity_type_icon
+msgid "Material Symbols icon e.g. checklist"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__message_has_error
@@ -533,8 +533,6 @@ msgid ""
 "Model of action %(action_name)s should match the one from automated rule %"
 "(rule_name)s."
 msgstr ""
-"Моделът на действие %(action_name)s трябва да съответства на този от "
-"автоматизираното правило %(rule_name)s."
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trg_date_range_type__month
@@ -570,7 +568,7 @@ msgstr "Вид на следващо действие"
 #. odoo-python
 #: code:addons/base_automation/models/base_automation.py:0
 msgid "No record to run the automation on was found."
-msgstr "Не е намерен запис, върху който да се изпълни автоматизацията."
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
@@ -605,62 +603,62 @@ msgstr "Тригер за замяна на полета"
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_change
 msgid "On UI change"
-msgstr "При промяна на интерфейса"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_archive
 msgid "On archived"
-msgstr "При архивиране"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_create
 msgid "On create"
-msgstr "При създаване"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_create_or_write
 msgid "On create and edit"
-msgstr "При създаване и редактиране"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_unlink
 msgid "On deletion"
-msgstr "При изтриване"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_message_received
 msgid "On incoming message"
-msgstr "При входящо съобщение"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_message_sent
 msgid "On outgoing message"
-msgstr "При изходящо съобщение"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_unarchive
 msgid "On unarchived"
-msgstr "При деархивиране"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_write
 msgid "On update"
-msgstr "При актуализиране"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_webhook
 msgid "On webhook"
-msgstr "При webhook"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__previous_domain
 msgid "Previous Domain"
-msgstr "Предишен домейн"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_priority_set
 msgid "Priority is set to"
-msgstr "Приоритетът е зададен на"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__rating_ids
@@ -670,12 +668,12 @@ msgstr "Оценявания"
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__record_getter
 msgid "Record Getter"
-msgstr "Извличане на запис"
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "Renew"
-msgstr "Поднови"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__activity_user_id
@@ -690,38 +688,34 @@ msgstr "SMS грешка при доставка"
 #. module: base_automation
 #. odoo-python
 #: code:addons/base_automation/models/base_automation.py:0
+#: model:ir.model,name:base_automation.model_ir_cron
 msgid "Scheduled Action"
 msgstr "Планирано действие"
 
 #. module: base_automation
-#: model:ir.model,name:base_automation.model_ir_cron
-msgid "Scheduled Actions"
-msgstr "Планирани действия"
-
-#. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "Scheduled action"
-msgstr "Планирано действие"
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "Secret URL"
-msgstr "Таен URL"
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "Select a date field..."
-msgstr "Изберете поле за дата..."
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "Select a value..."
-msgstr "Изберете стойност..."
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "Select fields..."
-msgstr "Изберете полета..."
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.actions.act_window,help:base_automation.base_automation_act
@@ -731,9 +725,6 @@ msgid ""
 "on\n"
 "                tasks when a specific tag is added."
 msgstr ""
-"Изпратете имейл, когато обект промени състоянието си, архивирайте записи\n"
-"                след месец неактивност или си напомнете да проследите\n"
-"                задачи, когато се добави определен етикет."
 
 #. module: base_automation
 #: model_terms:digest.tip,tip_description:base_automation.digest_tip_base_automation_0
@@ -742,10 +733,6 @@ msgid ""
 "inactivity or remind yourself to follow-up on tasks when a specific tag is "
 "added.<br>With Automation Rules, you can automate any workflow."
 msgstr ""
-"Изпращайте имейл, когато обект промени състоянието си, архивирайте записи "
-"след месец неактивност или си напомняйте да проследите задачи, когато се "
-"добави определен етикет.<br>С автоматизираните правила можете да "
-"автоматизирате всеки работен процес."
 
 #. module: base_automation
 #: model:ir.model,name:base_automation.model_ir_actions_server
@@ -755,7 +742,7 @@ msgstr "Действие на сървър"
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "Set an explicit name"
-msgstr "Задайте изрично име"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,help:base_automation.field_base_automation__trg_selection_field_id
@@ -763,8 +750,6 @@ msgid ""
 "Some triggers need a reference to a selection field. This field is used to "
 "store it."
 msgstr ""
-"Някои тригери се нуждаят от препратка към поле за избор. Това поле се "
-"използва за съхранението ѝ."
 
 #. module: base_automation
 #: model:ir.model.fields,help:base_automation.field_base_automation__trg_field_ref
@@ -772,24 +757,22 @@ msgid ""
 "Some triggers need a reference to another field. This field is used to store "
 "it."
 msgstr ""
-"Някои тригери се нуждаят от препратка към друго поле. Това поле се използва "
-"за съхранението ѝ."
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_stage_set
 msgid "Stage is set to"
-msgstr "Етапът е зададен на"
+msgstr ""
 
 #. module: base_automation
 #. odoo-javascript
 #: code:addons/base_automation/static/src/group_config_menu_patch.js:0
 msgid "Stage is set to \"%s\""
-msgstr "Етапът е зададен на \"%s\""
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_state_set
 msgid "State is set to"
-msgstr "Състоянието е зададено на"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,help:base_automation.field_base_automation__activity_state
@@ -807,20 +790,18 @@ msgstr ""
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_tag_set
 msgid "Tag is added"
-msgstr "Етикетът е добавен"
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "Target Record"
-msgstr "Целеви запис"
+msgstr ""
 
 #. module: base_automation
 #. odoo-python
 #: code:addons/base_automation/models/base_automation.py:0
 msgid "Target model of actions %(action_names)s are different from rule model."
 msgstr ""
-"Целевият модел на действия %(action_names)s се различава от модела на "
-"правилото."
 
 #. module: base_automation
 #. odoo-python
@@ -829,8 +810,6 @@ msgid ""
 "The \"%(trigger_value)s\" %(trigger_label)s can only be used with the \"%"
 "(state_value)s\" action type"
 msgstr ""
-"\"%(trigger_value)s\" %(trigger_label)s може да се използва само с тип "
-"действие \"%(state_value)s\""
 
 #. module: base_automation
 #: model:ir.model.fields,help:base_automation.field_base_automation__trigger_field_ids
@@ -838,8 +817,6 @@ msgid ""
 "The automation rule will be triggered if and only if one of these fields is "
 "updated.If empty, all fields are watched."
 msgstr ""
-"Правилото за автоматизация ще бъде задействано, тогава и само тогава, когато "
-"едно от тези полета е обновено. Ако е празно, всички полета се наблюдават."
 
 #. module: base_automation
 #. odoo-javascript
@@ -848,15 +825,12 @@ msgid ""
 "The error occurred during the execution of the automation rule\n"
 "                \""
 msgstr ""
-"Грешката възникна по време на изпълнението на правилото за автоматизация\n"
-"                \""
 
 #. module: base_automation
 #. odoo-python
 #: code:addons/base_automation/models/base_automation.py:0
 msgid "The scheduled action for Automation Rules seems to have vanished."
 msgstr ""
-"Насроченото действие за правилата за автоматизация изглежда е изчезнало."
 
 #. module: base_automation
 #: model:ir.model.fields,help:base_automation.field_base_automation__record_getter
@@ -864,20 +838,18 @@ msgid ""
 "This code will be run to find on which record the automation rule should be "
 "run."
 msgstr ""
-"Този код ще бъде изпълнен, за да се намери на кой запис трябва да се изпълни "
-"правилото за автоматизация."
 
 #. module: base_automation
 #. odoo-javascript
 #: code:addons/base_automation/static/src/base_automation_trigger_selection_field.js:0
 msgid "Timing Conditions"
-msgstr "Условия за време"
+msgstr ""
 
 #. module: base_automation
 #: model:digest.tip,name:base_automation.digest_tip_base_automation_0
 #: model_terms:digest.tip,tip_description:base_automation.digest_tip_base_automation_0
 msgid "Tip: Automate everything with Automation Rules"
-msgstr "Съвет: Автоматизирайте всичко с правила за автоматизация"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__trigger
@@ -892,22 +864,22 @@ msgstr "Дата на изпълнение"
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__trg_selection_field_id
 msgid "Trigger Field"
-msgstr "Задействащо поле"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__trg_field_ref_model_name
 msgid "Trigger Field Model"
-msgstr "Модел на задействащото поле"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__trigger_field_ids
 msgid "Trigger Fields"
-msgstr "Задействащи полета"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__trg_field_ref
 msgid "Trigger Reference"
-msgstr "Референция на тригера"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,help:base_automation.field_base_automation__activity_exception_decoration
@@ -934,19 +906,17 @@ msgstr "Използвайте календар"
 #: model:ir.model.fields,help:base_automation.field_base_automation__url
 msgid "Use this URL in the third-party app to call this webhook."
 msgstr ""
-"Използвайте този URL в приложението на трета страна, за да извикате този "
-"webhook."
 
 #. module: base_automation
 #: model:ir.model.fields.selection,name:base_automation.selection__base_automation__trigger__on_user_set
 msgid "User is set"
-msgstr "Потребителят е зададен"
+msgstr ""
 
 #. module: base_automation
 #. odoo-javascript
 #: code:addons/base_automation/static/src/base_automation_trigger_selection_field.js:0
 msgid "Values Updated"
-msgstr "Обновени стойности"
+msgstr ""
 
 #. module: base_automation
 #. odoo-python
@@ -958,28 +928,18 @@ msgstr "Внимание"
 #. odoo-python
 #: code:addons/base_automation/models/base_automation.py:0
 msgid "Webhook Log"
-msgstr "Лог на уебхук"
+msgstr ""
 
 #. module: base_automation
 #. odoo-python
 #: code:addons/base_automation/models/base_automation.py:0
 msgid "Webhook Logs"
-msgstr "Логове на уебхук"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,field_description:base_automation.field_base_automation__webhook_uuid
 msgid "Webhook UUID"
-msgstr "UUID на уебхук"
-
-#. module: base_automation
-#: model:ir.model.fields,field_description:base_automation.field_base_automation__website_message_ids
-msgid "Website Messages"
-msgstr "Съобщения в уебсайт"
-
-#. module: base_automation
-#: model:ir.model.fields,help:base_automation.field_base_automation__website_message_ids
-msgid "Website communication history"
-msgstr "История на комуникацията на уебсайт"
+msgstr ""
 
 #. module: base_automation
 #: model:ir.model.fields,help:base_automation.field_base_automation__trg_date_calendar_id
@@ -997,9 +957,6 @@ msgid ""
 "                If present, will be checked by the scheduler. If empty, will "
 "be checked at creation and update."
 msgstr ""
-"Кога да се задейства условието.\n"
-"                Ако е зададено, ще се проверява от планировчика. Ако е "
-"празно, ще се проверява при създаване и обновяване."
 
 #. module: base_automation
 #: model:ir.model.fields,help:base_automation.field_base_automation__active
@@ -1009,7 +966,7 @@ msgstr "Когато не е отметнато, правилото е скри�
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_form
 msgid "When updating"
-msgstr "При актуализиране"
+msgstr ""
 
 #. module: base_automation
 #: model_terms:ir.actions.act_window,help:base_automation.base_automation_act
@@ -1017,16 +974,12 @@ msgid ""
 "With Automation Rules, you can automate\n"
 "                <em>any</em> workflow."
 msgstr ""
-"С правилата за автоматизация можете да автоматизирате\n"
-"                <em>всеки</em> работен процес."
 
 #. module: base_automation
 #. odoo-javascript
 #: code:addons/base_automation/static/src/base_automation_error_dialog.xml:0
 msgid "You can ask an administrator to disable or fix this automation."
 msgstr ""
-"Можете да помолите администратор да деактивира или поправи тази "
-"автоматизация."
 
 #. module: base_automation
 #. odoo-python
@@ -1035,38 +988,26 @@ msgid ""
 "You cannot send an email, add followers or create an activity for a deleted "
 "record.  It simply does not work."
 msgstr ""
-"Не можете да изпратите имейл, да добавите последователи или да създадете "
-"дейност за изтрит запис. Просто не работи."
 
 #. module: base_automation
 #: model_terms:ir.ui.view,arch_db:base_automation.view_base_automation_kanban
 msgid "based on"
-msgstr "въз основа на"
+msgstr ""
 
 #. module: base_automation
 #. odoo-javascript
 #: code:addons/base_automation/static/src/base_automation_actions_one2many_field.xml:0
 msgid "no action defined..."
-msgstr "няма дефинирано действие..."
+msgstr ""
 
 #. module: base_automation
 #. odoo-python
 #: code:addons/base_automation/models/base_automation.py:0
 msgid "path"
-msgstr "път"
+msgstr ""
 
-#~ msgid "Action Name"
-#~ msgstr "Название на действието"
+msgid "Website Messages"
+msgstr "Съобщения в уебсайт"
 
-#~ msgid "Delay after trigger date"
-#~ msgstr "Забавяне след пусковата дата"
-
-#~ msgid "Delay type"
-#~ msgstr "Вид забавяне"
-
-#~ msgid ""
-#~ "If present, this condition must be satisfied before the update of the "
-#~ "record."
-#~ msgstr ""
-#~ "Ако е налице, това условие трябва да бъде изпълнено преди актуализацията "
-#~ "на записа"
+msgid "Website communication history"
+msgstr "История на комуникацията на уебсайт"

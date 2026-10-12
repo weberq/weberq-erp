@@ -53,15 +53,15 @@ class TestPaymentTransaction(PayuCommon, PaymentHttpCommon):
 
     def test_apply_updates_sets_provider_reference(self):
         tx = self._create_transaction(flow="redirect")
-        tx._apply_updates(self.payment_data)
+        tx.with_context(payment_safe_write=True)._apply_updates(self.payment_data)
         self.assertEqual(tx.provider_reference, self.payment_data["mihpayid"])
 
     def test_apply_updates_confirms_transaction(self):
         tx = self._create_transaction("redirect")
-        tx._apply_updates(self.payment_data)
+        tx.with_context(payment_safe_write=True)._apply_updates(self.payment_data)
         self.assertEqual(tx.state, "done")
 
     def test_apply_updates_errors_transaction(self):
         tx = self._create_transaction("redirect")
-        tx._apply_updates({"status": "failure"})
+        tx.with_context(payment_safe_write=True)._apply_updates({"status": "failure"})
         self.assertEqual(tx.state, "error")

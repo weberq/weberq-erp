@@ -19,7 +19,7 @@ class ResCompany(models.Model):
     l10n_sa_edi_plot_identification = fields.Char(compute='_compute_address',
                                                   inverse='_l10n_sa_edi_inverse_plot_identification')
 
-    l10n_sa_edi_additional_identification_scheme = fields.Selection(
+    l10n_sa_edi_additional_identification_scheme = fields.Char(
         related='partner_id.l10n_sa_edi_additional_identification_scheme', readonly=False)
     l10n_sa_edi_additional_identification_number = fields.Char(
         related='partner_id.l10n_sa_edi_additional_identification_number', readonly=False)
@@ -75,6 +75,4 @@ class ResCompany(models.Model):
             See https://zatca.gov.sa/ar/RulesRegulations/Taxes/Documents/20210528_ZATCA_Electronic_Invoice_XML_Implementation_Standard_vShared.pdf
         """
         self.ensure_one()
-        if not self.vat:
-            return False
-        return len(self.vat) == 15 and bool(re.match(r'^3\d{13}3$', self.vat))
+        return self.has_vat and len(self.vat) == 15 and bool(re.match(r'^3\d{13}3$', self.vat))

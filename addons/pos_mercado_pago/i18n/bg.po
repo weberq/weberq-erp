@@ -1,46 +1,56 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * pos_mercado_pago
+# 	* pos_mercado_pago
 #
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-03 17:35+0000\n"
-"PO-Revision-Date: 2026-08-07 04:14+0000\n"
-"Last-Translator: Rosen Vladimirov <vladimirov.rosen@gmail.com>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-08-31 17:24+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "pos_mercado_pago/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: pos_mercado_pago
 #: model_terms:ir.ui.view,arch_db:pos_mercado_pago.pos_payment_method_view_form_inherit_pos_mercado_pago
 msgid "APP_USR-..."
-msgstr "APP_USR-..."
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-python
 #: code:addons/pos_mercado_pago/models/mercado_pago_pos_request.py:0
 msgid "Cannot decode Mercado Pago POS response. Error: %s"
-msgstr "Отговорът на Mercado Pago POS не може да бъде декодиран. Грешка: %s"
+msgstr ""
+
+#. module: pos_mercado_pago
+#. odoo-javascript
+#: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
+msgid "Cannot process transactions with negative amount."
+msgstr ""
+
+#. module: pos_mercado_pago
+#. odoo-javascript
+#: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
+msgid "Complete the action on the Point device to continue."
+msgstr ""
 
 #. module: pos_mercado_pago
 #: model:ir.model.fields,field_description:pos_mercado_pago.field_pos_payment_method__display_name
-#: model:ir.model.fields,field_description:pos_mercado_pago.field_pos_session__display_name
 msgid "Display Name"
-msgstr "Име за показване"
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-python
 #: code:addons/pos_mercado_pago/models/pos_payment_method.py:0
 msgid "Do not have access to fetch token from Mercado Pago"
-msgstr "Няма достъп за извличане на токен от Mercado Pago"
+msgstr ""
 
 #. module: pos_mercado_pago
 #: model:ir.model.fields,help:pos_mercado_pago.field_pos_payment_method__mp_id_point_smart
@@ -48,25 +58,45 @@ msgid ""
 "Enter your Point Smart terminal serial number written on the back of your "
 "terminal (after the S/N:)"
 msgstr ""
-"Въведете серийния номер на вашия терминал Point Smart, изписан на гърба му "
-"(след S/N:)"
 
 #. module: pos_mercado_pago
 #: model_terms:ir.ui.view,arch_db:pos_mercado_pago.pos_payment_method_view_form_inherit_pos_mercado_pago
 msgid "Force PDV"
-msgstr "Принудителен PDV"
+msgstr ""
 
 #. module: pos_mercado_pago
 #: model:ir.model.fields,field_description:pos_mercado_pago.field_pos_payment_method__id
-#: model:ir.model.fields,field_description:pos_mercado_pago.field_pos_session__id
 msgid "ID"
-msgstr "Номер (ID)"
+msgstr ""
+
+#. module: pos_mercado_pago
+#. odoo-javascript
+#: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
+msgid ""
+"If the payment does not appear on the Point, press the 'Refresh' button on "
+"the device."
+msgstr ""
+
+#. module: pos_mercado_pago
+#: model:ir.module.module,summary:base.module_pos_mercado_pago
+msgid "Integrate your POS with the Mercado Pago Smart Point terminal"
+msgstr ""
+
+#. module: pos_mercado_pago
+#: model_terms:ir.ui.view,arch_db:pos_mercado_pago.pos_payment_method_view_form_inherit_pos_mercado_pago
+msgid "Mercado Pago"
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-javascript
 #: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
 msgid "Mercado Pago %s"
-msgstr "Mercado Pago %s"
+msgstr ""
+
+#. module: pos_mercado_pago
+#: model:ir.model.fields,field_description:pos_mercado_pago.field_pos_payment_method__mp_webhook_endpoint
+msgid "Mercado Pago Webhook Endpoint"
+msgstr ""
 
 #. module: pos_mercado_pago
 #: model:ir.model.fields,help:pos_mercado_pago.field_pos_payment_method__mp_bearer_token
@@ -74,8 +104,6 @@ msgid ""
 "Mercado Pago customer production user token: https://www.mercadopago.com.mx/"
 "developers/en/reference"
 msgstr ""
-"Mercado Pago потребителски токен за продукция на клиента: https://"
-"www.mercadopago.com.mx/developers/en/reference"
 
 #. module: pos_mercado_pago
 #: model:ir.model.fields,help:pos_mercado_pago.field_pos_payment_method__mp_webhook_secret_key
@@ -83,108 +111,127 @@ msgid ""
 "Mercado Pago production secret key from integration application: https://"
 "www.mercadopago.com.mx/developers/panel/app"
 msgstr ""
-"Mercado Pago таен ключ за продукция от интеграционното приложение: https://"
-"www.mercadopago.com.mx/developers/panel/app"
+
+#. module: pos_mercado_pago
+#. odoo-javascript
+#: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
+msgid "Mercado Pago requires cancellations directly on the terminal."
+msgstr ""
 
 #. module: pos_mercado_pago
 #: model:ir.model.fields,field_description:pos_mercado_pago.field_pos_payment_method__mp_id_point_smart_complet
 msgid "Mp Id Point Smart Complet"
-msgstr "Mp Id Point Smart Complet"
+msgstr ""
+
+#. module: pos_mercado_pago
+#. odoo-python
+#: code:addons/pos_mercado_pago/models/pos_payment_method.py:0
+msgid "Original Mercado Pago payment not found on order %s"
+msgstr ""
+
+#. module: pos_mercado_pago
+#: model:ir.module.module,shortdesc:base.module_pos_mercado_pago
+msgid "POS Mercado Pago"
+msgstr ""
+
+#. module: pos_mercado_pago
+#. odoo-javascript
+#: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
+msgid "Payment expired"
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-javascript
 #: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
 msgid "Payment has been canceled"
-msgstr "Плащането беше отменено"
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-javascript
 #: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
 msgid "Payment has been processed"
-msgstr "Плащането беше обработено"
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-javascript
 #: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
 msgid "Payment has been rejected"
-msgstr "Плащането беше отхвърлено"
-
-#. module: pos_mercado_pago
-#. odoo-javascript
-#: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
-msgid "Payment has to be canceled on terminal"
-msgstr "Плащането трябва да бъде отменено на терминала"
-
-#. module: pos_mercado_pago
-#. odoo-javascript
-#: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
-msgid "Payment not found (canceled/finished on terminal)"
-msgstr "Плащането не е намерено (отменено/приключено на терминала)"
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-javascript
 #: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
 msgid "Payment status could not be confirmed"
-msgstr "Статусът на плащането не може да бъде потвърден"
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-python
 #: code:addons/pos_mercado_pago/models/pos_payment_method.py:0
 msgid "Please verify your production user token as it was rejected"
 msgstr ""
-"Моля, проверете вашия потребителски токен за продукция, тъй като беше "
-"отхвърлен"
 
 #. module: pos_mercado_pago
 #: model:ir.model,name:pos_mercado_pago.model_pos_payment_method
-msgid "Point of Sale Payment Methods"
-msgstr "Методи на плащане в касата"
-
-#. module: pos_mercado_pago
-#: model:ir.model,name:pos_mercado_pago.model_pos_session
-msgid "Point of Sale Session"
-msgstr "Касова сесия"
+msgid "Point of Sale Payment Method"
+msgstr ""
 
 #. module: pos_mercado_pago
 #: model:ir.model.fields,field_description:pos_mercado_pago.field_pos_payment_method__mp_webhook_secret_key
 msgid "Production secret key"
-msgstr "Таен ключ за продукция"
+msgstr ""
 
 #. module: pos_mercado_pago
 #: model:ir.model.fields,field_description:pos_mercado_pago.field_pos_payment_method__mp_bearer_token
 msgid "Production user token"
-msgstr "Потребителски токен за продукция"
+msgstr ""
+
+#. module: pos_mercado_pago
+#. odoo-javascript
+#: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
+msgid "Refund failed"
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-javascript
 #: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
 msgid "System error"
-msgstr "Системна грешка"
+msgstr ""
 
 #. module: pos_mercado_pago
 #: model:ir.model.fields,field_description:pos_mercado_pago.field_pos_payment_method__mp_id_point_smart
 msgid "Terminal S/N"
-msgstr "Сериен номер на терминал"
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-python
 #: code:addons/pos_mercado_pago/models/pos_payment_method.py:0
 msgid "The terminal serial number is not registered on Mercado Pago"
-msgstr "Серийният номер на терминала не е регистриран в Mercado Pago"
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-python
 #: code:addons/pos_mercado_pago/models/pos_payment_method.py:0
 msgid "Unexpected Mercado Pago response: %s"
-msgstr "Неочакван отговор от Mercado Pago: %s"
+msgstr ""
 
 #. module: pos_mercado_pago
 #. odoo-javascript
 #: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
 msgid "Unknown payment status"
-msgstr "Неизвестен статус на плащане"
+msgstr ""
+
+#. module: pos_mercado_pago
+#: model_terms:ir.ui.view,arch_db:pos_mercado_pago.pos_payment_method_view_form_inherit_pos_mercado_pago
+msgid "Webhook Endpoint"
+msgstr ""
+
+#. module: pos_mercado_pago
+#. odoo-javascript
+#: code:addons/pos_mercado_pago/static/src/app/utils/payment/payment_mercado_pago.js:0
+msgid "You can only refund an order that was paid for with Mercado Pago."
+msgstr ""
 
 #. module: pos_mercado_pago
 #: model_terms:ir.ui.view,arch_db:pos_mercado_pago.pos_payment_method_view_form_inherit_pos_mercado_pago
 msgid "c2f3662..."
-msgstr "c2f3662..."
+msgstr ""

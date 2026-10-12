@@ -1,32 +1,23 @@
-import { BEGIN } from "@html_builder/utils/option_sequence";
 import { EmbedCodeOptionDialog } from "./embed_code_option_dialog";
 import { Plugin } from "@html_editor/plugin";
-import { withSequence } from "@html_editor/utils/resource";
 import { _t } from "@web/core/l10n/translation";
 import { registry } from "@web/core/registry";
 import { cloneContentEls } from "@website/js/utils";
 import { BuilderAction } from "@html_builder/core/builder_action";
-import { BaseOptionComponent } from "@html_builder/core/utils";
 
-export class EmbedCodeOption extends BaseOptionComponent {
-    static template = "website.EmbedCodeOption";
-    static selector = ".s_embed_code";
-}
-
-class EmbedCodeOptionPlugin extends Plugin {
+export class EmbedCodeOptionPlugin extends Plugin {
     static id = "embedCodeOption";
 
     /** @type {import("plugins").WebsiteResources} */
     resources = {
-        builder_options: [withSequence(BEGIN, EmbedCodeOption)],
-        so_content_addition_selector: [".s_embed_code"],
+        so_content_addition_selectors: [".s_embed_code"],
         builder_actions: {
             EditCodeAction,
         },
-        clean_for_save_handlers: this.cleanForSave.bind(this),
+        clean_for_save_processors: this.cleanForSave.bind(this),
     };
 
-    cleanForSave({ root }) {
+    cleanForSave(root) {
         // Saving Embed Code snippets with <script> in the database, as these
         // elements are removed in edit mode.
         for (const embedCodeEl of root.querySelectorAll(".s_embed_code")) {
@@ -40,6 +31,7 @@ class EmbedCodeOptionPlugin extends Plugin {
                 .querySelector(".s_embed_code_embedded")
                 .replaceChildren(cloneContentEls(embedTemplateEl.content, true));
         }
+        return root;
     }
 }
 

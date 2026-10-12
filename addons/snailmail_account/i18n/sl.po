@@ -2,20 +2,16 @@
 # This file contains the translation of the following modules:
 # * snailmail_account
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-09-14 08:36+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 18:28+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "snailmail_account/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -26,35 +22,33 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 
 #. module: snailmail_account
+#: model:ir.module.module,description:base.module_snailmail_account
+msgid ""
+"\n"
+"Allows users to send invoices by post\n"
+"=====================================================\n"
+msgstr ""
+
+#. module: snailmail_account
 #. odoo-python
 #: code:addons/snailmail_account/wizard/account_move_send_batch_wizard.py:0
 msgid "(Stamps: %s)"
-msgstr "(Znamke: %s)"
+msgstr ""
 
 #. module: snailmail_account
 #: model_terms:ir.ui.view,arch_db:snailmail_account.res_config_settings_view_form
 msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\"/>"
+"<span class=\"oi oi-lg\" data-icon=\"business\" title=\"Values set here are "
+"company-specific.\"/>"
 msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\"/>"
-
-#. module: snailmail_account
-#: model:ir.model,name:snailmail_account.model_account_move_send
-msgid "Account Move Send"
-msgstr "Pošlji premik računa"
-
-#. module: snailmail_account
-#: model:ir.model,name:snailmail_account.model_account_move_send_batch_wizard
-msgid "Account Move Send Batch Wizard"
-msgstr "Čarovnik za paketno pošiljanje premikov računa"
+"<span class=\"oi oi-lg\" data-icon=\"business\" title=\"Values set here are "
+"company-specific.\"/>"
 
 #. module: snailmail_account
 #. odoo-python
 #: code:addons/snailmail_account/models/account_move_send.py:0
 msgid "Check Invoice(s)"
-msgstr "Preveri račun(e)"
+msgstr ""
 
 #. module: snailmail_account
 #: model:ir.model,name:snailmail_account.model_res_partner
@@ -96,7 +90,22 @@ msgstr "Temeljnica"
 #. module: snailmail_account
 #: model:ir.model.fields,field_description:snailmail_account.field_account_move_send_batch_wizard__send_by_post_stamps
 msgid "Send By Post Stamps"
-msgstr "Pošlji s poštnimi znamkami"
+msgstr ""
+
+#. module: snailmail_account
+#: model:ir.model,name:snailmail_account.model_account_move_send_batch_wizard
+msgid "Send Invoice Batch Wizard"
+msgstr ""
+
+#. module: snailmail_account
+#: model:ir.model,name:snailmail_account.model_account_move_send
+msgid "Shared Send Invoice Wizard Functions"
+msgstr ""
+
+#. module: snailmail_account
+#: model:ir.module.module,shortdesc:base.module_snailmail_account
+msgid "Snail Mail - Account"
+msgstr ""
 
 #. module: snailmail_account
 #. odoo-python
@@ -105,18 +114,16 @@ msgid ""
 "The partners on the following invoices have no valid address, so those "
 "invoices will not be sent: %s"
 msgstr ""
-"Partnerji na naslednjih računih nimajo veljavnega naslova, zato ti računi ne "
-"bodo poslani: %s"
 
 #. module: snailmail_account
 #. odoo-python
 #: code:addons/snailmail_account/models/account_move_send.py:0
 msgid "View Invoice(s)"
-msgstr "Ogled Račun(i)"
+msgstr ""
 
 #. module: snailmail_account
 #. odoo-python
 #: code:addons/snailmail_account/controllers/portal.py:0
 #: model:ir.model.fields.selection,name:snailmail_account.selection__res_partner__invoice_sending_method__snailmail
 msgid "by Post"
-msgstr "po pošti"
+msgstr ""

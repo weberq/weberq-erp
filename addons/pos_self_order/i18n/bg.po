@@ -2,34 +2,46 @@
 # This file contains the translation of the following modules:
 # * pos_self_order
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# Odoo Translation Bot <c3p@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 17:37+0000\n"
-"PO-Revision-Date: 2026-08-02 12:31+0000\n"
+"POT-Creation-Date: 2026-10-02 17:40+0000\n"
+"PO-Revision-Date: 2026-08-31 19:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "pos_self_order/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: pos_self_order
 #: model:ir.actions.report,print_report_name:pos_self_order.report_self_order_qr_codes_page
 msgid "\"QR codes\""
-msgstr "\"QR кодове\""
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.xml:0
+msgid "(Tips included)"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
 #: code:addons/pos_self_order/models/pos_config.py:0
 msgid "(require Odoo Enterprise)"
-msgstr "(изисква Odoo Enterprise)"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/choose_combo_popup/choose_combo_popup.xml:0
+msgid "(up to"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
@@ -37,8 +49,6 @@ msgid ""
 "<br/>\n"
 "                    URL:"
 msgstr ""
-"<br/>\n"
-"                    URL:"
 
 #. module: pos_self_order
 #: model:mail.template,body_html:pos_self_order.delivery_email_template
@@ -77,46 +87,16 @@ msgid ""
 "                    <br/>\n"
 "                    <div>Thank you,</div>\n"
 "                    <br/>\n"
+"                    <div t-if=\"object.state == 'paid'\">\n"
+"                        <div>You can download your receipt <a t-attf-"
+"href=\"{{ object.get_base_url() }}/pos-self-order/receipt/{{ object.id }}?"
+"access_token={{ object.access_token }}\">here</a></div>\n"
+"                        <br/>\n"
+"                    </div>\n"
 "                    <t t-out=\"store_name\">Store name</t>\n"
 "                </div>\n"
 "            "
 msgstr ""
-"<div style=\"margin: 0; padding: 0; font-size: 14px;\">\n"
-"                    <t t-set=\"client\" t-value=\"object.partner_id\"/>\n"
-"                    <t t-set=\"client_name\" t-value=\"client.name\"/>\n"
-"                    <t t-set=\"street\" t-value=\"client.street or ''\"/>\n"
-"                    <t t-set=\"state\" t-value=\"client.state_id.name or "
-"''\"/>\n"
-"                    <t t-set=\"city\" t-value=\"client.city or ''\"/>\n"
-"                    <t t-set=\"country\" t-value=\"client.country_id.name or "
-"''\"/>\n"
-"                    <t t-set=\"store_name\" t-"
-"value=\"object.config_id.name\"/>\n"
-"                    <t t-set=\"tz\" t-"
-"value=\"object.company_id.partner_id.tz\"/>\n"
-"                    <t t-set=\"lg\" t-value=\"object.partner_id.lang or "
-"user.lang\"/>\n"
-"                    <div>\n"
-"                        <t t-if=\"client_name\">Здравейте, <t t-"
-"out=\"client_name\">Client name</t>,</t>\n"
-"                        <t t-else=\"\">Здравейте,</t>\n"
-"                    </div>\n"
-"                    <br/>\n"
-"                    <div>Вашата поръчка <t t-out=\"object.tracking_number\">"
-"...</t> на стойност <t t-out=\"format_amount"
-"(object.amount_total,object.currency_id)\">$xx.xx</t> беше потвърдена. <span "
-"t-if=\"object.preset_time or client.street\">Ще бъде готова</span> <span t-"
-"if=\"object.preset_time\">в <t t-out=\"format_time(time=object.preset_time, "
-"tz=tz, time_format='short', lang_code=lg)\">12:00 pm</t></span> <span t-"
-"if=\"client.street\">на адрес <t t-out=\"street\">street</t>, <t t-"
-"out=\"state\">state</t>, <t t-out=\"client.zip or ''\">zip</t>, <t t-"
-"out=\"city\">city</t>, <t t-out=\"country\">country</t></span></div>\n"
-"                    <br/>\n"
-"                    <div>Благодарим Ви,</div>\n"
-"                    <br/>\n"
-"                    <t t-out=\"store_name\">Store name</t>\n"
-"                </div>\n"
-"            "
 
 #. module: pos_self_order
 #: model:mail.template,body_html:pos_self_order.takeout_email_template
@@ -143,35 +123,16 @@ msgid ""
 "                    <br/>\n"
 "                    <div>Thank you,</div>\n"
 "                    <br/>\n"
+"                    <div t-if=\"object.state == 'paid'\">\n"
+"                        <div>You can download your receipt <a t-attf-"
+"href=\"{{ object.get_base_url() }}/pos-self-order/receipt/{{ object.id }}?"
+"access_token={{ object.access_token }}\">here</a></div>\n"
+"                        <br/>\n"
+"                    </div>\n"
 "                    <t t-out=\"store_name\">Store name</t>\n"
 "                </div>\n"
 "            "
 msgstr ""
-"<div style=\"margin: 0; padding: 0; font-size: 14px;\">\n"
-"                    <t t-set=\"store_name\" t-"
-"value=\"object.config_id.name\"/>\n"
-"                    <t t-set=\"tz\" t-"
-"value=\"object.company_id.partner_id.tz\"/>\n"
-"                    <t t-set=\"lg\" t-value=\"object.partner_id.lang or "
-"user.lang\"/>\n"
-"                    <div>\n"
-"                        <t t-if=\"client_name\">Здравейте, <t t-"
-"out=\"client_name\">Client name</t>,</t>\n"
-"                        <t t-else=\"\">Здравейте,</t>\n"
-"                    </div>\n"
-"                    <br/>\n"
-"                    <div>Вашата поръчка <t t-out=\"object.tracking_number\">"
-"...</t> на стойност <t t-out=\"format_amount"
-"(object.amount_total,object.currency_id)\">$xx.xx</t> беше потвърдена. <span "
-"t-if=\"object.preset_time\">Ще бъде готова в <t t-out=\"format_time"
-"(time=object.preset_time, tz=tz, time_format='short', lang_code=lg)\">12:00 "
-"pm</t></span></div>\n"
-"                    <br/>\n"
-"                    <div>Благодарим Ви,</div>\n"
-"                    <br/>\n"
-"                    <t t-out=\"store_name\">Store name</t>\n"
-"                </div>\n"
-"            "
 
 #. module: pos_self_order
 #: model:ir.model.fields,help:pos_self_order.field_pos_config__self_ordering_default_user_id
@@ -180,8 +141,6 @@ msgid ""
 "Access rights of this user will be used when visiting self order website "
 "when no session is open."
 msgstr ""
-"Правата за достъп на този потребител ще се използват при посещение на "
-"уебсайта за самопоръчка, когато няма отворена сесия."
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_config__status__active
@@ -192,7 +151,7 @@ msgstr "Активно"
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
 msgid "Add"
-msgstr "Добави"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
@@ -202,8 +161,26 @@ msgstr "Добавяне на езици"
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__self_ordering_image_home_ids
 #: model:ir.model.fields,field_description:pos_self_order.field_res_config_settings__pos_self_ordering_image_home_ids
-msgid "Add images"
-msgstr "Добавяне на изображения"
+msgid "Add Media"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.js:0
+msgid "Add a Tip"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.xml:0
+msgid "Add a tip"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.js:0
+msgid "Add an order note"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -213,22 +190,54 @@ msgid "Add to cart"
 msgstr "Добави в количката"
 
 #. module: pos_self_order
+#: model:ir.module.module,summary:base.module_pos_self_order
+msgid ""
+"Addon for the POS App that allows customers to view the menu on their "
+"smartphone."
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.js:0
+#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
+msgid "Address"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
+msgid "Afternoon"
+msgstr ""
+
+#. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/product_list_page/product_list_page.xml:0
 msgid "All"
-msgstr "Всички"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
 msgid "An error has occurred"
-msgstr "Възникна грешка"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/choose_combo_popup/choose_combo_popup.xml:0
+msgid "Apply"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/payment_page/payment_page.js:0
+msgid "Are you sure you want to cancel the cash machine payment?"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/cancel_popup/cancel_popup.xml:0
 msgid "Are you sure you want to cancel this order?"
-msgstr "Сигурни ли сте, че искате да откажете тази поръчка?"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -241,36 +250,43 @@ msgstr "На разположение"
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__self_ordering_available_language_ids
 #: model:ir.model.fields,field_description:pos_self_order.field_res_config_settings__pos_self_ordering_available_language_ids
 msgid "Available Languages"
-msgstr "Налични езици"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.product_template_search_view_pos
 msgid "Available in Self"
-msgstr "Налично в Самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_product_product__self_order_available
 #: model:ir.model.fields,field_description:pos_self_order.field_product_template__self_order_available
 msgid "Available in Self Order"
-msgstr "Налично в Самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__available_in_self
 msgid "Available in self"
-msgstr "Достъпно при самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Available interface languages"
-msgstr "Налични езици на интерфейса"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/order_widget/order_widget.js:0
+#: code:addons/pos_self_order/static/src/app/pages/eating_location_page/eating_location_page.xml:0
+msgid "Average time:"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/eating_location_page/eating_location_page.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/order_history_page/order_history_page.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/payment_page/payment_page.xml:0
+#: code:addons/pos_self_order/static/src/app/pages/product_list_page/product_list_page.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/product_page/product_page.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/stand_number_page/stand_number_page.xml:0
 msgid "Back"
@@ -283,7 +299,8 @@ msgstr "Background"
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/order_widget/order_widget.js:0
+#: code:addons/pos_self_order/static/src/app/components/pills_selection_popup/pills_selection_popup.xml:0
+#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.xml:0
 msgid "Cancel"
 msgstr "Отказ"
@@ -292,14 +309,20 @@ msgstr "Отказ"
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/cancel_popup/cancel_popup.xml:0
 msgid "Cancel Order"
-msgstr "Отказ на поръчка"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/order_widget/order_widget.js:0
 #: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.js:0
+#: code:addons/pos_self_order/static/src/app/pages/product_list_page/product_list_page.js:0
 msgid "Cancel order"
-msgstr "Отказ на поръчка"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/payment_page/payment_page.xml:0
+msgid "Cancellation in progress"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -315,37 +338,36 @@ msgstr "Категории"
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/order_widget/order_widget.js:0
+#: code:addons/pos_self_order/static/src/app/pages/product_list_page/product_list_page.xml:0
 msgid "Checkout"
 msgstr "Поръчка"
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/choose_combo_popup/choose_combo_popup.xml:0
+msgid "Choose"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,help:pos_self_order.field_pos_config__self_ordering_service_mode
 #: model:ir.model.fields,help:pos_self_order.field_res_config_settings__pos_self_ordering_service_mode
 msgid "Choose the kiosk mode"
-msgstr "Изберете режима на киоск"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,help:pos_self_order.field_pos_config__self_ordering_mode
 #: model:ir.model.fields,help:pos_self_order.field_res_config_settings__pos_self_ordering_mode
 msgid "Choose the self ordering mode"
-msgstr "Изберете режима на самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,help:pos_self_order.field_pos_config__self_ordering_pay_after
 #: model:ir.model.fields,help:pos_self_order.field_res_config_settings__pos_self_ordering_pay_after
 msgid "Choose when the customer will pay"
-msgstr "Изберете кога клиентът ще плати"
+msgstr ""
 
 #. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
-msgid "Choose your time"
-msgstr "Изберете вашето време"
-
-#. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_from_city
 msgid "City"
 msgstr "Град"
 
@@ -353,8 +375,10 @@ msgstr "Град"
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/category_list_popup/category_list_popup.xml:0
 #: code:addons/pos_self_order/static/src/app/components/network_connectionLost_popup/network_connectionLost_popup.xml:0
-#: code:addons/pos_self_order/static/src/app/components/product_info_popup/product_info_propup.xml:0
+#: code:addons/pos_self_order/static/src/app/components/product_info_popup/product_info_popup.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/confirmation_page/confirmation_page.xml:0
+#: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
+#: code:addons/pos_self_order/static/src/overrides/components/dynamic_qr_popup/dynamic_qr_popup.xml:0
 msgid "Close"
 msgstr "Затвори"
 
@@ -364,16 +388,23 @@ msgid "Close Session"
 msgstr "Затворете сесията"
 
 #. module: pos_self_order
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_config__self_ordering_primary_color
+#: model:ir.model.fields,field_description:pos_self_order.field_res_config_settings__pos_self_ordering_primary_color
+#: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
+msgid "Color"
+msgstr ""
+
+#. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/order_history_page/order_history_page.xml:0
 msgid "Combo"
-msgstr "Комбо"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_order_line__combo_id
-msgid "Combo reference"
-msgstr "Референция на комбо"
+msgid "Combo Reference"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_res_config_settings
@@ -382,9 +413,22 @@ msgstr "Настройки"
 
 #. module: pos_self_order
 #. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/number_popup/number_popup.xml:0
+#: code:addons/pos_self_order/static/src/app/components/pills_selection_popup/pills_selection_popup.xml:0
+msgid "Confirm"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/payment_page/payment_page.js:0
+msgid "Confirm cancellation"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/network_connectionLost_popup/network_connectionLost_popup.xml:0
 msgid "Connection restored"
-msgstr "Връзката е възстановена"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_res_partner
@@ -397,30 +441,20 @@ msgstr "Контакт"
 #: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
 #: code:addons/pos_self_order/static/src/app/components/slots_popup/slots_popup.xml:0
 #: code:addons/pos_self_order/static/src/app/components/timeout_popup/timeout_popup.xml:0
+#: code:addons/pos_self_order/static/src/app/pages/optional_product_page/optional_product_page.xml:0
 msgid "Continue"
 msgstr "Продължи"
 
 #. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/popup_table/popup_table.xml:0
-msgid "Continue with table"
-msgstr "Продължи с маса"
-
-#. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/popup_table/popup_table.xml:0
-msgid "Could you please confirm your table number?"
-msgstr "Бихте ли потвърдили номера на масата си?"
-
-#. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_res_country
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_from_country_id
 msgid "Country"
 msgstr "Държава"
 
 #. module: pos_self_order
 #: model:ir.model,website_form_label:pos_self_order.model_res_partner
 msgid "Create a Customer"
-msgstr "Създаване на клиент"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_self_order_custom_link__create_uid
@@ -441,7 +475,7 @@ msgstr "Настоящ"
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.custom_link_tree
 msgid "Custom Links"
-msgstr "Персонализирани връзки"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_pos_self_order_custom_link
@@ -449,8 +483,6 @@ msgid ""
 "Custom links that the restaurant can configure to be displayed on the self "
 "order screen"
 msgstr ""
-"Персонализирани връзки, които ресторантът може да конфигурира да се показват "
-"на екрана за самопоръчка"
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_self_order_custom_link__style__danger
@@ -460,7 +492,7 @@ msgstr "Опасност"
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_self_order_custom_link__style__dark
 msgid "Dark"
-msgstr "Тъмна"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
@@ -478,25 +510,47 @@ msgstr "Стандартен език"
 #: model:ir.model.fields,field_description:pos_self_order.field_res_config_settings__pos_self_ordering_default_user_id
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Default User"
-msgstr "Потребител по подразбиране"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,help:pos_self_order.field_pos_config__self_ordering_default_language_id
 #: model:ir.model.fields,help:pos_self_order.field_res_config_settings__pos_self_ordering_default_language_id
 msgid "Default language for the kiosk mode"
-msgstr "Език по подразбиране за режим киоск"
+msgstr ""
 
 #. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/overrides/components/receipt_header/receipt_header.xml:0
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_preset__service_at__delivery
+#: model_terms:ir.ui.view,arch_db:pos_self_order.pos_order_receipt_header
 msgid "Delivery"
 msgstr "Доставка"
 
 #. module: pos_self_order
+#: model:product.template,name:pos_self_order.product_delivery_template
+msgid "Delivery Fee (Self-order)"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_product_id
+msgid "Delivery Product"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields,help:pos_self_order.field_pos_preset__free_delivery_min_amount
+msgid "Delivery is free when the order total reaches this amount."
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-python
+#: code:addons/pos_self_order/controllers/orders.py:0
+msgid ""
+"Delivery isn't available for this address. You can still place your order "
+"using another method."
+msgstr ""
+
+#. module: pos_self_order
 #: model:mail.template,name:pos_self_order.delivery_email_template
 msgid "Delivery: Confirmation order for self"
-msgstr "Доставка: Потвърждение на поръчка за самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_config__self_ordering_mode__nothing
@@ -506,23 +560,29 @@ msgstr "Лишете от способност"
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/language_popup/language_popup.xml:0
-#: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
-#: code:addons/pos_self_order/static/src/app/pages/product_page/product_page.xml:0
+#: code:addons/pos_self_order/static/src/app/components/number_popup/number_popup.xml:0
+#: code:addons/pos_self_order/static/src/app/components/product_interface/product_interface.xml:0
+#: code:addons/pos_self_order/static/src/app/pages/product_list_page/product_list_page.xml:0
 msgid "Discard"
 msgstr "Отхвърлете"
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_ir_http__display_name
+#: model:ir.model.fields,field_description:pos_self_order.field_ir_ui_view__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_mail_template__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_category__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_load_mixin__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_order__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_order_line__display_name
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_order_receipt__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_payment_method__display_name
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_prep_line__display_name
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_prep_order__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_self_order_custom_link__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_session__display_name
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_snooze__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_product_product__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_product_tag__display_name
 #: model:ir.model.fields,field_description:pos_self_order.field_product_template__display_name
@@ -535,27 +595,43 @@ msgid "Display Name"
 msgstr "Име за показване"
 
 #. module: pos_self_order
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_distance_unit
+msgid "Distance unit"
+msgstr ""
+
+#. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/network_connectionLost_popup/network_connectionLost_popup.xml:0
 msgid "Do not refresh the page."
-msgstr "Не опреснявайте страницата."
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/choose_combo_popup/choose_combo_popup.xml:0
+msgid "Do you want to make a combo instead ?"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Download QR Codes"
-msgstr "Изтегляне на QR кодове"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/confirmation_page/confirmation_page.xml:0
-msgid "Download your receipt here"
-msgstr "Изтеглете касовата си бележка тук"
+msgid "Download receipt"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields.selection,name:pos_self_order.selection__pos_config__self_ordering_service_mode__dynamic_qr
+msgid "Dynamic QR"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
 #: code:addons/pos_self_order/models/pos_config.py:0
 msgid "Each Order"
-msgstr "Всяка поръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
@@ -565,15 +641,11 @@ msgid ""
 "                    both the point of sale and table names are encrypted in "
 "the generated URL, as shown in the example below:."
 msgstr ""
-"Всяка маса във вашия план на залата получава уникален QR код въз основа на "
-"конфигурацията ви. От съображения за сигурност\n"
-"                    както името на касата, така и името на масата са "
-"криптирани в генерирания URL, както е показано в примера по-долу:."
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_pos_preset
 msgid "Easily load a set of configuration options"
-msgstr "Лесно зареждане на набор от опции за конфигурация"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -584,12 +656,12 @@ msgstr "Имейл"
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__mail_template_id
 msgid "Email Confirmation"
-msgstr "Потвърждение по имейл"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_mail_template
-msgid "Email Templates"
-msgstr "Имейл шаблони"
+msgid "Email Template"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -597,33 +669,48 @@ msgstr "Имейл шаблони"
 msgid ""
 "Enable QR menu in the Restaurant settings to get QR codes for free on tables."
 msgstr ""
-"Активирайте QR менюто в настройките на ресторанта, за да получите безплатни "
-"QR кодове за масите."
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/number_popup/number_popup.js:0
+msgid "Enter Amount"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
-msgid "Enter a valid phone number starting with the country code (e.g. +32)"
+msgid "Enter a valid phone number"
 msgstr ""
-"Въведете валиден телефонен номер, започващ с кода на държавата (напр. +32)"
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/attribute_selection/attribute_selection.xml:0
 msgid "Enter your custom value"
-msgstr "Въведете вашата персонализирана стойност"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/stand_number_page/stand_number_page.xml:0
 msgid "Enter your tracker number"
-msgstr "Въведете вашия номер за проследяване"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-python
+#: code:addons/pos_self_order/models/pos_order.py:0
+msgid "Error while creating the order. Please try again."
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
+msgid "Evening"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
 msgid "Extra:"
-msgstr "Допълнително:"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
@@ -631,19 +718,39 @@ msgid ""
 "Feel free to use and print this QR code as many times as needed according to "
 "your requirements."
 msgstr ""
-"Можете да използвате и отпечатвате този QR код толкова пъти, колкото е "
-"необходимо според вашите изисквания."
+
+#. module: pos_self_order
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_product_price
+msgid "Fixed Price"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/payment_page/payment_page.xml:0
+msgid "Follow instructions on the cash machine"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/payment_page/payment_page.xml:0
 msgid "Follow instructions on the terminal"
-msgstr "Следвайте инструкциите на терминала"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Free Metal / Wood Stands"
-msgstr "Безплатни метални / дървени стойки"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__free_delivery_min_amount
+msgid "Free if order amount is above"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
+msgid "Full Day"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
@@ -653,16 +760,15 @@ msgstr "Универсален"
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/overrides/components/navbar/navbar.xml:0
 #: code:addons/pos_self_order/static/src/overrides/screens/floor_screen/floor_screen.xml:0
 msgid "Get QR Codes"
-msgstr "Получаване на QR кодове"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/backend/qr_order_button/qr_order_button.js:0
 msgid "Get QR codes"
-msgstr "Получаване на QR кодове"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_ir_http
@@ -672,7 +778,7 @@ msgstr "HTTP Маршрутизиране"
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__has_paper
 msgid "Has paper"
-msgstr "Има хартия"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -681,42 +787,45 @@ msgid ""
 "Hey, looks like you forgot to create products or add them to pos_config. "
 "Please add them before using the Self Order"
 msgstr ""
-"Изглежда, че сте забравили да създадете продукти или да ги добавите към "
-"pos_config. Моля, добавете ги, преди да използвате Самопоръчката"
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Home buttons"
-msgstr "Начални бутони"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/confirmation_page/confirmation_page.xml:0
 msgid "Hope you enjoyed your meal!"
-msgstr "Надяваме се, че се насладихте на храната си!"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
 msgid "How to customize"
-msgstr "Как да персонализирате"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
 msgid "How to use"
-msgstr "Как да използвате"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_ir_http__id
+#: model:ir.model.fields,field_description:pos_self_order.field_ir_ui_view__id
 #: model:ir.model.fields,field_description:pos_self_order.field_mail_template__id
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_category__id
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__id
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_load_mixin__id
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_order__id
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_order_line__id
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_order_receipt__id
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_payment_method__id
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_prep_line__id
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_prep_order__id
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__id
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_self_order_custom_link__id
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_session__id
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_snooze__id
 #: model:ir.model.fields,field_description:pos_self_order.field_product_product__id
 #: model:ir.model.fields,field_description:pos_self_order.field_product_tag__id
 #: model:ir.model.fields,field_description:pos_self_order.field_product_template__id
@@ -732,7 +841,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:pos_self_order.field_product_product__self_order_available
 #: model:ir.model.fields,help:pos_self_order.field_product_template__self_order_available
 msgid "If this product is available in the Self Order screens"
-msgstr "Ако този продукт е наличен в екраните за самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
@@ -742,24 +851,24 @@ msgid ""
 "                use of a QR code generator like https://www.qrcode-"
 "monkey.com or https://www.qr-code-generator.com"
 msgstr ""
-"Ако имате нужда от персонализирани QR кодове, започнете, като сканирате "
-"съответния QR код, за да получите URL адреса. След това\n"
-"                използвайте генератор на QR кодове като https://www.qrcode-"
-"monkey.com или https://www.qr-code-generator.com"
 
 #. module: pos_self_order
 #: model:ir.model.fields,help:pos_self_order.field_pos_config__self_ordering_image_background_ids
 #: model:ir.model.fields,help:pos_self_order.field_res_config_settings__pos_self_ordering_image_background_ids
 msgid "Image to be displayed in the background"
-msgstr "Изображение, което да се показва във фона"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,help:pos_self_order.field_pos_config__self_ordering_image_brand
-#: model:ir.model.fields,help:pos_self_order.field_pos_config__self_ordering_image_home_ids
 #: model:ir.model.fields,help:pos_self_order.field_res_config_settings__pos_self_ordering_image_brand
-#: model:ir.model.fields,help:pos_self_order.field_res_config_settings__pos_self_ordering_image_home_ids
 msgid "Image to display on the self order screen"
-msgstr "Изображение, което да се показва на екрана за самопоръчка"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-python
+#: code:addons/pos_self_order/models/pos_order.py:0
+msgid "Impossible to create a new order."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
@@ -767,8 +876,6 @@ msgstr "Изображение, което да се показва на екр�
 msgid ""
 "In Self-Order mode, you must have at least one table to generate QR codes"
 msgstr ""
-"В режим Самопоръчка трябва да имате поне една маса, за да генерирате QR "
-"кодове"
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_config__status__inactive
@@ -784,13 +891,31 @@ msgstr "Информация"
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/network_connectionLost_popup/network_connectionLost_popup.xml:0
 msgid "Internet Connection Lost"
-msgstr "Изгубена интернет връзка"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-python
+#: code:addons/pos_self_order/models/pos_order.py:0
+msgid "Invalid combo line"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
 #: code:addons/pos_self_order/models/pos_order.py:0
 msgid "Invalid preset"
-msgstr "Невалидна предварителна настройка"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-python
+#: code:addons/pos_self_order/models/pos_order.py:0
+msgid "Invalid product attribute"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-python
+#: code:addons/pos_self_order/models/pos_order.py:0
+msgid "Invalid quantity"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -802,13 +927,13 @@ msgstr "Фактурирани"
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/unavailable_product_dialog/unavailable_product_dialog.xml:0
 msgid "It seems that"
-msgstr "Изглежда, че"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/network_connectionLost_popup/network_connectionLost_popup.xml:0
 msgid "It seems that the network connection was lost."
-msgstr "Изглежда, че мрежовата връзка беше изгубена."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
@@ -821,9 +946,11 @@ msgstr "Киоск"
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/store/order_change_receipt_template.xml:0
-msgid "Kiosk T"
-msgstr "Киоск T"
+#. odoo-python
+#: code:addons/pos_self_order/receipt/pos_order_receipt.py:0
+#: code:addons/pos_self_order/static/src/overrides/utils/printer/generate_printer_data.js:0
+msgid "Kiosk Order"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_self_order_custom_link__name
@@ -839,7 +966,7 @@ msgstr "Език"
 #: model:ir.model.fields,help:pos_self_order.field_pos_config__self_ordering_available_language_ids
 #: model:ir.model.fields,help:pos_self_order.field_res_config_settings__pos_self_ordering_available_language_ids
 msgid "Languages available for the kiosk mode"
-msgstr "Езици, налични за режим киоск"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_self_order_custom_link__write_uid
@@ -852,20 +979,19 @@ msgid "Last Updated on"
 msgstr "Последно актуализирано на"
 
 #. module: pos_self_order
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_from_latitude
+msgid "Latitude"
+msgstr ""
+
+#. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Let your customers order using their mobile or a kiosk."
 msgstr ""
-"Позволете на клиентите си да поръчват чрез мобилния си телефон или киоск."
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_self_order_custom_link__style__light
 msgid "Light"
-msgstr "Светла"
-
-#. module: pos_self_order
-#: model:ir.model.fields,field_description:pos_self_order.field_pos_category__pos_config_ids
-msgid "Linked PoS Configurations"
-msgstr "Свързани POS конфигурации"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -874,13 +1000,16 @@ msgid "Loading..."
 msgstr "Зареждане..."
 
 #. module: pos_self_order
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_from_longitude
+msgid "Longitude"
+msgstr ""
+
+#. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
 msgid ""
 "Make it easy for your customers to explore your menu\n"
 "                online or order with the QR codes on your tables"
 msgstr ""
-"Улеснете клиентите си да разглеждат менюто ви\n"
-"                онлайн или да поръчват с QR кодовете на масите ви"
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
@@ -888,8 +1017,6 @@ msgid ""
 "Make it easy for your customers to explore your menu\n"
 "                online with the QR codes on your tables"
 msgstr ""
-"Улеснете клиентите си да разглеждат менюто ви\n"
-"                онлайн с QR кодовете на масите ви"
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -897,29 +1024,50 @@ msgstr ""
 msgid ""
 "Make sure you choose all your options for this item. You're alomost there."
 msgstr ""
-"Уверете се, че сте избрали всички опции за този артикул. Почти сте готови."
+
+#. module: pos_self_order
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_max_distance_km
+msgid "Max radius"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields,help:pos_self_order.field_pos_preset__delivery_max_distance_km
+msgid "Maximum delivery distance, in the unit shown next to the field."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
 #: code:addons/pos_self_order/models/pos_config.py:0
 msgid "Meal"
-msgstr "Ястие"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields,help:pos_self_order.field_pos_config__self_ordering_image_home_ids
+#: model:ir.model.fields,help:pos_self_order.field_res_config_settings__pos_self_ordering_image_home_ids
+msgid "Media items to display on the self order screen"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.pos_self_order_menu_item
 msgid "Mobile Menu"
-msgstr "Мобилно меню"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Mobile self-order & Kiosk"
-msgstr "Мобилна самопоръчка и киоск"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
+msgid "Morning"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/landing_page/landing_page.xml:0
 msgid "My Order"
-msgstr "Моята поръчка"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -927,18 +1075,6 @@ msgstr "Моята поръчка"
 #: code:addons/pos_self_order/static/src/app/pages/order_history_page/order_history_page.xml:0
 msgid "My Orders"
 msgstr "Моите поръчки"
-
-#. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/store/order_change_receipt_template.xml:0
-msgid "NEW"
-msgstr "НОВ"
-
-#. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/store/order_change_receipt_template.xml:0
-msgid "NOTE"
-msgstr "ЗАБЕЛЕЖКА"
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -950,7 +1086,7 @@ msgstr "Име"
 #: model:ir.model.fields,help:pos_self_order.field_pos_config__self_ordering_image_brand_name
 #: model:ir.model.fields,help:pos_self_order.field_res_config_settings__pos_self_ordering_image_brand_name
 msgid "Name of the image to display on the self order screen"
-msgstr "Име на изображението, което да се показва на екрана за самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -965,15 +1101,22 @@ msgstr "Не"
 
 #. module: pos_self_order
 #. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/choose_combo_popup/choose_combo_popup.xml:0
+#: code:addons/pos_self_order/static/src/app/pages/optional_product_page/optional_product_page.xml:0
+msgid "No Thanks"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/order_history_page/order_history_page.xml:0
 msgid "No order found"
-msgstr "Няма намерена поръчка"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
 msgid "No, thanks"
-msgstr "Не, благодаря"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -984,7 +1127,7 @@ msgstr "Липсва"
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.product_template_search_view_pos
 msgid "Not available in Self"
-msgstr "Не е налично в Самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -1008,30 +1151,41 @@ msgstr "Протичащ"
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/network_connectionLost_popup/network_connectionLost_popup.xml:0
 msgid "Online"
-msgstr "Онлайн"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
 #: code:addons/pos_self_order/models/res_config_settings.py:0
 msgid "Only pay after each is available with kiosk mode."
-msgstr "Плащане след всяка е достъпно само в режим киоск."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/unavailable_product_dialog/unavailable_product_dialog.xml:0
 msgid "Oops..."
-msgstr "Опа..."
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.pos_self_order_menu_item
 msgid "Open Kiosk"
-msgstr "Отвори киоск"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/order_widget/order_widget.js:0
+#: code:addons/pos_self_order/static/src/overrides/components/dynamic_qr_popup/dynamic_qr_popup.xml:0
+msgid "Open self-order on this device"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/optional_product_page/optional_product_page.xml:0
+msgid "Options"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.js:0
 #: code:addons/pos_self_order/static/src/app/pages/stand_number_page/stand_number_page.js:0
-#: code:addons/pos_self_order/static/src/app/store/order_change_receipt_template.xml:0
 msgid "Order"
 msgstr "Поръчка"
 
@@ -1043,9 +1197,15 @@ msgstr "Поръчайте сега"
 
 #. module: pos_self_order
 #. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/confirmation_page/confirmation_page.xml:0
+msgid "Order for"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
 msgid "Orders not found on server"
-msgstr "Поръчките не са намерени на сървъра"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_order__source
@@ -1054,10 +1214,20 @@ msgstr "Произход"
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
-#: code:addons/pos_self_order/static/src/app/pages/product_list_page/product_list_page.xml:0
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.xml:0
+msgid "Other"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/product_card/product_card.xml:0
 msgid "Out of stock"
 msgstr "Изчерпана наличност"
+
+#. module: pos_self_order
+#: model:ir.module.module,shortdesc:base.module_pos_self_order
+msgid "POS Self Order"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -1067,8 +1237,7 @@ msgstr "Платено"
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/order_widget/order_widget.js:0
-#: code:addons/pos_self_order/static/src/app/pages/confirmation_page/confirmation_page.xml:0
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.js:0
 #: code:addons/pos_self_order/static/src/app/pages/stand_number_page/stand_number_page.js:0
 msgid "Pay"
 msgstr "Плати"
@@ -1077,26 +1246,24 @@ msgstr "Плати"
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__self_ordering_pay_after
 #: model:ir.model.fields,field_description:pos_self_order.field_res_config_settings__pos_self_ordering_pay_after
 msgid "Pay After:"
-msgstr "Плащане след:"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Pay after"
-msgstr "Плащане след"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
-msgid "Personalize the Kiosk background"
-msgstr "Персонализирайте фона на павилиона"
+msgid "Personalize the Interface"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid ""
-"Personalize your splash screen by adding one or multiple images to create a "
-"slideshow"
+"Personalize your splash screen by adding one or multiple media items to "
+"create a slideshow"
 msgstr ""
-"Персонализирайте началния си екран, като добавите едно или повече "
-"изображения, за да създадете слайдшоу"
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -1105,21 +1272,33 @@ msgid "Phone"
 msgstr "Телефон"
 
 #. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/overrides/components/receipt_header/receipt_header.xml:0
+#: model_terms:ir.ui.view,arch_db:pos_self_order.pos_order_receipt_header
 msgid "Pickup At Counter"
-msgstr "Вземане на гише"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_config__self_ordering_service_mode__counter
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_preset__service_at__counter
 msgid "Pickup zone"
-msgstr "Зона за вземане"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.js:0
+msgid "Please choose a table for your order."
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.js:0
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.js:0
+msgid "Please choose a time slot for your order."
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_pos_load_mixin
 msgid "PoS data loading mixin"
-msgstr "Mixin за зареждане на POS данни"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_pos_category
@@ -1132,19 +1311,24 @@ msgid "Point of Sale Configuration"
 msgstr "Конфигурация на център за продажби"
 
 #. module: pos_self_order
-#: model:ir.model,name:pos_self_order.model_pos_order_line
-msgid "Point of Sale Order Lines"
-msgstr "Редове на касова поръчка"
+#: model:ir.model,name:pos_self_order.model_pos_order
+msgid "Point of Sale Order"
+msgstr ""
 
 #. module: pos_self_order
-#: model:ir.model,name:pos_self_order.model_pos_order
-msgid "Point of Sale Orders"
-msgstr "Поръчки на центъра за продажби"
+#: model:ir.model,name:pos_self_order.model_pos_order_line
+msgid "Point of Sale Order Line"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model,name:pos_self_order.model_pos_order_receipt
+msgid "Point of Sale Order Receipt Generator"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_pos_payment_method
-msgid "Point of Sale Payment Methods"
-msgstr "Методи на плащане за точка на продажба (POS)"
+msgid "Point of Sale Payment Method"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_pos_session
@@ -1154,12 +1338,40 @@ msgstr "Сесия на център за продажби"
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
 msgid "Point of sale:"
-msgstr "Каса:"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_self_order_custom_link__pos_config_ids
 msgid "Points of Sale"
-msgstr "Каси"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model,name:pos_self_order.model_pos_prep_line
+msgid "Pos Preparation Line"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model,name:pos_self_order.model_pos_prep_order
+msgid "Pos Preparation Order"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
+msgid "Powered by Google"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-python
+#: code:addons/pos_self_order/models/pos_order.py:0
+msgid "Preset is not available in self-ordering"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-python
+#: code:addons/pos_self_order/models/pos_order.py:0
+msgid "Preset is not available in this configuration"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_self_order_custom_link__link_html
@@ -1169,7 +1381,7 @@ msgstr "Преглед"
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Preview Web interface"
-msgstr "Преглед на уеб интерфейса"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_self_order_custom_link__style__primary
@@ -1177,15 +1389,27 @@ msgid "Primary"
 msgstr "Първоначален"
 
 #. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/overrides/components/dynamic_qr_popup/dynamic_qr_popup.xml:0
+msgid "Print"
+msgstr ""
+
+#. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Print QR Codes"
-msgstr "Отпечатване на QR кодове"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/printing_failure_popup/printing_failure_popup.js:0
 msgid "Printing failed"
 msgstr "Печатът не успя."
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/payment_page/payment_page.xml:0
+msgid "Processing your payment..."
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_product_template
@@ -1195,7 +1419,7 @@ msgstr "Продукт"
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_product_tag
 msgid "Product Tag"
-msgstr "Етикет на продукт"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_product_product
@@ -1206,56 +1430,69 @@ msgstr "Продуктов вариант"
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
 msgid "Product is not available"
-msgstr "Продуктът не е наличен"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
 msgid "Product not found"
-msgstr "Продуктът не е намерен"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields,help:pos_self_order.field_pos_preset__delivery_product_id
+msgid "Product used for delivery fees in self order."
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/overrides/components/dynamic_qr_popup/dynamic_qr_popup.xml:0
+#: model_terms:ir.ui.view,arch_db:pos_self_order.DynamicQrReceipt
+msgid "QR Code"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.actions.report,name:pos_self_order.report_self_order_qr_codes_page
 msgid "QR Codes"
-msgstr "QR кодове"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
 #: code:addons/pos_self_order/models/res_config_settings.py:0
 msgid "QR codes can only be generated in mobile or consultation mode."
-msgstr "QR кодове могат да се генерират само в мобилен или консултантски режим."
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_config__self_ordering_mode__consultation
 msgid "QR menu"
-msgstr "QR меню"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "QR menu & Kiosk activation"
-msgstr "QR меню и активиране на павилион"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_config__self_ordering_mode__mobile
 msgid "QR menu + Ordering"
-msgstr "QR меню + Поръчване"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/quantity_widget/quantity_widget.xml:0
 msgid "Quantity select"
-msgstr "Избор на количество"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/payment_page/payment_page.xml:0
+msgid "Remaining:"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/attribute_selection/attribute_selection.xml:0
 msgid "Required"
-msgstr "Изискуем"
-
-#. module: pos_self_order
-#: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
-msgid "Reset QR Codes"
-msgstr "Нулиране на QR кодове"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model,name:pos_self_order.model_restaurant_floor
@@ -1277,24 +1514,60 @@ msgstr "Опитай отново"
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/network_connectionLost_popup/network_connectionLost_popup.js:0
 msgid "Retrying in %s second..."
-msgstr "Нов опит след %s секунда..."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/network_connectionLost_popup/network_connectionLost_popup.js:0
 msgid "Retrying in %s seconds..."
-msgstr "Нов опит след %s секунди..."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/network_connectionLost_popup/network_connectionLost_popup.xml:0
 msgid "Retrying..."
-msgstr "Нов опит..."
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/choose_combo_popup/choose_combo_popup.xml:0
+msgid "Save"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/payment_page/payment_page.xml:0
+msgid "Scan the QR code to pay"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/overrides/components/dynamic_qr_popup/dynamic_qr_popup.xml:0
+#: code:addons/pos_self_order/static/src/overrides/screens/product_screen/control_buttons/control_buttons.js:0
+msgid "Scan to join the order"
+msgstr ""
+
+#. module: pos_self_order
+#: model_terms:ir.ui.view,arch_db:pos_self_order.DynamicQrReceipt
+msgid "Scan to join your order"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
+msgid "Search country..."
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.js:0
+msgid "Searching for addresses..."
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_self_order_custom_link__style__secondary
 msgid "Secondary"
-msgstr "Второстепенно"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_restaurant_table__identifier
@@ -1305,37 +1578,26 @@ msgstr "Символ за сигурност"
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/missing_required_details/missing_required_details.xml:0
 msgid "See what you missed"
-msgstr "Вижте какво пропуснахте"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
-msgid "Select"
-msgstr "Изберете"
+#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.js:0
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.js:0
+msgid "Select a hour"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
-msgid "Select a country"
-msgstr "Изберете държава"
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.js:0
+msgid "Select a table"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/slots_popup/slots_popup.xml:0
-msgid "Select a hour"
-msgstr "Изберете час"
-
-#. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
-msgid "Select a state"
-msgstr "Изберете област"
-
-#. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/popup_table/popup_table.xml:0
-msgid "Select a table"
-msgstr "Изберете маса"
+msgid "Select an hour"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,help:pos_self_order.field_pos_self_order_custom_link__pos_config_ids
@@ -1344,9 +1606,12 @@ msgid ""
 "to display it for all points of sale. You have to select among the points of "
 "sale that have the 'QR Code Menu' feature enabled."
 msgstr ""
-"Изберете за кои каси искате да покажете тази връзка. Оставете празно, за да "
-"я покажете за всички каси. Трябва да изберете измежду касите, на които е "
-"активирана функцията „QR код меню“."
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/eating_location_page/eating_location_page.xml:0
+msgid "Select your preferred option"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -1355,90 +1620,111 @@ msgid "Selection"
 msgstr "Селекция"
 
 #. module: pos_self_order
+#. odoo-javascript
 #. odoo-python
 #: code:addons/pos_self_order/models/pos_config.py:0
+#: code:addons/pos_self_order/receipt/pos_order_receipt.py:0
+#: code:addons/pos_self_order/static/src/overrides/utils/printer/generate_printer_data.js:0
 msgid "Self Order"
-msgstr "Самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__self_ordering_image_brand
 #: model:ir.model.fields,field_description:pos_self_order.field_res_config_settings__pos_self_ordering_image_brand
 msgid "Self Order Kiosk Image Brand"
-msgstr "Изображение на марка за павилион за самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__self_ordering_image_brand_name
 #: model:ir.model.fields,field_description:pos_self_order.field_res_config_settings__pos_self_ordering_image_brand_name
 msgid "Self Order Kiosk Image Brand Name"
-msgstr "Име на изображение на марка за павилион за самопоръчка"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields.selection,name:pos_self_order.selection__pos_snooze__type__self-ordering
+msgid "Self Order Service"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_product_product__self_order_visible
 #: model:ir.model.fields,field_description:pos_self_order.field_product_template__self_order_visible
 msgid "Self Order Visible"
-msgstr "Видимо за самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
 msgid "Self Order:"
-msgstr "Самопоръчка:"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 #: model_terms:ir.ui.view,arch_db:pos_self_order.view_pos_preset_form
 msgid "Self Ordering"
-msgstr "Самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__self_ordering_mode
 #: model:ir.model.fields,field_description:pos_self_order.field_res_config_settings__pos_self_ordering_mode
 msgid "Self Ordering Mode"
-msgstr "Режим на самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__self_ordering_service_mode
 #: model:ir.model.fields,field_description:pos_self_order.field_res_config_settings__pos_self_ordering_service_mode
 msgid "Self Ordering Service Mode"
-msgstr "Режим на обслужване при самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__self_ordering_url
 msgid "Self Ordering Url"
-msgstr "URL за самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_order__source__kiosk
 msgid "Self-Order Kiosk"
-msgstr "Самопоръчка - Киоск"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_order__source__mobile
 msgid "Self-Order Mobile"
-msgstr "Самопоръчка - Мобилно"
-
-#. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/store/order_change_receipt_template.xml:0
-msgid "Self-Order T"
-msgstr "Самопоръчка T"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.js:0
 msgid "Self-Order T %s"
-msgstr "Самопоръчка T %s"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/self_order_index.xml:0
+msgid ""
+"Self-ordering is only available through the QR code provided by our staff. "
+"You can still view the menu."
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/self_order_index.xml:0
+msgid "Self-ordering is temporarily paused."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/overrides/components/product_info_popup/product_info_popup.xml:0
 msgid "Self-ordering:"
-msgstr "Самопоръчка:"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_from_address
+msgid "Sender address"
+msgstr ""
 
 #. module: pos_self_order
 #: model:mail.template,description:pos_self_order.delivery_email_template
 #: model:mail.template,description:pos_self_order.takeout_email_template
-msgid "Sent to customers"
-msgstr "Изпраща се до клиенти"
+msgid "Sent to customers with a link to download their receipt"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_self_order_custom_link__sequence
@@ -1446,38 +1732,78 @@ msgid "Sequence"
 msgstr "Последователност"
 
 #. module: pos_self_order
+#: model_terms:ir.ui.view,arch_db:pos_self_order.DynamicQrReceipt
+msgid "Served by"
+msgstr ""
+
+#. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__service_at
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Service at"
-msgstr "Обслужване на"
+msgstr ""
 
 #. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/overrides/components/receipt_header/receipt_header.xml:0
+#: model_terms:ir.ui.view,arch_db:pos_self_order.pos_order_receipt_header
 msgid "Service at Table"
-msgstr "Обслужване на маса"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/timeout_popup/timeout_popup.xml:0
 msgid "Session Inactive"
-msgstr "Сесията е неактивна"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__self_ordering_image_background_ids
 #: model:ir.model.fields,field_description:pos_self_order.field_res_config_settings__pos_self_ordering_image_background_ids
 msgid "Set background image"
-msgstr "Задаване на фоново изображение"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_snooze__type
+msgid "Snoozed for?"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model,name:pos_self_order.model_pos_snooze
+msgid "Snoozed records for Point of Sale"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/overrides/screens/product_screen/control_buttons/control_buttons.js:0
+msgid "Something went wrong while generating the QR code"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/overrides/screens/ticket_screen/ticket_screen.js:0
+msgid "Source"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.js:0
+msgid ""
+"Specify which utensils, napkins, straws, and condiments you want to be "
+"included or any special instructions that you want the restaurant to be "
+"aware of"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "Splash screens"
-msgstr "Начални екрани"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.pos_self_order_menu_item
 msgid "Start Kiosk"
-msgstr "Стартиране на павилион"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_from_state_id
+msgid "State"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_config__status
@@ -1485,10 +1811,9 @@ msgid "Status"
 msgstr "Състояние"
 
 #. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
-msgid "Street and Number"
-msgstr "Улица и номер"
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_from_street
+msgid "Street"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_self_order_custom_link__style
@@ -1503,88 +1828,137 @@ msgstr "Успех"
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_config__self_ordering_service_mode__table
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_preset__service_at__table
+#: model_terms:ir.ui.view,arch_db:pos_self_order.DynamicQrReceipt
 msgid "Table"
 msgstr "Таблица"
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_order__table_stand_number
 msgid "Table Stand Number"
-msgstr "Номер на стойка на маса"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/overrides/components/receipt_header/receipt_header.xml:0
-msgid "Table Tracker:"
-msgstr "Проследяване на маса:"
+#. odoo-python
+#: code:addons/pos_self_order/receipt/pos_order_receipt.py:0
+#: code:addons/pos_self_order/static/src/overrides/utils/printer/generate_printer_data.js:0
+msgid "Table Tracker %s"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields,field_description:pos_self_order.field_pos_order__self_ordering_table_id
 msgid "Table reference"
-msgstr "Референция на маса"
-
-#. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/popup_table/popup_table.xml:0
-msgid "Table selection"
-msgstr "Избор на маса"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
 msgid "Table:"
-msgstr "Маса:"
+msgstr ""
 
 #. module: pos_self_order
 #: model:mail.template,name:pos_self_order.takeout_email_template
 msgid "Takeout: Confirmation order for self"
-msgstr "За вкъщи: Потвърждение на поръчка за самопоръчка"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/order_history_page/order_history_page.xml:0
 msgid "Tax:"
-msgstr "ДДС:"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.xml:0
 msgid "Taxes:"
-msgstr "Данъци:"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/popup_table/popup_table.xml:0
 #: code:addons/pos_self_order/static/src/app/components/slots_popup/slots_popup.xml:0
 msgid "Thanks a lot!"
-msgstr "Много благодарим!"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
 #: code:addons/pos_self_order/models/pos_config.py:0
 msgid "The Self-Order default user must be a POS user"
-msgstr "Потребителят по подразбиране за самопоръчка трябва да е POS потребител"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-python
+#: code:addons/pos_self_order/models/pos_preset.py:0
+msgid ""
+"The delivery address could not be geolocated. Please check the address. If "
+"the address is valid, your geolocation service may be unavailable or unable "
+"to resolve it"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
 #: code:addons/pos_self_order/models/pos_order.py:0
 msgid "The mail template with xmlid %s has been deleted."
-msgstr "Имейл шаблонът с xmlid %s беше изтрит."
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-python
+#: code:addons/pos_self_order/models/pos_order.py:0
+msgid ""
+"The order ID isn't linked to the order UUID. This is a sign of a tampered "
+"payload."
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
+msgid ""
+"The shop is currently closed but you can still place an order for later."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
 #: code:addons/pos_self_order/models/res_config_settings.py:0
 msgid "The user must be a POS user"
-msgstr "Потребителят трябва да е POS потребител"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/product_page/product_page.xml:0
 msgid "This combination does not exist."
-msgstr "Тази комбинация не съществува."
+msgstr ""
+
+#. module: pos_self_order
+#: model_terms:ir.ui.view,arch_db:pos_self_order.DynamicQrReceipt
+msgid "Ticket"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/order_widget/order_widget.xml:0
+#: code:addons/pos_self_order/static/src/app/pages/confirmation_page/confirmation_page.xml:0
+msgid "To pay at the counter"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/confirmation_page/confirmation_page.xml:0
+msgid "To pay in cash at the counter"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/models/pos_preset.js:0
+msgid "Today"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/models/pos_preset.js:0
+msgid "Tommorrow"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/product_list_page/product_list_page.xml:0
 msgid "Total"
 msgstr "Обща стойност"
 
@@ -1603,30 +1977,49 @@ msgstr "URL адрес"
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
 msgid "URL:"
-msgstr "URL:"
-
-#. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/pages/product_list_page/product_list_page.xml:0
-msgid "Unavailable"
-msgstr "Не налично"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
 msgid "Uncategorised"
-msgstr "Без категория"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.xml:0
+msgid "Utensils, special instructions, etc."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
 msgid "Validate your selection"
-msgstr "Потвърдете избора си"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
+msgid "Validating..."
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model,name:pos_self_order.model_ir_ui_view
+msgid "View"
+msgstr ""
 
 #. module: pos_self_order
 #: model:ir.model.fields.selection,name:pos_self_order.selection__pos_self_order_custom_link__style__warning
 msgid "Warning"
 msgstr "Внимание"
+
+#. module: pos_self_order
+#. odoo-python
+#: code:addons/pos_self_order/controllers/orders.py:0
+msgid ""
+"We couldn't locate this address. Please enter a complete address with a "
+"street number."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -1635,56 +2028,54 @@ msgid ""
 "We invite you to get the receipt at the counter. Please remember your order "
 "number:"
 msgstr ""
-"Каним Ви да получите касовата бележка на гишето. Моля, запомнете номера на "
-"поръчката си:"
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
 msgid "We need more info"
-msgstr "Нужна ни е още информация"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/slots_popup/slots_popup.xml:0
 msgid "We'll do everything to be on time!"
-msgstr "Ще направим всичко възможно да сме навреме!"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
 msgid "We're currently closed"
-msgstr "В момента сме затворени"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/self_order_index.xml:0
 msgid "We're currently closed."
-msgstr "В момента сме затворени."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/confirmation_page/confirmation_page.xml:0
 msgid "We're preparing your order!"
-msgstr "Подготвяме вашата поръчка!"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/slots_popup/slots_popup.xml:0
 msgid "When would you like to receive your orders ?"
-msgstr "Кога бихте искали да получите поръчките си?"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/eating_location_page/eating_location_page.xml:0
 msgid "Where do you want to eat?"
-msgstr "Къде искате да се храните?"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/timeout_popup/timeout_popup.xml:0
 msgid "Would you like to continue?"
-msgstr "Искате ли да продължите?"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.qr_codes_page
@@ -1695,79 +2086,71 @@ msgstr "Да"
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/network_connectionLost_popup/network_connectionLost_popup.xml:0
 msgid "You are back online. You can complete your order now."
-msgstr "Отново сте онлайн. Сега можете да завършите поръчката си."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
 #: code:addons/pos_self_order/controllers/orders.py:0
 msgid "You are not authorized to remove this order"
-msgstr "Нямате право да премахнете тази поръчка"
-
-#. module: pos_self_order
-#. odoo-python
-#: code:addons/pos_self_order/models/pos_config.py:0
-#: code:addons/pos_self_order/models/res_config_settings.py:0
-msgid "You cannot add cash payment methods in kiosk mode."
-msgstr "Не можете да добавяте начини на плащане в брой в режим на павилион."
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
 msgid "You're not authorized to perform this action"
-msgstr "Нямате права да извършите това действие"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.xml:0
 msgid "Your Order"
-msgstr "Вашата поръчка"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-python
 #: code:addons/pos_self_order/controllers/orders.py:0
 msgid "Your order does not exist or has been removed"
-msgstr "Вашата поръчка не съществува или е премахната"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
 msgid "Your order has been paid"
-msgstr "Вашата поръчка е платена"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/confirmation_page/confirmation_page.xml:0
 msgid "Your order number"
-msgstr "Номер на вашата поръчка"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/services/self_order_service.js:0
+msgid "Your order was just updated. Please review your cart before paying."
+msgstr ""
 
 #. module: pos_self_order
 #: model:mail.template,subject:pos_self_order.delivery_email_template
 #: model:mail.template,subject:pos_self_order.takeout_email_template
 msgid "Your {{ object.config_id.name }} receipt"
-msgstr "Вашата касова бележка от {{ object.config_id.name }}"
+msgstr ""
 
 #. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/components/preset_info_popup/preset_info_popup.xml:0
+#: model:ir.model.fields,field_description:pos_self_order.field_pos_preset__delivery_from_zip
 msgid "Zip"
 msgstr "Пощенски код"
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.res_config_settings_view_form_menu
 msgid "a"
-msgstr "a"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/unavailable_product_dialog/unavailable_product_dialog.xml:0
 msgid "are"
-msgstr "са"
-
-#. module: pos_self_order
-#. odoo-javascript
-#: code:addons/pos_self_order/static/src/app/pages/confirmation_page/confirmation_page.xml:0
-msgid "at the counter"
-msgstr "на гишето"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
@@ -1779,35 +2162,63 @@ msgstr "затваряне"
 #. odoo-python
 #: code:addons/pos_self_order/models/pos_config.py:0
 msgid "each"
-msgstr "за брой"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.custom_link_tree
 msgid "empty = all points of sale"
-msgstr "празно = всички каси"
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.custom_link_tree
 msgid "https://odoo.com"
-msgstr "https://odoo.com"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
 msgid "included &"
-msgstr "включено &"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/unavailable_product_dialog/unavailable_product_dialog.xml:0
 msgid "is"
-msgstr "е"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields.selection,name:pos_self_order.selection__pos_preset__delivery_distance_unit__km
+msgid "km"
+msgstr ""
+
+#. module: pos_self_order
+#: model:ir.model.fields.selection,name:pos_self_order.selection__pos_preset__delivery_distance_unit__mi
+msgid "mi"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/eating_location_page/eating_location_page.xml:0
+msgid "min"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/pages/eating_location_page/eating_location_page.xml:0
+msgid "minutes"
+msgstr ""
+
+#. module: pos_self_order
+#. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/choose_combo_popup/choose_combo_popup.xml:0
+msgid "more)"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/components/unavailable_product_dialog/unavailable_product_dialog.xml:0
 msgid "no longer available. Please go back and edit your order."
-msgstr "вече не е наличен. Моля, върнете се и редактирайте поръчката си."
+msgstr ""
 
 #. module: pos_self_order
 #: model_terms:ir.ui.view,arch_db:pos_self_order.custom_link_tree
@@ -1818,11 +2229,12 @@ msgstr "odoo"
 #. odoo-javascript
 #: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
 msgid "per extra unit"
-msgstr "на допълнителна единица"
+msgstr ""
 
 #. module: pos_self_order
 #. odoo-javascript
+#: code:addons/pos_self_order/static/src/app/components/choose_combo_popup/choose_combo_popup.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/cart_page/cart_page.xml:0
 #: code:addons/pos_self_order/static/src/app/pages/combo_page/combo_page.xml:0
 msgid "x"
-msgstr "x"
+msgstr ""

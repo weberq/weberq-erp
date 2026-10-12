@@ -16,6 +16,11 @@ class AccountPayment(models.Model):
         copy=False,
         string="Checks Operations"
     )
+    l10n_latam_checks_amount = fields.Monetary(
+        string="Checks Amount",
+        currency_field='currency_id',
+        compute='_compute_l10n_latam_checks_amount',
+    )
     # Warning message in case of unlogical third party check operations
     l10n_latam_check_warning_msg = fields.Text(compute='_compute_l10n_latam_check_warning_msg')
     amount = fields.Monetary(compute="_compute_amount", readonly=False, store=True)
@@ -30,12 +35,20 @@ class AccountPayment(models.Model):
             ):
                 raise ValidationError(_("A payment with any Third Party Check or Own Check payment methods needs an outstanding account"))
 
-    @api.depends('l10n_latam_move_check_ids.amount', 'l10n_latam_new_check_ids.amount', 'payment_method_code')
+    @api.depends('l10n_latam_new_check_ids.amount', 'l10n_latam_move_check_ids.amount', 'payment_method_code')
+    def _compute_l10n_latam_checks_amount(self):
+        for payment in self:
+            if payment._is_latam_check_payment(check_subtype='new_check'):
+                payment.l10n_latam_checks_amount = sum(payment.l10n_latam_new_check_ids.mapped('amount'))
+            elif payment._is_latam_check_payment(check_subtype='move_check'):
+                payment.l10n_latam_checks_amount = sum(payment.l10n_latam_move_check_ids.mapped('amount'))
+            else:
+                payment.l10n_latam_checks_amount = 0.0
+
+    @api.depends('l10n_latam_checks_amount')
     def _compute_amount(self):
-        for rec in self:
-            checks = rec.l10n_latam_new_check_ids if rec._is_latam_check_payment(check_subtype='new_check') else rec.l10n_latam_move_check_ids
-            if checks:
-                rec.amount = sum(checks.mapped('amount'))
+        for payment in self.filtered(lambda r: r._is_latam_check_payment()):
+            payment.amount = payment.l10n_latam_checks_amount
 
     def _is_latam_check_payment(self, check_subtype=False):
         if check_subtype == 'move_check':
@@ -60,7 +73,6 @@ class AccountPayment(models.Model):
             error_msg = "\n".join(f"* {msg}" for msg in msgs)
             raise ValidationError(error_msg)
         super().action_post()
-        self._l10n_latam_check_split_move()
 
     def _get_latam_checks(self):
         self.ensure_one()
@@ -122,17 +134,35 @@ class AccountPayment(models.Model):
                   "Checks:\n%s", ('\n'.join(['* %s (%s)' % (x.name, x.issue_state) for x in checks_reconciled])))
             )
 
+    def _check_no_later_operation(self):
+        """ Payments can only be undone if they are at the end of the chain of
+        operations, otherwise it would no longer reflect where the check actually is.
+        A whole chain of operations can therefore be undone at once.
+        """
+        payments = self.filtered(lambda p: p.state not in ('draft', 'canceled'))
+        blocked = []
+        for check in (payments.l10n_latam_new_check_ids | payments.l10n_latam_move_check_ids):
+            operations = check._get_operations()  # sorted
+            remaining = operations - payments
+            # remaining must be the beginning of the chain of operations
+            if remaining != operations[:len(remaining)]:
+                blocked.append((check, remaining[-1]))
+        if blocked:
+            raise UserError(self.env._(
+                "You can't cancel or re-open a payment if its checks have been moved by a later operation. "
+                "Please undo that operation first.\nChecks:\n%s",
+                '\n'.join('* %s (%s)' % (check.display_name, operation.display_name) for check, operation in blocked),
+            ))
+
     def action_cancel(self):
         self._get_reconciled_checks_error()
+        self._check_no_later_operation()
         super().action_cancel()
 
     def action_draft(self):
         self._get_reconciled_checks_error()
+        self._check_no_later_operation()
         super().action_draft()
-
-    def _l10n_latam_check_split_move(self):
-        """removed in saas-19.2"""
-        return
 
     def _l10n_latam_check_unlink_split_move(self):
         self.ensure_one()
@@ -145,8 +175,9 @@ class AccountPayment(models.Model):
 
     @api.depends(
         'payment_method_line_id', 'state', 'date', 'amount', 'currency_id', 'company_id',
-        'l10n_latam_move_check_ids.issuer_vat', 'l10n_latam_move_check_ids.bank_id', 'l10n_latam_move_check_ids.payment_id.date',
+        'l10n_latam_move_check_ids.issuer_vat', 'l10n_latam_move_check_ids.payment_id.date',
         'l10n_latam_new_check_ids.amount', 'l10n_latam_new_check_ids.name',
+        'l10n_latam_new_check_ids.bank_account_id', 'l10n_latam_move_check_ids.bank_account_id',
     )
     def _compute_l10n_latam_check_warning_msg(self):
         """
@@ -161,13 +192,15 @@ class AccountPayment(models.Model):
             if rec.payment_method_code == 'new_third_party_checks':
                 same_checks = self.env['l10n_latam.check']
                 for check in rec.l10n_latam_new_check_ids.filtered(
-                        lambda x: x.name and x.payment_method_line_id.code == 'new_third_party_checks' and
-                        x.bank_id and x.issuer_vat):
+                    lambda x: x.name
+                    and x.payment_method_line_id.code == "new_third_party_checks"
+                    and x.issuer_vat
+                ):
                     same_checks += same_checks.search([
-                        ('company_id', '=', rec.company_id.id),
-                        ('bank_id', '=', check.bank_id.id),
+                        ('payment_id.company_id', '=', rec.company_id.id),
                         ('issuer_vat', '=', check.issuer_vat),
                         ('name', '=', check.name),
+                        ('bank_account_id', '=', check.bank_account_id.id),
                         ('payment_id.state', 'not in', ['draft', 'canceled']),
                         ('id', '!=', check._origin.id)], limit=1)
                 if same_checks:
@@ -182,11 +215,6 @@ class AccountPayment(models.Model):
     def _get_trigger_fields_to_synchronize(self):
         res = super()._get_trigger_fields_to_synchronize()
         return res + ('l10n_latam_new_check_ids', 'payment_method_line_id')
-
-    def _prepare_move_line_default_vals(self, write_off_line_vals=None, force_balance=None):
-        """ Kept for backward compatibility, the check labels moved to '_prepare_move_liquidity_lines'. """
-        # EXTENDS 'account'
-        return super()._prepare_move_line_default_vals(write_off_line_vals=write_off_line_vals, force_balance=force_balance)
 
     def _prepare_move_liquidity_lines(self, default_vals):
         is_own_check_payment = self.payment_method_code == 'own_checks' and self.payment_type == 'outbound'

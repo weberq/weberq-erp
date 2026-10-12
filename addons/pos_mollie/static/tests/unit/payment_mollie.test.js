@@ -22,15 +22,15 @@ const setupMollie = async () => {
     const store = await setupPosEnv();
     const order = await getFilledOrder(store);
     const paymentMethod = store.models["pos.payment.method"].find(
-        (pm) => pm.use_payment_terminal === "mollie"
+        (pm) => pm.payment_provider === "mollie"
     );
-    const mollie = paymentMethod.payment_terminal;
+    const mollie = paymentMethod.payment_interface;
     const paymentLine = order.addPaymentline(paymentMethod).data;
 
     const mockMollieCreatePaymentWithStatus = (status) => {
         onRpc("pos.payment.method", "mollie_create_payment", ({ args }) => {
             expect(args[0]).toBe(paymentMethod.id);
-            expect(args[1]).toBe(17.85);
+            expect(args[1]).toBe(595);
             expect(args[2]).toBe(paymentLine.uuid);
             expect(args[3]).toBe(order.session_id.id);
             return { id: fakeMollieId, status, _links: {} };
@@ -44,7 +44,7 @@ test("successful payment", async () => {
     const { mollie, paymentLine, mockMollieCreatePaymentWithStatus } = await setupMollie();
     mockMollieCreatePaymentWithStatus("open");
 
-    const result = mollie.sendPaymentRequest(paymentLine.uuid);
+    const result = mollie.sendPaymentRequest(paymentLine);
     await waitUntil(() => paymentLine.transaction_id === fakeMollieId);
     mollie.handleMollieStatusResponse(paymentLine, {
         status: "paid",
@@ -64,7 +64,7 @@ test("shows error on invalid payment state", async () => {
     const { mollie, paymentLine, mockMollieCreatePaymentWithStatus } = await setupMollie();
     mockMollieCreatePaymentWithStatus("failed");
 
-    const result = await mollie.sendPaymentRequest(paymentLine.uuid);
+    const result = await mollie.sendPaymentRequest(paymentLine);
 
     expect(result).toBe(false);
     expect(lastError).toInclude("Failed to initiate payment");
@@ -74,7 +74,7 @@ test("shows error on failed payment", async () => {
     const { mollie, paymentLine, mockMollieCreatePaymentWithStatus } = await setupMollie();
     mockMollieCreatePaymentWithStatus("open");
 
-    const result = mollie.sendPaymentRequest(paymentLine.uuid);
+    const result = mollie.sendPaymentRequest(paymentLine);
     await waitUntil(() => paymentLine.transaction_id === fakeMollieId);
     mollie.handleMollieStatusResponse(paymentLine, {
         status: "failed",
@@ -89,7 +89,7 @@ test("shows error on expired payment", async () => {
     const { mollie, paymentLine, mockMollieCreatePaymentWithStatus } = await setupMollie();
     mockMollieCreatePaymentWithStatus("open");
 
-    const result = mollie.sendPaymentRequest(paymentLine.uuid);
+    const result = mollie.sendPaymentRequest(paymentLine);
     await waitUntil(() => paymentLine.transaction_id === fakeMollieId);
     mollie.handleMollieStatusResponse(paymentLine, { status: "expired" });
 

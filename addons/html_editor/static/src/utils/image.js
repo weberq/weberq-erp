@@ -50,30 +50,10 @@ export function backgroundImagePartsToCss(parts) {
 
 /**
  * @param {HTMLImageElement} image
- * @returns {string|null} The mimetype of the image.
- */
-export function getMimetype(image, data = image.dataset) {
-    const src = getImageSrc(image);
-
-    return (
-        data.mimetype ||
-        data.mimetypeBeforeConversion ||
-        (src &&
-            ((src.endsWith(".png") && "image/png") ||
-                (src.endsWith(".webp") && "image/webp") ||
-                (src.endsWith(".jpg") && "image/jpeg") ||
-                (src.endsWith(".jpeg") && "image/jpeg"))) ||
-        null
-    );
-}
-
-// TODO: in master, remove getFetchedMimetype and modify getMimetype
-/**
- * @param {HTMLImageElement} image
  * @param {Object} data
  * @returns {string|null} The mimetype of the image.
  */
-export async function getFetchedMimetype(image, data = image.dataset) {
+export async function getMimetype(image, data = image.dataset) {
     const mimetypeOnData = data.mimetype || data.mimetypeBeforeConversion;
     if (mimetypeOnData) {
         return mimetypeOnData;
@@ -153,10 +133,12 @@ export function getImageSrc(el) {
     // The plugin transfer the `src` on a `span`, but parallax can be achieved via other means.
     // example: CSS variables without this DOM manipulation.
     // Decouple.
-    if (el.querySelector(".s_parallax_bg")) {
-        el = el.querySelector(".s_parallax_bg");
+    const parallaxEl = el.querySelector(":scope > .s_parallax_bg_wrap > .s_parallax_bg");
+    if (parallaxEl) {
+        el = parallaxEl;
     }
-    const url = backgroundImageCssToParts(el.style.backgroundImage).url;
+    const backgroundImage = el.style.backgroundImage || getComputedStyle(el).backgroundImage;
+    const url = backgroundImageCssToParts(backgroundImage).url;
     return url && getBgImageURLFromURL(url);
 }
 

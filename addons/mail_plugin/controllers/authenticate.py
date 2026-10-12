@@ -59,7 +59,7 @@ class Authenticate(http.Controller):
                 methods=['POST', 'OPTIONS'])
     def auth_check_version(self):
         """Allow to know if the module is installed and which addin version is supported."""
-        return 1
+        return 2
 
     # In this case, an exception will be thrown in case of preflight request if only POST is allowed.
     @http.route(['/mail_client_extension/auth/access_token', '/mail_plugin/auth/access_token'], type='jsonrpc', auth="none", cors="*",
@@ -81,8 +81,8 @@ class Authenticate(http.Controller):
             return {"error": "Invalid scope"}
         request.update_env(user=auth_message['uid'])
         scope = 'odoo.plugin.' + auth_message.get('scope', '')
-        expiration_days = int(request.env['ir.config_parameter'].sudo().get_param(
-            'mail_plugin.access_token_expiration_days', 30))
+        expiration_days = request.env['ir.config_parameter'].sudo().get_int(
+            'mail_plugin.access_token_expiration_days', 30)
         if expiration_days <= 0:
             expiration_days = 30
         # created in SUDO to ignore the limit

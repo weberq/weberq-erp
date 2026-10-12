@@ -4,9 +4,6 @@
 import re
 import werkzeug.urls
 
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-
 from odoo import api, fields, models, tools
 
 
@@ -115,21 +112,7 @@ class MailMail(models.Model):
 
     def _postprocess_sent_message(self, success_pids, success_emails, failure_reason=False, failure_type=None):
         if failure_type:  # we consider that a recipient error is a failure with mass mailing and show them as failed
-            self.filtered('mailing_id').mailing_trace_ids.set_failed(failure_type=failure_type)
+            self.filtered('mailing_id').mailing_trace_ids.set_failed(failure_reason=failure_reason, failure_type=failure_type)
         else:
             self.filtered('mailing_id').mailing_trace_ids.set_sent()
         return super()._postprocess_sent_message(success_pids, success_emails, failure_reason=failure_reason, failure_type=failure_type)
-
-    @api.autovacuum
-    def _gc_canceled_mail_mail(self):
-        """Garbage collects old canceled mail.mail records as we consider
-        nobody is going to look at them anymore, becoming noise."""
-        # The 10000 limit is arbitrary, chosen a big limit so that the cleaning can be shorter and not too big so that we don't block the server
-        months_limit = int(self.env['ir.config_parameter'].sudo().get_param("mass_mailing.cancelled_mails_months_limit", 6))
-        if months_limit <= 0:
-            return
-        history_deadline = datetime.utcnow() - relativedelta(months=months_limit)  # 6 months history will be kept
-        canceled_mails = self.with_context(active_test=False).search([('state', '=', 'cancel'), ('write_date', '<=', history_deadline)], order="id asc", limit=10000)
-        # about linked mail_message: 'is_notification' is in charge of choosing to
-        # delete the mail.message or not, see MailMail.unlink()
-        canceled_mails.with_context(prefetch_fields=False).unlink()

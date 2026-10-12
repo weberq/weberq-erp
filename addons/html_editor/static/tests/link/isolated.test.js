@@ -5,10 +5,9 @@ import { descendants } from "@html_editor/utils/dom_traversal";
 import { tick } from "@odoo/hoot-mock";
 import { getContent, moveSelectionOutsideEditor, setSelection } from "../_helpers/selection";
 import { cleanLinkArtifacts } from "../_helpers/format";
-import { dispatchNormalize } from "../_helpers/dispatch";
+import { animationFrame } from "@odoo/hoot-dom";
 import { expectElementCount } from "../_helpers/ui_expectations";
 import { isBlock } from "@html_editor/utils/blocks";
-import { animationFrame } from "@odoo/hoot-dom";
 import { onRpc, patchWithCleanup } from "@web/../tests/web_test_helpers";
 
 test("should pad a link with ZWNBSPs and add visual indication", async () => {
@@ -110,7 +109,7 @@ describe("should zwnbsp-pad simple text link", () => {
                 // set the selection via the parent
                 setSelection({ anchorNode: p, anchorOffset: 1 });
                 // insert the zwnbsp again
-                dispatchNormalize(editor);
+                editor.shared.dom.normalize();
             },
             contentAfterEdit: '<p>a\ufeff[]<a href="#/">\ufeffbc\ufeff</a>\ufeffd</p>',
         });
@@ -127,7 +126,7 @@ describe("should zwnbsp-pad simple text link", () => {
                 setSelection({ anchorNode: a, anchorOffset: 0 });
                 await tick();
                 // insert the zwnbsp again
-                dispatchNormalize(editor);
+                editor.shared.dom.normalize();
             },
             contentAfterEdit:
                 '<p>a\ufeff<a href="http://test.test/" class="o_link_in_selection">\ufeff[]bc\ufeff</a>\ufeffd</p>',
@@ -149,7 +148,7 @@ describe("should zwnbsp-pad simple text link", () => {
                 setSelection({ anchorNode: a, anchorOffset: 1 });
                 await tick();
                 // insert the zwnbsp again
-                dispatchNormalize(editor);
+                editor.shared.dom.normalize();
             },
             contentAfterEdit:
                 '<p>a\ufeff<a href="http://test.test/" class="o_link_in_selection">\ufeffb[]c\ufeff</a>\ufeffd</p>',
@@ -167,7 +166,7 @@ describe("should zwnbsp-pad simple text link", () => {
                 setSelection({ anchorNode: a, anchorOffset: 1 });
                 await tick();
                 // insert the zwnbsp again
-                dispatchNormalize(editor);
+                editor.shared.dom.normalize();
             },
             contentAfterEdit:
                 '<p>a\ufeff<a href="http://test.test/" class="o_link_in_selection">\ufeffbc[]\ufeff</a>\ufeffd</p>',
@@ -184,26 +183,35 @@ describe("should zwnbsp-pad simple text link", () => {
                 setSelection({ anchorNode: p, anchorOffset: 2 });
                 await tick();
                 // insert the zwnbsp again
-                dispatchNormalize(editor);
+                editor.shared.dom.normalize();
             },
             contentAfterEdit: '<p>a\ufeff<a href="#/">\ufeffbc\ufeff</a>\ufeff[]d</p>',
         });
     });
 });
 
-test("should not zwnbsp-pad nav-link", async () => {
+test("should not zwnbsp-pad display block link", async () => {
     await testEditor({
-        contentBefore: '<p>a<a href="http://test.test/" class="nav-link">[]b</a>c</p>',
-        contentBeforeEdit: '<p>a<a href="http://test.test/" class="nav-link">[]b</a>c</p>',
+        contentBefore: '<p>a<a href="http://test.test/" style="display: block;">[]b</a>c</p>',
+        contentBeforeEdit: '<p>a<a href="http://test.test/" style="display: block;">[]b</a>c</p>',
+    });
+});
+
+test("should zwnbsp-pad inline nav-link", async () => {
+    await testEditor({
+        contentBefore:
+            '<p>a<a href="http://test.test/" class="nav-link" style="display: inline;">[]b</a>c</p>',
+        contentBeforeEdit:
+            '<p>a\ufeff<a href="http://test.test/" class="nav-link o_link_in_selection" style="display: inline;">\ufeff[]b\ufeff</a>\ufeffc</p>',
     });
 });
 
 test("should not zwnbsp-pad link with block fontawesome", async () => {
     await testEditor({
         contentBefore:
-            '<p>a<a href="http://test.test/">[]<i style="display: flex;" class="fa fa-star"></i></a>b</p>',
+            '<p>a<a href="http://test.test/">[]<i style="display: flex;" class="oi oi-filled" data-icon="star"></i></a>b</p>',
         contentBeforeEdit:
-            '<p>a<a href="http://test.test/">\ufeff[]<i style="display: flex;" class="fa fa-star" contenteditable="false">\u200b</i>\ufeff</a>b</p>',
+            '<p>a<a href="http://test.test/">\ufeff[]<i style="display: flex;" class="oi oi-filled" data-icon="star" contenteditable="false">\u200b</i>\ufeff</a>b</p>',
     });
 });
 
@@ -262,32 +270,25 @@ describe("button", () => {
         });
     });
 
-    test("should not add visual indication to a button", async () => {
-        await testEditor({
-            contentBefore: '<p><a href="http://test.test/" class="btn">[]content</a></p>',
-            contentBeforeEdit:
-                '<p>\ufeff<a href="http://test.test/" class="btn">\ufeff[]content\ufeff</a>\ufeff</p>',
-        });
-    });
-
     test("should type inside button after backspacing into it", async () => {
         const { editor, el } = await setupEditor(
-            '<p>before<a class="btn" href="#/">in</a>x[]after</p>'
+            '<p>before<a class="btn" href="http://test.test/">in</a>x[]after</p>'
         );
         expect(getContent(el)).toBe(
-            '<p>before\ufeff<a class="btn" href="#/">\ufeffin\ufeff</a>\ufeffx[]after</p>'
-        );
-        deleteBackward(editor);
-        expect(getContent(el)).toBe(
-            '<p>before\ufeff<a class="btn" href="#/">\ufeffin\ufeff</a>\ufeff[]after</p>'
+            '<p>before\ufeff<a class="btn" href="http://test.test/">\ufeffin\ufeff</a>\ufeffx[]after</p>'
         );
         deleteBackward(editor);
         expect(getContent(el)).toBe(
-            '<p>before\ufeff<a class="btn" href="#/">\ufeffin[]\ufeff</a>\ufeffafter</p>'
+            '<p>before\ufeff<a class="btn" href="http://test.test/">\ufeffin\ufeff</a>\ufeff[]after</p>'
+        );
+        deleteBackward(editor);
+        await animationFrame();
+        expect(getContent(el)).toBe(
+            '<p>before\ufeff<a class="btn o_link_in_selection" href="http://test.test/">\ufeffin[]\ufeff</a>\ufeffafter</p>'
         );
         await insertText(editor, "side");
         expect(getContent(el)).toBe(
-            '<p>before\ufeff<a class="btn" href="#/">\ufeffinside[]\ufeff</a>\ufeffafter</p>'
+            '<p>before\ufeff<a class="btn o_link_in_selection" href="http://test.test/">\ufeffinside[]\ufeff</a>\ufeffafter</p>'
         );
     });
 
@@ -399,7 +400,7 @@ describe("should position the cursor outside the link", () => {
         await click(a, { clientX, clientY });
         await animationFrame();
         expect(getContent(el)).toBe(
-            '<p>\ufeff<a class="btn btn-primary" href="/test">\ufeff[]test\ufeff</a>\ufeff</p>'
+            '<p>\ufeff<a class="btn btn-primary o_link_in_selection" href="/test">\ufeff[]test\ufeff</a>\ufeff</p>'
         );
     });
 
@@ -484,7 +485,7 @@ describe("should position the cursor outside the link", () => {
         await click(a, { clientX, clientY });
         await animationFrame();
         expect(getContent(el)).toBe(
-            '<p>\ufeff<a class="btn btn-primary" href="/test">\ufeff[]test\ufeff</a>\ufeff</p>'
+            '<p>\ufeff<a class="btn btn-primary o_link_in_selection" href="/test">\ufeff[]test\ufeff</a>\ufeff</p>'
         );
     });
 });

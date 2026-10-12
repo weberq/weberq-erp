@@ -2,20 +2,16 @@
 # This file contains the translation of the following modules:
 # * privacy_lookup
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 # Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-14 08:37+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 17:50+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "privacy_lookup/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +39,7 @@ msgstr "Anonimno ime"
 #. module: privacy_lookup
 #: model:ir.actions.server,name:privacy_lookup.ir_actions_server_archive_all
 msgid "Archive Selection"
-msgstr "Arhiviraj izbor"
+msgstr ""
 
 #. module: privacy_lookup
 #. odoo-python
@@ -55,7 +51,7 @@ msgstr "Arhivirano"
 #. module: privacy_lookup
 #: model_terms:ir.ui.view,arch_db:privacy_lookup.privacy_lookup_wizard_line_view_search
 msgid "Can be archived"
-msgstr "Lahko se arhivira"
+msgstr ""
 
 #. module: privacy_lookup
 #: model:ir.model,name:privacy_lookup.model_res_partner
@@ -94,7 +90,7 @@ msgstr "Izbriši"
 #. module: privacy_lookup
 #: model:ir.actions.server,name:privacy_lookup.ir_actions_server_unlink_all
 msgid "Delete Selection"
-msgstr "Izbriši izbor"
+msgstr ""
 
 #. module: privacy_lookup
 #. odoo-python
@@ -189,7 +185,7 @@ msgstr "Postavka"
 #. module: privacy_lookup
 #: model:ir.model.fields,field_description:privacy_lookup.field_privacy_lookup_wizard__line_count
 msgid "Line Count"
-msgstr "Število vrstic"
+msgstr ""
 
 #. module: privacy_lookup
 #: model:ir.model.fields,field_description:privacy_lookup.field_privacy_lookup_wizard__log_id
@@ -198,6 +194,7 @@ msgstr "Log"
 
 #. module: privacy_lookup
 #: model_terms:ir.ui.view,arch_db:privacy_lookup.privacy_lookup_wizard_view_form
+#, fuzzy
 msgid "Lookup"
 msgstr "Iskanje"
 
@@ -214,9 +211,10 @@ msgstr "Naziv"
 #. module: privacy_lookup
 #: model_terms:ir.ui.view,arch_db:privacy_lookup.privacy_lookup_wizard_line_view_tree
 msgid "Open Record"
-msgstr "Odpri zapis"
+msgstr ""
 
 #. module: privacy_lookup
+#: model:ir.module.module,shortdesc:base.module_privacy_lookup
 #: model:ir.ui.menu,name:privacy_lookup.privacy_menu
 msgid "Privacy"
 msgstr "Zasebnost"
@@ -225,7 +223,7 @@ msgstr "Zasebnost"
 #: model:ir.model,name:privacy_lookup.model_privacy_log
 #: model_terms:ir.ui.view,arch_db:privacy_lookup.privacy_log_view_form
 msgid "Privacy Log"
-msgstr "Dnevnik zasebnosti"
+msgstr ""
 
 #. module: privacy_lookup
 #: model:ir.actions.act_window,name:privacy_lookup.privacy_log_action
@@ -233,7 +231,7 @@ msgstr "Dnevnik zasebnosti"
 #: model:ir.ui.menu,name:privacy_lookup.pricacy_log_menu
 #: model_terms:ir.ui.view,arch_db:privacy_lookup.privacy_log_view_list
 msgid "Privacy Logs"
-msgstr "Dnevniki zasebnosti"
+msgstr ""
 
 #. module: privacy_lookup
 #. odoo-python
@@ -243,22 +241,22 @@ msgstr "Dnevniki zasebnosti"
 #: model:ir.actions.server,name:privacy_lookup.ir_action_server_action_privacy_lookup_user
 #: model_terms:ir.ui.view,arch_db:privacy_lookup.privacy_lookup_wizard_view_form
 msgid "Privacy Lookup"
-msgstr "Iskanje zasebnosti"
+msgstr ""
 
 #. module: privacy_lookup
 #: model:ir.actions.act_window,name:privacy_lookup.action_privacy_lookup_wizard_line
 msgid "Privacy Lookup Line"
-msgstr "Vrstica iskanja zasebnosti"
+msgstr ""
 
 #. module: privacy_lookup
 #: model:ir.model,name:privacy_lookup.model_privacy_lookup_wizard
 msgid "Privacy Lookup Wizard"
-msgstr "Čarovnik za iskanje zasebnosti"
+msgstr ""
 
 #. module: privacy_lookup
 #: model:ir.model,name:privacy_lookup.model_privacy_lookup_wizard_line
 msgid "Privacy Lookup Wizard Line"
-msgstr "Vrstica čarovnika za iskanje zasebnosti"
+msgstr ""
 
 #. module: privacy_lookup
 #: model:ir.model.fields,field_description:privacy_lookup.field_privacy_lookup_wizard_line__resource_ref
@@ -293,37 +291,34 @@ msgstr "Ime vira"
 #. module: privacy_lookup
 #: model_terms:ir.ui.view,arch_db:privacy_lookup.privacy_lookup_wizard_line_view_search
 msgid "Search References"
-msgstr "Iskanje referenc"
+msgstr ""
 
 #. module: privacy_lookup
 #. odoo-python
 #: code:addons/privacy_lookup/wizard/privacy_lookup_wizard.py:0
 msgid "The record is already unlinked."
-msgstr "Zapis je že izbrisan."
+msgstr ""
 
 #. module: privacy_lookup
 #. odoo-python
 #: code:addons/privacy_lookup/models/privacy_log.py:0
 msgid "This email address is not valid (%s)"
-msgstr "Ta e-poštni naslov ni veljaven (%s)"
+msgstr ""
 
 #. module: privacy_lookup
 #: model_terms:ir.ui.view,arch_db:privacy_lookup.privacy_lookup_wizard_line_view_tree
 msgid ""
 "This operation is irreversible. Do you wish to proceed to the record "
 "deletion?"
-msgstr "To dejanje je nepovratno. Ali želite nadaljevati z brisanjem zapisa?"
+msgstr ""
 
 #. module: privacy_lookup
 #. odoo-python
 #: code:addons/privacy_lookup/wizard/privacy_lookup_wizard.py:0
 msgid "Unarchived"
-msgstr "Odstranjeno iz arhiva"
+msgstr ""
 
 #. module: privacy_lookup
 #: model:ir.model.fields,field_description:privacy_lookup.field_privacy_lookup_wizard_line__wizard_id
 msgid "Wizard"
 msgstr "Čarovnik"
-
-#~ msgid "Group By"
-#~ msgstr "Združi po"

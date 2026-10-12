@@ -9,13 +9,19 @@ import {
     waitForNone,
 } from "@odoo/hoot-dom";
 import { animationFrame } from "@odoo/hoot-mock";
-import { contains, makeMockEnv, onRpc, patchWithCleanup } from "@web/../tests/web_test_helpers";
+import { contains, onRpc, patchWithCleanup } from "@web/../tests/web_test_helpers";
 import { CaptionPlugin } from "@html_editor/others/embedded_components/plugins/caption_plugin/caption_plugin";
-import { MAIN_PLUGINS, EMBEDDED_COMPONENT_PLUGINS } from "@html_editor/plugin_sets";
+import { EMBEDDED_COMPONENT_PLUGINS } from "@html_editor/plugin_sets";
 import { MAIN_EMBEDDINGS } from "@html_editor/others/embedded_components/embedding_sets";
 import { setupEditor, testEditor } from "./_helpers/editor";
 import { unformat } from "./_helpers/format";
-import { deleteBackward, deleteForward, insertText, undo } from "./_helpers/user_actions";
+import {
+    deleteBackward,
+    deleteForward,
+    ensureDistinctHistoryCommit,
+    insertText,
+    undo,
+} from "./_helpers/user_actions";
 import { cleanHints } from "./_helpers/dispatch";
 import { getContent, setSelection } from "./_helpers/selection";
 import { expectElementCount } from "./_helpers/ui_expectations";
@@ -30,11 +36,8 @@ class CaptionPluginWithPredictableId extends CaptionPlugin {
 const base64Img =
     "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUA\n        AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO\n            9TXL0Y4OHwAAAABJRU5ErkJggg==";
 const configWithEmbeddedCaption = {
-    Plugins: [
-        ...MAIN_PLUGINS,
-        CaptionPluginWithPredictableId,
-        ...EMBEDDED_COMPONENT_PLUGINS.filter((plugin) => plugin.id !== "caption"),
-    ],
+    includePlugins: [CaptionPluginWithPredictableId, ...EMBEDDED_COMPONENT_PLUGINS],
+    excludePlugins: [CaptionPlugin],
     resources: {
         embedded_components: MAIN_EMBEDDINGS,
     },
@@ -367,6 +370,7 @@ test("undo in a caption undoes the last caption action then returns to regular e
         contentBefore: `<p><img class="img-fluid test-image o_editable_media" src="${base64Img}" data-caption="${caption}"></p><h1>[]Heading</h1>`,
         stepFunction: async (editor) => {
             await insertText(editor, "a");
+            await ensureDistinctHistoryCommit();
             const heading = queryOne("h1");
             expect(heading.textContent).toBe("aHeading");
             await toggleCaption(editor);
@@ -375,8 +379,11 @@ test("undo in a caption undoes the last caption action then returns to regular e
             expect(editor.document.activeElement).toBe(span);
             // Using native execCommand so the span's native history works.
             await insertText(editor, "b");
+            await ensureDistinctHistoryCommit();
             await insertText(editor, "c");
+            await ensureDistinctHistoryCommit();
             await insertText(editor, "d");
+            await ensureDistinctHistoryCommit();
             deleteBackward(editor);
             await animationFrame();
             expect(span.textContent).toBe(`${caption}bc`);
@@ -514,9 +521,7 @@ test("replace an image with a caption", async () => {
             public: true,
         },
     ]);
-    const env = await makeMockEnv();
     await testEditor({
-        env,
         config: configWithEmbeddedCaption,
         contentBefore: unformat(
             `<figure>
@@ -538,7 +543,7 @@ test("replace an image with a caption", async () => {
         // TODO: fix the weird final selection
         contentAfter: unformat(
             `<figure>
-                <img src="/web/static/img/logo2.png" alt="" data-attachment-id="1" class="img img-fluid o_we_custom_image">
+                <img src="/web/static/img/logo2.png" alt="" data-attachment-id="1" class="img img-fluid o_we_custom_image o_attachment_pending_record_id">
                 <figcaption>Hello</figcaption>
             </figure>
             <h1>[]Heading</h1>`
@@ -570,12 +575,12 @@ test("remove caption when replacing an image with other media", async () => {
     await waitFor(".o-we-toolbar button[name='replace_image']");
     await click("button[name='replace_image']");
     await waitFor(".o_select_media_dialog");
-    await click(".modal .modal-body .nav-item:nth-child(3) a"); // Icons
-    await waitFor(".modal .modal-body .fa-heart");
-    await click(".modal .modal-body .fa-heart");
+    await click(".modal .modal-body .nav-item:nth-child(3) button"); // Icons
+    await waitFor(".modal .modal-body [data-icon='favorite']");
+    await click(".modal .modal-body [data-icon='favorite']");
     expect("img[src='/web/static/img/logo.png']").toHaveCount(0);
     expect(getContent(el)).toBe(
-        '<p>\ufeff<span class="fa fa-heart" contenteditable="false">\u200b</span>[]\ufeff</p><p>abc</p>'
+        '<p>\ufeff<span class="oi" data-icon="favorite" contenteditable="false">\u200b</span>[]\ufeff</p><p>abc</p>'
     );
 });
 
@@ -590,9 +595,7 @@ test("edit caption after replacing image", async () => {
             public: true,
         },
     ]);
-    const env = await makeMockEnv();
     await testEditor({
-        env,
         config: configWithEmbeddedCaption,
         contentBefore: unformat(
             `<figure>
@@ -622,7 +625,7 @@ test("edit caption after replacing image", async () => {
         },
         contentAfter: unformat(
             `<figure>
-                [<img src="/web/static/img/logo2.png" alt="" data-attachment-id="1" class="img img-fluid o_we_custom_image">]
+                [<img src="/web/static/img/logo2.png" alt="" data-attachment-id="1" class="img img-fluid o_we_custom_image o_attachment_pending_record_id">]
                 <figcaption>abc</figcaption>
             </figure>
             <h1>Heading</h1>`
@@ -641,9 +644,7 @@ test("after replacing a captioned image, undo should revert to the original imag
             public: true,
         },
     ]);
-    const env = await makeMockEnv();
     await testEditor({
-        env,
         config: configWithEmbeddedCaption,
         contentBefore: unformat(
             `<figure>
@@ -996,9 +997,9 @@ test("should drag and drop image with its caption(1)", async () => {
             <p>a</p>
             <p>b</p>
             <figure contenteditable="false">
-                <img data-caption="${caption}" data-caption-id="${captionId}" src="${base64Img}" class="img-fluid test-image o_editable_media">
-                <figcaption placeholder="${caption}" class="mt-2" contenteditable="false">
-                    <span data-caption-id="1" contenteditable="true" class="o_caption_editable">Hello[]</span>
+                <img class="img-fluid test-image o_editable_media" src="${base64Img}" data-caption-id="${captionId}" data-caption="${caption}">
+                <figcaption contenteditable="false" class="mt-2" placeholder="${caption}">
+                    <span class="o_caption_editable" contenteditable="true" data-caption-id="1">Hello[]</span>
                 </figcaption>
             </figure>
             <p data-selection-placeholder="" style="margin: -9px 0px 8px;"><br></p>
@@ -1049,9 +1050,9 @@ test("should drag and drop image with its caption(2)", async () => {
             <p>a</p>
             <p>b</p>
             <figure contenteditable="false">
-                <img data-caption="${caption}" data-caption-id="${captionId}" src="${base64Img}" class="img-fluid test-image o_editable_media">
-                <figcaption placeholder="${caption}" class="mt-2" contenteditable="false">
-                    <span data-caption-id="1" contenteditable="true" class="o_caption_editable">Hello[]</span>
+                <img class="img-fluid test-image o_editable_media" src="${base64Img}" data-caption-id="${captionId}" data-caption="${caption}">
+                <figcaption contenteditable="false" class="mt-2" placeholder="${caption}">
+                    <span class="o_caption_editable" contenteditable="true" data-caption-id="1">Hello[]</span>
                 </figcaption>
             </figure>
             <p data-selection-placeholder="" style="margin: -9px 0px 8px;"><br></p>
@@ -1102,9 +1103,9 @@ test("should drag and drop image with caption along with selected text", async (
             <p><br></p>
             <p>ca</p>
             <figure contenteditable="false">
-                <img data-caption="${caption}" data-caption-id="${captionId}" src="${base64Img}" class="img-fluid test-image o_editable_media">
-                <figcaption placeholder="${caption}" class="mt-2" contenteditable="false">
-                    <span data-caption-id="1" contenteditable="true" class="o_caption_editable">Hello</span>
+                <img class="img-fluid test-image o_editable_media" src="${base64Img}" data-caption-id="${captionId}" data-caption="${caption}">
+                <figcaption contenteditable="false" class="mt-2" placeholder="${caption}">
+                    <span class="o_caption_editable" contenteditable="true" data-caption-id="1">Hello</span>
                 </figcaption>
             </figure>
             <p>b[]</p>
@@ -1237,7 +1238,7 @@ test("removing an image caption inside a table should wrap image in a base conta
     await testEditor({
         config: configWithEmbeddedCaption,
         contentBefore: unformat(
-            `<table>
+            `<table class="table table-bordered o_table">
                 <tbody>
                     <tr>
                         <td>
@@ -1259,7 +1260,7 @@ test("removing an image caption inside a table should wrap image in a base conta
             await click(".o-we-toolbar button[name='image_caption']");
         },
         contentAfter: unformat(
-            `<table>
+            `<table class="table table-bordered o_table">
                 <tbody>
                     <tr>
                         <td>
@@ -1363,7 +1364,6 @@ test("Should be able to revert image replace", async () => {
         },
     ]);
 
-    await makeMockEnv();
     const captionText = "caption";
 
     const { el } = await setupEditorWithEmbeddedCaption(
@@ -1618,6 +1618,7 @@ test("When selecting text along with o_caption_editable CTRL+B should format the
             </figure>
             <p><strong>def</strong>]</p>`
         ),
+        testInBothDirections: false,
     });
 });
 

@@ -2,7 +2,6 @@ from contextlib import contextmanager
 import json
 from lxml import etree
 import requests
-from unittest.mock import patch
 
 from odoo import Command, fields
 from odoo.exceptions import UserError
@@ -16,6 +15,8 @@ from odoo.addons.l10n_hr_edi.tests.test_hr_edi_common import TestL10nHrEdiCommon
 
 @tagged('post_install_l10n', 'post_install', '-at_install')
 class TestHrEdiFlowsMocked(TestL10nHrEdiCommon, TestAccountMoveSendCommon, PatchRequestsMixin):
+
+    _test_user_groups = None  # FIXME list needed groups
 
     @classmethod
     def setUpClass(cls):
@@ -129,9 +130,7 @@ class TestHrEdiFlowsMocked(TestL10nHrEdiCommon, TestAccountMoveSendCommon, Patch
         with file_open('l10n_hr_edi/tests/flows/out_invoice.xml', 'r') as f:
             expected_invoice_xml = f.read()
 
-        with patch(
-            'odoo.addons.account_peppol.models.res_partner.ResPartner._peppol_lookup_participant', return_value=None
-        ), self.assertRequests([
+        with self.assertRequests([
             (
                 # Request 1: Send invoice
                 self._build_request(
@@ -199,9 +198,7 @@ class TestHrEdiFlowsMocked(TestL10nHrEdiCommon, TestAccountMoveSendCommon, Patch
         with file_open('l10n_hr_edi/tests/flows/out_invoice.xml', 'r') as f:
             expected_invoice_xml = f.read()
 
-        with patch(
-            'odoo.addons.account_peppol.models.res_partner.ResPartner._peppol_lookup_participant', return_value=None
-        ), self.assertRaisesRegex(UserError, r"MER service returned an error: Username '12513': Korisničko ime i lozinka nisu ispravni\.\. Trace ID: 4f701362-96cc-49c6-a297-854e740ad719\."):
+        with self.assertRaisesRegex(UserError, r"MER service returned an error: Username '12513': Korisničko ime i lozinka nisu ispravni\.\. Trace ID: 4f701362-96cc-49c6-a297-854e740ad719\."):
             with self.assertRequests([
                 (
                     # Request 1: Send invoice - error should be triggered
@@ -231,6 +228,7 @@ class TestHrEdiFlowsMocked(TestL10nHrEdiCommon, TestAccountMoveSendCommon, Patch
 
     def test_20_receive_invoice(self):
         self.setup_partner_as_hr(self.env.company.partner_id)
+        self.modify_demo_bank_account()
 
         # 1. Fetch inbound invoices
 
@@ -370,7 +368,7 @@ class TestHrEdiFlowsMocked(TestL10nHrEdiCommon, TestAccountMoveSendCommon, Patch
         }])
 
         self.assertRecordValues(fetched_invoice.invoice_line_ids, [{
-            'name': '[E-COM10] Pedal Bin',
+            'name': 'Pedal Bin',
             'quantity': 1.0,
             'price_unit': 47.0,
         }])

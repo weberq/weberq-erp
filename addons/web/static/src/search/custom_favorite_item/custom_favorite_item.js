@@ -4,20 +4,22 @@ import { CheckBox } from "@web/core/checkbox/checkbox";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 
-import { Component, useRef, useState } from "@odoo/owl";
+import { Component, proxy, signal } from "@odoo/owl";
 
 const favoriteMenuRegistry = registry.category("favoriteMenu");
+
+export const customFavoriteItemProps = {};
 
 export class CustomFavoriteItem extends Component {
     static template = "web.CustomFavoriteItem";
     static components = { CheckBox, AccordionItem };
-    static props = {};
+
+    descriptionRef = signal.ref();
 
     setup() {
         this.actionService = useService("action");
         this.notificationService = useService("notification");
-        this.descriptionRef = useRef("description");
-        this.state = useState({
+        this.state = proxy({
             description: this.env.config.getDisplayName(),
             isDefault: false,
         });
@@ -33,7 +35,7 @@ export class CustomFavoriteItem extends Component {
                 type: "danger",
             });
             ev.stopPropagation();
-            this.descriptionRef.el.focus();
+            this.descriptionRef()?.focus();
             return false;
         }
         const { isDefault } = this.state;

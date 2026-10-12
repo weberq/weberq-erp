@@ -3,16 +3,16 @@
 # * website_slides_forum
 #
 # Translators:
-# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025, 2026.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
 # "Anastasiia Koroleva (koan)" <koan@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-10 11:14+0000\n"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 15:06+0000\n"
 "Last-Translator: \"Anastasiia Koroleva (koan)\" <koan@odoo.com>\n"
-"Language-Team: Russian <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Russian <https://translate.odoo.com/projects/odoo-s19-4/"
 "website_slides_forum/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: website_slides_forum
 #: model_terms:forum.forum,faq:website_slides_forum.forum_forum_demo_channel_0
@@ -150,11 +150,11 @@ msgstr ""
 #. module: website_slides_forum
 #: model_terms:ir.ui.view,arch_db:website_slides_forum.slide_fullscreen
 msgid ""
-"<i class=\"fa fa-comments\"/><span class=\"ms-1 d-none d-md-inline-"
-"block\">Forum</span>"
+"<i class=\"oi oi-filled\" data-icon=\"forum\"/><span class=\"ms-1 d-none d-"
+"md-inline-block\">Forum</span>"
 msgstr ""
-"<i class=\"fa fa-comments\"/><span class=\"ms-1 d-none d-md-inline-block\">"
-"Форум</span>"
+"<i class=\"oi oi-filled\" data-icon=\"forum\"/><span class=\"ms-1 d-none d-"
+"md-inline-block\">Форум</span>"
 
 #. module: website_slides_forum
 #: model_terms:forum.forum,faq:website_slides_forum.forum_forum_demo_channel_0
@@ -186,9 +186,16 @@ msgstr ""
 "мои вопросы/ответы?</span>"
 
 #. module: website_slides_forum
-#: model_terms:ir.ui.view,arch_db:website_slides_forum.website_slides_forum_breadcrumb
-msgid "<strong>Forum</strong>"
-msgstr "<strong>Форум</strong>"
+#: model:ir.module.module,description:base.module_website_slides_forum
+msgid ""
+"A Slide channel can be linked to forum. Also, profiles from slide and forum "
+"are regrouped together"
+msgstr ""
+
+#. module: website_slides_forum
+#: model:ir.module.module,summary:base.module_website_slides_forum
+msgid "Allows to link forum on a course"
+msgstr ""
 
 #. module: website_slides_forum
 #: model:forum.forum,name:website_slides_forum.forum_forum_demo_channel_0
@@ -197,8 +204,8 @@ msgstr "Основы садоводства"
 
 #. module: website_slides_forum
 #: model_terms:ir.ui.view,arch_db:website_slides_forum.forum_all_all_entries
-msgid "Check out our courses <i class=\"fa fa-long-arrow-right\"/>"
-msgstr "Ознакомьтесь с нашими курсами <i class=\"fa fa-long-arrow-right\"/>"
+msgid "Check out our courses <i class=\"oi\" data-icon=\"east\"/>"
+msgstr "Ознакомьтесь с нашими курсами <i class=\"oi\" data-icon=\"east\"/>"
 
 #. module: website_slides_forum
 #: model_terms:ir.actions.act_window,help:website_slides_forum.forum_post_action_channel
@@ -264,11 +271,11 @@ msgid ""
 "explains reputation point requirements for each type of moderation task."
 msgstr ""
 "Например, если вы зададите интересный вопрос или дадите полезный ответ, ваш "
-"вклад будет проголосован. С другой стороны, если ответ вводит в "
-"заблуждение - он будет проголосован ниже. Каждый голос \"за\" приносит 10 "
-"баллов, каждый голос \"против\" отнимает 2 балла. В день за вопрос или ответ "
-"может быть накоплено не более 200 баллов. В таблице, приведенной в конце, "
-"указаны требования к баллам репутации для каждого типа модераторских заданий."
+"вклад будет проголосован. С другой стороны, если ответ вводит в заблуждение "
+"- он будет проголосован ниже. Каждый голос \"за\" приносит 10 баллов, каждый "
+"голос \"против\" отнимает 2 балла. В день за вопрос или ответ может быть "
+"накоплено не более 200 баллов. В таблице, приведенной в конце, указаны "
+"требования к баллам репутации для каждого типа модераторских заданий."
 
 #. module: website_slides_forum
 #: model:ir.model,name:website_slides_forum.model_forum_forum
@@ -292,6 +299,11 @@ msgid ""
 "Forum linked to a Course, the visibility is the one applied on the course."
 msgstr ""
 "Форум, связанный с курсом, имеет ту видимость, которая применяется в курсе."
+
+#. module: website_slides_forum
+#: model:ir.module.module,shortdesc:base.module_website_slides_forum
+msgid "Forum on Courses"
+msgstr ""
 
 #. module: website_slides_forum
 #: model:ir.actions.act_window,name:website_slides_forum.forum_forum_action_channel
@@ -394,12 +406,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_slides_forum.field_forum_forum__visibility
 msgid "Show Course To"
 msgstr "Показать курс"
-
-#. module: website_slides_forum
-#. odoo-javascript
-#: code:addons/website_slides_forum/static/src/website_builder/slides_forum_page_option_plugin.js:0
-msgid "Slides Forum Snippet Options"
-msgstr "Параметры сниппета форума презентаций"
 
 #. module: website_slides_forum
 #: model_terms:forum.forum,faq:website_slides_forum.forum_forum_demo_channel_0
@@ -568,23 +574,5 @@ msgid ""
 "your answer is provided along with the question, and you expect more "
 "answers: “I use ______ for ______, what do you use?”"
 msgstr ""
-"ваш ответ предоставляется вместе с вопросом, и вы ожидаете больше ответов: «"
-"Я использую ______ для ______, что используете вы?»"
-
-#~ msgid "Forum Page"
-#~ msgstr "Страница форума"
-
-#~ msgid "Sign up"
-#~ msgstr "Регистрация"
-
-#~ msgid "What kind of questions can I ask here?"
-#~ msgstr "Какие вопросы я могу задать здесь?"
-
-#~ msgid "What should I avoid in my answers?"
-#~ msgstr "Чего мне следует избегать в своих ответах?"
-
-#~ msgid "What should I avoid in my questions?"
-#~ msgstr "Чего следует избегать в моих вопросах?"
-
-#~ msgid "Why can other people edit my questions/answers?"
-#~ msgstr "Почему другие люди могут редактировать мои вопросы/ответы?"
+"ваш ответ предоставляется вместе с вопросом, и вы ожидаете больше ответов: "
+"«Я использую ______ для ______, что используете вы?»"

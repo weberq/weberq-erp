@@ -14,48 +14,59 @@
 # Martin Trigaux, 2023
 # Maria Boyadjieva <marabo2000@gmail.com>, 2023
 # Vladimir Petrov <vladimir.petrov@gmail.com>, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# Martin Dinovski <martin.dinovski@industria.tech>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 17:36+0000\n"
-"PO-Revision-Date: 2026-08-02 12:43+0000\n"
-"Last-Translator: \"Tiffany Chang (tic)\" <tic@odoo.com>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-10-09 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 19:40+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "hr_timesheet/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: hr_timesheet
+#: model:ir.module.module,description:base.module_hr_timesheet
+msgid ""
+"\n"
+"This module implements a timesheet system.\n"
+"==========================================\n"
+"\n"
+"Each employee can encode and track their time spent on the different "
+"projects.\n"
+"\n"
+"Lots of reporting on time and employee tracking are provided.\n"
+"\n"
+"It is completely integrated with the cost accounting module. It allows you "
+"to set\n"
+"up a management by affair.\n"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/models/project_project.py:0
 msgid "%(effective)s %(uom_name)s"
-msgstr "%(effective)s %(uom_name)s"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/models/project_project.py:0
 msgid "%(effective)s / %(allocated)s %(uom_name)s"
-msgstr "%(effective)s / %(allocated)s %(uom_name)s"
-
-#. module: hr_timesheet
-#. odoo-python
-#: code:addons/hr_timesheet/models/project_project.py:0
-msgid "%(effective)s / %(allocated)s %(uom_name)s (%(success_rate)s%%)"
-msgstr "%(effective)s / %(allocated)s %(uom_name)s (%(success_rate)s%%)"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/models/project_project.py:0
 msgid "%(exceeding_hours)s %(uom_name)s (+%(exceeding_rate)s%%)"
-msgstr "%(exceeding_hours)s %(uom_name)s (+%(exceeding_rate)s%%)"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-javascript
@@ -73,94 +84,97 @@ msgstr "%(hours)sч%(minutes)s"
 #. odoo-python
 #: code:addons/hr_timesheet/models/project_project.py:0
 msgid "%(name)s's Timesheets"
-msgstr "Графици на %(name)s"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid "%(project_name)s (%(days)sd)"
-msgstr "%(project_name)s (%(days)sд)"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid "%(project_name)s (%(sign)s%(hours)sh%(minutes)s)"
-msgstr "%(project_name)s (%(sign)s%(hours)sч%(minutes)s)"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid "%(project_name)s (%(sign)s%(hours)sh)"
-msgstr "%(project_name)s (%(sign)s%(hours)sч)"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid ""
 "'%(missing_plan_names)s' analytic plan(s) required on the project '%"
 "(project_name)s' linked to the timesheet."
 msgstr ""
-"На проекта '%(project_name)s', свързан с графика, са необходими аналитичен"
-"(и) план(ове) '%(missing_plan_names)s'."
-
-#. module: hr_timesheet
-#. odoo-python
-#: code:addons/hr_timesheet/models/project_task.py:0
-msgid "(%(sign)s%(hours)s:%(minutes)s remaining)"
-msgstr "(остават %(sign)s%(hours)s:%(minutes)s)"
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/models/project_task.py:0
 msgid "(%s days remaining)"
-msgstr "(остават %s дни)"
+msgstr ""
 
 #. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
-msgid "(incl."
-msgstr "(вкл."
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_tasks_list_inherit
+msgid "0h"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_table
 msgid "1 day"
-msgstr "1 ден"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_table
 msgid "2 hours"
-msgstr "2 часа"
-
-#. module: hr_timesheet
-#: model_terms:digest.tip,tip_description:hr_timesheet.digest_tip_hr_timesheet_0
-msgid "<b class=\"tip_title\">Tip: Record your Timesheets faster</b>"
-msgstr "<b class=\"tip_title\">Съвет: Регистрирайте графиците си по-бързо</b>"
-
-#. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_kanban_account_analytic_line
-msgid ""
-"<i class=\"fa fa-calendar me-1\" role=\"img\" aria-label=\"Date\" "
-"title=\"Date\"/>"
 msgstr ""
-"<i class=\"fa fa-calendar me-1\" role=\"img\" aria-label=\"Date\" "
-"title=\"Date\"/>"
+
+#. module: hr_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_invoice_form
+msgid ""
+"<i class=\"oi oi-fw o_button_icon\" data-icon=\"schedule\" "
+"title=\"Timesheets\" invisible=\"stat_success_rate\"/>\n"
+"                            <i class=\"oi oi-fw o_button_icon text-success\" "
+"data-icon=\"schedule\" title=\"On Due\" invisible=\"not stat_success_rate or "
+"stat_success_rate &gt;= 80\"/>\n"
+"                            <i class=\"oi oi-fw o_button_icon text-warning\" "
+"data-icon=\"schedule\" title=\"Warning\" invisible=\"not stat_success_rate "
+"or stat_success_rate &gt; 100 or stat_success_rate &lt; 80\"/>\n"
+"                            <i class=\"oi oi-fw o_button_icon text-danger\" "
+"data-icon=\"schedule\" title=\"Over Due\" invisible=\"not stat_success_rate "
+"or stat_success_rate &lt;= 100\"/>"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_task
-msgid "<i class=\"fa fa-print\"/> View Details"
-msgstr "<i class=\"fa fa-print\"/> Покажи подробности"
+msgid "<i class=\"oi\" data-icon=\"print\"/> View Details"
+msgstr "<i class=\"oi\" data-icon=\"print\"/> Покажи подробности"
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_employee_public_view_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_employee_view_form_inherit_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_invoice_form
 msgid "<span class=\"o_stat_text\">Timesheets</span>"
 msgstr "<span class=\"o_stat_text\">Графици</span>"
 
 #. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
-msgid "<span class=\"text-nowrap\">Time Spent on Sub-tasks:</span>"
-msgstr "<span class=\"text-nowrap\">Изразходвано време по подзадачи:</span>"
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_update_view_kanban_inherit
+msgid "<span class=\"oi oi-fw me-1\" data-icon=\"schedule\" title=\"Time\"/>"
+msgstr ""
+
+#. module: hr_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_table
+msgid "<span class=\"pe-1\">Total (Days)</span>"
+msgstr ""
+
+#. module: hr_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_table
+msgid "<span class=\"pe-1\">Total</span>"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_employee_delete_wizard_form
@@ -169,20 +183,6 @@ msgid ""
 "                        Are you sure you want to delete these employees?\n"
 "                    </span>"
 msgstr ""
-"<span invisible=\"has_timesheet\">\n"
-"                        Сигурни ли сте, че искате да изтриете тези "
-"служители?\n"
-"                    </span>"
-
-#. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_table
-msgid "<span style=\"margin-right: 15px;\">Total (Days)</span>"
-msgstr "<span style=\"margin-right: 15px;\">Общо (Дни)</span>"
-
-#. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_table
-msgid "<span style=\"margin-right: 15px;\">Total (Hours)</span>"
-msgstr "<span style=\"margin-right: 15px;\">Общо (Часове)</span>"
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_table
@@ -202,37 +202,37 @@ msgstr "<span>Служител</span>"
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_table
 msgid "<span>Time Spent</span>"
-msgstr "<span>Изразходвано време</span>"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_task
 msgid "<strong>Progress:</strong>"
-msgstr "<strong>Напредък:</strong>"
+msgstr ""
 
 #. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table_with_total
 msgid "<strong>Time Remaining: </strong>"
-msgstr "<strong>Оставащо време: </strong>"
+msgstr ""
 
 #. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table_with_total
 msgid "<strong>Time recorded on sub-tasks: </strong>"
-msgstr "<strong>Записано време по подзадачи: </strong>"
+msgstr ""
 
 #. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table_with_total
 msgid "<strong>Total Days: </strong>"
-msgstr "<strong>Общо дни: </strong>"
+msgstr ""
 
 #. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table_with_total
 msgid "<strong>Total Hours: </strong>"
-msgstr "<strong>Общо часове: </strong>"
+msgstr ""
 
 #. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table_with_total
 msgid "<strong>Total Time Spent: </strong>"
-msgstr "<strong>Общо изразходвано време: </strong>"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:res.groups,name:hr_timesheet.group_timesheet_manager
@@ -256,7 +256,7 @@ msgstr "Всички графици"
 #: model:ir.model.fields,field_description:hr_timesheet.field_project_update__allocated_time
 #: model:ir.model.fields,field_description:hr_timesheet.field_report_project_task_user__allocated_hours
 msgid "Allocated Time"
-msgstr "Разпределено време"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_timesheets_analysis_report__amount
@@ -293,30 +293,26 @@ msgid ""
 "<br>\n"
 "                Evaluate which part is billable and what costs it represents."
 msgstr ""
-"Анализирайте проектите и задачите, за които служителите ви изразходват "
-"време.<br>\n"
-"                Преценете коя част е фактурируема и какви разходи "
-"представлява."
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_res_config_settings__reminder_allow
 msgid "Approver Reminder"
-msgstr "Напомняне до одобряващ"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_employee_delete_wizard_form
 msgid "Archive Employees"
-msgstr "Архивиране на служители"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_table
 msgid "Audrey Peterson"
-msgstr "Audrey Peterson"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_tree2_inherited
 msgid "Average of Progress"
-msgstr "Среден напредък"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.ui.menu,name:hr_timesheet.menu_hr_activity_analysis
@@ -339,22 +335,42 @@ msgid "Call client and discuss project"
 msgstr "Обаждане на клиент и дискутиране на проект"
 
 #. module: hr_timesheet
+#: model:res.groups,comment:hr_timesheet.group_timesheet_manager
+msgid ""
+"Can manage and approve all timesheets, with access to reporting and "
+"configuration."
+msgstr ""
+
+#. module: hr_timesheet
+#: model:res.groups,comment:hr_timesheet.group_hr_timesheet_approver
+msgid ""
+"Can manage timesheets for all employees, but can only approve timesheets and "
+"billing targets for their team members. Has access to reporting."
+msgstr ""
+
+#. module: hr_timesheet
+#: model:res.groups,comment:hr_timesheet.group_hr_timesheet_user
+msgid "Can only manage their own timesheets."
+msgstr ""
+
+#. module: hr_timesheet
 #. odoo-javascript
 #: code:addons/hr_timesheet/static/src/views/timesheet_calendar/timesheet_calendar_model.js:0
 msgid "Choose an employee to create their timesheet."
-msgstr "Изберете служител, за да създадете неговия график."
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model,name:hr_timesheet.model_project_collaborator
 msgid "Collaborators in project shared"
-msgstr "Сътрудници в споделен проект"
+msgstr ""
+
+#. module: hr_timesheet
+#: model:ir.model.fields,field_description:hr_timesheet.field_account_analytic_line__color
+msgid "Color Index"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model,name:hr_timesheet.model_res_company
-msgid "Companies"
-msgstr "Фирми"
-
-#. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_timesheets_analysis_report__company_id
 msgid "Company"
 msgstr "Фирма"
@@ -373,7 +389,7 @@ msgstr "Конфигурация"
 #. odoo-python
 #: code:addons/hr_timesheet/models/hr_employee.py:0
 msgid "Confirmation"
-msgstr "Потвърждение"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model,website_form_label:hr_timesheet.model_project_task
@@ -409,13 +425,13 @@ msgstr "Дата"
 #. module: hr_timesheet
 #: model:ir.model.fields.selection,name:hr_timesheet.selection__res_config_settings__timesheet_encode_method__days
 msgid "Days / Half-Days"
-msgstr "Дни / Половин дни"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_project_kanban_inherited
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_project_card_inherited
 msgid "Days Remaining"
-msgstr "Оставащи дни"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,help:hr_timesheet.field_project_project__analytic_account_active
@@ -425,27 +441,24 @@ msgstr "Деактивирайте акаунта."
 
 #. module: hr_timesheet
 #: model:ir.model.fields,help:hr_timesheet.field_res_company__internal_project_id
-msgid "Default project value for timesheet generated from time off type."
+msgid "Default project value for timesheet generated from time type."
 msgstr ""
-"Стойност на проекта по подразбиране за график, генериран от тип отсъствие."
 
 #. module: hr_timesheet
 #: model:ir.model.fields,help:hr_timesheet.field_account_analytic_line__employee_id
 msgid ""
 "Define an 'hourly cost' on the employee to track the cost of their time."
 msgstr ""
-"Задайте „часова себестойност“ на служителя, за да проследявате разхода за "
-"неговото време."
 
 #. module: hr_timesheet
 #: model:ir.actions.server,name:hr_timesheet.unlink_employee_action
 msgid "Delete"
-msgstr "Изтриване"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_employee_delete_wizard_form
 msgid "Delete Employee"
-msgstr "Изтриване на служител"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,help:hr_timesheet.field_account_analytic_line__milestone_id
@@ -454,13 +467,10 @@ msgid ""
 "Deliver your services automatically when a milestone is reached by linking "
 "it to a sales order item."
 msgstr ""
-"Доставяйте услугите си автоматично при достигане на междинна цел, като я "
-"свържете с артикул от поръчка за продажба."
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_account_analytic_line__department_id
 #: model:ir.model.fields,field_description:hr_timesheet.field_timesheets_analysis_report__department_id
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_timesheet_line_search
 msgid "Department"
 msgstr "Отдел"
 
@@ -470,18 +480,19 @@ msgid "Describe your activity"
 msgstr "Опишете дейността си"
 
 #. module: hr_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.quick_create_account_analytic_line_form
+msgid "Describe your activity..."
+msgstr ""
+
+#. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/controllers/portal.py:0
 #: model:ir.model.fields,field_description:hr_timesheet.field_timesheets_analysis_report__name
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_timesheets
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.quick_create_account_analytic_line_form
 msgid "Description"
 msgstr "Описание"
-
-#. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_employee_delete_wizard_form
-msgid "Discard"
-msgstr "Отхвърлете"
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_account_analytic_applicability__display_name
@@ -489,6 +500,7 @@ msgstr "Отхвърлете"
 #: model:ir.model.fields,field_description:hr_timesheet.field_account_analytic_line_calendar_employee__display_name
 #: model:ir.model.fields,field_description:hr_timesheet.field_hr_employee__display_name
 #: model:ir.model.fields,field_description:hr_timesheet.field_hr_employee_delete_wizard__display_name
+#: model:ir.model.fields,field_description:hr_timesheet.field_hr_employee_departure__display_name
 #: model:ir.model.fields,field_description:hr_timesheet.field_hr_employee_public__display_name
 #: model:ir.model.fields,field_description:hr_timesheet.field_ir_http__display_name
 #: model:ir.model.fields,field_description:hr_timesheet.field_ir_ui_menu__display_name
@@ -531,46 +543,38 @@ msgstr "Служител"
 #. module: hr_timesheet
 #: model:ir.model,name:hr_timesheet.model_hr_employee_delete_wizard
 msgid "Employee Delete Wizard"
-msgstr "Помощник за изтриване на служител"
+msgstr ""
+
+#. module: hr_timesheet
+#: model:ir.model,name:hr_timesheet.model_hr_employee_departure
+msgid "Employee Departure"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_res_config_settings__reminder_user_allow
 msgid "Employee Reminder"
-msgstr "Напомняне до служител"
-
-#. module: hr_timesheet
-#. odoo-python
-#: code:addons/hr_timesheet/wizard/hr_employee_delete_wizard.py:0
-msgid "Employee Termination"
-msgstr "Уволнение на служител"
-
-#. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_kanban_account_analytic_line
-msgid "Employee's image"
-msgstr "Изображение на служителя"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/wizard/hr_employee_delete_wizard.py:0
 msgid "Employees' Timesheets"
-msgstr "Графици на служителите"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_res_config_settings__timesheet_encode_method
 msgid "Encoding Method"
-msgstr "Метод на въвеждане"
+msgstr ""
 
 #. module: hr_timesheet
-#. odoo-python
-#: code:addons/hr_timesheet/models/project_project.py:0
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_invoice_form
 msgid "Extra Time"
-msgstr "Допълнително време"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.res_config_settings_view_form
 msgid "Generate timesheets for validated time off requests and public holidays"
 msgstr ""
-"Генериране на графици за одобрени заявки за отсъствие и официални празници"
 
 #. module: hr_timesheet
 #: model:ir.model,name:hr_timesheet.model_ir_http
@@ -585,12 +589,12 @@ msgstr "Има достъп на мениджър на отдел"
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_hr_employee_public__has_timesheet
 msgid "Has Timesheet"
-msgstr "Има график"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields.selection,name:hr_timesheet.selection__res_config_settings__timesheet_encode_method__hours
 msgid "Hours / Minutes"
-msgstr "Часове / Минути"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_account_analytic_applicability__id
@@ -598,6 +602,7 @@ msgstr "Часове / Минути"
 #: model:ir.model.fields,field_description:hr_timesheet.field_account_analytic_line_calendar_employee__id
 #: model:ir.model.fields,field_description:hr_timesheet.field_hr_employee__id
 #: model:ir.model.fields,field_description:hr_timesheet.field_hr_employee_delete_wizard__id
+#: model:ir.model.fields,field_description:hr_timesheet.field_hr_employee_departure__id
 #: model:ir.model.fields,field_description:hr_timesheet.field_hr_employee_public__id
 #: model:ir.model.fields,field_description:hr_timesheet.field_ir_http__id
 #: model:ir.model.fields,field_description:hr_timesheet.field_ir_ui_menu__id
@@ -615,12 +620,6 @@ msgstr "ID"
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
-msgid "Import Template for Timesheets"
-msgstr "Шаблон за импортиране на графици"
-
-#. module: hr_timesheet
-#. odoo-python
 #: code:addons/hr_timesheet/models/res_company.py:0
 #: model:project.task.type,name:hr_timesheet.internal_project_default_stage
 msgid "Internal"
@@ -629,7 +628,7 @@ msgstr "Вътрешни"
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_res_company__internal_project_id
 msgid "Internal Project"
-msgstr "Вътрешен проект"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
@@ -658,7 +657,6 @@ msgstr "Последно актуализирано на"
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/controllers/portal.py:0
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_timesheet_line_search
 msgid "Last Week"
 msgstr "Миналата седмица"
 
@@ -670,14 +668,12 @@ msgstr "Миналата година"
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_invoice_form
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_project_view_form_simplified_inherit_timesheet
 msgid "Log time on tasks"
-msgstr "Регистриране на време по задачи"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_account_analytic_line__manager_id
 #: model:ir.model.fields,field_description:hr_timesheet.field_timesheets_analysis_report__manager_id
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_timesheet_line_search
 msgid "Manager"
 msgstr "Ръководител"
 
@@ -696,23 +692,28 @@ msgstr "Меню"
 #: model:ir.model.fields,field_description:hr_timesheet.field_account_analytic_line__message_partner_ids
 #: model:ir.model.fields,field_description:hr_timesheet.field_timesheets_analysis_report__message_partner_ids
 msgid "Message Partner"
-msgstr "Партньор за съобщение"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_account_analytic_line__milestone_id
 #: model:ir.model.fields,field_description:hr_timesheet.field_timesheets_analysis_report__milestone_id
 msgid "Milestone"
-msgstr "Междинна цел"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_update_view_search_inherit
 msgid "My Department's Updates"
-msgstr "Актуализации на моя отдел"
+msgstr ""
+
+#. module: hr_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_timesheet_line_search
+msgid "My Projects/Tasks"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_update_view_search_inherit
 msgid "My Team's Updates"
-msgstr "Актуализации на моя екип"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.actions.act_window,name:hr_timesheet.act_hr_timesheet_line
@@ -729,20 +730,25 @@ msgid "Newest"
 msgstr "Най-новите"
 
 #. module: hr_timesheet
+#: model:res.groups.privilege,placeholder:hr_timesheet.res_groups_privilege_timesheets
+msgid "No"
+msgstr ""
+
+#. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_timesheets
 msgid "No Parent Task"
-msgstr "Без основна задача"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_timesheets
 msgid "No Task"
-msgstr "Без задача"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet.act_hr_timesheet_line
 #: model_terms:ir.actions.act_window,help:hr_timesheet.timesheet_action_all
 msgid "No activities found. Let's start a new one!"
-msgstr "Не са намерени дейности. Нека започнем нова!"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet.act_hr_timesheet_report
@@ -753,9 +759,9 @@ msgstr "Все още няма данни!"
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid "No timesheets created: employees aren’t working on the selected days"
-msgstr "Не са създадени графици: служителите не работят в избраните дни"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
@@ -766,25 +772,29 @@ msgstr "Никакъв"
 #. module: hr_timesheet
 #: model:ir.model.fields,help:hr_timesheet.field_project_task__remaining_hours
 msgid "Number of allocated hours minus the number of hours spent."
-msgstr "Брой разпределени часове минус брой изразходвани часове."
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_employee_delete_wizard_form
 msgid "Ok"
-msgstr "Добре"
+msgstr ""
+
+#. module: hr_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
+msgid "Overrun Hours"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_project_task__overtime
 #: model:ir.model.fields,field_description:hr_timesheet.field_report_project_task_user__overtime
 msgid "Overtime"
-msgstr "Извънреден труд"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/controllers/portal.py:0
 #: model:ir.model.fields,field_description:hr_timesheet.field_account_analytic_line__parent_task_id
 #: model:ir.model.fields,field_description:hr_timesheet.field_timesheets_analysis_report__parent_task_id
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_timesheet_line_search
 msgid "Parent Task"
 msgstr "Основна задача"
 
@@ -797,12 +807,12 @@ msgstr "Партньор"
 #. module: hr_timesheet
 #: model:ir.model,name:hr_timesheet.model_account_analytic_line_calendar_employee
 msgid "Personal Filters on Employees for the Calendar view"
-msgstr "Лични филтри за служители за изгледа Календар"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_employee_delete_wizard_form
 msgid "Please first delete all of their timesheets."
-msgstr "Моля, първо изтрийте всичките им графици."
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model,name:hr_timesheet.model_uom_uom
@@ -840,17 +850,22 @@ msgstr "Проектна сметка"
 #: model:ir.model.fields,field_description:hr_timesheet.field_res_company__project_time_mode_id
 #: model:ir.model.fields,field_description:hr_timesheet.field_res_config_settings__project_time_mode_id
 msgid "Project Time Unit"
-msgstr "Времева единица на проекта"
+msgstr "Единица за измерване на времето в проекта"
 
 #. module: hr_timesheet
 #: model:ir.model,name:hr_timesheet.model_project_update
 msgid "Project Update"
-msgstr "Актуализация на проекта"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.actions.act_window,name:hr_timesheet.timesheet_action_project
 msgid "Project's Timesheets"
-msgstr "Графици на проекта"
+msgstr ""
+
+#. module: hr_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_project_task_page
+msgid "Project:"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model,name:hr_timesheet.model_hr_employee_public
@@ -861,22 +876,18 @@ msgstr "Публичен служител"
 #: model_terms:ir.actions.act_window,help:hr_timesheet.act_hr_timesheet_line_by_project
 #: model_terms:ir.actions.act_window,help:hr_timesheet.timesheet_action_from_employee
 msgid "Record a new activity"
-msgstr "Запис на нова дейност"
-
-#. module: hr_timesheet
-#: model_terms:digest.tip,tip_description:hr_timesheet.digest_tip_hr_timesheet_0
-msgid ""
-"Record your timesheets in an instant by pressing Shift + the corresponding "
-"hotkey to add 15min to your projects."
 msgstr ""
-"Регистрирайте графиците си моментално, като натиснете Shift + съответния "
-"клавиш, за да добавите 15 мин. към проектите си."
 
 #. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_kanban_inherit_project_task_view_kanban
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_kanban_inherited_progress
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
+msgid "Remaining Hours"
+msgstr "Оставащи часове"
+
+#. module: hr_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_card
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_card_inherited_progress
 msgid "Remaining days"
-msgstr "Оставащи дни"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.ui.menu,name:hr_timesheet.menu_timesheets_reports
@@ -886,17 +897,12 @@ msgstr "Отчитане"
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.report_timesheet
 msgid "Research and Development"
-msgstr "Проучване и разработка"
+msgstr ""
 
 #. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_table
-msgid "Research and Development/New Portal System"
-msgstr "Проучване и разработка/Нова портална система"
-
-#. module: hr_timesheet
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_home_timesheet
+#: model:portal.entry,description:hr_timesheet.portal_timesheets
 msgid "Review all timesheets related to your projects"
-msgstr "Преглед на всички графици, свързани с вашите проекти"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
@@ -908,37 +914,37 @@ msgstr "Търсете в Описанието"
 #. odoo-python
 #: code:addons/hr_timesheet/controllers/portal.py:0
 msgid "Search in Employee"
-msgstr "Търсене в служител"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/controllers/portal.py:0
 msgid "Search in Parent Task"
-msgstr "Търсене в основна задача"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/controllers/portal.py:0
 msgid "Search in Project"
-msgstr "Търсене в проект"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/controllers/portal.py:0
 msgid "Search in Task"
-msgstr "Търсене в задача"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_employee_delete_wizard_form
 msgid "See Timesheets"
-msgstr "Виж графиците"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/models/project_project.py:0
 #: code:addons/hr_timesheet/models/project_task.py:0
 msgid "See timesheet entries"
-msgstr "Виж записите в график"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.res_config_settings_view_form
@@ -946,8 +952,6 @@ msgid ""
 "Send a periodical email reminder to timesheets approvers that still have "
 "timesheets to validate"
 msgstr ""
-"Изпращане на периодично имейл напомняне до одобряващите графици, които все "
-"още имат графици за одобрение"
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.res_config_settings_view_form
@@ -955,13 +959,16 @@ msgid ""
 "Send a periodical email reminder to timesheets users that still have "
 "timesheets to encode"
 msgstr ""
-"Изпращане на периодично имейл напомняне до потребителите на графици, които "
-"все още имат графици за въвеждане"
 
 #. module: hr_timesheet
 #: model:ir.actions.act_window,name:hr_timesheet.hr_timesheet_config_settings_action
 msgid "Settings"
 msgstr "Настройки"
+
+#. module: hr_timesheet
+#: model:ir.model.fields,field_description:hr_timesheet.field_project_task__show_portal_timesheets
+msgid "Show Portal Timesheets"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
@@ -970,27 +977,25 @@ msgid ""
 "Some timesheet entries are weighing down these tasks! Remove them first, "
 "then you’ll be able to delete the tasks!"
 msgstr ""
-"Някои записи в графика натежават на тези задачи! Премахнете ги първо, след "
-"което ще можете да изтриете задачите!"
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid ""
 "Some timesheets were not created: employees aren’t working on the selected "
 "days"
-msgstr "Някои графици не бяха създадени: служителите не работят в избраните дни"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_report_subtask
 msgid "Sub-Task of '"
-msgstr "Подзадача на '"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
 msgid "Sub-tasks Time Spent"
-msgstr "Изразходвано време по подзадачи"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
@@ -1005,9 +1010,14 @@ msgid "Task"
 msgstr "Задача"
 
 #. module: hr_timesheet
+#: model:ir.module.module,shortdesc:base.module_hr_timesheet
+msgid "Task Logs"
+msgstr ""
+
+#. module: hr_timesheet
 #: model:ir.actions.act_window,name:hr_timesheet.timesheet_action_task
 msgid "Task's Timesheets"
-msgstr "Графици на задачата"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model,name:hr_timesheet.model_report_project_task_user
@@ -1016,24 +1026,40 @@ msgstr "Анализ на задачи"
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/res_company.py:0
-msgid "The Internal Project of a company should be in that company."
-msgstr "Вътрешният проект на дадена фирма трябва да е в същата фирма."
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
+msgid "Template for Timesheets"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/res_company.py:0
+msgid "The Internal Project of a company should be in that company."
+msgstr ""
+
+#. module: hr_timesheet
+#. odoo-python
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid ""
 "The project, the task and the analytic accounts of the timesheet must belong "
 "to the same company."
 msgstr ""
-"Проектът, задачата и аналитичните сметки на графика трябва да принадлежат на "
-"една и съща фирма."
+
+#. module: hr_timesheet
+#. odoo-python
+#: code:addons/hr_timesheet/models/project_project.py:0
+msgid "There are no timesheets to print for this project"
+msgstr ""
+
+#. module: hr_timesheet
+#. odoo-python
+#: code:addons/hr_timesheet/models/project_task.py:0
+msgid "There are no timesheets to print for this task"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_timesheets
 msgid "There are no timesheets."
-msgstr "Няма графици."
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
@@ -1042,8 +1068,6 @@ msgid ""
 "These projects have some timesheet entries referencing them. Before removing "
 "these projects, you have to remove these timesheet entries."
 msgstr ""
-"Тези проекти имат записи в график, които ги препращат. Преди да премахнете "
-"тези проекти, трябва да премахнете тези записи в график."
 
 #. module: hr_timesheet
 #. odoo-python
@@ -1060,7 +1084,6 @@ msgstr "Това тримесечие"
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/controllers/portal.py:0
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_timesheet_line_search
 msgid "This Week"
 msgstr "Тази седмица"
 
@@ -1077,15 +1100,13 @@ msgid ""
 "This project has some timesheet entries referencing it. Before removing this "
 "project, you have to remove these timesheet entries."
 msgstr ""
-"Този проект има записи в график, които го препращат. Преди да премахнете "
-"този проект, трябва да премахнете тези записи в график."
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/models/project_task.py:0
 msgid ""
 "This task cannot be private because there are some timesheets linked to it."
-msgstr "Тази задача не може да бъде лична, защото към нея има свързани графици."
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
@@ -1095,9 +1116,6 @@ msgid ""
 "someone with higher access to remove the timesheets first, and then you’ll "
 "be able to delete the task."
 msgstr ""
-"Тази задача не може да бъде изтрита, защото е свързана с графици. Моля, "
-"свържете се с някого с по-високи права, за да премахне първо графиците, след "
-"което ще можете да изтриете задачата."
 
 #. module: hr_timesheet
 #: model:ir.model.fields,help:hr_timesheet.field_res_company__project_time_mode_id
@@ -1114,35 +1132,35 @@ msgstr ""
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.res_config_settings_view_form
 msgid "Time Encoding"
-msgstr "Въвеждане на време"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_res_config_settings__module_project_timesheet_holidays
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.res_config_settings_view_form
 msgid "Time Off"
-msgstr "Отпуск"
+msgstr "Почивка"
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_project_project__remaining_hours
 #: model:ir.model.fields,field_description:hr_timesheet.field_project_task__remaining_hours
 #: model:ir.model.fields,field_description:hr_timesheet.field_report_project_task_user__remaining_hours
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_card
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_kanban_inherit_project_task_view_kanban
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_project_kanban_inherited
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_project_card_inherited
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_card_inherited_progress
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_kanban_inherited_progress
 msgid "Time Remaining"
-msgstr "Оставащо време"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_report_project_task_user__remaining_hours_percentage
 msgid "Time Remaining Percentage"
-msgstr "Процент оставащо време"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_tree2_inherited
 msgid "Time Remaining on SO"
-msgstr "Оставащо време по ПП"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_project_project__effective_hours
@@ -1155,6 +1173,7 @@ msgstr "Оставащо време по ПП"
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_tasks_list_inherit
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_timesheet_table
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.quick_create_account_analytic_line_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheets_analysis_report_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_calendar_account_analytic_line_multi_create
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_hr_timesheet_line_graph
@@ -1169,31 +1188,33 @@ msgstr "Изразходвано време"
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_tree2_inherited
 msgid "Time Spent on Sub-Tasks"
-msgstr "Изразходвано време по подзадачи"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_project_task__subtask_effective_hours
 msgid "Time Spent on Sub-tasks"
-msgstr "Изразходвано време по подзадачи"
+msgstr ""
+
+#. module: hr_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
+msgid "Time Spent on Sub-tasks:"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,help:hr_timesheet.field_project_task__subtask_effective_hours
 msgid "Time spent on the sub-tasks (and their own sub-tasks) of this task."
 msgstr ""
-"Време, изразходвано за подзадачите (и техните собствени подзадачи) на тази "
-"задача."
 
 #. module: hr_timesheet
 #: model:ir.model.fields,help:hr_timesheet.field_project_task__total_hours_spent
 msgid "Time spent on this task and its sub-tasks (and their own sub-tasks)."
 msgstr ""
-"Време, изразходвано за тази задача и нейните подзадачи (и техните собствени "
-"подзадачи)."
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.res_config_settings_view_form
 msgid "Time unit used to record your timesheets"
-msgstr "Времева единица, използвана за записване на вашите графици"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields.selection,name:hr_timesheet.selection__account_analytic_applicability__business_domain__timesheet
@@ -1224,27 +1245,26 @@ msgstr "Дейности в график"
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_hr_timesheet_line_pivot
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_my_timesheet_line_pivot
 msgid "Timesheet Costs"
-msgstr "Себестойност на графика"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_res_company__timesheet_encode_uom_id
 msgid "Timesheet Encoding Unit"
-msgstr "Единица за въвеждане на график"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_timesheet_report_search
 msgid "Timesheet Report"
-msgstr "Справка за графиците"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_project_update__timesheet_time
 msgid "Timesheet Time"
-msgstr "Време по график"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
-#: code:addons/hr_timesheet/models/project_project.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 #: code:addons/hr_timesheet/models/project_task.py:0
 #: model:ir.actions.act_window,name:hr_timesheet.act_hr_timesheet_line_by_project
 #: model:ir.actions.act_window,name:hr_timesheet.timesheet_action_from_employee
@@ -1252,50 +1272,52 @@ msgstr "Време по график"
 #: model:ir.actions.report,name:hr_timesheet.timesheet_report_project
 #: model:ir.actions.report,name:hr_timesheet.timesheet_report_task
 #: model:ir.actions.report,name:hr_timesheet.timesheet_report_task_timesheets
+#: model:ir.actions.server,name:hr_timesheet.action_server_print_project_timesheets
+#: model:ir.actions.server,name:hr_timesheet.action_server_print_task_timesheets
 #: model:ir.embedded.actions,name:hr_timesheet.project_embedded_action_timesheets
 #: model:ir.embedded.actions,name:hr_timesheet.project_embedded_action_timesheets_dashboard
 #: model:ir.model.fields,field_description:hr_timesheet.field_project_project__allow_timesheets
 #: model:ir.ui.menu,name:hr_timesheet.menu_hr_time_tracking
 #: model:ir.ui.menu,name:hr_timesheet.menu_timesheets_reports_timesheet
 #: model:ir.ui.menu,name:hr_timesheet.timesheet_menu_root
+#: model:portal.entry,name:hr_timesheet.portal_timesheets
 #: model:res.groups.privilege,name:hr_timesheet.res_groups_privilege_timesheets
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_department_view_kanban
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_layout
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_home_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_task
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_timesheets
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_invoice_form
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_project_view_form_simplified_inherit_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.report_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.report_timesheet_task
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheet_project_task_page
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheets_analysis_report_graph_employee
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheets_analysis_report_graph_project
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheets_analysis_report_graph_task
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_hr_timesheet_line_graph
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_hr_timesheet_line_pivot
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_project_kanban_inherited
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_project_card_inherited
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
 msgid "Timesheets"
 msgstr "Графици"
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid "Timesheets - %s"
-msgstr "Графици - %s"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_task_view_search
 msgid "Timesheets 80%"
-msgstr "Графици 80%"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_task_view_search
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_project_project_filter_inherit_timesheet
 msgid "Timesheets >100%"
-msgstr "Графици >100%"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheets_analysis_report_form
@@ -1303,72 +1325,65 @@ msgstr "Графици >100%"
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheets_analysis_report_pivot_project
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.timesheets_analysis_report_pivot_task
 msgid "Timesheets Analysis"
-msgstr "Анализ на графиците"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model,name:hr_timesheet.model_timesheets_analysis_report
 msgid "Timesheets Analysis Report"
-msgstr "Справка за анализ на графиците"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.res_config_settings_view_form
 msgid "Timesheets Control"
-msgstr "Контрол на графиците"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.actions.act_window,name:hr_timesheet.act_hr_timesheet_report
 msgid "Timesheets by Employee"
-msgstr "Графици по служител"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.actions.act_window,name:hr_timesheet.timesheet_action_report_by_project
 msgid "Timesheets by Project"
-msgstr "Графици по проект"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.actions.act_window,name:hr_timesheet.timesheet_action_report_by_task
 msgid "Timesheets by Task"
-msgstr "Графици по задача"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid "Timesheets cannot be created on a private task."
-msgstr "Не може да се създават графици по частна задача."
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid ""
 "Timesheets must be created with an active employee in the selected companies."
-msgstr "Графиците трябва да се създават с активен служител в избраните фирми."
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid ""
 "Timesheets must be created with at least an active analytic account defined "
 "in the plan '%(plan_name)s'."
 msgstr ""
-"Графиците трябва да се създават с поне една активна аналитична сметка, "
-"дефинирана в плана '%(plan_name)s'."
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/wizard/hr_employee_delete_wizard.py:0
 msgid "Timesheets of %(name)s"
-msgstr "Графици на %(name)s"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid "Timesheets successfully created"
-msgstr "Графиците са създадени успешно"
-
-#. module: hr_timesheet
-#: model:digest.tip,name:hr_timesheet.digest_tip_hr_timesheet_0
-msgid "Tip: Record your Timesheets faster"
-msgstr "Съвет: Регистрирайте графиците си по-бързо"
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
@@ -1378,14 +1393,10 @@ msgid ""
 "project. Please set one up in the plan '%(plan_name)s' or turn off the "
 "timesheets feature."
 msgstr ""
-"За да използвате функцията за графици, ви е необходима аналитична сметка за "
-"вашия проект. Моля, настройте такава в плана '%(plan_name)s' или изключете "
-"функцията за графици."
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/controllers/portal.py:0
-#: model_terms:ir.ui.view,arch_db:hr_timesheet.hr_timesheet_line_search
 msgid "Today"
 msgstr "Днес"
 
@@ -1400,12 +1411,19 @@ msgstr "Общ"
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_tree2_inherited
 msgid "Total Allocated Time"
-msgstr "Общо разпределено време"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
 msgid "Total Days Spent"
-msgstr "Общо изразходвани дни"
+msgstr ""
+
+#. module: hr_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
+msgid "Total Hours Spent"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_project_task__total_hours_spent
@@ -1413,13 +1431,18 @@ msgstr "Общо изразходвани дни"
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_tree2_inherited
 msgid "Total Time Spent"
-msgstr "Общо изразходвано време"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_timesheets
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_tasks_list_inherit
 msgid "Total:"
 msgstr "Общо:"
+
+#. module: hr_timesheet
+#: model:ir.module.module,summary:base.module_hr_timesheet
+msgid "Track employee time on tasks"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.actions.act_window,help:hr_timesheet.act_hr_timesheet_line
@@ -1429,8 +1452,6 @@ msgid ""
 "Track your working hours by projects every day and invoice this time to your "
 "customers."
 msgstr ""
-"Проследявайте работните си часове по проекти всеки ден и фактурирайте това "
-"време на клиентите си."
 
 #. module: hr_timesheet
 #. odoo-python
@@ -1448,12 +1469,6 @@ msgid ""
 "those timesheets or consider archiving the employee instead.\n"
 "                        </span>"
 msgstr ""
-"Оха! Служителят, когото се опитвате да изтриете, все още има няколко графика "
-"и не може да бъде изтрит.\n"
-"                        <span invisible=\"not has_active_employee\">\n"
-"                            Затова имате две възможности: или изтрийте тези "
-"графици, или вместо това обмислете архивиране на служителя.\n"
-"                        </span>"
 
 #. module: hr_timesheet
 #: model:ir.model.fields,help:hr_timesheet.field_project_task__display_name
@@ -1470,17 +1485,6 @@ msgid ""
 "        Make sure to use the right format and order e.g. Improve the "
 "configuration screen 5h #feature #v16 @Mitchell !"
 msgstr ""
-"Използвайте тези ключови думи в заглавието, за да зададете нови задачи:\n"
-"\n"
-"        30h Заделя 30 часа за задачата\n"
-"        #tags Задава етикети на задачата\n"
-"        @user Възлага задачата на потребител\n"
-"        ! Задава на задачата среден приоритет\n"
-"        !! Задава на задачата висок приоритет\n"
-"        !!! Задава на задачата спешен приоритет\n"
-"\n"
-"        Уверете се, че използвате правилния формат и ред, напр. Подобряване "
-"на конфигурационния екран 5h #feature #v16 @Mitchell !"
 
 #. module: hr_timesheet
 #: model:ir.model.fields,field_description:hr_timesheet.field_account_analytic_line__user_id
@@ -1491,12 +1495,12 @@ msgstr "Потребител"
 #. module: hr_timesheet
 #: model:res.groups,name:hr_timesheet.group_hr_timesheet_approver
 msgid "User: all timesheets"
-msgstr "Потребител: всички графици"
+msgstr ""
 
 #. module: hr_timesheet
 #: model:res.groups,name:hr_timesheet.group_hr_timesheet_user
 msgid "User: own timesheets only"
-msgstr "Потребител: само собствени графици"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.portal_my_task
@@ -1511,22 +1515,18 @@ msgid ""
 "and can be re-invoiced to\n"
 "                    customers if required."
 msgstr ""
-"Можете да регистрирате и проследявате работните си часове по проект всеки\n"
-"                    ден. Всяко изразходвано време по проект се превръща в "
-"разход и може да бъде префактурирано на\n"
-"                    клиенти, ако е необходимо."
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid "You cannot access timesheets that are not yours."
-msgstr "Нямате достъп до графици, които не са ваши."
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
 #: code:addons/hr_timesheet/models/hr_employee.py:0
 msgid "You cannot delete employees who have timesheets."
-msgstr "Не можете да изтриете служители, които имат графици."
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_invoice_form
@@ -1536,10 +1536,6 @@ msgid ""
 "                            Please switch to another account, or reactivate "
 "the current one to timesheet on the project."
 msgstr ""
-"Не можете да записвате графици по този проект, тъй като той е свързан с "
-"неактивна аналитична сметка.<br/>\n"
-"                            Моля, превключете към друга сметка или "
-"активирайте отново текущата, за да записвате график по проекта."
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
@@ -1548,15 +1544,12 @@ msgid ""
 "analytic account.<br/> Please change this account, or reactivate the current "
 "one to timesheet on the project."
 msgstr ""
-"Не можете да записвате графици по този проект, тъй като той е свързан с "
-"неактивна аналитична сметка.<br/> Моля, променете тази сметка или "
-"активирайте отново текущата, за да записвате график по проекта."
 
 #. module: hr_timesheet
 #. odoo-python
-#: code:addons/hr_timesheet/models/hr_timesheet.py:0
+#: code:addons/hr_timesheet/models/account_analytic_line.py:0
 msgid "You cannot set an archived employee on existing timesheets."
-msgstr "Не можете да зададете архивиран служител на съществуващи графици."
+msgstr ""
 
 #. module: hr_timesheet
 #. odoo-python
@@ -1567,7 +1560,7 @@ msgstr "дата"
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_calendar_account_analytic_line_multi_create
 msgid "e.g. Sending E-mails"
-msgstr "напр. Изпращане на имейли"
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.report_timesheet_task
@@ -1577,84 +1570,24 @@ msgstr "за"
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.report_timesheet
 msgid "for the"
-msgstr "за"
+msgstr ""
+
+#. module: hr_timesheet
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
+#: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
+msgid "incl."
+msgstr ""
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.view_task_form2_inherited
 msgid ""
 "on\n"
-"                            <span class=\"fw-bold text-dark\"> Sub-tasks</"
-"span>)"
+"                            <span class=\"fw-bold ms-1\">Sub-tasks</span>"
 msgstr ""
-"на\n"
-"                            <span class=\"fw-bold text-dark\"> Подзадачи</"
-"span>)"
 
 #. module: hr_timesheet
 #: model_terms:ir.ui.view,arch_db:hr_timesheet.project_sharing_inherit_project_task_view_form
 msgid ""
 "on\n"
-"                        <span class=\"fw-bold text-dark\"> Sub-tasks</span>)"
+"                        <span class=\"fw-bold ms-1\">Sub-tasks</span>"
 msgstr ""
-"на\n"
-"                        <span class=\"fw-bold text-dark\"> Подзадачи</span>)"
-
-#~ msgid "<i class=\"fa fa-download\"/> Download"
-#~ msgstr "<i class=\"fa fa-download\"/> Свали"
-
-#~ msgid "<i class=\"fa fa-print\"/> Print"
-#~ msgstr "<i class=\"fa fa-print\"/> Печат"
-
-#~ msgid "<strong>Duration: </strong>"
-#~ msgstr "<strong>Продължителност:</strong>"
-
-#~ msgid "Allow timesheets"
-#~ msgstr "Позволете графици"
-
-#~ msgid "Analytic Account"
-#~ msgstr "Аналитична Сметка"
-
-#~ msgid "Download"
-#~ msgstr "Изтеглете от системата"
-
-#~ msgid "Duration"
-#~ msgstr "Продължителност"
-
-#~ msgid "Group By"
-#~ msgstr "Групиране по"
-
-#~ msgid "Hours"
-#~ msgstr "Часове"
-
-#~ msgid "Hours Spent"
-#~ msgstr "Прекарани часове"
-
-#~ msgid "Initially Planned Hours"
-#~ msgstr "Първоначално планирани часове"
-
-#~ msgid "Job Title"
-#~ msgstr "Работна позиция"
-
-#~ msgid "Print"
-#~ msgstr "Печат"
-
-#~ msgid "Remaining Days"
-#~ msgstr "Оставащи дни"
-
-#~ msgid "Remaining Hours"
-#~ msgstr "Оставащи часове"
-
-#~ msgid "This month"
-#~ msgstr "Този месец"
-
-#~ msgid "This week"
-#~ msgstr "Тази седмица"
-
-#~ msgid "Total Hours"
-#~ msgstr "Общо часове"
-
-#~ msgid "days"
-#~ msgstr "дни"
-
-#~ msgid "hours"
-#~ msgstr "часове"

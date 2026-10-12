@@ -31,11 +31,13 @@ class AccountChartTemplate(models.AbstractModel):
                 'bank_account_code_prefix': '120',
                 'transfer_account_id': 'ge_account_100001',
                 'account_journal_suspense_account_id': 'ge_account_120210',
+                'receivable_account_id': 'ge_account_140110',
                 'account_default_pos_receivable_account_id': 'ge_account_140120',
                 'account_production_wip_account_id': 'ge_account_160230',
                 'account_production_wip_overhead_account_id': 'ge_account_160610',
                 'account_stock_valuation_id': 'ge_account_161003',
                 'deferred_expense_account_id': 'ge_account_170910',
+                'payable_account_id': 'ge_account_310110',
                 'deferred_revenue_account_id': 'ge_account_310610',
                 'income_account_id': 'ge_account_611101',
                 'account_journal_early_pay_discount_loss_account_id': 'ge_account_710400',
@@ -52,8 +54,14 @@ class AccountChartTemplate(models.AbstractModel):
     @template('ge')
     def _get_ge_template_data(self):
         return {
-            'name': self.env._("Georgian Chart of Accounts (IFRS)"),
+            'name': self.env._('Georgian Chart of Accounts (IFRS)'),
             'code_digits': 6,
-            'property_account_receivable_id': 'ge_account_140110',
-            'property_account_payable_id': 'ge_account_310110',
         }
+
+    def _get_account_parent_xmlid(self, code_prefix, template_code):
+        if template_code == 'ge':
+            return {
+                '120': 'ge_account_120000',
+            }.get(code_prefix)
+
+        return super()._get_account_parent_xmlid(code_prefix, template_code)

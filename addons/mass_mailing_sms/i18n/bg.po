@@ -2,78 +2,71 @@
 # This file contains the translation of the following modules:
 # * mass_mailing_sms
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# Odoo Translation Bot <c3p@odoo.com>, 2026.
+# Martin Dinovski <martin.dinovski@industria.tech>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-10 18:37+0000\n"
-"PO-Revision-Date: 2026-08-02 18:52+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-04 17:44+0000\n"
+"PO-Revision-Date: 2026-08-31 14:20+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "mass_mailing_sms/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: mass_mailing_sms
 #. odoo-javascript
 #: code:addons/mass_mailing_sms/static/src/components/sms_widget/fields_sms_widget.js:0
 msgid " (including link trackers and opt-out link)"
-msgstr " (включително проследяване на връзки и връзка за отписване)"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-javascript
 #: code:addons/mass_mailing_sms/static/src/components/sms_widget/fields_sms_widget.js:0
 msgid " (including link trackers)"
-msgstr " (включително проследяване на връзки)"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-javascript
 #: code:addons/mass_mailing_sms/static/src/components/sms_widget/fields_sms_widget.js:0
 msgid " (including opt-out link)"
-msgstr " (включително връзка за отписване)"
+msgstr ""
+
+#. module: mass_mailing_sms
+#. odoo-python
+#: code:addons/mass_mailing_sms/wizard/mailing_contact_to_list.py:0
+msgid "%(count)s ignored (no email/phone)"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/models/mailing_mailing.py:0
 msgid "24H Stats of %(mailing_type)s \"%(mailing_name)s\""
-msgstr "24-часова статистика на %(mailing_type)s \"%(mailing_name)s\""
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_list_view_kanban
 msgid ""
 "<br/>\n"
 "                    <span class=\"text-muted\">\n"
-"                        <i class=\"fa fa-phone\"/> Contacts\n"
+"                        <i class=\"oi oi-filled\" data-icon=\"phone\"/> "
+"Contacts\n"
 "                    </span>"
 msgstr ""
-"<br/>\n"
-"                    <span class=\"text-muted\">\n"
-"                        <i class=\"fa fa-phone\"/> Контакти\n"
-"                    </span>"
 
 #. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
+#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_contact_view_kanban
 msgid ""
-"<span name=\"canceled_text_sms\" invisible=\"mailing_type != 'sms'\">SMS "
-"Text Message have been cancelled and will not be sent.</span>"
+"<i class=\"oi oi-filled text-primary me-2\" data-icon=\"phone\" "
+"title=\"Phone\"/>"
 msgstr ""
-"<span name=\"canceled_text_sms\" invisible=\"mailing_type != 'sms'\">SMS "
-"текстовото съобщение е отменено и няма да бъде изпратено.</span>"
-
-#. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
-msgid ""
-"<span name=\"failed_text_sms\" invisible=\"mailing_type != 'sms'\">SMS Text "
-"Messages could not be delivered.</span>"
-msgstr ""
-"<span name=\"failed_text_sms\" invisible=\"mailing_type != 'sms'\">SMS "
-"текстовите съобщения не можаха да бъдат доставени.</span>"
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
@@ -81,8 +74,6 @@ msgid ""
 "<span name=\"next_departure_text\" invisible=\"mailing_type != 'sms'\">This "
 "SMS marketing is scheduled for </span>"
 msgstr ""
-"<span name=\"next_departure_text\" invisible=\"mailing_type != 'sms'\">Това "
-"SMS разпращане е насрочено за </span>"
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
@@ -90,8 +81,6 @@ msgid ""
 "<span name=\"process_text_sms\" invisible=\"mailing_type != 'sms'\">SMS Text "
 "Messages are being processed.</span>"
 msgstr ""
-"<span name=\"process_text_sms\" invisible=\"mailing_type != 'sms'\">SMS "
-"текстовите съобщения се обработват.</span>"
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
@@ -99,22 +88,11 @@ msgid ""
 "<span name=\"scheduled_text_sms\" invisible=\"mailing_type != 'sms'\">SMS "
 "Text Messages are in queue and will be sent soon.</span>"
 msgstr ""
-"<span name=\"scheduled_text_sms\" invisible=\"mailing_type != 'sms'\">SMS "
-"текстовите съобщения са в опашка и ще бъдат изпратени скоро.</span>"
-
-#. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
-msgid ""
-"<span name=\"sent_sms\" invisible=\"mailing_type != 'sms'\">SMS Text "
-"Messages have been sent.</span>"
-msgstr ""
-"<span name=\"sent_sms\" invisible=\"mailing_type != 'sms'\">SMS текстовите "
-"съобщения бяха изпратени.</span>"
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_form_sms
 msgid "<span widget=\"statinfo\">Open Recipient</span>"
-msgstr "<span widget=\"statinfo\">Отворил получател</span>"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
@@ -124,10 +102,6 @@ msgid ""
 "Click here to buy credits.\n"
 "                        </strong>"
 msgstr ""
-"<strong>\n"
-"                            Изглежда нямате достатъчно IAP кредити. Кликнете "
-"тук, за да закупите кредити.\n"
-"                        </strong>"
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
@@ -137,48 +111,44 @@ msgid ""
 "Click here to set up your account.\n"
 "                        </strong>"
 msgstr ""
-"<strong>\n"
-"                            Изглежда вашият SMS акаунт не е регистриран. "
-"Кликнете тук, за да настроите акаунта си.\n"
-"                        </strong>"
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.blacklist_number
 msgid "<strong>Mailing List</strong>"
-msgstr "<strong>Списък за разпращане</strong>"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_form_sms
 msgid "<strong>This SMS could not be delivered.</strong>"
-msgstr "<strong>Този SMS не можа да бъде доставен.</strong>"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_form_sms
 msgid "<strong>This SMS could not be sent.</strong>"
-msgstr "<strong>Този SMS не можа да бъде изпратен.</strong>"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_form_sms
 msgid "<strong>This number appears to be invalid.</strong>"
-msgstr "<strong>Този номер изглежда невалиден.</strong>"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_tree_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.utm_campaign_view_form
 msgid "A/B Test"
-msgstr "A/B тест"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__ab_testing_mailings_sms_count
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_campaign__ab_testing_mailings_sms_count
 msgid "A/B Test Mailings SMS #"
-msgstr "A/B тест разпращания SMS #"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/models/mailing_mailing.py:0
 msgid "A/B Test: %s"
-msgstr "A/B тест: %s"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__message_needaction
@@ -186,10 +156,15 @@ msgid "Action Needed"
 msgstr "Необходимо Действие"
 
 #. module: mass_mailing_sms
+#: model:ir.model,name:mass_mailing_sms.model_mailing_contact_to_list
+msgid "Add (Mailing) Contacts to Mailing List"
+msgstr ""
+
+#. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/wizard/mailing_sms_test.py:0
 msgid "An error occurred."
-msgstr "Възникна грешка."
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__message_attachment_count
@@ -199,25 +174,25 @@ msgstr "Брой Прикачени Файлове"
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__twilio_authentication
 msgid "Authentication Error\""
-msgstr "Грешка при удостоверяване\""
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_tree_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.utm_campaign_view_form
 msgid "Average of Bounced"
-msgstr "Средно за отхвърлени"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_tree_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.utm_campaign_view_form
 msgid "Average of Clicked"
-msgstr "Средно за кликнати"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/models/mailing_mailing.py:0
 msgid "BOUNCED (%i)"
-msgstr "ОТХВЪРЛЕНИ (%i)"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
@@ -226,18 +201,16 @@ msgid ""
 "Blacklist through SMS Marketing unsubscribe (mailing ID: %(mailing_id)s - "
 "model: %(model)s)"
 msgstr ""
-"Черен списък чрез отписване от SMS маркетинг (ID на разпращане: %(mailing_id)"
-"s - модел: %(model)s)"
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_blacklist
 msgid "Blacklisted"
-msgstr "В черен списък"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.ui.menu,name:mass_mailing_sms.phone_blacklist_menu
 msgid "Blacklisted Phone Numbers"
-msgstr "Телефонни номера в черен списък"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__phone_blacklisted
@@ -248,13 +221,13 @@ msgstr "Телефонът в черния списък е стационаре�
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_tree_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.utm_campaign_view_form
 msgid "Bounced (%)"
-msgstr "Отхвърлени (%)"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/models/mailing_mailing.py:0
 msgid "CLICKED (%i)"
-msgstr "КЛИКНАТИ (%i)"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_composer__utm_campaign_id
@@ -271,13 +244,13 @@ msgstr "Кампании"
 #. module: mass_mailing_sms
 #: model:ir.model.fields,help:mass_mailing_sms.field_mailing_sms_test__numbers
 msgid "Carriage-return-separated list of phone numbers"
-msgstr "Списък с телефонни номера, разделени с нов ред"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_tree_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.utm_campaign_view_form
 msgid "Clicked (%)"
-msgstr "Кликнати (%)"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_trace__sms_code
@@ -289,8 +262,6 @@ msgstr "Код"
 msgid ""
 "Come back once some SMS Mailings are sent to check out aggregated results."
 msgstr ""
-"Върнете се, след като бъдат изпратени някои SMS разпращания, за да видите "
-"обобщените резултати."
 
 #. module: mass_mailing_sms
 #: model:ir.ui.menu,name:mass_mailing_sms.mass_mailing_sms_menu_configuration
@@ -298,29 +269,39 @@ msgid "Configuration"
 msgstr "Конфигурация"
 
 #. module: mass_mailing_sms
+#: model:ir.model,name:mass_mailing_sms.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_country_not_supported
 msgid "Country Not Supported"
-msgstr "Държавата не се поддържа"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_registration_needed
 msgid "Country-specific Registration Required"
-msgstr "Изисква се регистрация, специфична за държавата"
+msgstr ""
+
+#. module: mass_mailing_sms
+#: model:ir.model,website_form_label:mass_mailing_sms.model_res_partner
+msgid "Create a Customer"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.actions.act_window,help:mass_mailing_sms.mailing_list_action_sms
 msgid "Create a Mailing List"
-msgstr "Създайте списък за разпращане"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.actions.act_window,help:mass_mailing_sms.mailing_mailing_action_sms
 msgid "Create a SMS Marketing Mailing"
-msgstr "Създайте SMS маркетингово разпращане"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.actions.act_window,help:mass_mailing_sms.mailing_contact_action_sms
 msgid "Create a mailing contact"
-msgstr "Създайте контакт за разпращане"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_sms_test__create_uid
@@ -333,28 +314,35 @@ msgid "Created on"
 msgstr "Създадено на"
 
 #. module: mass_mailing_sms
+#: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_database_non_active
+msgid "Database non active"
+msgstr ""
+
+#. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_tree_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.utm_campaign_view_form
 msgid "Date"
 msgstr "Дата"
 
 #. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_sms_test_view_form
-msgid "Discard"
-msgstr "Отхвърлете"
+#: model:ir.module.module,summary:base.module_mass_mailing_sms
+msgid "Design, send and track SMS"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__display_name
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact_to_list__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_list__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_sms_test__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_trace__display_name
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_res_partner__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_res_users__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_composer__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_sms__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_tracker__display_name
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_campaign__display_name
-#: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_medium__display_name
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_mixin__display_name
 msgid "Display Name"
 msgstr "Име за показване"
 
@@ -373,7 +361,7 @@ msgstr "Имейл маркетинг"
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_contact_view_search
 msgid "Exclude Blacklisted Phone"
-msgstr "Изключи телефони в черен списък"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_expired
@@ -410,9 +398,6 @@ msgid ""
 "For an Email, Subject your Recipients will see in their inbox.\n"
 "                    For an SMS Text Message, internal Title of the Message."
 msgstr ""
-"За имейл — темата, която получателите ви ще виждат в пощенската си кутия.\n"
-"                    За SMS текстово съобщение — вътрешното заглавие на "
-"съобщението."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,help:mass_mailing_sms.field_mailing_mailing__sms_subject
@@ -420,13 +405,11 @@ msgid ""
 "For an email, the subject your recipients will see in their inbox.\n"
 "For an SMS, the internal title of the message."
 msgstr ""
-"За имейл — темата, която получателите ви ще виждат в пощенската си кутия.\n"
-"За SMS — вътрешното заглавие на съобщението."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__twilio_from_to
 msgid "From / To identic"
-msgstr "Идентични От / До"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__has_message
@@ -436,20 +419,22 @@ msgstr "Има съобщение"
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__utm_campaign__ab_testing_sms_winner_selection__clicks_ratio
 msgid "Highest Click Rate"
-msgstr "Най-висок процент на кликвания"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__id
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact_to_list__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_list__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_sms_test__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_trace__id
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_res_partner__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_res_users__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_composer__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_sms__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_tracker__id
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_campaign__id
-#: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_medium__id
+#: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_mixin__id
 msgid "ID"
 msgstr "ID"
 
@@ -479,19 +464,17 @@ msgstr ""
 msgid ""
 "Immediately send the SMS Mailing instead of queuing up. Use at your own risk."
 msgstr ""
-"Изпрати SMS разпращането незабавно, вместо да се поставя в опашка. "
-"Използвайте на собствен риск."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__sms_allow_unsubscribe
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_composer__mass_sms_allow_unsubscribe
 msgid "Include opt-out link"
-msgstr "Включи връзка за отписване"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__twilio_callback
 msgid "Incorrect callback URL"
-msgstr "Неправилен callback URL"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,help:mass_mailing_sms.field_mailing_contact__phone_blacklisted
@@ -507,22 +490,22 @@ msgstr ""
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_credit
 msgid "Insufficient Credit"
-msgstr "Недостатъчен кредит"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__sms_has_insufficient_credit
 msgid "Insufficient IAP credits"
-msgstr "Недостатъчно IAP кредити"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_kanban_sms
 msgid "Insufficient credits"
-msgstr "Недостатъчно кредити"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_invalid_destination
 msgid "Invalid Destination"
-msgstr "Невалидна дестинация"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__message_is_follower
@@ -542,7 +525,7 @@ msgstr "Последно актуализирано на"
 #. module: mass_mailing_sms
 #: model:ir.model,name:mass_mailing_sms.model_sms_tracker
 msgid "Link SMS to mailing/sms tracking models"
-msgstr "Свързване на SMS с модели за проследяване на разпращане/SMS"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.ui.menu,name:mass_mailing_sms.link_tracker_menu
@@ -559,18 +542,18 @@ msgstr "Мейлинг"
 #. module: mass_mailing_sms
 #: model:ir.model,name:mass_mailing_sms.model_mailing_contact
 msgid "Mailing Contact"
-msgstr "Контакт за разпращане"
+msgstr ""
+
+#. module: mass_mailing_sms
+#: model:ir.actions.act_window,name:mass_mailing_sms.mailing_contact_action_sms
+#: model:ir.ui.menu,name:mass_mailing_sms.mailing_contact_menu_sms
+msgid "Mailing Contacts"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model,name:mass_mailing_sms.model_mailing_list
 msgid "Mailing List"
 msgstr "Мейлинг списък"
-
-#. module: mass_mailing_sms
-#: model:ir.actions.act_window,name:mass_mailing_sms.mailing_contact_action_sms
-#: model:ir.ui.menu,name:mass_mailing_sms.mailing_contact_menu_sms
-msgid "Mailing List Contacts"
-msgstr "Контакти от списък за разпращане"
 
 #. module: mass_mailing_sms
 #: model:ir.actions.act_window,name:mass_mailing_sms.mailing_list_action_sms
@@ -582,17 +565,17 @@ msgstr "Мейлинг списъци"
 #. module: mass_mailing_sms
 #: model:ir.model,name:mass_mailing_sms.model_mailing_trace
 msgid "Mailing Statistics"
-msgstr "Статистика за разпращане"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_sms_tracker__mailing_trace_id
 msgid "Mailing Trace"
-msgstr "Проследяване на разпращане"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__mailing_type
 msgid "Mailing Type"
-msgstr "Тип разпращане"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.actions.act_window,help:mass_mailing_sms.mailing_contact_action_sms
@@ -600,8 +583,6 @@ msgid ""
 "Mailing contacts allow you to separate your marketing audience from your "
 "contact directory."
 msgstr ""
-"Контактите за разпращане ви позволяват да отделите маркетинговата си "
-"аудитория от указателя с контакти."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__utm_campaign__ab_testing_sms_winner_selection__manual
@@ -622,7 +603,7 @@ msgstr "Масов мейлинг"
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_campaign__mailing_sms_ids
 msgid "Mass SMS"
-msgstr "Масов SMS"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__message_has_error
@@ -637,12 +618,12 @@ msgstr "Съобщения"
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__twilio_from_missing
 msgid "Missing From Number"
-msgstr "Липсва номер От"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_number_missing
 msgid "Missing Number"
-msgstr "Липсващ номер"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__mobile
@@ -652,7 +633,13 @@ msgstr "Мобилен"
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_search_sms
 msgid "My SMS Marketing"
-msgstr "Моят SMS маркетинг"
+msgstr ""
+
+#. module: mass_mailing_sms
+#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_list_view_kanban
+#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.utm_campaign_view_form
+msgid "New SMS"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.actions.act_window,help:mass_mailing_sms.mailing_trace_report_action_sms
@@ -665,13 +652,11 @@ msgid ""
 "No need to import mailing lists, you can send SMS to contacts saved in other "
 "Odoo apps."
 msgstr ""
-"Не е нужно да импортирате списъци за разпращане — можете да изпращате SMS до "
-"контакти, запазени в други приложения на Odoo."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_not_allowed
 msgid "Not Allowed"
-msgstr "Не е разрешено"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_not_delivered
@@ -691,7 +676,7 @@ msgstr "Брой действия"
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_campaign__mailing_sms_count
 msgid "Number of Mass SMS"
-msgstr "Брой масови SMS"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__message_has_error_counter
@@ -711,7 +696,7 @@ msgstr "Брой съобщения с грешка при доставка"
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_sms_test__numbers
 msgid "Number(s)"
-msgstr "Номер(а)"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
@@ -719,14 +704,12 @@ msgid ""
 "Once you send these text messages, they'll be making a grand entrance in all "
 "pockets, creating quite the bzzzzz!"
 msgstr ""
-"След като изпратите тези текстови съобщения, те ще направят грандиозен вход "
-"във всички джобове, създавайки доста бзззз!"
 
 #. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/controllers/main.py:0
 msgid "Oops! Number not found"
-msgstr "Опа! Номерът не е намерен"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
@@ -735,18 +718,11 @@ msgid ""
 "Oops! The phone number seems to be incorrect. Please make sure to include "
 "the country code."
 msgstr ""
-"Опа! Телефонният номер изглежда неправилен. Моля, уверете се, че сте "
-"включили кода на държавата."
-
-#. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_tree_sms
-msgid "Open Recipient"
-msgstr "Отворил получател"
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_optout
 msgid "Opted Out"
-msgstr "Отписан"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
@@ -756,7 +732,12 @@ msgstr "Настройки"
 #. module: mass_mailing_sms
 #: model:ir.model,name:mass_mailing_sms.model_sms_sms
 msgid "Outgoing SMS"
-msgstr "Изходящ SMS"
+msgstr ""
+
+#. module: mass_mailing_sms
+#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_contact_view_form
+msgid "Phone"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__phone_sanitized_blacklisted
@@ -771,13 +752,13 @@ msgstr "Телефонен номер"
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.blacklist_main
 msgid "Please confirm your phone number to unsubscribe :"
-msgstr "Моля, потвърдете телефонния си номер, за да се отпишете:"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/models/mailing_mailing.py:0
 msgid "RECEIVED (%i)"
-msgstr "ПОЛУЧЕНИ (%i)"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__rating_ids
@@ -787,7 +768,7 @@ msgstr "Оценявания"
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
 msgid "Ready to unleash your text messages?"
-msgstr "Готови ли сте да отприщите текстовите си съобщения?"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_tree_sms
@@ -804,7 +785,7 @@ msgstr "Отхвърлен"
 #. odoo-python
 #: code:addons/mass_mailing_sms/models/mailing_mailing.py:0
 msgid "Report for %(expected)i %(mailing_type)s Sent"
-msgstr "Отчет за %(expected)i изпратени %(mailing_type)s"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.ui.menu,name:mass_mailing_sms.mass_mailing_sms_menu_reporting
@@ -823,17 +804,17 @@ msgstr "SMS"
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__body_plaintext
 msgid "SMS Body"
-msgstr "Текст на SMS"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_list__contact_count_sms
 msgid "SMS Contacts"
-msgstr "SMS контакти"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
 msgid "SMS Content"
-msgstr "SMS съдържание"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__message_has_sms_error
@@ -845,27 +826,28 @@ msgstr "SMS грешка при доставка"
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_form
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_form_sms
 msgid "SMS ID"
-msgstr "SMS ID"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/models/res_users.py:0
 #: model:ir.actions.act_window,name:mass_mailing_sms.mailing_mailing_action_sms
+#: model:ir.module.module,shortdesc:base.module_mass_mailing_sms
 #: model:ir.ui.menu,name:mass_mailing_sms.mass_mailing_sms_menu_mass_sms
 #: model:ir.ui.menu,name:mass_mailing_sms.mass_mailing_sms_menu_root
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_tree_sms
 msgid "SMS Marketing"
-msgstr "SMS маркетинг"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.actions.act_window,name:mass_mailing_sms.mailing_trace_report_action_sms
 msgid "SMS Marketing Analysis"
-msgstr "Анализ на SMS маркетинг"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.blacklist_number
 msgid "SMS Subscription"
-msgstr "SMS абонамент"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__sms_template_id
@@ -881,34 +863,34 @@ msgstr "Тексови съобщения"
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_form_sms
 msgid "SMS Trace"
-msgstr "SMS проследяване"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_tree_sms
 msgid "SMS Traces"
-msgstr "SMS проследявания"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_trace__sms_tracker_ids
 msgid "SMS Trackers"
-msgstr "SMS тракери"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__ab_testing_sms_winner_selection
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_utm_campaign__ab_testing_sms_winner_selection
 msgid "SMS Winner Selection"
-msgstr "Избор на победител за SMS"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/wizard/sms_composer.py:0
 msgid "STOP SMS: %(unsubscribe_url)s"
-msgstr "STOP SMS: %(unsubscribe_url)s"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__phone_sanitized
 msgid "Sanitized Number"
-msgstr "Саниран номер"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
@@ -918,7 +900,7 @@ msgstr "Изпрати"
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__sms_force_send
 msgid "Send Directly"
-msgstr "Изпрати директно"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
@@ -926,35 +908,29 @@ msgid "Send Now"
 msgstr "Изпратете сега"
 
 #. module: mass_mailing_sms
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_list_view_form
-#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.utm_campaign_view_form
-msgid "Send SMS"
-msgstr "Изпращане на SMS"
-
-#. module: mass_mailing_sms
 #: model:ir.model,name:mass_mailing_sms.model_sms_composer
 msgid "Send SMS Wizard"
-msgstr "Помощник за изпращане на SMS"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_sms_test_view_form
 msgid "Send Test"
-msgstr "Изпрати тест"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_sms_test_view_form
 msgid "Send a Sample SMS"
-msgstr "Изпращане на примерен SMS"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_sms_test_view_form
 msgid "Send a sample SMS for testing purpose to the numbers below."
-msgstr "Изпратете примерен SMS за тестване до номерата по-долу."
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
 msgid "Send to all"
-msgstr "Изпрати до всички"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_server
@@ -974,7 +950,7 @@ msgstr "Състояние"
 #. module: mass_mailing_sms
 #: model:ir.model,website_form_label:mass_mailing_sms.model_mailing_contact
 msgid "Subscribe to Newsletter"
-msgstr "Абониране за бюлетин"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_trace_view_form_sms
@@ -991,41 +967,30 @@ msgstr "Тествайте мейлинг"
 #. module: mass_mailing_sms
 #: model:ir.model,name:mass_mailing_sms.model_mailing_sms_test
 msgid "Test SMS Mailing"
-msgstr "Тестово SMS разпращане"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/wizard/mailing_sms_test.py:0
 msgid "Test SMS could not be sent to %(destination)s: %(state)s"
-msgstr "Тестовият SMS не можа да бъде изпратен до %(destination)s: %(state)s"
+msgstr ""
 
 #. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/wizard/mailing_sms_test.py:0
 msgid "Test SMS skipped those numbers as they appear invalid: %(numbers)s"
 msgstr ""
-"Тестовият SMS пропусна тези номера, тъй като изглеждат невалидни: %(numbers)s"
 
 #. module: mass_mailing_sms
 #. odoo-python
 #: code:addons/mass_mailing_sms/wizard/mailing_sms_test.py:0
 msgid "Test SMS successfully sent to %s"
-msgstr "Тестовият SMS е изпратен успешно до %s"
-
-#. module: mass_mailing_sms
-#. odoo-python
-#: code:addons/mass_mailing_sms/models/utm.py:0
-msgid ""
-"The UTM medium '%s' cannot be deleted as it is used in some main functional "
-"flows, such as the SMS Marketing."
 msgstr ""
-"UTM средството '%s' не може да бъде изтрито, тъй като се използва в някои "
-"основни функционални потоци, като SMS маркетинга."
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.blacklist_main
 msgid "There was an error when trying to unsubscribe"
-msgstr "Възникна грешка при опита за отписване"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_contact_view_form
@@ -1060,24 +1025,24 @@ msgid "UTM Campaign"
 msgstr "UTM кампания"
 
 #. module: mass_mailing_sms
-#: model:ir.model,name:mass_mailing_sms.model_utm_medium
-msgid "UTM Medium"
-msgstr "UTM среда"
+#: model:ir.model,name:mass_mailing_sms.model_utm_mixin
+msgid "UTM Mixin"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_acc
 msgid "Unregistered Account"
-msgstr "Нерегистриран акаунт"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_mailing__sms_has_unregistered_account
 msgid "Unregistered IAP account"
-msgstr "Нерегистриран IAP акаунт"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_kanban_sms
 msgid "Unregistered account"
-msgstr "Нерегистриран акаунт"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.blacklist_main
@@ -1088,7 +1053,7 @@ msgstr "Откажете се от абонамент"
 #. odoo-python
 #: code:addons/mass_mailing_sms/models/mailing_mailing.py:0
 msgid "Unsupported %s for mass SMS"
-msgstr "Неподдържан %s за масов SMS"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model:ir.model,name:mass_mailing_sms.model_res_users
@@ -1098,52 +1063,51 @@ msgstr "Потребител"
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_contact_view_search
 msgid "Valid SMS Recipients"
-msgstr "Валидни получатели на SMS"
-
-#. module: mass_mailing_sms
-#: model:ir.model.fields,field_description:mass_mailing_sms.field_mailing_contact__website_message_ids
-msgid "Website Messages"
-msgstr "Съобщения в уебсайт"
-
-#. module: mass_mailing_sms
-#: model:ir.model.fields,help:mass_mailing_sms.field_mailing_contact__website_message_ids
-msgid "Website communication history"
-msgstr "История на комуникацията на уебсайт"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
 msgid "Winner Selection"
-msgstr "Избор на победител"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.actions.act_window,help:mass_mailing_sms.mailing_mailing_action_sms
 msgid ""
 "Write an appealing SMS Text Message, define recipients and track its results."
 msgstr ""
-"Напишете привлекателно SMS текстово съобщение, дефинирайте получатели и "
-"проследявайте резултатите му."
 
 #. module: mass_mailing_sms
 #: model:ir.model.fields.selection,name:mass_mailing_sms.selection__mailing_trace__failure_type__sms_number_format
 msgid "Wrong Number Format"
-msgstr "Грешен формат на номера"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.blacklist_main
 msgid "e.g. \"+1 (555) 123-4567\""
-msgstr "напр. \"+1 (555) 123-4567\""
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_mailing_view_form_sms
 msgid "e.g. Black Friday SMS coupon"
-msgstr "напр. SMS купон за Черен петък"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.blacklist_number
 msgid "has been successfully blacklisted"
-msgstr "беше успешно вписан в черния списък"
+msgstr ""
 
 #. module: mass_mailing_sms
 #: model_terms:ir.ui.view,arch_db:mass_mailing_sms.blacklist_number
 msgid "has been successfully removed from"
-msgstr "беше успешно премахнат от"
+msgstr ""
+
+#. module: mass_mailing_sms
+#: model_terms:ir.ui.view,arch_db:mass_mailing_sms.mailing_contact_view_tree
+msgid "📵 Blacklisted"
+msgstr ""
+
+msgid "Website Messages"
+msgstr "Съобщения в уебсайт"
+
+msgid "Website communication history"
+msgstr "История на комуникацията на уебсайт"

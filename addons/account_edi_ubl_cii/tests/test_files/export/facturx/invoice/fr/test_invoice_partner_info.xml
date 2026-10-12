@@ -42,9 +42,6 @@
     <ram:ApplicableHeaderTradeAgreement>
       <ram:SellerTradeParty>
         <ram:Name>company_1_data</ram:Name>
-        <ram:SpecifiedLegalOrganization>
-            <ram:ID>987654321</ram:ID>
-        </ram:SpecifiedLegalOrganization>
         <ram:DefinedTradeContact>
             <ram:PersonName>company_1_data</ram:PersonName>
             <ram:TelephoneUniversalCommunication>
@@ -69,9 +66,6 @@
       </ram:SellerTradeParty>
       <ram:BuyerTradeParty>
         <ram:Name>partner_fr</ram:Name>
-        <ram:SpecifiedLegalOrganization>
-            <ram:ID>123456789</ram:ID>
-        </ram:SpecifiedLegalOrganization>
         <ram:DefinedTradeContact>
             <ram:PersonName>partner_fr</ram:PersonName>
             <ram:TelephoneUniversalCommunication>

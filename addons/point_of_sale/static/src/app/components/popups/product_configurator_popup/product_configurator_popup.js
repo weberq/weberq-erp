@@ -1,19 +1,24 @@
 import { Dialog } from "@web/core/dialog/dialog";
-import { Component, useState } from "@odoo/owl";
+import { Component, proxy, useProps, t } from "@odoo/owl";
 import { usePos } from "@point_of_sale/app/hooks/pos_hook";
 import { ProductInfoBanner } from "@point_of_sale/app/components/product_info_banner/product_info_banner";
+import { ProductTemplateAttributeLine } from "@point_of_sale/app/models/product_template_attribute_line";
+import { ProductTemplateAttributeValue } from "@point_of_sale/app/models/product_template_attribute_value";
+import { ProductTemplate } from "@point_of_sale/app/models/product_template";
+import { PosOrderline } from "@point_of_sale/app/models/pos_order_line";
+
+export const BaseProductAttributeProps = {
+    attribute: t.instanceOf(ProductTemplateAttributeLine),
+    selected: t.instanceOf(ProductTemplateAttributeValue),
+    setSelected: t.function(),
+    customValue: t.string(),
+    setCustomValue: t.function(),
+    allSelectedValues: t.array(t.instanceOf(ProductTemplateAttributeValue)),
+    showExtraPrice: t.function(),
+};
 
 export class BaseProductAttribute extends Component {
     static template = "";
-    static props = [
-        "attribute",
-        "selected",
-        "setSelected",
-        "customValue",
-        "setCustomValue",
-        "allSelectedValues",
-        "showExtraPrice",
-    ];
 
     setup() {
         super.setup(...arguments);
@@ -22,20 +27,23 @@ export class BaseProductAttribute extends Component {
 
     getFormatPriceExtra(val) {
         const sign = val < 0 ? "- " : "+ ";
-        return sign + this.env.utils.formatCurrency(Math.abs(val));
+        return sign + this.pos.formatCurrency(Math.abs(val));
     }
 }
 
 export class RadioProductAttribute extends BaseProductAttribute {
     static template = "point_of_sale.RadioProductAttribute";
+    props = useProps(BaseProductAttributeProps);
 }
 
 export class PillsProductAttribute extends BaseProductAttribute {
     static template = "point_of_sale.PillsProductAttribute";
+    props = useProps(BaseProductAttributeProps);
 }
 
 export class SelectProductAttribute extends BaseProductAttribute {
     static template = "point_of_sale.SelectProductAttribute";
+    props = useProps(BaseProductAttributeProps);
 
     onChange(event) {
         this.props.setSelected(
@@ -46,19 +54,25 @@ export class SelectProductAttribute extends BaseProductAttribute {
 
 export class ColorProductAttribute extends BaseProductAttribute {
     static template = "point_of_sale.ColorProductAttribute";
+    props = useProps(BaseProductAttributeProps);
 }
 
 export class ImageProductAttribute extends BaseProductAttribute {
     static template = "point_of_sale.ImageProductAttribute";
+    props = useProps(BaseProductAttributeProps);
 }
 
 export class MultiProductAttribute extends BaseProductAttribute {
     static template = "point_of_sale.MultiProductAttribute";
-    static props = [...BaseProductAttribute.props, "selected?", "customValue?"];
+    props = useProps({
+        ...BaseProductAttributeProps,
+        selected: t.array(t.instanceOf(ProductTemplateAttributeValue)).optional(),
+        customValue: t.string().optional(),
+    });
 
     setup() {
         super.setup(...arguments);
-        this.state = useState({
+        this.state = proxy({
             is_value_selected: this.props.attribute.values().reduce((acc, value) => {
                 acc[value.id] = this.props.selected?.includes(value) || false;
                 return acc;
@@ -86,19 +100,19 @@ export class ProductConfiguratorPopup extends Component {
         MultiProductAttribute,
         Dialog,
     };
-    static props = {
-        productTemplate: Object,
-        getPayload: Function,
-        close: Function,
-        hideAlwaysVariants: { type: Boolean, optional: true },
-        forceVariantValue: { type: Object, optional: true },
-        line: { type: Object, optional: true },
-        comboItem: { type: Object, optional: true },
-    };
+    props = useProps({
+        productTemplate: t.instanceOf(ProductTemplate),
+        getPayload: t.function(),
+        close: t.function(),
+        hideAlwaysVariants: t.boolean().optional(),
+        forceVariantValue: t.array().optional(),
+        line: t.instanceOf(PosOrderline).optional(),
+        comboItem: t.object().optional(),
+    });
 
     setup() {
         this.pos = usePos();
-        this.state = useState({
+        this.state = proxy({
             attributes:
                 this.props.line?.selectedAttributes ||
                 this.props.productTemplate.attribute_line_ids.reduce((acc, attribute) => {
@@ -266,7 +280,7 @@ export class ProductConfiguratorPopup extends Component {
 
         const product = this.product || this.props.productTemplate;
         const info = product.getTaxDetails({ overridedValues });
-        const total = this.env.utils.formatCurrency(info?.raw_total_included_currency || 0.0);
+        const total = this.pos.formatCurrency(info?.raw_total_included_currency || 0.0);
         return `${this.props.productTemplate.display_name} | ${total}`;
     }
     get defaultCode() {
@@ -282,21 +296,32 @@ export class ProductConfiguratorPopup extends Component {
             .reduce((acc, val) => acc + val.price_extra, 0);
     }
 
-    get showExtraPrice() {
+    showExtraPrice = (value) => {
+        if (!value.price_extra) {
+            return false;
+        }
         // Combo items add their extras on top of the combo price, always.
-        if (this.props.comboItem) {
+        if (this.props.comboItem || value.attribute_id.create_variant === "no_variant") {
             return true;
         }
-        // A fixed pricelist rule replaces the whole price of the product, attribute
-        // extra prices included, so those extras must not be advertised either.
-        const template = this.props.productTemplate;
         const pricelist = this.pos.getOrder()?.pricelist_id;
-        const variant = this.product || false;
-        return (
-            template.getPrice(pricelist, 1, 1, false, variant) !==
-            template.getPrice(pricelist, 1, 0, false, variant)
+        const selectedIds = this.selectedValues
+            .filter((val) => val.attribute_line_id.id !== value.attribute_line_id.id)
+            .map(({ id }) => id);
+        selectedIds.push(value.id);
+        const variant = this.props.productTemplate.product_variant_ids.find(
+            (product) =>
+                product.product_template_variant_value_ids?.length > 0 &&
+                product.product_template_variant_value_ids.every(({ id }) =>
+                    selectedIds.includes(id)
+                )
         );
-    }
+        if (!pricelist || !variant) {
+            return true;
+        }
+        const rule = pricelist.findBestRule(pricelist.getRulesByProductId(variant.id), 1);
+        return !(rule && rule.compute_price === "fixed");
+    };
 
     confirm() {
         this.props.getPayload(this.computePayload());

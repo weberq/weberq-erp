@@ -9,10 +9,10 @@ class AccountChartTemplate(models.AbstractModel):
     def _get_gf_template_data(self):
         return {
             'code_digits': '6',
-            'parent': 'fr',
+            'parent': 'fr_comp',
         }
 
     def _deref_account_tags(self, template_code, tax_data):
         if template_code == 'gf':
-            template_code = 'fr'
+            template_code = 'fr_comp'
         return super()._deref_account_tags(template_code, tax_data)

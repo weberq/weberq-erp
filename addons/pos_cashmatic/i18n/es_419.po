@@ -5,19 +5,19 @@
 # "Fernanda Alvarez (mfar)" <mfar@odoo.com>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.4a1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-03 17:36+0000\n"
-"PO-Revision-Date: 2026-08-04 01:25+0000\n"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 19:09+0000\n"
 "Last-Translator: \"Fernanda Alvarez (mfar)\" <mfar@odoo.com>\n"
 "Language-Team: Spanish (Latin America) <https://translate.odoo.com/projects/"
-"odoo-19/pos_cashmatic/es_419/>\n"
+"odoo-s19-4/pos_cashmatic/es_419/>\n"
 "Language: es_419\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: pos_cashmatic
 #. odoo-javascript
@@ -28,14 +28,8 @@ msgstr "Error del cajón de cobro"
 #. module: pos_cashmatic
 #. odoo-javascript
 #: code:addons/pos_cashmatic/static/src/app/screens/payment_screen/payment_lines/payment_lines.xml:0
-msgid "Cash dispensed:"
-msgstr "Efectivo dispensado:"
-
-#. module: pos_cashmatic
-#. odoo-javascript
-#: code:addons/pos_cashmatic/static/src/app/screens/payment_screen/payment_lines/payment_lines.xml:0
-msgid "Cash inserted:"
-msgstr "Efectivo insertado:"
+msgid "Cash dispensed"
+msgstr "Efectivo dispensado"
 
 #. module: pos_cashmatic
 #: model:ir.model.fields,field_description:pos_cashmatic.field_pos_payment_method__cashmatic_ip
@@ -91,9 +85,19 @@ msgid "ID"
 msgstr "ID"
 
 #. module: pos_cashmatic
+#: model:ir.module.module,summary:base.module_pos_cashmatic
+msgid "Integrate your POS with a cash matic automatic cash payment device"
+msgstr ""
+
+#. module: pos_cashmatic
+#: model:ir.module.module,shortdesc:base.module_pos_cashmatic
+msgid "POS Cashmatic Cash Machines"
+msgstr ""
+
+#. module: pos_cashmatic
 #: model:ir.model,name:pos_cashmatic.model_pos_payment_method
-msgid "Point of Sale Payment Methods"
-msgstr "Métodos de pago del punto de venta"
+msgid "Point of Sale Payment Method"
+msgstr "Método de pago del punto de venta"
 
 #. module: pos_cashmatic
 #. odoo-javascript

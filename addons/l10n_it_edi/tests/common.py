@@ -1,15 +1,16 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-import base64
 from lxml import etree
 
 from odoo import tools
 from odoo.tests import tagged
-from odoo.tools.misc import file_open
+
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
 @tagged('post_install_l10n', 'post_install', '-at_install')
 class TestItEdi(AccountTestInvoicingCommon):
+
+    _test_user_groups = None  # FIXME list needed groups
 
     class RepartitionLine:
         def __init__(self, factor_percent, repartition_type, tag_ids):
@@ -57,7 +58,7 @@ class TestItEdi(AccountTestInvoicingCommon):
 
         cls.test_bank = cls.env['res.partner.bank'].create({
             'partner_id': cls.company.partner_id.id,
-            'acc_number': 'IT1212341234123412341234123',
+            'account_number': 'IT1212341234123412341234123',
             'bank_name': 'BIG BANK',
             'bank_bic': 'BIGGBANQ',
             'allow_out_payment': True,
@@ -73,7 +74,6 @@ class TestItEdi(AccountTestInvoicingCommon):
             'zip': '28887',
             'city': 'Milan',
             'company_id': False,
-            'is_company': True,
             'invoice_edi_format': 'it_edi_xml',
         })
 
@@ -86,20 +86,17 @@ class TestItEdi(AccountTestInvoicingCommon):
             'street': 'Via Test PA',
             'zip': '32121',
             'city': 'PA Town',
-            'is_company': True,
             'invoice_edi_format': 'it_edi_xml',
         })
 
         cls.italian_partner_no_address_codice = cls.env['res.partner'].create({
             'name': 'Alessi',
             'l10n_it_codice_fiscale': '00465840031',
-            'is_company': True,
         })
 
         cls.italian_partner_no_address_VAT = cls.env['res.partner'].create({
             'name': 'Alessi',
             'vat': 'IT00465840031',
-            'is_company': True,
         })
 
         cls.italian_partner_no_VAT_no_codice = cls.env['res.partner'].create({
@@ -115,13 +112,12 @@ class TestItEdi(AccountTestInvoicingCommon):
             'name': 'Alessi',
             'vat': '00465840031',
             'country_id': cls.env.ref('base.us').id,
-            'is_company': True,
         })
 
         # We create this because we are unable to post without a proxy user existing
         cls.private_key_id = cls.env['certificate.key'].create({
             'name': 'IT test key',
-            'content': base64.b64encode(file_open('l10n_it_edi/data/pkey.key', 'rb').read()),
+            'content': cls.file_read('l10n_it_edi/data/pkey.key'),
         })
         cls.proxy_user = cls.env['account_edi_proxy_client.user'].create({
             'proxy_type': 'l10n_it_edi',
@@ -178,13 +174,13 @@ class TestItEdi(AccountTestInvoicingCommon):
                     elem.attrib.pop(key)
         return root
 
-    def _assert_export_invoice(self, invoice, filename):
+    def _assert_export_invoice(self, invoice, filename, pdf_values=None, extra_attachments=None):
         path = f'{self.module}/tests/export_xmls/{filename}'
         with tools.file_open(path, mode='rb') as fd:
             expected_tree = etree.fromstring(fd.read())
             expected_tree = self._remove_all_namespaces(expected_tree)
 
-        xml = invoice._l10n_it_edi_render_xml()
+        xml = invoice._l10n_it_edi_render_xml(pdf_values=pdf_values, extra_attachments=extra_attachments)
         invoice_etree = etree.fromstring(xml)
         invoice_etree = self._remove_all_namespaces(invoice_etree)
 

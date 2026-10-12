@@ -15,7 +15,7 @@ export class TextDirectionPlugin extends Plugin {
                 id: "switchDirection",
                 title: _t("Switch direction"),
                 description: _t("Switch the text's direction"),
-                icon: "fa-exchange",
+                icon: "swap_horiz",
                 run: this.switchDirection.bind(this),
                 isAvailable: isHtmlContentSupported,
             },
@@ -77,6 +77,6 @@ export class TextDirectionPlugin extends Plugin {
                 element.style.setProperty("text-align", "right");
             }
         }
-        this.dependencies.history.addStep();
+        this.dependencies.history.commit();
     }
 }

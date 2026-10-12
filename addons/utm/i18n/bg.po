@@ -6,7 +6,7 @@
 # Nikola Iliev, 2023
 # Ивайло Малинов <iv.malinov@gmail.com>, 2023
 # Ivan Goychev <igoychev.projects@gmail.com>, 2023
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2023, 2026.
+# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2023
 # Martin Trigaux, 2023
 # kalatchev, 2023
 # Albena Mincheva <albena_vicheva@abv.bg>, 2023
@@ -14,28 +14,35 @@
 # Daria Stefanova <daria@clearlypro.eu>, 2023
 # aleksandar ivanov, 2023
 # Maria Boyadjieva <marabo2000@gmail.com>, 2023
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-06 03:01+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/utm/"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 15:35+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/utm/"
 "bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: utm
+#: model:ir.module.module,description:base.module_utm
+msgid ""
+"\n"
+"Enable management of UTM trackers: campaign, medium, source.\n"
+msgstr ""
 
 #. module: utm
 #. odoo-python
 #: code:addons/utm/models/utm_source.py:0
 msgid "%(content)s (%(model_description)s created on %(create_date)s)"
-msgstr "%(content)s (%(model_description)s, създаден на %(create_date)s)"
+msgstr ""
 
 #. module: utm
 #: model:ir.model.fields,field_description:utm.field_utm_campaign__active
@@ -46,13 +53,13 @@ msgstr "Активно"
 #. module: utm
 #: model:ir.model.fields,help:utm.field_utm_campaign__is_auto_campaign
 msgid "Allows us to filter relevant Campaigns"
-msgstr "Позволява ни да филтрираме относимите кампании"
+msgstr ""
 
 #. module: utm
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Approval-based Flow"
-msgstr "Поток, базиран на одобрение"
+msgstr ""
 
 #. module: utm
 #. odoo-javascript
@@ -76,19 +83,22 @@ msgstr "Архивирано"
 #: model_terms:ir.actions.act_window,help:utm.action_view_utm_tag
 msgid "Assign tags to your campaigns to organize, filter and track them."
 msgstr ""
-"Назначавайте етикети на кампаниите си, за да ги организирате, филтрирате и "
-"проследявате."
 
 #. module: utm
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Audience-driven Flow"
-msgstr "Поток, базиран на аудиторията"
+msgstr ""
 
 #. module: utm
 #: model:ir.model.fields,field_description:utm.field_utm_campaign__is_auto_campaign
 msgid "Automatically Generated Campaign"
-msgstr "Автоматично генерирана кампания"
+msgstr ""
+
+#. module: utm
+#: model:utm.campaign,title:utm.utm_campaign_black_friday
+msgid "Black Friday Sales"
+msgstr ""
 
 #. module: utm
 #: model:ir.model.fields,field_description:utm.field_utm_mixin__campaign_id
@@ -98,7 +108,7 @@ msgstr "Кампании"
 #. module: utm
 #: model:ir.model.fields,field_description:utm.field_utm_campaign__name
 msgid "Campaign Identifier"
-msgstr "Идентификатор на кампанията"
+msgstr ""
 
 #. module: utm
 #: model:ir.model.fields,field_description:utm.field_utm_campaign__title
@@ -110,7 +120,7 @@ msgstr "Име на кампания"
 #. module: utm
 #: model:ir.model,name:utm.model_utm_stage
 msgid "Campaign Stage"
-msgstr "Етап на кампанията"
+msgstr ""
 
 #. module: utm
 #: model:ir.actions.act_window,name:utm.action_view_utm_tag
@@ -137,7 +147,7 @@ msgstr ""
 #. module: utm
 #: model_terms:ir.ui.view,arch_db:utm.view_utm_campaign_view_search
 msgid "Campaigns that are assigned to me"
-msgstr "Кампании, които са назначени на мен"
+msgstr ""
 
 #. module: utm
 #: model:utm.campaign,title:utm.utm_campaign_christmas_special
@@ -149,8 +159,6 @@ msgstr "Специална Коледа"
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Collect ideas, design creative content and publish it once reviewed."
 msgstr ""
-"Събирайте идеи, проектирайте креативно съдържание и го публикувайте, след "
-"като бъде прегледано."
 
 #. module: utm
 #: model:ir.model.fields,field_description:utm.field_utm_campaign__color
@@ -162,27 +170,27 @@ msgstr "Цветен индекс"
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Copywriting"
-msgstr "Копирайтинг"
+msgstr ""
 
 #. module: utm
 #: model_terms:ir.actions.act_window,help:utm.utm_medium_action
 msgid "Create a Medium"
-msgstr "Създаване на канал"
+msgstr ""
 
 #. module: utm
 #: model_terms:ir.actions.act_window,help:utm.action_view_utm_tag
 msgid "Create a Tag"
-msgstr "Създаване на етикет"
+msgstr ""
 
 #. module: utm
 #: model_terms:ir.actions.act_window,help:utm.utm_campaign_action
 msgid "Create a campaign"
-msgstr "Създаване на кампания"
+msgstr ""
 
 #. module: utm
 #: model_terms:ir.actions.act_window,help:utm.action_view_utm_stage
 msgid "Create a stage for your campaigns"
-msgstr "Създаване на етап за вашите кампании"
+msgstr ""
 
 #. module: utm
 #: model:ir.model.fields,field_description:utm.field_utm_campaign__create_uid
@@ -206,7 +214,7 @@ msgstr "Създадено на"
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Creative Flow"
-msgstr "Креативен поток"
+msgstr ""
 
 #. module: utm
 #: model_terms:ir.ui.view,arch_db:utm.utm_campaign_view_kanban
@@ -238,7 +246,6 @@ msgstr "Проектирайте"
 #: model:ir.model.fields,field_description:utm.field_utm_medium__display_name
 #: model:ir.model.fields,field_description:utm.field_utm_mixin__display_name
 #: model:ir.model.fields,field_description:utm.field_utm_source__display_name
-#: model:ir.model.fields,field_description:utm.field_utm_source_mixin__display_name
 #: model:ir.model.fields,field_description:utm.field_utm_stage__display_name
 #: model:ir.model.fields,field_description:utm.field_utm_tag__display_name
 msgid "Display Name"
@@ -256,26 +263,16 @@ msgid "Edit"
 msgstr "Редактирай"
 
 #. module: utm
-#: model:utm.campaign,title:utm.utm_campaign_email_campaign_products
-msgid "Email Campaign - Products"
-msgstr "Имейл Кампания - Продукти"
-
-#. module: utm
-#: model:utm.campaign,title:utm.utm_campaign_email_campaign_services
-msgid "Email Campaign - Services"
-msgstr "Имейл кампания - услуги"
-
-#. module: utm
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Event-driven Flow"
-msgstr "Процес, управляван от събития"
+msgstr ""
 
 #. module: utm
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Gather Data"
-msgstr "Събиране на данни"
+msgstr ""
 
 #. module: utm
 #. odoo-javascript
@@ -284,8 +281,6 @@ msgid ""
 "Gather data, build a recipient list and write content based on your "
 "Marketing target."
 msgstr ""
-"Съберете данни, изградете списък с получатели и напишете съдържание според "
-"вашата маркетингова цел."
 
 #. module: utm
 #: model:ir.model,name:utm.model_ir_http
@@ -298,7 +293,6 @@ msgstr "HTTP Маршрутизиране"
 #: model:ir.model.fields,field_description:utm.field_utm_medium__id
 #: model:ir.model.fields,field_description:utm.field_utm_mixin__id
 #: model:ir.model.fields,field_description:utm.field_utm_source__id
-#: model:ir.model.fields,field_description:utm.field_utm_source_mixin__id
 #: model:ir.model.fields,field_description:utm.field_utm_stage__id
 #: model:ir.model.fields,field_description:utm.field_utm_tag__id
 msgid "ID"
@@ -343,7 +337,7 @@ msgstr "Link Tracker"
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "List-Building"
-msgstr "Изграждане на списъци"
+msgstr ""
 
 #. module: utm
 #: model:utm.tag,name:utm.utm_tag_1
@@ -359,22 +353,21 @@ msgstr "Преносител"
 #. module: utm
 #: model:ir.model.fields,field_description:utm.field_utm_medium__name
 msgid "Medium Name"
-msgstr "Име на медия"
+msgstr ""
 
 #. module: utm
 #: model:ir.actions.act_window,name:utm.utm_medium_action
 #: model:ir.ui.menu,name:utm.menu_utm_medium
 #: model_terms:ir.ui.view,arch_db:utm.utm_medium_view_tree
 msgid "Mediums"
-msgstr "Преносители"
+msgstr ""
 
 #. module: utm
 #: model_terms:ir.ui.view,arch_db:utm.view_utm_campaign_view_search
 msgid "My Campaigns"
-msgstr "Моите кампании"
+msgstr ""
 
 #. module: utm
-#: model:ir.model.fields,field_description:utm.field_utm_source_mixin__name
 #: model:ir.model.fields,field_description:utm.field_utm_stage__name
 #: model:ir.model.fields,field_description:utm.field_utm_tag__name
 #: model_terms:ir.ui.view,arch_db:utm.utm_campaign_view_tree
@@ -389,7 +382,7 @@ msgstr "Нов"
 #. module: utm
 #: model_terms:ir.actions.act_window,help:utm.utm_source_action
 msgid "No Sources yet!"
-msgstr "Все още няма източници!"
+msgstr ""
 
 #. module: utm
 #. odoo-python
@@ -398,21 +391,26 @@ msgid ""
 "Oops, you can't delete the Medium '%s'.\n"
 "Doing so would be like tearing down a load-bearing wall — not the best idea."
 msgstr ""
-"Опа, не можете да изтриете средството '%s'.\n"
-"Да го направите би било като да съборите носеща стена — не е най-добрата "
-"идея."
+
+#. module: utm
+#. odoo-python
+#: code:addons/utm/models/utm_source.py:0
+msgid ""
+"Oops, you can't delete the Source '%s'.\n"
+"Doing so would be like tearing down a load-bearing wall — not the best idea."
+msgstr ""
 
 #. module: utm
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Pre-Launch"
-msgstr "Предварителен старт"
+msgstr ""
 
 #. module: utm
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Prepare Campaigns and get them approved before making them go live."
-msgstr "Подгответе кампаниите и ги одобрете, преди да ги пуснете на живо."
+msgstr ""
 
 #. module: utm
 #. odoo-javascript
@@ -421,8 +419,6 @@ msgid ""
 "Prepare your Campaign, test it with part of your audience and deploy it "
 "fully afterwards."
 msgstr ""
-"Подгответе вашата кампания, тествайте я с част от вашата аудитория и след "
-"това я внедрете напълно."
 
 #. module: utm
 #. odoo-javascript
@@ -454,11 +450,6 @@ msgid "Running"
 msgstr "Работещ"
 
 #. module: utm
-#: model:utm.campaign,title:utm.utm_campaign_fall_drive
-msgid "Sale"
-msgstr "Продажба"
-
-#. module: utm
 #: model:utm.stage,name:utm.campaign_stage_1
 msgid "Schedule"
 msgstr "Разписание"
@@ -466,7 +457,7 @@ msgstr "Разписание"
 #. module: utm
 #: model_terms:ir.ui.view,arch_db:utm.utm_medium_view_search
 msgid "Search UTM Medium"
-msgstr "Търсене на UTM среда"
+msgstr ""
 
 #. module: utm
 #. odoo-javascript
@@ -490,17 +481,16 @@ msgstr "Последователност"
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Soft-Launch"
-msgstr "Мек старт"
+msgstr ""
 
 #. module: utm
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Soft-Launch Flow"
-msgstr "Поток за мек старт"
+msgstr ""
 
 #. module: utm
 #: model:ir.model.fields,field_description:utm.field_utm_mixin__source_id
-#: model:ir.model.fields,field_description:utm.field_utm_source_mixin__source_id
 #: model_terms:ir.ui.view,arch_db:utm.utm_source_view_form
 #: model_terms:ir.ui.view,arch_db:utm.utm_source_view_tree
 msgid "Source"
@@ -536,8 +526,6 @@ msgid ""
 "Stages allow you to organize your workflow  (e.g. plan, design, in progress, "
 "done, …)."
 msgstr ""
-"Етапите ви позволяват да организирате работния си процес (напр. планиране, "
-"проектиране, в ход, готово, …)."
 
 #. module: utm
 #: model:ir.model.fields,help:utm.field_utm_tag__color
@@ -545,8 +533,6 @@ msgid ""
 "Tag color. No color means no display in kanban to distinguish internal tags "
 "from public categorization tags."
 msgstr ""
-"Цвят на етикета. Без цвят означава без показване в канбан, за да се "
-"разграничат вътрешните етикети от етикетите за публична категоризация."
 
 #. module: utm
 #: model:ir.model.constraint,message:utm.constraint_utm_tag_name_uniq
@@ -564,7 +550,7 @@ msgstr "Маркери"
 #: model:ir.model.constraint,message:utm.constraint_utm_medium_unique_name
 #: model:ir.model.constraint,message:utm.constraint_utm_source_unique_name
 msgid "The name must be unique"
-msgstr "Името трябва да е уникално"
+msgstr ""
 
 #. module: utm
 #. odoo-javascript
@@ -607,7 +593,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "To be Approved"
-msgstr "За одобрение"
+msgstr ""
 
 #. module: utm
 #. odoo-javascript
@@ -616,8 +602,6 @@ msgid ""
 "Track incoming events (e.g. Christmas, Black Friday, ...) and publish timely "
 "content."
 msgstr ""
-"Проследявайте предстоящи събития (напр. Коледа, Черен петък, ...) и "
-"публикувайте навременно съдържание."
 
 #. module: utm
 #: model:ir.model,name:utm.model_utm_campaign
@@ -629,7 +613,7 @@ msgstr "UTM кампания"
 #: model_terms:ir.ui.view,arch_db:utm.utm_campaign_view_tree
 #: model_terms:ir.ui.view,arch_db:utm.view_utm_campaign_view_search
 msgid "UTM Campaigns"
-msgstr "UTM кампании"
+msgstr ""
 
 #. module: utm
 #: model:ir.model,name:utm.model_utm_medium
@@ -642,13 +626,16 @@ msgid ""
 "UTM Mediums track the mean that was used to attract traffic (e.g. "
 "\"Website\", \"X\", ...)."
 msgstr ""
-"UTM средствата проследяват средството, използвано за привличане на трафик "
-"(напр. \"Уебсайт\", \"X\", ...)."
 
 #. module: utm
 #: model:ir.model,name:utm.model_utm_mixin
 msgid "UTM Mixin"
-msgstr "UTM миксин"
+msgstr ""
+
+#. module: utm
+#: model:ir.model.fields,field_description:utm.field_utm_mixin__utm_reference
+msgid "UTM Reference"
+msgstr ""
 
 #. module: utm
 #: model:ir.model,name:utm.model_utm_source
@@ -656,28 +643,26 @@ msgid "UTM Source"
 msgstr "UTM източник"
 
 #. module: utm
-#: model:ir.model,name:utm.model_utm_source_mixin
-msgid "UTM Source Mixin"
-msgstr "UTM Source миксин"
-
-#. module: utm
 #: model_terms:ir.actions.act_window,help:utm.utm_source_action
 msgid ""
 "UTM Sources track where traffic comes from  (e.g. \"May Newsletter\", "
 "\"\", ...)."
 msgstr ""
-"UTM източниците проследяват откъде идва трафикът (напр. \"Майски бюлетин\", "
-"\"\", ...)."
 
 #. module: utm
 #: model:ir.actions.act_window,name:utm.action_view_utm_stage
 msgid "UTM Stages"
-msgstr "UTM етапи"
+msgstr ""
 
 #. module: utm
 #: model:ir.model,name:utm.model_utm_tag
 msgid "UTM Tag"
-msgstr "UTM етикет"
+msgstr ""
+
+#. module: utm
+#: model:ir.module.module,shortdesc:base.module_utm
+msgid "UTM Trackers"
+msgstr ""
 
 #. module: utm
 #: model:ir.ui.menu,name:utm.marketing_utm
@@ -688,44 +673,25 @@ msgstr "UTM"
 #. odoo-javascript
 #: code:addons/utm/static/src/js/utm_campaign_kanban_examples.js:0
 msgid "Use This For My Campaigns"
-msgstr "Използвай това за моите кампании"
-
-#. module: utm
-#. odoo-python
-#: code:addons/utm/models/utm_source.py:0
-msgid "You cannot delete the 'Referral' UTM source record."
-msgstr "Не можете да изтриете UTM източника „Препоръка\"."
-
-#. module: utm
-#. odoo-python
-#: code:addons/utm/models/utm_source.py:0
-msgid ""
-"You cannot update multiple records with the same name. The name should be "
-"unique!"
 msgstr ""
-"Не можете да актуализирате няколко записа с едно и също име. Името трябва да "
-"е уникално!"
 
 #. module: utm
 #: model_terms:ir.ui.view,arch_db:utm.utm_stage_view_form
 msgid "e.g. \"Brainstorming\""
-msgstr "напр. \"Мозъчна атака\""
+msgstr ""
 
 #. module: utm
 #: model_terms:ir.ui.view,arch_db:utm.utm_source_view_tree
 msgid "e.g. \"Christmas Mailing\""
-msgstr "напр. \"Коледно разпращане\""
+msgstr ""
 
 #. module: utm
 #: model_terms:ir.ui.view,arch_db:utm.utm_medium_view_tree
 msgid "e.g. \"Email\""
-msgstr "напр. \"Имейл\""
+msgstr ""
 
 #. module: utm
 #: model_terms:ir.ui.view,arch_db:utm.utm_campaign_view_form
 #: model_terms:ir.ui.view,arch_db:utm.utm_campaign_view_form_quick_create
 msgid "e.g. Black Friday"
-msgstr "напр. Black Friday"
-
-#~ msgid "Group By"
-#~ msgstr "Групиране по"
+msgstr ""

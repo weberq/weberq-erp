@@ -13,6 +13,8 @@ from decimal import Decimal
 from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_compare, float_is_zero, float_repr, mute_logger, OrderedSet
+from odoo.tools.business_data import split_vat
+from odoo.tools.image import image_data_uri
 
 from odoo.addons.l10n_pl_edi.tools.ksef_api_service import KsefApiService
 
@@ -64,7 +66,7 @@ class AccountMove(models.Model):
         if not self:
             return errors
         company = self.company_id
-        if not company.vat:
+        if not company.has_vat:
             errors['vat_missing'] = {'message': self.env._("You must have a VAT number to be able to issue e-invoices\n")}
         if not company.country_id or not company.street or not company.city:
             errors['address_problem'] = {'message': self.env._("Please complete the address of your company\n")}
@@ -144,13 +146,10 @@ class AccountMove(models.Model):
             return vat[:2].upper()
 
         def get_vat_number(vat):
-            vat_country, vat_number = self.env['res.partner']._split_vat(vat)
-            if vat_country == 'PL':
-                return compact(vat)
-            return vat_number
+            return split_vat(vat)[1]
 
         def get_address(partner):
-            return re.sub(r'\n+', r' ', partner.with_context(without_country_name=True)._display_address(True))
+            return partner.with_context(without_country_name=True)._display_address(without_name=True, separator=' ')
 
         def get_tags(code):
             return self.env['account.account.tag']._get_tax_tags(code, self.env.ref('base.pl').id)
@@ -231,7 +230,7 @@ class AccountMove(models.Model):
             {
                 'NrWierszaFa': index + 1,
                 'UU_ID': f"odoo-line-{line.id}",
-                'P_7': line.name,
+                'P_7': line.label,
                 'P_8A': line.product_uom_id.name or 'szt.',
                 'P_8B': line.quantity * sign,
                 'P_9A': float_repr(line.price_unit, 8),
@@ -303,27 +302,25 @@ class AccountMove(models.Model):
     def _l10n_pl_edi_generate_qr_link(self):
         self.ensure_one()
         if self.l10n_pl_edi_attachment_file:
-            mode = self.env['ir.config_parameter'].sudo().get_param('l10n_pl_edi_ksef.mode', 'prod')
+            mode = self.env['ir.config_parameter'].sudo().get_str('l10n_pl_edi_ksef.mode', 'prod')
             base_link = "https://qr.ksef.mf.gov.pl/invoice/" if mode == 'prod' else "https://qr-test.ksef.mf.gov.pl/invoice/"
             return (
                 f"{base_link}"
                 f"{compact(self.company_id.vat)}/"
                 f"{self.invoice_date.strftime('%d-%m-%Y')}/"
-                f"{base64.urlsafe_b64encode(sha256(base64.b64decode(self.l10n_pl_edi_attachment_file)).digest()).decode()}"
+                f"{base64.urlsafe_b64encode(sha256(self.l10n_pl_edi_attachment_file).digest()).decode()}"
             )
         return ""
 
     def _l10n_pl_edi_generate_qr(self):
         self.ensure_one()
-        return base64.b64encode(
-            self.env['ir.actions.report'].barcode(
-                barcode_type='QR',
-                value=self._l10n_pl_edi_generate_qr_link(),
-                width=180,
-                height=180,
-                quiet=0,
-            )
-        )
+        return image_data_uri(self.env['ir.actions.report'].barcode(
+            barcode_type='QR',
+            value=self._l10n_pl_edi_generate_qr_link(),
+            width=180,
+            height=180,
+            quiet=0,
+        ))
 
     def _l10n_pl_edi_get_status_mapping(self):
         """

@@ -1,107 +1,131 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * website_form_project
+# 	* website_form_project
 #
 # Translators:
 # Martin Trigaux, 2019
 # Sanne Kristensen <sanne@vkdata.dk>, 2019
-# "Kira Petersen François (peti)" <peti@odoo.com>, 2026.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~12.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-02 13:34+0000\n"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 21:23+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-s19-4/"
 "website_project/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: website_project
+#: model:ir.module.module,description:base.module_website_project
+msgid ""
+"\n"
+"Generate tasks in Project app from a form published on your website. This "
+"module requires the use of the *Form Builder* module in order to build the "
+"form.\n"
+msgstr ""
+
+#. module: website_project
+#: model:website.page,url:website_project.task_submitted_page
+msgid "/your-task-has-been-submitted"
+msgstr ""
+
+#. module: website_project
+#: model:ir.module.module,summary:base.module_website_project
+msgid "Add a task suggestion form to your website"
+msgstr ""
 
 #. module: website_project
 #. odoo-javascript
-#: code:addons/website_project/static/src/js/website_project_editor.js:0
+#: code:addons/website_project/static/src/js/website_project_editor.edit.js:0
 msgid "Ask Your Question"
-msgstr "Stil dit spørgsmål"
+msgstr ""
 
 #. module: website_project
 #. odoo-javascript
-#: code:addons/website_project/static/src/js/website_project_editor.js:0
+#: code:addons/website_project/static/src/js/website_project_editor.edit.js:0
 msgid "Attach File"
-msgstr "Vedhæft fil"
+msgstr ""
 
 #. module: website_project
 #. odoo-javascript
-#: code:addons/website_project/static/src/js/website_project_editor.js:0
+#: code:addons/website_project/static/src/js/website_project_editor.edit.js:0
 #: model:ir.model.fields,field_description:website_project.field_project_task__partner_company_name
 msgid "Company Name"
-msgstr "Virksomhedsnavn"
+msgstr ""
 
 #. module: website_project
 #: model:ir.model,website_form_label:website_project.model_project_task
 msgid "Create a Task"
-msgstr "Opret en opgave"
+msgstr ""
 
 #. module: website_project
 #: model:ir.model.fields,field_description:website_project.field_project_task__partner_name
 msgid "Customer Name"
-msgstr "Kundenavn"
+msgstr ""
 
 #. module: website_project
 #: model:ir.model.fields,field_description:website_project.field_project_task__display_name
 #: model:ir.model.fields,field_description:website_project.field_website_page__display_name
 msgid "Display Name"
-msgstr "Visningsnavn"
+msgstr ""
 
 #. module: website_project
 #. odoo-python
 #: code:addons/website_project/controllers/main.py:0
 msgid "Email"
-msgstr "E-mail"
+msgstr ""
 
 #. module: website_project
 #. odoo-javascript
-#: code:addons/website_project/static/src/js/website_project_editor.js:0
+#: code:addons/website_project/static/src/js/website_project_editor.edit.js:0
 msgid "Email Address"
-msgstr "E-mailadresse"
+msgstr ""
 
 #. module: website_project
 #. odoo-javascript
-#: code:addons/website_project/static/src/js/website_project_editor.js:0
+#: code:addons/website_project/static/src/js/website_project_editor.edit.js:0
 msgid "Full Name"
-msgstr "Fulde navn"
+msgstr ""
 
 #. module: website_project
 #: model_terms:ir.ui.view,arch_db:website_project.task_submitted
 msgid "Go to Homepage"
-msgstr "Gå til startsiden"
+msgstr ""
 
 #. module: website_project
 #: model:ir.model.fields,field_description:website_project.field_project_task__id
 #: model:ir.model.fields,field_description:website_project.field_website_page__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: website_project
 #. odoo-javascript
-#: code:addons/website_project/static/src/js/website_project_editor.js:0
+#: code:addons/website_project/static/src/js/website_project_editor.edit.js:0
 msgid "Message Subject"
-msgstr "Emne"
+msgstr ""
+
+#. module: website_project
+#: model:ir.module.module,shortdesc:base.module_website_project
+msgid "Online Task Submission"
+msgstr ""
 
 #. module: website_project
 #. odoo-python
 #: code:addons/website_project/controllers/main.py:0
 msgid "Other Information"
-msgstr "Anden information"
+msgstr ""
 
 #. module: website_project
 #: model_terms:ir.ui.view,arch_db:website_project.task_submitted
 msgid "Our team will get right on it."
-msgstr "Vores team vil straks tage sig af det."
+msgstr ""
 
 #. module: website_project
 #: model:ir.model,name:website_project.model_website_page
@@ -110,9 +134,9 @@ msgstr ""
 
 #. module: website_project
 #. odoo-javascript
-#: code:addons/website_project/static/src/js/website_project_editor.js:0
+#: code:addons/website_project/static/src/js/website_project_editor.edit.js:0
 msgid "Phone Number"
-msgstr "Telefonnummer"
+msgstr ""
 
 #. module: website_project
 #. odoo-javascript
@@ -123,17 +147,22 @@ msgstr "Projekt"
 #. module: website_project
 #: model:ir.model,name:website_project.model_project_task
 msgid "Task"
-msgstr "Opgave"
+msgstr ""
 
 #. module: website_project
 #: model_terms:ir.ui.view,arch_db:website_project.task_submitted
 msgid "Task #"
-msgstr "Opgave #"
+msgstr ""
+
+#. module: website_project
+#: model:website.page,name:website_project.task_submitted_page
+msgid "Task Submitted"
+msgstr ""
 
 #. module: website_project
 #: model_terms:ir.ui.view,arch_db:website_project.task_submitted
 msgid "Thank you!"
-msgstr "Mange tak!"
+msgstr ""
 
 #. module: website_project
 #: model:ir.model.fields,help:website_project.field_project_task__display_name
@@ -154,10 +183,4 @@ msgstr ""
 #. module: website_project
 #: model_terms:ir.ui.view,arch_db:website_project.task_submitted
 msgid "Your task has been sent."
-msgstr "Din opgave er blevet sendt."
-
-#~ msgid "Description"
-#~ msgstr "Beskrivelse"
-
-#~ msgid "Task Title"
-#~ msgstr "Opgave overskrift"
+msgstr ""

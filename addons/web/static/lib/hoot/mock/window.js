@@ -12,7 +12,7 @@ import {
 } from "@web/../lib/hoot-dom/helpers/time";
 import { interactor } from "../../hoot-dom/hoot_dom_utils";
 import { MockEventTarget, strictEqual, waitForDocument } from "../hoot_utils";
-import { ensureTest, getRunner } from "../main_runner";
+import { ensureTest, mainRunner } from "../main_runner";
 import {
     MockAnimation,
     mockedAnimate,
@@ -203,11 +203,12 @@ function getWatchedEventTargets(view) {
         // Other event targets
         EventBus.prototype,
         MockEventTarget.prototype,
-        view.BaseAudioContext.prototype,
         view.MediaDevices.prototype,
+        view.MediaQueryList.prototype,
         view.MediaStreamTrack.prototype,
-        view.RTCDataChannel.prototype,
         view.RTCPeerConnection.prototype,
+        view.RTCDataChannel.prototype,
+        view.BaseAudioContext.prototype,
     ];
 }
 
@@ -276,7 +277,7 @@ function matchesQueryPart(mediaQueryString) {
 
 /** @type {addEventListener} */
 function mockedAddEventListener(...args) {
-    const runner = getRunner();
+    const runner = mainRunner();
     if (runner.dry || !runner.suiteStack.length) {
         // Ignore listeners during dry run or outside of a test suite
         return;
@@ -335,6 +336,16 @@ function mockedMatchMedia(mediaQueryString) {
     return new MockMediaQueryList(mediaQueryString);
 }
 
+/** @type {typeof open} */
+function mockedOpen(url, target, _features) {
+    if (target !== "_blank") {
+        mockLocation.href = url;
+    }
+    // Fails to open a new window by default; patch `window.open` method if your
+    // test requires a new window.
+    return null;
+}
+
 function mockedPreventDefault() {
     preventedEvents.add(this);
     return preventDefault.call(this, ...arguments);
@@ -342,7 +353,7 @@ function mockedPreventDefault() {
 
 /** @type {typeof removeEventListener} */
 function mockedRemoveEventListener(...args) {
-    if (getRunner().dry) {
+    if (mainRunner().dry) {
         // Ignore listeners during dry run
         return;
     }
@@ -353,13 +364,13 @@ function mockedRemoveEventListener(...args) {
  * @param {MutationRecord[]} mutations
  */
 function observeAddedNodes(mutations) {
-    const runner = getRunner();
+    const runner = mainRunner();
     for (const mutation of mutations) {
         for (const node of mutation.addedNodes) {
             if (runner.dry) {
-                node.remove();
+                removeDiscardableHeadNode(node);
             } else {
-                runner.after(node.remove.bind(node));
+                runner.after(removeDiscardableHeadNode.bind(null, node));
             }
         }
     }
@@ -391,6 +402,23 @@ function onAnchorHrefClick(ev) {
 
 function onWindowResize() {
     callMediaQueryChanges();
+}
+
+/**
+ * @param {Node} node
+ */
+function removeDiscardableHeadNode(node) {
+    if (
+        node.nodeType !== Node.ELEMENT_NODE ||
+        !(
+            (node.nodeName === "SCRIPT" && node.getAttribute("src")) ||
+            (node.nodeName === "LINK" &&
+                node.getAttribute("rel") === "stylesheet" &&
+                node.getAttribute("href"))
+        )
+    ) {
+        node.remove();
+    }
 }
 
 /**
@@ -525,6 +553,7 @@ const WINDOW_MOCK_DESCRIPTORS = {
     MutationObserver: { value: MockMutationObserver },
     navigator: { value: mockNavigator },
     Notification: { value: MockNotification },
+    open: { value: mockedOpen },
     outerHeight: { get: () => getCurrentDimensions().height },
     outerWidth: { get: () => getCurrentDimensions().width },
     Request: { value: MockRequest, writable: false },
@@ -707,6 +736,14 @@ export function setupWindow() {
 }
 
 /**
+ * Attaches an observer to the document's head and returns a cleanup function that
+ * will remove anything that was added to it, except scripts and links with external
+ * reference;
+ *
+ * The rationale is that some caches built manually may rely on existing script/link
+ * elements and their 'src'/'href' attributes. Also, since scripts are executed
+ * immediatly, it is no use removing them afterwards.
+ *
  * @param {typeof globalThis} [view=getWindow()]
  */
 export function watchAddedNodes(view = getWindow()) {
@@ -722,9 +759,7 @@ export function watchAddedNodes(view = getWindow()) {
  * @param {typeof globalThis} [view=getWindow()]
  */
 export function watchListeners(view = getWindow()) {
-    const targets = getRunner().headless
-        ? [view.EventTarget.prototype]
-        : getWatchedEventTargets(view);
+    const targets = getWatchedEventTargets(view);
     for (const target of targets) {
         target.addEventListener = mockedAddEventListener;
         target.removeEventListener = mockedRemoveEventListener;

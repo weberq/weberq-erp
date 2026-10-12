@@ -6,7 +6,7 @@ describe.current.tags("desktop");
 
 test("should not allow edition of date and datetime fields", async () => {
     await setupHTMLBuilder(
-        `<time data-oe-model="blog.post" data-oe-id="3" data-oe-field="post_date" data-oe-type="datetime" data-oe-expression="blog_post.post_date" data-oe-original="2025-07-30 09:54:36" data-oe-original-with-format="07/30/2025 09:54:36" data-oe-original-tz="Europe/Brussels">
+        `<time data-oe-model="blog.post" data-oe-id="3" data-oe-field="published_date" data-oe-type="datetime" data-oe-expression="blog_post.published_date" data-oe-original="2025-07-30 09:54:36" data-oe-original-with-format="07/30/2025 09:54:36" data-oe-original-tz="Europe/Brussels">
             Jul 30, 2025
         </time>`
     );
@@ -20,9 +20,9 @@ test("should allow changing datetime fields from the sidebar", async () => {
         </time>`
     );
     await contains(":iframe time").click();
-    expect("[data-action-id=fieldDateTime] input").toHaveValue("07/30/2025 09:54:36");
+    expect("[data-action-id=fieldDateTime] input").toHaveValue("07/30/2025 09:54");
     await contains("[data-action-id=fieldDateTime] input").edit("09/22/2042 01:23:45");
-    expect(":iframe time").toHaveText("09/22/2042 01:23:45");
+    expect(":iframe time").toHaveText("09/22/2042 01:23:00");
 });
 
 test("should allow changing date fields from the sidebar", async () => {

@@ -1,7 +1,8 @@
 import {
     assertCssVariable,
     assertSvgColors,
-    changeOption,
+    changeBackgroundShape,
+    changeImageShape,
     clickOnElement,
     clickOnSnippet,
     goBackToBlocks,
@@ -10,7 +11,7 @@ import {
     registerWebsitePreviewTour,
 } from "@website/js/tours/tour_utils";
 
-const TEST_COLOR_HEX = "1AEF74";
+const TEST_COLOR_HEX = "00FF00";
 const TEST_COLOR_HEX_2 = "7ED1ED";
 
 function verifyShapeColorsUpdated(trigger, expectedHex) {
@@ -37,7 +38,6 @@ function verifyShapeColorsUpdated(trigger, expectedHex) {
 registerWebsitePreviewTour(
     "shape_color_sync_with_theme_color",
     {
-        url: "/",
         edition: true,
     },
     () => [
@@ -47,24 +47,22 @@ registerWebsitePreviewTour(
             groupName: "People",
         }),
         ...clickOnSnippet(".s_company_team"),
-        changeOption("Team", "toggleBgShape"),
-        clickOnElement("rainy shape", "[data-action-value='html_builder/Rainy/01_001']"),
+        ...changeBackgroundShape("html_builder/Rainy/01_001"),
         // Ensure shape is transformed so it generates a dynamic SVG URL. It is
         // required because the bug only occurs when the shape is URL-based.
-        clickOnElement("flip shape horizontal option", "[data-action-id='flipShape'] .oi-arrows-h"),
+        clickOnElement(
+            "flip shape horizontal option",
+            "[data-action-id='flipShape'][data-action-param='x']"
+        ),
         clickOnElement("any image in the snippet", ":iframe .s_company_team img"),
-        changeOption("Image", "[data-label='Shape'] .dropdown-toggle"),
-        clickOnElement("solid square 3 shape", "[data-action-value$='/solid_square_3']"),
+        ...changeImageShape("html_builder/solid/solid_square_3"),
         clickOnElement(
             "custom snippet save button",
             "[data-container-title='Team'] .oe_snippet_save"
         ),
-        clickOnElement("save confirmation button", ".modal-dialog button:contains('Save')"),
         ...goToTheme(),
-        clickOnElement(
-            "Click color palette",
-            "div[data-container-title='Colors'] .o-hb-select-wrapper svg"
-        ),
+        clickOnElement("color option", "[data-label='Colors'] button"),
+        clickOnElement("Click color palette", ".o_theme_tab .hb-sliding-panel .o-dropdown-caret"),
         clickOnElement(
             "Change color palette",
             `.o-color-palette-dropdown [data-action-value="'default-light-1'"]`
@@ -85,15 +83,16 @@ registerWebsitePreviewTour(
         ),
         clickOnElement("X to close the 'Insert snippet' dialog", ".modal .btn-close"),
         ...goToTheme(),
+        clickOnElement("color option", "[data-label='Colors'] button"),
         clickOnElement(
             "color picker of theme preset 1",
-            "[data-container-title='Colors'] .o_we_color_preview"
+            ".hb-sliding-panel-content .o_we_color_preview"
         ),
-        {
-            content: "Set theme color to #" + TEST_COLOR_HEX,
-            trigger: ".o_colorpicker_widget input",
-            run: "edit " + TEST_COLOR_HEX,
-        },
+        clickOnElement("solid colors tab", ".o_font_color_selector .btn-tab.solid-tab"),
+        clickOnElement(
+            `#${TEST_COLOR_HEX} color`,
+            `.o_font_color_selector .o_color_button[data-color="#${TEST_COLOR_HEX}"]`
+        ),
         {
             content: "Wait for no loading",
             trigger: ":iframe body:not(:has(.o_loading_screen))",
@@ -102,7 +101,7 @@ registerWebsitePreviewTour(
         clickOnElement("any image in the snippet", ":iframe .s_company_team img[data-shape]"),
         assertCssVariable(
             "background-color",
-            "rgb(26, 239, 116)",
+            "rgb(0, 255, 0)",
             "[data-container-title='Image'] [data-label='Colors'] .o_we_color_preview"
         ),
         goBackToBlocks(),

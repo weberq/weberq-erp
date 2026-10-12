@@ -11,7 +11,6 @@
         'l10n_pl',
         'l10n_pl_edi',
     ],
-    'installable': True,
     'auto_install': True,
     'license': 'LGPL-3',
     'author': 'Odoo',

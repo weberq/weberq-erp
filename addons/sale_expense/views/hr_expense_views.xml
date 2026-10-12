@@ -10,7 +10,7 @@
                 <button name="action_open_sale_order"
                     groups="sales_team.group_sale_salesman"
                     class="oe_stat_button"
-                    icon="fa-money"
+                    icon="payments"
                     type="object"
                     invisible="not sale_order_id">
                     <field name="sale_order_id" widget="statinfo" string="Sales Order"

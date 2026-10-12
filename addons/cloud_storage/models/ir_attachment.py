@@ -1,12 +1,13 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import logging
-import requests
 import uuid
 
-from odoo import models, fields, _
+import requests
+
+from odoo import _, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.http import Stream
+from odoo.http.stream import Stream
 
 _logger = logging.getLogger(__name__)
 
@@ -22,11 +23,7 @@ class IrAttachment(models.Model):
     )
 
     def _to_http_stream(self):
-        if (self.type == 'cloud_storage' and
-              self.env['res.config.settings']._get_cloud_storage_configuration()):
-            self.ensure_one()
-            info = self._generate_cloud_storage_download_info()
-
+        if info := self._get_download_info():
             if self.env.context.get('cloud_storage_force_download'):
                 response = requests.get(info['url'], timeout=10)
                 response.raise_for_status()
@@ -46,10 +43,16 @@ class IrAttachment(models.Model):
             return stream
         return super()._to_http_stream()
 
+    def _get_download_info(self):
+        if self.type == 'cloud_storage' and self.env['res.config.settings']._get_cloud_storage_configuration():
+            self.ensure_one()
+            return self._generate_cloud_storage_download_info()
+        return False
+
     def _post_add_create(self, **kwargs):
         super()._post_add_create(**kwargs)
         if kwargs.get('cloud_storage'):
-            if not self.env['ir.config_parameter'].sudo().get_param('cloud_storage_provider'):
+            if not self.env['ir.config_parameter'].sudo().get_str('cloud_storage_provider'):
                 raise UserError(_('Cloud Storage is not enabled'))
             for record in self:
                 record.write({

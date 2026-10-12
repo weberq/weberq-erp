@@ -1,19 +1,23 @@
-import { batched, reactive } from "@odoo/owl";
+import { batched, proxy } from "@odoo/owl";
 import { closestScrollableY, scrollTo } from "@web/core/utils/scrolling";
 
 export const HEADINGS = ["H1", "H2", "H3", "H4", "H5", "H6"];
 
 export class TableOfContentManager {
+    /**
+     * @param {import("@odoo/owl").Signal<HTMLElement> | (() => HTMLElement)} containerRef
+     */
     constructor(containerRef) {
         this.containerRef = containerRef;
-        this.structure = reactive({
+        this.structure = proxy({
             headings: [],
+            isNew: true,
         });
         this.batchedUpdateStructure = batched(this.updateStructure.bind(this));
     }
 
     getContainerEl() {
-        return this.containerRef.el;
+        return this.containerRef();
     }
 
     /**
@@ -86,5 +90,6 @@ export class TableOfContentManager {
                 target: heading,
             };
         });
+        this.structure.isNew = false;
     }
 }

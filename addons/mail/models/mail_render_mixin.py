@@ -43,6 +43,19 @@ def format_time(env, time, tz=False, time_format='medium', lang_code=False):
         return time
 
 
+def render_res_ids(model, res_ids, results):
+    """Render for a list of ids where an id can be falsy.
+    For falsy ids, use an empty recordset.
+    """
+    res_ids, falsy_ids = tools.partition(lambda id_: id_ or isinstance(id_, api.NewId), res_ids)
+    yield from model.browse(res_ids).with_context(property_selection_get_label=True)
+    if not falsy_ids:
+        return
+    yield model.browse()
+    for res_id in falsy_ids:
+        results[res_id] = results[False]
+
+
 class MailRenderMixin(models.AbstractModel):
     _name = 'mail.render.mixin'
     _description = 'Mail Render Mixin'
@@ -99,7 +112,14 @@ class MailRenderMixin(models.AbstractModel):
         if self._unrestricted_rendering:
             # If the rendering is unrestricted (e.g. mail.template),
             # check the user is part of the mail editor group to create a new template if the template is dynamic
-            record._check_access_right_dynamic_template()
+            langs = tools.OrderedSet([self.env.lang])
+            for vals in vals_list:
+                for fname, value in vals.items():
+                    field = self._fields[fname]
+                    if field.translate and isinstance(value, dict):
+                        langs.update(value)
+            for lang in langs:
+                record.with_context(lang=lang)._check_access_right_dynamic_template()
         return record
 
     def write(self, vals):
@@ -107,7 +127,13 @@ class MailRenderMixin(models.AbstractModel):
         if self._unrestricted_rendering:
             # If the rendering is unrestricted (e.g. mail.template),
             # check the user is part of the mail editor group to modify a template if the template is dynamic
-            self._check_access_right_dynamic_template()
+            langs = tools.OrderedSet([self.env.lang])
+            for fname, value in vals.items():
+                field = self._fields[fname]
+                if field.translate and isinstance(value, dict):
+                    langs.update(value)
+            for lang in langs:
+                self.with_context(lang=lang)._check_access_right_dynamic_template()
         return True
 
     def _update_field_translations(self, field_name, translations, digest=None, source_lang=''):
@@ -146,7 +172,7 @@ class MailRenderMixin(models.AbstractModel):
             # compute here to do it only if really necessary + cache will ensure it is done only once
             # if not base_url
             if not _sub_relative2absolute.base_url:
-                _sub_relative2absolute.base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
+                _sub_relative2absolute.base_url = self.env["ir.config_parameter"].sudo().get_str("web.base.url")
             return match.group(1) + urls.urljoin(_sub_relative2absolute.base_url, match.group(2))
 
         _sub_relative2absolute.base_url = base_url
@@ -198,11 +224,16 @@ class MailRenderMixin(models.AbstractModel):
             if 'subtype_internal' not in template_ctx:
                 template_ctx['subtype_internal'] = subtype.is_internal
         template_ctx.setdefault('subtype', subtype)
-        template_ctx.setdefault('tracking_values', [])
         # record info
         if 'model_description' not in template_ctx:
             template_ctx['model_description'] = self.env['ir.model']._get(context_record._name).display_name if context_record else False
-        template_ctx.setdefault('subtitles', [record_name])
+        if 'subtitles' not in template_ctx:
+            subtitles = self.env.context.get('email_notification_subtitles', [record_name])
+        else:
+            subtitles = template_ctx['subtitles']
+        template_ctx['subtitles'] = [str(sub) for sub in subtitles]
+        template_ctx.setdefault('subtitles_highlight_index',
+                                self.env.context.get('email_notification_subtitles_highlight_index', 0))
         # user / environment
         template_ctx.setdefault('author_user', False)
         if 'company' not in template_ctx:
@@ -339,6 +370,7 @@ class MailRenderMixin(models.AbstractModel):
 
         In addition to the generic evaluation context available, some other
         variables are added:
+
           * ``object``: record based on which the template is rendered;
 
         :param str template_src: raw QWeb template to render;
@@ -367,7 +399,7 @@ class MailRenderMixin(models.AbstractModel):
         if add_context:
             variables.update(**add_context)
 
-        for record in self.env[model].browse(res_ids):
+        for record in render_res_ids(self.env[model], res_ids, results):
             variables['object'] = record
             options = options or {}
             if self._is_restricted():
@@ -453,7 +485,6 @@ class MailRenderMixin(models.AbstractModel):
 
         Supporting only QWeb allowed expressions, no custom variable in that mode.
         """
-        records = self.env[model].browse(res_ids)
 
         # normalize the HTML (add a parent div to avoid modification of the template)
         template_src_normalized = html_normalize(f'<div>{template_src}</div>')
@@ -461,7 +492,7 @@ class MailRenderMixin(models.AbstractModel):
             template_src_normalized = template_src_normalized[5:-6]
 
         result = {}
-        for record in records:
+        for record in render_res_ids(self.env[model], res_ids, result):
             def replace(match):
                 tag = match.group(1)
                 expr = match.group(3)
@@ -493,6 +524,7 @@ class MailRenderMixin(models.AbstractModel):
 
         In addition to the generic evaluation context available, some other
         variables are added:
+
           * ``object``: record based on which the template is rendered;
 
         :param str/int/record view_ref: source QWeb template. It should be an
@@ -520,7 +552,7 @@ class MailRenderMixin(models.AbstractModel):
             variables.update(**add_context)
 
         view_ref = view_ref.id if isinstance(view_ref, models.BaseModel) else view_ref
-        for record in self.env[model].browse(res_ids):
+        for record in render_res_ids(self.env[model], res_ids, results):
             variables['object'] = record
             try:
                 render_result = self.env['ir.qweb']._render(
@@ -547,6 +579,7 @@ class MailRenderMixin(models.AbstractModel):
 
         In addition to the generic evaluation context available, some other
         variables are added:
+
           * ``object``: record based on which the template is rendered;
 
         :param str template_txt: template text to render
@@ -582,7 +615,7 @@ class MailRenderMixin(models.AbstractModel):
         if add_context:
             variables.update(**add_context)
 
-        for record in self.env[model].browse(res_ids):
+        for record in render_res_ids(self.env[model], res_ids, results):
             variables['object'] = record
 
             try:
@@ -605,9 +638,8 @@ class MailRenderMixin(models.AbstractModel):
     def _render_template_inline_template_regex(self, template_txt, model, res_ids):
         """Render the inline template in static mode, without calling safe eval."""
         template = parse_inline_template(str(template_txt))
-        records = self.env[model].browse(res_ids)
         result = {}
-        for record in records:
+        for record in render_res_ids(self.env[model], res_ids, result):
             renderer = []
             for string, expression, default in template:
                 renderer.append(string)
@@ -633,7 +665,7 @@ class MailRenderMixin(models.AbstractModel):
         :returns: updated version of rendered per record ID;
         :rtype: dict
         """
-        res_ids = list(rendered.keys())
+        res_ids = list(filter(None, rendered.keys()))
         for res_id, rendered_html in rendered.items():
             base_url = None
             if model:
@@ -737,16 +769,13 @@ class MailRenderMixin(models.AbstractModel):
                 self.lang, self.render_model, res_ids, engine=engine)
         else:
             rendered_langs = dict.fromkeys(res_ids, "")
-            records = self.env[self.render_model].browse(res_ids)
+            records = self.env[self.render_model].browse(filter(None, res_ids))
             customers = records._mail_get_partners()
             for record in records:
                 partner = customers[record.id][0] if customers[record.id] else self.env['res.partner']
                 rendered_langs[record.id] = partner.lang
 
-        return dict(
-            (res_id, lang)
-            for res_id, lang in rendered_langs.items()
-        )
+        return dict(rendered_langs)
 
     def _classify_per_lang(self, res_ids, engine='inline_template'):
         """ Given some record ids, return for computed each lang a contextualized

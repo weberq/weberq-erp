@@ -3,18 +3,14 @@
 # * pos_glory_cash
 #
 # Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-03 17:36+0000\n"
-"PO-Revision-Date: 2026-09-14 10:34+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 19:11+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "pos_glory_cash/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -28,80 +24,68 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Calculating change"
-msgstr "Izračunavanje vračila"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/components/cancel_dialog.xml:0
 msgid "Cancel Operation"
-msgstr "Prekliči operacijo"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Cancelling payment"
-msgstr "Preklic plačila"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
 msgid "Cash Machine Error"
-msgstr "Napaka gotovinskega avtomata"
+msgstr ""
 
 #. module: pos_glory_cash
 #: model:ir.model.fields,field_description:pos_glory_cash.field_pos_payment_method__glory_websocket_address
 msgid "Cash Machine IP"
-msgstr "IP naslov blagajne"
+msgstr ""
+
+#. module: pos_glory_cash
+#: model:ir.model.fields,field_description:pos_glory_cash.field_pos_payment_method__glory_use_lna
+msgid "Cash Machine Local Network Access"
+msgstr ""
 
 #. module: pos_glory_cash
 #: model:ir.model.fields,field_description:pos_glory_cash.field_pos_payment_method__glory_password
 msgid "Cash Machine Password"
-msgstr "Geslo blagajne"
+msgstr ""
 
 #. module: pos_glory_cash
 #: model:ir.model.fields,field_description:pos_glory_cash.field_pos_payment_method__glory_username
 msgid "Cash Machine Username"
-msgstr "Uporabniško ime blagajne"
-
-#. module: pos_glory_cash
-#. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
-msgid "Cash deposited: %s"
-msgstr "Položena gotovina: %s"
-
-#. module: pos_glory_cash
-#. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/screens/payment_screen/payment_lines/payment_lines.xml:0
-msgid "Cash inserted:"
-msgstr "Vstavljena gotovina:"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/components/cancel_dialog.xml:0
 msgid "Cash machine error"
-msgstr "Napaka gotovinskega avtomata"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/backend/glory_admin_buttons/glory_admin_buttons.js:0
 msgid "Cash machine is disconnected"
-msgstr "Naprava za gotovino je odklopljena"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/screens/payment_screen/payment_lines/payment_lines.xml:0
 msgid "Cash machine status:"
-msgstr "Stanje blagajne:"
-
-#. module: pos_glory_cash
-#. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
-msgid "Change given: %s"
-msgstr "Izdano vračilo: %s"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/components/cancel_dialog.xml:0
+#, fuzzy
 msgid "Close"
 msgstr "Zaključi"
 
@@ -109,7 +93,7 @@ msgstr "Zaključi"
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Collection in progress"
-msgstr "Zbiranje v teku"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -118,38 +102,36 @@ msgid ""
 "Consider emptying the cash machine, the following coins/bills are nearly "
 "full:"
 msgstr ""
-"Razmislite o izpraznitvi blagajne, naslednji kovanci/bankovci so skoraj "
-"polni:"
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Counting"
-msgstr "Štetje"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Counting replenished cash"
-msgstr "Štetje dopolnjene gotovine"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/backend/glory_admin_buttons/glory_admin_buttons.xml:0
 msgid "Current cash machine status:"
-msgstr "Trenutno stanje blagajne:"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Disconnected"
-msgstr "Povezava je prekinjena"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Dispensing"
-msgstr "Izdajanje"
+msgstr ""
 
 #. module: pos_glory_cash
 #: model:ir.model.fields,field_description:pos_glory_cash.field_pos_payment_method__display_name
@@ -159,6 +141,7 @@ msgstr "Prikazani naziv"
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/backend/glory_admin_buttons/glory_admin_buttons.xml:0
+#, fuzzy
 msgid "Download Logs"
 msgstr "Prenesi dnevnike"
 
@@ -172,7 +155,7 @@ msgstr "Napaka"
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Failed to authenticate"
-msgstr "Preverjanje pristnosti ni uspelo"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -181,8 +164,6 @@ msgid ""
 "Failed to connect to Glory cash machine, please ensure it is switched on and "
 "connected to the network."
 msgstr ""
-"Povezava z blagajno Glory ni uspela, preverite, ali je vklopljena in "
-"povezana z omrežjem."
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -191,25 +172,11 @@ msgid ""
 "Failed to login to Glory cash machine, please check the configured username "
 "and password."
 msgstr ""
-"Prijava v blagajno Glory ni uspela, preverite konfigurirano uporabniško ime "
-"in geslo."
-
-#. module: pos_glory_cash
-#. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
-msgid "GLORY TRANSACTION CANCELLED"
-msgstr "TRANSAKCIJA GLORY JE PREKLICANA"
-
-#. module: pos_glory_cash
-#. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
-msgid "GLORY TRANSACTION SUCCESSFUL"
-msgstr "TRANSAKCIJA GLORY JE USPEŠNA"
 
 #. module: pos_glory_cash
 #: model_terms:ir.ui.view,arch_db:pos_glory_cash.pos_payment_method_view_form_inherit_pos_glory_cash
 msgid "Glory Settings"
-msgstr "Nastavitve Glory"
+msgstr ""
 
 #. module: pos_glory_cash
 #: model:ir.model.fields,field_description:pos_glory_cash.field_pos_payment_method__id
@@ -226,72 +193,82 @@ msgstr "Nedejaven"
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Initializing"
-msgstr "Inicializacija"
+msgstr ""
+
+#. module: pos_glory_cash
+#: model:ir.module.module,summary:base.module_pos_glory_cash
+msgid "Integrate your POS with a Glory automatic cash payment device"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
 msgid "Only managers can withdraw cash from the cash machine."
-msgstr "Gotovino lahko iz gotovinskega avtomata dvignejo samo upravitelji."
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/backend/glory_admin_buttons/glory_admin_buttons.xml:0
 msgid "Open Admin Page"
-msgstr "Odpri skrbniško stran"
+msgstr ""
+
+#. module: pos_glory_cash
+#: model:ir.module.module,shortdesc:base.module_pos_glory_cash
+msgid "POS Glory Cash Machines"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/backend/glory_admin_buttons/glory_admin_buttons.js:0
 msgid "Please configure the IP address before opening the admin page"
-msgstr "Prosimo, konfigurirajte naslov IP, preden odprete skrbniško stran"
+msgstr ""
 
 #. module: pos_glory_cash
 #: model:ir.model,name:pos_glory_cash.model_pos_payment_method
-msgid "Point of Sale Payment Methods"
-msgstr "Načini plačila prodajne točke"
+msgid "Point of Sale Payment Method"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/backend/glory_admin_buttons/glory_admin_buttons.xml:0
 msgid "Reset Cash Machine"
-msgstr "Ponastavi blagajno"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/backend/glory_admin_buttons/glory_admin_buttons.js:0
 msgid "Reset complete"
-msgstr "Ponastavitev dokončana"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Resetting"
-msgstr "Ponastavljanje"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/backend/glory_admin_buttons/glory_admin_buttons.js:0
 msgid "Resetting cash machine..."
-msgstr "Ponastavljanje blagajne ..."
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Starting payment"
-msgstr "Začetno plačilo"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
 msgid "The cash machine has an error, please consult its display for details."
-msgstr "Naprava za gotovino ima napako, za podrobnosti preverite njen zaslon."
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/screens/payment_screen/payment_lines/payment_lines.xml:0
 msgid "The cash machine has run out of the following coins/bills:"
-msgstr "V blagajni je zmanjkalo naslednjih kovancev/bankovcev:"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -299,7 +276,6 @@ msgstr "V blagajni je zmanjkalo naslednjih kovancev/bankovcev:"
 msgid ""
 "The cash machine is busy with another operation. Do you want to cancel it?"
 msgstr ""
-"Naprava za gotovino je zasedena z drugim postopkom. Ali ga želite preklicati?"
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -308,32 +284,30 @@ msgid ""
 "The cash machine is currently in collection/replenishment mode, please "
 "finish this process on the machine before making a payment."
 msgstr ""
-"Naprava za gotovino je trenutno v načinu zbiranja/dopolnjevanja, zato pred "
-"izvedbo plačila dokončajte ta postopek na napravi."
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
 msgid "The cash machine is disconnected."
-msgstr "Naprava za gotovino je odklopljena."
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
 msgid "The cash machine is in use by another POS."
-msgstr "Blagajno uporablja drug POS."
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/screens/payment_screen/payment_lines/payment_lines.xml:0
 msgid "The cash machine is running low on the following coins/bills:"
-msgstr "V blagajni primanjkuje naslednjih kovancev/bankovcev:"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/screens/payment_screen/payment_lines/payment_lines.xml:0
 msgid "The cash machine must be emptied, the following coins/bills are full:"
-msgstr "Blagajno je treba izprazniti, naslednji kovanci/bankovci so polni:"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -342,20 +316,18 @@ msgid ""
 "The payment failed due to an unrecoverable error - see the cash machine "
 "screen for details."
 msgstr ""
-"Plačilo ni uspelo zaradi nepopravljive napake - za podrobnosti glejte zaslon "
-"bankomata."
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
 msgid "The payment failed for an unknown reason: %s"
-msgstr "Plačilo ni uspelo iz neznanega razloga: %s"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
 msgid "There is insufficient cash in the machine to give change."
-msgstr "V napravi ni dovolj gotovine za vračilo drobiža."
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
@@ -364,62 +336,45 @@ msgid ""
 "There is insufficient change in the cash machine to handle the payment. It "
 "must be cancelled to continue."
 msgstr ""
-"V gotovinskem avtomatu ni dovolj drobiža za izvedbo plačila. Za nadaljevanje "
-"je treba plačilo preklicati."
-
-#. module: pos_glory_cash
-#. odoo-javascript
-#: code:addons/pos_glory_cash/static/src/app/payment_glory.js:0
-msgid "Transaction ID: %s"
-msgstr "ID transakcije: %s"
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Waiting for cancellation"
-msgstr "Čakam na preklic"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Waiting for cash to be removed"
-msgstr "Čakanje na odstranitev gotovine"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Waiting for cash to be replenished"
-msgstr "Čakanje na dopolnitev gotovine"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Waiting for coin overflow removal"
-msgstr "Čakanje na odstranitev presežka kovancev"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Waiting for error recovery"
-msgstr "Čakanje na obnovitev po napaki"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Waiting for insertion of cash"
-msgstr "Čakanje na vstavljanje gotovine"
+msgstr ""
 
 #. module: pos_glory_cash
 #. odoo-javascript
 #: code:addons/pos_glory_cash/static/src/utils/constants.js:0
 msgid "Waiting for inventory"
-msgstr "Čakanje na zalogo"
-
-#~ msgid "Discard"
-#~ msgstr "Opusti"
-
-#~ msgid "Download logs"
-#~ msgstr "Prenesi dnevnike"
-
-#~ msgid "Reset"
-#~ msgstr "Obnovi"
+msgstr ""

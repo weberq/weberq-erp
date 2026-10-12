@@ -8,29 +8,36 @@
 # Martin Trigaux, 2023
 #
 # "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 # "Kira Petersen François (peti)" <peti@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-05 16:13+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/analytic/"
-"da/>\n"
+"POT-Creation-Date: 2026-09-11 17:42+0000\n"
+"PO-Revision-Date: 2026-09-09 14:10+0000\n"
+"Last-Translator: \"Kira Petersen François (peti)\" <peti@odoo.com>\n"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-master/"
+"analytic/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: analytic
-#. odoo-python
-#: code:addons/analytic/models/analytic_account.py:0
-msgid "%s (copy)"
-msgstr "%s (kopi)"
+#: model:ir.module.module,description:base.module_analytic
+msgid ""
+"\n"
+"Module for defining analytic accounting object.\n"
+"===============================================\n"
+"\n"
+"In Odoo, analytic accounts are linked to general accounts but are treated\n"
+"totally independently. So, you can enter various different analytic "
+"operations\n"
+"that have no counterpart in the general financial accounts.\n"
+msgstr ""
 
 #. module: analytic
 #. odoo-python
@@ -57,6 +64,11 @@ msgid ""
 msgstr ""
 "En projektplan skal være oprettet, og dens ID skal være angivet som "
 "'analytic.project_plan' i systemvariablerne"
+
+#. module: analytic
+#: model:ir.model,name:analytic.model_res_groups
+msgid "Access Groups"
+msgstr ""
 
 #. module: analytic
 #. odoo-javascript
@@ -104,7 +116,7 @@ msgstr "Tilføj et nyt omkostningssted"
 #. module: analytic
 #: model:account.analytic.account,name:analytic.analytic_administratif
 msgid "Administrative"
-msgstr "Administrativ"
+msgstr "Administrative"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_plan__all_account_count
@@ -127,7 +139,7 @@ msgstr "Beløbsfelt"
 #. odoo-javascript
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.xml:0
 msgid "Analytic"
-msgstr "Analytisk"
+msgstr "Omkostning"
 
 #. module: analytic
 #: model:ir.model,name:analytic.model_account_analytic_account
@@ -141,9 +153,10 @@ msgstr "Omkostningssted"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_res_config_settings__group_analytic_accounting
+#: model:ir.module.module,shortdesc:base.module_analytic
 #: model:res.groups,name:analytic.group_analytic_accounting
 msgid "Analytic Accounting"
-msgstr "Omkostningsregnskab"
+msgstr "Omkostningsberegning"
 
 #. module: analytic
 #: model:ir.actions.act_window,name:analytic.action_account_analytic_account_form
@@ -206,27 +219,27 @@ msgid "Analytic Mixin"
 msgstr "Omkostningsberegning-Mixin"
 
 #. module: analytic
+#: model:ir.model,name:analytic.model_account_analytic_plan
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_applicability__analytic_plan_id
 msgid "Analytic Plan"
-msgstr "Analytisk kontoplan"
+msgstr "Analytisk plan"
 
 #. module: analytic
 #: model:ir.model,name:analytic.model_analytic_plan_fields_mixin
 msgid "Analytic Plan Fields"
-msgstr "Felter til analytisk kontoplan"
+msgstr "Felter til analyseplan"
 
 #. module: analytic
 #: model:ir.model,name:analytic.model_account_analytic_applicability
 msgid "Analytic Plan's Applicabilities"
-msgstr "Anvendelsesmuligheder for analytiske kontoplaner"
+msgstr "Anvendelsesmuligheder for omkostningsplaner"
 
 #. module: analytic
 #: model:ir.actions.act_window,name:analytic.account_analytic_plan_action
-#: model:ir.model,name:analytic.model_account_analytic_plan
 #: model_terms:ir.ui.view,arch_db:analytic.account_analytic_plan_form_view
 #: model_terms:ir.ui.view,arch_db:analytic.account_analytic_plan_tree_view
 msgid "Analytic Plans"
-msgstr "Analytiske kontoplaner"
+msgstr "Omkostningsplaner"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_distribution_model__analytic_precision
@@ -245,7 +258,7 @@ msgstr "Omkostningssteder"
 #. odoo-python
 #: code:addons/analytic/models/analytic_plan.py:0
 msgid "Analytical Plans"
-msgstr "Analytiske kontoplaner"
+msgstr "Analytiske planer"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_applicability__applicability
@@ -331,7 +344,7 @@ msgstr "Underordnede"
 #. module: analytic
 #: model_terms:ir.actions.act_window,help:analytic.account_analytic_plan_action
 msgid "Click to add a new analytic account plan."
-msgstr "Klik for at oprette en ny analytisk kontoplan."
+msgstr "Klik for at oprette en ny omkostningsstedsplan."
 
 #. module: analytic
 #. odoo-javascript
@@ -481,6 +494,7 @@ msgstr "Deaktivér gem"
 #: model:ir.model.fields,field_description:analytic.field_analytic_plan_fields_mixin__display_name
 #: model:ir.model.fields,field_description:analytic.field_ir_config_parameter__display_name
 #: model:ir.model.fields,field_description:analytic.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:analytic.field_res_groups__display_name
 msgid "Display Name"
 msgstr "Visningsnavn"
 
@@ -504,7 +518,7 @@ msgstr "Domæne"
 #. odoo-javascript
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.xml:0
 msgid "Don't update"
-msgstr "Opdatér ikke"
+msgstr "Opdater ikke"
 
 #. module: analytic
 #. odoo-javascript
@@ -558,6 +572,7 @@ msgstr "Personaleadministration (HR)"
 #: model:ir.model.fields,field_description:analytic.field_analytic_plan_fields_mixin__id
 #: model:ir.model.fields,field_description:analytic.field_ir_config_parameter__id
 #: model:ir.model.fields,field_description:analytic.field_res_config_settings__id
+#: model:ir.model.fields,field_description:analytic.field_res_groups__id
 msgid "ID"
 msgstr "ID"
 
@@ -692,7 +707,7 @@ msgstr "Endnu ingen aktivitet på denne konto"
 #. odoo-javascript
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.xml:0
 msgid "No analytic plans found"
-msgstr "Der blev ikke fundet nogen analytiske kontoplaner"
+msgstr "Der blev ikke fundet nogen analytiske planer"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_account__message_needaction_counter
@@ -792,15 +807,15 @@ msgid "Production"
 msgstr "Produktion"
 
 #. module: analytic
-#: model:account.analytic.plan,name:analytic.analytic_plan_projects
-msgid "Project"
-msgstr "Projekt"
-
-#. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_line__account_id
 #: model:ir.model.fields,field_description:analytic.field_analytic_plan_fields_mixin__account_id
 msgid "Project Account"
 msgstr "Projektkonto"
+
+#. module: analytic
+#: model:account.analytic.plan,name:analytic.analytic_plan_projects
+msgid "Project Plan"
+msgstr "Projektplan"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_line__unit_amount
@@ -919,7 +934,7 @@ msgstr "Underplaner"
 #. module: analytic
 #: model:ir.model,name:analytic.model_ir_config_parameter
 msgid "System Parameter"
-msgstr "Systemparametre"
+msgstr "Systemparameter"
 
 #. module: analytic
 #. odoo-python
@@ -956,7 +971,7 @@ msgstr "Enhed"
 #. odoo-javascript
 #: code:addons/analytic/static/src/components/analytic_distribution/analytic_distribution.xml:0
 msgid "Update"
-msgstr "Opdatering"
+msgstr "Opdater"
 
 #. module: analytic
 #: model:ir.model.fields,field_description:analytic.field_account_analytic_line__user_id
@@ -1014,47 +1029,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:analytic.view_account_analytic_account_form
 msgid "e.g. Project XYZ"
 msgstr "f.eks. projekt XYZ"
-
-#~ msgid "Deco Addict"
-#~ msgstr "Deco Addict"
-
-#~ msgid "Add a line"
-#~ msgstr "Tilføj en linje"
-
-#~ msgid ""
-#~ "Conversion between Units of Measure can only occur if they belong to the "
-#~ "same category. The conversion will be made based on the ratios."
-#~ msgstr ""
-#~ "Konvertering mellem enheder kan kun ske, hvis de tilhører samme kategori. "
-#~ "Konvertering vil ske ud fra forholdstallene."
-
-#~ msgid "Editing"
-#~ msgstr "Redigering"
-
-#~ msgid "Group By..."
-#~ msgstr "Gruppér efter..."
-
-#~ msgid "Loading..."
-#~ msgstr "Indlæser..."
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Antal meddelser der kræver handling"
-
-#~ msgid "OK"
-#~ msgstr "Ok"
-
-#~ msgid ""
-#~ "The selected account belongs to another company than the one you're "
-#~ "trying to create an analytic item for"
-#~ msgstr ""
-#~ "Den valgte konto tilhører en anden virksomhed end den, du prøver at "
-#~ "oprette en analytisk genstand for"
-
-#~ msgid "Unit of Measure"
-#~ msgstr "Enhed"
-
-#~ msgid "UoM Category"
-#~ msgstr "Enhedskategori"
-
-#~ msgid "View"
-#~ msgstr "Vis"

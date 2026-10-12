@@ -4,31 +4,10 @@ from unittest.mock import patch
 
 import odoo
 from odoo.addons.point_of_sale.tests.common import CommonPosTest
-from odoo.exceptions import UserError
 
 
 @odoo.tests.tagged('post_install', '-at_install')
 class TestPointOfSaleFlow(CommonPosTest):
-    def test_pos_hr_session_name_gap(self):
-        self.pos_config_usd.open_ui()
-        session = self.pos_config_usd.current_session_id
-        session.set_opening_control(0, None)
-        current_session_name = session.name
-        session.action_pos_session_closing_control()
-
-        self.pos_config_usd.open_ui()
-        session = self.pos_config_usd.current_session_id
-
-        def _message_post_patch(*_args, **_kwargs):
-            raise UserError('Test Error')
-
-        with patch.object(self.env.registry.models['pos.session'], "message_post", _message_post_patch):
-            with self.assertRaises(UserError):
-                session.set_opening_control(0, None)
-
-        session.set_opening_control(0, None)
-        self.assertEqual(int(session.name.split('/')[1]), int(current_session_name.split('/')[1]) + 1)
-
     def test_limited_partner_loading_includes_employee_work_contact(self):
         """
         An employee's work contact is used as the partner of the cash moves
@@ -39,8 +18,6 @@ class TestPointOfSaleFlow(CommonPosTest):
         frontend-side, the cash move ends up without a partner, and deleting
         it later crashes in delete_cash_in_out (partner_id.name is False).
         """
-        self.env['ir.config_parameter'].sudo().set_param('point_of_sale.limited_customer_count', 0)
-
         employee = self.env['hr.employee'].sudo().create({
             'name': 'Test Employee',
             'company_id': self.company.id,
@@ -49,8 +26,11 @@ class TestPointOfSaleFlow(CommonPosTest):
 
         self.pos_config_usd.write({'module_pos_hr': True})
 
-        domain = self.env['res.partner']._load_pos_data_domain({'pos.order': []}, self.pos_config_usd)
-        partners = self.env['res.partner'].search(domain)
+        # LIMIT 0 always yields zero rows, so any partner in the domain result
+        # can only come from pos_hr explicitly forcing it in.
+        with patch.object(self.env.registry.models['pos.config'], '_get_limited_partner_count', return_value=0):
+            domain = self.env['res.partner']._load_pos_data_domain({'pos.config': self.pos_config_usd, 'pos.order': self.env['pos.order']})
+            partners = self.env['res.partner'].search(domain)
 
         self.assertIn(
             employee.work_contact_id, partners,
@@ -67,15 +47,9 @@ class TestPointOfSaleFlow(CommonPosTest):
         self.pos_config_usd.open_ui()
         session = self.pos_config_usd.current_session_id
         session.set_opening_control(0, False)
-        session.try_cash_in_out('out', 10, 'Deposit', employee.work_contact_id.id, {
-            'translatedType': 'out',
-            'employee_id': employee.id,
-        })
+        session.try_cash_in_out('out', 10, 'Deposit', employee.work_contact_id.id, employee_id=employee.id)
 
-        cash_move = session.statement_line_ids
+        cash_move = session.bank_statement_line_ids
         self.assertFalse(cash_move.partner_id)
         self.assertFalse(cash_move.move_id.line_ids.partner_id)
         self.assertEqual(session.get_cash_in_out_list()[0]['cashier_name'], 'Test Employee')
-
-        session.delete_cash_in_out(cash_move.id, employee.work_contact_id.id)
-        self.assertIn('Test Employee: -10.0', session.message_ids[0].body)

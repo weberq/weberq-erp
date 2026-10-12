@@ -58,7 +58,6 @@ test("save filter", async () => {
     class TestComponent extends Component {
         static components = { SearchBarMenu };
         static template = xml`<div><SearchBarMenu/></div>`;
-        static props = ["*"];
         setup() {
             useSetupAction({
                 getContext: () => ({ someKey: "foo" }),
@@ -93,7 +92,6 @@ test("save and edit filter", async () => {
     class TestComponent extends Component {
         static components = { SearchBarMenu };
         static template = xml`<div><SearchBarMenu/></div>`;
-        static props = ["*"];
         setup() {
             useSetupAction({
                 getContext: () => ({ someKey: "foo" }),
@@ -227,7 +225,6 @@ test("save custom favorite filter on enter", async () => {
     class TestComponent extends Component {
         static components = { SearchBar };
         static template = xml`<div><SearchBar/></div>`;
-        static props = ["*"];
 
         setup() {
             useSetupAction({

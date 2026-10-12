@@ -1,11 +1,7 @@
 import { registry } from "@web/core/registry";
 import { _t } from "@web/core/l10n/translation";
-import { renderToElement } from "@web/core/utils/render";
 import { Plugin } from "@html_editor/plugin";
 import { GoogleMapsApiKeyDialog } from "./google_maps_api_key_dialog";
-import { GoogleMapsOption } from "./google_maps_option";
-import { Deferred } from "@web/core/utils/concurrency";
-import { BuilderAction } from "@html_builder/core/builder_action";
 
 /**
  * A `google.maps.places.PlaceResult` object.
@@ -56,15 +52,8 @@ export class GoogleMapsOptionPlugin extends Plugin {
     ];
     /** @type {import("plugins").WebsiteResources} */
     resources = {
-        builder_options: [GoogleMapsOption],
-        so_content_addition_selector: [".s_google_map"],
+        so_content_addition_selectors: [".s_google_map"],
         on_snippet_dropped_handlers: this.onSnippetDropped.bind(this),
-        builder_actions: {
-            ResetMapColorAction,
-            ShowDescriptionAction,
-        },
-        // TODO remove when the snippet will have a "Height" option.
-        keep_overlay_options: (el) => el.matches(".s_google_map"),
     };
 
     setup() {
@@ -78,14 +67,37 @@ export class GoogleMapsOptionPlugin extends Plugin {
 
         /** @type {Map<HTMLElement, Deferred} */
         this.recentlyDroppedSnippetDeferredInit = new Map();
+        this.upgradeSnippets();
+    }
+
+    // TODO: Remove this method when data-vxml is reintroduced.
+    upgradeSnippets() {
+        // This is for pages which already existed before the plugin was created.
+        this.document.querySelectorAll(".s_google_map").forEach((mapSnippetEl) => {
+            mapSnippetEl.classList.remove("o_not_editable");
+            mapSnippetEl.dataset.vxml = "001";
+            if (!mapSnippetEl.style.getPropertyValue("--GoogleMap-height")) {
+                // Old map snippets used padding classes for the height. This
+                // condition converts them into the CSS variable.
+                const paddingClasses = [...mapSnippetEl.classList].filter((cls) =>
+                    /^p(b|t)\d+$/.test(cls)
+                );
+                let mapHeight = 0;
+                for (const cls of paddingClasses) {
+                    mapHeight += parseInt(/\d+$/.exec(cls)[0]);
+                    mapSnippetEl.classList.remove(cls);
+                }
+                mapSnippetEl.style.setProperty("--GoogleMap-height", `${mapHeight}px`);
+            }
+        });
     }
 
     async onSnippetDropped({ snippetEl }) {
         if (snippetEl.matches(".s_google_map")) {
-            const deferredInit = new Deferred();
+            const deferredInit = Promise.withResolvers();
             this.recentlyDroppedSnippetDeferredInit.set(snippetEl, deferredInit);
             this.dependencies.edit_interaction.restartInteractions(snippetEl);
-            const initSuccess = await deferredInit;
+            const initSuccess = await deferredInit.promise;
             this.recentlyDroppedSnippetDeferredInit.delete(snippetEl);
             if (!initSuccess) {
                 return true; // cancel
@@ -153,8 +165,8 @@ export class GoogleMapsOptionPlugin extends Plugin {
                 editingElement.dataset.mapGps = coordinates;
                 editingElement.dataset.pinAddress = place.formatted_address;
                 // Restart interactions to re-render the map.
-                this.dispatchTo("content_manually_updated_handlers", editingElement);
-                this.dependencies.history.addStep();
+                this.trigger("on_content_manually_updated_handlers", editingElement);
+                this.dependencies.history.commit();
             }
         }
     }
@@ -283,25 +295,6 @@ export class GoogleMapsOptionPlugin extends Plugin {
     }
     shouldNotRefetchApiKey() {
         this.wasApiKeyInvalidated = false;
-    }
-}
-
-export class ResetMapColorAction extends BuilderAction {
-    static id = "resetMapColor";
-    apply({ editingElement }) {
-        editingElement.dataset.mapColor = "";
-    }
-}
-export class ShowDescriptionAction extends BuilderAction {
-    static id = "showDescription";
-    isApplied({ editingElement }) {
-        return !!editingElement.querySelector(".description");
-    }
-    apply({ editingElement }) {
-        editingElement.append(renderToElement("html_builder.GoogleMapsDescription"));
-    }
-    clean({ editingElement }) {
-        editingElement.querySelector(".description").remove();
     }
 }
 

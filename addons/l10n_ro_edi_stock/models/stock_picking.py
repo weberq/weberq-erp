@@ -1,6 +1,5 @@
 from typing import Literal
 
-import base64
 import markupsafe
 import requests
 
@@ -8,6 +7,7 @@ from odoo import api, fields, models, _
 from odoo.addons.l10n_ro_edi_stock.models.l10n_ro_edi_stock_document import DOCUMENT_STATES
 from odoo.addons.l10n_ro_edi_stock.models.etransport_api import ETransportAPI
 from odoo.exceptions import UserError
+from odoo.tools import BinaryBytes
 from odoo.tools.float_utils import float_round
 
 OPERATION_TYPES = [
@@ -366,10 +366,14 @@ class Picking(models.Model):
             else:
                 picking.l10n_ro_edi_stock_document_uit = False
 
-    @api.depends('company_id.account_fiscal_country_id.code')
+    @api.depends('batch_id', 'company_id', 'company_id.account_fiscal_country_id.code', 'picking_type_code')
     def _compute_l10n_ro_edi_stock_enable(self):
         for picking in self:
-            picking.l10n_ro_edi_stock_enable = picking.picking_type_code != 'internal' and picking.company_id.account_fiscal_country_id.code == 'RO'
+            picking.l10n_ro_edi_stock_enable = (
+                not picking.batch_id
+                and picking.picking_type_code != 'internal'
+                and picking.company_id.country_id.code == 'RO'
+            )
 
     @api.depends('l10n_ro_edi_stock_enable', 'state', 'l10n_ro_edi_stock_state')
     def _compute_l10n_ro_edi_stock_enable_send(self):
@@ -430,8 +434,15 @@ class Picking(models.Model):
 
     @api.model
     def _l10n_ro_edi_stock_validate_carrier_filter(self, picking):
-        # To be overridden by stock.picking.batch
-        return picking.l10n_ro_edi_stock_enable
+        if self.env.user.has_group('stock.group_stock_picking_batch'):
+            # Override for when the batch picking calls this function to validate the carriers
+            validate_carrier = self.env.context.get('l10n_ro_edi_stock_validate_carrier', False)
+            return (
+                picking.company_id.account_fiscal_country_id.code == 'RO'
+                and (picking.l10n_ro_edi_stock_enable or validate_carrier)
+            )
+        else:
+            return picking.l10n_ro_edi_stock_enable
 
     @api.model
     def _l10n_ro_edi_stock_validate_data(self, data: dict):
@@ -445,7 +456,7 @@ class Picking(models.Model):
         partner = data['transport_partner_id']
         missing_carrier_partner_fields = []
 
-        if not partner.vat:
+        if not partner.has_vat:
             missing_carrier_partner_fields.append(_("VAT"))
 
         if not partner.city:
@@ -635,7 +646,7 @@ class Picking(models.Model):
             'state': 'stock_sent',
             'l10n_ro_edi_stock_load_id': values['l10n_ro_edi_stock_load_id'],
             'l10n_ro_edi_stock_uit': values['l10n_ro_edi_stock_uit'],
-            'attachment': base64.b64encode(values['raw_xml'].encode('utf-8')),
+            'attachment': BinaryBytes(values['raw_xml'].encode('utf-8')),
         })
 
     def _l10n_ro_edi_stock_create_document_stock_sending_failed(self, values: dict[str, object]):
@@ -650,7 +661,7 @@ class Picking(models.Model):
 
         if 'raw_xml' in values:
             # when an error is thrown during data validation there will be no 'raw_xml'
-            document.attachment = base64.b64encode(values['raw_xml'].encode('utf-8'))
+            document.attachment = BinaryBytes(values['raw_xml'].encode('utf-8'))
 
         return document
 
@@ -661,7 +672,7 @@ class Picking(models.Model):
             'state': 'stock_validated',
             'l10n_ro_edi_stock_load_id': values['l10n_ro_edi_stock_load_id'],
             'l10n_ro_edi_stock_uit': values['l10n_ro_edi_stock_uit'],
-            'attachment': base64.b64encode(values['raw_xml'].encode('utf-8')),
+            'attachment': BinaryBytes(values['raw_xml'].encode('utf-8')),
         })
 
     ################################################################################
@@ -707,7 +718,7 @@ class Picking(models.Model):
                 document_values |= {
                     'l10n_ro_edi_stock_load_id': last_sent_document.l10n_ro_edi_stock_load_id,
                     'l10n_ro_edi_stock_uit': last_sent_document.l10n_ro_edi_stock_uit,
-                    'raw_xml': base64.b64decode(last_sent_document.attachment).decode(),
+                    'raw_xml': last_sent_document.attachment.content.decode(),
                 }
 
             self._l10n_ro_edi_stock_create_document_stock_sending_failed(document_values)
@@ -750,7 +761,7 @@ class Picking(models.Model):
             attachment = self.env['ir.attachment'].create({
                 'name': f"etransport_{self.name.replace('/', '_')}.xml",
                 'type': 'binary',
-                'datas': edi_document.attachment,
+                'raw': edi_document.attachment,
             })
             self._message_log(
                 body=_(
@@ -773,7 +784,7 @@ class Picking(models.Model):
                     'message': '\n'.join(errors),
                     'l10n_ro_edi_stock_load_id': current_sending_document.l10n_ro_edi_stock_load_id,
                     'l10n_ro_edi_stock_uit': current_sending_document.l10n_ro_edi_stock_uit,
-                    'raw_xml': base64.b64decode(current_sending_document.attachment).decode(),
+                    'raw_xml': current_sending_document.attachment.content.decode(),
                 })
                 continue
 
@@ -788,14 +799,14 @@ class Picking(models.Model):
                     'message': result['error'],
                     'l10n_ro_edi_stock_load_id': current_sending_document.l10n_ro_edi_stock_load_id,
                     'l10n_ro_edi_stock_uit': current_sending_document.l10n_ro_edi_stock_uit,
-                    'raw_xml': base64.b64decode(current_sending_document.attachment).decode(),
+                    'raw_xml': current_sending_document.attachment.content.decode(),
                 })
             else:
                 documents_to_delete |= picking._l10n_ro_edi_stock_get_all_documents(('stock_sent', 'stock_sending_failed'))
                 new_document_data = {
                     'l10n_ro_edi_stock_load_id': current_sending_document.l10n_ro_edi_stock_load_id,
                     'l10n_ro_edi_stock_uit': current_sending_document.l10n_ro_edi_stock_uit,
-                    'raw_xml': base64.b64decode(current_sending_document.attachment).decode(),
+                    'raw_xml': current_sending_document.attachment.content.decode(),
                 }
                 match state := result['content']['stare']:
                     case 'ok':
@@ -831,7 +842,7 @@ class Picking(models.Model):
         name = data['name']
         commercial_partner_code = None
 
-        if commercial_partner.vat:
+        if commercial_partner.has_vat:
             commercial_partner_code = self._l10n_ro_edi_stock_get_cod(commercial_partner)
         elif self.l10n_ro_edi_stock_operation_type == '30':
             commercial_partner_code = 'PF'
@@ -848,7 +859,7 @@ class Picking(models.Model):
                         'codTarifar': (product.intrastat_code_id.code if 'intrastat_code_id' in product._fields else None) or '00000000',
                         'denumireMarfa': product.name,
                         'cantitate': float_round(move.product_qty, precision_digits=2),
-                        'codUnitateMasura': move.product_uom._get_unece_code(),
+                        'codUnitateMasura': move.uom_id._get_unece_code(),
                         'greutateNeta': float_round(move.weight, precision_digits=2),
                         'greutateBruta': float_round(self._l10n_ro_edi_stock_get_gross_weight(move), precision_digits=2),
                         'valoareLeiFaraTva': float_round(product.standard_price, precision_digits=2),

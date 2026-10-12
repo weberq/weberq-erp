@@ -2,16 +2,15 @@
 # This file contains the translation of the following modules:
 # * account_edi
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-27 07:48+0000\n"
-"Last-Translator: Jan Zorko <jan.zorko@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-08-31 16:06+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "account_edi/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +19,22 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 2026.8.1\n"
+
+#. module: account_edi
+#: model:ir.module.module,description:base.module_account_edi
+msgid ""
+"\n"
+"Electronic Data Interchange\n"
+"=======================================\n"
+"EDI is the electronic interchange of business information using a "
+"standardized format.\n"
+"\n"
+"This is the base module for import and export of invoices in various EDI "
+"formats, and the\n"
+"the transmission of said documents to various parties involved in the "
+"exchange (other company,\n"
+"governements, etc.)\n"
+msgstr ""
 
 #. module: account_edi
 #. odoo-python
@@ -50,11 +65,6 @@ msgstr "Zahtevana je bila preklic EDI."
 #: code:addons/account_edi/models/account_move.py:0
 msgid "A request for cancellation of the EDI has been called off."
 msgstr "Zahteva za preklic EDI je bila preklicana."
-
-#. module: account_edi
-#: model:ir.model,name:account_edi.model_account_move_send
-msgid "Account Move Send"
-msgstr "Pošlji premik računa"
 
 #. module: account_edi
 #: model_terms:ir.ui.view,arch_db:account_edi.view_move_form_inherit
@@ -292,6 +302,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: account_edi
+#: model:ir.module.module,shortdesc:base.module_account_edi
+msgid "Import/Export Invoices From XML/PDF"
+msgstr ""
+
+#. module: account_edi
 #: model:ir.model.fields.selection,name:account_edi.selection__account_edi_document__blocking_level__info
 #: model:ir.model.fields.selection,name:account_edi.selection__account_move__edi_blocking_level__info
 msgid "Info"
@@ -384,9 +399,14 @@ msgid "Sent"
 msgstr "Poslano"
 
 #. module: account_edi
+#: model:ir.model,name:account_edi.model_account_move_send
+msgid "Shared Send Invoice Wizard Functions"
+msgstr ""
+
+#. module: account_edi
 #: model:ir.model.fields,field_description:account_edi.field_account_edi_document__state
 msgid "State"
-msgstr "Stanje"
+msgstr "Zvezna država ali regija"
 
 #. module: account_edi
 #: model:ir.model.fields,help:account_edi.field_account_bank_statement_line__edi_state
@@ -473,8 +493,8 @@ msgid ""
 "instead."
 msgstr ""
 "Naslednjega vnosa v dnevnik ne morete urejati\n"
-"%s ker je bil elektronski dokument že poslan. Namesto tega uporabite gumb »"
-"Zahtevaj preklic EDI«."
+"%s ker je bil elektronski dokument že poslan. Namesto tega uporabite gumb "
+"»Zahtevaj preklic EDI«."
 
 #. module: account_edi
 #. odoo-python

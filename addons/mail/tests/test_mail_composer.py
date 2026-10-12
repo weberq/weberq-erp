@@ -15,9 +15,9 @@ class TestMailComposer(MailCommon):
     @classmethod
     def setUpClass(cls):
         super(TestMailComposer, cls).setUpClass()
-        cls.env['ir.config_parameter'].set_param('mail.restrict.template.rendering', True)
+        cls.env['ir.config_parameter'].set_bool('mail.restrict.template.rendering', True)
         cls.user_employee.group_ids -= cls.env.ref('mail.group_mail_template_editor')
-        cls.test_record = cls.env['res.partner'].with_context(cls._test_context).create({
+        cls.test_record = cls.env['res.partner'].create({
             'name': 'Test',
         })
         cls.body_html = """<h1>Hello sir!</h1>
@@ -42,6 +42,7 @@ class TestMailComposer(MailCommon):
         })
 
 @tagged('mail_composer')
+@tagged('at_install', '-post_install')  # LEGACY at_install
 class TestMailComposerForm(TestMailComposer):
     """ Test mail composer form view usage. """
 
@@ -137,7 +138,7 @@ class TestMailComposerForm(TestMailComposer):
         self.assertEqual(message.partner_ids, partner_private + partner_classic)
         self.assertEqual(message.subject, f'{test_record.name}')
 
-    @mute_logger('odoo.addons.base.models.ir_rule', 'odoo.addons.mail.models.mail_mail')
+    @mute_logger('odoo.addons.base.models.ir_access', 'odoo.addons.mail.models.mail_mail')
     @users('employee')
     def test_composer_default_recipients_private_norights(self):
         """ Test usage of a private partner in composer when not having the
@@ -151,12 +152,13 @@ class TestMailComposerForm(TestMailComposer):
         partner_classic = self.partner_classic.with_env(self.env)
         test_record = self.test_record.with_env(self.env)
 
-        with self.assertRaises(AccessError):
-            _form = Form(self.env['mail.compose.message'].with_context({
-                'default_partner_ids': (self.partner_private + partner_classic).ids,
-                'default_model': test_record._name,
-                'default_res_ids': test_record.ids,
-            }))
+        form = Form(self.env['mail.compose.message'].with_context({
+            'default_partner_ids': (self.partner_private + partner_classic).ids,
+            'default_model': test_record._name,
+            'default_res_ids': test_record.ids,
+        }))
+        msg = form.save()
+        self.assertEqual(partner_classic, msg.sudo().partner_ids, 'partner_private must not be saved')
 
     @mute_logger('odoo.addons.mail.models.mail_mail')
     @users('employee')
@@ -259,6 +261,7 @@ class TestMailComposerForm(TestMailComposer):
 
 
 @tagged('mail_composer')
+@tagged('at_install', '-post_install')  # LEGACY at_install
 class TestMailComposerRendering(TestMailComposer):
     """ Test rendering and support of various html tweaks in composer """
 
@@ -304,8 +307,27 @@ class TestMailComposerRendering(TestMailComposer):
             'We must preserve (mso) comments in email html'
         )
 
+        notification = self.env["mail.notification"].search(
+            [('mail_email_address', '=', self.partner_employee.email)])
+        self.assertEqual(len(notification), 1)
 
-@tagged("mail_composer", "-at_install", "post_install")
+    @users('employee')
+    def test_prevent_sudo_rendering(self):
+        test_template = self.env['mail.template'].sudo().create({
+            'body_html': '<t t-if="not object.env.su">1</t>',
+            'model_id': self.env['ir.model']._get_id('res.partner'),
+        })
+        partner = self.test_record.with_env(self.env)
+        composer = self.env['mail.compose.message'].create({
+            'model': partner._name,
+            'res_ids': f'{[partner.id]}',
+            'template_id': test_template.id,
+            'composition_mode': 'mass_mail',
+        })
+        result = composer._render_field('body', partner.ids)[partner.id]
+        self.assertEqual(result, '1')
+
+@tagged("mail_composer")
 class TestMailComposerUI(MailCommon, HttpCase):
 
     def test_mail_composer_test_tour(self):
@@ -346,7 +368,7 @@ class TestMailComposerUI(MailCommon, HttpCase):
         message_1, message_2, message_3 = self._new_msgs.filtered(lambda message: message.author_id == self.user_employee.partner_id)
         self.assertIn(user.partner_id, message_1.partner_ids)
         self.assertEqual(
-            sorted(message_1.attachment_ids.mapped('raw')),
+            sorted([a.raw.content for a in message_1.attachment_ids]),
             sorted([b'hello, world', b'hi there']))
 
         signature_pattern = r'<span data-o-mail-quote="1">--\nErnest</span>'

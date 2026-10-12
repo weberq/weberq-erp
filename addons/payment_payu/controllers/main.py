@@ -2,12 +2,10 @@
 
 import pprint
 
-from werkzeug.exceptions import Forbidden
-
 from odoo import http
 from odoo.http import request
-from odoo.tools import consteq
 
+from odoo.addons.payment import utils as payment_utils
 from odoo.addons.payment.logging import get_payment_logger
 from odoo.addons.payment_payu import const
 
@@ -39,8 +37,10 @@ class PayuController(http.Controller):
         _logger.info("Handling redirection from PayU with data:\n%s", pprint.pformat(data))
         tx_sudo = self.env["payment.transaction"].sudo()._search_by_reference("payu", data)
         if tx_sudo:
-            self._verify_signature(data, tx_sudo)
-            tx_sudo._process("payu", data)
+            received_signature = data.get("hash")
+            expected_signature = tx_sudo.provider_id._payu_generate_signature(data, incoming=True)
+            payment_utils.verify_signature(received_signature, expected_signature)
+            tx_sudo._record(data)
         return request.redirect("/payment/status")
 
     @http.route(const.WEBHOOK_ROUTE, type="http", auth="public", methods=["POST"], csrf=False)
@@ -52,31 +52,10 @@ class PayuController(http.Controller):
         """
         _logger.info("Notification received from PayU with data:\n%s", pprint.pformat(data))
         tx_sudo = self.env["payment.transaction"].sudo()._search_by_reference("payu", data)
-
         if tx_sudo:
-            self._verify_signature(data, tx_sudo)
-            tx_sudo._process("payu", data)
+            received_signature = data.get("hash")
+            expected_signature = tx_sudo.provider_id._payu_generate_signature(data, incoming=True)
+            payment_utils.verify_signature(received_signature, expected_signature)
+            tx_sudo._record(data)
 
-        return request.make_json_response("")  # Acknowledge the notification.
-
-    @staticmethod
-    def _verify_signature(payment_data, tx_sudo):
-        """Check that the received signature matches the expected one.
-
-        :param dict payment_data: The payment data to verify
-        :param payment.transaction tx_sudo: The transaction referenced by the payment data
-        :rtype: None
-        :raise Forbidden: If the signatures don't match
-        """
-        received_signature = payment_data.get("hash")
-        if not received_signature:
-            _logger.warning("Received payment data with missing signature.")
-            raise Forbidden
-
-        # Compare the received signature with the expected signature computed from the data
-        expected_signature = tx_sudo.provider_id._payu_generate_signature(
-            payment_data, incoming=True
-        )
-        if not consteq(received_signature, expected_signature):
-            _logger.warning("Received payment data with invalid signature.")
-            raise Forbidden
+        return request.make_json_response("")

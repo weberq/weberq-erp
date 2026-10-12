@@ -10,6 +10,7 @@ from odoo.tests import Form
 @tagged('-at_install', 'post_install')
 class TestSaleService(TestCommonSaleTimesheet):
     """ This test suite provide checks for miscellaneous small things. """
+    _test_user_groups = None  # FIXME list needed groups
 
     @classmethod
     def setUpClass(cls):
@@ -144,7 +145,7 @@ class TestSaleService(TestCommonSaleTimesheet):
             'unit_amount': 1,
             'employee_id': self.employee_manager.id,
         })
-        self.assertTrue(all([billing_type == 'billable_time' for billing_type in timesheets.mapped('timesheet_invoice_type')]), "All timesheets linked to the task should be on 'billable time'")
+        self.assertTrue(all(billing_type == '04_billable_time' for billing_type in timesheets.mapped('billable_type')), "All timesheets linked to the task should be on 'billable time'")
         self.assertEqual(so_line_deliver_global_project.qty_to_invoice, 5, "Quantity to invoice should have been increased when logging timesheet on delivered quantities task")
 
         # invoice SO, and validate invoice
@@ -153,7 +154,7 @@ class TestSaleService(TestCommonSaleTimesheet):
 
         # make task non billable
         task_serv2.write({'sale_line_id': False})
-        self.assertTrue(all([billing_type == 'billable_time' for billing_type in timesheets.mapped('timesheet_invoice_type')]), "billable type of timesheet should not change when tranfering task into another project")
+        self.assertTrue(all(billing_type == '04_billable_time' for billing_type in timesheets.mapped('billable_type')), "billable type of timesheet should not change when tranfering task into another project")
         self.assertEqual(task_serv2.timesheet_ids.mapped('so_line'), so_line_deliver_global_project, "Old invoiced timesheet are not modified when changing the task SO line")
 
         # try to update timesheets, catch error 'You cannot modify invoiced timesheet'
@@ -677,11 +678,11 @@ class TestSaleService(TestCommonSaleTimesheet):
             'employee_id': self.employee_manager.id,
         })
 
-        self.assertFalse(timesheet.timesheet_invoice_id)
+        self.assertFalse(timesheet.reinvoice_move_id)
         invoice = self.sale_order._create_invoices()
         invoice.action_post()
 
-        self.assertEqual(invoice, timesheet.timesheet_invoice_id)
+        self.assertEqual(invoice, timesheet.reinvoice_move_id)
 
     def test_prevent_update_project_allocated_hours_after_confirming_quotation(self):
         """ Test allocated hours in the project linked to a SO is not automatically updated
@@ -763,7 +764,7 @@ class TestSaleService(TestCommonSaleTimesheet):
         self.assertFalse(sale_order_1.show_project_button, "There is no project on the sale order, the button should be hidden")
         line_1.project_id = self.project_global.id
         sale_order_1._compute_show_project_and_task_button()
-        self.assertFalse(sale_order_1.show_create_project_button, "There is a product service with the service_policy set on 'delivered on timesheet' and a project on the sale order, the button should be hidden")
+        self.assertTrue(sale_order_1.show_create_project_button, "The 'create Project Button' should be displayed reguardless of the service product type")
         self.assertTrue(sale_order_1.show_project_button, "There is a product service with the service_policy set on 'delivered on timesheet' and a project on the sale order, the button should be displayed")
 
     def test_compute_show_timesheet_button(self):
@@ -875,7 +876,6 @@ class TestSaleService(TestCommonSaleTimesheet):
         Ensure hours are rounded consistently on SO & invoice.
         """
         self.env['decimal.precision'].search([('name', '=', 'Product Unit')]).digits = 0
-        self.product_delivery_timesheet3.uom_id._invalidate_cache(['rounding'])
         self.env['sale.order.line'].create({
             'name': self.product_delivery_timesheet3.name,
             'product_id': self.product_delivery_timesheet3.id,
@@ -944,7 +944,7 @@ class TestSaleService(TestCommonSaleTimesheet):
         })
         sol.invalidate_recordset()
         self.assertAlmostEqual(sol.remaining_hours, -2.0, places=6)
-        self.assertIn('-02:00', sol.with_context(with_remaining_hours=True).display_name)
+        self.assertIn('-2h', sol.with_context(with_remaining_hours=True).display_name)
 
     def test_service_product_uom_default(self):
         """

@@ -11,12 +11,9 @@ import ctypes
 import logging
 import sys
 
-assign_version_tag = None
-
-if sys.version_info >= (3, 13):  # PyUnstable_Type_AssignVersionTag not available in 3.10, the reset_classes_tp_versions_used logic is only needed in 3.13+
-    assign_version_tag = ctypes.pythonapi.PyUnstable_Type_AssignVersionTag
-    assign_version_tag.argtypes = [ctypes.py_object]
-    assign_version_tag.restype = ctypes.c_int
+assign_version_tag = ctypes.pythonapi.PyUnstable_Type_AssignVersionTag
+assign_version_tag.argtypes = [ctypes.py_object]
+assign_version_tag.restype = ctypes.c_int
 
 _logger = logging.getLogger(__name__)
 
@@ -35,8 +32,6 @@ def _detect_tp_versions_used_offset():
     This logics tries to find the offset dynamically by scanning the memory of a class that has exhausted its version tag budget
     This may break silently if MAX_VERSIONS_PER_CLASS is increased over 1000
     """
-    if not assign_version_tag:
-        return None
 
     class TestObject:
         ...

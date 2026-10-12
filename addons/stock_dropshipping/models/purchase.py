@@ -26,6 +26,11 @@ class PurchaseOrder(models.Model):
     def action_view_dropship(self):
         return self._get_action_view_picking(self.picking_ids.filtered(lambda p: p.is_dropship))
 
+    @api.model
+    def _get_allowed_picking_code(self):
+        res = super()._get_allowed_picking_code()
+        return res + ['dropship']
+
     def _prepare_reference_vals(self):
         res = super()._prepare_reference_vals()
         sale_orders = self.order_line.sale_order_id
@@ -59,9 +64,13 @@ class PurchaseOrder(models.Model):
             created = StockPicking
             all_moves = self.env['stock.move']
             for lines in lines_by_so.values():
-                picking = StockPicking.with_user(SUPERUSER_ID).create(order._prepare_picking())
-                moves = lines._create_stock_moves(picking)
-                moves = moves.filtered(lambda m: m.state not in ('done', 'cancel'))._action_confirm()
+                moves = lines._create_stock_moves()
+                moves = moves.filtered(lambda m: m.state not in ('done', 'cancel'))
+                picking = StockPicking.with_user(SUPERUSER_ID).create(
+                    moves.with_context(move_picking_partner_id=order.partner_id)._get_new_picking_values()
+                )
+                moves.picking_id = picking
+                moves = moves._action_confirm()
                 for seq, move in enumerate(sorted(moves, key=lambda m: m.date), start=1):
                     move.sequence = seq * 5
                 moves._action_assign()

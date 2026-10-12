@@ -8,9 +8,7 @@ from odoo.addons.purchase_stock.tests.common import PurchaseTestCommon
 @tagged('post_install', '-at_install')
 class TestRepairPurchaseFlow(PurchaseTestCommon):
 
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    _test_user_groups = None  # FIXME list needed groups
 
     def test_repair_with_purchase_mto_link(self):
         """
@@ -30,7 +28,7 @@ class TestRepairPurchaseFlow(PurchaseTestCommon):
 
         product = self.product
         product.write({
-            'route_ids': [Command.set([self.route_mto.id, self.route_buy.id])],
+            'route_ids': [Command.set([self.route_mto.id])],
             'seller_ids': [
                 Command.create({
                     'partner_id': seller.id,
@@ -84,7 +82,7 @@ class TestRepairPurchaseFlow(PurchaseTestCommon):
                 'product_uom_qty': 2.0,
             })],
         })
-        repair.action_repair_start()
+        repair.action_validate()
         purchase = repair.reference_ids.purchase_ids
         self.assertRecordValues(purchase.order_line, [{
             'product_id': self.product.id,
@@ -114,8 +112,7 @@ class TestRepairPurchaseFlow(PurchaseTestCommon):
                 'product_uom_qty': 1.0,
             })],
         } for _ in range(2)])
-        repairs.action_repair_start()
-
+        repairs._action_repair_confirm()
         purchase = repairs.move_ids.created_purchase_line_ids.order_id
         self.assertEqual(len(purchase), 1, "A single purchase order fulfills the entire demand.")
         self.assertEqual(purchase.order_line.move_dest_ids, repairs.move_ids)

@@ -20,6 +20,7 @@ import {
 import { createSpreadsheetWithPivot } from "@spreadsheet/../tests/helpers/pivot";
 import { freezeOdooData, waitForDataLoaded } from "@spreadsheet/helpers/model";
 import { OdooPivot, OdooPivotRuntimeDefinition } from "@spreadsheet/pivot/odoo_pivot";
+import { assignTestEnv, getMockEnv } from "@web/../tests/web_test_helpers";
 
 const { pivotRegistry } = registries;
 
@@ -31,8 +32,10 @@ defineSpreadsheetModels();
 
 test("odoo pivot functions are replaced with their value", async function () {
     const { model } = await createSpreadsheetWithPivot({ pivotType: "static" });
-    expect(getCell(model, "A3").content).toBe('=PIVOT.HEADER(1,"bar",FALSE)');
-    expect(getCell(model, "C3").content).toBe(
+    expect(getCell(model, "A3").compiledFormula.toFormulaString(model.getters)).toBe(
+        '=PIVOT.HEADER(1,"bar",FALSE)'
+    );
+    expect(getCell(model, "C3").compiledFormula.toFormulaString(model.getters)).toBe(
         '=PIVOT.VALUE(1,"probability:avg","bar",FALSE,"foo",2)'
     );
     expect(getEvaluatedCell(model, "A3").value).toBe("No");
@@ -73,18 +76,20 @@ test("Pivot with a type different of ODOO is not converted", async function () {
     setCellContent(model, "A2", `=PIVOT.HEADER(1, "measure", "probability:avg")`);
     const data = await freezeOdooData(model);
     const cells = data.sheets[0].cells;
-    expect(cells.A1).toBe(`=PIVOT.VALUE(1, "probability:avg")`, {
+    expect(cells.A1).toBe(`=PIVOT.VALUE(1,"probability:avg")`, {
         message: "the content is not replaced with the value",
     });
-    expect(cells.A2).toBe(`=PIVOT.HEADER(1, "measure", "probability:avg")`, {
+    expect(cells.A2).toBe(`=PIVOT.HEADER(1,"measure","probability:avg")`, {
         message: "the content is not replaced with the value",
     });
 });
 
 test("values are not exported formatted", async function () {
     const { model } = await createSpreadsheetWithPivot({ pivotType: "static" });
-    expect(getCell(model, "A3").content).toBe('=PIVOT.HEADER(1,"bar",FALSE)');
-    expect(getCell(model, "C3").content).toBe(
+    expect(getCell(model, "A3").compiledFormula.toFormulaString(model.getters)).toBe(
+        '=PIVOT.HEADER(1,"bar",FALSE)'
+    );
+    expect(getCell(model, "C3").compiledFormula.toFormulaString(model.getters)).toBe(
         '=PIVOT.VALUE(1,"probability:avg","bar",FALSE,"foo",2)'
     );
     setCellFormat(model, "C3", "mmmm yyyy");
@@ -141,7 +146,7 @@ test("computed format is exported", async function () {
 });
 
 test("odoo charts are replaced with an image", async function () {
-    const { model } = await createSpreadsheetWithChart({ type: "odoo_bar" });
+    const { model } = await createSpreadsheetWithChart({ type: "bar" });
     const data = await freezeOdooData(model);
     expect(data.sheets[0].figures.length).toBe(1);
     expect(data.sheets[0].figures[0].tag).toBe("image");
@@ -174,7 +179,7 @@ test("geo charts are replaced with an image", async function () {
 });
 
 test("Carousels figure with odoo data is converted to an image", async function () {
-    const { model } = await createSpreadsheetWithChart({ type: "odoo_bar" });
+    const { model } = await createSpreadsheetWithChart({ type: "bar" });
     const sheetId = model.getters.getActiveSheetId();
     const chartFigureId = model.getters.getFigures(sheetId)[0].id;
     createCarousel(model, { items: [] }, "carouselId");
@@ -269,7 +274,7 @@ test("from/to global filter without value is exported", async function () {
 
 test("Empty ODOO.LIST result is frozen to an empty string", async function () {
     const { model } = await createSpreadsheetWithList();
-    setCellContent(model, "A1", '=ODOO.LIST(1, 9999,"probability")'); // has no record
+    setCellContent(model, "A1", '=ODOO.LIST.VALUE(1, 9999,"probability")'); // has no record
     await waitForDataLoaded(model);
     expect(getEvaluatedCell(model, "A1").value).toBe("");
     const frozenData = await freezeOdooData(model);
@@ -355,8 +360,11 @@ test("Lists are purged from the frozen data", async function () {
 });
 
 test("Cannot copy in frozen spreadsheets", async function () {
-    const env = await makeSpreadsheetMockEnv();
-    env.isFrozenSpreadsheet = () => true;
+    assignTestEnv({
+        isFrozenSpreadsheet: () => true,
+    });
+    await makeSpreadsheetMockEnv();
+    const env = getMockEnv();
     const model = new Model(
         {},
         {

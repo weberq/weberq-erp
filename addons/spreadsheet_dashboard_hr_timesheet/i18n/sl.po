@@ -2,19 +2,15 @@
 # This file contains the translation of the following modules:
 # * spreadsheet_dashboard_hr_timesheet
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-09-14 10:33+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 17:58+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "spreadsheet_dashboard_hr_timesheet/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -33,8 +29,14 @@ msgstr " dni"
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
-msgid "Assignee"
-msgstr "Zadolžen"
+msgid "% of allocated hours"
+msgstr ""
+
+#. module: spreadsheet_dashboard_hr_timesheet
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+msgid "Allocated Hours"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
@@ -58,31 +60,32 @@ msgstr "Stranka"
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
 msgid "Days to assign"
-msgstr "Dnevi do dodelitve"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
 msgid "Days to close"
-msgstr "Dnevi do končanja"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Hours Logged"
-msgstr "Zabeležene ure"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
 msgid "Hours logged"
-msgstr "Zabeležene ure"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
 msgid "KPI"
-msgstr "KPI"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
@@ -104,10 +107,15 @@ msgid "Project"
 msgstr "Projekt"
 
 #. module: spreadsheet_dashboard_hr_timesheet
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
-msgid "Tag"
-msgstr "Ključna beseda"
+#: model:ir.module.module,description:base.module_spreadsheet_dashboard_hr_timesheet
+#: model:ir.module.module,summary:base.module_spreadsheet_dashboard_hr_timesheet
+msgid "Spreadsheet"
+msgstr ""
+
+#. module: spreadsheet_dashboard_hr_timesheet
+#: model:ir.module.module,shortdesc:base.module_spreadsheet_dashboard_hr_timesheet
+msgid "Spreadsheet dashboard for time sheets"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
@@ -118,6 +126,7 @@ msgstr "Ključne besede"
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Tasks"
 msgstr "Opravilo"
 
@@ -125,58 +134,66 @@ msgstr "Opravilo"
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
 msgid "Tasks by Stage"
-msgstr "Opravila po stopnji"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
 msgid "Tasks by State"
-msgstr "Naloge po stanju"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Time to Assign"
-msgstr "Čas do dodelitve"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Time to Close"
-msgstr "Čas do zaprtja"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Top Assignees"
-msgstr "Najboljši udeleženci"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Top Customers"
-msgstr "Najboljše stranke"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Top Projects"
-msgstr "Najboljši projekti"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "Top Tags"
-msgstr "Najpogostejše oznake"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "last period"
-msgstr "zadnje obdobje"
+msgstr ""
 
 #. module: spreadsheet_dashboard_hr_timesheet
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_hr_timesheet/data/files/tasks_sample_dashboard.json:0
 msgid "since last period"
 msgstr "od zadnjega obdobja"

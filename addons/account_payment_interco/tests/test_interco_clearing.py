@@ -85,18 +85,20 @@ class TestIntercoClearing(AccountTestInvoicingCommon):
                     company.account_interco_receivable_id = account
                 else:
                     company.account_interco_payable_id = account
-
-        cls.payment_method_be = cls.env.ref('payment.payment_method_unknown').copy()
         cls.payment_provider_be = cls.env['payment.provider'].create({
             'name': 'Dummy Provider BE',
             'code': 'none',
-            'state': 'test',
             'is_published': True,
-            'payment_method_ids': [Command.set([cls.payment_method_be.id])],
+        })
+        cls.payment_method_be = cls.env['payment.method'].create({
+            'name': 'Express Checkout',
+            'code': 'manual',
+            'provider_id': cls.payment_provider_be.id,
         })
         cls.payment_method_be.write({'active': True})
+        cls.payment_be = False
 
-    def _create_payment(self, order, direction='inbound', extra_transaction_data=None):
+    def _create_payment(self, order):
         payment_amount = self.company_ke.currency_id._convert(
             order.amount_total,
             self.env.company.currency_id,
@@ -109,13 +111,15 @@ class TestIntercoClearing(AccountTestInvoicingCommon):
             'payment_type': 'inbound',
             'currency_id': self.usd.id,
             'partner_id': self.kenyian_partner.id,
-            'partner_type': 'customer' if direction == 'inbound' else 'supplier',
+            'partner_type': 'supplier',
             'journal_id': self.payment_provider_be.journal_id.id,
             'company_id': self.payment_provider_be.company_id.id,
             'payment_method_line_id': self.inbound_payment_method_line.id,
         })
+
+    def _create_payment_transaction(self, order, extra_transaction_data=None):
         self.payment_transaction_be = self.env['payment.transaction'].create({
-            'payment_id': self.payment_be.id,
+            'payment_id': self.payment_be.id if self.payment_be else False,
             'provider_id': self.payment_provider_be.id,
             'payment_method_id': self.payment_method_be.id,
             'operation': 'online_direct',
@@ -127,7 +131,7 @@ class TestIntercoClearing(AccountTestInvoicingCommon):
 
     def _verify_asserts(self, order, move, account, sign):
         company = move.company_id
-        base_amount = self.payment_be.currency_id._convert(self.payment_be.amount, company.currency_id, company, move.date)
+        base_amount = order.currency_id._convert(order.amount_total, company.currency_id, company, move.date)
 
         self.assertEqual(move.payment_state, 'paid')
         move_line = move.line_ids.filtered(lambda l: l.account_type in ('asset_receivable', 'liability_payable'))
@@ -178,7 +182,7 @@ class TestIntercoClearingSale(TestIntercoClearing):
     def test_interco_sale(self):
         self.ensure_installed('sale')
 
-        self.env['ir.config_parameter'].sudo().set_param('sale.automatic_invoice', True)
+        self.env['ir.config_parameter'].sudo().set_bool('sale.automatic_invoice', True)
         self.sale_order_ke = self.env['sale.order'].with_company(self.company_ke).sudo().create({
             'company_id': self.company_ke.id,
             'partner_id': self.kenyian_partner.id,
@@ -203,13 +207,18 @@ class TestIntercoClearingSale(TestIntercoClearing):
                 sale_order_ke = self.sale_order_ke.with_company(self.company_ke)
                 sale_order_ke.sudo().action_confirm()
 
-                self._create_payment(sale_order_ke, 'inbound', {
-                    'sale_order_ids': [Command.set(self.sale_order_ke.ids)],
+                self._create_payment_transaction(sale_order_ke, {
+                    'sale_order_ids': [Command.set(sale_order_ke.ids)],
                 })
-                self.payment_be.action_post()
-                self.payment_transaction_be.sudo()._set_done()
-                self.payment_transaction_be.sudo()._post_process()
-                self._verify_asserts(self.sale_order_ke, self.sale_order_ke.invoice_ids, self.company_ke.account_interco_receivable_id, 1)
+                transaction_sudo = self.payment_transaction_be.sudo().with_context(payment_safe_write=True)
+                transaction_sudo._set_done()
+                transaction_sudo.with_company(self.company_ke)._post_process()
+                self.payment_be = transaction_sudo.payment_id
+
+                invoice = sale_order_ke.sudo()._create_invoices()
+                invoice.action_post()
+
+                self._verify_asserts(self.sale_order_ke, invoice, self.company_ke.account_interco_receivable_id, 1)
 
 
 @tagged('post_install', '-at_install')
@@ -246,10 +255,12 @@ class TestIntercoClearingPurchase(TestIntercoClearing):
                 self.bill = self.env['account.move'].browse(bill_data['res_id'])
                 self.bill.invoice_date = fields.Date.today()
 
-                self._create_payment(purchase_order_ke, 'outbound', {
+                self._create_payment(purchase_order_ke)
+                self._create_payment_transaction(purchase_order_ke, {
                     'invoice_ids': [Command.set(self.bill.ids)],
                 })
                 self.payment_be.action_post()
-                self.payment_transaction_be.sudo()._set_done()
-                self.payment_transaction_be.sudo()._post_process()
+                transaction_sudo = self.payment_transaction_be.sudo().with_context(payment_safe_write=True)
+                transaction_sudo._set_done()
+                transaction_sudo._post_process()
                 self._verify_asserts(self.purchase_order_ke, self.bill, self.company_ke.account_interco_payable_id, -1)

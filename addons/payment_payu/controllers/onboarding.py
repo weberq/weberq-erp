@@ -77,8 +77,8 @@ class PayUOnboardingController(Controller):
             # Save the OAuth credentials
             "payu_key_id": credentials.get("prod_key"),
             "payu_merchant_salt": credentials.get("prod_salt"),
-            # Enable the provider
-            "state": "enabled",
+            # Set the provider live
+            "is_live": True,
             "is_published": True,
         })
         return request.redirect(redirect_url)

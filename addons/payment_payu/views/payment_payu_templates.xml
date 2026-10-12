@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="redirect_form">
-        <form t-att-action="api_url" method="post">
-            <t t-foreach="url_params" t-as="param">
-                <input type="hidden" t-att-name="param" t-att-value="url_params[param]"/>
-            </t>
-        </form>
-    </template>
-
     <template id="authorization_error" name="Authorization Error">
         <!-- Variables description:
             - error_message: The reason of the error

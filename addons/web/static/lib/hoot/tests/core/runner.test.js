@@ -2,17 +2,8 @@
 
 import { after, defineTags, describe, expect, test } from "@odoo/hoot";
 import { Component, onMounted, xml } from "@odoo/owl";
-import { mountForTest, parseUrl } from "../local_helpers";
-
-import { Runner } from "../../core/runner";
 import { Suite } from "../../core/suite";
-import { undefineTags } from "../../core/tag";
-
-const makeTestRunner = () => {
-    const runner = new Runner();
-    after(() => undefineTags(runner.tags.keys()));
-    return runner;
-};
+import { makeTestRunner, mountForTest, parseUrl } from "../local_helpers";
 
 describe(parseUrl(import.meta.url), () => {
     test("can register suites", () => {
@@ -142,8 +133,6 @@ describe(parseUrl(import.meta.url), () => {
         const prom = mountForTest(Boom);
 
         await expect.waitForErrors(["boom"]);
-        expect.verifySteps(["[Owl] Unhandled error. Destroying the root component"]);
-
         await prom; // crash and end the test
     });
 });

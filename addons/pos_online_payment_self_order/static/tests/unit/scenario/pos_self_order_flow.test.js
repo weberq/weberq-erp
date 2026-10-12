@@ -1,12 +1,11 @@
 import { test } from "@odoo/hoot";
-import { setupSelfPosEnv, mockRouterNavigate } from "@pos_self_order/../tests/unit/utils";
+import { setupSelfPosEnv } from "@pos_self_order/../tests/unit/utils";
 import { definePosSelfModels } from "@pos_self_order/../tests/unit/data/generate_model_definitions";
 import * as Utils from "@pos_self_order/../tests/unit/ui_utils";
 
 definePosSelfModels();
 
 test("zero amount total order flow with payment method", async () => {
-    mockRouterNavigate();
     await setupSelfPosEnv(
         "kiosk",
         "counter",
@@ -14,6 +13,7 @@ test("zero amount total order flow with payment method", async () => {
         {
             use_presets: false,
             available_preset_ids: [],
+            preparation_printer_ids: [],
         },
         true
     );

@@ -1,7 +1,8 @@
 [submodule "custom_addons/weberq_branding"]
 	path = custom_addons/weberq_branding
 	url = git@github.com:weberq/erp_weberq_branding.git
+	branch = 20.0
 [submodule "custom_addons/odoomates-apps"]
 	path = custom_addons/odoomates-apps
 	url = https://github.com/odoomates/odooapps.git
-	branch = 19.0
+	branch = 20.0

@@ -31,15 +31,14 @@ class AccountMoveLine(models.Model):
             ("sale_exempt", "Exempt"),
             ("sale_non_gst_supplies", "Non-GST Supplies"),
             ("sale_eco_9_5", "ECO 9(5)"),
+            ("sale_composition_supplies", "Composition Supplies"),
             ("sale_out_of_scope", "Out of Scope"),
             ("purchase_b2b_regular", "B2B Regular"),
-            ("purchase_b2c_regular", "B2C Regular"),  # will be removed in master
             ("purchase_b2b_rcm", "B2B RCM"),
             ("purchase_b2c_rcm", "B2C RCM"),
             ("purchase_imp_services", "IMP(services-RCM)"),
             ("purchase_imp_goods", "IMP(goods)"),
             ("purchase_cdnr_regular", "CDNR Regular"),
-            ("purchase_cdnur_regular", "CDNUR Regular"),  # will be removed in master
             ("purchase_cdnr_rcm", "CDNR RCM"),
             ("purchase_cdnur_rcm", "CDNUR RCM"),
             ("purchase_nil_rated", "Nil Rated"),
@@ -51,18 +50,6 @@ class AccountMoveLine(models.Model):
         string="GSTR Section",
         index="btree_not_null",
     )
-
-    # withholding related fields
-    l10n_in_withhold_tax_amount = fields.Monetary(string="TDS Tax Amount", compute='_compute_l10n_in_withhold_tax_amount')
-    l10n_in_tds_tcs_section_id = fields.Many2one(related="account_id.l10n_in_tds_tcs_section_id")
-
-    @api.depends('tax_ids')
-    def _compute_l10n_in_withhold_tax_amount(self):
-        # Compute the withhold tax amount for the withholding lines
-        withholding_lines = self.filtered('move_id.l10n_in_is_withholding')
-        (self - withholding_lines).l10n_in_withhold_tax_amount = False
-        for line in withholding_lines:
-            line.l10n_in_withhold_tax_amount = line.currency_id.round(abs(line.price_total - line.price_subtotal))
 
     @api.depends('product_id', 'product_id.l10n_in_hsn_code')
     def _compute_l10n_in_hsn_code(self):
@@ -138,6 +125,12 @@ class AccountMoveLine(models.Model):
                     return 'sale_exempt'
                 elif any(tax.l10n_in_tax_type == 'non_gst' for tax in line.tax_ids):
                     return 'sale_non_gst_supplies'
+
+            if move.company_id.l10n_in_gst_registration_type == 'composition':
+                if gst_treatment != 'overseas' and transaction_type == 'intra_state' and not any(tax.l10n_in_tax_type == 'gst' for tax in line.tax_ids.flatten_taxes_hierarchy()):
+                    return 'sale_composition_supplies'
+                else:
+                    return 'sale_out_of_scope'
 
             # B2CS: Unregistered or Consumer sales with gst tags
             if gst_treatment in ('unregistered', 'consumer') and not is_reverse_charge_tax(line):

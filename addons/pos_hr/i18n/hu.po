@@ -6,52 +6,65 @@
 # Zsolt Godó <zsolttokio@gmail.com>, 2022
 # krnkris, 2022
 # Martin Trigaux, 2022
-# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Nagy Géza <geza.nagy@oregional.hu>, 2026.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-31 17:37+0000\n"
-"PO-Revision-Date: 2026-08-11 15:32+0000\n"
-"Last-Translator: Nagy Géza <geza.nagy@oregional.hu>\n"
-"Language-Team: Hungarian <https://translate.odoo.com/projects/odoo-19/pos_hr/"
-"hu/>\n"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 20:45+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Hungarian <https://translate.odoo.com/projects/odoo-s19-4/"
+"pos_hr/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: pos_hr
+#: model:ir.module.module,description:base.module_pos_hr
+msgid ""
+"\n"
+"This module allows Employees (and not users) to log in to the Point of Sale "
+"application using a barcode, a PIN number or both.\n"
+"The actual till still requires one user but an unlimited number of employees "
+"can log on to that till and process sales.\n"
+msgstr ""
+
+#. module: pos_hr
+#: model:ir.model.fields,help:pos_hr.field_res_config_settings__pos_manager_employee_ids
+msgid " Full access, including reporting, cash management, and session close."
+msgstr ""
+
+#. module: pos_hr
+#: model:ir.model.fields,help:pos_hr.field_res_config_settings__pos_cashier_employee_ids
+msgid ""
+" Full register access. Can process sales, discounts, refunds, and close out "
+"payments."
+msgstr ""
 
 #. module: pos_hr
 #: model_terms:ir.ui.view,arch_db:pos_hr.single_employee_sales_report
 msgid "Abigal Peterson"
-msgstr "Gipsz Jakabné"
-
-#. module: pos_hr
-#. odoo-javascript
-#: code:addons/pos_hr/static/src/app/screens/product_screen/order_summary/order_summary.js:0
-msgid "Access Denied"
-msgstr "Hozzáférés megtagadva"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model.fields,field_description:pos_hr.field_pos_daily_sales_reports_wizard__add_report_per_employee
 msgid "Add a report per each employee"
-msgstr "Jelentés hozzáadása munkavállalónként"
+msgstr ""
 
 #. module: pos_hr
-#: model_terms:ir.ui.view,arch_db:pos_hr.pos_config_form_view_inherit
-#: model_terms:ir.ui.view,arch_db:pos_hr.res_config_settings_view_form
-msgid "Advanced rights"
-msgstr "Haladó jogosultságok"
+#: model:ir.model.fields,help:pos_hr.field_pos_config__logged_employee_ids
+msgid "All employees who have logged into the current session"
+msgstr ""
 
 #. module: pos_hr
-#: model_terms:ir.ui.view,arch_db:pos_hr.pos_config_form_view_inherit
-#: model_terms:ir.ui.view,arch_db:pos_hr.res_config_settings_view_form
-msgid "All Employees"
-msgstr "Összes munkavállaló"
+#: model:ir.model.fields,help:pos_hr.field_pos_session__logged_employee_ids
+msgid "All employees who have logged into this session"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model,name:pos_hr.model_account_bank_statement_line
@@ -59,10 +72,24 @@ msgid "Bank Statement Line"
 msgstr "Bankkivonat sor"
 
 #. module: pos_hr
-#: model_terms:ir.ui.view,arch_db:pos_hr.pos_config_form_view_inherit
-#: model_terms:ir.ui.view,arch_db:pos_hr.res_config_settings_view_form
-msgid "Basic rights"
-msgstr "Alap jogosultságok"
+#: model:ir.model.fields,help:pos_hr.field_pos_config__restrictive_employee_ids
+#: model:ir.model.fields,help:pos_hr.field_res_config_settings__pos_restrictive_employee_ids
+msgid ""
+"Can process sales and close payments, but not apply discounts, refunds, or "
+"cancel orders."
+msgstr ""
+
+#. module: pos_hr
+#: model:ir.model.fields,help:pos_hr.field_pos_config__supervised_employee_ids
+msgid ""
+"Can process sales, but a higher level must approve before payment is closed"
+msgstr ""
+
+#. module: pos_hr
+#: model:ir.model.fields,help:pos_hr.field_res_config_settings__pos_supervised_employee_ids
+msgid ""
+"Can process sales, but a higher level must approve before payment is closed."
+msgstr ""
 
 #. module: pos_hr
 #: model_terms:ir.ui.view,arch_db:pos_hr.view_pos_daily_sales_reports_wizard
@@ -70,20 +97,20 @@ msgid ""
 "Cannot generate report per employee: only one employee logged in during this "
 "session."
 msgstr ""
-"Nem lehetséges munkavállalónkénti jelentés generálása: csak egy munkavállaló "
-"jelentkezett be a munkamenet során."
 
 #. module: pos_hr
 #. odoo-javascript
 #: code:addons/pos_hr/static/src/app/components/popups/closing_popup/closing_popup.xml:0
 msgid "Cash in/out"
-msgstr "Készpénz be/ki"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model.fields,field_description:pos_hr.field_pos_order__employee_id
 #: model:ir.model.fields,field_description:pos_hr.field_pos_payment__employee_id
 #: model:ir.model.fields,field_description:pos_hr.field_pos_session__employee_id
+#: model_terms:ir.ui.view,arch_db:pos_hr.pos_config_form_view_inherit
 #: model_terms:ir.ui.view,arch_db:pos_hr.pos_order_list_select_inherit
+#: model_terms:ir.ui.view,arch_db:pos_hr.res_config_settings_view_form
 msgid "Cashier"
 msgstr "Pénztáros"
 
@@ -91,18 +118,12 @@ msgstr "Pénztáros"
 #. odoo-python
 #: code:addons/pos_hr/models/pos_order.py:0
 msgid "Cashier %s"
-msgstr "Pénztáros %s"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model.fields,field_description:pos_hr.field_pos_order__cashier
 msgid "Cashier name"
-msgstr "Pénztáros neve"
-
-#. module: pos_hr
-#. odoo-python
-#: code:addons/pos_hr/models/pos_session.py:0
-msgid "Closed Register"
-msgstr "Lezárt kassza"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model,name:pos_hr.model_res_config_settings
@@ -112,7 +133,7 @@ msgstr "Beállítások"
 #. module: pos_hr
 #: model:ir.model,name:pos_hr.model_res_partner
 msgid "Contact"
-msgstr "Kapcsolat"
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
@@ -123,7 +144,7 @@ msgstr "Számolt"
 #. module: pos_hr
 #: model:ir.model,website_form_label:pos_hr.model_res_partner
 msgid "Create a Customer"
-msgstr "Vevő létrehozása"
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
@@ -143,6 +164,7 @@ msgstr "Elvetés"
 #: model:ir.model.fields,field_description:pos_hr.field_pos_config__display_name
 #: model:ir.model.fields,field_description:pos_hr.field_pos_daily_sales_reports_wizard__display_name
 #: model:ir.model.fields,field_description:pos_hr.field_pos_order__display_name
+#: model:ir.model.fields,field_description:pos_hr.field_pos_order_receipt__display_name
 #: model:ir.model.fields,field_description:pos_hr.field_pos_payment__display_name
 #: model:ir.model.fields,field_description:pos_hr.field_pos_session__display_name
 #: model:ir.model.fields,field_description:pos_hr.field_product_product__display_name
@@ -165,52 +187,59 @@ msgstr "Munkavállaló"
 #. module: pos_hr
 #: model_terms:ir.ui.view,arch_db:pos_hr.single_employee_sales_report
 msgid "Employee Sales Report"
-msgstr "Munkavállaló értékesítés jelentés"
+msgstr ""
 
 #. module: pos_hr
 #: model_terms:ir.ui.view,arch_db:pos_hr.single_employee_sales_report
 msgid "Employee:"
-msgstr "Munkavállaló:"
+msgstr "Alkalmazott:"
 
 #. module: pos_hr
-#. odoo-python
-#: code:addons/pos_hr/models/hr_employee.py:0
-msgid "Employee: %(employee)s - PoS Config(s): %(config_list)s \n"
-msgstr "Munkavállaló: %(employee)s - PoS beállítás(ok): %(config_list)s \n"
-
-#. module: pos_hr
-#: model:ir.model.fields,help:pos_hr.field_pos_config__advanced_employee_ids
-#: model:ir.model.fields,help:pos_hr.field_res_config_settings__pos_advanced_employee_ids
-msgid ""
-"Employees linked to users with the PoS Manager role are automatically added "
-"to this list"
+#: model_terms:ir.ui.view,arch_db:pos_hr.view_pos_session_form_inherit_pos_hr
+msgid "Employees"
 msgstr ""
-"PoS menedzser jogosultsággal rendelkező, felhasználókhoz kapcsolt "
-"munkavállalók automatikusan hozzáadásra kerülnek ehhez a listához"
 
 #. module: pos_hr
-#: model:ir.model.fields,field_description:pos_hr.field_pos_config__basic_employee_ids
-#: model:ir.model.fields,field_description:pos_hr.field_res_config_settings__pos_basic_employee_ids
-msgid "Employees with basic access"
-msgstr "Alap jogosultságú munkavállalók"
+#: model:ir.model.fields,field_description:pos_hr.field_pos_config__cashier_employee_ids
+#: model:ir.model.fields,field_description:pos_hr.field_res_config_settings__pos_cashier_employee_ids
+msgid "Employees with cashier level access"
+msgstr ""
 
 #. module: pos_hr
-#: model:ir.model.fields,field_description:pos_hr.field_pos_config__advanced_employee_ids
-#: model:ir.model.fields,field_description:pos_hr.field_res_config_settings__pos_advanced_employee_ids
-msgid "Employees with manager access"
-msgstr "Menedzser jogosultságú munkavállalók"
+#: model:ir.model.fields,field_description:pos_hr.field_pos_config__manager_employee_ids
+#: model:ir.model.fields,field_description:pos_hr.field_res_config_settings__pos_manager_employee_ids
+msgid "Employees with manager level access"
+msgstr ""
 
 #. module: pos_hr
-#: model:ir.model.fields,field_description:pos_hr.field_pos_config__minimal_employee_ids
-#: model:ir.model.fields,field_description:pos_hr.field_res_config_settings__pos_minimal_employee_ids
-msgid "Employees with minimal access"
-msgstr "Minimális jogosultságú munkavállalók"
+#: model:ir.model.fields,field_description:pos_hr.field_pos_config__restrictive_employee_ids
+#: model:ir.model.fields,field_description:pos_hr.field_res_config_settings__pos_restrictive_employee_ids
+msgid "Employees with restrictive level access"
+msgstr ""
+
+#. module: pos_hr
+#: model:ir.model.fields,field_description:pos_hr.field_pos_config__supervised_employee_ids
+#: model:ir.model.fields,field_description:pos_hr.field_res_config_settings__pos_supervised_employee_ids
+msgid "Employees with supervised level access"
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
 #: code:addons/pos_hr/static/src/app/screens/login_screen/login_screen.xml:0
 msgid "Enter your PIN"
-msgstr "PIN megadása"
+msgstr ""
+
+#. module: pos_hr
+#: model:ir.model.fields,help:pos_hr.field_pos_config__manager_employee_ids
+msgid "Full access, including reporting, cash management, and session close."
+msgstr ""
+
+#. module: pos_hr
+#: model:ir.model.fields,help:pos_hr.field_pos_config__cashier_employee_ids
+msgid ""
+"Full register access. Can process sales, discounts, refunds, and close out "
+"payments."
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model.fields,field_description:pos_hr.field_account_bank_statement_line__id
@@ -218,6 +247,7 @@ msgstr "PIN megadása"
 #: model:ir.model.fields,field_description:pos_hr.field_pos_config__id
 #: model:ir.model.fields,field_description:pos_hr.field_pos_daily_sales_reports_wizard__id
 #: model:ir.model.fields,field_description:pos_hr.field_pos_order__id
+#: model:ir.model.fields,field_description:pos_hr.field_pos_order_receipt__id
 #: model:ir.model.fields,field_description:pos_hr.field_pos_payment__id
 #: model:ir.model.fields,field_description:pos_hr.field_pos_session__id
 #: model:ir.model.fields,field_description:pos_hr.field_product_product__id
@@ -229,12 +259,9 @@ msgid "ID"
 msgstr "ID"
 
 #. module: pos_hr
-#: model:ir.model.fields,help:pos_hr.field_pos_config__basic_employee_ids
-#: model:ir.model.fields,help:pos_hr.field_pos_config__minimal_employee_ids
-#: model:ir.model.fields,help:pos_hr.field_res_config_settings__pos_basic_employee_ids
-#: model:ir.model.fields,help:pos_hr.field_res_config_settings__pos_minimal_employee_ids
-msgid "If left empty, all employees can log in to PoS"
-msgstr "Ha üres, akkor minden munkavállaló be tud lépni a PoS alkalmazásba"
+#: model:ir.module.module,summary:base.module_pos_hr
+msgid "Link module between Point of Sale and HR"
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
@@ -244,16 +271,28 @@ msgid "Lock"
 msgstr "Zárolás"
 
 #. module: pos_hr
+#: model:ir.model.fields,field_description:pos_hr.field_pos_config__logged_employee_ids
+#: model:ir.model.fields,field_description:pos_hr.field_pos_session__logged_employee_ids
+msgid "Logged In Cashiers"
+msgstr ""
+
+#. module: pos_hr
 #: model_terms:ir.ui.view,arch_db:pos_hr.pos_config_form_view_inherit
 #: model_terms:ir.ui.view,arch_db:pos_hr.res_config_settings_view_form
-msgid "Minimal rights"
-msgstr "Minimális jogosultságok"
+msgid "Manager"
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
-#: code:addons/pos_hr/static/src/app/utils/select_cashier_mixin.js:0
+#: code:addons/pos_hr/static/src/app/components/popups/cashier_selection_popup/cashier_selection_popup.xml:0
+msgid "More..."
+msgstr ""
+
+#. module: pos_hr
+#. odoo-javascript
+#: code:addons/pos_hr/static/src/app/services/pos_store.js:0
 msgid "No Cashiers"
-msgstr "Nincsenek pénztárosok"
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
@@ -262,8 +301,6 @@ msgid ""
 "Only the cashier linked to the logged-in user (%s) can proceed to the "
 "Backend."
 msgstr ""
-"Csak a bejelentkezett felhasználóhoz (%s) kapcsolt pénztáros tud továbblépni "
-"az irodai funkciókhoz."
 
 #. module: pos_hr
 #. odoo-javascript
@@ -275,7 +312,7 @@ msgstr "Kassza nyitás"
 #. odoo-python
 #: code:addons/pos_hr/models/pos_session.py:0
 msgid "Opened register"
-msgstr "Nyitva lévő kassza"
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
@@ -291,15 +328,21 @@ msgstr "Egyebek"
 
 #. module: pos_hr
 #. odoo-javascript
-#: code:addons/pos_hr/static/src/app/utils/select_cashier_mixin.js:0
+#: code:addons/pos_hr/static/src/app/plugins/access_right_plugin.js:0
+#: code:addons/pos_hr/static/src/app/services/pos_store.js:0
 msgid "PIN not found"
-msgstr "PIN nem található"
+msgstr ""
+
+#. module: pos_hr
+#: model:ir.module.module,shortdesc:base.module_pos_hr
+msgid "POS - HR"
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
-#: code:addons/pos_hr/static/src/app/utils/select_cashier_mixin.js:0
+#: code:addons/pos_hr/static/src/app/plugins/access_right_plugin.js:0
 msgid "Password?"
-msgstr "Jelszó?"
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
@@ -315,22 +358,27 @@ msgstr "Értékesítési pont konfiguráció"
 #. module: pos_hr
 #: model:ir.model,name:pos_hr.model_pos_daily_sales_reports_wizard
 msgid "Point of Sale Daily Report"
-msgstr "Értékesítési pont napi jelentés"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model,name:pos_hr.model_pos_order
-msgid "Point of Sale Orders"
-msgstr "Értékesítési pont rendelések"
+msgid "Point of Sale Order"
+msgstr ""
+
+#. module: pos_hr
+#: model:ir.model,name:pos_hr.model_pos_order_receipt
+msgid "Point of Sale Order Receipt Generator"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model,name:pos_hr.model_report_pos_order
 msgid "Point of Sale Orders Report"
-msgstr "Értékesítési pont rendelés jelentés"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model,name:pos_hr.model_pos_payment
-msgid "Point of Sale Payments"
-msgstr "Értékesítési pont fizetések"
+msgid "Point of Sale Payment"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model,name:pos_hr.model_pos_session
@@ -343,87 +391,80 @@ msgid "Product Variant"
 msgstr "Termékváltozat"
 
 #. module: pos_hr
+#: model_terms:ir.ui.view,arch_db:pos_hr.pos_config_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:pos_hr.res_config_settings_view_form
+msgid "Restrictive"
+msgstr ""
+
+#. module: pos_hr
 #. odoo-javascript
 #: code:addons/pos_hr/static/src/app/components/popups/cashier_selection_popup/cashier_selection_popup.xml:0
 msgid "Select Cashier"
-msgstr "Pénztáros kiválasztása"
+msgstr ""
 
 #. module: pos_hr
 #: model_terms:ir.ui.view,arch_db:pos_hr.pos_config_form_view_inherit
 #: model_terms:ir.ui.view,arch_db:pos_hr.res_config_settings_view_form
 msgid "Select Employee(s)"
-msgstr "Munkavállaló(k) kiválasztása"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model,name:pos_hr.model_report_pos_hr_single_employee_sales_report
 msgid "Session sales details for a single employee"
-msgstr "Egy munkavállaló munkamenet értékesítései"
+msgstr ""
+
+#. module: pos_hr
+#: model_terms:ir.ui.view,arch_db:pos_hr.pos_config_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:pos_hr.res_config_settings_view_form
+msgid "Supervised"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model.fields,help:pos_hr.field_pos_session__employee_id
 msgid "The employee who currently uses the cash register"
-msgstr "A kasszát jelenleg használó munkavállaló"
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model.fields,help:pos_hr.field_account_bank_statement_line__employee_id
 msgid "The employee who made the cash move."
-msgstr "A készpénz mozgást elvégző munkavállaló."
+msgstr ""
 
 #. module: pos_hr
 #: model:ir.model.fields,help:pos_hr.field_pos_order__employee_id
 #: model:ir.model.fields,help:pos_hr.field_pos_payment__employee_id
 msgid "The employee who uses the cash register."
-msgstr "A kasszát használó munkavállaló."
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
-#: code:addons/pos_hr/static/src/app/utils/select_cashier_mixin.js:0
+#: code:addons/pos_hr/static/src/app/services/pos_store.js:0
 msgid "There is no cashier available."
-msgstr "Nincsenek elérhető pénztárosok."
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
 #: code:addons/pos_hr/static/src/app/screens/login_screen/login_screen.xml:0
 msgid "Unlock Register"
-msgstr "Kassza feloldása"
+msgstr ""
 
 #. module: pos_hr
 #. odoo-javascript
-#: code:addons/pos_hr/static/src/app/utils/select_cashier_mixin.js:0
+#: code:addons/pos_hr/static/src/app/plugins/access_right_plugin.js:0
+#: code:addons/pos_hr/static/src/app/services/pos_store.js:0
 msgid "Wrong PIN"
 msgstr "Rossz PIN"
-
-#. module: pos_hr
-#. odoo-javascript
-#: code:addons/pos_hr/static/src/app/screens/product_screen/order_summary/order_summary.js:0
-msgid "You are not allowed to change the price of a product."
-msgstr "Nem változtathatja meg a termék árát."
 
 #. module: pos_hr
 #. odoo-python
 #: code:addons/pos_hr/models/hr_employee.py:0
 msgid ""
-"You cannot delete an employee that may be used in an active PoS session, "
-"close the session(s) first: \n"
+"You cannot delete an employee that may be used in an active PoS session. "
+"Close the session(s) first:\n"
+"Employee: %(employee)s - PoS Config(s): %(config_list)s"
 msgstr ""
-"Nem törölhető olyan munkavállaló, aki PoS munkamenetet használhat, előbb "
-"zárja le a munkamenet(ek)et: \n"
 
-#~ msgid "Change Cashier"
-#~ msgstr "Kassza aprópénz"
+#~ msgid "Access Denied"
+#~ msgstr "Hozzáférés megtagadva"
 
-#~ msgid "Incorrect Password"
-#~ msgstr "Hibás jelszó"
-
-#~ msgid ""
-#~ "Person who uses the cash register. It can be a reliever, a student or an "
-#~ "interim employee."
-#~ msgstr ""
-#~ "A személy, aki használja a pénztárgépet. Ez lehet egy rohamoldó, egy "
-#~ "diák, vagy egy ideiglenes alkalmazottja."
-
-#~ msgid "Scan your badge"
-#~ msgstr "Jelvénye beszkennelése"
-
-#~ msgid "or"
-#~ msgstr "vagy"
+#~ msgid "Closed Register"
+#~ msgstr "Lezárt kassza"

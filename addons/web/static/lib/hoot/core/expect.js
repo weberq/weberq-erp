@@ -1,6 +1,6 @@
 /** @odoo-module */
 
-import { markRaw } from "@odoo/owl";
+import { signal, t, untrack, validateType } from "@odoo/owl";
 import {
     formatXml,
     getActiveElement,
@@ -25,13 +25,13 @@ import {
     R_WHITE_SPACE,
 } from "@web/../lib/hoot-dom/hoot_dom_utils";
 import {
+    assertArguments,
     CASE_EVENT_TYPES,
     deepCopy,
     deepEqual,
     ElementMap,
-    ensureArguments,
     ensureArray,
-    formatHumanReadable,
+    formatValidationIssues,
     getConstructor,
     HootError,
     isLabel,
@@ -44,6 +44,12 @@ import {
     S_ANY,
     S_NONE,
     strictEqual,
+    T_DEEP_EQUAL_OPTIONS,
+    T_INTEGER,
+    T_NODE,
+    T_NULL,
+    T_REGEX,
+    T_UNDEFINED,
 } from "../hoot_utils";
 import { mockFetch } from "../mock/network";
 import { logger } from "./logger";
@@ -61,48 +67,39 @@ import { Test } from "./test";
  *
  * @typedef {string | string[] | ((pass: boolean) => string | string[])} AssertionReportMessage
  *
- * @typedef {VerifierOptions & {
- *  timeout?: number;
- * }} AsyncVerifierOptions
- *
  * @typedef {InteractionType | "assertion" | "error" | "step"} CaseEventType
  *
- * @typedef {{ exact?: boolean }} ClassListOptions
- *
- * @typedef {{ exact?: boolean; inline?: boolean }} DOMStyleOptions
+ * @typedef {{
+ *  docLabel: string;
+ *  errors: unknown[];
+ *  label: string;
+ *  options: typeof T_RESOLVER_OPTIONS;
+ * }} ErrorResolver
  *
  * @typedef {{
  *  headless: boolean;
  * }} ExpectBuilderParams
  *
- * @typedef {{
- *  message?: AssertionMessage;
- *  not?: boolean;
- *  rejects?: boolean;
- *  resolves?: boolean;
- *  silent?: boolean;
- * }} ExpectOptions
- *
- * @typedef {DeepEqualOptions & {
- *  message?: AssertionMessage;
- * }} VerifierOptions
- *
- * @typedef {import("../hoot_utils").DeepEqualOptions} DeepEqualOptions
  * @typedef {import("../hoot_utils").Label} Label
  *
+ * @typedef {{
+ *  docLabel: string;
+ *  steps: unknown[];
+ *  label: string;
+ *  options: typeof T_RESOLVER_OPTIONS;
+ * }} StepResolver
+ *
+ * @typedef {string | number | RegExp} StrictMatcherType
+ *
  * @typedef {import("@odoo/hoot-dom").Dimensions} Dimensions
- * @typedef {import("@odoo/hoot-dom").FormatXmlOptions} FormatXmlOptions
  * @typedef {import("@web/../lib/hoot-dom/hoot_dom_utils").InteractionDetails} InteractionDetails
  * @typedef {import("@web/../lib/hoot-dom/hoot_dom_utils").InteractionType} InteractionType
- * @typedef {import("@odoo/hoot-dom").QueryRectOptions} QueryRectOptions
- * @typedef {import("@odoo/hoot-dom").QueryTextOptions} QueryTextOptions
  * @typedef {import("@odoo/hoot-dom").Target} Target
  */
 
 /**
  * @template T
- * @typedef {T & ReturnType<Promise.withResolvers> & {
- *  options: VerifierOptions;
+ * @typedef {T & PromiseWithResolvers & {
  *  timeout: number;
  * }} AsyncResolver
  */
@@ -111,10 +108,10 @@ import { Test } from "./test";
  * @template [R=unknown]
  * @template [A=R]
  * @typedef {{
- *  acceptedType: ArgumentType | ArgumentType[];
+ *  acceptedType: any;
  *  getFailedDetails: () => unknown[];
  *  mapElements: (received: Target) => ElementMap;
- *  message: AssertionMessage;
+ *  message: ASSERTION_MESSAGE_TYPE;
  *  name: string;
  *  onFail: AssertionReportMessage;
  *  onPass: AssertionReportMessage;
@@ -135,7 +132,6 @@ const {
     Array: { isArray: $isArray },
     clearTimeout,
     Error,
-    Intl: { ListFormat },
     Math: { abs: $abs, floor: $floor },
     Object: { assign: $assign, create: $create, entries: $entries, keys: $keys },
     parseFloat,
@@ -147,6 +143,95 @@ const {
 } = globalThis;
 /** @type {Performance["now"]} */
 const $now = performance.now.bind(performance);
+
+//-----------------------------------------------------------------------------
+// Types
+//-----------------------------------------------------------------------------
+
+const T_ASSERTION_MESSAGE = t.or([t.string(), t.function([t.boolean()], t.string())]);
+
+const T_DOM_RECT = t.object({
+    width: t.number().optional(),
+    height: t.number().optional(),
+    top: t.number().optional(),
+    left: t.number().optional(),
+    x: t.number().optional(),
+    y: t.number().optional(),
+});
+
+const T_RESOLVER_OPTIONS = t.and([
+    T_DEEP_EQUAL_OPTIONS,
+    t.object({
+        message: T_ASSERTION_MESSAGE.optional(),
+    }),
+]);
+const T_ASYNC_VERIFIER_OPTIONS = t.and([
+    T_RESOLVER_OPTIONS,
+    t.object({
+        timeout: t.number().optional(),
+    }),
+]);
+
+const T_MATCHER_OPTIONS = t.object({
+    message: T_ASSERTION_MESSAGE.optional(),
+    not: t.boolean().optional(),
+    rejects: t.boolean().optional(),
+    resolves: t.boolean().optional(),
+    silent: t.boolean().optional(),
+});
+const T_MATCHER_DEEP_EQUAL_OPTIONS = t.and([T_MATCHER_OPTIONS, T_DEEP_EQUAL_OPTIONS]);
+const T_MATCHER_CHECKED_OPTIONS = t.and([
+    T_MATCHER_OPTIONS,
+    t.object({
+        indeterminate: t.boolean().optional(),
+    }),
+]);
+const T_MATCHER_CLOSE_TO_OPTIONS = t.and([
+    T_MATCHER_OPTIONS,
+    t.object({
+        margin: t.number().optional(),
+    }),
+]);
+const T_MATCHER_CLASS_LIST_OPTIONS = t.and([
+    T_MATCHER_OPTIONS,
+    t.object({
+        exact: t.boolean().optional(),
+    }),
+]);
+const T_MATCHER_DOM_STYLE_OPTIONS = t.and([
+    T_MATCHER_OPTIONS,
+    t.object({
+        exact: t.boolean().optional(),
+        inline: t.boolean().optional(),
+    }),
+]);
+const T_MATCHER_FORMAT_XML_OPTIONS = t.and([
+    T_MATCHER_OPTIONS,
+    t.object({
+        keepInlineTextNodes: t.boolean().optional(),
+        tabSize: t.number().optional(),
+        type: t.selection(["html", "xml"]).optional(),
+    }),
+]);
+const T_MATCHER_QUERY_RECT_OPTIONS = t.and([
+    T_MATCHER_OPTIONS,
+    t.object({
+        trimPadding: t.boolean().optional(),
+    }),
+]);
+const T_MATCHER_QUERY_TEXT_OPTIONS = t.and([
+    T_MATCHER_OPTIONS,
+    t.object({
+        inline: t.boolean().optional(),
+        raw: t.boolean().optional(),
+    }),
+]);
+const T_MATCHER_QUERY_VALUE_OPTIONS = t.and([
+    T_MATCHER_OPTIONS,
+    t.object({
+        raw: t.boolean().optional(),
+    }),
+]);
 
 //-----------------------------------------------------------------------------
 // Internal
@@ -355,7 +440,7 @@ function scopeError(method) {
 
 /**
  * @param {unknown} value
- * @param {string | number | RegExp} matcher
+ * @param {StrictMatcherType} matcher
  */
 function valueMatches(value, matcher) {
     if (matcher === S_ANY) {
@@ -371,7 +456,7 @@ function valueMatches(value, matcher) {
 }
 
 const AMPERSAND = makeLabel("&", null);
-const ARROW_RIGHT = makeLabelIcon("fa fa-arrow-right text-sm");
+const ARROW_RIGHT = makeLabelIcon("arrow_forward");
 
 const R_LINE_RETURN = /\n+/g;
 const R_NOT = /\[([\w\s]*)!([\w\s]*)\]/g;
@@ -538,14 +623,17 @@ export function makeExpect(params) {
         if (test) {
             // Set test status
             if (options?.aborted) {
-                test.status = Test.ABORTED;
+                test.status.set(Test.ABORTED);
             } else if (currentResult.pass) {
-                test.status ||= Test.PASSED;
+                // Only set to "passed" if the status was null (= default = SKIPPED)
+                if (!test.status()) {
+                    test.status.set(Test.PASSED);
+                }
             } else {
-                test.status = Test.FAILED;
+                test.status.set(Test.FAILED);
             }
 
-            /** @type {import("../hoot_utils").Reporting} */
+            /** @type {Partial<import("../hoot_utils").TestReporting>} */
             const report = {
                 assertions: assertionCount,
                 duration: test.lastResults?.duration || 0,
@@ -584,25 +672,21 @@ export function makeExpect(params) {
         if (!currentResult) {
             throw scopeError("expect.assertions");
         }
-        ensureArguments(arguments, "integer");
+        assertArguments(arguments, [T_INTEGER], true);
         if (expected < 1) {
-            throw new HootError(`expected assertions count should be more than 1`);
+            throw new HootError(`expected assertion count should be greater than 1`);
         }
 
         currentResult.expectedAssertions = expected;
     }
 
     /**
-     * @param {Test} test
+     * @param {Test} [test]
      */
     function beforeTest(test) {
+        currentResult = new CaseResult(test || null, params.headless);
         if (test) {
-            test.results.push(new CaseResult(test, params.headless));
-
-            // Must be retrieved from the list to be proxified
-            currentResult = test.results.at(-1);
-        } else {
-            currentResult = new CaseResult(null, params.headless);
+            test.results().push(currentResult);
         }
         currentResultInErrorState = false;
         const listenedEvents = ["query"];
@@ -613,14 +697,14 @@ export function makeExpect(params) {
     }
 
     /**
-     * @param {{ errors: unknown[]; options: VerifierOptions }} resolver
+     * @param {ErrorResolver} resolver
      * @param {boolean} forceCheck
      */
     function checkErrors(resolver, forceCheck) {
         if (!resolver) {
             return false;
         }
-        const { errors, options } = resolver;
+        const { label, docLabel, errors, options } = resolver;
         const { currentErrors } = currentResult;
         const pass =
             currentErrors.length === errors.length &&
@@ -638,8 +722,8 @@ export function makeExpect(params) {
                     : "no errors"
                 : "expected the following errors";
             const assertion = {
-                label: "verifyErrors",
-                docLabel: "expect.verifyErrors",
+                label,
+                docLabel,
                 message: options?.message,
                 pass,
                 reportMessage,
@@ -657,14 +741,14 @@ export function makeExpect(params) {
     }
 
     /**
-     * @param {{ steps: unknown[]; options: VerifierOptions } | null} resolver
+     * @param {StepResolver | null} resolver
      * @param {boolean} forceCheck
      */
     function checkSteps(resolver, forceCheck) {
         if (!resolver) {
             return false;
         }
-        const { steps, options } = resolver;
+        const { label, docLabel, steps, options } = resolver;
         const receivedSteps = currentResult.currentSteps;
         const pass = deepEqual(steps, receivedSteps, options);
 
@@ -678,8 +762,8 @@ export function makeExpect(params) {
                     : "no steps"
                 : "expected the following steps";
             const assertion = {
-                label: "verifySteps",
-                docLabel: "expect.verifySteps",
+                label,
+                docLabel,
                 message: options?.message,
                 pass,
                 reportMessage,
@@ -706,7 +790,10 @@ export function makeExpect(params) {
         if (!currentResult) {
             throw scopeError("expect.errors");
         }
-        ensureArguments(arguments, "integer");
+        assertArguments(arguments, [T_INTEGER], true);
+        if (expected < 1) {
+            throw new HootError(`expected error count should be greater than 1`);
+        }
 
         currentResult.expectedErrors = expected;
     }
@@ -764,7 +851,7 @@ export function makeExpect(params) {
      * `expect.errors(...)` should be called before function
      *
      * @param {unknown[]} errors
-     * @param {VerifierOptions} [options]
+     * @param {typeof T_RESOLVER_OPTIONS} [options]
      * @returns {boolean}
      * @example
      *  expect.verifyErrors([/RPCError/, /Invalid domain AST/]);
@@ -773,14 +860,22 @@ export function makeExpect(params) {
         if (!currentResult) {
             throw scopeError("expect.verifyErrors");
         }
-        ensureArguments(arguments, "any[]", ["object", null]);
+        assertArguments(arguments, [t.array(), T_RESOLVER_OPTIONS]);
         if (errors.length > currentResult.expectedErrors) {
             throw new HootError(
                 `cannot call \`expect.verifyErrors()\` without calling \`expect.errors()\` beforehand`
             );
         }
 
-        return checkErrors({ errors, options }, true);
+        return checkErrors(
+            {
+                label: "verifyErrors",
+                docLabel: "expect.verifyErrors",
+                errors,
+                options,
+            },
+            true
+        );
     }
 
     /**
@@ -789,7 +884,7 @@ export function makeExpect(params) {
      * will reset the list of current steps.
      *
      * @param {unknown[]} steps
-     * @param {VerifierOptions} [options]
+     * @param {typeof T_RESOLVER_OPTIONS} [options]
      * @returns {boolean}
      * @example
      *  expect.step("web_read_group");
@@ -800,9 +895,17 @@ export function makeExpect(params) {
         if (!currentResult) {
             throw scopeError("expect.verifySteps");
         }
-        ensureArguments(arguments, "any[]", ["object", null]);
+        assertArguments(arguments, [t.array(), T_RESOLVER_OPTIONS]);
 
-        return checkSteps({ steps, options }, true);
+        return checkSteps(
+            {
+                label: "verifySteps",
+                docLabel: "expect.verifySteps",
+                steps,
+                options,
+            },
+            true
+        );
     }
 
     /**
@@ -814,7 +917,7 @@ export function makeExpect(params) {
      * an error is detected.
      *
      * @param {unknown[]} errors
-     * @param {AsyncVerifierOptions} [options]
+     * @param {typeof T_ASYNC_VERIFIER_OPTIONS} [options]
      * @returns {Promise<boolean>}
      * @example
      *  fetch("invalid/url");
@@ -824,25 +927,34 @@ export function makeExpect(params) {
         if (!currentResult) {
             throw scopeError("expect.waitForErrors");
         }
-        ensureArguments(arguments, "any[]", ["object", null]);
+        assertArguments(arguments, [t.array(), T_ASYNC_VERIFIER_OPTIONS]);
 
         // Run check for any current resolver (if any)
         checkErrors(currentResult.errorResolver, true);
 
+        /** @type {ErrorResolver} */
+        const resolver = {
+            label: "waitForErrors",
+            docLabel: "expect.waitForErrors",
+            errors,
+            options,
+        };
+
         // Run early check if conditions are already met
-        if (checkErrors({ errors, options }, false)) {
+        if (checkErrors(resolver, false)) {
             return true;
         }
 
-        currentResult.errorResolver = {
-            ...Promise.withResolvers(),
-            errors,
-            options,
-            timeout: setTimeout(
-                () => checkErrors(currentResult.errorResolver, true),
-                options?.timeout ?? DEFAULT_WAIT_TIMEOUT
-            ),
-        };
+        currentResult.errorResolver = $assign(
+            resolver,
+            {
+                timeout: setTimeout(
+                    () => checkErrors(currentResult.errorResolver, true),
+                    options?.timeout ?? DEFAULT_WAIT_TIMEOUT
+                ),
+            },
+            Promise.withResolvers()
+        );
         return currentResult.errorResolver.promise;
     }
 
@@ -855,7 +967,7 @@ export function makeExpect(params) {
      * a step is registered.
      *
      * @param {unknown[]} steps
-     * @param {AsyncVerifierOptions} [options]
+     * @param {typeof T_ASYNC_VERIFIER_OPTIONS} [options]
      * @returns {Promise<boolean>}
      * @example
      *  fetch(".../call_kw/web_read_group");
@@ -865,25 +977,34 @@ export function makeExpect(params) {
         if (!currentResult) {
             throw scopeError("expect.waitForSteps");
         }
-        ensureArguments(arguments, "any[]", ["object", null]);
+        assertArguments(arguments, [t.array(), T_ASYNC_VERIFIER_OPTIONS]);
 
         // Run check for any current resolver (if any)
         checkSteps(currentResult.stepResolver, true);
 
+        /** @type {StepResolver} */
+        const resolver = {
+            label: "waitForSteps",
+            docLabel: "expect.waitForSteps",
+            steps,
+            options,
+        };
+
         // Run early check if conditions are already met
-        if (checkSteps({ steps, options }, false)) {
+        if (checkSteps(resolver, false)) {
             return true;
         }
 
-        currentResult.stepResolver = {
-            ...Promise.withResolvers(),
-            steps,
-            options,
-            timeout: setTimeout(
-                () => checkSteps(currentResult.stepResolver, true),
-                options?.timeout ?? DEFAULT_WAIT_TIMEOUT
-            ),
-        };
+        currentResult.stepResolver = $assign(
+            resolver,
+            {
+                timeout: setTimeout(
+                    () => checkSteps(currentResult.stepResolver, true),
+                    options?.timeout ?? DEFAULT_WAIT_TIMEOUT
+                ),
+            },
+            Promise.withResolvers()
+        );
         return currentResult.stepResolver.promise;
     }
 
@@ -947,12 +1068,9 @@ export function makeExpect(params) {
 export class CaseResult {
     duration = 0;
     pass = true;
-    /** @type {Test | null} */
-    test = null;
     ts = $floor($now());
 
-    /** @type {CaseEvent[]} */
-    events = [];
+    events = signal.Array([], { type: t.instanceOf(CaseEvent) });
     /** @type {Partial<Record<CaseEventType, number>>} */
     counts = $create(null);
 
@@ -961,9 +1079,9 @@ export class CaseResult {
 
     currentErrors = [];
     currentSteps = [];
-    /** @type {AsyncResolver<{ errors: unknown[] }> | null} */
+    /** @type {AsyncResolver<ErrorResolver> | null} */
     errorResolver = null;
-    /** @type {AsyncResolver<{ steps: unknown[] }> | null} */
+    /** @type {AsyncResolver<StepResolver> | null} */
     stepResolver = null;
 
     /**
@@ -971,13 +1089,10 @@ export class CaseResult {
      * @param {boolean} [headless]
      */
     constructor(test, headless) {
-        if (test) {
-            this.test = test;
-        }
-
+        /** @type {Test | null} */
+        this.test = test;
+        /** @type {boolean} */
         this.headless = !!headless;
-
-        markRaw(this);
     }
 
     consumeErrors() {
@@ -1003,7 +1118,7 @@ export class CaseResult {
      */
     getEvents(type) {
         const nType = typeof type === "number" ? type : CASE_EVENT_TYPES[type].value;
-        return this.events.filter((event) => event.type & nType);
+        return this.events().filter((event) => event.type & nType);
     }
 
     done() {
@@ -1065,7 +1180,7 @@ export class CaseResult {
                 }
                 logger.logTestEvent(...logArgs);
             }
-            this.events.push(caseEvent);
+            untrack(() => this.events().push(caseEvent));
         }
     }
 }
@@ -1172,18 +1287,18 @@ export class Matcher {
      * Expects the received value to be *strictly* equal to the `expected` value.
      *
      * @param {R} expected
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect("foo").toBe("foo");
      * @example
      *  expect({ foo: 1 }).not.toBe({ foo: 1 });
      */
     toBe(expected, options) {
-        this._ensureArguments(arguments, "any");
+        this._assertArguments(arguments, [t.any(), T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toBe",
-            acceptedType: "any",
+            acceptedType: t.any(),
             predicate: (received) => strictEqual(expected, received),
             message: options?.message,
             onPass: () => [r`received value is[! not] strictly equal to`, this._received],
@@ -1199,19 +1314,19 @@ export class Matcher {
      * Note: the margin is exclusive; it should be strictly larger than the diff.
      *
      * @param {R} expected
-     * @param {ExpectOptions & { margin?: number }} [options]
+     * @param {typeof T_MATCHER_CLOSE_TO_OPTIONS} [options]
      * @example
      *  expect(0.2 + 0.1).toBeCloseTo(0.3);
      * @example
      *  expect(3.51).toBeCloseTo(3.5, { margin: 0.1 });
      */
     toBeCloseTo(expected, options) {
-        this._ensureArguments(arguments, "number");
+        this._assertArguments(arguments, [t.number(), T_MATCHER_CLOSE_TO_OPTIONS]);
 
         const margin = options?.margin ?? 1;
         return this._resolve(() => ({
             name: "toBeCloseTo",
-            acceptedType: "number",
+            acceptedType: t.number(),
             predicate: (received) => $abs(expected - received) < margin,
             message: options?.message,
             onPass: () => [r`received value is[! not] close to`, this._received],
@@ -1227,7 +1342,7 @@ export class Matcher {
      * - `node`: no content (i.e. no value or text)
      * - anything else: falsy value (`false`, `0`, `""`, `null`, `undefined`)
      *
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect({}).toBeEmpty();
      * @example
@@ -1236,11 +1351,11 @@ export class Matcher {
      *  expect(queryOne("input")).toBeEmpty();
      */
     toBeEmpty(options) {
-        this._ensureArguments(arguments);
+        this._assertArguments(arguments, [T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toBeEmpty",
-            acceptedType: ["any"],
+            acceptedType: t.any(),
             predicate: (received) => isEmpty(received),
             message: options?.message,
             onPass: () => [this._received, r`should[! not] be empty`],
@@ -1253,18 +1368,18 @@ export class Matcher {
      * Expects the received value to be strictly greater than `min`.
      *
      * @param {number} min
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect(5).toBeGreaterThan(-1);
      * @example
      *  expect(4 + 2).toBeGreaterThan(5);
      */
     toBeGreaterThan(min, options) {
-        this._ensureArguments(arguments, "number");
+        this._assertArguments(arguments, [t.number(), T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toBeGreaterThan",
-            acceptedType: "number",
+            acceptedType: t.number(),
             predicate: (received) => min < received,
             message: options?.message,
             onPass: () => [this._received, r`is[! not] strictly greater than`, min],
@@ -1280,19 +1395,19 @@ export class Matcher {
     /**
      * Expects the received value to be an instance of the given `cls`.
      *
-     * @param {Function} cls
-     * @param {ExpectOptions} [options]
+     * @param {new (...args: any[]) => any} cls
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect({ foo: 1 }).not.toBeInstanceOf(Object);
      * @example
      *  expect(document.createElement("div")).toBeInstanceOf(HTMLElement);
      */
     toBeInstanceOf(cls, options) {
-        this._ensureArguments(arguments, "function");
+        this._assertArguments(arguments, [t.function(), T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toBeInstanceOf",
-            acceptedType: "any",
+            acceptedType: t.any(),
             predicate: (received) => isInstanceOf(received, cls),
             message: options?.message,
             onPass: () => [this._received, r`is[! not] an instance of`, cls],
@@ -1309,18 +1424,18 @@ export class Matcher {
      * Expects the received value to be strictly less than `max`.
      *
      * @param {number} max
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect(5).toBeLessThan(10);
      * @example
      *  expect(8 - 6).toBeLessThan(3);
      */
     toBeLessThan(max, options) {
-        this._ensureArguments(arguments, "number");
+        this._assertArguments(arguments, [t.number(), T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toBeLessThan",
-            acceptedType: "number",
+            acceptedType: t.number(),
             predicate: (received) => received < max,
             message: options?.message,
             onPass: () => [this._received, r`is[! not] strictly less than`, max],
@@ -1337,18 +1452,18 @@ export class Matcher {
      * Expects the received value to be of the given `type`.
      *
      * @param {ArgumentType} type
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect("foo").toBeOfType("string");
      * @example
      *  expect({ foo: 1 }).toBeOfType("object");
      */
     toBeOfType(type, options) {
-        this._ensureArguments(arguments, "string");
+        this._assertArguments(arguments, [t.string(), T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toBeOfType",
-            acceptedType: "any",
+            acceptedType: t.any(),
             predicate: (received) => isOfType(received, type),
             message: options?.message,
             onPass: () => [this._received, r`is[! not] of type`, type],
@@ -1366,7 +1481,7 @@ export class Matcher {
      *
      * @param {number} min (inclusive)
      * @param {number} max (inclusive)
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect(3).toBeWithin(3, 9);
      * @example
@@ -1375,7 +1490,7 @@ export class Matcher {
      *  expect(100).toBeWithin(50, 100);
      */
     toBeWithin(min, max, options) {
-        this._ensureArguments(arguments, "number", "number");
+        this._assertArguments(arguments, [t.number(), t.number(), T_MATCHER_OPTIONS]);
 
         if (min > max) {
             [min, max] = [max, min];
@@ -1386,7 +1501,7 @@ export class Matcher {
 
         return this._resolve(() => ({
             name: "toBeWithin",
-            acceptedType: "number",
+            acceptedType: t.number(),
             predicate: (received) => min <= received && received <= max,
             message: options?.message,
             onPass: () => [this._received, r`is[! not] between`, min, r`and`, max],
@@ -1399,18 +1514,18 @@ export class Matcher {
      * Expects the received value to be *deeply* equal to the `expected` value.
      *
      * @param {R} expected
-     * @param {ExpectOptions & DeepEqualOptions} [options]
+     * @param {typeof T_MATCHER_DEEP_EQUAL_OPTIONS} [options]
      * @example
      *  expect(["foo"]).toEqual(["foo"]);
      * @example
      *  expect({ foo: 1 }).toEqual({ foo: 1 });
      */
     toEqual(expected, options) {
-        this._ensureArguments(arguments, "any");
+        this._assertArguments(arguments, [t.any(), T_MATCHER_DEEP_EQUAL_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toEqual",
-            acceptedType: "any",
+            acceptedType: t.any(),
             predicate: (received) => deepEqual(expected, received, options),
             message: options?.message,
             onPass: () => [r`received value is[! not] deeply equal to`, this._received],
@@ -1425,7 +1540,7 @@ export class Matcher {
      * Received value can be a string, an iterable or an object.
      *
      * @param {number} length
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect("foo").toHaveLength(3);
      * @example
@@ -1436,13 +1551,13 @@ export class Matcher {
      *  expect(new Set([1, 2])).toHaveLength(2);
      */
     toHaveLength(length, options) {
-        this._ensureArguments(arguments, "integer");
+        this._assertArguments(arguments, [T_INTEGER, T_MATCHER_OPTIONS]);
 
         return this._resolve(() => {
             const receivedLength = getLength(this._received);
             return {
                 name: "toHaveLength",
-                acceptedType: ["string", "array", "object"],
+                acceptedType: t.or([t.string(), t.array(), t.object()]),
                 predicate: () => strictEqual(receivedLength, length),
                 message: options?.message,
                 onPass: () => [this._received, r`has[! not] a length of`, length],
@@ -1466,7 +1581,7 @@ export class Matcher {
      * equality against each item of the iterable.
      *
      * @param {keyof R | R[number]} item
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect([1, 2, 3]).toInclude(2);
      * @example
@@ -1477,11 +1592,11 @@ export class Matcher {
      *  expect(new Set([{ foo: 1 }, { bar: 2 }])).toInclude({ bar: 2 });
      */
     toInclude(item, options) {
-        this._ensureArguments(arguments, "any");
+        this._assertArguments(arguments, [t.any(), T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toInclude",
-            acceptedType: ["string", "any[]", "object"],
+            acceptedType: t.or([t.string(), t.array(), t.object()]),
             predicate: (received) => includes(received, item),
             message: options?.message,
             onPass: () => [this._received, r`[includes!does not include]`, item],
@@ -1497,19 +1612,19 @@ export class Matcher {
     /**
      * Expects the received value to match the given `matcher`.
      *
-     * @param {import("../hoot_utils").Matcher} matcher
-     * @param {ExpectOptions} [options]
+     * @param {import("../hoot_utils").LooseMatcherType} matcher
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect(new Error("foo")).toMatch("foo");
      * @example
      *  expect("a foo value").toMatch(/fo.*ue/);
      */
     toMatch(matcher, options) {
-        this._ensureArguments(arguments, "any");
+        this._assertArguments(arguments, [t.any(), T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toMatch",
-            acceptedType: "any",
+            acceptedType: t.any(),
             predicate: (received) => match(received, matcher),
             message: options?.message,
             onPass: () => [this._received, r`[matches!does not match]`, matcher],
@@ -1533,7 +1648,7 @@ export class Matcher {
      * non-iterable objects contained in iterables will be partially checked again.
      *
      * @param {Partial<R>} partialObject
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  // Partial equality can be performed on nested objects
      *  expect({
@@ -1558,11 +1673,11 @@ export class Matcher {
      *  expect({ list: [1, 2, 3], other: "property" }).toMatchObject({ list: [1, 2, 3] });
      */
     toMatchObject(partialObject, options) {
-        this._ensureArguments(arguments, "object");
+        this._assertArguments(arguments, [t.or([t.array(), t.record()]), T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toMatchObject",
-            acceptedType: ["object"],
+            acceptedType: t.or([t.array(), t.record()]),
             predicate: (received) => deepEqual(received, partialObject, { partial: true }),
             message: options?.message,
             onPass: () => [this._received, r`[matches!does not match] object`, partialObject],
@@ -1578,15 +1693,15 @@ export class Matcher {
     /**
      * Expects the received {@link Function} to throw an error after being called.
      *
-     * @param {import("../hoot_utils").Matcher} [matcher=Error]
-     * @param {ExpectOptions} [options]
+     * @param {import("../hoot_utils").LooseMatcherType} [matcher=Error]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect(() => { throw new Error("Woops!") }).toThrow(/woops/i);
      * @example
      *  await expect(Promise.reject("foo")).rejects.toThrow("foo");
      */
     toThrow(matcher = Error, options) {
-        this._ensureArguments(arguments, "any");
+        this._assertArguments(arguments, [t.any(), T_MATCHER_OPTIONS]);
 
         return this._resolve(() => {
             const isAsync = this._flags & (FLAGS.rejects | FLAGS.resolves);
@@ -1602,7 +1717,7 @@ export class Matcher {
             }
             return {
                 name: "toThrow",
-                acceptedType: ["function", "error"],
+                acceptedType: t.or([t.function(), t.instanceOf(Error)]),
                 predicate: () => match(returnValue, matcher),
                 message: options?.message,
                 onPass: () => [
@@ -1632,19 +1747,19 @@ export class Matcher {
      * Expects the received {@link Target} to be checked, or to be indeterminate
      * if the homonymous option is set to `true`.
      *
-     * @param {ExpectOptions & { indeterminate?: boolean }} [options]
+     * @param {typeof T_MATCHER_OPTIONS & { indeterminate?: boolean }} [options]
      * @example
      *  expect("input[type=checkbox]").toBeChecked();
      */
     toBeChecked(options) {
-        this._ensureArguments(arguments);
+        this._assertArguments(arguments, [T_MATCHER_CHECKED_OPTIONS]);
 
         const prop = options?.indeterminate ? "indeterminate" : "checked";
         const pseudo = ":" + prop;
 
         return this._resolve(() => ({
             name: "toBeChecked",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: (el) => el.matches?.(pseudo),
             predicate: (checked) => !!checked,
             message: options?.message,
@@ -1659,18 +1774,18 @@ export class Matcher {
      * - it has a bounding box;
      * - it is contained in the root document.
      *
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect(document.body).toBeDisplayed();
      * @example
      *  expect(document.createElement("div")).not.toBeDisplayed();
      */
     toBeDisplayed(options) {
-        this._ensureArguments(arguments);
+        this._assertArguments(arguments, [T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toBeDisplayed",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: isNodeDisplayed,
             predicate: (displayed) => !!displayed,
             message: options?.message,
@@ -1684,18 +1799,18 @@ export class Matcher {
      * Expects the received {@link Target} to be enabled, meaning that it
      * matches the `:enabled` pseudo-selector.
      *
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect("button").toBeEnabled();
      * @example
      *  expect("input[type=radio]").not.toBeEnabled();
      */
     toBeEnabled(options) {
-        this._ensureArguments(arguments);
+        this._assertArguments(arguments, [T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toBeEnabled",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: (el) => el.matches?.(":enabled"),
             predicate: (enabled) => !!enabled,
             message: options?.message,
@@ -1708,14 +1823,14 @@ export class Matcher {
     /**
      * Expects the received {@link Target} to be focused in its owner document.
      *
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      */
     toBeFocused(options) {
-        this._ensureArguments(arguments);
+        this._assertArguments(arguments, [T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toBeFocused",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: (el) => getActiveElement(el),
             predicate: (activeEl, el) => strictEqual(el, activeEl),
             message: options?.message,
@@ -1731,18 +1846,18 @@ export class Matcher {
      * - it is contained in the root document;
      * - it is not hidden by CSS properties.
      *
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect(document.body).toBeVisible();
      * @example
      *  expect("[style='opacity: 0']").not.toBeVisible();
      */
     toBeVisible(options) {
-        this._ensureArguments(arguments);
+        this._assertArguments(arguments, [T_MATCHER_OPTIONS]);
 
         return this._resolve(() => ({
             name: "toBeVisible",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: isNodeVisible,
             predicate: (visible) => !!visible,
             message: options?.message,
@@ -1757,21 +1872,25 @@ export class Matcher {
      * itself, and for that attribute value to match the given `value` if any.
      *
      * @param {string} attribute
-     * @param {import("../hoot_utils").Matcher} [value]
-     * @param {ExpectOptions} [options]
+     * @param {StrictMatcherType} [value]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect("a").toHaveAttribute("href");
      * @example
      *  expect("script").toHaveAttribute("src", "./index.js");
      */
     toHaveAttribute(attribute, value, options) {
-        this._ensureArguments(arguments, "string", ["string", "number", "regex", null]);
+        this._assertArguments(arguments, [
+            t.string(),
+            t.or([t.string(), t.number(), T_REGEX, T_NULL, T_UNDEFINED]),
+            T_MATCHER_OPTIONS,
+        ]);
 
         const expectsValue = !isNil(value);
 
         return this._resolve(() => ({
             name: "toHaveAttribute",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: (el) => getNodeAttribute(el, attribute),
             predicate: (elAttr, el) =>
                 expectsValue ? valueMatches(elAttr, value) : el.hasAttribute(attribute),
@@ -1796,21 +1915,24 @@ export class Matcher {
      * Expects the received {@link Target} to have the given class name(s).
      *
      * @param {string | string[]} className
-     * @param {ExpectOptions & ClassListOptions} [options]
+     * @param {typeof T_MATCHER_CLASS_LIST_OPTIONS} [options]
      * @example
      *  expect("inline").toHaveClass("btn btn-primary");
      * @example
      *  expect("body").toHaveClass(["o_webclient", "o_dark"]);
      */
     toHaveClass(className, options) {
-        this._ensureArguments(arguments, ["string", "string[]"]);
+        this._assertArguments(arguments, [
+            t.or([t.string(), t.array(t.string())]),
+            T_MATCHER_CLASS_LIST_OPTIONS,
+        ]);
 
         const rawClassNames = ensureArray(className);
         const classNames = rawClassNames.flatMap((cls) => cls.trim().split(R_WHITE_SPACE));
 
         return this._resolve(() => ({
             name: "toHaveClass",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: (el) => [...el.classList].sort(),
             predicate: (classes) =>
                 options?.exact
@@ -1838,7 +1960,7 @@ export class Matcher {
      * will expect *at least* one element.
      *
      * @param {number} [amount]
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect(".o_webclient").toHaveCount(1);
      * @example
@@ -1847,14 +1969,17 @@ export class Matcher {
      *  expect("ul > li").toHaveCount(4);
      */
     toHaveCount(amount, options) {
-        this._ensureArguments(arguments, ["integer", null]);
+        this._assertArguments(arguments, [
+            t.or([T_INTEGER, T_NULL, T_UNDEFINED]),
+            T_MATCHER_OPTIONS,
+        ]);
 
         const anyAmount = isNil(amount);
         return this._resolve(() => {
             const elMap = new ElementMap(this._received);
             return {
                 name: "toHaveCount",
-                acceptedType: ["string", "node", "node[]"],
+                acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
                 predicate: () => (anyAmount ? elMap.size > 0 : strictEqual(elMap.size, amount)),
                 message: options?.message,
                 onPass: () => [r`found`, elMap],
@@ -1879,16 +2004,19 @@ export class Matcher {
      * value (upon formatting).
      *
      * @param {string | RegExp} [expected]
-     * @param {ExpectOptions & FormatXmlOptions} [options]
+     * @param {typeof T_MATCHER_FORMAT_XML_OPTIONS} [options]
      * @example
      *  expect(".my_element").toHaveInnerHTML(`
      *      Some <strong>text</strong>
      *  `);
      */
     toHaveInnerHTML(expected, options) {
-        this._ensureArguments(arguments, ["string", "regex"]);
+        this._assertArguments(arguments, [
+            t.or([t.string(), T_REGEX]),
+            T_MATCHER_FORMAT_XML_OPTIONS,
+        ]);
 
-        return this._toHaveHTML("toHaveInnerHTML", "innerHTML", ...arguments);
+        return this._toHaveHTML("toHaveInnerHTML", "innerHTML", expected, options);
     }
 
     /**
@@ -1896,7 +2024,7 @@ export class Matcher {
      * value (upon formatting).
      *
      * @param {string | RegExp} [expected]
-     * @param {ExpectOptions & FormatXmlOptions} [options]
+     * @param {typeof T_MATCHER_FORMAT_XML_OPTIONS} [options]
      * @example
      *  expect(".my_element").toHaveOuterHTML(`
      *      <div class="my_element">
@@ -1905,9 +2033,12 @@ export class Matcher {
      *  `);
      */
     toHaveOuterHTML(expected, options) {
-        this._ensureArguments(arguments, ["string", "regex"]);
+        this._assertArguments(arguments, [
+            t.or([t.string(), T_REGEX]),
+            T_MATCHER_FORMAT_XML_OPTIONS,
+        ]);
 
-        return this._toHaveHTML("toHaveOuterHTML", "outerHTML", ...arguments);
+        return this._toHaveHTML("toHaveOuterHTML", "outerHTML", expected, options);
     }
 
     /**
@@ -1916,19 +2047,19 @@ export class Matcher {
      *
      * @param {string} property
      * @param {any} [value]
-     * @param {ExpectOptions} [options]
+     * @param {typeof T_MATCHER_OPTIONS} [options]
      * @example
      *  expect("button").toHaveProperty("tabIndex", 0);
      * @example
      *  expect("script").toHaveProperty("src", "./index.js");
      */
     toHaveProperty(property, value, options) {
-        this._ensureArguments(arguments, "string", "any");
+        this._assertArguments(arguments, [t.string(), t.any(), T_MATCHER_OPTIONS]);
 
         const expectsValue = !isNil(value);
         return this._resolve(() => ({
             name: "toHaveProperty",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: (el) => el[property],
             predicate: (elProp, el) =>
                 expectsValue ? valueMatches(elProp, value) : property in el,
@@ -1961,14 +2092,17 @@ export class Matcher {
      * If the resulting `rect` value is a node, then both nodes' rects will be compared.
      *
      * @param {Partial<DOMRect> | Target} rect
-     * @param {ExpectOptions & QueryRectOptions} [options]
+     * @param {typeof T_MATCHER_QUERY_RECT_OPTIONS} [options]
      * @example
      *  expect("button").toHaveRect({ x: 20, width: 100, height: 50 });
      * @example
      *  expect("button").toHaveRect(".container");
      */
     toHaveRect(rect, options) {
-        this._ensureArguments(arguments, ["object", "string", "node", "node[]"]);
+        this._assertArguments(arguments, [
+            t.or([T_DOM_RECT, t.string(), T_NODE, t.array(T_NODE)]),
+            T_MATCHER_QUERY_RECT_OPTIONS,
+        ]);
 
         let refRect;
         if (typeof rect === "string" || isNode(rect)) {
@@ -1981,7 +2115,7 @@ export class Matcher {
 
         return this._resolve(() => ({
             name: "toHaveRect",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: (el) => getNodeRect(el, options),
             predicate: (elRect) => entries.every(([key, val]) => strictEqual(elRect[key], val)),
             message: options?.message,
@@ -1994,22 +2128,30 @@ export class Matcher {
     /**
      * Expects the received {@link Target} to match the given style properties.
      *
-     * @param {string | Record<string, string | RegExp>} style
-     * @param {ExpectOptions & DOMStyleOptions} [options]
+     * @param {StrictMatcherType | Record<string, StrictMatcherType>} style
+     * @param {typeof T_MATCHER_DOM_STYLE_OPTIONS} [options]
      * @example
      *  expect("button").toHaveStyle({ color: "red" });
      * @example
      *  expect("p").toHaveStyle("text-align: center");
      */
     toHaveStyle(style, options) {
-        this._ensureArguments(arguments, ["string", "object"]);
+        this._assertArguments(arguments, [
+            t.or([
+                t.string(),
+                t.number(),
+                T_REGEX,
+                t.record(t.or([t.string(), t.number(), T_REGEX])),
+            ]),
+            T_MATCHER_DOM_STYLE_OPTIONS,
+        ]);
 
         const styleDef = parseInlineStyle(style, S_ANY);
         const styleKeys = $keys(styleDef);
 
         return this._resolve(() => ({
             name: "toHaveStyle",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: (el) =>
                 options?.inline
                     ? parseInlineStyle(el.getAttribute("style"))
@@ -2037,21 +2179,24 @@ export class Matcher {
      * - be strictly equal to a given string;
      * - match a given regular expression.
      *
-     * @param {string | RegExp} [text]
-     * @param {ExpectOptions & QueryTextOptions} [options]
+     * @param {StrictMatcherType} [text]
+     * @param {typeof T_MATCHER_QUERY_TEXT_OPTIONS} [options]
      * @example
      *  expect("p").toHaveText("lorem ipsum dolor sit amet");
      * @example
      *  expect("header h1").toHaveText(/odoo/i);
      */
     toHaveText(text, options) {
-        this._ensureArguments(arguments, ["string", "regex", null]);
+        this._assertArguments(arguments, [
+            t.or([t.string(), T_REGEX, T_NULL, T_UNDEFINED]),
+            T_MATCHER_QUERY_TEXT_OPTIONS,
+        ]);
 
         const expectsText = !isNil(text);
 
         return this._resolve(() => ({
             name: "toHaveText",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: (el) => getNodeText(el, options),
             predicate: (elText) => (expectsText ? valueMatches(elText, text) : elText.length > 0),
             message: options?.message,
@@ -2068,7 +2213,7 @@ export class Matcher {
      * - contain file objects matching the given `files` list.
      *
      * @param {ReturnType<typeof getNodeValue>} [value]
-     * @param {ExpectOptions & { raw?: boolean }} [options]
+     * @param {typeof T_MATCHER_QUERY_VALUE_OPTIONS} [options]
      * @example
      *  expect("input[name=age]").toHaveValue(29);
      * @example
@@ -2079,20 +2224,23 @@ export class Matcher {
      *  expect("input[name=age]").toHaveValue("29", { raw: true });
      */
     toHaveValue(value, options) {
-        this._ensureArguments(arguments, [
-            "string",
-            "string[]",
-            "number",
-            "object[]",
-            "regex",
-            null,
+        this._assertArguments(arguments, [
+            t.or([
+                t.string(),
+                t.number(),
+                T_REGEX,
+                t.array(t.or([t.string(), t.object()])),
+                T_NULL,
+                T_UNDEFINED,
+            ]),
+            T_MATCHER_QUERY_VALUE_OPTIONS,
         ]);
 
         const expectsValue = !isNil(value);
 
         return this._resolve(() => ({
             name: "toHaveValue",
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: (el) => getNodeValue(el, options?.raw),
             predicate: (elValue, el) => {
                 if (isCheckable(el)) {
@@ -2123,6 +2271,49 @@ export class Matcher {
     //-------------------------------------------------------------------------
 
     /**
+     * This method serves 3 purposes:
+     * 1. it "consumes" the current matcher (= mark it as called);
+     * 2. it validates the arguments it was given;
+     * 3. it assigns additional flags passed in the options dict (if any).
+     *
+     * These must be done at the start of each matcher call, which is way they are
+     * combined in a single method.
+     *
+     * @private
+     * @param {ArrayLike<any>} args
+     * @param {any[]} types
+     */
+    _assertArguments(args, types) {
+        // Consume matcher
+        if (!unconsumedMatchers.has(this)) {
+            throw new HootError(`cannot use multiple matchers on the same \`expect()\` call`);
+        }
+        unconsumedMatchers.delete(this);
+
+        // Validate arguments
+        assertArguments(args, types);
+
+        // Assign flags
+        const options = args[t.length];
+        if (options) {
+            for (const flag in FLAGS) {
+                if (flag in options) {
+                    if (options[flag]) {
+                        this._flags |= FLAGS[flag];
+                    } else {
+                        this._flags &= ~FLAGS[flag];
+                    }
+                }
+            }
+        }
+
+        // Optionaly: stack is adjusted when using GUI
+        if (!(this._flags & FLAGS.headless)) {
+            currentStack = getStack(1);
+        }
+    }
+
+    /**
      * @private
      * @param {number} flags
      */
@@ -2132,39 +2323,41 @@ export class Matcher {
     }
 
     /**
-     * Validates the given `arguments` object, with an implicitly added `options`
-     * validator at the end (optional).
-     *
-     * Flags are then modified based on these options, and the current stack is
-     * saved for error reporting.
-     *
      * @private
-     * @param {any[]} argumentsObject
-     * @param {...(ArgumentType | ArgumentType[])} argumentsDefs
+     * @param {PromiseRejectedResult} reason
+     * @param {() => MatcherSpecifications<R, A>} specCallback
      */
-    _ensureArguments(argumentsObject, ...argumentsDefs) {
-        if (!unconsumedMatchers.has(this)) {
-            throw new HootError(`cannot use multiple matchers on the same \`expect()\` call`);
-        }
-        unconsumedMatchers.delete(this);
-
-        const args = [...argumentsObject];
-        ensureArguments(args, ...argumentsDefs, ["object", null]);
-
-        const options = args[argumentsDefs.length] || {};
-        for (const flag in FLAGS) {
-            if (flag in options) {
-                if (options[flag]) {
-                    this._flags |= FLAGS[flag];
-                } else {
-                    this._flags &= ~FLAGS[flag];
-                }
-            }
+    _onRejected(reason, specCallback) {
+        if (this._flags & FLAGS.resolves) {
+            this._result.registerEvent("assertion", {
+                label: "resolves",
+                pass: false,
+                reportMessage: [r`expected promise to resolve, instead rejected with:`, reason],
+            });
+            return false;
         }
 
-        if (!(this._flags & FLAGS.headless)) {
-            currentStack = getStack(1);
+        this._received = reason;
+        return this._resolveFinalResult(specCallback);
+    }
+
+    /**
+     * @private
+     * @param {PromiseFulfilledResult<R>} reason
+     * @param {() => MatcherSpecifications<R, A>} specCallback
+     */
+    _onResolved(result, specCallback) {
+        if (this._flags & FLAGS.rejects) {
+            this._result.registerEvent("assertion", {
+                label: "rejects",
+                pass: false,
+                reportMessage: [r`expected promise to reject, instead resolved with:`, result],
+            });
+            return false;
         }
+
+        this._received = result;
+        return this._resolveFinalResult(specCallback);
     }
 
     /**
@@ -2180,44 +2373,13 @@ export class Matcher {
         }
         if (isAsync) {
             return Promise.resolve(this._received).then(
-                /** @param {PromiseFulfilledResult<R>} reason */
-                (result) => {
-                    if (this._flags & FLAGS.rejects) {
-                        this._result.registerEvent("assertion", {
-                            label: "rejects",
-                            pass: false,
-                            reportMessage: [
-                                r`expected promise to reject, instead resolved with:`,
-                                result,
-                            ],
-                        });
-                        return false;
-                    } else {
-                        this._received = result;
-                        return this._resolveFinalResult(specCallback);
-                    }
-                },
+                /** @param {PromiseFulfilledResult<R>} result */
+                (result) => untrack(this._onResolved.bind(this, result, specCallback)),
                 /** @param {PromiseRejectedResult} reason */
-                (reason) => {
-                    if (this._flags & FLAGS.resolves) {
-                        this._result.registerEvent("assertion", {
-                            label: "resolves",
-                            pass: false,
-                            reportMessage: [
-                                r`expected promise to resolve, instead rejected with:`,
-                                reason,
-                            ],
-                        });
-                        return false;
-                    } else {
-                        this._received = reason;
-                        return this._resolveFinalResult(specCallback);
-                    }
-                }
+                (reason) => untrack(this._onRejected.bind(this, reason, specCallback))
             );
-        } else {
-            return this._resolveFinalResult(specCallback);
         }
+        return untrack(this._resolveFinalResult.bind(this, specCallback));
     }
 
     /**
@@ -2237,19 +2399,10 @@ export class Matcher {
             predicate,
         } = specCallback();
 
-        const types = ensureArray(acceptedType);
-        if (!types.some((type) => isOfType(this._received, type))) {
-            const joinedTypes =
-                types.length > 1
-                    ? new ListFormat("en-GB", {
-                          type: "disjunction",
-                          style: "long",
-                      }).format(types)
-                    : types[0];
+        const issues = validateType(this._received, acceptedType);
+        if (issues.length) {
             throw new TypeError(
-                `expected received value to be of type ${joinedTypes}, got ${formatHumanReadable(
-                    this._received
-                )}`
+                formatValidationIssues(`cannot execute matcher '${name}':`, issues)
             );
         }
 
@@ -2299,8 +2452,8 @@ export class Matcher {
      * @private
      * @param {"toHaveInnerHTML" | "toHaveOuterHTML"} name
      * @param {"innerHTML" | "outerHTML"} property
-     * @param {string | RegExp} expected
-     * @param {ExpectOptions & FormatXmlOptions} [options]
+     * @param {StrictMatcherType} expected
+     * @param {typeof T_MATCHER_FORMAT_XML_OPTIONS} [options]
      */
     _toHaveHTML(name, property, expected, options) {
         options = { type: "html", ...options };
@@ -2310,7 +2463,7 @@ export class Matcher {
 
         return this._resolve(() => ({
             name,
-            acceptedType: ["string", "node", "node[]"],
+            acceptedType: t.or([t.string(), T_NODE, t.array(T_NODE)]),
             mapElements: (el) =>
                 // Force HTML type here as it will be returned by outer/inner HTML
                 formatXml(el[property], { ...options, type: "html" }),
@@ -2353,7 +2506,7 @@ export class Assertion extends CaseEvent {
      * @param {number} number
      * @param {Partial<Assertion & {
      *  docLabel?: string;
-     *  message: AssertionMessage,
+     *  message: ASSERTION_MESSAGE_TYPE,
      *  reportMessage: AssertionReportMessage,
      * }>} values
      */
@@ -2425,7 +2578,7 @@ export class Assertion extends CaseEvent {
     }
 
     /**
-     * @param {keyof typeof FLAGS} name
+     * @param {keyof FLAGS} name
      */
     hasFlag(name) {
         return this.flags & FLAGS[name];

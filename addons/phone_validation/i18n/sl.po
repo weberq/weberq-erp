@@ -9,19 +9,15 @@
 # Boris Kodelja <boris@hbs.si>, 2022
 # Martin Trigaux, 2022
 # Matjaz Mozetic <m.mozetic@matmoz.si>, 2022
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.5alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-09-10 11:11+0000\n"
-"Last-Translator: Jan Zorko <jan.zorko@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-25 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 13:45+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "phone_validation/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -32,10 +28,27 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 
 #. module: phone_validation
+#: model:ir.module.module,description:base.module_phone_validation
+msgid ""
+"\n"
+"Phone Numbers Validation\n"
+"========================\n"
+"\n"
+"This module adds the feature of validation and formatting phone numbers\n"
+"according to a destination country.\n"
+"\n"
+"It also adds phone blacklist management through a specific model storing\n"
+"blacklisted phone numbers.\n"
+"\n"
+"It adds mail.thread.phone mixin that handles sanitation and blacklist of\n"
+"records numbers. "
+msgstr ""
+
+#. module: phone_validation
 #. odoo-python
 #: code:addons/phone_validation/models/phone_blacklist.py:0
 msgid "%(error)s Please correct the number and try again."
-msgstr "%(error)s Prosimo, popravite številko in poskusite znova."
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.model.fields,field_description:phone_validation.field_mail_thread_phone__message_needaction
@@ -50,9 +63,24 @@ msgid "Active"
 msgstr "Aktivno"
 
 #. module: phone_validation
+#: model:ir.model,name:phone_validation.model_mail_activity
+msgid "Activity"
+msgstr ""
+
+#. module: phone_validation
+#: model:ir.model,name:phone_validation.model_mail_activity_mixin
+msgid "Activity Mixin"
+msgstr ""
+
+#. module: phone_validation
+#: model:ir.model,name:phone_validation.model_mail_activity_schedule
+msgid "Activity schedule plan Wizard"
+msgstr ""
+
+#. module: phone_validation
 #: model_terms:ir.actions.act_window,help:phone_validation.phone_blacklist_action
 msgid "Add a phone number in the blacklist"
-msgstr "Dodajte telefonsko številko na črni seznam"
+msgstr ""
 
 #. module: phone_validation
 #: model_terms:ir.ui.view,arch_db:phone_validation.phone_blacklist_view_form
@@ -65,16 +93,12 @@ msgstr "Arhivirano"
 #: code:addons/phone_validation/models/mail_thread_phone.py:0
 msgid "Are you sure you want to unblacklist this Phone Number?"
 msgstr ""
-"Ali ste prepričani, da želite to telefonsko številko odstraniti s črnega "
-"seznama?"
 
 #. module: phone_validation
 #. odoo-python
 #: code:addons/phone_validation/models/phone_blacklist.py:0
 msgid "Are you sure you want to unblacklist this phone number?"
 msgstr ""
-"Ali ste prepričani, da želite to telefonsko številko odstraniti s črnega "
-"seznama?"
 
 #. module: phone_validation
 #: model:ir.model.fields,field_description:phone_validation.field_mail_thread_phone__message_attachment_count
@@ -101,7 +125,7 @@ msgstr "Datum črne liste"
 #. module: phone_validation
 #: model:ir.actions.act_window,name:phone_validation.phone_blacklist_action
 msgid "Blacklisted Phone Numbers"
-msgstr "Telefonske številke na črnem seznamu"
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.model.fields,field_description:phone_validation.field_mail_thread_phone__phone_blacklisted
@@ -114,8 +138,6 @@ msgstr "Blacklisted Phone is Phone"
 #: model_terms:ir.actions.act_window,help:phone_validation.phone_blacklist_action
 msgid "Blacklisted phone numbers won't receive SMS Mailings anymore."
 msgstr ""
-"Na črni seznam uvrščene telefonske številke ne bodo več prejemale SMS-"
-"pošiljanj."
 
 #. module: phone_validation
 #. odoo-python
@@ -150,11 +172,9 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: phone_validation
-#: model_terms:ir.ui.view,arch_db:phone_validation.phone_blacklist_remove_view_form
-msgid "Discard"
-msgstr "Opusti"
-
-#. module: phone_validation
+#: model:ir.model.fields,field_description:phone_validation.field_mail_activity__display_name
+#: model:ir.model.fields,field_description:phone_validation.field_mail_activity_mixin__display_name
+#: model:ir.model.fields,field_description:phone_validation.field_mail_activity_schedule__display_name
 #: model:ir.model.fields,field_description:phone_validation.field_mail_thread_phone__display_name
 #: model:ir.model.fields,field_description:phone_validation.field_phone_blacklist__display_name
 #: model:ir.model.fields,field_description:phone_validation.field_phone_blacklist_remove__display_name
@@ -196,6 +216,9 @@ msgid "Has Message"
 msgstr "Ima sporočilo"
 
 #. module: phone_validation
+#: model:ir.model.fields,field_description:phone_validation.field_mail_activity__id
+#: model:ir.model.fields,field_description:phone_validation.field_mail_activity_mixin__id
+#: model:ir.model.fields,field_description:phone_validation.field_mail_activity_schedule__id
 #: model:ir.model.fields,field_description:phone_validation.field_mail_thread_phone__id
 #: model:ir.model.fields,field_description:phone_validation.field_phone_blacklist__id
 #: model:ir.model.fields,field_description:phone_validation.field_phone_blacklist_remove__id
@@ -233,19 +256,19 @@ msgstr ""
 #. odoo-python
 #: code:addons/phone_validation/tools/phone_validation.py:0
 msgid "Impossible number %s: not a valid country prefix."
-msgstr "Nemogoča številka %s: predpona države ni veljavna."
+msgstr ""
 
 #. module: phone_validation
 #. odoo-python
 #: code:addons/phone_validation/tools/phone_validation.py:0
 msgid "Impossible number %s: not enough digits."
-msgstr "Nemogoča številka %s: premalo števk."
+msgstr ""
 
 #. module: phone_validation
 #. odoo-python
 #: code:addons/phone_validation/tools/phone_validation.py:0
 msgid "Impossible number %s: too many digits."
-msgstr "Nemogoča številka %s: preveč števk."
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.model.fields,help:phone_validation.field_mail_thread_phone__phone_blacklisted
@@ -264,13 +287,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/phone_validation/tools/phone_validation.py:0
 msgid "Invalid number %s: probably incorrect prefix."
-msgstr "Neveljavna številka %s: verjetno napačna predpona."
+msgstr ""
 
 #. module: phone_validation
 #. odoo-python
 #: code:addons/phone_validation/models/mail_thread_phone.py:0
 msgid "Invalid primary phone field on model %s"
-msgstr "Neveljavno polje za primarno telefonsko številko v modelu %s"
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.model.fields,field_description:phone_validation.field_mail_thread_phone__message_is_follower
@@ -309,12 +332,12 @@ msgstr "Sporočila"
 #. odoo-python
 #: code:addons/phone_validation/models/mail_thread_phone.py:0
 msgid "Missing definition of phone fields."
-msgstr "Manjka definicija telefonskih polj."
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.model.constraint,message:phone_validation.constraint_phone_blacklist_unique_number
 msgid "Number already exists"
-msgstr "Številka že obstaja"
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.model.fields,field_description:phone_validation.field_mail_thread_phone__message_needaction_counter
@@ -347,12 +370,12 @@ msgstr "Število sporočil, ki niso bila pravilno dostavljena."
 #. module: phone_validation
 #: model:ir.model.fields,help:phone_validation.field_phone_blacklist__number
 msgid "Number should be E164 formatted"
-msgstr "Številka mora biti oblikovana v formatu E164"
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.ui.menu,name:phone_validation.phone_menu_main
 msgid "Phone / SMS"
-msgstr "Telefon / SMS"
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.model,name:phone_validation.model_phone_blacklist
@@ -365,7 +388,7 @@ msgstr "Črni seznam v telefonu"
 #. module: phone_validation
 #: model:ir.model,name:phone_validation.model_mail_thread_phone
 msgid "Phone Blacklist Mixin"
-msgstr "Mixin črnega seznama v telefonu"
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.model.fields,field_description:phone_validation.field_mail_thread_phone__phone_sanitized_blacklisted
@@ -373,6 +396,11 @@ msgstr "Mixin črnega seznama v telefonu"
 #: model:ir.model.fields,field_description:phone_validation.field_res_users__phone_sanitized_blacklisted
 msgid "Phone Blacklisted"
 msgstr "Phone Blacklisted"
+
+#. module: phone_validation
+#: model:ir.model.fields,field_description:phone_validation.field_mail_activity_schedule__phone_formatted
+msgid "Phone Formatted"
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.model.fields,field_description:phone_validation.field_mail_thread_phone__phone_mobile_search
@@ -385,10 +413,15 @@ msgid "Phone Number"
 msgstr "Telefonska številka"
 
 #. module: phone_validation
+#: model:ir.module.module,shortdesc:base.module_phone_validation
+msgid "Phone Numbers Validation"
+msgstr ""
+
+#. module: phone_validation
 #. odoo-python
 #: code:addons/phone_validation/models/mail_thread_phone.py:0
 msgid "Please enter at least 3 characters when searching a Phone number."
-msgstr "Pri iskanju telefonske številke vnesite vsaj 3 znake."
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.model.fields,field_description:phone_validation.field_phone_blacklist_remove__reason
@@ -400,7 +433,7 @@ msgstr "Razlog"
 #: model:ir.model,name:phone_validation.model_phone_blacklist_remove
 #: model_terms:ir.ui.view,arch_db:phone_validation.phone_blacklist_remove_view_form
 msgid "Remove phone from blacklist"
-msgstr "Odstrani telefon s črnega seznama"
+msgstr ""
 
 #. module: phone_validation
 #: model:ir.model.fields,field_description:phone_validation.field_mail_thread_phone__phone_sanitized
@@ -415,14 +448,12 @@ msgstr "Sanitized Number"
 msgid ""
 "The phone number %s is invalid! Let's fix it - you are not dialing aliens."
 msgstr ""
-"Telefonska številka %s ni veljavna! Popravimo jo – saj vendar ne kličete "
-"nezemljanov."
 
 #. module: phone_validation
 #. odoo-python
 #: code:addons/phone_validation/tools/phone_validation.py:0
 msgid "Unable to parse %(phone)s: %(error)s"
-msgstr "Ni mogoče razčleniti %(phone)s: %(error)s"
+msgstr ""
 
 #. module: phone_validation
 #: model_terms:ir.ui.view,arch_db:phone_validation.phone_blacklist_view_form
@@ -441,14 +472,17 @@ msgid "User"
 msgstr "Uporabnik"
 
 #. module: phone_validation
+#: model:ir.module.module,summary:base.module_phone_validation
+msgid "Validate and format phone numbers"
+msgstr ""
+
+#. module: phone_validation
 #. odoo-python
 #: code:addons/phone_validation/models/mail_thread_phone.py:0
 msgid ""
 "You do not have the access right to unblacklist phone numbers. Please "
 "contact your administrator."
 msgstr ""
-"Nimate pravice dostopa za odstranitev telefonskih številk s črne liste. "
-"Obrnite se na svojega skrbnika."
 
 #. module: phone_validation
 #: model_terms:ir.ui.view,arch_db:phone_validation.phone_blacklist_remove_view_form
@@ -458,13 +492,4 @@ msgstr "npr. »Želite prejemati naša naslednja glasila«"
 #. module: phone_validation
 #: model_terms:ir.ui.view,arch_db:phone_validation.phone_blacklist_remove_view_form
 msgid "phone_blacklist_removal"
-msgstr "Odstranitev telefonske številke s črnega seznama"
-
-#~ msgid "Confirm"
-#~ msgstr "Potrdi"
-
-#~ msgid "Main Attachment"
-#~ msgstr "Glavna priponka"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "Število sporočil, ki zahtevajo dejavnost"
+msgstr ""

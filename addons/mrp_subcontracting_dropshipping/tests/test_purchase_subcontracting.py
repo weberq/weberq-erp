@@ -1,13 +1,25 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import Command, fields
-from odoo.tests import Form, tagged
+from odoo import fields
+from odoo.fields import Command
+from odoo.tests import tagged, Form
 from odoo.addons.mrp_subcontracting.tests.common import TestMrpSubcontractingCommon
 from odoo.addons.stock_account.tests.common import TestStockValuationCommon
 
 
 @tagged('post_install', '-at_install')
 class TestSubcontractingDropshippingFlows(TestMrpSubcontractingCommon, TestStockValuationCommon):
+
+    _test_user_groups = (
+        'product.group_product_manager',  # products/BoM for subcontracting
+        'stock.group_stock_manager',  # subject: routes, dropship pickings
+        'mrp.group_mrp_manager',  # subject: subcontracting BoM/production
+        'purchase.group_purchase_manager',  # subject: subcontracting purchase orders
+        'sales_team.group_sale_salesman',  # subject: sale orders driving dropship subcontracting
+        'account.group_account_invoice',  # subject: vendor bills / invoice posting
+    )
+
+    _test_user_name = 'Test Subcontracting User'
 
     @classmethod
     def setUpClass(cls):
@@ -25,10 +37,8 @@ class TestSubcontractingDropshippingFlows(TestMrpSubcontractingCommon, TestStock
         - Po created for the component.
         """
         # self.warehouse.manufacture_pull_id.route_id.write({'sequence': 20})
-        self.env.ref('stock.route_warehouse0_mto').active = True
-        mto_route = self.env['stock.route'].search([('name', '=', 'Replenish on Order (MTO)')])
         dropship_route = self.env['stock.route'].search([('name', '=', 'Dropship')])
-        self.comp1.route_ids = [Command.link(mto_route.id)]
+        self._use_route_mto(self.comp1)
         self.finished.route_ids = [Command.link(dropship_route.id)]
 
         partner = self.env['res.partner'].create({
@@ -213,13 +223,9 @@ class TestSubcontractingDropshippingFlows(TestMrpSubcontractingCommon, TestStock
         self.assertEqual(po.order_line.qty_received, 2)
 
         # return 1 x P_finished to the stock location
-        return_form = Form(self.env['stock.return.picking'].with_context(active_ids=delivery.ids, active_id=delivery.id, active_model='stock.picking'))
-        with return_form.product_return_moves.edit(0) as line:
-            line.quantity = 1.0
-        return_wizard = return_form.save()
-        delivery_return01 = return_wizard._create_return()
-        delivery_return01.move_line_ids.quantity = 1.0
-        delivery_return01.move_ids.picked = True
+        delivery_return01 = delivery._create_return()
+        delivery_return01.move_ids[0].product_uom_qty = 1.0
+        delivery_return01.action_assign()
         delivery_return01.location_dest_id = self.warehouse.lot_stock_id
         delivery_return01.button_validate()
 
@@ -228,14 +234,10 @@ class TestSubcontractingDropshippingFlows(TestMrpSubcontractingCommon, TestStock
         self.assertEqual(po.order_line.qty_received, 2, 'One product has been returned to the stock location, so we should still consider it as received')
 
         # return 1 x P_finished to the supplier location
-        return_form = Form(self.env['stock.return.picking'].with_context(active_ids=delivery.ids, active_id=delivery.id, active_model='stock.picking'))
-        with return_form.product_return_moves.edit(0) as line:
-            line.quantity = 1.0
-        return_wizard = return_form.save()
-        delivery_return02 = return_wizard._create_return()
+        delivery_return02 = delivery._create_return()
+        delivery_return02.move_ids[0].product_uom_qty = 1.0
         delivery_return02.location_dest_id = dropship_picking_type.default_location_src_id
-        delivery_return02.move_line_ids.quantity = 1.0
-        delivery_return02.move_ids.picked = True
+        delivery_return02.action_assign()
         delivery_return02.button_validate()
 
         self.assertEqual(delivery_return02.state, 'done')
@@ -298,6 +300,7 @@ class TestSubcontractingDropshippingFlows(TestMrpSubcontractingCommon, TestStock
         Check that depending on the context, the right route is shown on the report.
         """
         route_buy = self.env.ref('purchase_stock.route_warehouse0_buy')
+        route_buy.product_selectable = True
         dropship_route = self.env['stock.route'].search([('name', '=', 'Dropship')], limit=1)
         warehouse = self.env['stock.warehouse'].search([], limit=1)
         warehouse.manufacture_pull_id.route_id.write({'sequence': 20})
@@ -392,13 +395,8 @@ class TestSubcontractingDropshippingFlows(TestMrpSubcontractingCommon, TestStock
         vendor = self.env['res.partner'].create([
             {'name': 'vendor'},
         ])
-        route_mto = self.env.ref('stock.route_warehouse0_mto')
+        route_mto = self.route_mto
         route_mto.active = True
-        analytic_plan = self.env['account.analytic.plan'].create({'name': 'Test Plan'})
-        analytic_account = self.env['account.analytic.account'].create({
-            'name': 'Test AA',
-            'plan_id': analytic_plan.id,
-        })
         component = self.env['product.product'].create([{
             'name': 'Common Component',
             'is_storable': True,
@@ -430,14 +428,12 @@ class TestSubcontractingDropshippingFlows(TestMrpSubcontractingCommon, TestStock
                     'name': finished_products[0].name,
                     'product_uom_qty': 2,
                     'product_uom_id': uom_unit.id,
-                    'analytic_distribution': {analytic_account.id: 100},
                 }),
                 Command.create({
                     'product_id': finished_products[1].id,
                     'name': finished_products[1].name,
                     'product_uom_qty': 2,
                     'product_uom_id': uom_unit.id,
-                    'analytic_distribution': {analytic_account.id: 100},
                 }),
             ],
         })
@@ -450,7 +446,6 @@ class TestSubcontractingDropshippingFlows(TestMrpSubcontractingCommon, TestStock
         self.assertTrue(po_vendor)
         self.assertEqual(len(po_vendor.order_line), 1)
         self.assertEqual(sum(po_vendor.order_line.mapped('product_qty')), 4)
-        self.assertEqual(po_vendor.order_line.analytic_distribution, so.order_line[0].analytic_distribution)
         po_vendor.button_confirm()
         self.assertEqual(len(po_vendor.order_line.move_ids), 1)
         self.assertFalse(po_vendor.order_line.move_ids.production_group_id)
@@ -462,7 +457,7 @@ class TestSubcontractingDropshippingFlows(TestMrpSubcontractingCommon, TestStock
         the final product (with a dropshipped component).
         """
 
-        portal_user = self.env['res.users'].create({
+        portal_user = self.env['res.users'].sudo().create({
             'name': 'portal user (subcontractor)',
             'partner_id': self.subcontractor_partner1.id,
             'login': 'subcontractor',
@@ -602,6 +597,9 @@ class TestSubcontractingDropshippingFlows(TestMrpSubcontractingCommon, TestStock
         bill.action_post()
         # The AVCO cost must be updated to bill price + component cost = $10 + $2 = $12.
         self.assertAlmostEqual(final_product.standard_price, 12.0, places=2)
+        partial_valuation = dropship_picking.move_ids._get_value_from_account_move(0.5)
+        self.assertEqual(partial_valuation['quantity'], 0.5)
+        self.assertAlmostEqual(partial_valuation['value'], 6.0, places=2)
 
     def test_dropshipped_resupply_source_purchase(self):
         """

@@ -2,7 +2,6 @@ import { registry } from "@web/core/registry";
 import { stepUtils } from "@web_tour/tour_utils";
 
 registry.category("web_tour.tours").add("hr_skills_event_onsite_tour", {
-    url: "/odoo",
     steps: () => [
         stepUtils.showAppsMenuItem(),
         {
@@ -17,7 +16,7 @@ registry.category("web_tour.tours").add("hr_skills_event_onsite_tour", {
         },
         {
             content: "Go to Resume Tab",
-            trigger: "a.nav-link[name='resume']",
+            trigger: "button.nav-link[name='resume']",
             run: "click",
         },
         {
@@ -66,14 +65,19 @@ registry.category("web_tour.tours").add("hr_skills_event_onsite_tour", {
             run: "click",
         },
         {
-            content: "Select External course type to refresh the event dropdown",
-            trigger: "input[id='radio_field_0_external']",
+            content: "Leave and go back to Training tab to refresh the event dropdown",
+            trigger: "span.o_selection_badge:contains('Education')",
             run: "click",
         },
         {
-            content: "Select Onsite course type",
-            trigger: "input[id='radio_field_0_onsite']",
+            trigger: "span.active:contains('Education')"
+        },
+        {
+            trigger: "span.o_selection_badge:contains('Training')",
             run: "click",
+        },
+        {
+            trigger: "span.active:contains('Training')"
         },
         {
             content: "Open dropdown menu",
@@ -81,14 +85,8 @@ registry.category("web_tour.tours").add("hr_skills_event_onsite_tour", {
             run: "click",
         },
         {
-            content: "Ensure we now have the new event as an option",
-            trigger: "div[name='event_id'] ul",
-            async run() {
-                const liList = document.querySelectorAll("div[name='event_id'] ul>li");
-                if (liList.length !== 2) {
-                    throw new Error(`Expected 2 items, found ${liList.length}`);
-                }
-            },
+            content: "Ensure new event is visible in the dropdown",
+            trigger: ".modal-content .dropdown-item:contains('Event1')",
         },
         {
             content: "Save the resume line with the event",

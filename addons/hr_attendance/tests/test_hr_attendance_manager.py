@@ -23,7 +23,7 @@ class TestAttendanceManager(TransactionCase):
         })
         cls.marc_employee.attendance_manager_id = cls.marc
 
-        cls.ryan = new_test_user(cls.env, login='ryan', groups='base.group_user,hr_attendance.group_hr_attendance_own_reader')
+        cls.ryan = new_test_user(cls.env, login='ryan', groups='base.group_user')
 
         # Create another employee
         cls.abigail_employee, cls.ryan_employee = cls.env['hr.employee'].create([
@@ -73,23 +73,33 @@ class TestAttendanceManager(TransactionCase):
 
     def test_employee_attendance_smart_button(self):
         """
-        Ensures that the attendance smart button correctly displays and reacts depending on the user's role:
-            - Users with the "see own attendance" (`hr_attendance.group_hr_attendance_own_reader`) group
-            can only view their own attendances
-            - Users with the "attendance officers" (`hr_attendance.group_hr_attendance_officer`) group
-            can view everyone's attendances
+        Ensures that attendance visibility depends correctly on the user's role:
+            - Users with the "see own attendance" (`hr_attendance.group_hr_attendance_own_reader`)
+        group can only see their own attendances
+            - Users without any group cannot see anyone's attendances
+            - Users with the "attendance officers" (`hr_attendance.group_hr_attendance_officer`)
+        group can see everyone's attendances
         """
-        marc_public_employee, ryan_public_employee = self.env['hr.employee.public'].browse((self.marc_employee.id, self.ryan_employee.id))
-
         # "See own attendances" group
-        self.assertFalse(marc_public_employee.with_user(self.ryan).action_open_last_month_attendances())
-        self.assertTrue(ryan_public_employee.with_user(self.ryan).action_open_last_month_attendances())
+        self.assertFalse(self.marc_employee.with_user(self.ryan).display_attendances)
+        self.assertTrue(self.ryan_employee.with_user(self.ryan).display_attendances)
+
+        # No attendance-related group
+        self.ryan.group_ids = [
+            Command.unlink(self.env.ref('hr_attendance.group_hr_attendance_own_reader').id),
+            Command.unlink(self.env.ref('base.group_user').id),
+        ]
+        self.assertFalse(self.marc_employee.with_user(self.ryan).display_attendances)
+        self.assertFalse(self.ryan_employee.with_user(self.ryan).display_attendances)
 
         # Attendance Officer
-        self.ryan.group_ids = [Command.link(self.env.ref('hr_attendance.group_hr_attendance_officer').id)]
+        self.ryan.group_ids = [
+            Command.link(self.env.ref('hr_attendance.group_hr_attendance_officer').id),
+            Command.link(self.env.ref('base.group_user').id),
+        ]
         self.marc_employee.attendance_manager_id = self.ryan.id
-        self.assertTrue(marc_public_employee.with_user(self.ryan).action_open_last_month_attendances())
-        self.assertTrue(ryan_public_employee.with_user(self.ryan).action_open_last_month_attendances())
+        self.assertTrue(self.marc_employee.with_user(self.ryan).display_attendances)
+        self.assertTrue(self.ryan_employee.with_user(self.ryan).display_attendances)
 
     def test_attendance_officer_without_hr_access_can_open_employees_menu(self):
         """The Attendance app's "Overview > Employees" menu must stay usable by a user

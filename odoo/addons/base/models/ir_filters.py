@@ -2,12 +2,13 @@
 import ast
 
 from odoo import api, fields, models
+from odoo.fields import Domain
 from odoo.tools.misc import clean_context
 
 
 class IrFilters(models.Model):
     _name = 'ir.filters'
-    _description = 'Filters'
+    _description = 'Filter'
     _order = 'model_id, name, id desc'
 
     name = fields.Char(string='Filter Name', required=True)
@@ -64,7 +65,7 @@ class IrFilters(models.Model):
         for vals in vals_list:
             if vals.get('embedded_parent_res_id') == 0:
                 del vals['embedded_parent_res_id']
-        return [dict(vals, name=self.env._("%s (copy)", ir_filter.name)) for ir_filter, vals in zip(self, vals_list)]
+        return vals_list
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -79,21 +80,21 @@ class IrFilters(models.Model):
             self._sanitize_shared_context()
         return new_filter
 
-    def _get_eval_domain(self):
+    def _get_eval_domain(self) -> Domain:
         try:
-            return ast.literal_eval(self.domain)
+            return Domain(ast.literal_eval(self.domain))
         except ValueError as e:
-            raise ValueError("Invalid domain: {self.domain}") from e
+            raise ValueError(f"Invalid domain: {self.domain}") from e
 
     @api.model
-    def _get_action_domain(self, action_id=None, embedded_action_id=None, embedded_parent_res_id=None):
+    def _get_action_domain(self, action_id=None, embedded_action_id=None, embedded_parent_res_id=None) -> Domain:
         """Return a domain component for matching filters that are visible in the
            same context (menu/view) as the given action."""
-        action_condition = ('action_id', 'in', [action_id, False]) if action_id else ('action_id', '=', False)
-        embedded_condition = ('embedded_action_id', '=', embedded_action_id) if embedded_action_id else ('embedded_action_id', '=', False)
-        embedded_parent_res_id_condition = ('embedded_parent_res_id', '=', embedded_parent_res_id) if embedded_action_id and embedded_parent_res_id else ('embedded_parent_res_id', 'in', [0, False])
+        action_condition = Domain('action_id', 'in', [action_id or False, False])
+        embedded_condition = Domain('embedded_action_id', '=', embedded_action_id or False)
+        embedded_parent_res_id_condition = Domain('embedded_parent_res_id', '=', embedded_parent_res_id if embedded_action_id and embedded_parent_res_id else False)
 
-        return [action_condition, embedded_condition, embedded_parent_res_id_condition]
+        return action_condition & embedded_condition & embedded_parent_res_id_condition
 
     @api.model
     def get_filters(self, model, action_id=None, embedded_action_id=None, embedded_parent_res_id=None):
@@ -114,7 +115,7 @@ class IrFilters(models.Model):
         user_context = self.env['res.users'].context_get()
         action_domain = self._get_action_domain(action_id, embedded_action_id, embedded_parent_res_id)
         return self.with_context(user_context).search_read(
-            action_domain + [('model_id', '=', model), ('user_ids', 'in', [self.env.uid, False])],
+            action_domain & Domain('model_id', '=', model) & Domain('user_ids', 'in', [self.env.uid, False]),
             ['name', 'is_default', 'domain', 'context', 'user_ids', 'sort', 'embedded_action_id', 'embedded_parent_res_id'],
         )
 

@@ -2,7 +2,7 @@ import { Interaction } from '@web/public/interaction';
 import { registry } from '@web/core/registry';
 
 export class ProductVariantPreview extends Interaction {
-    static selector = "#o_wsale_products_grid";
+    static selector = "#o_wsale_products_grid, .s_dynamic_snippet_products .carousel-inner";
 
     dynamicContent = {
         _window: {
@@ -106,7 +106,7 @@ export class ProductVariantPreview extends Interaction {
 
             // ---- Phase 1: Initiate the values needed for each attribute previewer ---------------
             // Split into two sub-loops to avoid a forced reflow per product:
-            
+
             // ---- Phase 1a: all DOM writes (resetDisplay, textContent, classList) ----------------
             for (const attributePreviewer of attributePreviewers) {
                 this._resetDisplay(attributePreviewer);

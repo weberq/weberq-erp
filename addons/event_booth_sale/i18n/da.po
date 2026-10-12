@@ -9,17 +9,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-06 22:11+0000\n"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-09-09 14:05+0000\n"
 "Last-Translator: \"Kira Petersen François (peti)\" <peti@odoo.com>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-master/"
 "event_booth_sale/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: event_booth_sale
+#: model:ir.module.module,description:base.module_event_booth_sale
+msgid ""
+"\n"
+"Sell your event booths and track payments on sale orders.\n"
+msgstr ""
 
 #. module: event_booth_sale
 #: model_terms:ir.ui.view,arch_db:event_booth_sale.event_booth_view_form_from_event
@@ -68,11 +75,6 @@ msgstr "Stande"
 #: model:ir.model.fields,field_description:event_booth_sale.field_sale_order_line__event_booth_category_id
 msgid "Booths Category"
 msgstr "Standkategori"
-
-#. module: event_booth_sale
-#: model_terms:ir.ui.view,arch_db:event_booth_sale.event_booth_configurator_view_form
-msgid "Cancel"
-msgstr "Annullér"
 
 #. module: event_booth_sale
 #: model:ir.model.fields,field_description:event_booth_sale.field_sale_order_line__event_booth_ids
@@ -137,7 +139,7 @@ msgstr "Kunde"
 #. module: event_booth_sale
 #: model_terms:ir.ui.view,arch_db:event_booth_sale.event_booth_registration_view_form
 msgid "Details"
-msgstr "Detaljer"
+msgstr "Detaljer:"
 
 #. module: event_booth_sale
 #: model:ir.model.fields,field_description:event_booth_sale.field_account_move__display_name
@@ -191,6 +193,11 @@ msgid "Event Booth Template"
 msgstr "Eventstandskabelon"
 
 #. module: event_booth_sale
+#: model:ir.module.module,shortdesc:base.module_event_booth_sale
+msgid "Events Booths Sales"
+msgstr ""
+
+#. module: event_booth_sale
 #: model:ir.model.fields,field_description:event_booth_sale.field_event_booth__sale_order_line_id
 msgid "Final Sale Order Line"
 msgstr "Sidste salgsordrelinje"
@@ -235,6 +242,11 @@ msgstr "Sidst opdateret af"
 #: model:ir.model.fields,field_description:event_booth_sale.field_event_booth_registration__write_date
 msgid "Last Updated on"
 msgstr "Sidst opdateret den"
+
+#. module: event_booth_sale
+#: model:ir.module.module,summary:base.module_event_booth_sale
+msgid "Manage event booths sale"
+msgstr ""
 
 #. module: event_booth_sale
 #. odoo-python
@@ -306,7 +318,7 @@ msgstr "Produkt"
 #. module: event_booth_sale
 #: model:ir.model,name:event_booth_sale.model_product_product
 msgid "Product Variant"
-msgstr "Produktvariant"
+msgstr "Varevariant"
 
 #. module: event_booth_sale
 #: model_terms:ir.ui.view,arch_db:event_booth_sale.event_booth_view_form_from_event
@@ -355,9 +367,9 @@ msgid ""
 "\"Event Booth\"."
 msgstr ""
 "\"service_tracking\" for produktskabelonen %(product_template_name)s kan "
-"ikke ændres, da en af dens varianter er knyttet til eventstandskategorien %"
-"(event_booth_category_name)s. \"service_tracking\" skal derfor forblive "
-"\"Eventstand\"."
+"ikke ændres, da en af dens varianter er knyttet til "
+"arrangementstandskategorien %(event_booth_category_name)s. "
+"\"service_tracking\" skal derfor forblive \"Arrangementstand\"."
 
 #. module: event_booth_sale
 #. odoo-python
@@ -376,13 +388,13 @@ msgid ""
 "The product, %(product_name)s , is used for Event Booth, it must have "
 "service_tracking set to \"Event Booth\"."
 msgstr ""
-"Produktet %(product_name)s bruges til \"Eventstand\", og service_tracking "
-"skal derfor være indstillet til \"Eventstand\"."
+"Produktet %(product_name)s bruges til \"Arrangementstand\", og "
+"service_tracking skal derfor være indstillet til \"Arrangementstand\"."
 
 #. module: event_booth_sale
 #: model:ir.model.constraint,message:event_booth_sale.constraint_event_booth_registration_unique_registration
 msgid "There can be only one registration for a booth by sale order line"
-msgstr "Det er kun muligt at reservere én stand pr. ordrelinje"
+msgstr "Det er kun muligt at reservere én stand pr. ordrelinje."
 
 #. module: event_booth_sale
 #: model_terms:ir.ui.view,arch_db:event_booth_sale.event_booth_view_tree_from_event

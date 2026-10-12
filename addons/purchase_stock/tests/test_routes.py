@@ -1,7 +1,8 @@
 from odoo import Command
-from odoo.tests import Form, TransactionCase
+from odoo.tests import tagged, Form, TransactionCase
 
 
+@tagged('at_install', '-post_install')  # LEGACY at_install
 class TestRoutes(TransactionCase):
 
     def test_allow_rule_creation_for_route_without_company(self):
@@ -14,12 +15,12 @@ class TestRoutes(TransactionCase):
 
         location_1 = self.env['stock.location'].create({
             'name': 'loc1',
-            'location_id': warehouse.id
+            'location_id': warehouse.lot_stock_id.id
         })
 
         location_2 = self.env['stock.location'].create({
             'name': 'loc2',
-            'location_id': warehouse.id
+            'location_id': warehouse.lot_stock_id.id
         })
 
         receipt_1 = self.env['stock.picking.type'].create({
@@ -78,7 +79,7 @@ class TestRoutes(TransactionCase):
         self.assertTrue(warehouse.buy_pull_id.active)
         self.assertIn(warehouse, route.warehouse_ids)
 
-        route.warehouse_ids = False
+        route.write({'warehouse_selectable': False, 'warehouse_ids': [Command.clear()]})
         self.assertFalse(warehouse.buy_pull_id.active)
 
         # clear cache to fetch updated values
@@ -93,6 +94,8 @@ class TestRoutes(TransactionCase):
         wh.buy_to_resupply = False
         # Invalidate recordset to avoid cached `buy_to_resupply`
         wh.invalidate_recordset(["buy_to_resupply"])
+        # Creating a new warehouse because if buy_route.warehouse_ids is empty and warehouse_selectable = True, it applies to all warehouses
+        self.env['stock.warehouse'].sudo().create({'name': 'WH 2', 'code': 'WH2'})
         self.assertFalse(wh.buy_to_resupply)
         self.assertNotIn(wh, buy_route.warehouse_ids)
 
@@ -131,7 +134,6 @@ class TestRoutes(TransactionCase):
 
         move = po.picking_ids.move_ids
         self.assertEqual(move.location_dest_id, sub_location, "destination on move should be the sub-location")
-        self.assertEqual(move.location_final_id, sub_location, "location_final_id should be the sub-location")
 
         forecast = product.with_context(location=sub_location.id).virtual_available
         self.assertEqual(forecast, 10.0, "forecasted quantity should increment to 10.0 units")

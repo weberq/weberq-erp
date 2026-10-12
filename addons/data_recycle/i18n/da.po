@@ -3,23 +3,22 @@
 # * data_recycle
 #
 # "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
-# Weblate <noreply-mt-weblate@weblate.org>, 2026.
 # "Kira Petersen François (peti)" <peti@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:35+0000\n"
-"PO-Revision-Date: 2026-08-02 23:30+0000\n"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-09-09 13:58+0000\n"
 "Last-Translator: \"Kira Petersen François (peti)\" <peti@odoo.com>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-master/"
 "data_recycle/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: data_recycle
 #: model_terms:ir.ui.view,arch_db:data_recycle.notification
@@ -53,6 +52,21 @@ msgid "Archive"
 msgstr "Arkivér"
 
 #. module: data_recycle
+#: model_terms:ir.ui.view,arch_db:data_recycle.view_data_recycle_record_list
+msgid "Archive Suggestion"
+msgstr "Arkivér forslag"
+
+#. module: data_recycle
+#: model_terms:ir.ui.view,arch_db:data_recycle.view_data_recycle_record_list
+msgid "Archive Suggestions"
+msgstr "Arkivér forslag"
+
+#. module: data_recycle
+#: model_terms:ir.ui.view,arch_db:data_recycle.view_data_recycle_record_search
+msgid "Archived"
+msgstr "Arkiveret"
+
+#. module: data_recycle
 #: model:ir.model.fields.selection,name:data_recycle.selection__data_recycle_model__recycle_mode__automatic
 msgid "Automatic"
 msgstr "Automatisk"
@@ -71,7 +85,7 @@ msgstr "Konfiguration"
 #: model_terms:ir.actions.act_window,help:data_recycle.action_data_recycle_record
 #: model_terms:ir.actions.act_window,help:data_recycle.action_data_recycle_record_notification
 msgid "Configure rules to identify records to clean"
-msgstr "Konfigurér regler for identifikation af post, der skal renses"
+msgstr "Konfigurer regler for identifikation af datasæt til rensning"
 
 #. module: data_recycle
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_model__create_uid
@@ -88,7 +102,12 @@ msgstr "Oprettet den"
 #. module: data_recycle
 #: model:ir.ui.menu,name:data_recycle.menu_data_cleaning_root
 msgid "Data Cleaning"
-msgstr "Datarensning"
+msgstr "Data Rensning"
+
+#. module: data_recycle
+#: model:ir.module.module,shortdesc:base.module_data_recycle
+msgid "Data Recycle"
+msgstr ""
 
 #. module: data_recycle
 #: model:ir.actions.server,name:data_recycle.ir_cron_clean_records_ir_actions_server
@@ -123,16 +142,6 @@ msgid "Delta Unit"
 msgstr "Deltaenhed"
 
 #. module: data_recycle
-#: model_terms:ir.ui.view,arch_db:data_recycle.view_data_recycle_record_list
-msgid "Discard"
-msgstr "Kassér"
-
-#. module: data_recycle
-#: model_terms:ir.ui.view,arch_db:data_recycle.view_data_recycle_record_search
-msgid "Discarded"
-msgstr "Kasseret"
-
-#. module: data_recycle
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_model__display_name
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_record__display_name
 msgid "Display Name"
@@ -150,6 +159,12 @@ msgid "Filter"
 msgstr "Filter"
 
 #. module: data_recycle
+#: model:ir.module.module,description:base.module_data_recycle
+#: model:ir.module.module,summary:base.module_data_recycle
+msgid "Find old records and archive/delete them"
+msgstr ""
+
+#. module: data_recycle
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_model__id
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_record__id
 msgid "ID"
@@ -163,7 +178,7 @@ msgstr "Inkludér arkiverede"
 #. module: data_recycle
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_model__last_notification
 msgid "Last Notification"
-msgstr "Sidste meddelelse"
+msgstr "Sidste Notifikation"
 
 #. module: data_recycle
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_model__write_uid
@@ -220,33 +235,33 @@ msgstr "Ingen rensningsforslag"
 #. module: data_recycle
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_model__notify_frequency
 msgid "Notify"
-msgstr "Giv besked"
+msgstr "Underret"
 
 #. module: data_recycle
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_model__notify_frequency_period
 msgid "Notify Frequency Period"
-msgstr "Periode for meddelelseshyppighed"
+msgstr "Notifikation Frekvens Periode"
 
 #. module: data_recycle
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_model__notify_user_ids
 msgid "Notify Users"
-msgstr "Giv brugere besked"
+msgstr "Notificer Brugere"
 
 #. module: data_recycle
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_record__res_id
 msgid "Record ID"
-msgstr "Post-ID"
+msgstr "Datasæt ID"
 
 #. module: data_recycle
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_record__name
 msgid "Record Name"
-msgstr "Navn på post"
+msgstr "Datasæt Navn"
 
 #. module: data_recycle
 #: model_terms:ir.ui.view,arch_db:data_recycle.view_data_merge_model_form
 #: model_terms:ir.ui.view,arch_db:data_recycle.view_data_recycle_record_search
 msgid "Records"
-msgstr "Poster"
+msgstr "Datasæt"
 
 #. module: data_recycle
 #: model:ir.model.fields,field_description:data_recycle.field_data_recycle_model__records_to_recycle_count
@@ -305,6 +320,12 @@ msgid "Recyle Records Rules"
 msgstr "Regler for genbrug af poster"
 
 #. module: data_recycle
+#. odoo-javascript
+#: code:addons/data_recycle/static/src/cog_menu/data_refresh_cog_menu.xml:0
+msgid "Refresh"
+msgstr "Opdatér"
+
+#. module: data_recycle
 #: model:ir.ui.menu,name:data_recycle.menu_data_cleaning_config_rules
 msgid "Rules"
 msgstr "Regler"
@@ -322,7 +343,7 @@ msgstr "Vælg en model til konfiguration af genbrugshandlinger"
 #. module: data_recycle
 #: model:ir.model.constraint,message:data_recycle.constraint_data_recycle_model_check_notif_freq
 msgid "The notification frequency should be greater than 0"
-msgstr "Meddelelsesfrekvensen bør være større end 0"
+msgstr "Notifikations frekvensen bør være større end 0"
 
 #. module: data_recycle
 #. odoo-python
@@ -336,20 +357,22 @@ msgid "Time Field"
 msgstr "Tidsfelt"
 
 #. module: data_recycle
+#: model_terms:ir.ui.view,arch_db:data_recycle.view_data_recycle_record_list
+msgid "Unarchive Suggestion"
+msgstr "Fjern forslag fra arkiv"
+
+#. module: data_recycle
+#: model_terms:ir.ui.view,arch_db:data_recycle.view_data_recycle_record_list
+msgid "Unarchive Suggestions"
+msgstr "Fjern forslag fra arkiv"
+
+#. module: data_recycle
 #. odoo-python
 #: code:addons/data_recycle/models/data_recycle_record.py:0
 msgid "Undefined Name"
 msgstr "Udefineret navn"
 
 #. module: data_recycle
-#. odoo-javascript
-#: code:addons/data_recycle/static/src/views/data_recycle_list_view.xml:0
-msgid "Unselect"
-msgstr "Fravælg"
-
-#. module: data_recycle
-#. odoo-javascript
-#: code:addons/data_recycle/static/src/views/data_recycle_list_view.xml:0
 #: model_terms:ir.ui.view,arch_db:data_recycle.view_data_recycle_record_list
 msgid "Validate"
 msgstr "Validér"
@@ -378,4 +401,10 @@ msgstr "her"
 #. module: data_recycle
 #: model_terms:ir.ui.view,arch_db:data_recycle.notification
 msgid "records to clean with the '"
-msgstr "poster, der skal renses med '"
+msgstr "datasæt at rense med '"
+
+msgid "Discard"
+msgstr "Kassér"
+
+msgid "Discarded"
+msgstr "Kasseret"

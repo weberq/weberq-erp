@@ -2,23 +2,22 @@
 # This file contains the translation of the following modules:
 # * spreadsheet_dashboard_account
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-06 18:25+0000\n"
-"Last-Translator: Rosen Vladimirov <vladimirov.rosen@gmail.com>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 20:26+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "spreadsheet_dashboard_account/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
@@ -29,20 +28,12 @@ msgstr " дни"
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "# days"
-msgstr "Брой дни"
-
-#. module: spreadsheet_dashboard_account
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
-msgid "380 days"
-msgstr "380 дни"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Amount"
 msgstr "Количество"
 
@@ -51,33 +42,29 @@ msgstr "Количество"
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Average Invoice"
-msgstr "Средна фактура"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "COGS"
-msgstr "COGS"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Country"
 msgstr "Държава"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Current year"
-msgstr "Текуща година"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Customer"
 msgstr "Клиент"
 
@@ -86,19 +73,17 @@ msgstr "Клиент"
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "DSO"
-msgstr "DSO"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Date"
 msgstr "Дата"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Income"
 msgstr "Приход"
 
@@ -112,7 +97,6 @@ msgstr "Фактурирани"
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Invoiced by Month"
 msgstr "Фактурирани по месец"
 
@@ -131,37 +115,38 @@ msgstr "Счетоводно отчитане"
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "KPI - Average Invoice"
-msgstr "KPI - Средна фактура"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "KPI - DSO"
-msgstr "KPI - DSO"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "KPI - Income"
-msgstr "KPI - Приходи"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "KPI - Invoice Count"
-msgstr "KPI - Брой фактури"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "KPI - Unpaid Invoices"
-msgstr "KPI - Неплатени фактури"
+msgstr ""
+
+#. module: spreadsheet_dashboard_account
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
+msgid "Map"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
@@ -172,7 +157,6 @@ msgstr "Период"
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Product"
 msgstr "Продукт"
 
@@ -184,56 +168,62 @@ msgstr "Категория продукт"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
-msgid "Ratio"
-msgstr "Съотношение"
-
-#. module: spreadsheet_dashboard_account
-#. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Receivable"
 msgstr "Вземания"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Reference"
 msgstr "Идентификатор"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Revenue"
 msgstr "Приход"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Salesperson"
 msgstr "Търговец"
 
 #. module: spreadsheet_dashboard_account
+#: model:ir.module.module,description:base.module_spreadsheet_dashboard_account
+#: model:ir.module.module,summary:base.module_spreadsheet_dashboard_account
+msgid "Spreadsheet"
+msgstr ""
+
+#. module: spreadsheet_dashboard_account
+#: model:ir.module.module,shortdesc:base.module_spreadsheet_dashboard_account
+msgid "Spreadsheet dashboard for accounting"
+msgstr ""
+
+#. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Status"
 msgstr "Състояние"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
-msgid "Top Categories"
-msgstr "Топ категории"
+#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
+msgid "Top 50"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
+msgid "Top Categories"
+msgstr ""
+
+#. module: spreadsheet_dashboard_account
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
 msgid "Top Countries"
-msgstr "Топ страни"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
@@ -253,15 +243,8 @@ msgstr "Топ продукти"
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
-msgid "Top Salespeople"
-msgstr "Топ търговци"
-
-#. module: spreadsheet_dashboard_account
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "in current year"
-msgstr "през текущата година"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript

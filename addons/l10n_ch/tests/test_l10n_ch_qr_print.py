@@ -11,6 +11,8 @@ _logger = logging.getLogger(__name__)
 @tagged('post_install_l10n', 'post_install', '-at_install')
 class QRPrintTest(AccountTestInvoicingCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     @AccountTestInvoicingCommon.setup_country('ch')
     def setUpClass(cls):
@@ -22,7 +24,7 @@ class QRPrintTest(AccountTestInvoicingCommon):
         })
         # The bank account must be QR-compatible
         cls.qr_bank_account = cls.env['res.partner.bank'].create({
-            'acc_number': "CH4431999123000889012",
+            'account_number': "CH4431999123000889012",
             'partner_id': cls.env.company.partner_id.id,
             'allow_out_payment': True,
         })

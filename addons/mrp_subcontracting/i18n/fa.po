@@ -2,40 +2,50 @@
 # This file contains the translation of the following modules:
 # * mrp_subcontracting
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# سید سعید محمودزاده حسینی <ssmhos@gmail.com>, 2026.
-# Aliraza Habibitanha <alireza.habibitanha@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# Odoo Translation Bot <c3p@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-09 11:32+0000\n"
-"Last-Translator: Aliraza Habibitanha <alireza.habibitanha@gmail.com>\n"
-"Language-Team: Persian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-25 17:38+0000\n"
+"PO-Revision-Date: 2026-10-08 15:33+0000\n"
+"Last-Translator: Odoo Translation Bot <c3p@odoo.com>\n"
+"Language-Team: Persian <https://translate.odoo.com/projects/odoo-20/"
 "mrp_subcontracting/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: mrp_subcontracting
 #. odoo-python
 #: code:addons/mrp_subcontracting/models/stock_warehouse.py:0
 msgid "%(name)s Sequence Resupply Subcontractor"
-msgstr "%(name)s توالی تأمین مجدد پیمانکار فرعی"
+msgstr ""
 
 #. module: mrp_subcontracting
 #. odoo-python
 #: code:addons/mrp_subcontracting/models/stock_warehouse.py:0
 msgid "%(name)s Sequence subcontracting"
-msgstr "%(name)s توالی پیمانکاری فرعی"
+msgstr ""
+
+#. module: mrp_subcontracting
+#. odoo-python
+#: code:addons/mrp_subcontracting/report/mrp_report_bom_structure.py:0
+msgid "%(qty)s To %(route)s"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.subcontracting_portal
 msgid "/my/productions"
+msgstr ""
+
+#. module: mrp_subcontracting
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_production_subcontracting_form_view
+msgid "<span class=\"o_stat_text\">Overview</span>"
 msgstr ""
 
 #. module: mrp_subcontracting
@@ -47,7 +57,13 @@ msgstr "همه"
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_mrp_production_serials
 msgid "Assign serial numbers to production order"
-msgstr "تخصیص شماره سریال به سفارش تولید"
+msgstr ""
+
+#. module: mrp_subcontracting
+#. odoo-javascript
+#: code:addons/mrp_subcontracting/static/src/components/bom_overview_table/mrp_bom_overview_table.xml:0
+msgid "Availabilities on subcontract location."
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_report_mrp_report_bom_structure
@@ -68,23 +84,17 @@ msgstr "نوع صورت مواد اولیه"
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_partner__bom_ids
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_users__bom_ids
 msgid "BoMs for which the Partner is one of the subcontractors"
-msgstr "لیست‌های موادی (BoM) که طرف همکار یکی از پیمانکاران فرعی است"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_mrp_production__bom_product_ids
 msgid "Bom Product"
-msgstr "محصول لیست مواد (BoM)"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_change_production_qty
 msgid "Change Production Qty"
 msgstr "تغییر تعداد تولید"
-
-#. module: mrp_subcontracting
-#. odoo-javascript
-#: code:addons/mrp_subcontracting/static/src/components/subcontracting_production_form_controller.js:0
-msgid "Check Availability"
-msgstr "بررسی موجود بودن"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,help:mrp_subcontracting.field_product_supplierinfo__is_subcontractor
@@ -96,8 +106,9 @@ msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_res_company
-msgid "Companies"
-msgstr "شرکت‌ها"
+#, fuzzy
+msgid "Company"
+msgstr "شرکت"
 
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_subcontracting_move_tree_view
@@ -113,7 +124,7 @@ msgstr "مخاطب"
 #. odoo-javascript
 #: code:addons/mrp_subcontracting/static/src/components/subcontracting_production_form_controller.js:0
 msgid "Create New Production"
-msgstr "ایجاد تولید جدید"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model,website_form_label:mrp_subcontracting.model_res_partner
@@ -123,7 +134,7 @@ msgstr "ایجاد مشتری"
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.portal_my_productions
 msgid "Deadline Date"
-msgstr "تاریخ سررسید"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.subcontracting_portal_production_form_view
@@ -153,6 +164,7 @@ msgstr "جزییات"
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_product_product__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_product_supplierinfo__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_report_mrp_report_bom_structure__display_name
+#: model:ir.model.fields,field_description:mrp_subcontracting.field_report_mrp_report_mo_overview__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_company__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_partner__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_location__display_name
@@ -160,8 +172,6 @@ msgstr "جزییات"
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_move_line__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_quant__display_name
-#: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_return_picking__display_name
-#: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_return_picking_line__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_rule__display_name
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__display_name
 msgid "Display Name"
@@ -175,14 +185,9 @@ msgid "Done"
 msgstr "انجام شده"
 
 #. module: mrp_subcontracting
-#: model_terms:ir.ui.view,arch_db:mrp_subcontracting.portal_my_home_productions
+#: model:portal.entry,description:mrp_subcontracting.portal_manufacturing_orders
 msgid "Follow manufacturing orders you have to fulfill"
-msgstr "سفارش‌های تولیدی که باید محقق کنید را دنبال کنید"
-
-#. module: mrp_subcontracting
-#: model:ir.model.fields,field_description:mrp_subcontracting.field_mrp_production__subcontracting_has_been_recorded
-msgid "Has been recorded?"
-msgstr "ثبت شده است؟"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_change_production_qty__id
@@ -192,6 +197,7 @@ msgstr "ثبت شده است؟"
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_product_product__id
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_product_supplierinfo__id
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_report_mrp_report_bom_structure__id
+#: model:ir.model.fields,field_description:mrp_subcontracting.field_report_mrp_report_mo_overview__id
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_company__id
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_partner__id
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_location__id
@@ -199,8 +205,6 @@ msgstr "ثبت شده است؟"
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_move_line__id
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_picking__id
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_quant__id
-#: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_return_picking__id
-#: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_return_picking_line__id
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_rule__id
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__id
 msgid "ID"
@@ -213,23 +217,22 @@ msgid ""
 "In order to manage stock accurately, subcontracting locations must be type "
 "Internal, linked to the appropriate company."
 msgstr ""
-"برای مدیریت دقیق موجودی کالا، مکان‌های پیمانکاران فرعی باید از نوع داخلی باشند "
-"و هر کدام به شرکت مرتبط لینک شوند."
 
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_production_subcontracting_filter
 msgid "Incoming transfer"
-msgstr "انتقال ورودی"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_location
-msgid "Inventory Locations"
-msgstr "مکان های انبارداری"
+#, fuzzy
+msgid "Inventory Location"
+msgstr "مکان موجودی"
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_quant__is_subcontract
 msgid "Is Subcontract"
-msgstr "قرارداد فرعی است"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,help:mrp_subcontracting.field_mrp_production__bom_product_ids
@@ -237,14 +240,22 @@ msgid ""
 "List of Products used in the BoM, used to filter the list of products in the "
 "subcontracting portal view"
 msgstr ""
-"لیست محصولات استفاده شده در لیست مواد که برای فیلتر کردن لیست محصولات در نمای "
-"پورتال پیمانکاری استفاده می‌شود"
+
+#. module: mrp_subcontracting
+#: model:ir.model,name:mrp_subcontracting.model_report_mrp_report_mo_overview
+msgid "MO Overview Report"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_partner__production_ids
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_users__production_ids
 msgid "MRP Productions for which the Partner is the subcontractor"
-msgstr "تولیدهای MRP که طرف همکار آنها پیمانکار فرعی است"
+msgstr ""
+
+#. module: mrp_subcontracting
+#: model:ir.module.module,shortdesc:base.module_mrp_subcontracting
+msgid "MRP Subcontracting"
+msgstr ""
 
 #. module: mrp_subcontracting
 #. odoo-python
@@ -262,7 +273,7 @@ msgid "Manufacturing Order"
 msgstr "سفارش تولید"
 
 #. module: mrp_subcontracting
-#: model_terms:ir.ui.view,arch_db:mrp_subcontracting.portal_my_home_productions
+#: model:portal.entry,name:mrp_subcontracting.portal_manufacturing_orders
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.subcontracting_portal_production_form_view
 msgid "Manufacturing Orders"
 msgstr "سفارشات تولید"
@@ -300,8 +311,6 @@ msgstr "سفارش"
 msgid ""
 "Please set a lot/serial for the currently opened subcontracting MO first."
 msgstr ""
-"لطفاً ابتدا یک سری ساخت/ شماره سریال برای سفارش تولید پیمانکاری فرعی فعلی "
-"تنظیم کنید."
 
 #. module: mrp_subcontracting
 #. odoo-python
@@ -310,8 +319,6 @@ msgid ""
 "Portal users cannot create a stock move with a state 'Done' or change the "
 "current state to 'Done'."
 msgstr ""
-"کاربران پورتال نمی‌توانند انتقالی با وضعیت «انجام شده» ایجاد کنند یا وضعیت "
-"فعلی را به «انجام شده» تغییر دهند."
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_move_line
@@ -331,8 +338,9 @@ msgstr "تولیدات"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_quant
-msgid "Quants"
-msgstr "کوانت‌ها"
+#, fuzzy
+msgid "Quant"
+msgstr "کوانت"
 
 #. module: mrp_subcontracting
 #. odoo-python
@@ -343,13 +351,19 @@ msgstr "آماده"
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.subcontracting_portal_production_form_view
 msgid "Register components for subcontracted product"
-msgstr "ثبت اجزاء برای محصول قرارداد فرعی"
+msgstr ""
 
 #. module: mrp_subcontracting
 #. odoo-python
 #: code:addons/mrp_subcontracting/models/stock_warehouse.py:0
 msgid "Replenish on Order (MTO)"
 msgstr "پر کردن به سفارش (ساخت به سفارش)"
+
+#. module: mrp_subcontracting
+#. odoo-javascript
+#: code:addons/mrp_subcontracting/static/src/components/subcontracting_production_form_controller.js:0
+msgid "Reserve"
+msgstr ""
 
 #. module: mrp_subcontracting
 #. odoo-python
@@ -371,16 +385,6 @@ msgid "Resupply Subcontractors"
 msgstr "پیمانکاران تامین مجدد"
 
 #. module: mrp_subcontracting
-#: model:ir.model,name:mrp_subcontracting.model_stock_return_picking
-msgid "Return Picking"
-msgstr "برداشت بازگشت"
-
-#. module: mrp_subcontracting
-#: model:ir.model,name:mrp_subcontracting.model_stock_return_picking_line
-msgid "Return Picking Line"
-msgstr "سطر برداشت بازگشت"
-
-#. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.portal_my_productions
 msgid "Scheduled Date"
 msgstr "تاریخ برنامه ریزی شده"
@@ -389,7 +393,7 @@ msgstr "تاریخ برنامه ریزی شده"
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_move__show_subcontracting_details_visible
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_picking__show_subcontracting_details_visible
 msgid "Show Subcontracting Details Visible"
-msgstr "نمایش جزئیات قرارداد فرعی قابل مشاهده"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.portal_my_productions
@@ -399,7 +403,7 @@ msgstr "مدرک مبدا"
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.portal_my_productions
 msgid "State"
-msgstr "وضعیت"
+msgstr "استان"
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_move
@@ -410,7 +414,7 @@ msgstr "انتقال موجودی"
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_partner__picking_ids
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_res_users__picking_ids
 msgid "Stock Pickings for which the Partner is the subcontractor"
-msgstr "برداشت موجودی که طرف همکار آن پیمانکار فرعی است"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_rule
@@ -418,15 +422,25 @@ msgid "Stock Rule"
 msgstr "قانون موجودی انبار"
 
 #. module: mrp_subcontracting
+#: model:ir.module.module,summary:base.module_mrp_subcontracting
+msgid "Subcontract Productions"
+msgstr ""
+
+#. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_product_supplierinfo__is_subcontractor
 msgid "Subcontracted"
 msgstr "پیمانکاری شده"
 
 #. module: mrp_subcontracting
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting.stock_picking_form_view
+msgid "Subcontracted Productions"
+msgstr ""
+
+#. module: mrp_subcontracting
 #. odoo-python
 #: code:addons/mrp_subcontracting/models/mrp_production.py:0
 msgid "Subcontracted manufacturing orders cannot be merged."
-msgstr "سفارش‌های تولید قرارداد فرعی (مونتاژ) را نمی‌توانید ادغام کنید."
+msgstr ""
 
 #. module: mrp_subcontracting
 #. odoo-python
@@ -451,17 +465,17 @@ msgstr "مکان های پیمانکاری"
 #: code:addons/mrp_subcontracting/models/stock_move.py:0
 #: code:addons/mrp_subcontracting/models/stock_picking.py:0
 msgid "Subcontracting MOs"
-msgstr "سفارش‌های تولید پیمانکاری فرعی"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_mto_pull_id
 msgid "Subcontracting MTO Rule"
-msgstr "قانون MTO قرارداد فرعی"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_pull_id
 msgid "Subcontracting MTS Rule"
-msgstr "قانون MTS قرارداد فرعی"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_type_id
@@ -471,12 +485,7 @@ msgstr "نوع عملیات پیمانکاری"
 #. module: mrp_subcontracting
 #: model:ir.actions.act_window,name:mrp_subcontracting.subcontracting_portal_view_production_action
 msgid "Subcontracting Portal"
-msgstr "پورتال قرارداد فرعی"
-
-#. module: mrp_subcontracting
-#: model_terms:ir.ui.view,arch_db:mrp_subcontracting.stock_picking_form_view
-msgid "Subcontracting Productions"
-msgstr "پیمانکاری فرعی تولیدها"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_warehouse__subcontracting_resupply_type_id
@@ -486,6 +495,7 @@ msgstr "نوع عملیات تامین مجدد پیمانکاری"
 #. module: mrp_subcontracting
 #. odoo-javascript
 #: code:addons/mrp_subcontracting/static/src/components/bom_overview_special_line/mrp_bom_overview_special_line.xml:0
+#, fuzzy
 msgid "Subcontracting:"
 msgstr "پیمانکاری:"
 
@@ -493,7 +503,7 @@ msgstr "پیمانکاری:"
 #. odoo-python
 #: code:addons/mrp_subcontracting/report/mrp_report_bom_structure.py:0
 msgid "Subcontracting: %s"
-msgstr "قرارداد فرعی: %s"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_mrp_production__subcontractor_id
@@ -510,6 +520,15 @@ msgid "Subcontractor Location"
 msgstr "مکان پیمانکار"
 
 #. module: mrp_subcontracting
+#. odoo-javascript
+#: code:addons/mrp_subcontracting/static/src/components/bom_overview_table/mrp_bom_overview_table.xml:0
+#: code:addons/mrp_subcontracting/static/src/components/mo_overview/mrp_mo_overview.xml:0
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mo_overview_content
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting.report_mrp_bom
+msgid "Subcontractor Stock"
+msgstr ""
+
+#. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_mrp_bom__subcontractor_ids
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.view_partner_mrp_subcontracting_filter
 msgid "Subcontractors"
@@ -523,7 +542,7 @@ msgstr "لیست قیمت تامین کننده"
 #. module: mrp_subcontracting
 #: model:ir.model.fields,field_description:mrp_subcontracting.field_stock_move__is_subcontract
 msgid "The move is a subcontract receipt"
-msgstr "این انتقال رسید قرارداد فرعی است"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model.fields,help:mrp_subcontracting.field_res_partner__property_stock_subcontractor
@@ -532,19 +551,23 @@ msgid ""
 "The stock location used as source and destination when sending        goods "
 "to this contact during a subcontracting process."
 msgstr ""
-"مکان موجودی که در فرآیند قرارداد فرعی به عنوان مبدأ و مقصد ارسال کالا به این "
-"مخاطب استفاده می‌شود."
 
 #. module: mrp_subcontracting
 #. odoo-python
 #: code:addons/mrp_subcontracting/models/mrp_production.py:0
 msgid "The subcontracted goods have already been received."
-msgstr "کالاهای پیمانکاری فرعی قبلاً دریافت شده‌اند."
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.portal_my_productions
 msgid "There are currently no productions for your account."
-msgstr "در حال حاضر تولیدی برای حساب شما وجود ندارد."
+msgstr ""
+
+#. module: mrp_subcontracting
+#. odoo-python
+#: code:addons/mrp_subcontracting/report/mrp_report_mo_overview.py:0
+msgid "To Order"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_subcontracting_move_form_view
@@ -558,9 +581,14 @@ msgid "Transfer"
 msgstr "انتقال"
 
 #. module: mrp_subcontracting
+#: model_terms:ir.ui.view,arch_db:mrp_subcontracting.mrp_production_subcontracting_form_view
+msgid "Transfers"
+msgstr ""
+
+#. module: mrp_subcontracting
 #: model:ir.model.fields,help:mrp_subcontracting.field_mrp_production__subcontractor_id
 msgid "Used to restrict access to the portal user through Record Rules"
-msgstr "برای محدود کردن دسترسی کاربر پورتال از طریق قوانین رکورد استفاده می‌شود"
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model:ir.model,name:mrp_subcontracting.model_stock_warehouse
@@ -574,26 +602,24 @@ msgid ""
 "You can not set a Bill of Material with operations or by-product line as "
 "subcontracting."
 msgstr ""
-"نمی‌توانید لیست مواد دارای سطر عملیات یا محصول جانبی را به عنوان قرارداد فرعی "
-"تنظیم کنید."
 
 #. module: mrp_subcontracting
 #. odoo-python
 #: code:addons/mrp_subcontracting/models/mrp_unbuild.py:0
 msgid "You can't unbuild a subcontracted Manufacturing Order."
-msgstr "نمی‌توانید سفارش تولید پیمانکاری شده را از هم گشایی کنید."
+msgstr ""
 
 #. module: mrp_subcontracting
 #. odoo-python
 #: code:addons/mrp_subcontracting/models/stock_location.py:0
 msgid "You cannot alter the company's subcontracting location"
-msgstr "نمی‌توانید محل قرارداد فرعی شرکت را تغییر دهید"
+msgstr ""
 
 #. module: mrp_subcontracting
 #. odoo-python
 #: code:addons/mrp_subcontracting/models/mrp_production.py:0
 msgid "You cannot write on fields %s in mrp.production."
-msgstr "شما مجوز نوشتن در فیلدهای %s در mrp.production را ندارید."
+msgstr ""
 
 #. module: mrp_subcontracting
 #: model_terms:ir.ui.view,arch_db:mrp_subcontracting.subcontracting_portal_production_form_view
@@ -604,4 +630,7 @@ msgstr "مثلا PO0032"
 #. odoo-python
 #: code:addons/mrp_subcontracting/controllers/portal.py:0
 msgid "state"
-msgstr "وضعیت"
+msgstr ""
+
+#~ msgid "Check Availability"
+#~ msgstr "بررسی موجود بودن"

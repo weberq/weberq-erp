@@ -10,13 +10,12 @@ from odoo.tools.float_utils import float_compare, float_is_zero
 
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
-    _rec_names_search = ['name', 'incoming_picking.name']
+    _rec_names_search = ('name', 'incoming_picking.name')
 
     move_line_raw_ids = fields.One2many(
         'stock.move.line', string="Detail Component", readonly=False,
         inverse='_inverse_move_line_raw_ids', compute='_compute_move_line_raw_ids'
     )
-    subcontracting_has_been_recorded = fields.Boolean("Has been recorded?", copy=False)  # TODO: remove in master
     subcontractor_id = fields.Many2one('res.partner', string="Subcontractor", help="Used to restrict access to the portal user through Record Rules")
     bom_product_ids = fields.Many2many('product.product', compute="_compute_bom_product_ids", help="List of Products used in the BoM, used to filter the list of products in the subcontracting portal view")
 
@@ -43,7 +42,7 @@ class MrpProduction(models.Model):
                 line_ids_to_delete.update(lines_to_delete.ids)
                 move.move_line_ids = lines
             for product_id, lines in line_by_product.items():
-                qty = sum(line.product_uom_id._compute_quantity(line.quantity, product_id.uom_id) for line in lines)
+                qty = sum(line.uom_id._compute_quantity(line.quantity, product_id.uom_id) for line in lines)
                 move = production._get_move_raw_values(product_id, qty, product_id.uom_id)
                 move['additional'] = True
                 production.move_raw_ids = [(0, 0, move)]

@@ -1,5 +1,5 @@
 import { MAIN_EMBEDDINGS } from "@html_editor/others/embedded_components/embedding_sets";
-import { EMBEDDED_COMPONENT_PLUGINS, MAIN_PLUGINS } from "@html_editor/plugin_sets";
+import { EMBEDDED_COMPONENT_PLUGINS } from "@html_editor/plugin_sets";
 import { isZwnbsp } from "@html_editor/utils/dom_info";
 import { describe, expect, test } from "@odoo/hoot";
 import {
@@ -16,16 +16,15 @@ import { setupEditor, testEditor } from "./_helpers/editor";
 import { deleteBackward, insertText } from "./_helpers/user_actions";
 import { getContent, setSelection } from "./_helpers/selection";
 import { execCommand } from "./_helpers/userCommands";
+import { expectElementCount } from "./_helpers/ui_expectations";
 import { expandToolbar } from "./_helpers/toolbar";
 import { nodeSize } from "@html_editor/utils/position";
 import { EmbeddedFilePlugin } from "@html_editor/others/embedded_components/plugins/embedded_file_plugin/embedded_file_plugin";
+import { FilePlugin } from "@html_editor/main/media/file_plugin";
 
 const configWithEmbeddedFile = {
-    Plugins: [
-        ...MAIN_PLUGINS.filter((P) => P.id !== "file"),
-        EmbeddedFilePlugin,
-        ...EMBEDDED_COMPONENT_PLUGINS,
-    ],
+    includePlugins: [EmbeddedFilePlugin, ...EMBEDDED_COMPONENT_PLUGINS],
+    excludePlugins: [FilePlugin],
     resources: { embedded_components: MAIN_EMBEDDINGS },
 };
 
@@ -34,7 +33,7 @@ const patchUpload = (editor) => {
         patchWithCleanup(editor.services.uploadLocalFiles, {
             async upload() {
                 resolve();
-                return [{ id: 1, name: "file.txt" }];
+                return [{ id: 1, name: "file.txt", mimetype: "text/plain" }];
             },
         });
     });
@@ -69,7 +68,7 @@ describe("file command", () => {
         expect(fileCard).toHaveStyle({ display: "inline-block" });
         expect(fileCard.firstElementChild).toHaveClass(["alert", "alert-info"]);
         // No download button in file card.
-        expect(".o_file_box .fa-download").toHaveCount(0);
+        expect(".o_file_box [data-icon='download']").toHaveCount(0);
     });
 
     describe("static file box interactions", () => {
@@ -258,6 +257,19 @@ describe("file command", () => {
             await press(["shift", "Enter"]);
             expect(getContent(fileNameEl)).toBe("file.txt[]");
         });
+
+        test("Should open the file viewer on file icon click", async () => {
+            const { editor } = await setupEditor("<p>[]<br></p>");
+            patchUpload(editor);
+
+            // Upload a file and wait until the file image is rendered.
+            execCommand(editor, "uploadFile");
+            const fileImage = await waitFor(".o_file_box .o_file_image");
+
+            // Click the file icon to open the file viewer
+            await click(fileImage);
+            await expectElementCount(".o-FileViewer", 1);
+        });
     });
 
     test.tags("desktop");
@@ -375,7 +387,7 @@ describe("document tab in media dialog", () => {
     describe("without File nor EmbeddedFile plugin", () => {
         test("Document tab is not available by default", async () => {
             const { editor } = await setupEditor("<p>[]<br></p>", {
-                config: { Plugins: MAIN_PLUGINS.filter((p) => p.id !== "file") },
+                config: { excludePlugins: [FilePlugin] },
             });
             execCommand(editor, "insertMedia");
             await animationFrame();
@@ -417,7 +429,7 @@ describe("powerbutton", () => {
         const { editor } = await setupEditor("<p>[]<br></p>");
         const mockedUpload = patchUpload(editor);
         // Click on the upload powerbutton.
-        await click(".power_button.fa-upload");
+        await click(".power_button[data-icon='upload']");
         await animationFrame();
         // Check that there's no media dialog.
         expect(".o_select_media_dialog").toHaveCount(0);
@@ -430,7 +442,7 @@ describe("powerbutton", () => {
         const { editor } = await setupEditor("<p>[]<br></p>", { config: configWithEmbeddedFile });
         const mockedUpload = patchUpload(editor);
         // Click on the upload powerbutton.
-        await click(".power_button.fa-upload");
+        await click(".power_button[data-icon='upload']");
         await animationFrame();
         // Check that there's no media dialog.
         expect(".o_select_media_dialog").toHaveCount(0);
@@ -494,6 +506,24 @@ test("Should delete the file box", async () => {
     expect(getContent(el)).toBe(
         `<p o-we-hint-text='Type "/" for commands' class="o-we-hint">[]<br></p>`
     );
+});
+
+test("Edit embedded file name using input", async () => {
+    const { editor } = await setupEditor("<p>[]<br></p>", {
+        config: configWithEmbeddedFile,
+    });
+    const mockedUpload = patchUpload(editor);
+    await insertText(editor, "/file");
+    await waitFor(".o-we-powerbox");
+    await press("Enter");
+    await mockedUpload;
+    await expectElementCount(".o_file_name_container", 1);
+    await click(".o_file_name_container");
+    const fileInput = queryOne(".o_file_box input");
+    fileInput.value = "test.txt";
+    await manuallyDispatchProgrammaticEvent(fileInput, "keydown", { key: "Enter" });
+    await animationFrame();
+    expect(".o_file_name").toHaveText("test.txt");
 });
 
 test("should show the updated file name in the link preview", async () => {

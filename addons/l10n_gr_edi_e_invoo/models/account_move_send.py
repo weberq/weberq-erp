@@ -20,7 +20,7 @@ class AccountMoveSend(models.AbstractModel):
             return
 
         parent_token = document._l10n_gr_edi_get_provider_parent_token()
-        proxy_user = invoice.company_id._l10n_gr_edi_get_proxy_user()
+        proxy_user = invoice.company_id._l10n_gr_edi_get_or_create_proxy_user()
 
         pdf_values = invoice_data.get('pdf_attachment_values')
         pdf_content = pdf_values and pdf_values.get('raw')

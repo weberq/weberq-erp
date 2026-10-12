@@ -3,7 +3,6 @@ import { Base } from "../related_models";
 import { accountTaxHelpers } from "@account/helpers/account_tax";
 import { _t } from "@web/core/l10n/translation";
 import { formatCurrency } from "@web/core/currency";
-import { computeComboItems } from "../utils/compute_combo_items";
 
 export class ProductTemplateAccounting extends Base {
     static pythonModel = "product.template";
@@ -15,7 +14,6 @@ export class ProductTemplateAccounting extends Base {
     prepareProductBaseLineForTaxesComputationExtraValues(opts = {}) {
         const { price = false, pricelist = false, fiscalPosition = false, priceExtra = 0 } = opts;
         const isVariant = Boolean(this?.product_tmpl_id);
-        const config = this.models["pos.config"].getFirst();
         const productTemplate = isVariant ? this.product_tmpl_id : this;
         const baseP = productTemplate.getPrice(
             pricelist,
@@ -25,7 +23,7 @@ export class ProductTemplateAccounting extends Base {
             isVariant ? this : false
         );
         const priceUnit = price || price === 0 ? price : baseP;
-        const currency = config.currency_id;
+        const currency = this.config.currency_id;
 
         let taxes = this.taxes_id;
 
@@ -82,24 +80,21 @@ export class ProductTemplateAccounting extends Base {
         const standardPrice = variant ? variant.standard_price : this.standard_price;
         const basePrice = variant ? variant.lst_price : this.list_price;
         let price = basePrice + (price_extra || 0);
+        const variantExtraPrice = variant ? variant.lst_price - productTmpl.list_price : 0;
+        const attributesExtraPrice = variantExtraPrice + (price_extra || 0);
 
         if (!pricelist) {
             return price;
         }
 
-        if (original_line && original_line.isLotTracked() && product) {
-            related_lines.push(
-                ...original_line.order_id.lines.filter((line) => line.product_id.id == product.id)
-            );
-            quantity = related_lines.reduce((sum, line) => sum + line.getQuantity(), 0);
-        }
-
         let rule = null;
+        let isVariantSpecificRule = false;
 
         // 1. Variant Rules
         if (product) {
             const productRules = pricelist.getRulesByProductId(product.id);
             rule = pricelist.findBestRule(productRules, quantity);
+            isVariantSpecificRule = Boolean(rule);
         }
 
         // 2. Template Rules
@@ -139,7 +134,7 @@ export class ProductTemplateAccounting extends Base {
             price = standardPrice;
         }
 
-        const posCurrency = this.models["pos.config"].getFirst().currency_id;
+        const posCurrency = this.config.currency_id;
         const pricelistCurrency = pricelist.currency_id;
         const needsCurrencyConversion =
             pricelistCurrency && posCurrency && pricelistCurrency.id !== posCurrency.id;
@@ -150,8 +145,14 @@ export class ProductTemplateAccounting extends Base {
 
         if (rule.compute_price === "fixed") {
             price = rule.fixed_price;
-        } else if (rule.compute_price === "percentage") {
-            price = price - price * ((rule.percent_price || 0) / 100);
+            const fixedPriceExtraPrice = isVariantSpecificRule
+                ? price_extra || 0
+                : attributesExtraPrice;
+            if (fixedPriceExtraPrice) {
+                price += needsCurrencyConversion
+                    ? fixedPriceExtraPrice * (pricelistCurrency.rate / posCurrency.rate)
+                    : fixedPriceExtraPrice;
+            }
         } else {
             var price_limit = price;
             price -= price * ((rule.price_discount || 0) / 100);
@@ -196,6 +197,14 @@ export class ProductTemplateAccounting extends Base {
         );
     }
 
+    getTaxDetails(opts = {}) {
+        const config = this.config;
+        const baseLine = this.getBaseLine(opts);
+        accountTaxHelpers.add_tax_details_in_base_line(baseLine, config.company_id);
+        accountTaxHelpers.round_base_lines_tax_details([baseLine], config.company_id);
+        return baseLine.tax_details;
+    }
+
     get displayPriceUnit() {
         const config = this.config;
         const price =
@@ -203,14 +212,6 @@ export class ProductTemplateAccounting extends Base {
                 ? this.getTaxDetails().total_included
                 : this.getTaxDetails().total_excluded;
         return formatCurrency(price, config.currency_id.id);
-    }
-
-    getTaxDetails(opts = {}) {
-        const config = this.config;
-        const baseLine = this.getBaseLine(opts);
-        accountTaxHelpers.add_tax_details_in_base_line(baseLine, config.company_id);
-        accountTaxHelpers.round_base_lines_tax_details([baseLine], config.company_id);
-        return baseLine.tax_details;
     }
 
     getComboTaxDetails(opts = {}) {
@@ -288,15 +289,112 @@ export class ProductTemplateAccounting extends Base {
         return taxDetails;
     }
 
-    getComboPrice(childLineConf = [], extraLineConf = [], pricelist = false) {
-        return computeComboItems(
-            this.product_variant_ids[0],
-            childLineConf,
-            pricelist,
-            this.models["decimal.precision"].getAll(),
-            this.models["product.template.attribute.value"].getAllBy("id"),
-            extraLineConf,
-            this.config.currency_id
+    getComboPrice(childLineConf = [], childLineExtra = [], pricelist = false) {
+        const comboItems = [];
+        const productTemplateAttributeValueById =
+            this.models["product.template.attribute.value"].getAllBy("id");
+        const decimalPrecision = this.models["decimal.precision"].getAll();
+        const isVariant = Boolean(this.product_tmpl_id);
+        const productTmpl = isVariant ? this.product_tmpl_id : this;
+        const variant = isVariant ? this : this.product_variant_ids?.[0] || false;
+        const parentLstPrice = productTmpl.getPrice(pricelist, 1, 0, false, variant);
+        let originalTotal = childLineConf.reduce((acc, conf) => {
+            const originalPrice = conf.combo_item_id.combo_id.base_price * conf.qty;
+            return acc + originalPrice;
+        }, 0);
+
+        const getAttributesPriceExtra = (attributeValueIds) =>
+            (attributeValueIds ?? [])
+                .filter((attr) => attr?.attribute_id?.create_variant !== "always")
+                .map((attr) => attr?.price_extra || 0)
+                .reduce((acc, price) => acc + price, 0);
+
+        let remainingTotal = parentLstPrice;
+        const ProductPrice =
+            this.config.currency_id || decimalPrecision.find((dp) => dp.name === "Product Price");
+        if (childLineConf[childLineConf.length - 1]?.qty > 1) {
+            childLineConf[childLineConf.length - 1].qty -= 1;
+            childLineConf.push({ ...childLineConf[childLineConf.length - 1], qty: 1 });
+        }
+        for (const conf of childLineConf) {
+            const comboItem = conf.combo_item_id;
+            const combo = comboItem.combo_id;
+            let priceUnit = ProductPrice.round((combo.base_price * parentLstPrice) / originalTotal);
+            remainingTotal -= priceUnit * conf.qty;
+            if (conf === childLineConf[childLineConf.length - 1]) {
+                priceUnit += remainingTotal;
+                remainingTotal = 0;
+            }
+            const attribute_value_ids = conf.configuration?.attribute_value_ids?.map(
+                (id) => productTemplateAttributeValueById[id]
+            );
+
+            const totalPriceExtra =
+                priceUnit + getAttributesPriceExtra(attribute_value_ids) + comboItem.extra_price;
+            comboItems.push({
+                combo_item_id: comboItem,
+                price_unit: totalPriceExtra,
+                attribute_value_ids:
+                    attribute_value_ids ||
+                    comboItem.product_id?.product_template_attribute_value_ids,
+                attribute_custom_values: conf.configuration?.attribute_custom_values || {},
+                qty: conf.qty,
+            });
+        }
+
+        if (remainingTotal !== 0) {
+            originalTotal = childLineExtra.reduce((acc, conf) => {
+                const originalPrice = conf.combo_item_id.combo_id.base_price * conf.qty;
+                return acc + originalPrice;
+            }, 0);
+        }
+
+        // Process extra child lines using combo 'base_price'
+        for (const extra of childLineExtra) {
+            const comboItem = extra.combo_item_id;
+            const combo = comboItem.combo_id;
+            let priceUnit = ProductPrice.round(combo.base_price);
+            if (remainingTotal !== 0) {
+                const remaining = ProductPrice.round(
+                    (combo.base_price * parentLstPrice) / originalTotal
+                );
+                priceUnit += remaining;
+                remainingTotal -= remaining * extra.qty;
+
+                if (comboItem.id == childLineExtra[childLineExtra.length - 1].combo_item_id.id) {
+                    priceUnit += remainingTotal / extra.qty;
+                }
+            }
+            const attribute_value_ids = extra.configuration?.attribute_value_ids.map(
+                (id) => productTemplateAttributeValueById[id]
+            );
+
+            const totalPriceExtra =
+                priceUnit + getAttributesPriceExtra(attribute_value_ids) + comboItem.extra_price;
+            comboItems.push({
+                combo_item_id: comboItem,
+                price_unit: totalPriceExtra,
+                attribute_value_ids:
+                    attribute_value_ids ||
+                    comboItem.product_id?.product_template_attribute_value_ids,
+                attribute_custom_values: extra.configuration?.attribute_custom_values || {},
+                qty: extra.qty,
+            });
+        }
+
+        let sequenceCounter = 0;
+        const mapSequence = this.combo_ids.reduce((acc, combo) => {
+            combo.combo_item_ids.forEach((item) => {
+                acc[item.id] = sequenceCounter++;
+            });
+            return acc;
+        }, {});
+
+        comboItems.sort(
+            (a, b) =>
+                (mapSequence[a.combo_item_id.id] ?? Infinity) -
+                (mapSequence[b.combo_item_id.id] ?? Infinity)
         );
+        return comboItems;
     }
 }

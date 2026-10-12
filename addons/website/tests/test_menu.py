@@ -6,10 +6,11 @@ from unittest.mock import Mock, patch
 from werkzeug.urls import url_parse
 
 from odoo.addons.http_routing.tests.common import MockRequest
-from odoo.tests import common
+from odoo.tests import tagged, common
 from odoo.exceptions import UserError
 
 
+@tagged('at_install', '-post_install')  # LEGACY at_install, fails post install
 class TestMenu(common.TransactionCase):
     def setUp(self):
         super(TestMenu, self).setUp()
@@ -34,7 +35,7 @@ class TestMenu(common.TransactionCase):
         Menu = self.env['website.menu']
         total_menu_items = Menu.search_count([])
 
-        top_menu = self.env['website'].get_current_website().menu_id
+        top_menu = self.env.ref('base.default_website').menu_id
         data = [
             {
                 'id': 'new-1',
@@ -51,7 +52,7 @@ class TestMenu(common.TransactionCase):
                 'is_mega_menu': False,
             }
         ]
-        Menu.save(1, {'data': data, 'to_delete': []})
+        Menu.save(self.ref('base.default_website'), {'data': data, 'to_delete': []})
 
         self.assertEqual(total_menu_items + 2, Menu.search_count([]), "Creating 2 new menus should create only 2 menus records")
 
@@ -71,7 +72,7 @@ class TestMenu(common.TransactionCase):
         # Ensure new website got a top menu
         total_menus = Menu.search_count([])
         Website.create({'name': 'new website'})
-        self.assertEqual(total_menus + 4, Menu.search_count([]), "New website's bootstraping should have duplicate default menu tree (Top/Home/Contactus/Sub Default Menu)")
+        self.assertEqual(total_menus + 3, Menu.search_count([]), "New website's bootstraping should have duplicate default menu tree (Top/Home/Sub Default Menu)")
 
     def test_04_specific_menu_translation(self):
         IrModuleModule = self.env['ir.module.module']
@@ -127,7 +128,7 @@ class TestMenu(common.TransactionCase):
 
     def test_06_menu_active(self):
         Menu = self.env['website.menu']
-        website_1 = self.env['website'].browse(1)
+        website_1 = self.env.ref('base.default_website')
         menu = Menu.create({
             'name': 'Page Specific menu',
             'url': '/contactus',
@@ -310,8 +311,37 @@ class TestMenu(common.TransactionCase):
         with self.assertRaises(UserError):
             self.main_menu.parent_id = self.another_menu.id
 
+    def test_menu_search(self):
+        Menu = self.env['website.menu']
+        page_url = '/page_specific'
+        website_id = self.ref('base.default_website')
+        page = self.env['website.page'].create({
+            'url': page_url,
+            'website_id': website_id,
+            # ir.ui.view properties
+            'name': 'Base',
+            'type': 'qweb',
+            'arch': '<div>Specific View</div>',
+            'key': 'test.specific_view',
+        })
+        page_specific_menu = Menu.create({
+            'name': 'Page Specific menu',
+            'page_id': page.id,
+            'website_id': website_id,
+        })
+        manual_url = 'https://external_url_menu'
+        manual_url_menu = Menu.create({
+            'name': 'External url menu',
+            'url': manual_url,
+            'website_id': website_id,
+        })
+        res = Menu.search([('url', '=', manual_url)])
+        self.assertEqual(res, manual_url_menu)
+        res = Menu.search([('url', '=', page_url)])
+        self.assertEqual(res, page_specific_menu)
+
     def test_08_top_level_menu_as_mega_menu(self):
-        top_menu = self.env.ref('website.main_menu')
+        top_menu = self.env.ref('base.default_website').menu_id
         self.assertFalse(top_menu.parent_id)
         self.assertTrue(top_menu.child_id)
 
@@ -325,7 +355,7 @@ class TestMenuHttp(common.HttpCase):
         self.page_url = '/page_specific'
         self.page = self.env['website.page'].create({
             'url': self.page_url,
-            'website_id': 1,
+            'website_id': self.ref('base.default_website'),
             # ir.ui.view properties
             'name': 'Base',
             'type': 'qweb',
@@ -336,13 +366,13 @@ class TestMenuHttp(common.HttpCase):
             'name': 'Page Specific menu',
             'page_id': self.page.id,
             'url': self.page_url,
-            'website_id': 1,
+            'website_id': self.ref('base.default_website'),
         })
         self.headers = {"Content-Type": "application/json"}
 
     def simulate_rpc_save_menu(self, data, to_delete=None):
         self.authenticate("admin", "admin")
-        # `Menu.save(1, {'data': [data], 'to_delete': []})` would have been
+        # `Menu.save(self.ref('base.default_website'), {'data': [data], 'to_delete': []})` would have been
         # ideal but need a full frontend context to generate routing maps,
         # router and registry, even MockRequest is not enough
         self.url_open('/web/dataset/call_kw', data=json.dumps({
@@ -372,7 +402,7 @@ class TestMenuHttp(common.HttpCase):
 
         # 3. Edit the menu URL back to the page URL
         data['url'] = self.page_url
-        self.env['website.menu'].save(1, {'data': [data], 'to_delete': []})
+        self.env['website.menu'].save(self.ref('base.default_website'), {'data': [data], 'to_delete': []})
         self.assertEqual(self.menu.page_id, self.page,
                          "M2o should have been set back, as there was a page found with the new URL set on the menu.")
         self.assertTrue(self.page.url == self.menu.url == self.page_url)
@@ -414,7 +444,7 @@ class TestMenuHttp(common.HttpCase):
         self.authenticate('admin', 'admin')
         fr = self.env['res.lang']._activate_lang('fr_FR')
         Menu = self.env['website.menu']
-        website = self.env['website'].browse(1)
+        website = self.env.ref('base.default_website')
         website.language_ids += fr
         menu = Menu.create({
             'name': 'Test Mega Menu Content Translation Edit Mode',

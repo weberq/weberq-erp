@@ -10,25 +10,24 @@
 # Martin Trigaux, 2022
 # UAB "Draugiški sprendimai" <transifex@draugiskisprendimai.lt>, 2022
 # Linas Versada <linaskrisiukenas@gmail.com>, 2022
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Ulevičienė <vilma.uleviciene@mededu.lt>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-31 17:37+0000\n"
-"PO-Revision-Date: 2026-10-05 22:33+0000\n"
-"Last-Translator: Ulevičienė <vilma.uleviciene@mededu.lt>\n"
-"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-19/bus/"
-"lt/>\n"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-08-31 19:04+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Lithuanian <https://translate.odoo.com/projects/odoo-s19-4/"
+"bus/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
-"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 "
-": n % 1 != 0 ? 2: 3);\n"
+"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
+"1 : n % 1 != 0 ? 2: 3);\n"
 "X-Generator: Weblate 2026.8.1\n"
 
 #. module: bus
@@ -40,6 +39,14 @@ msgstr "Prieigos grupės"
 #: model:ir.model,name:bus.model_ir_attachment
 msgid "Attachment"
 msgstr "Prisegtukas"
+
+#. module: bus
+#. odoo-javascript
+#: code:addons/bus/static/src/debug/bus_logs_menu_item.js:0
+msgid ""
+"Bus logs contain confidential information and must only be shared with "
+"trusted recipients."
+msgstr ""
 
 #. module: bus
 #: model:ir.model,name:bus.model_bus_listener_mixin
@@ -93,6 +100,12 @@ msgstr "Rodomas pavadinimas"
 
 #. module: bus
 #. odoo-javascript
+#: code:addons/bus/static/src/debug/bus_logs_menu_item.js:0
+msgid "Download"
+msgstr ""
+
+#. module: bus
+#. odoo-javascript
 #: code:addons/bus/static/src/debug/bus_logs_menu_item.xml:0
 msgid "Download logs"
 msgstr ""
@@ -124,6 +137,16 @@ msgid "ID"
 msgstr "ID"
 
 #. module: bus
+#: model:ir.module.module,shortdesc:base.module_bus
+msgid "IM Bus"
+msgstr ""
+
+#. module: bus
+#: model:ir.module.module,description:base.module_bus
+msgid "Instant Messaging Bus allow you to send messages to users, in live."
+msgstr ""
+
+#. module: bus
 #: model:ir.model.fields,field_description:bus.field_bus_bus__write_uid
 msgid "Last Updated by"
 msgstr "Paskutinį kartą atnaujino"
@@ -140,8 +163,8 @@ msgstr "Žinutė"
 
 #. module: bus
 #: model:ir.model,name:bus.model_ir_model
-msgid "Models"
-msgstr "Modeliai"
+msgid "Model"
+msgstr ""
 
 #. module: bus
 #: model:ir.model,name:bus.model_ir_qweb
@@ -150,34 +173,14 @@ msgstr ""
 
 #. module: bus
 #. odoo-javascript
-#: code:addons/bus/static/src/outdated_page_watcher_service.js:0
-#: code:addons/bus/static/src/services/assets_watchdog_service.js:0
-#: code:addons/bus/static/src/services/bus_service.js:0
+#: code:addons/bus/static/src/services/assets_watchdog_plugin.js:0
 msgid "Refresh"
 msgstr "Atnaujinti"
 
 #. module: bus
 #. odoo-javascript
-#: code:addons/bus/static/src/outdated_page_watcher_service.js:0
-#: code:addons/bus/static/src/services/bus_service.js:0
-msgid ""
-"Save your work and refresh to get the latest updates and avoid potential "
-"issues."
-msgstr ""
-"Išsaugokite savo darbą ir atnaujinkite puslapį, kad gautumėte naujausius "
-"atnaujinimus ir išvengtumėte galimų problemų."
-
-#. module: bus
-#. odoo-javascript
-#: code:addons/bus/static/src/services/assets_watchdog_service.js:0
+#: code:addons/bus/static/src/services/assets_watchdog_plugin.js:0
 msgid "The page appears to be out of date."
-msgstr ""
-
-#. module: bus
-#. odoo-javascript
-#: code:addons/bus/static/src/outdated_page_watcher_service.js:0
-#: code:addons/bus/static/src/services/bus_service.js:0
-msgid "The page is out of date"
 msgstr ""
 
 #. module: bus
@@ -188,6 +191,12 @@ msgstr "Vartotojas"
 #. module: bus
 #: model:ir.model,name:bus.model_res_users_settings
 msgid "User Settings"
+msgstr ""
+
+#. module: bus
+#. odoo-javascript
+#: code:addons/bus/static/src/debug/bus_logs_menu_item.js:0
+msgid "You're about to download the bus logs"
 msgstr ""
 
 #. module: bus
@@ -203,30 +212,3 @@ msgstr ""
 #: model:ir.model,name:bus.model_ir_websocket
 msgid "websocket message handling"
 msgstr ""
-
-#~ msgid "Created on"
-#~ msgstr "Sukurta"
-
-#~ msgid "Away"
-#~ msgstr "Išėjęs"
-
-#~ msgid "IM Status"
-#~ msgstr "IM būsena"
-
-#~ msgid "Last Poll"
-#~ msgstr "Paskutinė apklausa"
-
-#~ msgid "Last Presence"
-#~ msgstr "Paskutinį kartą matytas"
-
-#~ msgid "Offline"
-#~ msgstr "Atsijungęs"
-
-#~ msgid "Online"
-#~ msgstr "Prisijungęs"
-
-#~ msgid "User Presence"
-#~ msgstr "Vartotojo aktyvumas"
-
-#~ msgid "Users"
-#~ msgstr "Vartotojai"

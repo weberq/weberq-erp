@@ -18,7 +18,7 @@ import os
 import sys
 import warnings
 
-import odoo
+import odoo.modules
 from . import case
 from .common import HttpCase
 from .result import stats_logger
@@ -27,6 +27,7 @@ from unittest import util, BaseTestSuite, TestCase
 _logger = logging.getLogger(__name__)
 
 __unittest = True
+
 
 class TestSuite(BaseTestSuite):
     """A test suite is a composite test consisting of a number of TestCases.
@@ -43,8 +44,8 @@ class TestSuite(BaseTestSuite):
             if result.shouldStop:
                 break
             assert isinstance(test, (TestCase))
-            odoo.modules.module.current_test = test
             self._tearDownPreviousClass(test, result)
+            odoo.modules.module.current_test = test
             self._handleClassSetUp(test, result)
             result._previousTestClass = test.__class__
 
@@ -82,6 +83,7 @@ class TestSuite(BaseTestSuite):
                             default_tests_run_count = 1
 
         self._tearDownPreviousClass(None, result)
+        odoo.modules.module.current_test = None
         return result
 
     def _handleClassSetUp(self, test, result):

@@ -18,8 +18,8 @@ test("[Old Tour] pos_basic_order_01_multi_payment_and_change", async () => {
     product1.product_variant_ids[0].lst_price = 5.1;
     product1.taxes_id = [];
 
-    const cashPm = store.models["pos.payment.method"].find((pm) => pm.is_cash_count);
-    const cardPm = store.models["pos.payment.method"].find((pm) => !pm.is_cash_count);
+    const cashPm = store.models["pos.payment.method"].find((pm) => pm.type === "cash");
+    const cardPm = store.models["pos.payment.method"].find((pm) => pm.type === "bank");
     const order = store.addNewOrder();
     order.pricelist_id = false;
 
@@ -334,7 +334,7 @@ test("[Old Tour] test_cash_rounding_only_cash_method_with_change", async () => {
     expect(order2.change).toBe(4.3);
 });
 
-test(["[Old Tour] test_cash_rounding_up_with_change"], async () => {
+test("[Old Tour] test_cash_rounding_up_with_change", async () => {
     const store = await setupPosEnv();
     const { cashPm } = prepareRoundingVals(store, 1, "UP", true);
     const order = store.addNewOrder();

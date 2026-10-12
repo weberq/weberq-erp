@@ -2,110 +2,117 @@
 # This file contains the translation of the following modules:
 # * event_booth
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
+# Martin Dinovski <martin.dinovski@industria.tech>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-03 19:12+0000\n"
-"Last-Translator: Rosen Vladimirov <vladimirov.rosen@gmail.com>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 16:58+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "event_booth/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: event_booth
+#: model:ir.module.module,description:base.module_event_booth
+msgid ""
+"\n"
+"Create booths for your favorite event.\n"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_booked_template
 msgid "<b>Renter Email</b>:"
-msgstr "<b>Имейл на наемателя</b>:"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_booked_template
 msgid "<b>Renter Name</b>:"
-msgstr "<b>Име на наемателя</b>:"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_booked_template
 msgid "<b>Renter Phone</b>:"
-msgstr "<b>Телефон на наемателя</b>:"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_event_view_form
 msgid "<span class=\"o_stat_text\">Booths</span>"
-msgstr "<span class=\"o_stat_text\">Щандове</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_premium
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_standard
 msgid "<span>1 Branded Booth</span>"
-msgstr "<span>1 брандиран щанд</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_premium
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_standard
 msgid "<span>1 desk</span>"
-msgstr "<span>1 бюро</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_premium
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_vip
 msgid "<span>10 + 1 passes</span>"
-msgstr "<span>10 + 1 пропуска</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_vip
 msgid "<span>100 words description on website</span>"
-msgstr "<span>Описание от 100 думи на уебсайта</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_vip
 msgid "<span>2 Branded Booth</span>"
-msgstr "<span>2 брандирани щанда</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_vip
 msgid "<span>2 desks</span>"
-msgstr "<span>2 бюра</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_vip
 msgid "<span>2 x 46\" display screens</span>"
-msgstr "<span>2 x 46\" екрана</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_premium
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_standard
 msgid "<span>46\" display screen</span>"
-msgstr "<span>46\" екран</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_premium
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_standard
 msgid "<span>4m²</span>"
-msgstr "<span>4m²</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_premium
 msgid "<span>50 words description on website</span>"
-msgstr "<span>Описание от 50 думи на уебсайта</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_vip
 msgid "<span>8m²</span>"
-msgstr "<span>8m²</span>"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_premium
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_standard
 #: model_terms:event.booth.category,description:event_booth.event_booth_category_vip
 msgid "<span>Logo &amp; link on website</span>"
-msgstr "<span>Лого и връзка на уебсайта</span>"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__message_needaction
@@ -126,6 +133,11 @@ msgstr "Дейности"
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr "Декорация за изключение на дейност"
+
+#. module: event_booth
+#: model:ir.model.fields,field_description:event_booth.field_event_booth__activity_plans_ids
+msgid "Activity Plans"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__activity_state
@@ -157,40 +169,40 @@ msgstr "На разположение"
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_event__event_booth_count_available
 msgid "Available Booths"
-msgstr "Налични щандове"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_booked_template
 msgid "Booth"
-msgstr "Щанд"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_00_event_7
 #: model:event.booth,name:event_booth.event_booth_0_event_0
 msgid "Booth A1"
-msgstr "Щанд A1"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_01_event_7
 #: model:event.booth,name:event_booth.event_booth_1_event_0
 msgid "Booth A2"
-msgstr "Щанд A2"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_02_event_7
 #: model:event.booth,name:event_booth.event_booth_2_event_0
 msgid "Booth A3"
-msgstr "Щанд A3"
+msgstr ""
 
 #. module: event_booth
 #: model:mail.message.subtype,name:event_booth.mt_event_booth_booked
 msgid "Booth Booked"
-msgstr "Резервиран щанд"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.ui.menu,name:event_booth.menu_event_booth_category
 msgid "Booth Categories"
-msgstr "Категории щандове"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.actions.act_window,name:event_booth.event_booth_category_action
@@ -198,20 +210,18 @@ msgstr "Категории щандове"
 #: model:ir.model.fields,field_description:event_booth.field_event_type_booth__booth_category_id
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_category_view_form
 msgid "Booth Category"
-msgstr "Категория щанд"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,help:event_booth.field_event_event__event_booth_category_available_ids
 msgid "Booth Category for which booths are still available. Used in frontend"
 msgstr ""
-"Категория щанд, за която все още има налични щандове. Използва се във "
-"фронтенда"
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_category_view_form
 #: model_terms:ir.ui.view,arch_db:event_booth.event_type_booth_view_search
 msgid "Booth Type"
-msgstr "Вид щанд"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.actions.act_window,help:event_booth.event_booth_category_action
@@ -219,8 +229,6 @@ msgid ""
 "Booth categories are used to represent the different types of booths you "
 "rent (Premium Booth, Table and Chairs, ...)"
 msgstr ""
-"Категориите щандове представят различните видове щандове, които отдавате под "
-"наем (Премиум щанд, маса и столове, ...)"
 
 #. module: event_booth
 #: model:ir.actions.act_window,name:event_booth.event_booth_action
@@ -233,7 +241,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_view_tree_from_event
 #: model_terms:ir.ui.view,arch_db:event_booth.event_type_view_form
 msgid "Booths"
-msgstr "Щандове"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.actions.act_window,help:event_booth.event_booth_action
@@ -241,24 +249,22 @@ msgstr "Щандове"
 #: model_terms:ir.actions.act_window,help:event_booth.event_type_booth_action
 msgid "Booths are the physical stands that you rent during your event."
 msgstr ""
-"Щандовете са физическите места, които отдавате под наем по време на вашето "
-"събитие."
 
 #. module: event_booth
 #: model_terms:ir.actions.act_window,help:event_booth.event_booth_action
 #: model_terms:ir.actions.act_window,help:event_booth.event_booth_action_from_event
 msgid "Create a Booth"
-msgstr "Създаване на щанд"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.actions.act_window,help:event_booth.event_booth_category_action
 msgid "Create a Booth Category"
-msgstr "Създаване на категория щанд"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.actions.act_window,help:event_booth.event_type_booth_action
 msgid "Create a Type Booth"
-msgstr "Създаване на щанд за вид събитие"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__create_uid
@@ -300,23 +306,23 @@ msgstr "Събитие"
 #: model:ir.model,name:event_booth.model_event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_view_search
 msgid "Event Booth"
-msgstr "Щанд на събитие"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model,name:event_booth.model_event_booth_category
 #: model:ir.model.fields,field_description:event_booth.field_event_event__event_booth_category_ids
 msgid "Event Booth Category"
-msgstr "Категория щанд на събитие"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_event__event_booth_category_available_ids
 msgid "Event Booth Category Available"
-msgstr "Налична категория щанд на събитие"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model,name:event_booth.model_event_type_booth
 msgid "Event Booth Template"
-msgstr "Шаблон за щанд на събитие"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__event_type_id
@@ -332,20 +338,25 @@ msgstr "Обрзец на събитие"
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_type_booth_view_form_from_type
 msgid "Event Type Booth"
-msgstr "Щанд за вид събитие"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.actions.act_window,name:event_booth.event_type_booth_action
 #: model_terms:ir.ui.view,arch_db:event_booth.event_type_booth_view_search
 #: model_terms:ir.ui.view,arch_db:event_booth.event_type_booth_view_tree_from_type
 msgid "Event Type Booths"
-msgstr "Щандове за вид събитие"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_view_graph
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_view_pivot
 msgid "Event booth"
-msgstr "Щанд на събитие"
+msgstr ""
+
+#. module: event_booth
+#: model:ir.module.module,shortdesc:base.module_event_booth
+msgid "Events Booths"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__message_follower_ids
@@ -358,24 +369,19 @@ msgid "Followers (Partners)"
 msgstr "Последователи (партньори)"
 
 #. module: event_booth
-#: model:ir.model.fields,help:event_booth.field_event_booth__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Икона, примерно fa-tasks"
-
-#. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_20_event_7
 msgid "Gold Booth 1"
-msgstr "Златен щанд 1"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_21_event_7
 msgid "Gold Booth 2"
-msgstr "Златен щанд 2"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_22_event_7
 msgid "Gold Booth 3"
-msgstr "Златен щанд 3"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__has_message
@@ -440,7 +446,7 @@ msgstr "Изображение 512"
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__is_available
 msgid "Is Available"
-msgstr "Наличен"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__message_is_follower
@@ -460,6 +466,16 @@ msgstr "Последно актуализирано от"
 #: model:ir.model.fields,field_description:event_booth.field_event_type_booth__write_date
 msgid "Last Updated on"
 msgstr "Последно актуализирано на"
+
+#. module: event_booth
+#: model:ir.module.module,summary:base.module_event_booth
+msgid "Manage event booths"
+msgstr ""
+
+#. module: event_booth
+#: model:ir.model.fields,help:event_booth.field_event_booth__activity_type_icon
+msgid "Material Symbols icon e.g. checklist"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__message_has_error
@@ -529,53 +545,53 @@ msgstr "Брой съобщения с грешка при доставка"
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_10_event_7
 msgid "OpenWood Demonstrator 1"
-msgstr "OpenWood демонстратор 1"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_11_event_7
 msgid "OpenWood Demonstrator 2"
-msgstr "OpenWood демонстратор 2"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_12_event_7
 msgid "OpenWood Demonstrator 3"
-msgstr "OpenWood демонстратор 3"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_view_form_from_event
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_view_form_quick_create
 #: model_terms:ir.ui.view,arch_db:event_booth.event_type_booth_view_form_from_type
 msgid "Pick a Booth Category..."
-msgstr "Изберете категория щанд..."
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_view_form_from_event
 msgid "Pick a Renter..."
-msgstr "Изберете наемател..."
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth.category,name:event_booth.event_booth_category_premium
 msgid "Premium Booth"
-msgstr "Премиум щанд"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_3_event_0
 msgid "Premium Booth A4"
-msgstr "Премиум щанд A4"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_2_event_2
 #: model:event.booth,name:event_booth.event_booth_2_event_3
 #: model:event.type.booth,name:event_booth.event_type_booth_demo_exhibition_2
 msgid "Premium Showbooth 1"
-msgstr "Премиум изложбен щанд 1"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_3_event_2
 #: model:event.booth,name:event_booth.event_booth_3_event_3
 #: model:event.type.booth,name:event_booth.event_type_booth_demo_exhibition_3
 msgid "Premium Showbooth 2"
-msgstr "Премиум изложбен щанд 2"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__rating_ids
@@ -585,24 +601,24 @@ msgstr "Оценявания"
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__partner_id
 msgid "Renter"
-msgstr "Наемател"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__contact_email
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_view_search
 msgid "Renter Email"
-msgstr "Имейл на наемателя"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__contact_name
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_view_search
 msgid "Renter Name"
-msgstr "Име на наемателя"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__contact_phone
 msgid "Renter Phone"
-msgstr "Телефон на наемателя"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__activity_user_id
@@ -624,19 +640,19 @@ msgstr "Последователност"
 #: model:event.booth,name:event_booth.event_booth_0_event_3
 #: model:event.type.booth,name:event_booth.event_type_booth_demo_exhibition_0
 msgid "Showbooth 1"
-msgstr "Изложбен щанд 1"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_1_event_2
 #: model:event.booth,name:event_booth.event_booth_1_event_3
 #: model:event.type.booth,name:event_booth.event_type_booth_demo_exhibition_1
 msgid "Showbooth 2"
-msgstr "Изложбен щанд 2"
+msgstr ""
 
 #. module: event_booth
 #: model:event.booth.category,name:event_booth.event_booth_category_standard
 msgid "Standard Booth"
-msgstr "Стандартен щанд"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_booth__state
@@ -659,7 +675,7 @@ msgstr ""
 #. module: event_booth
 #: model:ir.model.fields,field_description:event_booth.field_event_event__event_booth_count
 msgid "Total Booths"
-msgstr "Общо щандове"
+msgstr ""
 
 #. module: event_booth
 #: model:ir.model.fields,help:event_booth.field_event_booth__activity_exception_decoration
@@ -675,36 +691,32 @@ msgstr "Не налично"
 #. module: event_booth
 #: model:event.booth.category,name:event_booth.event_booth_category_vip
 msgid "VIP Booth"
-msgstr "VIP щанд"
+msgstr "VIP ложа"
 
 #. module: event_booth
 #: model:event.booth,name:event_booth.event_booth_4_event_0
 msgid "VIP Booth A5"
-msgstr "VIP щанд A5"
-
-#. module: event_booth
-#: model:ir.model.fields,field_description:event_booth.field_event_booth__website_message_ids
-msgid "Website Messages"
-msgstr "Съобщения в уебсайт"
-
-#. module: event_booth
-#: model:ir.model.fields,help:event_booth.field_event_booth__website_message_ids
-msgid "Website communication history"
-msgstr "История на комуникацията на уебсайт"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_category_view_form
 msgid "e.g. \"Those stands will be place near the entrance and...\""
-msgstr "напр. „Тези щандове ще бъдат разположени близо до входа и...“"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_view_form_from_event
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_view_form_quick_create
 #: model_terms:ir.ui.view,arch_db:event_booth.event_type_booth_view_form_from_type
 msgid "e.g. First Booth Alley 1"
-msgstr "напр. Първи щанд, алея 1"
+msgstr ""
 
 #. module: event_booth
 #: model_terms:ir.ui.view,arch_db:event_booth.event_booth_category_view_form
 msgid "e.g. Premium Booth"
-msgstr "напр. Премиум щанд"
+msgstr ""
+
+msgid "Website Messages"
+msgstr "Съобщения в уебсайт"
+
+msgid "Website communication history"
+msgstr "История на комуникацията на уебсайт"

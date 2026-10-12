@@ -1,15 +1,11 @@
-/** @odoo-module **/
+import { usePlugin } from "@odoo/owl";
 import { registry } from "@web/core/registry";
+import { ORM } from "@web/core/orm_plugin";
 import { WhatIsPeppol } from "@account_peppol/components/peppol_info/peppol_info";
-
 
 class WhatIsPdp extends WhatIsPeppol {
     static template = "l10n_fr_pdp.WhatIsPdp";
-
-    setup() {
-        super.setup();
-        this.orm = this.env.services.orm;
-    }
+    orm = usePlugin(ORM);
 
     get shouldRegisterOnClose() {
         return this.props.action.context.action_on_activate.context?.res_config_settings_id;

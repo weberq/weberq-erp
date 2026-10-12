@@ -12,23 +12,32 @@
 # Hamed Mohammadi <hamed@dehongi.com>, 2023
 # Martin Trigaux, 2023
 # Hanna Kheradroosta, 2023
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Aliraza Habibitanha <alireza.habibitanha@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 17:37+0000\n"
-"PO-Revision-Date: 2026-08-09 11:33+0000\n"
-"Last-Translator: Aliraza Habibitanha <alireza.habibitanha@gmail.com>\n"
-"Language-Team: Persian <https://translate.odoo.com/projects/odoo-19/sms/fa/>"
-"\n"
+"POT-Creation-Date: 2026-09-11 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 17:06+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Persian <https://translate.odoo.com/projects/odoo-s19-4/sms/"
+"fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: sms
+#: model:ir.module.module,description:base.module_sms
+msgid ""
+"\n"
+"This module gives a framework for SMS text messaging\n"
+"----------------------------------------------------\n"
+"\n"
+"The service is provided by the In App Purchase Odoo platform.\n"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_composer__recipient_invalid_count
@@ -51,12 +60,6 @@ msgstr ""
 
 #. module: sms
 #. odoo-python
-#: code:addons/sms/models/sms_template.py:0
-msgid "%s (copy)"
-msgstr "%s (کپی)"
-
-#. module: sms
-#. odoo-python
 #: code:addons/sms/wizard/sms_composer.py:0
 msgid "%s invalid recipients"
 msgstr "گیرندگان نامعتبر %s"
@@ -64,38 +67,30 @@ msgstr "گیرندگان نامعتبر %s"
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.iap_account_view_form
 msgid ""
-"<i class=\"fa fa-warning\"/> An error occurred with your account. Please "
-"contact the support for more information..."
-msgstr ""
-"<i class=\"fa fa-warning\"/> خطایی در حساب شما رخ داد. لطفاً برای اطلاعات "
-"بیشتر با پشتیبانی تماس بگیرید..."
-
-#. module: sms
-#: model_terms:ir.ui.view,arch_db:sms.iap_account_view_form
-msgid ""
-"<i class=\"fa fa-warning\"/> You cannot send SMS while your account is not "
-"registered."
-msgstr ""
-"<i class=\"fa fa-warning\"/> اگر حساب شما ثبت نشده باشد نمی‌توانید پیامک "
-"ارسال کنید."
-
-#. module: sms
-#: model_terms:ir.ui.view,arch_db:sms.iap_account_view_form
-msgid ""
-"<i class=\"oi oi-arrow-right\"/>\n"
+"<i class=\"oi\" data-icon=\"east\"/>\n"
 "                            Register"
 msgstr ""
-"<i class=\"oi oi-arrow-right\"/>\n"
-"                            ثبت"
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.iap_account_view_form
 msgid ""
-"<i class=\"oi oi-arrow-right\"/>\n"
+"<i class=\"oi\" data-icon=\"east\"/>\n"
 "                            Set Sender Name"
 msgstr ""
-"<i class=\"oi oi-arrow-right\"/>\n"
-"                            تنظیم نام فرستنده"
+
+#. module: sms
+#: model_terms:ir.ui.view,arch_db:sms.iap_account_view_form
+msgid ""
+"<i class=\"oi\" data-icon=\"warning\"/> An error occurred with your account. "
+"Please contact the support for more information..."
+msgstr ""
+
+#. module: sms
+#: model_terms:ir.ui.view,arch_db:sms.iap_account_view_form
+msgid ""
+"<i class=\"oi\" data-icon=\"warning\"/> You cannot send SMS while your "
+"account is not registered."
+msgstr ""
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_template_view_form
@@ -123,35 +118,16 @@ msgstr ""
 "متنی</span>"
 
 #. module: sms
+#: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form
+msgid "<span class=\"text-muted\">To</span>"
+msgstr ""
+
+#. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_template_preview_form
 msgid ""
 "<span class=\"text-warning\" invisible=\"not no_record\">No records</span>"
 msgstr ""
 "<span class=\"text-warning\" invisible=\"not no_record\">بدون رکورد</span>"
-
-#. module: sms
-#: model_terms:ir.ui.view,arch_db:sms.ir_actions_server_view_form
-msgid ""
-"<span invisible=\"sms_method != 'sms'\">\n"
-"                                    The message will be sent as an SMS to "
-"the recipients of the template\n"
-"                                    and will not appear in the messaging "
-"history.\n"
-"                                </span>\n"
-"                                <span invisible=\"sms_method != 'note'\">\n"
-"                                    The SMS will not be sent, it will only "
-"be posted as an\n"
-"                                    internal note in the messaging history.\n"
-"                                </span>\n"
-"                                <span invisible=\"sms_method != "
-"'comment'\">\n"
-"                                    The SMS will be sent as an SMS to the "
-"recipients of the\n"
-"                                    template and it will also be posted as "
-"an internal note\n"
-"                                    in the messaging history.\n"
-"                                </span>"
-msgstr ""
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form
@@ -168,9 +144,21 @@ msgstr ""
 "وارد کرده‌اید </span>"
 
 #. module: sms
+#. odoo-python
+#: code:addons/sms/wizard/sms_composer.py:0
+msgid "A message can only be scheduled in comment mode"
+msgstr ""
+
+#. module: sms
 #: model:ir.model.constraint,message:sms.constraint_sms_tracker_sms_uuid_unique
 msgid "A record for this UUID already exists"
 msgstr "یک رکورد برای این UUID در حال حاضر وجود دارد"
+
+#. module: sms
+#. odoo-python
+#: code:addons/sms/wizard/sms_composer.py:0
+msgid "A scheduled date is needed to schedule a message"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_account_code__account_id
@@ -189,6 +177,12 @@ msgstr ""
 "شود"
 
 #. module: sms
+#: model:ir.model.fields.selection,name:sms.selection__sms_composer__sms_type__alert
+#: model:ir.model.fields.selection,name:sms.selection__sms_sms__sms_type__alert
+msgid "Alert"
+msgstr ""
+
+#. module: sms
 #: model:ir.model.fields,help:sms.field_sms_sms__uuid
 msgid "Alternate way to identify a SMS record, used for delivery reports"
 msgstr ""
@@ -204,7 +198,7 @@ msgstr "هنگام ارسال پیامک خطایی رخ داد"
 #. odoo-javascript
 #: code:addons/sms/static/src/core/failure_model_patch.js:0
 msgid "An error occurred when sending an SMS on “%(record_name)s”"
-msgstr "هنگام ارسال پیامک در «%(record_name)s» خطایی رخ داد"
+msgstr ""
 
 #. module: sms
 #. odoo-python
@@ -213,7 +207,6 @@ msgid ""
 "An unknown error occurred. Please contact Odoo support if this error "
 "persists."
 msgstr ""
-"خطای ناشناخته‌ای رخ داد. اگر خطا همچنان ایجاد شود با پشتیبانی تماس بگیرید."
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_template__model_id
@@ -234,12 +227,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/sms/controllers/main.py:0
 msgid "Bad parameters"
-msgstr "پارامترها نامعتبر هستند"
-
-#. module: sms
-#: model:ir.model,name:sms.model_base
-msgid "Base"
-msgstr "پایه"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields.selection,name:sms.selection__sms_sms__failure_type__sms_blacklist
@@ -260,10 +248,7 @@ msgid "Buy credits."
 msgstr "خرید اعتبار"
 
 #. module: sms
-#: model_terms:ir.ui.view,arch_db:sms.sms_account_code_view_form
-#: model_terms:ir.ui.view,arch_db:sms.sms_account_phone_view_form
 #: model_terms:ir.ui.view,arch_db:sms.sms_sms_view_tree
-#: model_terms:ir.ui.view,arch_db:sms.sms_template_reset_view_form
 #: model_terms:ir.ui.view,arch_db:sms.sms_tsms_view_form
 msgid "Cancel"
 msgstr "لغو"
@@ -294,12 +279,12 @@ msgstr "انتخاب یک نمونه"
 #: code:addons/sms/wizard/sms_account_code.py:0
 #: model_terms:ir.ui.view,arch_db:sms.sms_account_sender_view_form
 msgid "Choose your sender name"
-msgstr "نام فرستنده را انتخاب کنید"
+msgstr ""
 
 #. module: sms
 #: model:ir.model,name:sms.model_res_company
-msgid "Companies"
-msgstr "شرکت"
+msgid "Company"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_composer__composition_mode
@@ -334,9 +319,9 @@ msgstr "کشور-ثبت‌نام خاص لازم است"
 
 #. module: sms
 #. odoo-python
-#: code:addons/sms/tools/sms_api.py:0
-msgid "Country-specific registration required."
-msgstr "ثبت نام خاص کشور الزامی است."
+#: code:addons/sms/wizard/sms_composer.py:0
+msgid "Create an SMS Template"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_account_code__create_uid
@@ -367,7 +352,7 @@ msgstr "ایجادشده در"
 #. module: sms
 #: model:iap.service,unit_name:sms.iap_service_sms
 msgid "Credits"
-msgstr "اعتبار"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_sms__partner_id
@@ -380,6 +365,14 @@ msgid "Customer: automated SMS"
 msgstr "مشتری: پیامک خودکار"
 
 #. module: sms
+#. odoo-javascript
+#: code:addons/sms/static/src/core/notification_model_patch.js:0
+#: model:ir.model.fields.selection,name:sms.selection__mail_notification__failure_type__sms_database_non_active
+#: model:ir.model.fields.selection,name:sms.selection__sms_sms__failure_type__sms_database_non_active
+msgid "Database non active"
+msgstr ""
+
+#. module: sms
 #: model:sms.template,body:sms.sms_template_demo_0
 msgid "Dear {{ object.display_name }} this is an automated SMS."
 msgstr "عزیز {{ object.display_name }} این یک پیامک خودکار است."
@@ -390,18 +383,13 @@ msgid "Delivered"
 msgstr "تحویل داده شد"
 
 #. module: sms
-#: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form
-#: model_terms:ir.ui.view,arch_db:sms.sms_template_preview_form
-msgid "Discard"
-msgstr "رها کردن"
-
-#. module: sms
 #: model:ir.model.fields,field_description:sms.field_iap_account__display_name
 #: model:ir.model.fields,field_description:sms.field_ir_actions_server__display_name
 #: model:ir.model.fields,field_description:sms.field_ir_model__display_name
 #: model:ir.model.fields,field_description:sms.field_mail_followers__display_name
 #: model:ir.model.fields,field_description:sms.field_mail_message__display_name
 #: model:ir.model.fields,field_description:sms.field_mail_notification__display_name
+#: model:ir.model.fields,field_description:sms.field_mail_scheduled_message__display_name
 #: model:ir.model.fields,field_description:sms.field_mail_thread__display_name
 #: model:ir.model.fields,field_description:sms.field_res_company__display_name
 #: model:ir.model.fields,field_description:sms.field_sms_account_code__display_name
@@ -418,8 +406,8 @@ msgstr "نام نمایشی"
 
 #. module: sms
 #: model:ir.model,name:sms.model_mail_followers
-msgid "Document Followers"
-msgstr "دنبال کنندگان سند"
+msgid "Document Follower"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_composer__res_id
@@ -447,6 +435,17 @@ msgid "Duplicate"
 msgstr "تکثیر کردن"
 
 #. module: sms
+#. odoo-python
+#: code:addons/sms/models/mail_scheduled_message.py:0
+msgid "Edit Scheduled SMS"
+msgstr ""
+
+#. module: sms
+#: model:ir.model.fields.selection,name:sms.selection__mail_scheduled_message__send_method__email
+msgid "Email"
+msgstr ""
+
+#. module: sms
 #: model:ir.model,name:sms.model_mail_thread
 msgid "Email Thread"
 msgstr "موضوع ایمیل"
@@ -460,7 +459,7 @@ msgstr "فعال‌سازی پیامک"
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_account_phone_view_form
 msgid "Enter a phone number to get an SMS with a verification code."
-msgstr "یک شماره تلفن برای دریافت پیامک حاوی کد احراز وارد کنید."
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields.selection,name:sms.selection__sms_sms__state__error
@@ -514,6 +513,7 @@ msgstr "حساب IAP"
 #: model:ir.model.fields,field_description:sms.field_mail_followers__id
 #: model:ir.model.fields,field_description:sms.field_mail_message__id
 #: model:ir.model.fields,field_description:sms.field_mail_notification__id
+#: model:ir.model.fields,field_description:sms.field_mail_scheduled_message__id
 #: model:ir.model.fields,field_description:sms.field_mail_thread__id
 #: model:ir.model.fields,field_description:sms.field_res_company__id
 #: model:ir.model.fields,field_description:sms.field_sms_account_code__id
@@ -542,15 +542,16 @@ msgstr "شناسه"
 #: model:ir.model.fields,help:sms.field_gamification_badge_user__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_gamification_challenge__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_iap_account__message_has_sms_error
+#: model:ir.model.fields,help:sms.field_ir_access__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_ir_actions_server__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_ir_cron__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_lunch_supplier__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_mail_blacklist__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_mail_thread__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_mail_thread_blacklist__message_has_sms_error
-#: model:ir.model.fields,help:sms.field_mail_thread_cc__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_mail_thread_main_attachment__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_mail_thread_phone__message_has_sms_error
+#: model:ir.model.fields,help:sms.field_mail_thread_subject_suggested__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_mail_tracking_duration_mixin__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_maintenance_equipment__message_has_sms_error
 #: model:ir.model.fields,help:sms.field_maintenance_request__message_has_sms_error
@@ -567,6 +568,12 @@ msgid "If checked, some messages have a delivery error."
 msgstr "اگر علامت زده شود، برخی از پیام ها دارای خطای تحویل هستند."
 
 #. module: sms
+#. odoo-python
+#: code:addons/sms/wizard/sms_composer.py:0
+msgid "Impossible to determine the model for the template."
+msgstr ""
+
+#. module: sms
 #: model:ir.model.fields.selection,name:sms.selection__sms_sms__state__outgoing
 msgid "In Queue"
 msgstr "در صف"
@@ -580,7 +587,7 @@ msgstr "نشان می‌دهد که آیا ترکیب‌کننده پیامک ی
 #. odoo-javascript
 #: code:addons/sms/static/src/components/sms_widget/fields_sms_widget.xml:0
 msgid "Insert Field"
-msgstr "درج فیلد"
+msgstr ""
 
 #. module: sms
 #. odoo-javascript
@@ -605,9 +612,6 @@ msgid ""
 "i.e. a plus sign (+), then country code, city code, and local phone number. "
 "For example: +1 555-555-555"
 msgstr ""
-"شماره تلفن نامعتبر است. لطفاً مطمئن شوید که از فرمت بین‌المللی پیروی می‌کنید، "
-"یعنی یک علامت مثبت (+)، سپس کد کشور، کد شهر و شماره تلفن محلی. به عنوان مثال: "
-"+1 555-555-555"
 
 #. module: sms
 #. odoo-python
@@ -682,6 +686,12 @@ msgid "Marked for deletion"
 msgstr "برای حذف علامت‌گذاری شده"
 
 #. module: sms
+#: model:ir.model.fields.selection,name:sms.selection__sms_composer__sms_type__marketing
+#: model:ir.model.fields.selection,name:sms.selection__sms_sms__sms_type__marketing
+msgid "Marketing"
+msgstr ""
+
+#. module: sms
 #: model:ir.model,name:sms.model_mail_message
 #: model:ir.model.fields,field_description:sms.field_sms_composer__body
 #: model_terms:ir.ui.view,arch_db:sms.sms_tsms_view_form
@@ -690,8 +700,8 @@ msgstr "پیام"
 
 #. module: sms
 #: model:ir.model,name:sms.model_mail_notification
-msgid "Message Notifications"
-msgstr "اطلاعیه‌های پیام"
+msgid "Message Notification"
+msgstr ""
 
 #. module: sms
 #. odoo-javascript
@@ -703,8 +713,8 @@ msgstr "عدد گمشده"
 
 #. module: sms
 #: model:ir.model,name:sms.model_ir_model
-msgid "Models"
-msgstr "مدل ها"
+msgid "Model"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_template__name
@@ -731,9 +741,10 @@ msgid "Not Delivered"
 msgstr "تحویل داده نشده"
 
 #. module: sms
-#: model:ir.model.fields.selection,name:sms.selection__ir_actions_server__sms_method__note
-msgid "Note only"
-msgstr "فقط یادداشت"
+#. odoo-python
+#: code:addons/sms/models/sms_sms.py:0
+msgid "Not enough credits to send SMS"
+msgstr ""
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_account_sender_view_form
@@ -741,8 +752,6 @@ msgid ""
 "Note that this is not required, if you don't set a sender name, your SMS "
 "will be sent from a short code."
 msgstr ""
-"توجه داشته باشید که این مورد اجباری نیست. اگر نام ارسال‌کننده را تنظیم نکنید، "
-"پیامک شما از یک کد کوتاه ارسال خواهد شد."
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_mail_notification__notification_type
@@ -781,10 +790,6 @@ msgid ""
 "usually be a placeholder expression that provides the appropriate language, "
 "e.g. {{ object.partner_id.lang }}."
 msgstr ""
-"زبان ترجمه اختیاری (کد ISO) برای انتخاب هنگام ارسال ایمیل. اگر تنظیم نشود، "
-"از زبان اصلی طرف همکار استفاده خواهد شد که معمولاً باید یک عبارت جایگزین "
-"(Placeholder) باشد که زبان مناسب را فراهم می‌کند، به عنوان مثال {{ "
-"object.partner_id.lang }}."
 
 #. module: sms
 #: model:ir.model,name:sms.model_sms_sms
@@ -804,6 +809,12 @@ msgid ""
 msgstr "شماره تلفن گیرنده. اگر تغییر کند، در پروفایل گیرنده ثبت خواهد شد."
 
 #. module: sms
+#. odoo-python
+#: code:addons/sms/wizard/sms_composer.py:0
+msgid "Please provide a name for the template."
+msgstr ""
+
+#. module: sms
 #: model:ir.model.fields.selection,name:sms.selection__sms_composer__composition_mode__comment
 msgid "Post on a document"
 msgstr "ارسال بر روی یک سند"
@@ -814,8 +825,6 @@ msgid ""
 "Prevent sending messages to blacklisted contacts. Disable only when "
 "absolutely necessary."
 msgstr ""
-"از ارسال پیام به مخاطبان لیست سیاه جلوگیری کنید. فقط در صورت ضرورت مطلق "
-"غیرفعال کنید."
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_template_preview_form
@@ -867,19 +876,13 @@ msgstr "ثبت نام"
 #: code:addons/sms/models/iap_account.py:0
 #: code:addons/sms/wizard/sms_account_phone.py:0
 msgid "Register Account"
-msgstr "ثبت حساب"
-
-#. module: sms
-#. odoo-python
-#: code:addons/sms/tools/sms_api.py:0
-msgid "Register now."
-msgstr "اکنون ثبت نام کنید."
+msgstr ""
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_account_code_view_form
 #: model_terms:ir.ui.view,arch_db:sms.sms_account_phone_view_form
 msgid "Register your SMS account"
-msgstr "ثبت حساب کاربری پیامک"
+msgstr ""
 
 #. module: sms
 #. odoo-javascript
@@ -926,12 +929,14 @@ msgstr "تلاش مجدد"
 
 #. module: sms
 #. odoo-javascript
-#: code:addons/sms/static/src/components/sms_button/sms_button.xml:0
+#: code:addons/sms/static/src/components/phone_field/phone_field.js:0
 #: code:addons/sms/static/src/core/notification_model_patch.js:0
+#: model:iap.service,name:sms.iap_service_sms
 #: model:ir.actions.act_window,name:sms.sms_sms_action
 #: model:ir.model.fields,field_description:sms.field_mail_notification__sms_id
 #: model:ir.model.fields.selection,name:sms.selection__mail_message__message_type__sms
 #: model:ir.model.fields.selection,name:sms.selection__mail_notification__notification_type__sms
+#: model:ir.model.fields.selection,name:sms.selection__mail_scheduled_message__send_method__sms
 #: model:ir.ui.menu,name:sms.sms_sms_menu
 #: model_terms:ir.ui.view,arch_db:sms.sms_tsms_view_form
 msgid "SMS"
@@ -941,38 +946,28 @@ msgstr "پیامک"
 #. odoo-javascript
 #: code:addons/sms/static/src/components/sms_widget/fields_sms_widget.xml:0
 msgid "SMS ("
-msgstr "پیامک ("
-
-#. module: sms
-#: model:ir.model.fields.selection,name:sms.selection__ir_actions_server__sms_method__comment
-msgid "SMS (with note)"
-msgstr "اس‌ام‌اس (با یادداشت)"
-
-#. module: sms
-#: model:ir.model.fields.selection,name:sms.selection__ir_actions_server__sms_method__sms
-msgid "SMS (without note)"
-msgstr "پیامک (بدون یادداشت)"
+msgstr ""
 
 #. module: sms
 #. odoo-javascript
 #: code:addons/sms/static/src/thread/message_patch.js:0
 msgid "SMS Account"
-msgstr "حساب پیامک"
+msgstr ""
 
 #. module: sms
 #: model:ir.model,name:sms.model_sms_account_phone
 msgid "SMS Account Registration Phone Number Wizard"
-msgstr "ویزارد شماره تلفن ثبت نام پیامک"
+msgstr ""
 
 #. module: sms
 #: model:ir.model,name:sms.model_sms_account_sender
 msgid "SMS Account Sender Name Wizard"
-msgstr "ویزارد نام فرستنده حساب کاربری پیامک"
+msgstr ""
 
 #. module: sms
 #: model:ir.model,name:sms.model_sms_account_code
 msgid "SMS Account Verification Code Wizard"
-msgstr "ویزارد کد احراز حساب پیامک"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_account_analytic_account__message_has_sms_error
@@ -988,15 +983,16 @@ msgstr "ویزارد کد احراز حساب پیامک"
 #: model:ir.model.fields,field_description:sms.field_gamification_badge_user__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_gamification_challenge__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_iap_account__message_has_sms_error
+#: model:ir.model.fields,field_description:sms.field_ir_access__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_ir_actions_server__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_ir_cron__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_lunch_supplier__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_mail_blacklist__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_mail_thread__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_mail_thread_blacklist__message_has_sms_error
-#: model:ir.model.fields,field_description:sms.field_mail_thread_cc__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_mail_thread_main_attachment__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_mail_thread_phone__message_has_sms_error
+#: model:ir.model.fields,field_description:sms.field_mail_thread_subject_suggested__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_mail_tracking_duration_mixin__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_maintenance_equipment__message_has_sms_error
 #: model:ir.model.fields,field_description:sms.field_maintenance_request__message_has_sms_error
@@ -1016,7 +1012,7 @@ msgstr "خطای تحویل پیامک"
 #. odoo-javascript
 #: code:addons/sms/static/src/messaging_menu/messaging_menu_patch.js:0
 msgid "SMS Failure: %(modelName)s"
-msgstr "پیامک با خطا مواجه شد: %(modelName)s"
+msgstr ""
 
 #. module: sms
 #. odoo-javascript
@@ -1083,6 +1079,11 @@ msgid "SMS Templates have been reset"
 msgstr "قالب‌های پیامک بازنشانی شده‌اند"
 
 #. module: sms
+#: model:ir.module.module,summary:base.module_sms
+msgid "SMS Text Messaging"
+msgstr ""
+
+#. module: sms
 #: model:ir.model.fields,field_description:sms.field_mail_notification__sms_tracker_ids
 msgid "SMS Trackers"
 msgstr "ردیاب‌های پیامک"
@@ -1091,6 +1092,11 @@ msgstr "ردیاب‌های پیامک"
 #: model_terms:ir.ui.view,arch_db:sms.sms_template_preview_form
 msgid "SMS content"
 msgstr "محتوای پیامک"
+
+#. module: sms
+#: model:ir.module.module,shortdesc:base.module_sms
+msgid "SMS gateway"
+msgstr ""
 
 #. module: sms
 #. odoo-python
@@ -1119,10 +1125,48 @@ msgid "Sanitized Number"
 msgstr "شماره معتبر شده"
 
 #. module: sms
+#: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form_template_save
+msgid "Save Template"
+msgstr ""
+
+#. module: sms
+#: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form_template_save
+msgid "Save as SMS Template"
+msgstr ""
+
+#. module: sms
+#: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form
+msgid "Schedule"
+msgstr ""
+
+#. module: sms
+#: model:ir.model.fields,field_description:sms.field_sms_composer__scheduled_date
+msgid "Scheduled Date"
+msgstr ""
+
+#. module: sms
+#: model:ir.model,name:sms.model_mail_scheduled_message
+#: model:ir.model.fields,field_description:sms.field_sms_composer__mail_scheduled_message_id
+msgid "Scheduled Message"
+msgstr ""
+
+#. module: sms
+#. odoo-python
+#: code:addons/sms/wizard/sms_composer.py:0
+msgid "Scheduling messages is only supported on mail.thread models."
+msgstr ""
+
+#. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_sms_view_search
 #: model_terms:ir.ui.view,arch_db:sms.sms_template_view_search
 msgid "Search SMS Templates"
 msgstr "جستجوی قالب‌های پیامک"
+
+#. module: sms
+#. odoo-javascript
+#: code:addons/sms/static/src/components/sms_widget/sms_composer_template_selector.js:0
+msgid "Select a Template"
+msgstr ""
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form
@@ -1133,7 +1177,12 @@ msgstr "ارسال"
 #. odoo-python
 #: code:addons/sms/models/ir_actions_server.py:0
 msgid "Send %(template_name)s"
-msgstr "ارسال %(template_name)s"
+msgstr ""
+
+#. module: sms
+#: model:ir.model.fields,field_description:sms.field_mail_scheduled_message__send_method
+msgid "Send Method"
+msgstr ""
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_sms_view_tree
@@ -1143,7 +1192,7 @@ msgstr "هم اکنون ارسال شود"
 
 #. module: sms
 #. odoo-javascript
-#: code:addons/sms/static/src/components/sms_button/sms_button.js:0
+#: code:addons/sms/static/src/components/phone_field/phone_field.js:0
 #: model:ir.actions.act_window,name:sms.res_partner_act_window_sms_composer_multi
 #: model:ir.actions.act_window,name:sms.res_partner_act_window_sms_composer_single
 #: model:ir.actions.act_window,name:sms.sms_composer_action_form
@@ -1158,12 +1207,6 @@ msgid "Send SMS (%s)"
 msgstr "ارسال پیامک (%s)"
 
 #. module: sms
-#: model:ir.model.fields,field_description:sms.field_ir_actions_server__sms_method
-#: model:ir.model.fields,field_description:sms.field_ir_cron__sms_method
-msgid "Send SMS As"
-msgstr "ارسال پیامک به عنوان"
-
-#. module: sms
 #: model:ir.model,name:sms.model_sms_composer
 msgid "Send SMS Wizard"
 msgstr "جادوگر ارسال پیامک"
@@ -1176,7 +1219,7 @@ msgstr "ارسال پیامک به صورت گروهی"
 #. module: sms
 #: model:iap.service,description:sms.iap_service_sms
 msgid "Send SMS to your contacts directly from your database."
-msgstr "مستقیماً از داخل پایگاه داده به مخاطبان خود پیامک ارسال کنید."
+msgstr ""
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form
@@ -1191,7 +1234,7 @@ msgstr "ارسال مستقیم"
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form
 msgid "Send now"
-msgstr "ارسال فوری"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields.selection,name:sms.selection__sms_composer__composition_mode__numbers
@@ -1201,19 +1244,19 @@ msgstr "ارسال به شماره‌ها"
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_account_phone_view_form
 msgid "Send verification code"
-msgstr "ارسال کد احراز هویت"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_iap_account__sender_name
 #: model:ir.model.fields,field_description:sms.field_sms_account_sender__sender_name
 msgid "Sender Name"
-msgstr "نام فرستنده"
+msgstr ""
 
 #. module: sms
 #. odoo-python
 #: code:addons/sms/models/ir_actions_server.py:0
 msgid "Sending SMS can only be done on a not transient mail.thread model"
-msgstr "ارسال پیامک تنها بر روی مدل غیرگذرای mail.thread قابل انجام است"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields.selection,name:sms.selection__sms_sms__state__pending
@@ -1236,7 +1279,7 @@ msgstr "خطای سرور"
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_account_sender_view_form
 msgid "Set sender name"
-msgstr "تنظیم نام فرستنده"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_template__sidebar_action_id
@@ -1260,12 +1303,18 @@ msgstr "حالت تکی"
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_account_sender_view_form
 msgid "Skip for now"
-msgstr "فعلاً صرف نظر شود"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_template_preview__sms_template_id
 msgid "Sms Template"
 msgstr "قالب پیامک"
+
+#. module: sms
+#: model:ir.model.fields,field_description:sms.field_sms_composer__sms_type
+#: model:ir.model.fields,field_description:sms.field_sms_sms__sms_type
+msgid "Sms Type"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_composer__recipient_single_number
@@ -1280,6 +1329,7 @@ msgstr "موفقیت"
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_template_reset__template_ids
+#: model_terms:ir.ui.view,arch_db:sms.ir_actions_server_view_form
 msgid "Template"
 msgstr "پوسته"
 
@@ -1287,6 +1337,11 @@ msgstr "پوسته"
 #: model:ir.model.fields,field_description:sms.field_sms_template__template_fs
 msgid "Template Filename"
 msgstr "نام فایل الگو"
+
+#. module: sms
+#: model:ir.model.fields,field_description:sms.field_sms_composer__template_name
+msgid "Template Name"
+msgstr ""
 
 #. module: sms
 #: model:ir.actions.act_window,name:sms.sms_template_preview_action
@@ -1310,8 +1365,6 @@ msgid ""
 "The SMS Service is currently unavailable for new users and new accounts "
 "registrations are suspended."
 msgstr ""
-"خدمات پیامک در حال حاضر برای کاربران جدید در دسترس نیست و ثبت نام حساب جدید "
-"به تعویق افتاده است."
 
 #. module: sms
 #. odoo-python
@@ -1348,7 +1401,7 @@ msgstr "نوع سندی که از این الگو می‌توان با آن اس
 #. odoo-python
 #: code:addons/sms/tools/sms_api.py:0
 msgid "The verification code is incorrect."
-msgstr "کد احراز هویت نادرست است."
+msgstr ""
 
 #. module: sms
 #. odoo-python
@@ -1367,12 +1420,12 @@ msgstr "این پیامک حذف شده است زیرا شماره قبلاً ا
 #: code:addons/sms/tools/sms_api.py:0
 msgid ""
 "This account already has an existing sender name and it cannot be changed."
-msgstr "این حساب از قبل دارای نام فرستنده است و نمی‌تواند تغییر یابد."
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,help:sms.field_iap_account__sender_name
 msgid "This is the name that will be displayed as the sender of the SMS."
-msgstr "این نامی است که به عنوان فرستنده پیامک نمایش داده خواهد شد."
+msgstr ""
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.res_partner_view_form
@@ -1386,12 +1439,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/sms/tools/sms_api.py:0
 msgid "This phone number/account has been banned from our service."
-msgstr "این شماره تلفن/حساب از خدمات ما منع شده است."
-
-#. module: sms
-#: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form
-msgid "To"
-msgstr "تا"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_ir_actions_server__state
@@ -1445,7 +1493,7 @@ msgstr "حساب ثبت‌نشده"
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_composer__use_exclusion_list
 msgid "Use Exclusion List"
-msgstr "استفاده از لیست استثنا"
+msgstr ""
 
 #. module: sms
 #: model:ir.model.fields,field_description:sms.field_sms_composer__template_id
@@ -1495,7 +1543,7 @@ msgstr "هشدار"
 #. odoo-python
 #: code:addons/sms/tools/sms_api.py:0
 msgid "We were not able to find your account in our database."
-msgstr "ما نتوانستیم حساب شما را در پایگاه داده خود پیدا کنیم."
+msgstr ""
 
 #. module: sms
 #. odoo-python
@@ -1504,8 +1552,6 @@ msgid ""
 "We were not able to reach you via your phone number. If you have requested "
 "multiple codes recently, please retry later."
 msgstr ""
-"برقراری ارتباط با شما از طریق شماره تلفن امکان‌پذیر نبود. اگر اخیراً چند کد "
-"درخواست کرده‌اید، بعداً دوباره امتحان کنید."
 
 #. module: sms
 #: model:ir.model.fields,help:sms.field_ir_model__is_mail_thread_sms
@@ -1549,7 +1595,7 @@ msgstr "شما اعتبار کافی در حساب IAP خود ندارید."
 #. odoo-python
 #: code:addons/sms/tools/sms_api.py:0
 msgid "You tried too many times. Please retry later."
-msgstr "تعداد دفعات تلاش شما بیش از حد مجاز بود. بعداً دوباره امتحان کنید."
+msgstr ""
 
 #. module: sms
 #. odoo-javascript
@@ -1562,7 +1608,7 @@ msgstr "پیامک شما باید حداقل شامل یک نویسه غیر ف
 #. odoo-python
 #: code:addons/sms/wizard/sms_account_code.py:0
 msgid "Your SMS account has been successfully registered."
-msgstr "حساب پیامک شما با موفقیت ثبت شد."
+msgstr ""
 
 #. module: sms
 #. odoo-python
@@ -1584,8 +1630,6 @@ msgid ""
 "Your sender name must be between 3 and 11 characters long and only contain "
 "alphanumeric characters."
 msgstr ""
-"نام فرستنده باید بین 3 الی 11 کاراکتر باشد و تنها حاوی کاراکترهای الفبایی و "
-"عددی باشد."
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_account_sender_view_form
@@ -1595,16 +1639,12 @@ msgid ""
 "                        It must fit your company name, and you aren't "
 "allowed to modify it once you registered one, choose it carefully."
 msgstr ""
-"نام فرستنده باید بین 3 الی 11 کاراکتر باشد و تنها حاوی کاراکترهای الفبایی و "
-"عددی باشد.\n"
-"                       این نام باید متناسب با نام شرکت باشد و پس از ثبت شدن "
-"دیگر قادر به ویرایش آن نخواهید بود، پس دقت کنید."
 
 #. module: sms
 #. odoo-python
 #: code:addons/sms/tools/sms_api.py:0
 msgid "Your sms account has not been activated yet."
-msgstr "حساب پیامک شما هنوز فعال‌سازی نشده است."
+msgstr ""
 
 #. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form
@@ -1627,6 +1667,11 @@ msgid "e.g. en_US or {{ object.partner_id.lang }}"
 msgstr "مثلاً fa_IR یا {{ object.partner_id.lang }}"
 
 #. module: sms
+#: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form_template_save
+msgid "e.g: Send order confirmation"
+msgstr ""
+
+#. module: sms
 #: model_terms:ir.ui.view,arch_db:sms.sms_composer_view_form
 msgid "out of"
 msgstr "خارج از"
@@ -1644,139 +1689,8 @@ msgstr ""
 msgid "record:"
 msgstr "رکورد:"
 
-#~ msgid ""
-#~ "<span class=\"text-warning\" attrs=\"{'invisible': [('no_record', '=', "
-#~ "False)]}\">No records</span>"
-#~ msgstr ""
-#~ "<span class=\"text-warning\" attrs=\"{'invisible': [('no_record', '=', "
-#~ "False)]}\">بدون رکورد</span>"
+#~ msgid "To"
+#~ msgstr "تا"
 
-#~ msgid "Action Needed"
-#~ msgstr "اقدام مورد نیاز است"
-
-#~ msgid "Action To Do"
-#~ msgstr "عمل برای انجام"
-
-#~ msgid "Attachment Count"
-#~ msgstr "تعداد پیوست ها"
-
-#~ msgid "Blacklisted Phone Is Mobile"
-#~ msgstr "تلفن لیست‌سیاه شده، موبایل است"
-
-#~ msgid "Blacklisted Phone is Phone"
-#~ msgstr "تلفن لیست سیاه شده، تلفن است"
-
-#~ msgid "Buy credits"
-#~ msgstr "خرید اعتبار"
-
-#~ msgid "Canceled"
-#~ msgstr "لغو شده"
-
-#~ msgid "Close"
-#~ msgstr "بستن"
-
-#~ msgid "Error Message"
-#~ msgstr "پیام ارور"
-
-#~ msgid ""
-#~ "Field used to store sanitized phone number. Helps speeding up searches "
-#~ "and comparisons."
-#~ msgstr ""
-#~ "فیلد مورد استفاده برای نگهداری شماره تلفن مدنظر. به بالا بردن جستجوها و "
-#~ "مقایسه‌ها کمک می‌کند."
-
-#~ msgid "Followers"
-#~ msgstr "دنبال کنندگان"
-
-#~ msgid "Followers (Partners)"
-#~ msgstr "پیروان (شرکاء)"
-
-#~ msgid "Has Message"
-#~ msgstr "آیا دارای پیام است"
-
-#~ msgid "If checked, new messages require your attention."
-#~ msgstr ""
-#~ "اگر این گزینه را انتخاب کنید، پیام‌های جدید به توجه شما نیاز خواهند داشت."
-
-#~ msgid ""
-#~ "If the sanitized phone number is on the blacklist, the contact won't "
-#~ "receive mass mailing sms anymore, from any list"
-#~ msgstr ""
-#~ "اگر شماره تلفن مدنظر در لیست سیاه باشد، مخاطب‌ دیگر پیامک‌های پستی انبوه را "
-#~ "از هیچ لیستی، دریافت نخواهد کرد"
-
-#~ msgid ""
-#~ "Indicates if a blacklisted sanitized phone number is a mobile number. "
-#~ "Helps distinguish which number is blacklisted             when there is "
-#~ "both a mobile and phone field in a model."
-#~ msgstr ""
-#~ "نشان می دهد که آیا شماره تلفن ثبت شده در لیست سیاه، یک شماره تلفن همراه "
-#~ "است. هنگامی که در یک مدل هم فیلد تلفن همراه و هم تلفن وجود دارد، می توان "
-#~ "تشخیص داد که کدام شماره در لیست سیاه قرار می گیرد."
-
-#~ msgid ""
-#~ "Indicates if a blacklisted sanitized phone number is a phone number. "
-#~ "Helps distinguish which number is blacklisted             when there is "
-#~ "both a mobile and phone field in a model."
-#~ msgstr ""
-#~ "نشان می دهد که آیا شماره تلفن ثبت شده در لیست سیاه، یک شماره تلفن همراه "
-#~ "است. هنگامی که در یک مدل هم فیلد تلفن همراه و هم تلفن وجود دارد، می توان "
-#~ "تشخیص داد که کدام شماره در لیست سیاه قرار می گیرد."
-
-#~ msgid "Is Follower"
-#~ msgstr "آیا دنبال می کند"
-
-#~ msgid "Message Delivery error"
-#~ msgstr "خطای تحویل پیام"
-
-#~ msgid ""
-#~ "Message type: email for email message, notification for system message, "
-#~ "comment for other messages such as user replies"
-#~ msgstr ""
-#~ "نوع پیام: ایمیل برای پیام ایمیل، اعلان برای پیام سیستم، نظر برای پیام های "
-#~ "دیگر مانند پاسخ های کاربر"
-
-#~ msgid "Messages"
-#~ msgstr "پیام ها"
-
-#~ msgid "Notification"
-#~ msgstr "اعلان"
-
-#~ msgid "Number of Actions"
-#~ msgstr "تعداد اقدامات"
-
-#~ msgid "Number of errors"
-#~ msgstr "تعداد خطاها"
-
-#~ msgid "Number of messages which requires an action"
-#~ msgstr "تعداد پیام ها که نیاز به عمل"
-
-#~ msgid "Number of messages with delivery error"
-#~ msgstr "تعداد پیامهای با خطای تحویل"
-
-#~ msgid "Partner"
-#~ msgstr "همکار"
-
-#~ msgid "Phone Blacklisted"
-#~ msgstr "تلفن در لیست سیاه"
-
-#~ msgid "Phone/Mobile"
-#~ msgstr "تلفن/موبایل"
-
-#~ msgid "Reason"
-#~ msgstr "علت"
-
-#~ msgid "Recipient"
-#~ msgstr "دریافت کننده"
-
-#~ msgid "Recipients"
-#~ msgstr "گیرندگان"
-
-#~ msgid "Send SMS Text Message"
-#~ msgstr "ارسال پیامک SMS"
-
-#~ msgid "Website Messages"
-#~ msgstr "پیام های وب سایت"
-
-#~ msgid "Website communication history"
-#~ msgstr "تاریخچه ارتباط با وبسایت"
+#~ msgid "Base"
+#~ msgstr "پایه"

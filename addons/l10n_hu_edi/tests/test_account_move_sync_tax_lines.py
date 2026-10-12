@@ -6,6 +6,8 @@ from freezegun import freeze_time
 @tagged('post_install_l10n', '-at_install', 'post_install')
 class TestAccountMoveSyncTaxLines(AccountTestInvoicingCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     @AccountTestInvoicingCommon.setup_country('hu')
     def setUpClass(cls):
@@ -21,8 +23,8 @@ class TestAccountMoveSyncTaxLines(AccountTestInvoicingCommon):
         """
         currency_usd = self.setup_other_currency('USD', rates=[
             ('1900-01-01', 1.0),
-            ('2024-01-30', 2.0),
-            ('2024-01-31', 3.0),
+            ('2024-01-29', 2.0),
+            ('2024-01-30', 3.0),
         ])
         out_invoice = self._create_invoice_one_line(price_unit=10000, tax_ids=self.tax_vat, currency_id=currency_usd)
 

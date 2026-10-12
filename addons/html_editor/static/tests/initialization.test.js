@@ -91,10 +91,10 @@ describe("No orphan inline elements compatibility mode", () => {
         });
     });
 
-    test("should transform root .fa", async () => {
+    test("should transform root .oi", async () => {
         await testEditor({
-            contentBefore: '<p>ab</p><i class="fa fa-beer"></i><p>c</p>',
-            contentAfter: '<p>ab</p><div><i class="fa fa-beer"></i></div><p>c</p>',
+            contentBefore: '<p>ab</p><i class="oi" data-icon="sports_bar"></i><p>c</p>',
+            contentAfter: '<p>ab</p><div><i class="oi" data-icon="sports_bar"></i></div><p>c</p>',
         });
     });
 
@@ -389,7 +389,7 @@ describe("Editor config initialization", () => {
 });
 
 describe("table normalization", () => {
-    test("should normalize complex table spans", async () => {
+    test("should add the cells missing from a ragged table without altering the spans", async () => {
         await testEditor({
             contentBefore: unformat(`
                 <table>
@@ -399,15 +399,10 @@ describe("table normalization", () => {
                             <td>B</td>
                         </tr>
                         <tr>
-                            <td colspan="2">C</td>
+                            <td>C</td>
                         </tr>
                         <tr>
                             <td>D</td>
-                            <td rowspan="2">E</td>
-                            <td>F</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">G</td>
                         </tr>
                     </tbody>
                 </table>
@@ -416,26 +411,14 @@ describe("table normalization", () => {
                 <table>
                     <tbody>
                         <tr>
-                            <td>A</td>
-                            <td><p><br></p></td>
+                            <td rowspan="2" colspan="2">A</td>
                             <td>B</td>
-                            <td><p><br></p></td>
                         </tr>
                         <tr>
-                            <td><p><br></p></td>
-                            <td><p><br></p></td>
                             <td>C</td>
-                            <td><p><br></p></td>
                         </tr>
                         <tr>
                             <td>D</td>
-                            <td>E</td>
-                            <td>F</td>
-                            <td><p><br></p></td>
-                        </tr>
-                        <tr>
-                            <td>G</td>
-                            <td><p><br></p></td>
                             <td><p><br></p></td>
                             <td><p><br></p></td>
                         </tr>
@@ -445,13 +428,45 @@ describe("table normalization", () => {
         });
     });
 
-    test("should populate ragged table rows even without any rowspan/colspan", async () => {
+    test("should add the header cells missing from a ragged table", async () => {
+        await testEditor({
+            contentBefore: unformat(`
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="o_table_header">Second Header</th>
+                        </tr>
+                        <tr>
+                            <td>Content Cell</td>
+                            <td>Content Cell</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `),
+            contentAfter: unformat(`
+                <table>
+                    <tbody>
+                        <tr>
+                            <th class="o_table_header"><p><br></p></th>
+                            <th class="o_table_header">Second Header</th>
+                        </tr>
+                        <tr>
+                            <td>Content Cell</td>
+                            <td>Content Cell</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `),
+        });
+    });
+
+    test("should add the cells missing from the first and the last rows", async () => {
         await testEditor({
             contentBefore: unformat(
-                `<table><tbody><tr><td>A</td></tr><tr><td>B</td><td>C</td></tr></tbody></table>`
+                `<table><tbody><tr><td>B</td></tr><tr><td>C</td><td>D</td></tr><tr><td>E</td></tr></tbody></table>`
             ),
             contentAfter: unformat(
-                `<table><tbody><tr><td>A</td><td><p><br></p></td></tr><tr><td>B</td><td>C</td></tr></tbody></table>`
+                `<table><tbody><tr><td><p><br></p></td><td>B</td></tr><tr><td>C</td><td>D</td></tr><tr><td>E</td><td><p><br></p></td></tr></tbody></table>`
             ),
         });
     });

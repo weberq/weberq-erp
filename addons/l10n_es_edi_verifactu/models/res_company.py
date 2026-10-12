@@ -1,4 +1,5 @@
-from odoo import _, fields, models
+from odoo import fields, models
+from odoo.addons.l10n_es_edi_verifactu.const import VERIFACTU_REGIME_CODES_IGIC, VERIFACTU_REGIME_CODES_IVA
 
 
 class ResCompany(models.Model):
@@ -18,27 +19,6 @@ class ResCompany(models.Model):
         default=True,
         copy=False,
     )
-    l10n_es_edi_verifactu_chain_sequence_id = fields.Many2one(
-        comodel_name='ir.sequence',
-        string="Veri*Factu Document Chain Sequence",
-        readonly=True,
-        copy=False,
-    )
-    l10n_es_edi_verifactu_next_batch_time = fields.Datetime(
-        string="Veri*Factu Next Batch Time",
-        readonly=True,
-        copy=False,
-        help="The Datetime at which the next submission to the AEAT can be made.",
-    )
-    l10n_es_edi_verifactu_special_vat_regime = fields.Selection(
-        string="Veri*Factu VAT Regime",
-        selection=[
-            ('simplified', "Simplified Regime"),
-            ('reagyp', "REAGYP (Special Regime for Agriculture, Livestock and Fisheries)"),
-            ('recargo', "Recargo de Equivalencia"),
-        ],
-        help="Leave empty for the normal regimen.",
-    )
 
     def _l10n_es_edi_verifactu_get_endpoints(self):
         """
@@ -46,8 +26,6 @@ class ResCompany(models.Model):
         https://prewww2.aeat.es/static_files/common/internet/dep/aplicaciones/es/aeat/tikeV1.0/cont/ws/SistemaFacturacion.wsdl
         """
         self.ensure_one()
-        certificate = self.sudo()._l10n_es_edi_verifactu_get_certificate()
-        is_sello = certificate._l10n_es_edi_verifactu_is_sello_certificate()
         wsdl_base = {
             'url': 'https://prewww2.aeat.es/static_files/common/internet/dep/aplicaciones/es/aeat/tikeV1.0/cont/ws/SistemaFacturacion.wsdl',
             'service': 'sfVerifactu',
@@ -56,14 +34,14 @@ class ResCompany(models.Model):
         }
         if self.l10n_es_edi_verifactu_test_environment:
             endpoints = {
-                'wsdl': wsdl_base | {'port': 'SistemaVerifactuSelloPruebas' if is_sello else 'SistemaVerifactuPruebas'},
-                'verifactu': 'https://prewww10.aeat.es/wlpl/TIKE-CONT/ws/SistemaFacturacion/VerifactuSOAP' if is_sello else 'https://prewww1.aeat.es/wlpl/TIKE-CONT/ws/SistemaFacturacion/VerifactuSOAP',
+                'wsdl': wsdl_base | {'port': 'SistemaVerifactuPruebas'},
+                'verifactu': 'https://prewww1.aeat.es/wlpl/TIKE-CONT/ws/SistemaFacturacion/VerifactuSOAP',
                 'QR': 'https://prewww2.aeat.es/wlpl/TIKE-CONT/ValidarQR',
             }
         else:
             endpoints = {
-                'wsdl': wsdl_base | {'port': 'SistemaVerifactuSello' if is_sello else 'SistemaVerifactu'},
-                'verifactu': 'https://www10.agenciatributaria.gob.es/wlpl/TIKE-CONT/ws/SistemaFacturacion/VerifactuSOAP' if is_sello else 'https://www1.agenciatributaria.gob.es/wlpl/TIKE-CONT/ws/SistemaFacturacion/VerifactuSOAP',
+                'wsdl': wsdl_base | {'port': 'SistemaVerifactu'},
+                'verifactu': 'https://www1.agenciatributaria.gob.es/wlpl/TIKE-CONT/ws/SistemaFacturacion/VerifactuSOAP',
                 'QR': 'https://www2.agenciatributaria.gob.es/wlpl/TIKE-CONT/ValidarQR'
             }
         return endpoints
@@ -76,25 +54,13 @@ class ResCompany(models.Model):
             limit=1,
         )
 
-    def _l10n_es_edi_verifactu_get_chain_sequence(self):
+    def _l10n_es_regime_available_codes(self, use, applicability=None):
+        # EXTENDS 'l10n_es'
         self.ensure_one()
-        if not self.l10n_es_edi_verifactu_chain_sequence_id:
-            self_sudo = self.sudo()
-            self_sudo.l10n_es_edi_verifactu_chain_sequence_id = self_sudo.env['ir.sequence'].create({
-                'name': _("Veri*Factu Document Sequence for company %(name)s (%(id)s)", name=self.name, id=self.id),
-                'code': f'l10n_es_edi_verifactu.document.{self.id}',
-                'implementation': 'no_gap',
-                'company_id': self.id,
-            })
-        return self.l10n_es_edi_verifactu_chain_sequence_id
-
-    def _l10n_es_edi_verifactu_get_last_document(self):
-        self.ensure_one()
-        return self.env['l10n_es_edi_verifactu.document'].search(
-            [
-                ('chain_index', '!=', False),
-                ('company_id', '=', self.id),
-            ],
-            order='chain_index DESC',
-            limit=1,
-        )
+        # VeriFactu only applies to sale taxes; purchase taxes always fall back to the
+        # generic catalog, even on a VeriFactu company.
+        if self.l10n_es_edi_verifactu_required and use == 'sale':
+            if applicability == '03':  # IGIC
+                return VERIFACTU_REGIME_CODES_IGIC
+            return VERIFACTU_REGIME_CODES_IVA  # IVA ('01'), IPSI ('02') and unset/"Other" default here
+        return super()._l10n_es_regime_available_codes(use, applicability=applicability)

@@ -35,6 +35,22 @@ export class PosOrderAccounting extends Base {
         this._prices.unit = this._constructPriceData({ baseLineOpts: { quantity: 1 } });
     }
 
+    get paymentAmountInCurrency() {
+        const otherCurrencyPayments = this.payment_ids.filter(
+            (payment) => payment.foreign_currency_id
+        );
+        if (!otherCurrencyPayments.length) {
+            return formatCurrency(this.totalDue, this.config.currency_id.id);
+        }
+
+        const currency = otherCurrencyPayments[0].currency;
+        const totalOtherCurrencyAmount = otherCurrencyPayments.reduce(
+            (total, payment) => total + payment.amount_currency,
+            0
+        );
+        return formatCurrency(totalOtherCurrencyAmount, currency.id);
+    }
+
     /**
      * Currency formatted prices, these getters already handle included/excluded tax configuration.
      * They must be used each time a price is displayed to the user.
@@ -81,8 +97,7 @@ export class PosOrderAccounting extends Base {
      */
     get remainingDue() {
         const isNegative = this.totalDue < 0;
-        const total = this.totalDue;
-        const remaining = this.currency.round(total - this.amountPaid);
+        const remaining = this.currency.round(this.totalDue - this.amountPaid);
 
         // Amount paid covers the total due
         if ((isNegative && remaining >= 0) || (!isNegative && remaining <= 0)) {
@@ -101,7 +116,7 @@ export class PosOrderAccounting extends Base {
         const roundingSanatizer = this.orderIsRounded ? this.appliedRounding : 0;
         const remaining = this.totalDue - this.amountPaid;
 
-        // Amount paid covers the total due
+        // Amount paid does not exceed total due
         if ((isNegative && remaining <= 0) || (!isNegative && remaining >= 0)) {
             return 0;
         }
@@ -120,7 +135,7 @@ export class PosOrderAccounting extends Base {
         return this.config.cash_rounding;
     }
     get orderIsRounded() {
-        const cashPm = this.payment_ids.some((p) => p.payment_method_id.is_cash_count);
+        const cashPm = this.payment_ids.some((p) => p.payment_method_id.type === "cash");
         return this.config.hasGlobalRounding || (cashPm && this.config.hasCashRounding);
     }
     get appliedRounding() {
@@ -166,9 +181,6 @@ export class PosOrderAccounting extends Base {
     get priceIncl() {
         return this.prices.taxDetails.total_amount_no_rounding;
     }
-    get roundedPriceIncl() {
-        return this.prices.taxDetails.total_amount_currency;
-    }
     get priceExcl() {
         return this.prices.taxDetails.base_amount;
     }
@@ -211,7 +223,7 @@ export class PosOrderAccounting extends Base {
      * The whole order is rounded instead.
      */
     shouldRound(paymentMethod) {
-        return paymentMethod.is_cash_count && this.config.hasCashRounding;
+        return paymentMethod.type === "cash" && this.config.hasCashRounding;
     }
 
     /**
@@ -220,20 +232,10 @@ export class PosOrderAccounting extends Base {
      * @returns A monetary value.
      */
     getDefaultAmountDueToPayIn(paymentMethod) {
-        const remainingDue = this.remainingDueAfterPendingQr;
         const amount = this.shouldRound(paymentMethod)
-            ? this.config_id.rounding_method.round(remainingDue)
-            : remainingDue;
+            ? this.config_id.rounding_method.round(this.remainingDue)
+            : this.remainingDue;
         return amount || this.change;
-    }
-    // Unsent QR code payments are not paid yet, but their amount is already reserved.
-    get remainingDueAfterPendingQr() {
-        const remainingDue = this.remainingDue;
-        const pending = this.payment_ids
-            .filter((pl) => pl.isUnsentQrCode())
-            .reduce((sum, pl) => sum + pl.getAmount(), 0);
-        const remaining = this.currency.round(remainingDue - pending);
-        return remaining * remainingDue > 0 ? remaining : 0;
     }
 
     /**
@@ -266,6 +268,74 @@ export class PosOrderAccounting extends Base {
     }
 
     /**
+     * Carve a target `amount` out of `lines` and return one base line per tax group,
+     * attributed to `product` and spread over `qty` units, each paired with the extra
+     * tax data to persist on the orderline written from it.
+     *
+     * @param lines: The lines the amount is carved from.
+     * @param product: The product the resulting base lines are attributed to.
+     * @param type: "percent" or "fixed", how `amount` is read.
+     * @param amount: The target amount, taxes included.
+     * @param qty: The number of units the target amount is spread over.
+     * @param ignoreDiscount: Carve the amount from the lines before their discount.
+     */
+    getBaseLinesReducedToAmount(lines, { product, type, amount, qty = 1, ignoreDiscount = false }) {
+        const company = this.company;
+        const baseLines = lines.map((line) =>
+            accountTaxHelpers.prepare_base_line_for_taxes_computation(
+                line,
+                line.prepareBaseLineForTaxesComputationExtraValues()
+            )
+        );
+        // Reduction groups by {tax_ids, computation_key}, callers reconcile on tax_ids
+        // alone. Strip the key so one tax group yields one line.
+        baseLines.forEach((line) => {
+            line.computation_key = null;
+            if (line.extra_tax_data) {
+                line.extra_tax_data.computation_key = undefined;
+            }
+            if (ignoreDiscount) {
+                line.discount = 0;
+            }
+        });
+
+        accountTaxHelpers.add_tax_details_in_base_lines(baseLines, company);
+        accountTaxHelpers.round_base_lines_tax_details(baseLines, company);
+
+        const reducedBaseLines = accountTaxHelpers.reduce_base_lines_to_target_amount(
+            baseLines,
+            company,
+            type,
+            amount,
+            {
+                grouping_function: () => ({
+                    grouping_key: { product_id: product },
+                    raw_grouping_key: { product_id: product.id },
+                }),
+            }
+        );
+        accountTaxHelpers.fix_base_lines_tax_details_on_manual_tax_amounts(
+            reducedBaseLines,
+            company
+        );
+
+        // The spread must precede the export: the export stamps `price_unit`,
+        // `discount` and `quantity`, and `import_base_line_extra_tax_data` drops the
+        // exact per-tax amounts when they no longer match the line they are read back
+        // onto. Those amounts are what makes the per-unit rounding below safe.
+        return reducedBaseLines.map((baseLine) => {
+            if (qty > 1) {
+                baseLine.quantity = qty;
+                baseLine.price_unit = baseLine.price_unit / qty;
+            }
+            return {
+                baseLine,
+                extraTaxData: accountTaxHelpers.export_base_line_extra_tax_data(baseLine),
+            };
+        });
+    }
+
+    /**
      * @private
      *
      * Private method computing all prices and tax details.
@@ -273,9 +343,7 @@ export class PosOrderAccounting extends Base {
      */
     _constructPriceData(opts = {}) {
         const data = this._computeAllPrices(opts);
-        const addedBlOpts = opts.baseLineOpts || {};
-        const ndBaseLineOpts = { ...addedBlOpts, discount: 0.0 };
-        const noDiscount = this._computeAllPrices({ ...opts, baseLineOpts: ndBaseLineOpts });
+        const noDiscount = this._computeAllPrices({ baseLineOpts: { discount: 0.0 }, ...opts });
         const currency = this.currency;
 
         for (const key of Object.keys(data.baseLineByLineUuids)) {
@@ -284,6 +352,7 @@ export class PosOrderAccounting extends Base {
 
             Object.assign(data.baseLineByLineUuids[key].tax_details, {
                 discount_amount: currency.round(ndData.total_included - dData.total_included),
+                no_discount_price_unit: ndData.price_unit_currency,
                 no_discount_total_excluded: ndData.total_excluded,
                 no_discount_total_included: ndData.total_included,
                 no_discount_total_included_currency: ndData.total_included_currency,
@@ -325,7 +394,7 @@ export class PosOrderAccounting extends Base {
         // Cash rounding is added only if the document needs to be globaly rounded.
         // See cash_rounding and only_round_cash_method config fields.
         const cashRounding =
-            this.config.cash_rounding && this.config.rounding_method
+            this.config.hasGlobalRounding && this.config.rounding_method
                 ? this.config.rounding_method
                 : null;
         const data = accountTaxHelpers.get_tax_totals_summary(baseLines, currency, company, {

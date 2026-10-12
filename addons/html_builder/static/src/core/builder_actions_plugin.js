@@ -54,10 +54,10 @@ export class BuilderActionsPlugin extends Plugin {
      */
     applyAction(actionId, spec) {
         const action = this.getAction(actionId);
-        this.dependencies.operation.next(
+        return this.dependencies.operation.next(
             async () => {
                 await action.apply(spec);
-                this.dependencies.history.addStep();
+                this.dependencies.history.commit();
             },
             {
                 ...action,

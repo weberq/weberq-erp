@@ -5,17 +5,15 @@
 # Translators:
 # Matjaz Mozetic <m.mozetic@matmoz.si>, 2022
 # Martin Trigaux, 2022
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~14.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-10 09:11+0000\n"
-"Last-Translator: Žiga Trček <ziga.trcek@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:41+0000\n"
+"PO-Revision-Date: 2026-08-31 16:13+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "account_tax_python/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -51,6 +49,19 @@ msgstr ""
 "        "
 
 #. module: account_tax_python
+#: model:ir.module.module,description:base.module_account_tax_python
+msgid ""
+"\n"
+"A tax defined as python code consists of two snippets of python code which "
+"are executed in a local environment containing data such as the unit price, "
+"product or partner.\n"
+"\n"
+"\"Applicable Code\" defines if the tax is to be applied.\n"
+"\n"
+"\"Python Code\" defines the amount of the tax.\n"
+msgstr ""
+
+#. module: account_tax_python
 #: model:ir.model.fields,help:account_tax_python.field_account_tax__formula
 msgid ""
 "Compute the amount of the tax.\n"
@@ -73,6 +84,11 @@ msgid "Custom Formula"
 msgstr "Formula po meri"
 
 #. module: account_tax_python
+#: model:ir.module.module,shortdesc:base.module_account_tax_python
+msgid "Define Taxes as Python Code"
+msgstr ""
+
+#. module: account_tax_python
 #: model:ir.model.fields,field_description:account_tax_python.field_account_tax__display_name
 msgid "Display Name"
 msgstr "Prikazani naziv"
@@ -81,7 +97,7 @@ msgstr "Prikazani naziv"
 #. odoo-python
 #: code:addons/account_tax_python/tools/formula_utils.py:0
 msgid "Field '%s' is not accessible"
-msgstr "Polje '%s' ni dostopno"
+msgstr ""
 
 #. module: account_tax_python
 #: model:ir.model.fields,field_description:account_tax_python.field_account_tax__formula
@@ -102,43 +118,43 @@ msgstr "ID"
 #. odoo-python
 #: code:addons/account_tax_python/tools/formula_utils.py:0
 msgid "Invalid AST node: %s"
-msgstr "Neveljavno vozlišče AST: %s"
+msgstr ""
 
 #. module: account_tax_python
 #. odoo-python
 #: code:addons/account_tax_python/tools/formula_utils.py:0
 msgid "Invalid formula"
-msgstr "Neveljavna formula"
+msgstr ""
 
 #. module: account_tax_python
 #. odoo-python
 #: code:addons/account_tax_python/tools/formula_utils.py:0
 msgid "Kwargs are not allowed"
-msgstr "Kwargs niso dovoljeni"
+msgstr ""
 
 #. module: account_tax_python
 #. odoo-python
 #: code:addons/account_tax_python/tools/formula_utils.py:0
 msgid "Only int, float or None are allowed as constant values"
-msgstr "Kot konstante so dovoljene samo vrednosti int, float ali None"
+msgstr ""
 
 #. module: account_tax_python
 #. odoo-python
 #: code:addons/account_tax_python/models/account_tax.py:0
 msgid "Only primitive types are allowed in python tax formula context."
-msgstr "V kontekstu davčne formule v Pythonu so dovoljeni samo primitivni tipi."
+msgstr ""
 
 #. module: account_tax_python
 #. odoo-python
 #: code:addons/account_tax_python/tools/formula_utils.py:0
 msgid "Only product['string'] or uom['string'] read-access is allowed"
-msgstr "Dovoljen je samo bralni dostop do product['string'] ali uom['string']"
+msgstr ""
 
 #. module: account_tax_python
 #. odoo-python
 #: code:addons/account_tax_python/tools/formula_utils.py:0
 msgid "Only read access to identifiers is allowed"
-msgstr "Dovoljen je samo bralni dostop do identifikatorjev"
+msgstr ""
 
 #. module: account_tax_python
 #: model:ir.model,name:account_tax_python.model_account_tax
@@ -154,19 +170,15 @@ msgstr "Izračun davka"
 #. odoo-python
 #: code:addons/account_tax_python/tools/formula_utils.py:0
 msgid "Unknown function call"
-msgstr "Neznan klic funkcije"
+msgstr ""
 
 #. module: account_tax_python
 #. odoo-python
 #: code:addons/account_tax_python/tools/formula_utils.py:0
 msgid "Unknown identifier: %s"
-msgstr "Neznan identifikator: %s"
+msgstr ""
 
-#~ msgid "Applicable Code"
-#~ msgstr "Koda uporabe"
-
-#~ msgid "Python Code"
-#~ msgstr "Python koda"
-
-#~ msgid "Templates for Taxes"
-#~ msgstr "Predloge za davke"
+#. module: account_tax_python
+#: model:ir.module.module,summary:base.module_account_tax_python
+msgid "Use python code to define taxes"
+msgstr ""

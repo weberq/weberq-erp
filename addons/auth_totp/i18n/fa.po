@@ -2,23 +2,40 @@
 # This file contains the translation of the following modules:
 # * auth_totp
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Aliraza Habibitanha <alireza.habibitanha@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-09 11:05+0000\n"
-"Last-Translator: Aliraza Habibitanha <alireza.habibitanha@gmail.com>\n"
-"Language-Team: Persian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 13:59+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Persian <https://translate.odoo.com/projects/odoo-s19-4/"
 "auth_totp/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: auth_totp
+#: model:ir.module.module,description:base.module_auth_totp
+msgid ""
+"\n"
+"Two-Factor Authentication (TOTP)\n"
+"================================\n"
+"Allows users to configure two-factor authentication on their user account\n"
+"for extra security, using time-based one-time passwords (TOTP).\n"
+"\n"
+"Once enabled, the user will need to enter a 6-digit code as provided\n"
+"by their authenticator app before being granted access to the system.\n"
+"All popular authenticator apps are supported.\n"
+"\n"
+"Note: logically, two-factor prevents password-based RPC access for users\n"
+"where it is enabled. In order to be able to execute RPC scripts, the user\n"
+"can setup API keys to replace their main password.\n"
+msgstr ""
 
 #. module: auth_totp
 #. odoo-python
@@ -38,31 +55,23 @@ msgid "2-Factor authentication is now enabled."
 msgstr "اکنون اعتبارسنجی 2 عاملی امکان‌پذیر است."
 
 #. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_field
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_form
 msgid ""
-"<i class=\"fa fa-check text-success\"/>\n"
-"                        <span class=\"fw-bold ms-1 me-2\">\n"
-"                            Enabled\n"
-"                        </span>"
-msgstr ""
-"<i class=\"fa fa-check text-success\"/>\n"
-"                        <span class=\"fw-bold ms-1 me-2\">\n"
-"                            فعال است\n"
-"                        </span>"
-
-#. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_form
-msgid ""
-"<i class=\"fa fa-remove text-danger\"/>\n"
+"<i class=\"oi text-danger\" data-icon=\"close\"/>\n"
 "                        <span class=\"fw-bold ms-1\">\n"
 "                            Disabled\n"
 "                        </span>"
 msgstr ""
-"<i class=\"fa fa-remove text-danger\"/>\n"
-"                        <span class=\"fw-bold ms-1\">\n"
-"                            غیرفعال است\n"
+
+#. module: auth_totp
+#: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_field
+#: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_form
+msgid ""
+"<i class=\"oi text-success\" data-icon=\"check\"/>\n"
+"                        <span class=\"fw-bold ms-1 me-2\">\n"
+"                            Enabled\n"
 "                        </span>"
+msgstr ""
 
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_field
@@ -72,24 +81,22 @@ msgid ""
 "                            Recommended for extra security.\n"
 "                        </span>"
 msgstr ""
-"<span class=\"text-muted\">\n"
-"                            برای امنیت بیشتر توصیه می‌شود.\n"
-"                        </span>"
 
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Add this key in your Authenticator app"
-msgstr "این کلید را در برنامه احراز هویت خود اضافه کنید"
-
-#. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
-msgid "Authentication Code"
-msgstr "کد اعتبارسنجی"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model,name:auth_totp.model_auth_totp_device
 msgid "Authentication Device"
 msgstr "دستگاه اعتبارسنجی"
+
+#. module: auth_totp
+#. odoo-javascript
+#: code:addons/auth_totp/static/src/services/check_identity/check_identity.xml:0
+msgid "Authentication code"
+msgstr ""
 
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
@@ -100,6 +107,13 @@ msgstr "لغو"
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Cannot scan it?"
 msgstr "نمی‌توانید آن را اسکن کنید؟"
+
+#. module: auth_totp
+#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
+msgid ""
+"Check your Authenticator app for your code.\n"
+"                        <br/>"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields.selection,name:auth_totp.selection__auth_totp_rate_limit_log__limit_type__code_check
@@ -140,14 +154,10 @@ msgid "Disable two-factor authentication"
 msgstr "غیرفعال‌ کردن اعتبارسنجی دو عاملی"
 
 #. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
-msgid "Discard"
-msgstr "رها کردن"
-
-#. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_device__display_name
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_rate_limit_log__display_name
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_wizard__display_name
+#: model:ir.model.fields,field_description:auth_totp.field_ir_http__display_name
 #: model:ir.model.fields,field_description:auth_totp.field_res_users__display_name
 msgid "Display Name"
 msgstr "نام نمایشی"
@@ -166,7 +176,17 @@ msgstr "فعال‌سازی 2FA"
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Enable Two-Factor Authentication"
-msgstr "فعال کردن احراز هویت دو مرحله‌ای"
+msgstr ""
+
+#. module: auth_totp
+#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
+msgid "Enter code"
+msgstr ""
+
+#. module: auth_totp
+#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
+msgid "Enter verification code"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_device__expiration_date
@@ -174,9 +194,15 @@ msgid "Expiration Date"
 msgstr "تاریخ انقضا"
 
 #. module: auth_totp
+#: model:ir.model,name:auth_totp.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_device__id
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_rate_limit_log__id
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_wizard__id
+#: model:ir.model.fields,field_description:auth_totp.field_ir_http__id
 #: model:ir.model.fields,field_description:auth_totp.field_res_users__id
 msgid "ID"
 msgstr "شناسه"
@@ -205,11 +231,6 @@ msgid "Last Updated on"
 msgstr "آخرین بروز رسانی در"
 
 #. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
-msgid "Learn More"
-msgstr "بیشتر بدانید"
-
-#. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_rate_limit_log__limit_type
 msgid "Limit Type"
 msgstr "نوع محدود"
@@ -220,6 +241,14 @@ msgid "Log in"
 msgstr "ورود"
 
 #. module: auth_totp
+#. odoo-javascript
+#: code:addons/auth_totp/static/src/services/check_identity/check_identity.xml:0
+msgid ""
+"Open your two-factor authenticator (TOTP) app or browser extension to view "
+"your authentication code."
+msgstr ""
+
+#. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_wizard__qrcode
 msgid "Qrcode"
 msgstr "کد QR"
@@ -227,7 +256,7 @@ msgstr "کد QR"
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Scan this barcode in your Authenticator app"
-msgstr "این بارکد را در برنامه Authenticator خود اسکن کنید"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_device__scope
@@ -256,19 +285,9 @@ msgid "The verification code should only contain numbers"
 msgstr "کد اعتبارسنجی تنها باید شامل اعداد باشد"
 
 #. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
-msgid ""
-"To login, enter below the six-digit authentication code provided by your "
-"Authenticator app.\n"
-"                        <br/>"
-msgstr ""
-"برای ورود، کد اعتبارسنجی شش رقمی ارائه شده در اپلیکیشن اعتبارسنجی خود را "
-"وارد کنید.  <br/>"
-
-#. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users__totp_last_counter
 msgid "Totp Last Counter"
-msgstr "آخرین شمارنده Totp"
+msgstr ""
 
 #. module: auth_totp
 #: model:ir.model.fields,field_description:auth_totp.field_res_users__totp_secret
@@ -281,13 +300,17 @@ msgid "Trusted Devices"
 msgstr "دستگاه های قابل اعتماد"
 
 #. module: auth_totp
+#: model:ir.module.module,shortdesc:base.module_auth_totp
+msgid "Two-Factor Authentication (TOTP)"
+msgstr ""
+
+#. module: auth_totp
 #. odoo-python
 #: code:addons/auth_totp/models/res_users.py:0
 msgid "Two-Factor Authentication Activation"
 msgstr "فعال‌سازی اعتبارسنجی دو عاملی"
 
 #. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_field
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_form
 msgid "Two-factor Authentication"
@@ -332,6 +355,12 @@ msgid "Url"
 msgstr "آدرس وب"
 
 #. module: auth_totp
+#. odoo-javascript
+#: code:addons/auth_totp/static/src/services/check_identity/check_identity.xml:0
+msgid "Use your authenticator app"
+msgstr ""
+
+#. module: auth_totp
 #: model:ir.model,name:auth_totp.model_res_users
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_device__user_id
 #: model:ir.model.fields,field_description:auth_totp.field_auth_totp_rate_limit_log__user_id
@@ -347,7 +376,7 @@ msgstr "کد تاییدیه"
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Verification code"
-msgstr "کد تأیید"
+msgstr ""
 
 #. module: auth_totp
 #. odoo-python
@@ -360,12 +389,24 @@ msgstr "اعتبارسنجی ناموفق، لطفاً کد 6 رقمی را با
 #. odoo-python
 #: code:addons/auth_totp/models/res_users.py:0
 msgid "Verification failed, please use the latest 6-digit code"
-msgstr "تأیید ناموفق بود، لطفا از آخرین کد ۶ رقمی استفاده کنید"
+msgstr ""
+
+#. module: auth_totp
+#. odoo-javascript
+#: code:addons/auth_totp/static/src/services/check_identity/check_identity.xml:0
+msgid "Verify"
+msgstr ""
 
 #. module: auth_totp
 #: model_terms:ir.ui.view,arch_db:auth_totp.view_totp_wizard
 msgid "Write the code given by your app"
-msgstr "کدی را که برنامه به شما داده است بنویسید"
+msgstr ""
+
+#. module: auth_totp
+#. odoo-javascript
+#: code:addons/auth_totp/static/src/services/check_identity/check_identity.xml:0
+msgid "XXXXXX"
+msgstr ""
 
 #. module: auth_totp
 #. odoo-python
@@ -374,8 +415,6 @@ msgid ""
 "You reached the limit of authentication mails sent for your account, please "
 "try again later."
 msgstr ""
-"شما به حد مجاز ارسال ایمیل‌های احراز هویت برای حساب خود رسیده‌اید، بعداً دوباره "
-"تلاش کنید."
 
 #. module: auth_totp
 #. odoo-python
@@ -384,9 +423,20 @@ msgid ""
 "You reached the limit of code verifications for your account, please try "
 "again later."
 msgstr ""
-"شما به حد مجاز کد تأیید برای حساب خود رسیده‌اید، بعداً دوباره تلاش کنید."
 
-#. module: auth_totp
-#: model_terms:ir.ui.view,arch_db:auth_totp.auth_totp_form
-msgid "e.g. 123456"
-msgstr "به طور مثال 123456"
+#~ msgid "Authentication Code"
+#~ msgstr "کد اعتبارسنجی"
+
+#~ msgid "Learn More"
+#~ msgstr "بیشتر بدانید"
+
+#~ msgid ""
+#~ "To login, enter below the six-digit authentication code provided by your "
+#~ "Authenticator app.\n"
+#~ "                        <br/>"
+#~ msgstr ""
+#~ "برای ورود، کد اعتبارسنجی شش رقمی ارائه شده در اپلیکیشن اعتبارسنجی خود را "
+#~ "وارد کنید.  <br/>"
+
+#~ msgid "e.g. 123456"
+#~ msgstr "به طور مثال 123456"

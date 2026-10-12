@@ -6,23 +6,35 @@
 # Uros Kalajdzic <ukalajdzic@gmail.com>, 2022
 # Martin Trigaux, 2022
 # Dragan Vukosavljevic <dragan.vukosavljevic@gmail.com>, 2022
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-02 12:33+0000\n"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 19:35+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.odoo.com/projects/"
-"odoo-19/account_check_printing/sr_Latn/>\n"
+"odoo-s19-4/account_check_printing/sr_Latn/>\n"
 "Language: sr@latin\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: account_check_printing
+#: model:ir.module.module,description:base.module_account_check_printing
+msgid ""
+"\n"
+"This module offers the basic functionalities to make payments by printing "
+"checks.\n"
+"It must be used as a dependency for modules that provide country-specific "
+"check templates.\n"
+"The check settings are located in the accounting journals configuration "
+"page.\n"
+msgstr ""
 
 #. module: account_check_printing
 #. odoo-python
@@ -67,11 +79,6 @@ msgid "Bills"
 msgstr "Računi"
 
 #. module: account_check_printing
-#: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
-msgid "Cancel"
-msgstr "Otkaži"
-
-#. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_account_journal__bank_check_printing_layout
 #: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_layout
 #: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_layout
@@ -93,6 +100,11 @@ msgstr "Broj čeka"
 #: model_terms:ir.ui.view,arch_db:account_check_printing.view_account_journal_form_inherited
 msgid "Check Printing"
 msgstr "Štampanje čeka"
+
+#. module: account_check_printing
+#: model:ir.module.module,shortdesc:base.module_account_check_printing
+msgid "Check Printing Base"
+msgstr ""
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_margin_right
@@ -117,10 +129,16 @@ msgid "Check numbers can only consist of digits"
 msgstr "Brojevi čekova mogu se sastojati samo od cifara"
 
 #. module: account_check_printing
+#: model:ir.module.module,summary:base.module_account_check_printing
+msgid "Check printing basic features"
+msgstr ""
+
+#. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_journal__check_manual_sequencing
 #: model:ir.model.fields,help:account_check_printing.field_account_payment__check_manual_sequencing
 msgid "Check this option if your pre-printed checks are not numbered."
-msgstr "Označite ovu opciju ako vaši unapred odštampani čekovi nisu numerisani."
+msgstr ""
+"Označite ovu opciju ako vaši unapred odštampani čekovi nisu numerisani."
 
 #. module: account_check_printing
 #: model_terms:ir.ui.view,arch_db:account_check_printing.account_journal_dashboard_kanban_view_inherited
@@ -153,8 +171,8 @@ msgstr "Čekovi za štampu"
 
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_res_company
-msgid "Companies"
-msgstr "Preduzeća"
+msgid "Company"
+msgstr ""
 
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_res_config_settings
@@ -282,19 +300,15 @@ msgid "None"
 msgstr "Ništa"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_account_payment__payment_method_line_id
-msgid "Payment Method"
-msgstr "Nacin Placanja"
+#: model:ir.model,name:account_check_printing.model_account_payment
+msgid "Payment"
+msgstr ""
 
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_account_payment_method
-msgid "Payment Methods"
-msgstr "Načini plaćanja"
-
-#. module: account_check_printing
-#: model:ir.model,name:account_check_printing.model_account_payment
-msgid "Payments"
-msgstr "Placanja"
+#: model:ir.model.fields,field_description:account_check_printing.field_account_payment__payment_method_line_id
+msgid "Payment Method"
+msgstr "Nacin Placanja"
 
 #. module: account_check_printing
 #. odoo-python
@@ -303,8 +317,8 @@ msgid ""
 "Payments to print as a checks must have 'Check' selected as payment method "
 "and not have already been reconciled"
 msgstr ""
-"Plaćanja koja se štampaju kao čekovi moraju imati izabran način plaćanja „Ček"
-"“ i ne smeju već biti sravnjena"
+"Plaćanja koja se štampaju kao čekovi moraju imati izabran način plaćanja "
+"„Ček“ i ne smeju već biti sravnjena"
 
 #. module: account_check_printing
 #: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
@@ -366,11 +380,6 @@ msgstr ""
 "Izaberite format koji odgovara papiru za čekove na kojem ćete štampati "
 "čekove.\n"
 "Da biste onemogućili funkciju štampanja, izaberite „Nijedan“."
-
-#. module: account_check_printing
-#: model_terms:ir.ui.view,arch_db:account_check_printing.view_account_payment_form_inherited
-msgid "Sent"
-msgstr "Poslato"
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_journal__check_next_number
@@ -457,7 +466,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
 msgid ""
 "This will allow to save on payments the number of the corresponding check."
-msgstr "Ovo će vam omogućiti da na plaćanjima sačuvate broj odgovarajućeg čeka."
+msgstr ""
+"Ovo će vam omogućiti da na plaćanjima sačuvate broj odgovarajućeg čeka."
 
 #. module: account_check_printing
 #: model_terms:ir.ui.view,arch_db:account_check_printing.view_account_payment_form_inherited
@@ -497,11 +507,5 @@ msgstr ""
 msgid "sep"
 msgstr ""
 
-#~ msgid "Contact"
-#~ msgstr "Kontakt"
-
-#~ msgid "Journal Entry"
-#~ msgstr "Sadržaj dnevnika"
-
-#~ msgid "Register Payment"
-#~ msgstr "Registruj plaćanje"
+#~ msgid "Sent"
+#~ msgstr "Poslato"

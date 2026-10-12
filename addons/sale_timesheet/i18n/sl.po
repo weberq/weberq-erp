@@ -13,19 +13,16 @@
 # Jasmina Macur <jasmina@hbs.si>, 2022
 # matjaz k <matjaz@mentis.si>, 2022
 # Martin Trigaux, 2022
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Odoo Translation Bot <c3p@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-09-16 07:33+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-10-09 17:40+0000\n"
+"PO-Revision-Date: 2026-08-31 19:49+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "sale_timesheet/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -48,13 +45,6 @@ msgid ""
 "                </p>\n"
 "            "
 msgstr ""
-"                <p class=\"o_view_nocontent_smiling_face\">\n"
-"                    Ni najdenih aktivnosti. Začnimo novo!\n"
-"                </p><p>\n"
-"                    Vsak dan spremljajte svoje delovne ure po projektih in "
-"ta čas zaračunajte svojim strankam.\n"
-"                </p>\n"
-"            "
 
 #. module: sale_timesheet
 #. odoo-python
@@ -73,32 +63,32 @@ msgid ""
 "                </p>\n"
 "            "
 msgstr ""
-"                <p class=\"o_view_nocontent_smiling_face\">\n"
-"                    Zabeležite časovne liste\n"
-"                </p><p>\n"
-"                    Svoje delovne ure lahko vsak dan vnesete in spremljate "
-"po projektu. Ves čas, porabljen za projekt, bo postal strošek in ga je "
-"mogoče po potrebi ponovno zaračunati\n"
-"                    strankam.\n"
-"                </p>\n"
-"            "
+
+#. module: sale_timesheet
+#: model:ir.module.module,description:base.module_sale_timesheet
+msgid ""
+"\n"
+"Allows to sell timesheets in your sales order\n"
+"=============================================\n"
+"\n"
+"This module set the right product on all timesheet lines\n"
+"according to the order/contract you work on. This allows to\n"
+"have real delivered quantities in sales orders.\n"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
-#: code:addons/sale_timesheet/models/hr_timesheet.py:0
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
 msgid ""
 "'%(missing_plan_names)s' analytic plan(s) required on the analytic "
 "distribution of the sale order item '%(so_line_name)s' linked to the "
 "timesheet."
 msgstr ""
-"Analitični plan(i) '%(missing_plan_names)s' so zahtevani v analitični "
-"porazdelitvi vrstice prodajnega naloga '%(so_line_name)s', povezane s "
-"časovnim zapisom."
 
 #. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
-msgid "- Timesheet product"
-msgstr "- Izdelek časovnice"
+#: model:ir.actions.report,print_report_name:sale_timesheet.timesheet_report_account_move
+msgid "('%s Timesheets' % (object.name))"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,job_details:sale_timesheet.job_engineer
@@ -143,23 +133,21 @@ msgid ""
 "<a href=\"/\" class=\"btn btn-primary o_translate_inline\" "
 "target=\"_blank\"><small><b>READ</b></small></a>"
 msgstr ""
-"<a href=\"/\" class=\"btn btn-primary o_translate_inline\" target=\"_blank\">"
-"<small><b>PREBERI</b></small></a>"
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
 msgid "<b>Daily Cost: </b>"
-msgstr "<b>Dnevni strošek: </b>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
 msgid "<b>Unit Price: </b>"
-msgstr "<b>Cena na enoto: </b>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
 msgid ""
-"<i class=\"fa fa-lightbulb-o\"/>\n"
+"<i class=\"oi\" data-icon=\"lightbulb\"/>\n"
 "                        <span>\n"
 "                            Define the rate at which an employee's time is "
 "billed based on their expertise, skills, or experience.\n"
@@ -167,29 +155,11 @@ msgid ""
 "create separate sales order items.\n"
 "                        </span>"
 msgstr ""
-"<i class=\"fa fa-lightbulb-o\"/>\n"
-"                        <span>\n"
-"                            Določite stopnjo, po kateri se zaračunava čas "
-"zaposlenega glede na njegovo strokovno znanje, veščine ali izkušnje.\n"
-"                            Za zaračunavanje iste storitve po drugačni "
-"stopnji ustvarite ločene postavke prodajnega naročila.\n"
-"                        </span>"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_line_form_inherit
-msgid ""
-"<span class=\"fa fa-exclamation-triangle text-warning\" title=\"The sales "
-"order associated with this timesheet entry has been cancelled.\" "
-"invisible=\"sale_order_state != 'cancel'\"/>"
-msgstr ""
-"<span class=\"fa fa-exclamation-triangle text-warning\" title=\"Prodajno "
-"naročilo, povezano s tem vnosom časovnice, je bilo preklicano.\" "
-"invisible=\"sale_order_state != 'cancel'\"/>"
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_line_form_inherit
 msgid "<span class=\"o_stat_text\">Invoice</span>"
-msgstr "<span class=\"o_stat_text\">Račun</span>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.account_invoice_view_form_inherit_sale_timesheet
@@ -200,7 +170,15 @@ msgstr "<span class=\"o_stat_text\">Zabeleženo</span>"
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_line_form_inherit
 msgid "<span class=\"o_stat_text\">Sales Order</span>"
-msgstr "<span class=\"o_stat_text\">Prodajni nalog</span>"
+msgstr ""
+
+#. module: sale_timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_line_form_inherit
+msgid ""
+"<span class=\"oi text-warning\" data-icon=\"warning\" title=\"The sales "
+"order associated with this timesheet entry has been cancelled.\" "
+"invisible=\"sale_order_state != 'cancel'\"/>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,job_details:sale_timesheet.job_engineer
@@ -224,64 +202,76 @@ msgid "<span class=\"text-muted small\">Time to Answer</span>"
 msgstr "<span class=\"text-muted small\">Čas za odgovor</span>"
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
+msgid ""
+"<span class=\"text-muted\">Timesheets without a sales order item are "
+"reported as </span>"
+msgstr ""
+
+#. module: sale_timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.report_timesheet_sale_timesheet
+msgid "<span>Sales Order Item: </span>"
+msgstr ""
+
+#. module: sale_timesheet
+#: model_terms:hr.job,website_rating:sale_timesheet.job_engineer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_labour
 msgid "<strong class=\"s_rating_title\">Administrative Work</strong>"
-msgstr "<strong class=\"s_rating_title\">Administrativno delo</strong>"
+msgstr ""
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:hr.job,website_rating:sale_timesheet.job_engineer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_labour
 msgid "<strong class=\"s_rating_title\">Autonomy</strong>"
-msgstr "<strong class=\"s_rating_title\">Avtonomija</strong>"
+msgstr ""
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:hr.job,website_rating:sale_timesheet.job_engineer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_labour
 msgid "<strong class=\"s_rating_title\">Customer Relationship</strong>"
-msgstr "<strong class=\"s_rating_title\">Odnosi s strankami</strong>"
+msgstr ""
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:hr.job,website_rating:sale_timesheet.job_engineer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_labour
 msgid "<strong class=\"s_rating_title\">Personal Evolution</strong>"
-msgstr "<strong class=\"s_rating_title\">Osebni razvoj</strong>"
+msgstr ""
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:hr.job,website_rating:sale_timesheet.job_engineer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,website_rating:sale_timesheet.job_labour
 msgid "<strong class=\"s_rating_title\">Technical Expertise</strong>"
-msgstr "<strong class=\"s_rating_title\">Tehnična strokovnost</strong>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_task_inherit
 msgid "<strong>Amount Due:</strong>"
-msgstr "<strong>Znesek zapadlosti:</strong>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_task_inherit
 msgid "<strong>Invoiced:</strong>"
-msgstr "<strong>Fakturirano:</strong>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_task_inherit
 msgid "<strong>Invoices:</strong>"
-msgstr "<strong>Računi:</strong>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_task_inherit
 msgid "<strong>Sales Order:</strong>"
-msgstr "<strong>Prodajno naročilo:</strong>"
+msgstr ""
 
 #. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_timesheet_table_inherit
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_timesheet_table_with_total_inherit
 msgid "<strong>Time Remaining on SO: </strong>"
-msgstr "<strong>Preostali čas na prodajnem naročilu: </strong>"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -299,22 +289,9 @@ msgid ""
 "  - Analytic From expenses: the quantity is the quantity sum from posted "
 "expenses\n"
 "  - Timesheet: the quantity is the sum of hours recorded on tasks linked to "
-"this sale line\n"
+"this line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
 msgstr ""
-"Glede na konfiguracijo izdelka se lahko količina dostave samodejno izračuna "
-"s pomočjo mehanizma:\n"
-"  - Ročno: količina je ročno določena na vrstici\n"
-"  - Analitično iz stroškov: količina predstavlja vsoto količin iz že "
-"knjiženih stroškov\n"
-"  - Urnik: količina je vsota ur, zabeleženih na nalogah, povezanih z to "
-"prodajno vrstico\n"
-"  - Premiki zalog: količina izhaja iz potrjenih pobiranj"
-
-#. module: sale_timesheet
-#: model:ir.model,name:sale_timesheet.model_account_move_reversal
-msgid "Account Move Reversal"
-msgstr "Razveljavitev knjiženja"
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -334,7 +311,7 @@ msgstr "Dodatni jeziki"
 #: model:account.analytic.account,name:sale_timesheet.account_analytic_account_project_support
 #: model:project.project,name:sale_timesheet.project_support
 msgid "After-Sales Services"
-msgstr "Poprodajne storitve"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_project__allocated_hours
@@ -347,8 +324,6 @@ msgid ""
 "An employee cannot be selected more than once in the mapping. Please remove "
 "duplicate(s) and try again."
 msgstr ""
-"Zaposlenega v preslikavi ni mogoče izbrati več kot enkrat. Odstranite "
-"podvojene vnose in poskusite znova."
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_account_analytic_line
@@ -361,41 +336,24 @@ msgid "Analytic lines"
 msgstr "Analitične postavke"
 
 #. module: sale_timesheet
-#: model_terms:hr.job,website_description:sale_timesheet.job_engineer
-#: model_terms:hr.job,website_description:sale_timesheet.job_interior_designer
-#: model_terms:hr.job,website_description:sale_timesheet.job_labour
+#: model_terms:hr.job,description:sale_timesheet.job_engineer
+#: model_terms:hr.job,description:sale_timesheet.job_interior_designer
+#: model_terms:hr.job,description:sale_timesheet.job_labour
 msgid ""
 "As an employee of our company, you will <b>collaborate with each department\n"
-"                        to create and deploy disruptive products.</b> Come "
-"work at a growing company\n"
-"                        that offers great benefits with opportunities to "
-"moving forward and learn\n"
-"                        alongside accomplished leaders. We're seeking an "
-"experienced and outstanding\n"
-"                        member of staff.\n"
-"                        <br><br>\n"
-"                        This position is both <b>creative and rigorous</b> "
-"by nature you need to think\n"
-"                        outside the box. We expect the candidate to be "
-"proactive and have a \"get it done\"\n"
-"                        spirit. To be successful, you will have solid "
-"solving problem skills."
+"to create and deploy disruptive products.</b> Come work at a growing "
+"company\n"
+"that offers great benefits with opportunities to moving forward and learn\n"
+"alongside accomplished leaders. We're seeking an experienced and "
+"outstanding\n"
+"member of staff.\n"
+"<br><br>\n"
+"This position is both <b>creative and rigorous</b> by nature you need to "
+"think\n"
+"outside the box. We expect the candidate to be proactive and have a \"get it "
+"done\"\n"
+"spirit. To be successful, you will have solid solving problem skills."
 msgstr ""
-"Kot zaposleni v našem podjetju boste <b>sodelovali z vsakim oddelkom\n"
-"                        pri ustvarjanju in uvajanju prelomnih izdelkov.</b> "
-"Pridružite se rastočemu podjetju\n"
-"                        ki ponuja odlične ugodnosti ter priložnosti za "
-"napredovanje in učenje\n"
-"                        ob boku izkušenih vodij. Iščemo izkušenega in "
-"izjemnega\n"
-"                        člana ekipe.\n"
-"                        <br><br>\n"
-"                        To delovno mesto je po naravi hkrati <b>ustvarjalno "
-"in zahtevno</b>, zato morate razmišljati\n"
-"                        zunaj ustaljenih okvirov. Pričakujemo, da bo "
-"kandidat proaktiven in bo imel duh »naredimo«.\n"
-"                        Za uspeh boste potrebovali dobre veščine reševanja "
-"problemov."
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -408,55 +366,23 @@ msgstr "Diploma ali višja"
 #. odoo-python
 #: code:addons/sale_timesheet/models/product_template.py:0
 msgid "Based on Timesheets"
-msgstr "Glede na časovnice"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__allow_billable
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
 msgid "Billable"
 msgstr "Zaračunljivo"
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__billable_time
 msgid "Billable Time"
-msgstr "Zaračunljiv čas"
+msgstr ""
 
 #. module: sale_timesheet
-#: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__timesheet_invoice_type
-#: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__timesheet_invoice_type
+#: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__billable_type
 msgid "Billable Type"
 msgstr "Tip zaračunljivega"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__billable_manual
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__billable_manual
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
-msgid "Billed Manually"
-msgstr "Ročno zaračunano"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
-msgid "Billed at a Fixed Price"
-msgstr "Zaračunljivo po fiksni ceni"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__billable_fixed
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__billable_fixed
-msgid "Billed at a Fixed price"
-msgstr "Zaračunljivo po fiksni ceni"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__billable_milestones
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__billable_milestones
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
-msgid "Billed on Milestones"
-msgstr "Obračunano glede na mejnike"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__billable_time
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__billable_time
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
-msgid "Billed on Timesheets"
-msgstr "Zaračunljivo po časovnicah"
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.res_config_settings_view_form
@@ -467,7 +393,7 @@ msgstr "Obračun"
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_project__billing_type
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
 msgid "Billing Type"
-msgstr "Tip zaračunljivosti"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.ui.menu,name:sale_timesheet.menu_timesheet_billing_analysis
@@ -477,7 +403,7 @@ msgstr "Po tipu zaračunljivosti"
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__commercial_partner_id
 msgid "Commercial Partner"
-msgstr "Poslovni partner"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_res_config_settings
@@ -529,22 +455,17 @@ msgstr "Stranka"
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_service_order_timesheet_product_template
 msgid "Customer Care (Prepaid Hours)"
-msgstr "Skrb za stranke (predplačane ure)"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_kanban_inherit_sale_timesheet
-msgid "Customer Ratings"
-msgstr "Ocene strank"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 msgid "Days Ordered,"
-msgstr "Naročeni dnevi,"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 msgid "Days Remaining)"
-msgstr "Preostali dnevi)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -558,7 +479,9 @@ msgstr "Odkrijte naše izdelke."
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move_reversal__display_name
+#: model:ir.model.fields,field_description:sale_timesheet.field_account_move_send__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:sale_timesheet.field_hr_employee_departure__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_product__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_template__display_name
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_project__display_name
@@ -597,13 +520,6 @@ msgid ""
 "                    sports sessions, team building events, monthly drink, "
 "and much more"
 msgstr ""
-"Vsak zaposleni ima priložnost videti vpliv svojega dela.\n"
-"                    Lahko resnično prispevate k uspehu podjetja.\n"
-"                    <br>\n"
-"                    Čez vse leto se pogosto organizira več dejavnosti, kot "
-"so tedenski\n"
-"                    športni treningi, dogodki za krepitev timskega duha, "
-"mesečna pijača in še veliko več"
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -615,13 +531,18 @@ msgstr "Jej &amp; Pij"
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_product_elevator_installation_product_template
 msgid "Elevator Installation"
-msgstr "Namestitev dvigala"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_hr_employee
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_sale_line_employee_map__employee_id
 msgid "Employee"
 msgstr "Kader"
+
+#. module: sale_timesheet
+#: model:ir.model,name:sale_timesheet.model_hr_employee_departure
+msgid "Employee Departure"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__project_project__pricing_type__employee_rate
@@ -662,7 +583,7 @@ msgstr "Zagotovljeno sadje, kava in <br>prigrizki."
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_service_deliver_manual_product_template
 msgid "Furniture Delivery (Manual)"
-msgstr "Dostava pohištva (ročno)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -681,12 +602,12 @@ msgstr "Odlična ekipa pametnih ljudi v prijazni in odprti kulturi"
 #. module: sale_timesheet
 #: model:hr.job,name:sale_timesheet.job_labour
 msgid "Handyman"
-msgstr "Hišnik"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__has_multi_sol
 msgid "Has Multi Sol"
-msgstr "Ima več prodajnih vrstic"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -703,19 +624,21 @@ msgstr "Urna postavka"
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 msgid "Hours Ordered,"
-msgstr "Naročene ure,"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 msgid "Hours Remaining)"
-msgstr "Preostale ure)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move_line__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move_reversal__id
+#: model:ir.model.fields,field_description:sale_timesheet.field_account_move_send__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_hr_employee__id
+#: model:ir.model.fields,field_description:sale_timesheet.field_hr_employee_departure__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_product__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_template__id
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_project__id
@@ -733,22 +656,21 @@ msgstr "ID"
 #. module: sale_timesheet
 #: model:hr.job,name:sale_timesheet.job_interior_designer
 msgid "Interior Designer"
-msgstr "Notranji oblikovalec"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_product_interior_designing_product_template
 msgid "Interior Designing"
-msgstr "Notranje oblikovanje"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/controllers/portal.py:0
-#: code:addons/sale_timesheet/models/hr_timesheet.py:0
-#: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__timesheet_invoice_id
-#: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__timesheet_invoice_id
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+#: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__reinvoice_move_id
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.report_timesheet_account_move
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
 msgid "Invoice"
 msgstr "Račun"
 
@@ -761,13 +683,12 @@ msgstr "Politika izdajanja računov"
 #. odoo-python
 #: code:addons/sale_timesheet/models/product_template.py:0
 msgid "Invoice based on timesheets (delivered quantity)."
-msgstr "Zaračunajte glede na časovnice (dostavljena količina)."
+msgstr ""
 
 #. module: sale_timesheet
-#: model:ir.model.fields,help:sale_timesheet.field_account_analytic_line__timesheet_invoice_id
-#: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__timesheet_invoice_id
+#: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__reinvoice_move_id
 msgid "Invoice created from the timesheet"
-msgstr "Račun, ustvarjen iz časovnega lista"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
@@ -783,7 +704,7 @@ msgstr "Obračun"
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__is_project_map_empty
 msgid "Is Project map empty"
-msgstr "Ali je zemljevid projekta prazen"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__is_so_line_edited
@@ -796,6 +717,11 @@ msgid "Journal Entry"
 msgstr "Temeljnica"
 
 #. module: sale_timesheet
+#: model:ir.model,name:sale_timesheet.model_account_move_reversal
+msgid "Journal Entry Reversal"
+msgstr ""
+
+#. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_account_move_line
 msgid "Journal Item"
 msgstr "Postavka"
@@ -803,17 +729,17 @@ msgstr "Postavka"
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_service_deliver_timesheet_2_product_template
 msgid "Junior Architect (Invoice on Timesheets)"
-msgstr "Mlajši arhitekt (zaračunavanje na podlagi časovnic)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_service_deliver_milestones_product_template
 msgid "Kitchen Assembly (Milestones)"
-msgstr "Montaža kuhinje (mejniki)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__last_sol_of_customer
 msgid "Last Sol Of Customer"
-msgstr "Zadnja prodajna vrstica stranke"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_sale_line_employee_map__write_uid
@@ -863,12 +789,6 @@ msgid "Master demos of our software"
 msgstr "Predstavitve naše programske opreme"
 
 #. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "Materials"
-msgstr "Materiali"
-
-#. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_sale_order_line__qty_delivered_method
 msgid "Method to update delivered qty"
 msgstr "Način za posodabljanje dostavljene količine"
@@ -877,6 +797,11 @@ msgstr "Način za posodabljanje dostavljene količine"
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.product_template_view_search_sale_timesheet
 msgid "Milestone services"
 msgstr "Storitveni mejnik"
+
+#. module: sale_timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_line_search
+msgid "Mine"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -907,7 +832,7 @@ msgstr "Ni računa"
 #. module: sale_timesheet
 #: model_terms:ir.actions.act_window,help:sale_timesheet.action_timesheet_from_invoice
 msgid "No activities found"
-msgstr "Ni najdenih aktivnosti"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.actions.act_window,help:sale_timesheet.timesheet_action_from_sales_order_item
@@ -938,8 +863,6 @@ msgstr ""
 "Brez izgube časa v poslovnih procesih, resnične odgovornosti in avtonomija"
 
 #. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__non_billable
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__non_billable
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
 msgid "Non-Billable"
 msgstr "Nezaračunljivo"
@@ -959,7 +882,7 @@ msgstr "Neobračunljivo"
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__non_billable_time
 msgid "Non-billable Time"
-msgstr "Neobračunljiv čas"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
@@ -967,19 +890,26 @@ msgid "Not Billed"
 msgstr "Ni zaračunano"
 
 #. module: sale_timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.view_product_timesheet_form
+msgid ""
+"Notify the salesperson about an upsell opportunity when completed work "
+"exceeds"
+msgstr ""
+
+#. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__timesheet_revenues
 msgid "Number of hours spent multiplied by the unit price per hour/day."
-msgstr "Število porabljenih ur, pomnoženo s ceno na enoto na uro/dan."
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__billable_time
 msgid "Number of hours/days linked to a SOL."
-msgstr "Število ur/dni, povezanih s SOL."
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__non_billable_time
 msgid "Number of hours/days not linked to a SOL."
-msgstr "Število ur/dni, nepovezanih s SOL."
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_sale_advance_payment_inv__date_end_invoice_timesheet
@@ -991,27 +921,11 @@ msgid ""
 "yet invoiced (and validated, if applicable) will be invoiced without "
 "distinction."
 msgstr ""
-"V obračun bodo vključene samo časovne evidence iz tega obdobja, ki še niso "
-"bile zaračunane (in potrjene, če je to primerno). Če obdobje ni navedeno, "
-"bodo brez razlikovanja zaračunane vse časovne evidence, ki še niso bile "
-"zaračunane (in potrjene, če je to primerno)."
 
 #. module: sale_timesheet
-#: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__order_id
-msgid "Order Reference"
-msgstr "Sklic naročila"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__other_costs
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__other_costs
-msgid "Other costs"
-msgstr "Ostali stroški"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__other_revenues
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__other_revenues
-msgid "Other revenues"
-msgstr "Drugi prihodki"
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
+msgid "Order"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1034,8 +948,6 @@ msgid ""
 "Percentage of time delivered compared to the prepaid amount that must be "
 "reached for the upselling opportunity activity to be triggered."
 msgstr ""
-"Odstotek opravljenega časa v primerjavi s predplačanim zneskom, ki ga je "
-"treba doseči, da se sproži aktivnost priložnosti za dodatno prodajo."
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1066,6 +978,7 @@ msgstr "Določanje cen"
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_product_template
+#: model:ir.model.fields,field_description:sale_timesheet.field_account_analytic_line__product_id
 msgid "Product"
 msgstr "Proizvod"
 
@@ -1136,18 +1049,11 @@ msgstr "Odgovornosti"
 msgid ""
 "Review your timesheets by billing type and make sure your time is billable."
 msgstr ""
-"Preglejte svoje časovne liste po vrsti obračunavanja in se prepričajte, da "
-"je vaš čas obračunljiv."
 
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_product_roofing_product_template
 msgid "Roofing"
-msgstr "Streha"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
-msgid "S0001"
-msgstr "S0001"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_sale_advance_payment_inv
@@ -1157,7 +1063,7 @@ msgstr "Prodaja predplačilo računa"
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/controllers/portal.py:0
-#: code:addons/sale_timesheet/models/hr_timesheet.py:0
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
 #: model:ir.model,name:sale_timesheet.model_sale_order
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__sale_order_id
 #: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__order_id
@@ -1175,6 +1081,7 @@ msgstr "Prodajni nalog"
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_my_timesheets_inherit
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_timesheet_table_inherit
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.report_timesheet_sale_order
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.report_timesheet_sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_view_search
 msgid "Sales Order Item"
 msgstr "Postavka prodajnega naloga"
@@ -1185,9 +1092,14 @@ msgid "Sales Order Line"
 msgstr "Postavka prodajnega naloga"
 
 #. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_kanban_inherit_sale_timesheet_so_button
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_card_inherit_sale_timesheet_so_button
 msgid "Sales Orders"
 msgstr "Prodajni nalogi"
+
+#. module: sale_timesheet
+#: model:ir.module.module,shortdesc:base.module_sale_timesheet
+msgid "Sales Timesheet"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_project_project__sale_line_employee_ids
@@ -1204,17 +1116,6 @@ msgid ""
 "timesheets on this project specifically. It will bypass the timesheet cost "
 "set on the employee."
 msgstr ""
-"Postavka prodajnega naloga, ki bo privzeto izbrana na časovnicah ustreznega "
-"zaposlenega. Obide postavko prodajnega naloga, določeno na projektu in "
-"opravilu, po potrebi pa jo je mogoče spremeniti pri vsakem vnosu časovnice. "
-"Z drugimi besedami, določa tarifo, po kateri se obračunava čas zaposlenega "
-"glede na njegovo strokovno znanje, veščine ali izkušnje.\n"
-"Če želite isto storitev obračunati po drugi tarifi, morate ustvariti dve "
-"ločeni postavki prodajnega naloga, saj ima lahko vsaka postavka prodajnega "
-"naloga hkrati samo eno ceno na enoto.\n"
-"Za zaposlene lahko posebej za njihove časovnice na tem projektu določite "
-"tudi urni strošek podjetja. Ta bo imel prednost pred stroškom časovnice, "
-"nastavljenim pri zaposlenem.\n"
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_account_analytic_line__so_line
@@ -1223,26 +1124,28 @@ msgid ""
 "invoiced to your customer. Remove the sales order item for the timesheet "
 "entry to be non-billable."
 msgstr ""
-"Postavka prodajnega naročila, ki ji bo dodan porabljeni čas, da bo zaračunan "
-"vaši stranki. Odstranite postavko prodajnega naročila, da vnos časovnice ne "
-"bo zaračunljiv."
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_project_task__sale_order_id
 msgid "Sales order to which the task is linked."
-msgstr "Prodajno naročilo, s katerim je povezana naloga."
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/controllers/portal.py:0
 msgid "Search in Invoice"
-msgstr "Iskanje po računu"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/controllers/portal.py:0
 msgid "Search in Sales Order Item"
 msgstr "Iskanje v postavki prodajnega naročila"
+
+#. module: sale_timesheet
+#: model:ir.module.module,summary:base.module_sale_timesheet
+msgid "Sell based on timesheets"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.res_config_settings_view_form
@@ -1252,18 +1155,12 @@ msgstr "Prodaja storitev in obračun porabljenega časa"
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_service_deliver_timesheet_1_product_template
 msgid "Senior Architect (Invoice on Timesheets)"
-msgstr "Starejši arhitekt (zaračunavanje na podlagi časovnic)"
-
-#. module: sale_timesheet
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__service_revenues
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__service_revenues
-msgid "Service Revenues"
-msgstr "Prihodki od storitev"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.time_product_product_template
 msgid "Service on Timesheets"
-msgstr "Storitev na časovnih listih"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_project_project__timesheet_product_id
@@ -1273,9 +1170,6 @@ msgid ""
 "task. It can be modified on each task individually by selecting a specific "
 "sales order item."
 msgstr ""
-"Storitev, ki bo privzeto uporabljena pri izdajanju računov za čas, porabljen "
-"za opravilo. To lahko spremenite za vsako opravilo posebej tako, da izberete "
-"določeno postavko prodajnega naročila."
 
 #. module: sale_timesheet
 #: model:ir.actions.act_window,name:sale_timesheet.product_template_action_default_services
@@ -1284,14 +1178,19 @@ msgid "Services"
 msgstr "Storitve"
 
 #. module: sale_timesheet
+#: model:ir.model,name:sale_timesheet.model_account_move_send
+msgid "Shared Send Invoice Wizard Functions"
+msgstr ""
+
+#. module: sale_timesheet
 #: model:hr.job,name:sale_timesheet.job_engineer
 msgid "Site Manager"
-msgstr "Vodja lokacije"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:product.template,name:sale_timesheet.product_product_solar_installation_product_template
 msgid "Solar Panel Installation"
-msgstr "Namestitev sončnih panelov"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1325,7 +1224,7 @@ msgstr "Opravilo"
 #. module: sale_timesheet
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__project_project__pricing_type__task_rate
 msgid "Task rate"
-msgstr "Stopnja naloge"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model,name:sale_timesheet.model_report_project_task_user
@@ -1340,14 +1239,12 @@ msgid ""
 "The %s product is required by the Timesheets app and cannot be archived, "
 "deleted nor linked to a company."
 msgstr ""
-"Izdelek %s zahteva aplikacija Časovnice in ga ni mogoče arhivirati, "
-"izbrisati ali povezati s podjetjem."
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/models/sale_order.py:0
 msgid "The Sales Order must contain at least one service product."
-msgstr "Prodajni nalog mora vsebovati vsaj en storitveni izdelek."
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_project_project__pricing_type
@@ -1361,13 +1258,6 @@ msgid ""
 "senior consultants would deliver the same service (= consultancy), but at a "
 "different rate because of their level of seniority."
 msgstr ""
-"Obračun po opravilu je idealen, če želite različnim strankam zaračunavati "
-"različne storitve po različnih tarifah. Fiksna tarifa je idealna, če "
-"storitev zaračunavate po fiksni urni ali dnevni tarifi ne glede na "
-"zaposlenega, ki jo je opravil. Tarifa zaposlenega je primernejša, če vaši "
-"zaposleni opravljajo isto storitev po različnih tarifah. Na primer, nižji in "
-"višji svetovalci bi opravljali isto storitev (= svetovanje), vendar po "
-"različni tarifi glede na svojo stopnjo izkušenosti."
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_project_sale_line_employee_map__cost
@@ -1375,14 +1265,6 @@ msgid ""
 "This cost overrides the employee's default employee hourly wage in "
 "employee's HR Settings"
 msgstr ""
-"Ta strošek preglasi privzeto urno plačilo zaposlenega v njegovih kadrovskih "
-"nastavitvah."
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "This project is current linked to timesheet."
-msgstr "Ta projekt je trenutno povezan s časovnim listom."
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_product__service_upsell_threshold
@@ -1391,6 +1273,7 @@ msgid "Threshold"
 msgstr "Prag"
 
 #. module: sale_timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.res_config_settings_view_form
 msgid "Time Billing"
 msgstr "Obračun časa"
@@ -1437,7 +1320,7 @@ msgstr "Stroški časovnega lista"
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_project__timesheet_product_id
 #: model:ir.model.fields,field_description:sale_timesheet.field_project_task__timesheet_product_id
 msgid "Timesheet Product"
-msgstr "Izdelek časovnice"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.hr_timesheet_report_search_sale_timesheet
@@ -1446,8 +1329,6 @@ msgstr "Poročilo o delovnem času"
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_timesheets_analysis_report__timesheet_revenues
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__account_analytic_line__timesheet_invoice_type__timesheet_revenues
-#: model:ir.model.fields.selection,name:sale_timesheet.selection__timesheets_analysis_report__timesheet_invoice_type__timesheet_revenues
 msgid "Timesheet Revenues"
 msgstr "Prihodki iz časovnice"
 
@@ -1455,7 +1336,7 @@ msgstr "Prihodki iz časovnice"
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_bank_statement_line__timesheet_total_duration
 #: model:ir.model.fields,field_description:sale_timesheet.field_account_move__timesheet_total_duration
 msgid "Timesheet Total Duration"
-msgstr "Skupno trajanje časovnice"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
@@ -1466,6 +1347,7 @@ msgstr "Skupno trajanje časovnice"
 #: model:ir.actions.report,name:sale_timesheet.timesheet_report_account_move
 #: model:ir.actions.report,name:sale_timesheet.timesheet_report_sale_order
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__sale_order_line__qty_delivered_method__timesheet
+#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheets_analysis_report_graph_invoice_type
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.view_hr_timesheet_line_pivot_billing_rate
 msgid "Timesheets"
@@ -1473,33 +1355,33 @@ msgstr "Časovnice"
 
 #. module: sale_timesheet
 #. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "Timesheets (Billed Manually)"
-msgstr "Časovnice (zaračunano ročno)"
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "Timesheets (Billed on Milestones)"
-msgstr "Časovnice (zaračunano na mejnikih)"
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "Timesheets (Billed on Timesheets)"
-msgstr "Časovnice (zaračunano na časovnicah)"
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
 msgid "Timesheets (Fixed Price)"
-msgstr "Časovnice (fiksna cena)"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+msgid "Timesheets (Manual)"
+msgstr ""
+
+#. module: sale_timesheet
+#. odoo-python
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+msgid "Timesheets (Milestones)"
+msgstr ""
+
+#. module: sale_timesheet
+#. odoo-python
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
 msgid "Timesheets (Non-Billable)"
-msgstr "Časovnice (neobračunljive)"
+msgstr ""
+
+#. module: sale_timesheet
+#. odoo-python
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+msgid "Timesheets (Time & Materials)"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheets_analysis_report_pivot_invoice_type
@@ -1519,12 +1401,7 @@ msgstr "Obdobje časovnic"
 #. module: sale_timesheet
 #: model:ir.actions.act_window,name:sale_timesheet.timesheet_action_billing_report
 msgid "Timesheets by Billing Type"
-msgstr "Časovnice po vrsti obračunavanja"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheet_sale_page
-msgid "Timesheets for the"
-msgstr "Časovnice za"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
@@ -1535,13 +1412,7 @@ msgstr "Časovnice od %s"
 #. module: sale_timesheet
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__product_template__service_type__timesheet
 msgid "Timesheets on project (one fare per SO/Project)"
-msgstr "Časovnice na projektu (ena tarifa na prodajno naročilo/projekt)"
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/project_project.py:0
-msgid "Timesheets revenues"
-msgstr "Prihodki iz časovnice"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_timesheets_analysis_report__margin
@@ -1551,17 +1422,12 @@ msgstr "Prihodki iz časovnic (minus stroški)"
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.res_config_settings_view_form
 msgid "Timesheets taken into account when invoicing your time"
-msgstr "Časovni izkazi, upoštevani pri obračunavanju vašega časa"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields,help:sale_timesheet.field_res_config_settings__invoice_policy
 msgid "Timesheets taken when invoicing time spent"
-msgstr "Časovnice, upoštevane pri fakturiranju porabljenega časa"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.project_project_view_form
-msgid "Timesheets without a sales order item are reported as"
-msgstr "Časovni izkazi brez postavke prodajnega naročila se poročajo kot"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.timesheets_analysis_report_list_inherited
@@ -1576,8 +1442,6 @@ msgid ""
 "Total recorded duration, expressed in the encoding UoM, and rounded to the "
 "unit"
 msgstr ""
-"Skupno zabeleženo trajanje, izraženo v enoti mere kodiranja in zaokroženo na "
-"enoto"
 
 #. module: sale_timesheet
 #: model:ir.model.fields,field_description:sale_timesheet.field_product_product__service_type
@@ -1622,17 +1486,6 @@ msgid ""
 "        Make sure to use the right format and order e.g. Improve the "
 "configuration screen 5h #feature #v16 @Mitchell !"
 msgstr ""
-"Uporabite te ključne besede v naslovu za nastavljanje novih opravil:\n"
-"\n"
-"        30h Dodeli 30 ur opravilu\n"
-"        #tags Nastavi oznake opravila\n"
-"        @user Dodeli opravilo uporabniku\n"
-"        ! Nastavi opravilo na srednjo prioriteto\n"
-"        !! Nastavi opravilo na visoko prioriteto\n"
-"        !!! Nastavi opravilo na nujno prioriteto\n"
-"\n"
-"        Prepričajte se, da uporabite pravi zapis in vrstni red, npr. "
-"Izboljšaj konfiguracijski zaslon 5h #feature #v16 @Mitchell !"
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1644,18 +1497,13 @@ msgstr "Veljavno delovno dovoljenje za Belgijo"
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_invoice_page_inherit
 msgid "View Timesheet"
-msgstr "Ogled časovnice"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.portal_invoice_page_inherit
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.sale_order_portal_content_inherit
 msgid "View Timesheets"
 msgstr "Prikaži časovnice"
-
-#. module: sale_timesheet
-#: model_terms:ir.ui.view,arch_db:sale_timesheet.view_product_timesheet_form
-msgid "Warn the salesperson for an upsell when work done exceeds"
-msgstr "Opozori prodajalca na dodatno prodajo, ko opravljeno delo preseže"
 
 #. module: sale_timesheet
 #: model_terms:hr.job,website_description:sale_timesheet.job_engineer
@@ -1678,8 +1526,6 @@ msgid ""
 "You cannot link a billable project to a sales order item that comes from an "
 "expense or a vendor bill."
 msgstr ""
-"Obračunljivega projekta ne morete povezati s postavko prodajnega naročila, "
-"ki izhaja iz stroška ali računa dobavitelja."
 
 #. module: sale_timesheet
 #. odoo-python
@@ -1688,131 +1534,42 @@ msgid ""
 "You cannot link a billable project to a sales order item that is not a "
 "service."
 msgstr ""
-"Obračunljivega projekta ne morete povezati s postavko prodajnega naročila, "
-"ki ni storitev."
 
 #. module: sale_timesheet
 #. odoo-python
-#: code:addons/sale_timesheet/models/hr_timesheet.py:0
-msgid "You cannot modify timesheets that are already invoiced."
-msgstr "Časovnic, ki so že fakturirane, ne morete spreminjati."
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+msgid "You cannot modify timsheets that are already invoiced."
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
-#: code:addons/sale_timesheet/models/hr_timesheet.py:0
-msgid "You cannot remove a timesheet that has already been invoiced."
-msgstr "Časovnic, ki so že fakturirane, ne morete odstraniti."
+#: code:addons/sale_timesheet/models/account_analytic_line.py:0
+msgid "You cannot remove timsheets that are already invoiced."
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__project_project__billing_type__manually
 msgid "billed manually"
-msgstr "Ročno zaračunano"
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/models/sale_order_line.py:0
 msgid "days remaining"
-msgstr "Preostali dnevi"
+msgstr ""
 
 #. module: sale_timesheet
 #: model:ir.model.fields.selection,name:sale_timesheet.selection__project_project__billing_type__not_billable
 msgid "not billable"
-msgstr "ni obračunljivo"
+msgstr ""
 
 #. module: sale_timesheet
 #: model_terms:ir.ui.view,arch_db:sale_timesheet.view_product_timesheet_form
-msgid "of hours sold."
-msgstr "prodanih ur"
+msgid "of the hours sold."
+msgstr ""
 
 #. module: sale_timesheet
 #. odoo-python
 #: code:addons/sale_timesheet/models/account_move.py:0
 msgid "project_id"
-msgstr "projekt_id"
-
-#. module: sale_timesheet
-#. odoo-python
-#: code:addons/sale_timesheet/models/sale_order_line.py:0
-msgid "remaining"
-msgstr "preostanek"
-
-#~ msgid "About us"
-#~ msgstr "O nas"
-
-#~ msgid "Allocated Hours"
-#~ msgstr "Dodeljene ure"
-
-#~ msgid "Commercial Entity"
-#~ msgstr "Poslovni subjekt"
-
-#~ msgid "Company"
-#~ msgstr "Podjetje"
-
-#~ msgid "Create Invoice"
-#~ msgstr "Ustvari račun"
-
-#~ msgid "Create Invoice from project"
-#~ msgstr "Ustvari račun iz projekta"
-
-#~ msgid "Create SO from project"
-#~ msgstr "Ustvari prodajni nalog iz projekta"
-
-#~ msgid "Create Sales Order"
-#~ msgstr "Ustvari prodajni nalog"
-
-#~ msgid "Create Sales Order from Project"
-#~ msgstr "Ustvari prodajni nalog iz projekta"
-
-#~ msgid "Create a Sales Order"
-#~ msgstr "Ustvari prodajni nalog"
-
-#~ msgid "Customer of the sales order"
-#~ msgstr "Stranka prodajnega naloga"
-
-#~ msgid "Employee that has timesheets on the project."
-#~ msgstr "Zaposlen, ki ima časovnice na projektu."
-
-#~ msgid "Invoice your time and material to customers"
-#~ msgstr "Zaračunajte porabljen časom in material kupcem "
-
-#~ msgid "Lines"
-#~ msgstr "Vrstice"
-
-#~ msgid "No Sales Order"
-#~ msgstr "Ni prodajnih nalogov"
-
-#~ msgid "Non Billable Tasks"
-#~ msgstr "Nezaračunljiva opravila"
-
-#~ msgid "Number of timesheets"
-#~ msgstr "Število časovnic"
-
-#~ msgid "Price"
-#~ msgstr "Cena"
-
-#~ msgid "Remaining"
-#~ msgstr "Preostanek"
-
-#~ msgid "Service"
-#~ msgstr "Storitev"
-
-#~ msgid "Sold"
-#~ msgstr "Prodano"
-
-#~ msgid "Tasks"
-#~ msgstr "Opravilo"
-
-#~ msgid "Timesheet activities"
-#~ msgstr "Aktivnosti na časovnici"
-
-#~ msgid "Total:"
-#~ msgstr "Skupaj:"
-
-#~ msgid "Wizard"
-#~ msgstr "Čarovnik"
-
-#~ msgid "days"
-#~ msgstr "dni"
-
-#~ msgid "hours"
-#~ msgstr "ure"
+msgstr ""

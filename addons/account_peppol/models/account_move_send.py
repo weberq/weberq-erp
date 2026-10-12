@@ -1,10 +1,8 @@
 import logging
-
-from base64 import b64encode
 from datetime import timedelta
 
 from odoo import api, fields, models, _
-from odoo.tools import str2bool
+from odoo.tools import BinaryBytes
 
 from odoo.addons.account.models.company import PEPPOL_DEFAULT_COUNTRIES, PEPPOL_LIST
 from odoo.addons.account_edi_proxy_client.models.account_edi_proxy_user import AccountEdiProxyError
@@ -24,8 +22,9 @@ class AccountMoveSend(models.AbstractModel):
         if (
             self._is_applicable_to_move('peppol', move)
             and any(country in PEPPOL_DEFAULT_COUNTRIES for country in move.commercial_partner_id.mapped('country_id.code'))
+            and 'peppol' not in default_sending_methods
         ):
-            default_sending_methods.add('peppol')
+            default_sending_methods.append('peppol')
         return default_sending_methods
 
     @api.model
@@ -127,7 +126,7 @@ class AccountMoveSend(models.AbstractModel):
         elif all((
             (peppol_not_selected_partners := filter_peppol_state(not_peppol_moves, ['valid'])),
             any_moves_not_sent_peppol,
-            any(code in PEPPOL_DEFAULT_COUNTRIES for code in peppol_partner(moves).mapped('country_id.code')),
+            any(code in PEPPOL_DEFAULT_COUNTRIES for code in peppol_not_selected_partners.mapped('country_id.code')),
             len(peppol_not_selected_partners) == 1,  # Check for not peppol partners that are on the network
         )):
             alerts['account_peppol_partner_want_peppol'] = {
@@ -135,7 +134,7 @@ class AccountMoveSend(models.AbstractModel):
                 **what_is_peppol_alert,
             }
         elif (
-            not str2bool(self.env['ir.config_parameter'].sudo().get_param("account_peppol.disable_pdp_warning", False), default=False)
+            not self.env['ir.config_parameter'].sudo().get_bool("account_peppol.disable_pdp_warning")
             and (french_non_pdp_companies := moves.company_id.filtered(
                  lambda company: company._peppol_is_french_company() and company._get_peppol_proxy_type() != 'pdp'
              ))
@@ -156,7 +155,7 @@ class AccountMoveSend(models.AbstractModel):
             return None, None
 
         if invoice_data.get('ubl_cii_xml_attachment_values'):
-            xml_file = invoice_data['ubl_cii_xml_attachment_values']['raw']
+            xml_file = BinaryBytes(invoice_data['ubl_cii_xml_attachment_values']['raw'])
             filename = invoice_data['ubl_cii_xml_attachment_values']['name']
         elif invoice.ubl_cii_xml_id and not invoice.peppol_is_sent:
             xml_file = invoice.ubl_cii_xml_id.raw
@@ -172,10 +171,10 @@ class AccountMoveSend(models.AbstractModel):
 
         if invoice.invoice_pdf_report_id and self._needs_ubl_postprocessing(invoice_data):
             self._postprocess_invoice_ubl_xml(invoice, invoice_data)
-            xml_file = invoice_data['ubl_cii_xml_attachment_values']['raw']
+            xml_file = BinaryBytes(invoice_data['ubl_cii_xml_attachment_values']['raw'])
             filename = invoice_data['ubl_cii_xml_attachment_values']['name']
 
-        if len(xml_file) > 64000000:
+        if xml_file.size > 64000000:
             invoice_data['error'] = self.env._(
                 "Invoice %(invoice_name)s exceeds the size limit of 64 MB to be sent via %(network_name)s.",
                 invoice_name=invoice.name,
@@ -183,10 +182,11 @@ class AccountMoveSend(models.AbstractModel):
             )
             return None, None
 
+        receiver_identification = partner.routing_identifier
         document = {
             'filename': filename,
-            'receiver': f"{partner.peppol_eas}:{partner.peppol_endpoint}",
-            'ubl': b64encode(xml_file).decode(),
+            'receiver': receiver_identification,
+            'ubl': xml_file.to_base64(),
         }
 
         return edi_user, document
@@ -223,19 +223,18 @@ class AccountMoveSend(models.AbstractModel):
         if method == 'peppol':
             partner = move.partner_id.commercial_partner_id.with_company(move.company_id)
             invoice_edi_format = move_data.get('invoice_edi_format') or partner._get_peppol_edi_format()
+
             if partner.peppol_verification_state == 'not_verified':
                 partner.button_account_peppol_check_partner_endpoint(company=move.company_id)
-            if partner.peppol_verification_state != 'valid' and partner.peppol_endpoint and partner.peppol_eas in ('0208', '9925'):
+
+            if partner.peppol_verification_state != 'valid' and partner.routing_endpoint and partner.routing_identifier in ('0208', '9925'):
                 # only for BE participants
-                inverse_eas = '9925' if partner.peppol_eas == '0208' else '0208'
-                inverse_endpoint = f'BE{partner.peppol_endpoint}' if partner.peppol_eas == '0208' else partner.peppol_endpoint[2:]
-                if (
-                    not partner._build_error_peppol_endpoint(inverse_eas, inverse_endpoint)
-                    and partner._get_peppol_verification_state(inverse_endpoint, inverse_eas, invoice_edi_format) == 'valid'
-                ):
+                inverse_eas = '9925' if partner.routing_identifier == '0208' else '0208'
+                inverse_endpoint = f'BE{partner.routing_endpoint}' if partner.routing_identifier == '0208' else partner.routing_endpoint[2:]
+                if partner._get_peppol_verification_state(inverse_endpoint, inverse_eas, invoice_edi_format) == 'valid':
                     partner.write({
-                        'peppol_eas': inverse_eas,
-                        'peppol_endpoint': inverse_endpoint,
+                        'routing_identifier': inverse_eas,
+                        'routing_endpoint': inverse_endpoint,
                     })
                     partner.button_account_peppol_check_partner_endpoint(company=move.company_id)
 

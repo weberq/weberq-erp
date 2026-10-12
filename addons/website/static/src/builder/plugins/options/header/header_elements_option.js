@@ -1,8 +1,9 @@
-import { BaseOptionComponent } from "@html_builder/core/utils";
+import { BaseOptionComponent } from "@html_builder/core/base_option_component";
 import { onWillStart } from "@odoo/owl";
-import { basicHeaderOptionSettings } from "./basicHeaderOptionSettings";
+import { registry } from "@web/core/registry";
 
 export class HeaderElementsOption extends BaseOptionComponent {
+    static id = "header_elements_option";
     static template = "website.HeaderElementsOption";
     static dependencies = ["customizeWebsite"];
 
@@ -26,4 +27,4 @@ export class HeaderElementsOption extends BaseOptionComponent {
     }
 }
 
-Object.assign(HeaderElementsOption, basicHeaderOptionSettings);
+registry.category("website-options").add(HeaderElementsOption.id, HeaderElementsOption);

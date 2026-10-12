@@ -11,6 +11,8 @@ from odoo.tests import tagged
 @tagged('post_install_l10n', 'post_install', '-at_install')
 class TestJpUBLPint(AccountTestInvoicingCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     @AccountTestInvoicingCommon.setup_country('jp')
     def setUpClass(cls):
@@ -41,7 +43,6 @@ class TestJpUBLPint(AccountTestInvoicingCommon):
         cls.startClassPatcher(freeze_time(cls.fakenow))
 
     def test_invoice(self):
-        self.env['ir.config_parameter'].set_param('account_edi_ubl_cii.use_new_dict_to_xml_helpers', 'True')
         invoice = self.init_invoice('out_invoice', currency=self.other_currency, products=self.product_a)
         invoice.action_post()
 

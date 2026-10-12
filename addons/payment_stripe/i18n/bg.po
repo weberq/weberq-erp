@@ -2,29 +2,118 @@
 # This file contains the translation of the following modules:
 # * payment_stripe
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-07 00:01+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-11 17:44+0000\n"
+"PO-Revision-Date: 2026-08-31 13:43+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "payment_stripe/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_ach_direct_debit
+msgid "ACH Direct Debit"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_acss_direct_debit
+msgid "ACSS direct debit"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_affirm
+msgid "Affirm"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_afterpay
+msgid "Afterpay"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_alipay
+msgid "Alipay"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_alma
+msgid "Alma"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_amazon_pay
+msgid "Amazon Pay"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_amex
+msgid "American Express"
+msgstr ""
+
+#. module: payment_stripe
+#: model:ir.module.module,summary:base.module_payment_stripe
+msgid "An Irish-American payment provider covering the US and many others."
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_apple_pay
+msgid "Apple Pay"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_bacs_direct_debit
+msgid "BACS Direct Debit"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_becs_direct_debit
+msgid "BECS Direct Debit"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_bancontact
+msgid "Bancontact"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_boleto
+msgid "Boleto"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-javascript
 #: code:addons/payment_stripe/static/src/interactions/payment_form.js:0
 msgid "Cannot display the payment form"
-msgstr "Платежната форма не може да бъде показана"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_card
+msgid "Card"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_cartes_bancaires
+msgid "Cartes Bancaires"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_cash_app_pay
+msgid "Cash App Pay"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_clearpay
+msgid "Clearpay"
+msgstr ""
 
 #. module: payment_stripe
 #: model:ir.model.fields,field_description:payment_stripe.field_payment_provider__code
@@ -33,14 +122,24 @@ msgstr "Код"
 
 #. module: payment_stripe
 #: model_terms:ir.ui.view,arch_db:payment_stripe.payment_provider_form
-msgid "Connect Stripe"
-msgstr "Свържи Stripe"
+msgid "Connect"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-javascript
 #: code:addons/payment_stripe/static/src/interactions/express_checkout.js:0
 msgid "Delivery"
 msgstr "Доставка"
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_diners
+msgid "Diners Club International"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_discover
+msgid "Discover"
+msgstr ""
 
 #. module: payment_stripe
 #: model:ir.model.fields,field_description:payment_stripe.field_payment_provider__display_name
@@ -50,9 +149,24 @@ msgid "Display Name"
 msgstr "Име за показване"
 
 #. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_eps
+msgid "EPS"
+msgstr ""
+
+#. module: payment_stripe
 #: model_terms:ir.ui.view,arch_db:payment_stripe.payment_provider_form
 msgid "Enable Apple Pay"
-msgstr "Активиране на Apple Pay"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_unknown
+msgid "Express Checkout"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_fpx
+msgid "FPX"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-javascript
@@ -63,12 +177,22 @@ msgstr "Безплатна доставка"
 #. module: payment_stripe
 #: model_terms:ir.ui.view,arch_db:payment_stripe.payment_provider_form
 msgid "Generate your webhook"
-msgstr "Генерирайте вашия webhook"
+msgstr ""
 
 #. module: payment_stripe
 #: model_terms:ir.ui.view,arch_db:payment_stripe.payment_provider_form
 msgid "Get your Secret and Publishable keys"
-msgstr "Вземете вашите Secret и Publishable ключове"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_google_pay
+msgid "Google Pay"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_grabpay
+msgid "GrabPay"
+msgstr ""
 
 #. module: payment_stripe
 #: model:ir.model.fields,field_description:payment_stripe.field_payment_provider__id
@@ -83,26 +207,63 @@ msgid ""
 "If a webhook is enabled on your Stripe account, this signing secret must be "
 "set to authenticate the messages sent from Stripe to Odoo."
 msgstr ""
-"Ако на вашия Stripe акаунт е активиран webhook, този подписващ таен ключ "
-"трябва да бъде зададен, за да се удостоверят съобщенията, изпратени от "
-"Stripe към Odoo."
 
 #. module: payment_stripe
 #. odoo-javascript
 #: code:addons/payment_stripe/static/src/interactions/payment_form.js:0
 msgid "Incorrect payment details"
-msgstr "Неверни данни за плащане"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_jcb
+msgid "JCB"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_klarna
+msgid "Klarna"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_mastercard
+msgid "MasterCard"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_mobile_pay
+msgid "MobilePay"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_multibanco
+msgid "Multibanco"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-python
 #: code:addons/payment_stripe/models/payment_provider.py:0
 msgid "Other Payment Providers"
-msgstr "Други доставчици на разплащания"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_p24
+msgid "P24"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_paynow
+msgid "PayNow"
+msgstr ""
 
 #. module: payment_stripe
 #: model:ir.model,name:payment_stripe.model_payment_provider
 msgid "Payment Provider"
 msgstr "Доставчик на разплащания"
+
+#. module: payment_stripe
+#: model:ir.module.module,shortdesc:base.module_payment_stripe
+msgid "Payment Provider: Stripe"
+msgstr ""
 
 #. module: payment_stripe
 #: model:ir.actions.act_window,name:payment_stripe.action_payment_provider_onboarding
@@ -123,32 +284,60 @@ msgstr "Платежна транзакция"
 #. odoo-javascript
 #: code:addons/payment_stripe/static/src/interactions/payment_form.js:0
 msgid "Payment processing failed"
-msgstr "Обработката на плащането се провали"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_paypal
+msgid "Paypal"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_pix
+msgid "Pix"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-python
 #: code:addons/payment_stripe/models/payment_provider.py:0
 msgid "Please use live credentials to enable Apple Pay."
 msgstr ""
-"Моля, използвайте реални (live) идентификационни данни, за да активирате "
-"Apple Pay."
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_promptpay
+msgid "Prompt Pay"
+msgstr ""
 
 #. module: payment_stripe
 #: model:ir.model.fields,field_description:payment_stripe.field_payment_provider__stripe_publishable_key
 msgid "Publishable Key"
-msgstr "Publishable ключ"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-python
 #: code:addons/payment_stripe/models/payment_transaction.py:0
 msgid "Received data with invalid intent status: %s."
-msgstr "Получени са данни с невалиден статус на намерението (intent): %s."
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-python
 #: code:addons/payment_stripe/models/payment_transaction.py:0
 msgid "Received data with missing intent status."
-msgstr "Получени са данни с липсващ статус на намерението (intent)."
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_revolut_pay
+msgid "Revolut Pay"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_sepa_direct_debit
+msgid "SEPA Direct Debit"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_satispay
+msgid "Satispay"
+msgstr ""
 
 #. module: payment_stripe
 #: model:ir.model.fields,field_description:payment_stripe.field_payment_provider__stripe_secret_key
@@ -167,29 +356,32 @@ msgid ""
 "Stripe Connect is not available in your country, please use another payment "
 "provider."
 msgstr ""
-"Stripe Connect не е достъпен във вашата държава, моля използвайте друг "
-"доставчик на разплащания."
 
 #. module: payment_stripe
 #: model:ir.model.fields,field_description:payment_stripe.field_payment_token__stripe_mandate
 msgid "Stripe Mandate"
-msgstr "Stripe мандат"
+msgstr ""
 
 #. module: payment_stripe
 #: model:ir.model.fields,field_description:payment_stripe.field_payment_token__stripe_payment_method
 msgid "Stripe Payment Method ID"
-msgstr "ID на платежния метод в Stripe"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_swish
+msgid "Swish"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-python
 #: code:addons/payment_stripe/models/payment_transaction.py:0
 msgid "The customer left the payment page."
-msgstr "Клиентът напусна страницата за плащане."
+msgstr ""
 
 #. module: payment_stripe
 #: model:ir.model.fields,help:payment_stripe.field_payment_provider__stripe_publishable_key
 msgid "The key solely used to identify the account with Stripe"
-msgstr "Ключът, използван единствено за идентифициране на акаунта в Stripe"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-python
@@ -198,31 +390,58 @@ msgid ""
 "The refund did not go through. Please log into your Stripe Dashboard to get "
 "more information on that matter, and address any accounting discrepancies."
 msgstr ""
-"Възстановяването на сумата не премина. Моля, влезте във вашето Stripe "
-"Dashboard, за да получите повече информация по въпроса, и коригирайте "
-"евентуални счетоводни несъответствия."
 
 #. module: payment_stripe
 #: model:ir.model.fields,help:payment_stripe.field_payment_provider__code
 msgid "The technical code of this payment provider."
-msgstr "Техническият код на този доставчик на разплащания."
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_twint
+msgid "Twint"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_upi
+msgid "UPI"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-python
 #: code:addons/payment_stripe/models/payment_token.py:0
 msgid "Unable to convert payment token to new API."
-msgstr "Платежният токен не може да бъде преобразуван към новото API."
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_unionpay
+msgid "UnionPay"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_visa
+msgid "VISA"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_wechat_pay
+msgid "WeChat Pay"
+msgstr ""
 
 #. module: payment_stripe
 #: model:ir.model.fields,field_description:payment_stripe.field_payment_provider__stripe_webhook_secret
 msgid "Webhook Signing Secret"
-msgstr "Подписващ таен ключ за Webhook"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_wero_brand
+msgid "Wero"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-python
 #: code:addons/payment_stripe/models/payment_provider.py:0
 msgid "You Stripe Webhook was successfully set up!"
-msgstr "Вашият Stripe Webhook беше успешно настроен!"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-python
@@ -230,43 +449,48 @@ msgstr "Вашият Stripe Webhook беше успешно настроен!"
 msgid ""
 "You cannot create a Stripe Webhook if your Stripe Secret Key is not set."
 msgstr ""
-"Не можете да създадете Stripe Webhook, ако вашият Stripe Secret ключ не е "
-"зададен."
 
 #. module: payment_stripe
 #. odoo-python
 #: code:addons/payment_stripe/models/payment_provider.py:0
 msgid ""
-"You cannot set the provider state to Enabled until your onboarding to Stripe "
-"is completed."
+"You cannot set the provider to live mode until your onboarding to Stripe is "
+"completed."
 msgstr ""
-"Не можете да зададете състоянието на доставчика на „Активиран“, докато не "
-"завършите регистрацията си (onboarding) в Stripe."
 
 #. module: payment_stripe
 #. odoo-python
 #: code:addons/payment_stripe/models/payment_provider.py:0
 msgid ""
-"You cannot set the provider to Test Mode while it is linked with your Stripe "
+"You cannot set the provider to test mode while it is linked with your Stripe "
 "account."
 msgstr ""
-"Не можете да зададете доставчика в Тестов режим, докато е свързан с вашия "
-"Stripe акаунт."
 
 #. module: payment_stripe
 #. odoo-python
 #: code:addons/payment_stripe/models/payment_provider.py:0
 msgid "Your Stripe Webhook is already set up."
-msgstr "Вашият Stripe Webhook вече е настроен."
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-javascript
 #: code:addons/payment_stripe/static/src/interactions/express_checkout.js:0
 msgid "Your order"
-msgstr "Вашата поръчка"
+msgstr ""
 
 #. module: payment_stripe
 #. odoo-python
 #: code:addons/payment_stripe/models/payment_provider.py:0
 msgid "Your web domain was successfully verified."
-msgstr "Вашият уеб домейн беше успешно потвърден."
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_zip
+msgid "Zip"
+msgstr ""
+
+#. module: payment_stripe
+#: model:payment.method,name:payment_stripe.payment_method_ideal
+#: model:payment.method,name:payment_stripe.payment_method_ideal_brand
+msgid "iDEAL"
+msgstr ""

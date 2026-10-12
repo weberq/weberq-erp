@@ -2,21 +2,17 @@
 # This file contains the translation of the following modules:
 # * uom
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 # Odoo Translation Bot <c3p@odoo.com>, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-10 18:40+0000\n"
-"PO-Revision-Date: 2026-09-16 10:37+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/uom/"
+"POT-Creation-Date: 2026-09-11 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 21:24+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/uom/"
 "sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -27,9 +23,22 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 
 #. module: uom
+#: model:ir.module.module,description:base.module_uom
+msgid ""
+"\n"
+"This is the base module for managing Units of measure.\n"
+"========================================================================\n"
+msgstr ""
+
+#. module: uom
 #: model:ir.model.fields,field_description:uom.field_uom_uom__factor
 msgid "Absolute Quantity"
-msgstr "Absolutna količina"
+msgstr ""
+
+#. module: uom
+#: model:ir.model,name:uom.model_res_groups
+msgid "Access Groups"
+msgstr ""
 
 #. module: uom
 #: model:ir.model.fields,field_description:uom.field_uom_uom__active
@@ -37,7 +46,7 @@ msgid "Active"
 msgstr "Aktivno"
 
 #. module: uom
-#: model_terms:ir.actions.act_window,help:uom.product_uom_form_action
+#: model_terms:ir.actions.act_window,help:uom.uom_uom_action_list
 msgid "Add a new unit of measure"
 msgstr "Dodajte novo mersko enoto"
 
@@ -67,6 +76,7 @@ msgid "Days"
 msgstr "Dni"
 
 #. module: uom
+#: model:ir.model.fields,field_description:uom.field_res_groups__display_name
 #: model:ir.model.fields,field_description:uom.field_uom_uom__display_name
 msgid "Display Name"
 msgstr "Prikazani naziv"
@@ -74,7 +84,7 @@ msgstr "Prikazani naziv"
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_dozen
 msgid "Dozens"
-msgstr "Ducati"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_hour
@@ -87,10 +97,9 @@ msgid ""
 "How much bigger or smaller this unit is compared to the reference UoM for "
 "this unit"
 msgstr ""
-"Za koliko je ta enota večja ali manjša v primerjavi z referenčno mersko "
-"enoto za to enoto"
 
 #. module: uom
+#: model:ir.model.fields,field_description:uom.field_res_groups__id
 #: model:ir.model.fields,field_description:uom.field_uom_uom__id
 msgid "ID"
 msgstr "ID"
@@ -98,12 +107,12 @@ msgstr "ID"
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_kwh
 msgid "KWH"
-msgstr "kWh"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_litre
 msgid "L"
-msgstr "L"
+msgstr ""
 
 #. module: uom
 #: model:ir.model.fields,field_description:uom.field_uom_uom__write_uid
@@ -123,12 +132,12 @@ msgstr "Več enot mere"
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_minute
 msgid "Minutes"
-msgstr "Zapisniki"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_pack_6
 msgid "Pack of 6"
-msgstr "Paket 6 kosov"
+msgstr ""
 
 #. module: uom
 #: model:ir.model.fields,field_description:uom.field_uom_uom__parent_path
@@ -140,7 +149,7 @@ msgstr "Pot nadrejenega"
 #: code:addons/uom/static/src/components/many2one_uom/many2one_uom_field.js:0
 #: code:addons/uom/static/src/components/many2x_uom_tags/many2x_uom_tags.js:0
 msgid "Product Field Name"
-msgstr "Ime polja izdelka"
+msgstr ""
 
 #. module: uom
 #: model:ir.model,name:uom.model_uom_uom
@@ -148,7 +157,7 @@ msgid "Product Unit of Measure"
 msgstr "Merska enota izdelka"
 
 #. module: uom
-#: model_terms:ir.ui.view,arch_db:uom.product_uom_form_view
+#: model_terms:ir.ui.view,arch_db:uom.uom_uom_view_form
 msgid "Quantity"
 msgstr "Količina"
 
@@ -157,34 +166,29 @@ msgstr "Količina"
 #: code:addons/uom/static/src/components/many2one_uom/many2one_uom_field.js:0
 #: code:addons/uom/static/src/components/many2x_uom_tags/many2x_uom_tags.js:0
 msgid "Quantity Field Name"
-msgstr "Ime polja količine"
+msgstr ""
 
 #. module: uom
 #: model:ir.model.fields,field_description:uom.field_uom_uom__relative_uom_id
-#: model_terms:ir.ui.view,arch_db:uom.product_uom_form_view
+#: model_terms:ir.ui.view,arch_db:uom.uom_uom_view_form
 msgid "Reference Unit"
-msgstr "Referenčna enota"
+msgstr ""
 
 #. module: uom
 #. odoo-python
 #: code:addons/uom/models/uom_uom.py:0
 msgid "Reference unit of measure is missing."
-msgstr "Referenčna merska enota manjka."
+msgstr ""
 
 #. module: uom
 #: model:ir.model.fields,field_description:uom.field_uom_uom__related_uom_ids
 msgid "Related UoMs"
-msgstr "Povezane merske enote"
-
-#. module: uom
-#: model:ir.model.fields,field_description:uom.field_uom_uom__rounding
-msgid "Rounding Precision"
-msgstr "Natančnost zaokroževanja"
+msgstr ""
 
 #. module: uom
 #: model_terms:ir.ui.view,arch_db:uom.uom_uom_view_search
 msgid "Search UOM"
-msgstr "Iskanje merske enote"
+msgstr ""
 
 #. module: uom
 #: model:ir.model.fields,field_description:uom.field_uom_uom__sequence
@@ -203,13 +207,6 @@ msgid ""
 "Therefore, changing core units of measure in a running database is not "
 "recommended."
 msgstr ""
-"Nekatera kritična polja so bila spremenjena dne %s.\n"
-"Upoštevajte, da ta sprememba NE BO posodobila obstoječih podatkov.\n"
-"\n"
-"Ker merske enote vplivajo na celoten sistem, lahko to povzroči kritične "
-"težave.\n"
-"Zato spreminjanje osnovnih merskih enot v delujoči podatkovni zbirki ni "
-"priporočljivo.\n"
 
 #. module: uom
 #: model:ir.model.constraint,message:uom.constraint_uom_uom_factor_gt_zero
@@ -228,17 +225,10 @@ msgstr ""
 "Namesto tega jih lahko arhivirate."
 
 #. module: uom
-#: model:uom.uom,name:uom.product_uom_ton
-msgid "Ton"
-msgstr "Tona"
-
-#. module: uom
 #: model:ir.model.fields,help:uom.field_uom_uom__active
 msgid ""
 "Uncheck the active field to disable a unit of measure without deleting it."
 msgstr ""
-"Počistite polje »Aktivno«, da onemogočite mersko enoto, ne da bi jo "
-"izbrisali."
 
 #. module: uom
 #: model:ir.model.fields,field_description:uom.field_uom_uom__name
@@ -251,15 +241,20 @@ msgid "Units"
 msgstr "Enot"
 
 #. module: uom
-#: model:ir.actions.act_window,name:uom.product_uom_form_action
-#: model_terms:ir.ui.view,arch_db:uom.product_uom_tree_view
+#: model:ir.actions.act_window,name:uom.uom_uom_action_list
+#: model_terms:ir.ui.view,arch_db:uom.uom_uom_view_list
 msgid "Units & Packagings"
 msgstr "Merske enote"
 
 #. module: uom
-#: model_terms:ir.ui.view,arch_db:uom.product_uom_form_view
+#: model_terms:ir.ui.view,arch_db:uom.uom_uom_view_form
 msgid "Units of Measure"
 msgstr "Merske enote"
+
+#. module: uom
+#: model:ir.module.module,shortdesc:base.module_uom
+msgid "Units of measure"
+msgstr ""
 
 #. module: uom
 #. odoo-javascript
@@ -281,32 +276,32 @@ msgstr "cm"
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_floz
 msgid "fl oz (US)"
-msgstr "tekoča unča (ZDA)"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_foot
 msgid "ft"
-msgstr "ft"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_square_foot
 msgid "ft²"
-msgstr "ft²"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_cubic_foot
 msgid "ft³"
-msgstr "ft³"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_gram
 msgid "g"
-msgstr "g"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_gal
 msgid "gal (US)"
-msgstr "gal (ZDA)"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_inch
@@ -316,7 +311,7 @@ msgstr "v"
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_cubic_inch
 msgid "in³"
-msgstr "in³"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_kgm
@@ -331,12 +326,12 @@ msgstr "km"
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_lb
 msgid "lb"
-msgstr "lb"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_meter
 msgid "m"
-msgstr "m"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_mile
@@ -346,37 +341,39 @@ msgstr "mi"
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_milliliter
 msgid "ml"
-msgstr "ml"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_millimeter
 msgid "mm"
-msgstr "mm"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_square_meter
 msgid "m²"
-msgstr "m²"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_cubic_meter
 msgid "m³"
-msgstr "m³"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_oz
 msgid "oz"
-msgstr "oz"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_qt
 msgid "qt (US)"
-msgstr "qt"
+msgstr ""
+
+#. module: uom
+#: model:uom.uom,name:uom.product_uom_ton
+msgid "t"
+msgstr ""
 
 #. module: uom
 #: model:uom.uom,name:uom.product_uom_yard
 msgid "yd"
-msgstr "yd"
-
-#~ msgid "Group By"
-#~ msgstr "Združi po"
+msgstr ""

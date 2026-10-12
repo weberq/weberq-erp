@@ -4,9 +4,10 @@ import json
 from uuid import uuid4
 
 from odoo import Command
-from odoo.tests import common
+from odoo.tests import tagged, common
 
 
+@tagged('at_install', '-post_install')  # LEGACY at_install
 class TestSessionInfo(common.HttpCase):
     @classmethod
     def setUpClass(cls):
@@ -99,7 +100,7 @@ class TestSessionInfo(common.HttpCase):
             return response.json()['result']['translation_hash']
 
         def assert_session_hash_after_fetch():
-            self.env.registry.clear_cache()
+            self.env.transaction.invalidate_ormcache()
             self.assertEqual(get_session_hash(), '')
             response = self.url_open('/web/webclient/translations', params={'lang': self.user.lang})
             endpoint_hash = response.json()['hash']

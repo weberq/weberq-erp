@@ -2,16 +2,15 @@
 # This file contains the translation of the following modules:
 # * cloud_storage
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-08 08:11+0000\n"
-"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>\n"
-"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 16:24+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-s19-4/"
 "cloud_storage/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +23,7 @@ msgstr ""
 #. module: cloud_storage
 #: model_terms:ir.ui.view,arch_db:cloud_storage.cloud_storage_config_settings_view_form
 msgid "<span>MB</span>"
-msgstr "<span>MB</span>"
+msgstr ""
 
 #. module: cloud_storage
 #: model:ir.model,name:cloud_storage.model_ir_attachment
@@ -33,32 +32,33 @@ msgstr "Прикріплення"
 
 #. module: cloud_storage
 #: model:ir.model.fields.selection,name:cloud_storage.selection__ir_attachment__type__cloud_storage
+#: model:ir.module.module,shortdesc:base.module_cloud_storage
 #: model_terms:ir.ui.view,arch_db:cloud_storage.cloud_storage_config_settings_view_form
 msgid "Cloud Storage"
-msgstr "Хмарне сховище"
+msgstr ""
 
 #. module: cloud_storage
 #: model:ir.model.fields,field_description:cloud_storage.field_res_config_settings__cloud_storage_provider
 msgid "Cloud Storage Provider for new attachments"
-msgstr "Постачальник хмарного сховища для нових вкладень"
+msgstr ""
 
 #. module: cloud_storage
 #. odoo-python
 #: code:addons/cloud_storage/models/ir_attachment.py:0
 msgid "Cloud Storage is not enabled"
-msgstr "Хмарне сховище недійсне"
+msgstr ""
 
 #. module: cloud_storage
 #. odoo-python
 #: code:addons/cloud_storage/controllers/attachment.py:0
 msgid "Cloud storage configuration has been changed. Please refresh the page."
-msgstr "Конфігурацію хмарного сховища змінено. Оновіть сторінку."
+msgstr ""
 
 #. module: cloud_storage
 #. odoo-javascript
 #: code:addons/cloud_storage/static/src/core/common/attachment_upload_service_patch.js:0
 msgid "Cloud storage error"
-msgstr "Помилка хмарного сховища"
+msgstr ""
 
 #. module: cloud_storage
 #: model:ir.model,name:cloud_storage.model_res_config_settings
@@ -78,7 +78,6 @@ msgstr "Назва для відображення"
 msgid ""
 "Failed to download attachment (%(id)s) from cloud: %(code)s - %(reason)s"
 msgstr ""
-"Невийшло завантажити прикріплення (%(id)s) з хмари: %(code)s - %(reason)s"
 
 #. module: cloud_storage
 #: model:ir.model,name:cloud_storage.model_ir_http
@@ -95,33 +94,38 @@ msgstr "ID"
 #. module: cloud_storage
 #: model_terms:ir.ui.view,arch_db:cloud_storage.cloud_storage_config_settings_view_form
 msgid "Minimum File Size"
-msgstr "Мінімальний розмір файлу"
+msgstr ""
 
 #. module: cloud_storage
 #: model:ir.model.fields,field_description:cloud_storage.field_res_config_settings__cloud_storage_min_file_size_mb
 msgid "Minimum File Size (MB)"
-msgstr "Мінімальний розмір файлу (MB)"
+msgstr ""
 
 #. module: cloud_storage
 #: model:ir.model.fields,field_description:cloud_storage.field_res_config_settings__cloud_storage_min_file_size
 msgid "Minimum File Size (bytes)"
-msgstr "Мінімальний розмір файлу (байти)"
+msgstr ""
 
 #. module: cloud_storage
 #: model_terms:ir.ui.view,arch_db:cloud_storage.cloud_storage_config_settings_view_form
 msgid "Minimum size for attachments to be stored in the cloud storage"
-msgstr "Мінімальний розмір вкладень, які зберігаються у хмарному сховищі"
+msgstr ""
 
 #. module: cloud_storage
 #. odoo-python
 #: code:addons/cloud_storage/models/res_config_settings.py:0
 msgid "Please configure the Cloud Storage before enabling it"
-msgstr "Будь ласка, налаштуйте хмарне сховище, перш ніж увімкнути його"
+msgstr ""
 
 #. module: cloud_storage
 #: model_terms:ir.ui.view,arch_db:cloud_storage.cloud_storage_config_settings_view_form
 msgid "Select the cloud storage provider to store new attachments."
-msgstr "Виберіть постачальника хмарного сховища для зберігання нових вкладень."
+msgstr ""
+
+#. module: cloud_storage
+#: model:ir.module.module,summary:base.module_cloud_storage
+msgid "Store chatter attachments in the cloud"
+msgstr ""
 
 #. module: cloud_storage
 #: model:ir.model.fields,field_description:cloud_storage.field_ir_attachment__type
@@ -129,10 +133,20 @@ msgid "Type"
 msgstr "Тип"
 
 #. module: cloud_storage
+#: model:ir.model.fields,field_description:cloud_storage.field_res_config_settings__cloud_storage_upload_record_attachments
+msgid "Upload Record Attachments"
+msgstr ""
+
+#. module: cloud_storage
+#: model_terms:ir.ui.view,arch_db:cloud_storage.cloud_storage_config_settings_view_form
+msgid "Upload record attachments to the cloud storage"
+msgstr ""
+
+#. module: cloud_storage
 #. odoo-javascript
 #: code:addons/cloud_storage/static/src/core/common/attachment_upload_service_patch.js:0
 msgid "You are not allowed to upload file to the cloud storage"
-msgstr "Ви не маєте права завантажувати файли до хмарного сховища"
+msgstr ""
 
 #. module: cloud_storage
 #: model:ir.model.fields,help:cloud_storage.field_ir_attachment__type
@@ -151,6 +165,3 @@ msgid ""
 "to\n"
 "        the cloud storage."
 msgstr ""
-"Веб-клієнт може завантажувати файли, розмір яких перевищує мінімальний \n"
-"(у байтах), як вкладення URL-адрес на сервер, а потім завантажувати файл \n"
-"у хмарне сховище."

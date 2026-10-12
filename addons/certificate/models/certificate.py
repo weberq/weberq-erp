@@ -1,20 +1,17 @@
-import base64
 from importlib import metadata
-import re
 from contextlib import suppress
 
 from cryptography import x509
-from cryptography.x509.oid import ExtensionOID, SignatureAlgorithmOID
+from cryptography.x509.oid import ExtensionOID
 from cryptography.x509.extensions import DuplicateExtension, ExtensionNotFound
 from cryptography.exceptions import InvalidSignature, UnsupportedAlgorithm
 from cryptography.hazmat.primitives import constant_time, serialization
-from cryptography.hazmat.primitives.asymmetric import dsa, ec, ed448, ed25519, padding, rsa
 from cryptography.hazmat.primitives.serialization import Encoding, pkcs12, PublicFormat
 
 from odoo import _, api, fields, models
 from .key import STR_TO_HASH, _get_formatted_value
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools import parse_version
+from odoo.tools import BinaryBytes, parse_version
 
 
 class CertificateCertificate(models.Model):
@@ -48,6 +45,7 @@ class CertificateCertificate(models.Model):
         string="Certificate scope",
         selection=[
             ('general', 'General'),
+            ('ca', 'Certificate Authority'),
         ],
     )
     content_format = fields.Selection(
@@ -110,9 +108,13 @@ class CertificateCertificate(models.Model):
     def _compute_issuer_cert_id(self):
         def load_certificate(certificate):
             with suppress(ValueError, TypeError):
-                return x509.load_pem_x509_certificate(base64.b64decode(
-                    certificate.with_context(bin_size=False).pem_certificate
-                ))
+                return x509.load_pem_x509_certificate(certificate.pem_certificate.content)
+            return False
+
+        def is_issued_by(x509_certificate, x509_issuer_certificate):
+            with suppress(ValueError, TypeError, InvalidSignature, UnsupportedAlgorithm):
+                x509_certificate.verify_directly_issued_by(x509_issuer_certificate)
+                return True
             return False
 
         # By default, put no issuer
@@ -150,7 +152,7 @@ class CertificateCertificate(models.Model):
                 # A candidate whose key cryptographically signed this certificate.
                 issuer = candidates.filtered(
                     lambda candidate: (x509_candidate := load_certificate(candidate))
-                    and self._is_issued_by(data['loaded'], x509_candidate)
+                    and is_issued_by(data['loaded'], x509_candidate)
                 )[:1]
 
                 # No mathematical proof: fall back to a
@@ -169,38 +171,38 @@ class CertificateCertificate(models.Model):
         attachments = self.env['ir.attachment'].search([
             ('res_model', '=', 'certificate.key'),
             ('res_field', '=', 'content'),
-            ('res_id', 'in', self.ids)
+            ('res_id', 'in', self.private_key_id.ids),
         ])
-        content_to_key_id = {(att.datas, att.company_id.id): att.res_id for att in attachments}
+        content_to_key_id = {(att.raw.content, att.company_id.id): att.res_id for att in attachments}
 
         for certificate in self:
             if not certificate.pem_certificate:
                 certificate.private_key_id = None
                 continue
 
-            content = certificate.with_context(bin_size=False).content
+            content = certificate.content.content
             key_password = certificate.pkcs12_password.encode('utf-8') if certificate.pkcs12_password else None
             key = None
 
             # Create the private key if using PKCS12 or PEM files and no private key is set
             if certificate.content_format == 'pkcs12':
                 with suppress(ValueError, TypeError, UnsupportedAlgorithm):
-                    key, _cert, _additional_certs = pkcs12.load_key_and_certificates(base64.b64decode(content), key_password)
+                    key, _cert, _additional_certs = pkcs12.load_key_and_certificates(content, key_password)
             elif certificate.content_format == 'pem':
                 with suppress(ValueError, TypeError, UnsupportedAlgorithm):
-                    key = serialization.load_pem_private_key(base64.b64decode(content), password=key_password)
+                    key = serialization.load_pem_private_key(content, password=key_password)
 
             if key:
-                pem_key = base64.b64encode(key.private_bytes(
+                pem_key = key.private_bytes(
                     encoding=Encoding.PEM,
                     format=serialization.PrivateFormat.PKCS8,
                     encryption_algorithm=serialization.NoEncryption()
-                ))
+                )
                 key_id = content_to_key_id.get((pem_key, certificate.company_id.id))
                 if not key_id:
                     key_id = self.env['certificate.key'].create({
                         'name': (certificate.subject_common_name or certificate.name or "") + ".key",
-                        'content': pem_key,
+                        'content': BinaryBytes(pem_key),
                         'company_id': certificate.company_id.id,
                     })
                 certificate.private_key_id = key_id
@@ -217,7 +219,7 @@ class CertificateCertificate(models.Model):
             record.loading_error = False
 
         for certificate in self:
-            content = certificate.with_context(bin_size=False).content
+            content = certificate.content.content
 
             if not content:
                 reset_certificate(certificate)
@@ -238,7 +240,7 @@ class CertificateCertificate(models.Model):
             certificate.loading_error = ""
 
             # Extract certificate data
-            certificate.pem_certificate = base64.b64encode(leaf_pem)
+            certificate.pem_certificate = BinaryBytes(leaf_pem)
             certificate.serial_number = cert.serial_number
             certificate.subject_common_name = self._get_common_name(cert) or cert.serial_number
             if parse_version(metadata.version('cryptography')) < parse_version('42.0.0'):
@@ -275,9 +277,9 @@ class CertificateCertificate(models.Model):
     @api.constrains('pem_certificate', 'private_key_id', 'public_key_id')
     def _constrains_certificate_key_compatibility(self):
         for certificate in self:
-            pem_certificate = certificate.with_context(bin_size=False).pem_certificate
+            pem_certificate = certificate.pem_certificate.content
             if pem_certificate:
-                cert = x509.load_pem_x509_certificate(base64.b64decode(pem_certificate))
+                cert = x509.load_pem_x509_certificate(pem_certificate)
                 cert_public_key_bytes = cert.public_key().public_bytes(
                     encoding=Encoding.PEM,
                     format=serialization.PublicFormat.SubjectPublicKeyInfo
@@ -286,18 +288,16 @@ class CertificateCertificate(models.Model):
                 if certificate.private_key_id:
                     if certificate.private_key_id.loading_error:
                         raise ValidationError(certificate.private_key_id.loading_error)
-                    pkey_public_key_bytes = base64.b64decode(
-                        certificate.private_key_id._get_public_key_bytes(encoding='pem')
-                    )
+                    pkey_public_key_bytes = certificate.private_key_id._get_public_key_bytes(
+                        encoding='pem', formatting='')
                     if not constant_time.bytes_eq(pkey_public_key_bytes, cert_public_key_bytes):
                         raise ValidationError(_("The certificate and private key are not compatible."))
 
                 if certificate.public_key_id:
                     if certificate.public_key_id.loading_error:
                         raise ValidationError(certificate.public_key_id.loading_error)
-                    pkey_public_key_bytes = base64.b64decode(
-                        certificate.public_key_id._get_public_key_bytes(encoding='pem')
-                    )
+                    pkey_public_key_bytes = certificate.public_key_id._get_public_key_bytes(
+                        encoding='pem', formatting='')
                     if not constant_time.bytes_eq(pkey_public_key_bytes, cert_public_key_bytes):
                         raise ValidationError(_("The certificate and public key are not compatible."))
 
@@ -335,61 +335,6 @@ class CertificateCertificate(models.Model):
         return None
 
     @api.model
-    def _is_issued_by(self, x509_certificate, x509_issuer_certificate):
-        """ Cryptographically check that ``certificate`` was directly issued by
-        ``issuer_certificate``: the issuer distinguished name must match and the
-        signature must verify against the issuer's public key.
-
-        :return: ``True`` if the issuance is cryptographically proven, ``False`` if it
-            is disproven, and ``None`` if it could not be checked (unsupported scheme or
-            parameters).
-        :rtype: bool | None
-        """
-        with suppress(ValueError):
-            if x509_certificate.issuer != x509_issuer_certificate.subject:
-                return False
-
-        public_key = x509_issuer_certificate.public_key()
-        signature = x509_certificate.signature
-        signed_bytes = x509_certificate.tbs_certificate_bytes
-        try:
-            hash_alg = x509_certificate.signature_hash_algorithm
-        except UnsupportedAlgorithm:
-            return None
-
-        # Each branch builds the argument tuples to try with ``public_key.verify`` and the
-        # result when none succeed (False = disproven, None = could not be checked).
-        match public_key:
-            case ed25519.Ed25519PublicKey() | ed448.Ed448PublicKey():
-                attempts, on_failure = [(signature, signed_bytes)], False
-            case _ if hash_alg is None:
-                # A hash-less signature (Ed25519/Ed448) cannot have been produced by this key.
-                attempts, on_failure = [], False
-            case ec.EllipticCurvePublicKey():
-                attempts, on_failure = [(signature, signed_bytes, ec.ECDSA(hash_alg))], False
-            case dsa.DSAPublicKey():
-                attempts, on_failure = [(signature, signed_bytes, hash_alg)], False
-            case rsa.RSAPublicKey() if x509_certificate.signature_algorithm_oid != SignatureAlgorithmOID.RSASSA_PSS:
-                attempts, on_failure = [(signature, signed_bytes, padding.PKCS1v15(), hash_alg)], False
-            case rsa.RSAPublicKey():
-                # RSA-PSS: we assume MGF1 with the signature hash and try the two conventional
-                # salt lengths (DIGEST_LENGTH then MAX_LENGTH). A non-standard MGF hash or an
-                # arbitrary salt length is not covered, so failing both is inconclusive (None).
-                attempts = [
-                    (signature, signed_bytes, padding.PSS(mgf=padding.MGF1(hash_alg), salt_length=salt_length), hash_alg)
-                    for salt_length in (hash_alg.digest_size, padding.PSS.MAX_LENGTH)
-                ]
-                on_failure = None
-            case _:
-                attempts, on_failure = [], None  # unsupported key type
-
-        for verify_args in attempts:
-            with suppress(InvalidSignature, TypeError, ValueError, UnsupportedAlgorithm):
-                public_key.verify(*verify_args)
-                return True
-        return on_failure
-
-    @api.model
     def _parse_pem_certificate_bundle(self, decoded_content, password=None):
         """
         Parses a PEM-encoded bundle to extract individual certificate blocks and
@@ -405,22 +350,20 @@ class CertificateCertificate(models.Model):
         def subject(obj):
             return obj.public_key().public_bytes(Encoding.PEM, PublicFormat.SubjectPublicKeyInfo)
 
-        cert_blocks = re.findall(rb'(-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----)', decoded_content, flags=re.DOTALL)
-        # A corrupted block must fail the whole parse here
-        certs = [x509.load_pem_x509_certificate(block) for block in cert_blocks]
+        certs = x509.load_pem_x509_certificates(decoded_content)
 
         try:
             # Catch errors because the bundle might only contain public certificates
             # (like a CA bundle) and lack a private key, or the password could be missing/incorrect.
             private_key = serialization.load_pem_private_key(decoded_content, password=password)
         except (ValueError, TypeError, UnsupportedAlgorithm):
-            return cert_blocks
+            return [cert.public_bytes(Encoding.PEM) for cert in certs]
 
         target_pub_bytes = subject(private_key)
         chain_blocks = []
-        for block, cert in zip(cert_blocks, certs):
-            curr_pub_bytes = subject(cert)
-            if curr_pub_bytes == target_pub_bytes:
+        for cert in certs:
+            block = cert.public_bytes(Encoding.PEM)
+            if subject(cert) == target_pub_bytes:
                 chain_blocks.insert(0, block)
             else:
                 chain_blocks.append(block)
@@ -429,8 +372,6 @@ class CertificateCertificate(models.Model):
 
     @api.model
     def _parse_certificate_content(self, content, password=None):
-        content = base64.b64decode(content)
-
         def pem(x):
             return x.public_bytes(Encoding.PEM) if x else None
 
@@ -499,7 +440,7 @@ class CertificateCertificate(models.Model):
                 for record in self
                 if record.content and not record.loading_error
                 for ca_vals in self._parse_chain_missing_ca_vals({
-                    'content': record.with_context(bin_size=False).content,
+                    'content': record.content,
                     'pkcs12_password': record.pkcs12_password,
                     'company_id': record.company_id.id,
                     **vals,
@@ -527,13 +468,15 @@ class CertificateCertificate(models.Model):
                 'company_id': company_id,
                 'serial_number': serial_number,
                 'subject_common_name': subject,
-                'content': base64.b64encode(pem),
+                'content': BinaryBytes(pem),
+                'scope': 'ca',
                 'active': False,
             }
 
         company_id = vals.get('company_id')
         password = vals.get('pkcs12_password', '').encode('utf-8') if vals.get('pkcs12_password') else None
-        content = vals.get('content') or b''
+        content = self._fields['content'].convert_to_cache(vals.get('content'), self, validate=False)
+        content = content.content if content else b''
 
         _leaf_pem, *ca_pems = self._extract_and_filter_chain(content, password)
         if not ca_pems:
@@ -576,7 +519,7 @@ class CertificateCertificate(models.Model):
         :rtype: bytes
         '''
         self.ensure_one()
-        cert = x509.load_pem_x509_certificate(base64.b64decode(self.with_context(bin_size=False).pem_certificate))
+        cert = x509.load_pem_x509_certificate(self.pem_certificate.content)
         return _get_formatted_value(cert.public_bytes(serialization.Encoding.DER), formatting=formatting)
 
     def _get_fingerprint_bytes(self, hashing_algorithm='sha256', formatting='encodebytes'):
@@ -591,7 +534,7 @@ class CertificateCertificate(models.Model):
         :rtype: bytes
         '''
         self.ensure_one()
-        cert = x509.load_pem_x509_certificate(base64.b64decode(self.with_context(bin_size=False).pem_certificate))
+        cert = x509.load_pem_x509_certificate(self.pem_certificate.content)
         if hashing_algorithm not in STR_TO_HASH:
             raise UserError(f"Unsupported hashing algorithm '{hashing_algorithm}'. Currently supported: sha1 and sha256.")  # pylint: disable=missing-gettext
         return _get_formatted_value(cert.fingerprint(STR_TO_HASH[hashing_algorithm]), formatting=formatting)
@@ -607,7 +550,7 @@ class CertificateCertificate(models.Model):
         :rtype: bytes
         '''
         self.ensure_one()
-        cert = x509.load_pem_x509_certificate(base64.b64decode(self.with_context(bin_size=False).pem_certificate))
+        cert = x509.load_pem_x509_certificate(self.pem_certificate.content)
         return _get_formatted_value(cert.signature, formatting=formatting)
 
     def _get_public_key_numbers_bytes(self, formatting='encodebytes'):
@@ -627,7 +570,7 @@ class CertificateCertificate(models.Model):
 
         # When no keys are set to the certificate, use the self-contained public key from the content
         return self.env['certificate.key']._numbers_public_key_bytes_with_key(
-            self._get_public_key_bytes(encoding='pem'),
+            self._get_public_key_bytes(encoding='pem', formatting=''),
             formatting=formatting,
         )
 
@@ -650,7 +593,7 @@ class CertificateCertificate(models.Model):
 
         # When no keys are set to the certificate, use the self-contained public key from the content
         try:
-            cert = x509.load_pem_x509_certificate(base64.b64decode(self.with_context(bin_size=False).pem_certificate))
+            cert = x509.load_pem_x509_certificate(self.pem_certificate.content)
             public_key = cert.public_key()
         except ValueError:
             raise UserError(_("The public key from the certificate could not be loaded."))

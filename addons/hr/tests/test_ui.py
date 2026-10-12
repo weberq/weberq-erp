@@ -36,8 +36,20 @@ class TestEmployeeUi(HttpCase):
             {
                 'name': 'Bob M.',
                 "user_id": bob_user.id,
+                'employee_type_id': self.env.ref('hr.contract_type_employee').id,
             },
         ])
 
         self.start_tour("/odoo", 'version_timeline_auto_save_tour', login="alice")
         self.assertFalse(bob_employee.version_ids[-1].contract_date_start)
+
+    def test_create_employee_with_hr_rights(self):
+        new_test_user(self.env, login='hr_user', groups='hr.group_hr_user')
+        self.start_tour('/odoo', 'hr_officer_create_employee_tour', login='hr_user')
+
+        emp = self.env['hr.employee'].search([('name', 'ilike', 'My Employee')])
+        self.assertTrue(emp)
+
+    def test_first_contract_date_with_hr_user_rights(self):
+        new_test_user(self.env, login='hr_user', groups='hr.group_hr_user')
+        self.start_tour('/odoo', 'hr_user_kanban_view_tour', login='hr_user', timeout=350)

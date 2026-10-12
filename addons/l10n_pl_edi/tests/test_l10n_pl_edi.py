@@ -1,4 +1,3 @@
-import base64
 from datetime import datetime, timedelta
 
 from lxml import etree
@@ -19,6 +18,8 @@ def attachment_to_dict(attachment):
 
 @tagged('post_install', '-at_install', 'post_install_l10n')
 class TestL10nPlEdi(AccountTestInvoicingCommon, CronMixinCase):
+
+    _test_user_groups = None  # FIXME list needed groups
 
     @classmethod
     @AccountTestInvoicingCommon.setup_country('pl')
@@ -62,13 +63,7 @@ class TestL10nPlEdi(AccountTestInvoicingCommon, CronMixinCase):
         cls.cash_journal = cls.company_data['default_journal_cash']
         cls.cash_journal.inbound_payment_method_line_ids.payment_account_id = cls.cash_journal.default_account_id.id
 
-        cls.env['ir.config_parameter'].sudo().set_param('l10n_pl_edi_ksef.mode', 'test')
-
-        def read_certificate_file(filename, b64=False):
-            path = f'l10n_pl_edi/tests/certificate/{filename}'
-            with tools.file_open(path, mode='rb') as fd:
-                content = fd.read()
-                return base64.b64encode(content) if b64 else content
+        cls.env['ir.config_parameter'].sudo().set_str('l10n_pl_edi_ksef.mode', 'test')
 
         # This Certificate will NOT work for the current test VAT with KSEF (not even in test mode),
         # AND will even expire, but it's useful to have something to test with when we mock
@@ -77,13 +72,13 @@ class TestL10nPlEdi(AccountTestInvoicingCommon, CronMixinCase):
         key = cls.env['certificate.key'].create(dict(
             company_id=cls.company.id,
             name=key_filename,
-            content=read_certificate_file(key_filename, b64=True),
+            content=cls.file_read(f'l10n_pl_edi/tests/certificate/{key_filename}'),
             password='Qwertyuiop@12345',
         ))
         cert = cls.env['certificate.certificate'].create(dict(
             company_id=cls.company.id,
             name=cert_filename,
-            content=read_certificate_file(cert_filename, b64=True),
+            content=cls.file_read(f'l10n_pl_edi/tests/certificate/{cert_filename}'),
             private_key_id=key.id,
         ))
         cls.company.sudo().write({
@@ -359,9 +354,9 @@ class TestL10nPlEdi(AccountTestInvoicingCommon, CronMixinCase):
         """
         # Create a Bank Account for the Company
         bank_acc = self.env['res.partner.bank'].create({
-            'acc_number': '12 3456 7890 0000 0000 1234 5678',
+            'account_number': '12 3456 7890 0000 0000 1234 5678',
             'partner_id': self.partner_pl.id,
-            'bank_id': self.env['res.bank'].create({'name': 'Test Bank PL'}).id,
+            'bank_name': "Test Bank PL",
             'allow_out_payment': True,
         })
 
@@ -510,8 +505,8 @@ class TestL10nPlEdi(AccountTestInvoicingCommon, CronMixinCase):
         amount of the supplied service.
         """
         service_tax = self.env['account.chart.template'].ref('vs_dostu')
-        service_product = self._create_product(name='EU Service', type='service', taxes_id=[(6, 0, [service_tax.id])])
-        invoice_line = self._prepare_invoice_line(product_id=service_product.id, quantity=1, price_unit=1000.0)
+        service_product = self._create_product(name='EU Service', type='service')
+        invoice_line = self._prepare_invoice_line(product_id=service_product.id, quantity=1, price_unit=1000.0, tax_ids=[(6, 0, [service_tax.id])])
         invoice = self._create_invoice(invoice_line_ids=[invoice_line], partner_id=self.partner_pl.id, post=True)
         xml = invoice._l10n_pl_edi_render_xml()
         self.assertEqual(self._get_xml_value(xml, "//ns:Fa/ns:P_13_9"), '1000.00')
@@ -718,7 +713,7 @@ class TestL10nPlEdi(AccountTestInvoicingCommon, CronMixinCase):
         ], limit=1)
         self.assertTrue(created_move_attachment)
         with tools.file_open('l10n_pl_edi/tests/export_xmls/fa3_bill.xml', mode='rb') as file:
-            self.assertEqual(created_move_attachment.raw, file.read())
+            self.assertEqual(bytes(created_move_attachment.raw), file.read())
 
     def test_l10n_pl_edi_download_bill_retry_after(self):
         """Test that when a rate limit error occurs the progress is preserved and the cron is rescheduled."""
@@ -764,7 +759,7 @@ class TestL10nPlEdi(AccountTestInvoicingCommon, CronMixinCase):
         ], limit=1)
         self.assertTrue(bill_1_attachment)
         with tools.file_open('l10n_pl_edi/tests/export_xmls/fa3_bill.xml', mode='rb') as file:
-            self.assertEqual(bill_1_attachment.raw, file.read())
+            self.assertEqual(bytes(bill_1_attachment.raw), file.read())
 
         bill_2 = self.env['account.move'].search([('l10n_pl_edi_status', '=', 'fetch_ready')])
         self.assertTrue(bill_2)

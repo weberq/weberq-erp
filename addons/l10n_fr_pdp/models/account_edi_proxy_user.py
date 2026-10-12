@@ -80,9 +80,6 @@ PAYMENT_TYPE_CODES = MappingProxyType({
 })
 
 DEMO_ENDPOINTS = {  # pdp reports specific endpoints not already mocked by l10n_fr_pdp demo utils
-    'pilot_phase': lambda params: {
-        'annuaire_line_start_date': fields.Date.today(),
-    },
     'participant_status': lambda params: {},
     'send_document': lambda params: {
         'messages': [{'message_uuid': f'demo_{uuid.uuid4()}'} for _d in params['documents']],
@@ -128,22 +125,14 @@ class AccountEdiProxyClientUser(models.Model):
 
     @handle_demo
     def _call_peppol_proxy(self, endpoint, params=None):
-        if (
-            self.env.company._get_peppol_edi_mode() == 'demo'
-            and self.proxy_type == 'pdp'
-            and (demo_endpoint := DEMO_ENDPOINTS.get(endpoint.split('/')[-1]))
-        ):
-            self.ensure_one()
-            return demo_endpoint(params)
-        else:
-            return super()._call_peppol_proxy(endpoint, params)
+        # EXTENDS 'account_peppol' - add PDP handle_demo
+        return super()._call_peppol_proxy(endpoint, params=params)
 
     def _get_proxy_identification(self, company, proxy_type):
         if proxy_type != 'pdp':
             return super()._get_proxy_identification(company, proxy_type)
         if not company.pdp_identifier:
-            scheme = dict(self.env["res.partner"]._fields['peppol_eas']._description_selection(self.env))["0225"]
-            raise UserError(self.env._("Please fill the French e-invoicing identifier with scheme '%s' on the company partner.", scheme))
+            raise UserError(self.env._("Please fill the company routing endpoint with the French e-invoicing scheme (0225:<identifier>)."))
         return f'0225:{company.pdp_identifier}'
 
     @handle_demo
@@ -164,7 +153,7 @@ class AccountEdiProxyClientUser(models.Model):
             try:
                 # b64encode returns a bytestring, we need it as a string
                 response = self._make_request(self._get_server_url(proxy_type, edi_mode) + self._get_peppol_proxy_endpoint("1/connect", proxy_type='pdp'), params={
-                    'dbuuid': company.env['ir.config_parameter'].sudo().get_param('database.uuid'),
+                    'dbuuid': company.env['ir.config_parameter'].sudo().get_str('database.uuid'),
                     'company_id': company.id,
                     'peppol_identifier': peppol_identifier,
                     'public_key': private_key_sudo._get_public_key_bytes(encoding='pem').decode(),
@@ -200,7 +189,7 @@ class AccountEdiProxyClientUser(models.Model):
             raise UserError(self.env._("Cannot register a user with a '%(proxy_state)s' application.", proxy_state=proxy_state_translated))
 
         params = {
-            'company_details': self._get_company_details(),
+            'company_details': self.env['pdp.registration']._get_company_details(self.company_id),
             'supported_identifiers': list(self.company_id._peppol_supported_document_types())
         }
         self._call_peppol_proxy(

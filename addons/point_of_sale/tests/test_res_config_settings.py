@@ -14,15 +14,7 @@ class TestConfigureShops(TestPoSCommon):
         should reflect to the pos.config record pointed by the
         pos_config_id field.
     """
-
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        # If not enabled (like in demo data), landing on res.config will try
-        # to disable module_sale_quotation_builder and raise an issue
-        group_order_template = cls.env.ref('sale_management.group_sale_order_template', raise_if_not_found=False)
-        if group_order_template:
-            cls.env.ref('base.group_user').write({"implied_ids": [(4, group_order_template.id)]})
+    _test_user_groups = None  # FIXME list needed groups
 
     def _remove_on_payment_taxes(self):
         """ Call this when testing the res.config.settings with Form.
@@ -43,21 +35,19 @@ class TestConfigureShops(TestPoSCommon):
                 Command.create({
                     'name': 'Bank 1',
                     'receivable_account_id': self.env.company.account_default_pos_receivable_account_id.id,
-                    'is_cash_count': False,
-                    'split_transactions': False,
+                    'type': 'bank',
                     'company_id': self.env.company.id,
                 }),
                 Command.create({
                     'name': 'Bank 2',
                     'receivable_account_id': self.env.company.account_default_pos_receivable_account_id.id,
-                    'is_cash_count': False,
-                    'split_transactions': False,
+                    'type': 'bank',
                     'company_id': self.env.company.id,
                 }),
                 Command.create({
                     'name': 'Cash',
                     'receivable_account_id': self.env.company.account_default_pos_receivable_account_id.id,
-                    'is_cash_count': True,
+                    'type': 'cash',
                     'company_id': self.env.company.id,
                 })
             ]
@@ -90,27 +80,3 @@ class TestConfigureShops(TestPoSCommon):
             'available_preset_ids': [(6, 0, [preset.id])],
             'default_preset_id': preset.id,
         })
-
-    def test_warehouse_synced_with_picking_type(self):
-        """Changing the operation type should update the warehouse on the POS config."""
-        warehouse_1 = self.env['stock.warehouse'].search(
-            self.env['stock.warehouse']._check_company_domain(self.env.company), limit=1
-        )
-        warehouse_2 = self.env['stock.warehouse'].create({
-            'name': 'Second Warehouse',
-            'code': 'WH2',
-            'company_id': self.env.company.id,
-        })
-
-        pos_config = self.env['pos.config'].create({
-            'name': 'Shop WH Test',
-            'module_pos_restaurant': False,
-        })
-        self.assertEqual(pos_config.warehouse_id, warehouse_1)
-        self.assertEqual(pos_config.picking_type_id.warehouse_id, warehouse_1)
-
-        pos_config.picking_type_id = warehouse_2.pos_type_id
-        self.assertEqual(
-            pos_config.warehouse_id, warehouse_2,
-            "warehouse_id should follow picking_type_id.warehouse_id after changing operation type"
-        )

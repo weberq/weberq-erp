@@ -14,6 +14,8 @@ from unittest.mock import patch, Mock
 
 
 class TestSequenceMixinCommon(AccountTestInvoicingCommon):
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -51,6 +53,13 @@ class TestSequenceMixinCommon(AccountTestInvoicingCommon):
 
 @tagged('post_install', '-at_install')
 class TestSequenceMixin(TestSequenceMixinCommon):
+    _test_user_groups = None  # FIXME list needed groups
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env.ref('base.partner_root').company_id = cls.env.company
+
     def assertNameAtDate(self, date, name):
         test = self.create_move(date=date)
         test.action_post()
@@ -87,12 +96,12 @@ class TestSequenceMixin(TestSequenceMixinCommon):
         Test the sequence update behavior when changing the date of a move in quick edit mode.
         The sequence should only be recalculated if a value (year or month) utilized in the sequence is modified.
         """
-        self.env.company.quick_edit_mode = "out_and_in_invoices"
+        self.env.company.quick_edit_mode_enabled = True
         self.env.company.fiscalyear_last_day = 30
         self.env.company.fiscalyear_last_month = '12'
 
         bill = self.env['account.move'].create({
-            'partner_id': 1,
+            'partner_id': self.ref('base.partner_root'),
             'move_type': 'in_invoice',
             'date': '2016-01-01',
             'line_ids': [
@@ -115,7 +124,7 @@ class TestSequenceMixin(TestSequenceMixinCommon):
             self.assertMoveName(bill_form, 'BILL/16-17/01/0001')
 
         invoice = self.env['account.move'].create({
-            'partner_id': 1,
+            'partner_id': self.ref('base.partner_root'),
             'move_type': 'out_invoice',
             'date': '2016-01-01',
             'line_ids': [
@@ -135,12 +144,12 @@ class TestSequenceMixin(TestSequenceMixinCommon):
             invoice_form.date = '2017-01-01'
             self.assertMoveName(invoice_form, 'INV/16-17/0001')
 
-    def test_sequence_empty_editable_with_quick_edit_mode(self):
+    def test_sequence_empty_editable_with_document_sequence_editable(self):
         """ Ensure the names of all but the first moves in a period are empty and editable in quick edit mode """
-        self.env.company.quick_edit_mode = 'in_invoices'
+        self.env.company.document_sequence_editable = True
 
         bill_1 = self.env['account.move'].create({
-            'partner_id': 1,
+            'partner_id': self.ref('base.partner_root'),
             'move_type': 'in_invoice',
             'date': '2016-01-01',
             'invoice_date': '2016-01-01',
@@ -368,7 +377,7 @@ class TestSequenceMixin(TestSequenceMixinCommon):
         )
         (invoice + invoice2 + refund + refund2).write({
             'journal_id': self.company_data['default_journal_sale'].id,
-            'partner_id': 1,
+            'partner_id': self.ref('base.partner_root'),
             'invoice_date': '2016-01-01',
         })
         (invoice + invoice2).move_type = 'out_invoice'
@@ -594,14 +603,14 @@ class TestSequenceMixin(TestSequenceMixinCommon):
 
     def test_sequence_staggered_year(self):
         """The sequence is correctly computed when the year is staggered."""
-        self.env.company.quick_edit_mode = "out_and_in_invoices"
+        self.env.company.document_sequence_editable = True
         self.env.company.fiscalyear_last_day = 15
         self.env.company.fiscalyear_last_month = '4'
 
         # First bill in second half of first month of the fiscal year, which is
         # the start of the fiscal year
         bill = self.env['account.move'].create({
-            'partner_id': 1,
+            'partner_id': self.ref('base.partner_root'),
             'move_type': 'in_invoice',
             'date': '2024-04-17',
             'line_ids': [
@@ -772,6 +781,8 @@ class TestSequenceMixin(TestSequenceMixinCommon):
 
 @tagged('post_install', '-at_install')
 class TestSequenceGaps(TestSequenceMixinCommon):
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -1228,6 +1239,8 @@ class TestSequenceGaps(TestSequenceMixinCommon):
 
 @tagged('post_install', '-at_install')
 class TestSequenceMixinDeletion(TestSequenceMixinCommon):
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -1291,12 +1304,12 @@ class TestSequenceMixinConcurrency(TransactionCase):
             moves.name = False
             moves[0].action_post()
             self.assertEqual(moves.mapped('name'), ['CT/2016/01/0001', False, False])
-            env.cr.commit()
         self.data = {
             'move_ids': moves.ids,
             'account_id': account.id,
             'journal_id': journal.id,
             'envs': [
+                # all transactions are started here...
                 api.Environment(self.env.registry.cursor(), SUPERUSER_ID, {}),
                 api.Environment(self.env.registry.cursor(), SUPERUSER_ID, {}),
                 api.Environment(self.env.registry.cursor(), SUPERUSER_ID, {}),
@@ -1315,7 +1328,6 @@ class TestSequenceMixinConcurrency(TransactionCase):
             journal.unlink()
             account = env['account.account'].browse(self.data['account_id'])
             account.unlink()
-            env.cr.commit()
         for env in self.data['envs']:
             env.cr.close()
 
@@ -1337,6 +1349,7 @@ class TestSequenceMixinConcurrency(TransactionCase):
         env1.cr.commit()
 
         # check the values
+        env0.cr.rollback()
         moves = env0['account.move'].browse(self.data['move_ids'])
         self.assertEqual(moves.mapped('name'), ['CT/2016/01/0001', 'CT/2016/01/0002', 'CT/2016/01/0003'])
         self.assertEqual(moves.mapped('sequence_prefix'), ['CT/2016/01/', 'CT/2016/01/', 'CT/2016/01/'])
@@ -1363,12 +1376,15 @@ class TestSequenceMixinConcurrency(TransactionCase):
         env1.cr.commit()
 
         # check the values
+        env0.cr.rollback()
         moves = env0['account.move'].browse(self.data['move_ids'])
         self.assertEqual(moves.mapped('name'), ['CT/2016/01/0001', False, 'CT/2016/01/0002'])
 
 
 @tagged('post_install', '-at_install')
 class TestSequenceMixinBankStatementLoadImport(TestSequenceMixinCommon):
+    _test_user_groups = None  # FIXME list needed groups
+
     def test_failed_import_bank_statement_cache_shouldnt_get_invalidated(self):
         """ Ensure that even with a failed import, we mostly hit the sequence cache and don't create tons of savepoint"""
         bank_journal = self.company.bank_journal_ids[:1]  # there could be several journal in some builds

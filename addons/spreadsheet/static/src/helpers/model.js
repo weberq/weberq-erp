@@ -94,7 +94,8 @@ function containsLinkToOdoo(link) {
  */
 export async function freezeOdooData(model) {
     await waitForDataLoaded(model);
-    const data = model.exportData();
+    const data = model._exportData(false);
+    //TODO: rewrite with normal export and squished positions ?
     for (const sheet of Object.values(data.sheets)) {
         sheet.formats ??= {};
         for (const [xc, content] of Object.entries(sheet.cells)) {
@@ -137,7 +138,7 @@ export async function freezeOdooData(model) {
         for (const figure of sheet.figures) {
             if (
                 figure.tag === "chart" &&
-                (figure.data.type.startsWith("odoo_") || figure.data.type === "geo")
+                (figure.data.dataSource?.type === "odoo" || figure.data.type === "geo")
             ) {
                 const img = odooChartToImage(model, figure, figure.data.chartId);
                 figure.tag = "image";
@@ -152,7 +153,8 @@ export async function freezeOdooData(model) {
                     }
                     const chartDefinition = model.getters.getChartDefinition(item.chartId);
                     return (
-                        chartDefinition.type.startsWith("odoo_") || chartDefinition.type === "geo"
+                        chartDefinition.dataSource?.type === "odoo" ||
+                        chartDefinition.type === "geo"
                     );
                 });
                 if (hasImageChart) {
@@ -192,7 +194,7 @@ function exportGlobalFiltersToSheet(model, data) {
     model.getters.exportSheetWithActiveFilters(data);
     const locale = model.getters.getLocale();
     for (const filter of data.globalFilters) {
-        const content = model.getters.getFilterDisplayValue(filter.label);
+        const content = model.getters.getFilterDisplayValue(filter);
         filter["value"] = content
             .flat()
             .filter(isDefined)

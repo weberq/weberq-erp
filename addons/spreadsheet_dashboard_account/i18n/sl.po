@@ -2,19 +2,15 @@
 # This file contains the translation of the following modules:
 # * spreadsheet_dashboard_account
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-09-14 10:32+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 20:27+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "spreadsheet_dashboard_account/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -33,20 +29,12 @@ msgstr " dni"
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "# days"
-msgstr "Št. dni"
-
-#. module: spreadsheet_dashboard_account
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
-msgid "380 days"
-msgstr "380 dni"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Amount"
 msgstr "Znesek"
 
@@ -55,33 +43,29 @@ msgstr "Znesek"
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Average Invoice"
-msgstr "Povprečni račun"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "COGS"
-msgstr "Nabavna vrednost prodanega blaga"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Country"
 msgstr "Država"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Current year"
-msgstr "Tekoče leto"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Customer"
 msgstr "Stranka"
 
@@ -90,19 +74,17 @@ msgstr "Stranka"
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "DSO"
-msgstr "DSO"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Date"
 msgstr "Datum"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Income"
 msgstr "Prihodki"
 
@@ -116,9 +98,8 @@ msgstr "Zaračunano"
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Invoiced by Month"
-msgstr "Zaračunano po mesecih"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
@@ -135,37 +116,38 @@ msgstr "Obračun"
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "KPI - Average Invoice"
-msgstr "KPI - Povprečni račun"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "KPI - DSO"
-msgstr "KPI - DSO"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "KPI - Income"
-msgstr "KPI - Prihodki"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "KPI - Invoice Count"
-msgstr "KPI - Števec računov"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "KPI - Unpaid Invoices"
-msgstr "KPI - Neplačani računi"
+msgstr ""
+
+#. module: spreadsheet_dashboard_account
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
+msgid "Map"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
@@ -176,7 +158,6 @@ msgstr "Obdobje"
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Product"
 msgstr "Proizvod"
 
@@ -188,63 +169,69 @@ msgstr "Kategorija proizvoda"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
-msgid "Ratio"
-msgstr "Razmerje"
-
-#. module: spreadsheet_dashboard_account
-#. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Receivable"
 msgstr "Terjatve"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Reference"
 msgstr "Referenca"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Revenue"
 msgstr "Prihodek"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Salesperson"
 msgstr "Prodajalec"
 
 #. module: spreadsheet_dashboard_account
+#: model:ir.module.module,description:base.module_spreadsheet_dashboard_account
+#: model:ir.module.module,summary:base.module_spreadsheet_dashboard_account
+msgid "Spreadsheet"
+msgstr ""
+
+#. module: spreadsheet_dashboard_account
+#: model:ir.module.module,shortdesc:base.module_spreadsheet_dashboard_account
+msgid "Spreadsheet dashboard for accounting"
+msgstr ""
+
+#. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Status"
 msgstr "Status"
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
-msgid "Top Categories"
-msgstr "Najboljše kategorije"
+#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
+msgid "Top 50"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
+#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
+msgid "Top Categories"
+msgstr ""
+
+#. module: spreadsheet_dashboard_account
+#. odoo-javascript
+#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
 msgid "Top Countries"
-msgstr "Najboljše države"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "Top Invoices"
-msgstr "Najboljši računi"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
@@ -257,19 +244,12 @@ msgstr "Najboljši izdelek"
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
-msgid "Top Salespeople"
-msgstr "Najboljši prodajalci"
-
-#. module: spreadsheet_dashboard_account
-#. odoo-javascript
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
-#: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "in current year"
-msgstr "v tekočem letu"
+msgstr ""
 
 #. module: spreadsheet_dashboard_account
 #. odoo-javascript
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_dashboard.json:0
 #: code:addons/spreadsheet_dashboard_account/data/files/invoicing_sample_dashboard.json:0
 msgid "unpaid"
-msgstr "Neplačano"
+msgstr ""

@@ -3,37 +3,40 @@
 # * base_setup
 #
 # Translators:
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2022, 2026.
+# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2022
 # Martin Trigaux, 2023
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Vlad Patenko <vlad.patenko@gmail.com>, 2026.
-# Denys Nykula <nykula@ukr.net>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-01 16:46+0000\n"
-"Last-Translator: Vlad Patenko <vlad.patenko@gmail.com>\n"
-"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-08-31 16:28+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-s19-4/"
 "base_setup/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 "
-"? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > "
-"14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % "
-"100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "X-Generator: Weblate 2026.8.1\n"
 
 #. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
+#: model:ir.module.module,description:base.module_base_setup
 msgid ""
-"<span class=\"fa fa-lg fa-users\" aria-label=\"Number of active users\"/>"
+"\n"
+"This module helps to configure the system at the installation of a new "
+"database.\n"
+"================================================================================\n"
+"\n"
+"Shows you a list of applications features to install from.\n"
+"\n"
 msgstr ""
-"<span class=\"fa fa-lg fa-users\" aria-label=\"Number of active users\"/>"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -118,8 +121,6 @@ msgid ""
 "<strong>Save</strong> this page and come back here to set up Google Places "
 "API key"
 msgstr ""
-"<strong>Збережіть</strong> цю сторінку та поверніться сюди, щоб налаштувати "
-"ключ API Google Розташування на карті"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -173,14 +174,9 @@ msgid "Add fun feedback and motivate your employees"
 msgstr "Додайте цікаві відгуки та мотивуйте своїх співробітників"
 
 #. module: base_setup
-#: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_mail_plugin
-msgid "Allow integration with the mail plugins"
-msgstr "Дозволити інтеграцію з плагінами пошти"
-
-#. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_google_calendar
 msgid "Allow the users to synchronize their calendar  with Google Calendar"
-msgstr "Дозвольте користувачам синхронізувати календар з календарем Google"
+msgstr "Дозвольте користувачам синхронізувати календар з Google календарем."
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_microsoft_calendar
@@ -202,7 +198,7 @@ msgstr "Дозволяє працювати в мультивалютному с
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Autocomplete partner addresses with Google Places"
-msgstr "Автоматично заповнюйте адреси партнерів за допомогою Google Places"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -262,16 +258,7 @@ msgstr "Налаштування"
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Configure Document Layout"
-msgstr "Налаштувати шаблон документа"
-
-#. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid ""
-"Configure company rules to automatically create SO/PO when one of your "
-"company sells/buys to another of your company."
-msgstr ""
-"Налаштуйте правила компанії, щоб автоматично створювати SO/PO, коли одна з "
-"ваших компаній продає/купує в іншої."
+msgstr "Налаштуйте шаблон доументу"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -281,7 +268,7 @@ msgstr "Контакти"
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__company_country_group_codes
 msgid "Country Group Codes"
-msgstr "Коди групи країн"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -289,8 +276,6 @@ msgid ""
 "Create corresponding in/out orders and bills when you sell/buy between your "
 "companies"
 msgstr ""
-"Створюйте відповідні вхідні/вихідні замовлення та рахунки під час продажу/"
-"купівлі між вашими компаніями"
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__report_footer
@@ -306,7 +291,7 @@ msgstr "Права доступу за замовчуванням"
 #. odoo-python
 #: code:addons/base_setup/models/res_config_settings.py:0
 msgid "Default access for new users"
-msgstr "Типовий доступ для нових користувачів"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_ir_http__display_name
@@ -335,7 +320,7 @@ msgstr "Редагувати макет"
 #. odoo-python
 #: code:addons/base_setup/models/res_config_settings.py:0
 msgid "Edit new user default group"
-msgstr "Редагувати нову типову групу користувача"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -370,18 +355,18 @@ msgstr "Геолокалізація"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid "Geolocate your partners"
-msgstr "Геолокація ваших партнерів"
-
-#. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Geolocation"
 msgstr "Геолокація"
 
 #. module: base_setup
+#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
+msgid "Get the latitude and the longitude of your partners"
+msgstr ""
+
+#. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_google_address_autocomplete
 msgid "Google Address Autocomplete"
-msgstr "Автозаповнення Google Адреси"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model,name:base_setup.model_ir_http
@@ -402,9 +387,9 @@ msgid "Import & Export"
 msgstr "Імпорт та експорт"
 
 #. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid "Integrate with mail client plugins"
-msgstr "Інтегруватися з плагінами клієнтської пошти"
+#: model:ir.module.module,shortdesc:base.module_base_setup
+msgid "Initial Setup Tools"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -441,11 +426,6 @@ msgstr "Мови"
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Layout"
 msgstr "Макет"
-
-#. module: base_setup
-#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
-msgid "Mail Plugin"
-msgstr "Плагін пошти"
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -491,6 +471,11 @@ msgstr "Кількість компаній"
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__language_count
 msgid "Number of Languages"
 msgstr "Кількість мов"
+
+#. module: base_setup
+#: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
+msgid "Number of active users"
+msgstr ""
 
 #. module: base_setup
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
@@ -551,7 +536,7 @@ msgstr "Захистіть ваші форми з CF Turnstile."
 #. odoo-javascript
 #: code:addons/base_setup/static/src/views/module_views.xml:0
 msgid "Reset Updating States"
-msgstr "Скинути оновлення областей"
+msgstr ""
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_sms
@@ -620,7 +605,7 @@ msgstr "Використовуйте облікові дані LDAP для вх�
 #: model_terms:ir.ui.view,arch_db:base_setup.res_config_settings_view_form
 msgid "Use external accounts to log in (Google, Facebook, etc.)"
 msgstr ""
-"Використовуйте зовнішні облікові записи для входу (Google, Facebook тощо)"
+"Використовуйте зовнішні облікові записи для входу (Google, Facebook тощо)."
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_auth_oauth
@@ -657,58 +642,17 @@ msgstr ""
 #. odoo-python
 #: code:addons/base_setup/models/res_users.py:0
 msgid "You have to install the Discuss application to use this feature."
-msgstr "Щоб скористатися цією функцією, потрібно встановити модуль Обговорення."
+msgstr ""
+"Щоб скористатися цією функцією, потрібно встановити модуль Обговорення."
 
 #. module: base_setup
 #: model:ir.model.fields,field_description:base_setup.field_res_config_settings__module_google_recaptcha
 msgid "reCAPTCHA"
 msgstr "reCAPTCHA"
 
-#~ msgid "Asterisk (VoIP)"
-#~ msgstr "Asterisk (VoIP)"
-
 #~ msgid ""
-#~ "Automatically generate counterpart documents for orders/invoices between "
-#~ "companies"
+#~ "<span class=\"oi oi-lg oi-filled\" data-icon=\"group\" aria-"
+#~ "label=\"Number of active users\"/>"
 #~ msgstr ""
-#~ "Автоматично створювати аналогічні документи для замовлень/рахунків між "
-#~ "компаніями"
-
-#~ msgid ""
-#~ "By default, new users get highest access rights for all installed apps."
-#~ msgstr ""
-#~ "За замовчуванням нові користувачі отримують найвищі права доступу для "
-#~ "всіх встановлених додатків."
-
-#~ msgid "Default User Template not found."
-#~ msgstr "Шаблон користувача за замовчуванням не знайдено."
-
-#~ msgid "Documentation"
-#~ msgstr "Документація"
-
-#~ msgid "Geo Localization"
-#~ msgstr "Геолокалізація"
-
-#~ msgid "GeoLocalize your partners"
-#~ msgstr "Геолокалізуйте вашого партнера"
-
-#~ msgid "Get product pictures using barcode"
-#~ msgstr "Отримайте зображення товару за допомогою штрих-коду"
-
-#~ msgid "Google Calendar"
-#~ msgstr "Google Календар"
-
-#~ msgid "On Apple Store"
-#~ msgstr "На Apple Store"
-
-#~ msgid "On Google Play"
-#~ msgstr "На Google Play"
-
-#~ msgid "Outlook Calendar"
-#~ msgstr "Календар Outlook"
-
-#~ msgid "Synchronize your calendar with Google Calendar"
-#~ msgstr "Синхронізуйте свій календар із календарем Google"
-
-#~ msgid "Synchronize your calendar with Outlook"
-#~ msgstr "Синхронізуйте ваш календар з Outlook"
+#~ "<span class=\"oi oi-lg oi-filled\" data-icon=\"group\" aria-"
+#~ "label=\"Number of active users\"/>"

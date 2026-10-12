@@ -1,5 +1,5 @@
 import { Attachment } from "@mail/core/common/attachment_model";
-import { browser } from "@web/core/browser/browser";
+import { location } from "@web/core/browser/browser";
 import { patch } from "@web/core/utils/patch";
 import { session } from "@web/session";
 
@@ -11,7 +11,7 @@ import { session } from "@web/session";
  */
 patch(Attachment.prototype, {
     get isViewable() {
-        if (this.isPdf && browser.location.origin !== session.origin) {
+        if (this.isPdf && location.origin !== session.origin) {
             return false;
         }
         return super.isViewable;

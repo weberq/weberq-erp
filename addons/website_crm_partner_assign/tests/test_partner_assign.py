@@ -51,7 +51,7 @@ class TestPartnerAssign(TransactionCase):
         """ Test the automatic assignation using geolocalisation """
         partner_be = self.env['res.partner'].create({
             "name": "Agrolait",
-            "is_company": True,
+            "vat": "BE0477472701",
             "city": "Wavre",
             "zip": "1300",
             "country_id": self.env.ref("base.be").id,
@@ -60,7 +60,7 @@ class TestPartnerAssign(TransactionCase):
         })
         partner_uk = self.env['res.partner'].create({
             "name": "Think Big Systems",
-            "is_company": True,
+            "vat": "GB123456782",
             "city": "London",
             "country_id": self.env.ref("base.uk").id,
             "street": "89 Lingfield Tower",
@@ -119,7 +119,7 @@ class TestPartnerLeadPortal(TestCrmCommon, HttpCase):
         )
 
         # New lead, assigned to the new portal
-        self.lead_portal = self.env['crm.lead'].with_context(mail_notrack=True).create({
+        self.lead_portal = self.env['crm.lead'].create({
             'type': "lead",
             'name': "Test lead new",
             'user_id': False,
@@ -158,7 +158,7 @@ class TestPartnerLeadPortal(TestCrmCommon, HttpCase):
     def test_lead_access_right(self):
         """ Test another portal user can not write on every leads """
         # portal user having no right
-        poor_portal_user = self.env['res.users'].with_context({'no_reset_password': True, 'mail_notrack': True}).create({
+        poor_portal_user = self.env['res.users'].with_context({'no_reset_password': True}).create({
             'name': 'Poor Partner (not integrating one)',
             'email': 'poor.partner@ododo.com',
             'login': 'poorpartner',
@@ -362,12 +362,12 @@ class TestPartnerLeadPortal(TestCrmCommon, HttpCase):
             )
 
         with self.with_user(self.user_portal.login), MockRequest(
-            self.env, website=self.env["website"].browse(1)
+            self.env, website=self.env.ref('base.default_website')
         ) as mock_request:
             mock_request.render = render_function
             WebsiteAccount().portal_my_opportunities(filterby="today")
 
-    @patch('odoo.http.GeoIP')
+    @patch('odoo.http.geoip.GeoIP')
     def test_03_crm_partner_assign_geolocalization(self, GeoIpMock):
         """
             This test checks situation when "{OdooURL}/partners" is visited from foreign country without resellers.
@@ -384,7 +384,7 @@ class TestPartnerLeadPortal(TestCrmCommon, HttpCase):
         # Create a partner outside of Mexico
         non_mexican_partner = self.env['res.partner'].create({
             'name': 'Non_Mexican_Partner',
-            'is_company': True,
+            'vat': 'ABC010203AB9',
             'grade_id': self.env['res.partner.grade'].search([], limit=1).id,
             'website_published': True,
             'country_id': self.env['res.country'].search([('code', '!=', 'mx')], limit=1).id
@@ -396,7 +396,7 @@ class TestPartnerLeadPortal(TestCrmCommon, HttpCase):
             self.assertIn(non_mexican_partner, values['partners'], "Non-Mexican Partner is not present when rendering partners from Mexico; fallback protection (protecting from no results) didn't work.")
             return 'rendered'
 
-        with MockRequest(self.env, website=self.env['website'].browse(1)) as mock_request:
+        with MockRequest(self.env, website=self.env.ref('base.default_website')) as mock_request:
             mock_request.render = render_function
             res = WebsiteCrmPartnerAssign().partners()
             self.assertEqual([b'rendered'], res.response, "render_function wasn't called")
@@ -422,7 +422,7 @@ class TestPublish(HttpCase):
         })
         cls.partner = cls.env['res.partner'].create({
             'name': "Agrolait",
-            'is_company': True,
+            'vat': "BE0477472701",
             'city': "Wavre",
             'zip': "1300",
             'country_id': cls.env.ref('base.be').id,

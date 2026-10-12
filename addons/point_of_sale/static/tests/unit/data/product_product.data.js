@@ -3,6 +3,38 @@ import { models } from "@web/../tests/web_test_helpers";
 export class ProductProduct extends models.ServerModel {
     _name = "product.product";
 
+    // NOTE - We don't take into account _eval_taxes_computation_prepare_product_fields
+    _load_pos_data_fields() {
+        return [
+            "id",
+            "lst_price",
+            "display_name",
+            "product_tmpl_id",
+            "product_template_variant_value_ids",
+            "product_template_attribute_value_ids",
+            "barcode",
+            "product_tag_ids",
+            "default_code",
+            "standard_price",
+            "pos_categ_ids",
+        ];
+    }
+
+    has_access(operation) {
+        return true;
+    }
+
+    _load_pos_data_dependencies() {
+        return ["product.template.attribute.value", "product.template"];
+    }
+
+    _load_pos_data_read(data) {
+        for (const record of data) {
+            record["_is_pos_special_product"] = record["id"] === 25; // in the test data, product 25 is a special product
+        }
+        return data;
+    }
+
     _records = [
         {
             id: 1,
@@ -16,6 +48,7 @@ export class ProductProduct extends models.ServerModel {
             product_template_attribute_value_ids: [],
             product_template_variant_value_ids: [],
             pos_categ_ids: [1],
+            write_date: "2025-01-01 10:00:00",
         },
         {
             id: 5,
@@ -29,6 +62,7 @@ export class ProductProduct extends models.ServerModel {
             default_code: false,
             product_template_attribute_value_ids: [],
             product_template_variant_value_ids: [],
+            write_date: "2025-01-01 10:00:00",
         },
         {
             id: 6,
@@ -42,19 +76,21 @@ export class ProductProduct extends models.ServerModel {
             default_code: false,
             product_template_attribute_value_ids: [],
             product_template_variant_value_ids: [],
+            write_date: "2025-01-01 10:00:00",
         },
         {
             id: 7,
             product_tmpl_id: 7,
-            lst_price: 750,
+            lst_price: 100,
             standard_price: 0,
-            display_name: "Office combo",
+            display_name: "Product combo",
             product_tag_ids: [],
             barcode: false,
             default_code: false,
             product_template_attribute_value_ids: [],
             product_template_variant_value_ids: [],
             pos_categ_ids: [],
+            write_date: "2025-01-01 10:00:00",
         },
         {
             id: 8,
@@ -68,6 +104,7 @@ export class ProductProduct extends models.ServerModel {
             product_template_attribute_value_ids: [],
             product_template_variant_value_ids: [],
             pos_categ_ids: [],
+            write_date: "2025-01-01 10:00:00",
         },
         {
             id: 9,
@@ -81,6 +118,7 @@ export class ProductProduct extends models.ServerModel {
             product_template_attribute_value_ids: [],
             product_template_variant_value_ids: [],
             pos_categ_ids: [],
+            write_date: "2025-01-01 10:00:00",
         },
         {
             id: 10,
@@ -94,6 +132,7 @@ export class ProductProduct extends models.ServerModel {
             product_template_attribute_value_ids: [],
             product_template_variant_value_ids: [],
             pos_categ_ids: [],
+            write_date: "2025-01-01 10:00:00",
         },
         {
             id: 11,
@@ -107,6 +146,7 @@ export class ProductProduct extends models.ServerModel {
             product_template_attribute_value_ids: [],
             product_template_variant_value_ids: [],
             pos_categ_ids: [],
+            write_date: "2025-01-01 10:00:00",
         },
         {
             id: 12,
@@ -120,6 +160,7 @@ export class ProductProduct extends models.ServerModel {
             product_template_attribute_value_ids: [],
             product_template_variant_value_ids: [],
             pos_categ_ids: [4],
+            write_date: "2025-01-01 10:00:00",
         },
         {
             id: 13,
@@ -133,6 +174,7 @@ export class ProductProduct extends models.ServerModel {
             product_template_attribute_value_ids: [],
             product_template_variant_value_ids: [],
             pos_categ_ids: [5],
+            write_date: "2025-01-01 10:00:00",
         },
         {
             id: 14,
@@ -146,6 +188,7 @@ export class ProductProduct extends models.ServerModel {
             product_template_attribute_value_ids: [],
             product_template_variant_value_ids: [],
             pos_categ_ids: [4],
+            write_date: "2025-01-01 10:00:00",
         },
         {
             id: 15,
@@ -174,6 +217,30 @@ export class ProductProduct extends models.ServerModel {
         {
             id: 17,
             product_tmpl_id: 17,
+            lst_price: 750,
+            standard_price: 0,
+            display_name: "Product combo (no upsell)",
+            product_tag_ids: [],
+            barcode: false,
+            default_code: false,
+            product_template_attribute_value_ids: [],
+            product_template_variant_value_ids: [],
+        },
+        {
+            id: 18,
+            product_tmpl_id: 18,
+            lst_price: 750,
+            standard_price: 0,
+            display_name: "Product combo (all upsell)",
+            product_tag_ids: [],
+            barcode: false,
+            default_code: false,
+            product_template_attribute_value_ids: [],
+            product_template_variant_value_ids: [],
+        },
+        {
+            id: 19,
+            product_tmpl_id: 19,
             lst_price: 100,
             standard_price: 0,
             display_name: "Multi Category Product",
@@ -184,11 +251,50 @@ export class ProductProduct extends models.ServerModel {
             product_template_variant_value_ids: [],
         },
         {
-            id: 18,
-            product_tmpl_id: 18,
+            id: 20,
+            product_tmpl_id: 20,
             lst_price: 0,
             standard_price: 0,
             display_name: "Free Product - Wood chair",
+            product_tag_ids: [],
+            barcode: false,
+            default_code: false,
+            product_template_attribute_value_ids: [],
+            product_template_variant_value_ids: [],
+            pos_categ_ids: [],
+        },
+        {
+            id: 22,
+            product_tmpl_id: 22,
+            lst_price: 3,
+            standard_price: 0,
+            display_name: "Soda",
+            product_tag_ids: [],
+            barcode: false,
+            default_code: false,
+            product_template_attribute_value_ids: [],
+            product_template_variant_value_ids: [],
+            pos_categ_ids: [2],
+        },
+        {
+            id: 23,
+            product_tmpl_id: 23,
+            lst_price: 4,
+            standard_price: 0,
+            display_name: "Fries",
+            product_tag_ids: [],
+            barcode: false,
+            default_code: false,
+            product_template_attribute_value_ids: [],
+            product_template_variant_value_ids: [],
+            pos_categ_ids: [2],
+        },
+        {
+            id: 21,
+            product_tmpl_id: 21,
+            lst_price: 25,
+            standard_price: 0,
+            display_name: "Meal Deal",
             product_tag_ids: [],
             barcode: false,
             default_code: false,
@@ -293,25 +399,4 @@ export class ProductProduct extends models.ServerModel {
             product_template_variant_value_ids: [],
         },
     ];
-
-    // NOTE - We don't take into account _eval_taxes_computation_prepare_product_fields
-    _load_pos_data_fields() {
-        return [
-            "id",
-            "lst_price",
-            "display_name",
-            "product_tmpl_id",
-            "product_template_variant_value_ids",
-            "product_template_attribute_value_ids",
-            "barcode",
-            "product_tag_ids",
-            "default_code",
-            "standard_price",
-            "pos_categ_ids",
-        ];
-    }
-
-    has_access(operation) {
-        return true;
-    }
 }

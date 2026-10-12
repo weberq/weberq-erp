@@ -1,15 +1,16 @@
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { standardWidgetProps } from "@web/views/widgets/standard_widget_props";
-import { Component } from "@odoo/owl";
+import { Component, t, useProps } from "@odoo/owl";
 
 class IAPActionButtonsWidget extends Component {
     static template = "iap.ActionButtonsWidget";
-    static props = {
+    props = useProps({
         ...standardWidgetProps,
-        serviceName: String,
-        showServiceButtons: Boolean,
-    };
+        serviceName: t.string(),
+        showServiceButtons: t.boolean(),
+        label: t.string().optional(),
+    });
 
     setup() {
         this.orm = useService("orm");
@@ -17,8 +18,7 @@ class IAPActionButtonsWidget extends Component {
     }
 
     async onViewServicesClicked() {
-        const action = await this.orm.call("iap.account", "action_view_my_services");
-        this.action.doAction(action);
+        this.action.doAction("iap.iap_account_action");
     }
 
     async onManageServiceLinkClicked() {
@@ -38,6 +38,7 @@ export const iapActionButtonsWidget = {
         return {
             serviceName: attrs.service_name,
             showServiceButtons: !Boolean(attrs.hide_service),
+            label: attrs.label,
         };
     },
 };

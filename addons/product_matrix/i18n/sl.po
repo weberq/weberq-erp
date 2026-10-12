@@ -2,19 +2,15 @@
 # This file contains the translation of the following modules:
 # * product_matrix
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-09-14 08:37+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 17:49+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "product_matrix/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -25,34 +21,33 @@ msgstr ""
 "X-Generator: Weblate 2026.8.1\n"
 
 #. module: product_matrix
+#: model:ir.module.module,description:base.module_product_matrix
+msgid ""
+"\n"
+"Please refer to Sale Matrix or Purchase Matrix for the use of this module.\n"
+msgstr ""
+
+#. module: product_matrix
 #: model_terms:ir.ui.view,arch_db:product_matrix.matrix
 msgid ""
 "<small>Switch to the \"else\" condition of this block to view or edit the "
 "table.</small>"
 msgstr ""
-"<small>Preklopite na pogoj »else« tega bloka, da si ogledate ali uredite "
-"tabelo.</small>"
 
 #. module: product_matrix
 #: model_terms:ir.ui.view,arch_db:product_matrix.matrix
 msgid "<strong>Product matrix block</strong>"
-msgstr "<strong>Blok matrike izdelkov</strong>"
+msgstr ""
 
 #. module: product_matrix
 #: model_terms:ir.ui.view,arch_db:product_matrix.matrix
 msgid "Cell name"
-msgstr "Ime celice"
-
-#. module: product_matrix
-#. odoo-javascript
-#: code:addons/product_matrix/static/src/xml/product_matrix_dialog.xml:0
-msgid "Choose Product Variants"
-msgstr "Izberite različice proizvoda"
+msgstr ""
 
 #. module: product_matrix
 #: model_terms:ir.ui.view,arch_db:product_matrix.matrix
 msgid "Column name"
-msgstr "Naziv stolpca"
+msgstr ""
 
 #. module: product_matrix
 #. odoo-javascript
@@ -64,30 +59,30 @@ msgstr "Potrdi"
 #. odoo-javascript
 #: code:addons/product_matrix/static/src/xml/product_matrix_dialog.xml:0
 msgid "Discard"
-msgstr "Opusti"
+msgstr ""
 
 #. module: product_matrix
 #: model:ir.model.fields,field_description:product_matrix.field_product_template__display_name
 #: model:ir.model.fields,field_description:product_matrix.field_product_template_attribute_value__display_name
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr ""
 
 #. module: product_matrix
 #: model:ir.model.fields,field_description:product_matrix.field_product_template__id
 #: model:ir.model.fields,field_description:product_matrix.field_product_template_attribute_value__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: product_matrix
 #: model:product.template,name:product_matrix.matrix_product_template_shirt
 msgid "My Company Tshirt (GRID)"
-msgstr "Majica mojega podjetja (MREŽA)"
+msgstr ""
 
 #. module: product_matrix
 #. odoo-javascript
 #: code:addons/product_matrix/static/src/xml/product_matrix.xml:0
 msgid "Not available"
-msgstr "Ni na voljo"
+msgstr ""
 
 #. module: product_matrix
 #: model:ir.model,name:product_matrix.model_product_template
@@ -95,14 +90,24 @@ msgid "Product"
 msgstr "Proizvod"
 
 #. module: product_matrix
+#: model:ir.module.module,shortdesc:base.module_product_matrix
+msgid "Product Matrix"
+msgstr ""
+
+#. module: product_matrix
 #: model:ir.model,name:product_matrix.model_product_template_attribute_value
 msgid "Product Template Attribute Value"
-msgstr "Vrednost atributa predloge produkta"
+msgstr ""
 
 #. module: product_matrix
 #: model:product.template,description_sale:product_matrix.matrix_product_template_shirt
 msgid "Show your company love around you =)."
-msgstr "Pokažite ljubezen do svojega podjetja okoli sebe =)."
+msgstr ""
+
+#. module: product_matrix
+#: model:ir.module.module,summary:base.module_product_matrix
+msgid "Technical module: Matrix Implementation"
+msgstr ""
 
 #. module: product_matrix
 #: model_terms:ir.ui.view,arch_db:product_matrix.matrix
@@ -110,9 +115,8 @@ msgid ""
 "The matrix of product variants of this order will be displayed here, if "
 "there are any."
 msgstr ""
-"Matrika različic izdelkov tega naročila bo prikazana tukaj, če obstajajo."
 
 #. module: product_matrix
 #: model_terms:ir.ui.view,arch_db:product_matrix.extra_price
 msgid "Variant price"
-msgstr "Cena različice"
+msgstr ""

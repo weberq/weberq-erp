@@ -2,16 +2,15 @@
 # This file contains the translation of the following modules:
 # * microsoft_outlook
 #
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-10-07 11:59+0000\n"
-"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>\n"
-"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-08-28 17:42+0000\n"
+"PO-Revision-Date: 2026-08-31 14:24+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Ukrainian <https://translate.odoo.com/projects/odoo-s19-4/"
 "microsoft_outlook/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -24,17 +23,19 @@ msgstr ""
 #. module: microsoft_outlook
 #: model_terms:ir.ui.view,arch_db:microsoft_outlook.fetchmail_server_view_form
 #: model_terms:ir.ui.view,arch_db:microsoft_outlook.ir_mail_server_view_form
-msgid "<i class=\"fa fa-cog\" title=\"Edit Settings\"/>"
-msgstr "<i class=\"fa fa-cog\" title=\"Edit Settings\"/>"
+msgid ""
+"<i class=\"oi oi-filled\" data-icon=\"settings\" title=\"Edit Settings\"/>"
+msgstr ""
+"<i class=\"oi oi-filled\" data-icon=\"settings\" title=\"Edit Settings\"/>"
 
 #. module: microsoft_outlook
 #: model_terms:ir.ui.view,arch_db:microsoft_outlook.fetchmail_server_view_form
 #: model_terms:ir.ui.view,arch_db:microsoft_outlook.ir_mail_server_view_form
 msgid ""
-"<i class=\"oi oi-arrow-right\"/>\n"
+"<i class=\"oi\" data-icon=\"east\"/>\n"
 "                        Connect your Outlook account"
 msgstr ""
-"<i class=\"oi oi-arrow-right\"/>\n"
+"<i class=\"oi\" data-icon=\"east\"/>\n"
 "                        Підключіть ваш обліковий запис Outlook"
 
 #. module: microsoft_outlook
@@ -158,13 +159,16 @@ msgid ""
 "Incorrect Connection Security for Outlook mail server “%s”. Please set it to "
 "\"TLS (STARTTLS)\"."
 msgstr ""
-"Неправильні налаштування безпеки з’єднання для поштового сервера Outlook «%s"
-"». Будь ласка, встановіть значення «TLS (STARTTLS)»."
 
 #. module: microsoft_outlook
 #: model:ir.model,name:microsoft_outlook.model_ir_mail_server
 msgid "Mail Server"
 msgstr "Поштовий сервер"
+
+#. module: microsoft_outlook
+#: model:ir.module.module,shortdesc:base.module_microsoft_outlook
+msgid "Microsoft Outlook"
+msgstr ""
 
 #. module: microsoft_outlook
 #: model:ir.model,name:microsoft_outlook.model_microsoft_outlook_mixin
@@ -182,8 +186,6 @@ msgstr "Лише адміністратор може зв’язати пошт�
 #: code:addons/microsoft_outlook/models/microsoft_outlook_mixin.py:0
 msgid "Oops, we could not authenticate you. Please try again later."
 msgstr ""
-"На жаль, нам не вдалося вас автентифікувати. Будь ласка, спробуйте ще раз "
-"пізніше."
 
 #. module: microsoft_outlook
 #. odoo-python
@@ -192,13 +194,11 @@ msgid ""
 "Oops, you're creating an authorization to send from %(email_login)s but your "
 "address is %(email_server)s. Make sure your addresses match!"
 msgstr ""
-"Ой, ви налаштовуєте дозвіл на надсилання від імені %(email_login)s, але ваша "
-"адреса — %(email_server)s. Переконайтеся, що адреси збігаються!"
 
 #. module: microsoft_outlook
 #: model:ir.model.fields,field_description:microsoft_outlook.field_res_users__outgoing_mail_server_type
 msgid "Outgoing Mail Server Type"
-msgstr "Тип сервера вихідної пошти"
+msgstr ""
 
 #. module: microsoft_outlook
 #: model:ir.model.fields.selection,name:microsoft_outlook.selection__res_users__outgoing_mail_server_type__outlook
@@ -243,6 +243,11 @@ msgid "Outlook Refresh Token"
 msgstr "Токен оновлення Outlook"
 
 #. module: microsoft_outlook
+#: model:ir.module.module,description:base.module_microsoft_outlook
+msgid "Outlook support for incoming / outgoing mail servers"
+msgstr ""
+
+#. module: microsoft_outlook
 #. odoo-python
 #: code:addons/microsoft_outlook/models/microsoft_outlook_mixin.py:0
 msgid "Please configure your Outlook credentials."
@@ -259,7 +264,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/microsoft_outlook/models/microsoft_outlook_mixin.py:0
 msgid "Please enter a valid email address."
-msgstr "Будь ласка, введіть дійсну адресу електронної пошти."
+msgstr ""
 
 #. module: microsoft_outlook
 #. odoo-python
@@ -280,8 +285,6 @@ msgid ""
 "Please leave the password field empty for Outlook mail server “%s”. The "
 "OAuth process does not require it"
 msgstr ""
-"Будь ласка, залиште поле пароля порожнім для поштового сервера Outlook "
-"\"%s\". Процес OAuth цього не потребує"
 
 #. module: microsoft_outlook
 #: model_terms:ir.ui.view,arch_db:microsoft_outlook.ir_mail_server_view_form
@@ -292,7 +295,7 @@ msgstr "Читати більше"
 #. odoo-python
 #: code:addons/microsoft_outlook/models/fetchmail_server.py:0
 msgid "SSL is required for server “%s”."
-msgstr "Для сервера потрібен SSL “%s”."
+msgstr ""
 
 #. module: microsoft_outlook
 #: model_terms:ir.ui.view,arch_db:microsoft_outlook.res_config_settings_view_form

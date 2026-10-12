@@ -2,20 +2,16 @@
 # This file contains the translation of the following modules:
 # * purchase_stock
 #
-# "Tiffany Chang (tic)" <tic@odoo.com>, 2025, 2026.
-# Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Žiga Trček <ziga.trcek@implex.si>, 2026.
-# Jan Zorko <jan.zorko@implex.si>, 2026.
-# NEDŽAD BEUS <nedzad.beus@implex.si>, 2026.
-# Nedžad Beus <nedzad.beus@implex.si>, 2026.
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
+# Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server saas~18.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-10 18:38+0000\n"
-"PO-Revision-Date: 2026-09-16 07:33+0000\n"
-"Last-Translator: Nedžad Beus <nedzad.beus@implex.si>\n"
-"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-18 17:38+0000\n"
+"PO-Revision-Date: 2026-08-31 17:27+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovenian <https://translate.odoo.com/projects/odoo-s19-4/"
 "purchase_stock/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -27,8 +23,8 @@ msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.purchase_order_view_form_inherit
-msgid "% On-Time Delivery"
-msgstr "% Pravočasna dostava"
+msgid "% On Time"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-python
@@ -40,60 +36,60 @@ msgstr "%(otd)s %%"
 #. odoo-python
 #: code:addons/purchase_stock/models/stock_move.py:0
 msgid "%(value)s for %(quantity)s %(unit)s from %(bills)s"
-msgstr "%(value)s za %(quantity)s %(unit)s iz %(bills)s"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-python
 #: code:addons/purchase_stock/models/stock_move.py:0
 msgid "%(value)s for %(quantity)s %(unit)s from %(quotation)s (not billed)"
-msgstr "%(value)s za %(quantity)s %(unit)s iz %(quotation)s (ni zaračunano)"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-python
 #: code:addons/purchase_stock/models/stock_rule.py:0
-msgid "+ %d day(s)"
-msgstr "+ %d dan/dni"
+msgid "+ %d days"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-python
 #: code:addons/purchase_stock/models/stock_rule.py:0
-msgid "+ %s day(s)"
-msgstr "+ %s dan/dni"
+msgid "+ %s days"
+msgstr ""
+
+#. module: purchase_stock
+#: model_terms:ir.ui.view,arch_db:purchase_stock.product_view_kanban_catalog_purchase_only
+msgid "<small class=\"text-muted ms-1\"> / month</small>"
+msgstr ""
+
+#. module: purchase_stock
+#: model_terms:ir.ui.view,arch_db:purchase_stock.product_view_kanban_catalog_purchase_only
+msgid "<small class=\"text-muted\">Demand: </small>"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_partner_view_purchase_buttons_inherit
 msgid "<span class=\"o_stat_text\">On-time Rate</span>"
-msgstr "<span class=\"o_stat_text\">Delež pravočasnih dobav</span>"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.stock_production_lot_view_form
 msgid "<span class=\"o_stat_text\">Purchases</span>"
-msgstr "<span class=\"o_stat_text\">Nabave</span>"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_partner_view_purchase_buttons_inherit
 msgid "<span class=\"o_stat_value\">%</span>"
-msgstr "<span class=\"o_stat_value\">%</span>"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.product_view_kanban_catalog_purchase_only
 msgid "<span class=\"text-info fw-bold fs-5 me-1\">Suggest</span>"
-msgstr "<span class=\"text-info fw-bold fs-5 me-1\">Predlagaj</span>"
-
-#. module: purchase_stock
-#: model_terms:ir.ui.view,arch_db:purchase_stock.product_view_kanban_catalog_purchase_only
-msgid "<span class=\"text-muted small me-1\">Monthly Demand:</span>"
-msgstr "<span class=\"text-muted small me-1\">Mesečno povpraševanje:</span>"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.product_view_kanban_catalog_purchase_only
 msgid "<span class=\"text-muted small ms-1\">Forecasted</span>"
-msgstr "<span class=\"text-muted small ms-1\">Napovedano</span>"
-
-#. module: purchase_stock
-#: model_terms:ir.ui.view,arch_db:purchase_stock.purchase_order_view_form_inherit
-msgid "<span invisible=\"on_time_rate &gt;= 0\">No data yet</span>"
-msgstr "<span invisible=\"on_time_rate &gt;= 0\">Podatkov še ni</span>"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.product_view_kanban_catalog_purchase_only
@@ -109,23 +105,17 @@ msgstr "<span> dni</span>"
 #: model_terms:ir.ui.view,arch_db:purchase_stock.report_purchaseorder_document
 #: model_terms:ir.ui.view,arch_db:purchase_stock.report_purchasequotation_document
 msgid "<strong class=\"d-block mt-3\">Shipping address</strong>"
-msgstr "<strong class=\"d-block mt-3\">Naslov za dostavo</strong>"
-
-#. module: purchase_stock
-#: model_terms:ir.ui.view,arch_db:purchase_stock.report_purchaseorder_document
-#: model_terms:ir.ui.view,arch_db:purchase_stock.report_purchasequotation_document
-msgid "<strong>Incoterm:</strong>"
-msgstr "<strong>Incoterm:</strong>"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.report_purchasequotation_document
 msgid "<strong>Requested Ship Date:</strong>"
-msgstr "<strong>Zahtevani datum odpreme:</strong>"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,help:purchase_stock.field_purchase_order_line__is_storable
 msgid "A storable product is a product for which you manage stock."
-msgstr "Shranljiv artikel je ta, za katerega vodimo zalogo."
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,help:purchase_stock.field_purchase_order_line__qty_received_method
@@ -135,10 +125,6 @@ msgid ""
 "  - Manual: the quantity is set manually on the line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
 msgstr ""
-"Glede na konfiguracijo izdelka se lahko prejeta količina samodejno izračuna "
-"z mehanizmom:\n"
-"  - Ročno: količina se ročno nastavi v vrstici\n"
-"  - Premiki zaloge: količina izhaja iz potrjenih prevzemov"
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_rule__action
@@ -149,13 +135,13 @@ msgstr "Dejanje"
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/product_catalog/search/search_panel.xml:0
 msgid "Add All"
-msgstr "Dodaj vse"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/product_catalog/search/search_panel.js:0
 msgid "After next month last year"
-msgstr "Po naslednjem mesecu lani"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_config_settings_view_form_purchase
@@ -163,8 +149,6 @@ msgid ""
 "Allow Make to Order, or automate PO, when a product is sold and get direct "
 "links between documents."
 msgstr ""
-"Omogočite izdelavo po naročilu ali avtomatizirajte nabavno naročilo, ko je "
-"izdelek prodan, ter pridobite neposredne povezave med dokumenti."
 
 #. module: purchase_stock
 #: model:ir.model.fields.selection,name:purchase_stock.selection__res_partner__group_rfq__all
@@ -174,7 +158,7 @@ msgstr "Vedno"
 #. module: purchase_stock
 #: model:ir.model.fields,help:purchase_stock.field_stock_warehouse_orderpoint__available_vendor
 msgid "Any vendor on the product's pricelist"
-msgstr "Kateri koli dobavitelj na ceniku izdelka"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__effective_date
@@ -184,7 +168,7 @@ msgstr "Prejem"
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_warehouse_orderpoint__available_vendor
 msgid "Available Vendor"
-msgstr "Razpoložljivi dobavitelj"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-javascript
@@ -213,13 +197,13 @@ msgstr "Kupi za oskrbovanje"
 
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_res_company
-msgid "Companies"
-msgstr "Podjetja"
+msgid "Company"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,help:purchase_stock.field_purchase_order__effective_date
-msgid "Completion date of the first receipt order."
-msgstr "Datum zaključka prvega prejemnega naročila."
+msgid "Completion date of the last receipt order."
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_res_config_settings
@@ -235,7 +219,7 @@ msgstr "Stik"
 #. odoo-python
 #: code:addons/purchase_stock/models/purchase_order.py:0
 msgid "Corresponding receipt not found."
-msgstr "Ustreznega prejema ni bilo mogoče najti."
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model,website_form_label:purchase_stock.model_res_partner
@@ -245,7 +229,7 @@ msgstr "Ustvari stranko"
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_move__created_purchase_line_ids
 msgid "Created Purchase Order Lines"
-msgstr "Ustvarjene postavke nabavnega naloga"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order_line__product_description_variants
@@ -258,22 +242,27 @@ msgid "Daily"
 msgstr "Dnevno"
 
 #. module: purchase_stock
+#: model:ir.model.fields,help:purchase_stock.field_purchase_order__date_promised
+msgid ""
+"Date promised by the vendor for at least 1 or more products to be delivered "
+"by."
+msgstr ""
+
+#. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_picking__days_to_arrive
 msgid "Days To Arrive"
-msgstr "Dni do prihoda"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_config_settings_view_form_stock
 msgid "Days needed to confirm a PO"
-msgstr "Dni, potrebnih za potrditev nabavnega naročila"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,help:purchase_stock.field_res_company__days_to_purchase
 #: model:ir.model.fields,help:purchase_stock.field_res_config_settings__days_to_purchase
 msgid "Days needed to confirm a PO, define when a PO should be validated"
 msgstr ""
-"Število dni, potrebnih za potrditev nabavnega naročila, določa, kdaj je "
-"treba nabavno naročilo potrditi"
 
 #. module: purchase_stock
 #. odoo-python
@@ -297,20 +286,11 @@ msgid ""
 "is the same week or week day\n"
 "         Always: Replenishment needs will always be grouped."
 msgstr ""
-"Določa, ali naj se RFQ združujejo glede na pričakovani prihod, razen pri "
-"operacijah neposredne dostave.\n"
-"         Ob naročilu: Potrebe po dopolnitvi zalog bodo združene, razen pri "
-"MTO.\n"
-"         Dnevno: Potrebe po dopolnitvi zalog bodo združene, če je "
-"pričakovani prihod na isti dan\n"
-"         Tedensko: Potrebe po dopolnitvi zalog bodo združene, če je "
-"pričakovani prihod v istem tednu ali na isti dan v tednu\n"
-"         Vedno: Potrebe po dopolnitvi zalog bodo vedno združene.\n"
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_picking__delay_pass
 msgid "Delay Pass"
-msgstr "Dovoljenje za zamudo"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__picking_type_id
@@ -318,9 +298,16 @@ msgid "Deliver To"
 msgstr "Prejemnik dostave"
 
 #. module: purchase_stock
+#: model:ir.model.fields,help:purchase_stock.field_purchase_order_line__date_promised
+msgid ""
+"Delivery Date promised by the vendor. If the vendor delivers products after "
+"this date, their On-Time rate will be negatively impacted."
+msgstr ""
+
+#. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.product_supplierinfo_replenishment_tree_view
 msgid "Delivery Time"
-msgstr "Čas dostave"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__default_location_dest_id_usage
@@ -328,7 +315,6 @@ msgid "Destination Location Type"
 msgstr "Ciljna vrsta lokacije"
 
 #. module: purchase_stock
-#: model:ir.model.fields,field_description:purchase_stock.field_account_move__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_product_product__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_product_replenish__display_name
@@ -341,6 +327,7 @@ msgstr "Ciljna vrsta lokacije"
 #: model:ir.model.fields,field_description:purchase_stock.field_res_company__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_res_partner__display_name
+#: model:ir.model.fields,field_description:purchase_stock.field_stock_allocation_report__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_forecasted_product_product__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_lot__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_move__display_name
@@ -349,7 +336,6 @@ msgstr "Ciljna vrsta lokacije"
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_replenish_mixin__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_replenishment_info__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_replenishment_option__display_name
-#: model:ir.model.fields,field_description:purchase_stock.field_stock_return_picking__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_route__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_rule__display_name
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_warehouse__display_name
@@ -361,7 +347,7 @@ msgstr "Prikazani naziv"
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order_line__move_dest_ids
 msgid "Downstream moves alt"
-msgstr "Nadaljnji premiki alt"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__dest_address_id
@@ -382,17 +368,17 @@ msgstr "DUR"
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.vendor_delay_report_filter
 msgid "Effective Date Last Year"
-msgstr "Datum veljavnosti lani"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_report__days_to_arrival
 msgid "Effective Days To Arrival"
-msgstr "Učinkoviti dnevi do prihoda"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_warehouse_orderpoint__effective_vendor_id
 msgid "Effective Vendor"
-msgstr "Dejanski dobavitelj"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,help:purchase_stock.field_stock_warehouse_orderpoint__effective_vendor_id
@@ -400,8 +386,6 @@ msgid ""
 "Either the vendor set directly or the one computed to be used by this "
 "replenishment"
 msgstr ""
-"Neposredno nastavljen dobavitelj ali tisti, ki je izračunan za uporabo pri "
-"tem dopolnjevanju zaloge"
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.exception_on_po
@@ -427,7 +411,7 @@ msgstr "Poročilo napovedi"
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/product_catalog/search/search_panel.js:0
 msgid "Forecasted"
-msgstr "Napovedano"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order_line__forecasted_issue
@@ -435,20 +419,20 @@ msgid "Forecasted Issue"
 msgstr "Predvidena težava"
 
 #. module: purchase_stock
+#: model:ir.model.fields,field_description:purchase_stock.field_purchase_order_line__forecasted_location_id
+msgid "Forecasted Location"
+msgstr ""
+
+#. module: purchase_stock
 #: model:ir.model.fields.selection,name:purchase_stock.selection__res_partner__group_on__5
 msgid "Friday"
 msgstr "Petek"
 
 #. module: purchase_stock
-#: model:ir.model.fields.selection,name:purchase_stock.selection__purchase_order__receipt_status__full
-msgid "Fully Received"
-msgstr "Prejeto v celoti"
-
-#. module: purchase_stock
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/js/tours/purchase_stock.js:0
 msgid "Generate the draft vendor bill."
-msgstr "Ustvari osnutek računa dobavitelja."
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-javascript
@@ -460,33 +444,20 @@ msgid ""
 " Set a reference period to estimate sales, and use the percentage to take "
 "into account seasonality and the increase/decrease of business."
 msgstr ""
-"Pridobite priporočila za izdelke, ki jih je treba nabaviti pri %(vendorName)"
-"s, na podlagi trenutne zaloge, prihajajočih količin in pričakovanih obsegov "
-"prodaje.\n"
-"\n"
-" Nastavite referenčno obdobje za oceno prodaje in uporabite odstotek za "
-"upoštevanje sezonskosti ter povečanja/zmanjšanja poslovanja."
 
 #. module: purchase_stock
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/js/tours/purchase_stock.js:0
 msgid "Go back to the purchase order to generate the vendor bill."
-msgstr "Vrnite se na naročilnico, da ustvarite račun dobavitelja."
-
-#. module: purchase_stock
-#. odoo-javascript
-#: code:addons/purchase_stock/static/src/stock_valuation/stock_valuation_report.js:0
-msgid "Goods Received Not Invoiced"
-msgstr "Prejeto blago, ki ni fakturirano"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_res_partner__group_rfq
 #: model:ir.model.fields,field_description:purchase_stock.field_res_users__group_rfq
 msgid "Group RFQ"
-msgstr "Skupina zahtev za ponudbo"
+msgstr ""
 
 #. module: purchase_stock
-#: model:ir.model.fields,field_description:purchase_stock.field_account_move__id
 #: model:ir.model.fields,field_description:purchase_stock.field_account_move_line__id
 #: model:ir.model.fields,field_description:purchase_stock.field_product_product__id
 #: model:ir.model.fields,field_description:purchase_stock.field_product_replenish__id
@@ -499,6 +470,7 @@ msgstr "Skupina zahtev za ponudbo"
 #: model:ir.model.fields,field_description:purchase_stock.field_res_company__id
 #: model:ir.model.fields,field_description:purchase_stock.field_res_config_settings__id
 #: model:ir.model.fields,field_description:purchase_stock.field_res_partner__id
+#: model:ir.model.fields,field_description:purchase_stock.field_stock_allocation_report__id
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_forecasted_product_product__id
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_lot__id
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_move__id
@@ -507,7 +479,6 @@ msgstr "Skupina zahtev za ponudbo"
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_replenish_mixin__id
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_replenishment_info__id
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_replenishment_option__id
-#: model:ir.model.fields,field_description:purchase_stock.field_stock_return_picking__id
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_route__id
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_rule__id
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_warehouse__id
@@ -527,14 +498,9 @@ msgid "Incoming Shipments"
 msgstr "Prihajajoče pošiljke"
 
 #. module: purchase_stock
-#: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__incoterm_location
-msgid "Incoterm Location"
-msgstr "Lokacija Incoterm"
-
-#. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_stock_route
-msgid "Inventory Routes"
-msgstr "Proge inventarja"
+msgid "Inventory Route"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__is_shipped
@@ -547,11 +513,6 @@ msgid "Is the Sale Module Installed"
 msgstr "Ali je nameščen modul za prodajo"
 
 #. module: purchase_stock
-#: model:ir.model,name:purchase_stock.model_account_move
-msgid "Journal Entry"
-msgstr "Temeljnica"
-
-#. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_account_move_line
 msgid "Journal Item"
 msgstr "Postavka"
@@ -560,7 +521,7 @@ msgstr "Postavka"
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/product_catalog/search/search_panel.js:0
 msgid "Last 12 months"
-msgstr "Zadnjih 12 mesecev"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-javascript
@@ -583,18 +544,18 @@ msgstr "Zadnjih 7 dni"
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_product_supplierinfo__last_purchase_date
 msgid "Last Purchase"
-msgstr "Zadnji nakup"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/product_catalog/search/search_panel.js:0
 msgid "Last year quarter"
-msgstr "Četrtletje lanskega leta"
+msgstr ""
 
 #. module: purchase_stock
-#: model:ir.model.fields,field_description:purchase_stock.field_purchase_order_line__location_final_id
-msgid "Location from procurement"
-msgstr "Lokacija iz oskrbe"
+#: model:ir.model.fields,help:purchase_stock.field_purchase_order_line__forecasted_location_id
+msgid "Location used in the computation of the forecast."
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_config_settings_view_form_purchase
@@ -617,6 +578,12 @@ msgid "Minimum Inventory Rule"
 msgstr "Pravilo minimalne zaloge"
 
 #. module: purchase_stock
+#. odoo-python
+#: code:addons/purchase_stock/models/stock.py:0
+msgid "Missing products in receipt"
+msgstr ""
+
+#. module: purchase_stock
 #: model:ir.model.fields.selection,name:purchase_stock.selection__res_partner__group_on__1
 msgid "Monday"
 msgstr "Ponedeljek"
@@ -624,61 +591,56 @@ msgstr "Ponedeljek"
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_product_product__monthly_demand
 msgid "Monthly Demand"
-msgstr "Mesečno povpraševanje"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/product_catalog/search/search_panel.js:0
 msgid "Next month last year"
-msgstr "Naslednji mesec lani"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.exception_on_po
 msgid "Next transfer(s) impacted:"
-msgstr "Prihodnji priazdeti prenos(i):"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-python
 #: code:addons/purchase_stock/models/stock_rule.py:0
 msgid "No Vendor Found"
-msgstr "Dobavitelja ni mogoče najti"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.purchase_help_message_template
 msgid "No receipt yet! Automate them with purchase orders."
-msgstr "Še ni prejemov! Avtomatizirajte jih z nabavnimi naročili."
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-python
 #: code:addons/purchase_stock/models/stock_rule.py:0
 msgid "No supplier has been found to replenish"
-msgstr "Noben dobavitelj ni bil najden za dopolnitev zaloge"
-
-#. module: purchase_stock
-#: model:ir.model.fields.selection,name:purchase_stock.selection__purchase_order__receipt_status__pending
-msgid "Not Received"
-msgstr "Ni bilo prejeto"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/purchase_dashboard/purchase_dashboard.xml:0
 msgid "OTD"
-msgstr "OTD"
+msgstr ""
 
 #. module: purchase_stock
-#: model_terms:ir.ui.view,arch_db:purchase_stock.res_partner_view_purchase_buttons_inherit
+#: model_terms:ir.ui.view,arch_db:purchase_stock.purchase_order_view_form_inherit
 msgid "On"
 msgstr "Vklopljeno"
 
 #. module: purchase_stock
 #: model:ir.model.fields.selection,name:purchase_stock.selection__res_partner__group_rfq__default
 msgid "On Order"
-msgstr "Na naročilu"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.vendor_delay_report_view_graph
 msgid "On-Time Delivery"
-msgstr "Pravočasna dostava"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__on_time_rate
@@ -697,12 +659,17 @@ msgstr "Pravočasna količina"
 #: model:ir.actions.act_window,name:purchase_stock.action_purchase_vendor_delay_report
 #: model_terms:ir.ui.view,arch_db:purchase_stock.vendor_delay_report_filter
 msgid "On-time Delivery"
-msgstr "Pravočasna dostava"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_partner_view_purchase_buttons_inherit
 msgid "On-time Rate"
-msgstr "Stopnja pravočasnosti"
+msgstr ""
+
+#. module: purchase_stock
+#: model_terms:ir.ui.view,arch_db:purchase_stock.exception_on_picking
+msgid "Only"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-python
@@ -724,25 +691,17 @@ msgid ""
 "number of ordered products.x is either the System Parameter "
 "purchase_stock.on_time_delivery_days or the default 365"
 msgstr ""
-"V zadnjih x dneh; število pravočasno prejetih izdelkov, deljeno s številom "
-"naročenih izdelkov.x je bodisi sistemski parameter "
-"purchase_stock.on_time_delivery_days bodisi privzeta vrednost 365"
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_product_product__purchase_order_line_ids
 msgid "PO Lines"
-msgstr "Vrstice nabavnih naročil"
-
-#. module: purchase_stock
-#: model:ir.model.fields.selection,name:purchase_stock.selection__purchase_order__receipt_status__partial
-msgid "Partially Received"
-msgstr "Delno prejeto"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/js/tours/purchase_stock.js:0
 msgid "Process all the receipt quantities."
-msgstr "Obdelajte vse količine prejemov."
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_product_template
@@ -763,12 +722,18 @@ msgstr "Polnjenje izdelka"
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_stock_replenish_mixin
 msgid "Product Replenish Mixin"
-msgstr "Mixin za polnjenje izdelka"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_product_product
 msgid "Product Variant"
 msgstr "Različica proizvoda"
+
+#. module: purchase_stock
+#: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__date_promised
+#: model:ir.model.fields,field_description:purchase_stock.field_purchase_order_line__date_promised
+msgid "Promised Date"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order_line__propagate_cancel
@@ -779,7 +744,7 @@ msgstr "Razširi preklic"
 #: model:ir.model.fields,field_description:purchase_stock.field_res_partner__purchase_line_ids
 #: model:ir.model.fields,field_description:purchase_stock.field_res_users__purchase_line_ids
 msgid "Purchase Lines"
-msgstr "Postavke nabave"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_purchase_order
@@ -793,8 +758,6 @@ msgid "Purchase Order Line"
 msgstr "Postavka nabavnega naloga"
 
 #. module: purchase_stock
-#. odoo-javascript
-#: code:addons/purchase_stock/static/src/stock_valuation/stock_valuation_report.js:0
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_lot__purchase_order_ids
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_picking__purchase_id
 #: model_terms:ir.ui.view,arch_db:purchase_stock.purchase_help_message_template
@@ -803,9 +766,19 @@ msgid "Purchase Orders"
 msgstr "Nabavni nalogi"
 
 #. module: purchase_stock
+#: model:ir.module.module,summary:base.module_purchase_stock
+msgid "Purchase Orders, Receipts, Vendor Bills for Stock"
+msgstr ""
+
+#. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_purchase_report
 msgid "Purchase Report"
 msgstr "Poročilo o nakupih"
+
+#. module: purchase_stock
+#: model:ir.module.module,shortdesc:base.module_purchase_stock
+msgid "Purchase Stock"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_lot__purchase_order_count
@@ -823,8 +796,6 @@ msgid ""
 "Put an address if you want to deliver directly from the vendor to the "
 "customer. Otherwise, keep empty to deliver to your own company."
 msgstr ""
-"Vnesite naslov, če želite dostaviti neposredno od dobavitelja kupcu. Sicer "
-"pustite prazno, da boste dostavili v svoje podjetje."
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.purchase_order_view_form_inherit
@@ -835,12 +806,7 @@ msgstr "Prejemnice"
 #. odoo-python
 #: code:addons/purchase_stock/models/stock_rule.py:0
 msgid "Receipt Date"
-msgstr "Datum prejema"
-
-#. module: purchase_stock
-#: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__receipt_status
-msgid "Receipt Status"
-msgstr "Status prejema"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.purchase_order_view_form_inherit
@@ -851,7 +817,7 @@ msgstr "Prejem"
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/js/tours/purchase_stock.js:0
 msgid "Receive the ordered products."
-msgstr "Prejmite naročene izdelke."
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order_line__qty_received_method
@@ -859,25 +825,19 @@ msgid "Received Qty Method"
 msgstr "Metoda prejete količine"
 
 #. module: purchase_stock
+#: model_terms:ir.ui.view,arch_db:purchase_stock.exception_on_picking
+msgid "Received quantity is less than the expected quantity for transfer"
+msgstr ""
+
+#. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__picking_ids
 msgid "Receptions"
 msgstr "Prejemi"
 
 #. module: purchase_stock
-#: model:ir.model.fields,help:purchase_stock.field_purchase_order__receipt_status
-msgid ""
-"Red: Late\n"
-"            Orange: To process today\n"
-"            Green: On time"
-msgstr ""
-"Rdeča: Z zamudo\n"
-"            Oranžna: Za obdelavo danes\n"
-"            Zelena: Pravočasno"
-
-#. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_stock_reference
 msgid "Reference between stock documents"
-msgstr "Sklic med skladiščnimi dokumenti"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__reference_ids
@@ -888,7 +848,7 @@ msgstr "Sklici"
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/product_catalog/search/search_panel.xml:0
 msgid "Replenish for"
-msgstr "Napolni za"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_config_settings_view_form_purchase
@@ -899,7 +859,7 @@ msgstr "Zahtevajte dostavo od vašega dobavitelja do vašega kupca"
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/purchase_stock_forecasted/forecasted_details.xml:0
 msgid "Requests for quotation :"
-msgstr "Zahtevki za ponudbo"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order_line__move_ids
@@ -907,15 +867,10 @@ msgid "Reservation"
 msgstr "Rezervacija"
 
 #. module: purchase_stock
-#: model:ir.model,name:purchase_stock.model_stock_return_picking
-msgid "Return Picking"
-msgstr "Vračila"
-
-#. module: purchase_stock
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/product_catalog/search/search_panel.js:0
 msgid "Same month last year"
-msgstr "Isti mesec lani"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields.selection,name:purchase_stock.selection__res_partner__group_on__6
@@ -925,7 +880,7 @@ msgstr "Sobota"
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.product_supplierinfo_replenishment_tree_view
 msgid "Set as Supplier"
-msgstr "Nastavi kot dobavitelja"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_product_supplierinfo__show_set_supplier_button
@@ -936,17 +891,22 @@ msgstr "Prikaži gumb za nastavitev dobavitelja"
 #: model:ir.model.fields,field_description:purchase_stock.field_product_replenish__show_vendor
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_replenish_mixin__show_vendor
 msgid "Show Vendor"
-msgstr "Prikaži dobavitelja"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_replenishment_info__show_vendor_tab
 msgid "Show Vendor Tab"
-msgstr "Prikaži zavihek dobavitelja"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_warehouse_orderpoint__show_supplier
 msgid "Show supplier column"
 msgstr "Prikaži stolpec dobavitelja"
+
+#. module: purchase_stock
+#: model:ir.model,name:purchase_stock.model_stock_allocation_report
+msgid "Stock Allocation Report"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_stock_move
@@ -970,19 +930,19 @@ msgid "Stock Rule"
 msgstr "Pravilo zaloge"
 
 #. module: purchase_stock
+#: model:ir.model,name:purchase_stock.model_stock_replenishment_info
+msgid "Stock delivery time information"
+msgstr ""
+
+#. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_report_stock_report_stock_rule
 msgid "Stock rule report"
 msgstr "Poročilo o pravilu zaloge"
 
 #. module: purchase_stock
-#: model:ir.model,name:purchase_stock.model_stock_replenishment_info
-msgid "Stock supplier replenishment information"
-msgstr "Informacije o dopolnjevanju zalog dobavitelja"
-
-#. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_stock_replenishment_option
 msgid "Stock warehouse replenishment option"
-msgstr "Možnost dopolnjevanja zaloge v skladišču"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-javascript
@@ -994,24 +954,24 @@ msgstr "Predlagaj"
 #: model:ir.model.fields,field_description:purchase_stock.field_res_partner__suggest_based_on
 #: model:ir.model.fields,field_description:purchase_stock.field_res_users__suggest_based_on
 msgid "Suggest Based On"
-msgstr "Predlagaj na podlagi"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_res_partner__suggest_days
 #: model:ir.model.fields,field_description:purchase_stock.field_res_users__suggest_days
 msgid "Suggest Days"
-msgstr "Predlagani dnevi"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_product_product__suggest_estimated_price
 msgid "Suggest Estimated Price"
-msgstr "Predlagaj ocenjeno ceno"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_res_partner__suggest_percent
 #: model:ir.model.fields,field_description:purchase_stock.field_res_users__suggest_percent
 msgid "Suggest Percent"
-msgstr "Predlagani odstotek"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.product_view_search_catalog
@@ -1021,7 +981,7 @@ msgstr "Predlagani"
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_product_product__suggested_qty
 msgid "Suggested Qty"
-msgstr "Predlagana količina"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields.selection,name:purchase_stock.selection__res_partner__group_on__7
@@ -1029,9 +989,14 @@ msgid "Sunday"
 msgstr "Nedelja"
 
 #. module: purchase_stock
+#: model:ir.model.fields,field_description:purchase_stock.field_product_replenish__partner_id
+msgid "Supplier"
+msgstr ""
+
+#. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_warehouse_orderpoint__supplier_id_placeholder
 msgid "Supplier Id Placeholder"
-msgstr "Ograda za ID dobavitelja"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_product_supplierinfo
@@ -1046,7 +1011,7 @@ msgstr "Informacije o dobaviteljih"
 #. module: purchase_stock
 #: model:ir.model.fields,help:purchase_stock.field_purchase_order__default_location_dest_id_usage
 msgid "Technical field used to display the Drop Ship Address"
-msgstr "Tehnično polje, ki se uporablja za prikaz naslova neposredne dostave"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-python
@@ -1059,7 +1024,6 @@ msgstr "Ustvarjeno je bilo naslednje naročilo za polnjenje zalog"
 #: code:addons/purchase_stock/models/purchase_order.py:0
 msgid "The purchase order %s this receipt is linked to was cancelled."
 msgstr ""
-"Nabavno naročilo %s, s katerim je ta prejem povezan, je bilo preklicano."
 
 #. module: purchase_stock
 #. odoo-python
@@ -1068,8 +1032,6 @@ msgid ""
 "The quantities on your purchase order indicate less than billed. You should "
 "ask for a refund."
 msgstr ""
-"Količine na vašem naročilu za nabavo so manjše od fakturiranih. Zaprositi bi "
-"morali za vračilo denarja."
 
 #. module: purchase_stock
 #. odoo-python
@@ -1079,9 +1041,15 @@ msgid ""
 "location (%(location)s) of reordering rule (%(reordering_rule)s) for product "
 "%(product)s. Change the operation type or cancel the request for quotation."
 msgstr ""
-"Skladišče vrste operacije (%(operation_type)s) ni skladno z lokacijo (%"
-"(location)s) pravila za ponovno naročanje (%(reordering_rule)s) za izdelek %"
-"(product)s. Spremenite vrsto operacije ali prekličite zahtevo za ponudbo."
+
+#. module: purchase_stock
+#. odoo-python
+#: code:addons/purchase_stock/models/purchase_order_line.py:0
+msgid ""
+"There is a mismatch between the company the Vendor is restricted to and the "
+"company receiving the purchased products. Please ensure the company is the "
+"same or that the Contact has no company restriction set."
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-python
@@ -1091,9 +1059,6 @@ msgid ""
 "%s (no vendor defined, minimum quantity not reached, dates not valid, ...). "
 "Go on the product form and complete the list of vendors."
 msgstr ""
-"Ni ustrezne cene dobavitelja za ustvarjanje nabavnega naročila za izdelek %s "
-"(dobavitelj ni določen, minimalna količina ni dosežena, datumi niso "
-"veljavni, ...). Odprite obrazec izdelka in izpolnite seznam dobaviteljev."
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_config_settings_view_form_purchase
@@ -1104,11 +1069,6 @@ msgid ""
 "manufacturing orders, etc. are triggered based on what way to replenish is "
 "set on the product (Buy or Manufacture route)."
 msgstr ""
-"To doda pot Dopolni po naročilu (MTO), ki jo je mogoče uporabiti za izdelke "
-"za ustvarjanje dopolnjevanja na zahtevo, povezanega z vašimi prodajnimi "
-"naročili (na primer), takoj ko so potrjena, z neposredno povezavo. Nabavna "
-"naročila, proizvodna naročila itd. se sprožijo glede na način dopolnjevanja, "
-"nastavljen na izdelku (pot Nakup ali Proizvodnja)."
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_config_settings_view_form_purchase
@@ -1128,12 +1088,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/purchase_stock/models/product.py:0
 msgid "This product has the \"Buy\" route checked but is not purchasable."
-msgstr "Ta izdelek ima označeno pot »Nakup«, vendar ga ni mogoče kupiti."
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,help:purchase_stock.field_purchase_order__picking_type_id
 msgid "This will determine operation type of incoming shipment"
-msgstr "To bo določilo vrsto operacije vhodne pošiljke"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-python
@@ -1142,14 +1102,12 @@ msgid ""
 "Those dates couldn’t be modified accordingly on the receipt %s which had "
 "already been validated."
 msgstr ""
-"Teh datumov ni bilo mogoče ustrezno spremeniti na prejemu %s, ki je bil že "
-"potrjen."
 
 #. module: purchase_stock
 #. odoo-python
 #: code:addons/purchase_stock/models/purchase_order.py:0
 msgid "Those dates have been updated accordingly on the receipt %s."
-msgstr "Ti datumi so bili ustrezno posodobljeni na prejemu %s."
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields.selection,name:purchase_stock.selection__res_partner__group_on__4
@@ -1160,12 +1118,18 @@ msgstr "Četrtek"
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/product_catalog/search/time_period_selection_fields.js:0
 msgid "Time Perdiod Selection"
-msgstr "Izbira časovnega obdobja"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.product_view_search_catalog
 msgid "To Order"
 msgstr "Naročiti"
+
+#. module: purchase_stock
+#. odoo-javascript
+#: code:addons/purchase_stock/static/src/product_catalog/search/search_panel.xml:0
+msgid "Total"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_vendor_delay_report__qty_total
@@ -1175,7 +1139,7 @@ msgstr "Skupna količina"
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order_line__is_storable
 msgid "Track Inventory"
-msgstr "Sledenje zaloge"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_stock_picking
@@ -1188,15 +1152,10 @@ msgid "Tuesday"
 msgstr "Torek"
 
 #. module: purchase_stock
-#: model_terms:ir.ui.view,arch_db:purchase_stock.product_view_kanban_catalog_purchase_only
-msgid "Units"
-msgstr "Enot"
-
-#. module: purchase_stock
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/js/tours/purchase_stock.js:0
 msgid "Validate the receipt of all ordered products."
-msgstr "Preverite prejem vseh naročenih izdelkov."
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_product_replenish__supplier_id
@@ -1210,13 +1169,13 @@ msgstr "Dobavitelj"
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_vendor_delay_report
 msgid "Vendor Delay Report"
-msgstr "Poročilo o zamudah dobaviteljev"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-python
 #: code:addons/purchase_stock/models/stock_rule.py:0
 msgid "Vendor Lead Time"
-msgstr "Dobavni rok dobavitelja"
+msgstr ""
 
 #. module: purchase_stock
 #: model_terms:ir.actions.act_window,help:purchase_stock.action_purchase_vendor_delay_report
@@ -1227,13 +1186,18 @@ msgstr "Pravočasna dostava dobavitelja"
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_replenishment_info__supplierinfo_id
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_warehouse_orderpoint__supplier_id
 msgid "Vendor Pricelist"
-msgstr "Cenik dobavitelja"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_warehouse_orderpoint__vendor_ids
 #: model_terms:ir.ui.view,arch_db:purchase_stock.view_stock_replenishment_info_stock_purchase_inherit
 msgid "Vendors"
 msgstr "Dobavitelji"
+
+#. module: purchase_stock
+#: model_terms:ir.ui.view,arch_db:purchase_stock.product_product_tree_view_stock
+msgid "View Forecast"
+msgstr ""
 
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_stock_warehouse
@@ -1276,15 +1240,17 @@ msgid ""
 "created to fulfill the need.<br/>Note: This rule will be used in combination "
 "with the rules<br/>of the reception route(s)"
 msgstr ""
-"Ko so izdelki potrebni v <b>%s</b>, <br/> se ustvari zahteva za ponudbo za "
-"izpolnitev potrebe.<br/>Opomba: To pravilo bo uporabljeno v kombinaciji s "
-"pravili<br/>prevzemne(-ih) poti"
 
 #. module: purchase_stock
 #. odoo-python
-#: code:addons/purchase_stock/models/purchase_order.py:0
-msgid "You must set a Vendor Location for this partner %s"
-msgstr "Za tega partnerja morate nastaviti lokacijo dobavitelja %s"
+#: code:addons/purchase_stock/models/purchase_order_line.py:0
+msgid "You must set a Vendor Location for partner %(partner_name)s"
+msgstr ""
+
+#. module: purchase_stock
+#: model_terms:ir.ui.view,arch_db:purchase_stock.exception_on_picking
+msgid "and no backorder is planned. Manual action may be needed."
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-javascript
@@ -1293,6 +1259,7 @@ msgid "day(s)"
 msgstr "dan(dni)"
 
 #. module: purchase_stock
+#: model_terms:ir.ui.view,arch_db:purchase_stock.exception_on_picking
 #: model_terms:ir.ui.view,arch_db:purchase_stock.exception_on_po
 msgid "of"
 msgstr "od"
@@ -1303,84 +1270,35 @@ msgid "ordered instead of"
 msgstr "naročeno namesto"
 
 #. module: purchase_stock
+#: model_terms:ir.ui.view,arch_db:purchase_stock.exception_on_picking
+msgid "received in contrast to the expected"
+msgstr ""
+
+#. module: purchase_stock
 #. odoo-python
 #: code:addons/purchase_stock/models/stock_rule.py:0
 msgid "this product should be manually replenished."
-msgstr "ta izdelek je treba ročno dopolniti."
+msgstr ""
+
+#. module: purchase_stock
+#: model_terms:ir.ui.view,arch_db:purchase_stock.product_view_kanban_catalog_purchase_only
+msgid "units"
+msgstr ""
 
 #. module: purchase_stock
 #. odoo-javascript
 #: code:addons/purchase_stock/static/src/product_catalog/search/search_panel.xml:0
 msgid "x"
-msgstr "x"
+msgstr ""
+
+#~ msgid "Journal Entry"
+#~ msgstr "Temeljnica"
+
+#~ msgid "<strong>Incoterm:</strong>"
+#~ msgstr "<strong>Incoterm:</strong>"
+
+#~ msgid "Incoterm Location"
+#~ msgstr "Lokacija Incoterm"
 
 #~ msgid "Stock Valuation"
 #~ msgstr "Vrednotenje zalog"
-
-#~ msgid "All Warehouses"
-#~ msgstr "Vsa skladišča"
-
-#~ msgid "Compute"
-#~ msgstr "Izračunaj"
-
-#~ msgid "Created by"
-#~ msgstr "Ustvaril"
-
-#~ msgid "Created on"
-#~ msgstr "Ustvarjeno"
-
-#~ msgid "Currency"
-#~ msgstr "Valuta"
-
-#~ msgid "Currency exchange rate difference"
-#~ msgstr "Razlika deviznih tečajev"
-
-#~ msgid "Discard"
-#~ msgstr "Opusti"
-
-#~ msgid "Expected"
-#~ msgstr "Pričakovano"
-
-#~ msgid "In"
-#~ msgstr "V"
-
-#~ msgid "Last Updated by"
-#~ msgstr "Zadnji posodobil"
-
-#~ msgid "Last Updated on"
-#~ msgstr "Zadnjič posodobljeno"
-
-#~ msgid "Price Difference Account"
-#~ msgstr "Konto razlik v ceni"
-
-#~ msgid "Procurement Group"
-#~ msgstr "Oskrbovalna skupina"
-
-#~ msgid "Product Count"
-#~ msgstr "Število izdelkov"
-
-#~ msgid "Product Supplier"
-#~ msgstr "Dobavitelj izdelka"
-
-#~ msgid "Products"
-#~ msgstr "Proizvodi"
-
-#~ msgid "Purchase Visibility Days"
-#~ msgstr "Dnevi prepoznavnosti nakupa"
-
-#~ msgid "Requests for quotation"
-#~ msgstr "Zahtevki za ponudbo"
-
-#~ msgid "Routes"
-#~ msgstr "Proge"
-
-#~ msgid "Stock Valuation Layer"
-#~ msgstr "Sloj vrednotenja zalog"
-
-#~ msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
-#~ msgstr ""
-#~ "Dobavitelja lahko najdete po njegovem imenu, TIN, e-pošti ali interni "
-#~ "referenci."
-
-#~ msgid "days"
-#~ msgstr "dni"

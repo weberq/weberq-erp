@@ -3,28 +3,27 @@
 # * spreadsheet_account
 #
 # Weblate <noreply-mt-weblate@weblate.org>, 2025, 2026.
-# Rosen Vladimirov <vladimirov.rosen@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:37+0000\n"
-"PO-Revision-Date: 2026-08-02 19:23+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
-"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-11 17:43+0000\n"
+"PO-Revision-Date: 2026-08-31 16:54+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.odoo.com/projects/odoo-s19-4/"
 "spreadsheet_account/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. module: spreadsheet_account
 #. odoo-javascript
-#: code:addons/spreadsheet_account/static/src/plugins/accounting_plugin.js:0
+#: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "%s is not a valid year."
-msgstr "%s не е валидна година."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
@@ -33,8 +32,6 @@ msgid ""
 "'%s' is not a valid period. Supported formats are \"21/12/2022\", "
 "\"Q1/2022\", \"12/2022\", and \"2022\"."
 msgstr ""
-"'%s' не е валиден период. Поддържаните формати са \"21/12/2022\", \"Q1/"
-"2022\", \"12/2022\" и \"2022\"."
 
 #. module: spreadsheet_account
 #: model:ir.model,name:spreadsheet_account.model_account_account
@@ -51,12 +48,13 @@ msgstr "Банка и Парична Наличност"
 #. odoo-python
 #: code:addons/spreadsheet_account/models/account.py:0
 msgid "Cell Audit"
-msgstr "Одит на клетка"
+msgstr ""
 
 #. module: spreadsheet_account
 #: model:ir.model,name:spreadsheet_account.model_res_company
-msgid "Companies"
-msgstr "Фирми"
+#, fuzzy
+msgid "Company"
+msgstr "Фирма"
 
 #. module: spreadsheet_account
 #. odoo-javascript
@@ -72,9 +70,21 @@ msgstr "Credit Card"
 
 #. module: spreadsheet_account
 #. odoo-javascript
+#: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
+msgid "Currency not available for this company."
+msgstr ""
+
+#. module: spreadsheet_account
+#. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/account_group_auto_complete.js:0
 msgid "Current Assets"
 msgstr "Текущи активи"
+
+#. module: spreadsheet_account
+#. odoo-javascript
+#: code:addons/spreadsheet_account/static/src/fiscal_year_global_filter.js:0
+msgid "Current Fiscal Year"
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
@@ -114,6 +124,13 @@ msgstr "Разходи"
 
 #. module: spreadsheet_account
 #. odoo-javascript
+#: code:addons/spreadsheet_account/static/src/fiscal_year_global_filter.js:0
+#, fuzzy
+msgid "Fiscal Year"
+msgstr "Фискална Година"
+
+#. module: spreadsheet_account
+#. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/account_group_auto_complete.js:0
 msgid "Fixed Assets"
 msgstr "Fixed Assets"
@@ -122,19 +139,19 @@ msgstr "Fixed Assets"
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "Get the total balance for the specified account(s) and period."
-msgstr "Вземане на общото салдо за посочената сметка(и) и период."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "Get the total credit for the specified account(s) and period."
-msgstr "Вземане на общия кредит за посочената сметка(и) и период."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "Get the total debit for the specified account(s) and period."
-msgstr "Вземане на общия дебит за посочената сметка(и) и период."
+msgstr ""
 
 #. module: spreadsheet_account
 #: model:ir.model.fields,field_description:spreadsheet_account.field_account_account__id
@@ -164,13 +181,13 @@ msgstr "Non-current Liabilities"
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/account_group_auto_complete.js:0
 msgid "Off-Balance Sheet"
-msgstr "Извънбалансови"
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "Offset applied to the years."
-msgstr "Отместване, приложено към годините."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
@@ -200,25 +217,25 @@ msgstr "Вземания"
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "Return the balance of accounts for the specified tag(s) and period"
-msgstr "Връща салдото на сметките за зададения(ите) маркер(и) и период"
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "Return the partner balance for the specified account(s) and period"
-msgstr "Връща салдото на партньора за зададената(ите) сметка(и) и период"
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "Return the residual amount for the specified account(s) and period"
-msgstr "Връща остатъчната сума за зададената(ите) сметка(и) и период"
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "Returns the account codes of a given group."
-msgstr "Връща кодовете на сметките от дадена група."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
@@ -226,7 +243,6 @@ msgstr "Връща кодовете на сметките от дадена гр
 msgid ""
 "Returns the ending date of the fiscal year encompassing the provided date."
 msgstr ""
-"Връща крайната дата на финансовата година, обхващаща предоставената дата."
 
 #. module: spreadsheet_account
 #. odoo-javascript
@@ -234,7 +250,6 @@ msgstr ""
 msgid ""
 "Returns the starting date of the fiscal year encompassing the provided date."
 msgstr ""
-"Връща началната дата на финансовата година, обхващаща предоставената дата."
 
 #. module: spreadsheet_account
 #. odoo-javascript
@@ -246,31 +261,42 @@ msgstr "Виж записите"
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "Set to TRUE to include unposted entries."
-msgstr "Задайте на TRUE, за да включите непубликуваните записи."
+msgstr ""
+
+#. module: spreadsheet_account
+#: model:ir.module.module,shortdesc:base.module_spreadsheet_account
+msgid "Spreadsheet Accounting Formulas"
+msgstr ""
+
+#. module: spreadsheet_account
+#: model:ir.module.module,description:base.module_spreadsheet_account
+#: model:ir.module.module,summary:base.module_spreadsheet_account
+msgid "Spreadsheet Accounting formulas"
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
-#: code:addons/spreadsheet_account/static/src/plugins/accounting_plugin.js:0
+#: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "The balance for given account tag could not be computed."
-msgstr "Салдото за дадения етикет на сметка не можа да бъде изчислено."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
-#: code:addons/spreadsheet_account/static/src/plugins/accounting_plugin.js:0
+#: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "The balance for given partners could not be computed."
-msgstr "Салдото за дадените партньори не можа да бъде изчислено."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
-#: code:addons/spreadsheet_account/static/src/plugins/accounting_plugin.js:0
+#: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "The company fiscal year could not be found."
-msgstr "Финансовата година на фирмата не можа да бъде намерена."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "The company to target (Advanced)."
-msgstr "Целевата фирма (Разширено)."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
@@ -285,32 +311,30 @@ msgid ""
 "The date range. Supported formats are \"21/12/2022\", \"Q1/2022\", "
 "\"12/2022\", and \"2022\"."
 msgstr ""
-"Период от дати. Поддържаните формати са \"21/12/2022\", \"Q1/2022\", \"12/"
-"2022\" и \"2022\"."
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "The day from which to extract the fiscal year end."
-msgstr "Денят, от който да се извлече краят на финансовата година."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "The day from which to extract the fiscal year start."
-msgstr "Денят, от който да се извлече началото на финансовата година."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "The partner ids (separated by a comma)."
-msgstr "Идентификаторите на партньорите (разделени със запетая)."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "The prefix of the accounts."
-msgstr "Префиксът на сметките."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
@@ -319,23 +343,21 @@ msgid ""
 "The prefix of the accounts. If none provided, all receivable and payable "
 "accounts will be used."
 msgstr ""
-"Префиксът на сметките. Ако не е посочен, ще се използват всички вземания и "
-"задължения."
 
 #. module: spreadsheet_account
 #. odoo-javascript
-#: code:addons/spreadsheet_account/static/src/plugins/accounting_plugin.js:0
+#: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "The residual amount for given accounts could not be computed."
-msgstr "Остатъчната сума за дадените сметки не можа да бъде изчислена."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "The tag ids (separated by a comma)."
-msgstr "Идентификаторите на етикетите (разделени със запетая)."
+msgstr ""
 
 #. module: spreadsheet_account
 #. odoo-javascript
 #: code:addons/spreadsheet_account/static/src/accounting_functions.js:0
 msgid "The technical account type (possible values are: %s)."
-msgstr "Техническият тип на сметката (възможни стойности са: %s)."
+msgstr ""

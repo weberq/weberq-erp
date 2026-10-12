@@ -6,23 +6,34 @@
 # Martin Trigaux, 2022
 #
 # "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
-# Weblate <noreply-mt-weblate@weblate.org>, 2026.
 # "Kira Petersen François (peti)" <peti@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 18:36+0000\n"
-"PO-Revision-Date: 2026-08-07 06:44+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/"
+"POT-Creation-Date: 2026-09-18 17:39+0000\n"
+"PO-Revision-Date: 2026-09-09 13:52+0000\n"
+"Last-Translator: \"Kira Petersen François (peti)\" <peti@odoo.com>\n"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-master/"
 "account_check_printing/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: account_check_printing
+#: model:ir.module.module,description:base.module_account_check_printing
+msgid ""
+"\n"
+"This module offers the basic functionalities to make payments by printing "
+"checks.\n"
+"It must be used as a dependency for modules that provide country-specific "
+"check templates.\n"
+"The check settings are located in the accounting journals configuration "
+"page.\n"
+msgstr ""
 
 #. module: account_check_printing
 #. odoo-python
@@ -52,109 +63,114 @@ msgid ""
 "Adjust the margins of generated checks to make it fit your printer's "
 "settings."
 msgstr ""
-"Justér margenerne på de genererede checks, så de passer til din printers "
-"indstillinger."
+"Juster marginer på genererede checks for at tilpasse den din printers "
+"indstillinger"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_account_payment__check_amount_in_words
 msgid "Amount in Words"
-msgstr "Beløb i ord"
+msgstr "Antal ord"
 
 #. module: account_check_printing
 #. odoo-python
 #: code:addons/account_check_printing/models/account_payment.py:0
 msgid "Bills"
-msgstr "Regninger"
-
-#. module: account_check_printing
-#: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
-msgid "Cancel"
-msgstr "Annullér"
+msgstr "Fakturaer"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_account_journal__bank_check_printing_layout
 #: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_layout
 #: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_layout
 msgid "Check Layout"
-msgstr "Checklayout"
+msgstr "Check Layout"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_margin_left
 #: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_margin_left
 msgid "Check Left Margin"
-msgstr "Checkens venstre margen"
+msgstr "Check venstre margin"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_account_payment__check_number
 msgid "Check Number"
-msgstr "Checknummer"
+msgstr "Check nummer"
 
 #. module: account_check_printing
 #: model_terms:ir.ui.view,arch_db:account_check_printing.view_account_journal_form_inherited
 msgid "Check Printing"
-msgstr "Checkudskrivning"
+msgstr "Check udskrivning"
+
+#. module: account_check_printing
+#: model:ir.module.module,shortdesc:base.module_account_check_printing
+msgid "Check Printing Base"
+msgstr ""
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_margin_right
 msgid "Check Right Margin"
-msgstr "Checkens højre margen"
+msgstr "Check højre margin"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_account_journal__check_sequence_id
 msgid "Check Sequence"
-msgstr "Checksekvens"
+msgstr "Check rækkefølge"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_margin_top
 #: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_margin_top
 msgid "Check Top Margin"
-msgstr "Checkens øverste margen"
+msgstr "Check top margin"
 
 #. module: account_check_printing
 #. odoo-python
 #: code:addons/account_check_printing/models/account_payment.py:0
 msgid "Check numbers can only consist of digits"
-msgstr "Checknumre kan kun bestå af tal"
+msgstr "Check numre kan kun bestå af tal"
+
+#. module: account_check_printing
+#: model:ir.module.module,summary:base.module_account_check_printing
+msgid "Check printing basic features"
+msgstr ""
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_journal__check_manual_sequencing
 #: model:ir.model.fields,help:account_check_printing.field_account_payment__check_manual_sequencing
 msgid "Check this option if your pre-printed checks are not numbered."
-msgstr "Markér feltet, hvis dine fortrykte checks ikke er nummererede."
+msgstr "Sæt kryds her hvis dine allerede printede checks ikke er nummererede."
 
 #. module: account_check_printing
 #: model_terms:ir.ui.view,arch_db:account_check_printing.account_journal_dashboard_kanban_view_inherited
 msgid "Check to print"
-msgstr "Check, der skal printes"
+msgstr "Check der skal printes"
 
 #. module: account_check_printing
 #. odoo-python
 #: code:addons/account_check_printing/models/account_payment.py:0
 #: model:account.payment.method,name:account_check_printing.account_payment_method_check
 msgid "Checks"
-msgstr "Checks"
+msgstr "Kontrolpunkter"
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_journal__check_sequence_id
 msgid "Checks numbering sequence."
-msgstr "Checknummersekvens."
+msgstr "Rækkefølge af check nummerering."
 
 #. module: account_check_printing
 #. odoo-python
 #: code:addons/account_check_printing/models/account_journal.py:0
 #: model_terms:ir.ui.view,arch_db:account_check_printing.view_payment_check_printing_search
 msgid "Checks to Print"
-msgstr "Checks, der skal printes"
+msgstr "Checks der skal printes"
 
 #. module: account_check_printing
 #: model_terms:ir.ui.view,arch_db:account_check_printing.account_journal_dashboard_kanban_view_inherited
 msgid "Checks to print"
-msgstr "Checks, der skal printes"
+msgstr "Checks der skal printes"
 
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_res_company
-msgid "Companies"
-msgstr "Virksomheder"
+msgid "Company"
+msgstr "Virksomhed"
 
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_res_config_settings
@@ -190,7 +206,7 @@ msgstr "Visningsnavn"
 #. odoo-python
 #: code:addons/account_check_printing/models/account_payment.py:0
 msgid "Go to the configuration panel"
-msgstr "Gå til konfigurationspanel"
+msgstr "Gå til konfigurations fanebladet"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_account_payment__check_layout_available
@@ -214,7 +230,8 @@ msgid ""
 "In order to print multiple checks at once, they must belong to the same bank "
 "journal."
 msgstr ""
-"Flere checks kan kun udskrives samlet, hvis de tilhører samme bankjournal."
+"For at udskrive flere checks på en gang, skal de tilhøre den samme bank "
+"journal."
 
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_account_journal
@@ -255,12 +272,27 @@ msgid ""
 "U.S. ISO20022: Pay in the US by submitting an ISO20022 file to your bank. "
 "Module account_iso20022 is necessary.\n"
 msgstr ""
+"Manuelt: Betal eller modtag betaling via en hvilken som helst metode uden "
+"for Odoo.\n"
+"Betalingsudbydere: Hver betalingsudbyder har sin egen betalingsform. Anmod "
+"om en transaktion på/til et kort ved hjælp af et betalingstoken, som "
+"partneren har gemt ved køb eller abonnement online.\n"
+"Check: Betal regninger med check, og udskriv den fra Odoo.\n"
+"Batchindbetaling: Indsaml flere kundechecks på én gang ved at generere og "
+"indsende en batchindbetaling til din bank. Modulet account_batch_payment er "
+"påkrævet.\n"
+"SEPA-kreditoverførsel: Betal i SEPA-området ved at indsende en SEPA-"
+"kreditoverførselsfil til din bank. Modulet account_iso20022 er påkrævet.\n"
+"SEPA-direkte debet: Modtag betaling i SEPA-området takket være en fuldmagt, "
+"som din partner har givet dig. Modulet account_iso20022 er påkrævet.\n"
+"US ISO20022: Betal i USA ved at indsende en ISO20022-fil til din bank. "
+"Modulet account_iso20022 er påkrævet.\n"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_multi_stub
 #: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_multi_stub
 msgid "Multi-Pages Check Stub"
-msgstr "Flersidede checkstubbe"
+msgstr "Fler-siders check stubbe"
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_account_journal__check_next_number
@@ -273,7 +305,7 @@ msgstr "Næste checknummer"
 #: code:addons/account_check_printing/models/account_journal.py:0
 #: code:addons/account_check_printing/wizard/print_prenumbered_checks.py:0
 msgid "Next Check Number should only contains numbers."
-msgstr "Næste checknummer bør kun indeholde tal."
+msgstr "Næste check nummer bør kun indeholde tal."
 
 #. module: account_check_printing
 #: model:ir.model.fields.selection,name:account_check_printing.selection__res_company__account_check_printing_layout__disabled
@@ -281,19 +313,15 @@ msgid "None"
 msgstr "Ingen"
 
 #. module: account_check_printing
-#: model:ir.model.fields,field_description:account_check_printing.field_account_payment__payment_method_line_id
-msgid "Payment Method"
-msgstr "Betalingsform"
+#: model:ir.model,name:account_check_printing.model_account_payment
+msgid "Payment"
+msgstr "Betaling"
 
 #. module: account_check_printing
 #: model:ir.model,name:account_check_printing.model_account_payment_method
-msgid "Payment Methods"
-msgstr "Betalingsformer"
-
-#. module: account_check_printing
-#: model:ir.model,name:account_check_printing.model_account_payment
-msgid "Payments"
-msgstr "Betalinger"
+#: model:ir.model.fields,field_description:account_check_printing.field_account_payment__payment_method_line_id
+msgid "Payment Method"
+msgstr "Betalingsmetode"
 
 #. module: account_check_printing
 #. odoo-python
@@ -302,8 +330,8 @@ msgid ""
 "Payments to print as a checks must have 'Check' selected as payment method "
 "and not have already been reconciled"
 msgstr ""
-"Betalinger, der skal udskrives som checks, skal have 'Check' valgt som "
-"betalingsform og må ikke allerede være afstemte"
+"Betalinger der skal printes som checks skal have 'Check' valgt som betalings "
+"metode, og må ikke allerede være afstemte"
 
 #. module: account_check_printing
 #: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
@@ -311,7 +339,8 @@ msgid ""
 "Please enter the number of the first pre-printed check that you are about to "
 "print on."
 msgstr ""
-"Indtast venligst nummeret på den fortrykte check, du er ved at udskrive på."
+"Indtast venligst nummeret på den før forprintede check, som du skal til at "
+"printe på."
 
 #. module: account_check_printing
 #: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
@@ -332,7 +361,7 @@ msgstr "Udskriv checks"
 #: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_date_label
 #: model:ir.model.fields,field_description:account_check_printing.field_res_config_settings__account_check_printing_date_label
 msgid "Print Date Label"
-msgstr "Udskriv datomærke"
+msgstr "Print datomarkering"
 
 #. module: account_check_printing
 #. odoo-python
@@ -340,7 +369,7 @@ msgstr "Udskriv datomærke"
 #: model:ir.model,name:account_check_printing.model_print_prenumbered_checks
 #: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
 msgid "Print Pre-numbered Checks"
-msgstr "Udskriv forudnummererede checks"
+msgstr "Udskriv allerede nummererede checks"
 
 #. module: account_check_printing
 #. odoo-python
@@ -351,7 +380,7 @@ msgstr "Krediteringer"
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_res_company__account_check_printing_margin_right
 msgid "Right Margin"
-msgstr "Højre margen"
+msgstr "Højre margin"
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_res_company__account_check_printing_layout
@@ -361,19 +390,14 @@ msgid ""
 "checks on.\n"
 "In order to disable the printing feature, select 'None'."
 msgstr ""
-"Vælg det format, der svarer til det checkpapir, du vil bruge til udskrivning "
-"af checks.\n"
-"Vælg 'Ingen' for at deaktivere udskrivningsfunktionen."
-
-#. module: account_check_printing
-#: model_terms:ir.ui.view,arch_db:account_check_printing.view_account_payment_form_inherited
-msgid "Sent"
-msgstr "Sendt"
+"Vælg formatet der svarer til det check papir du vil bruge til at printe dine "
+"checks.\n"
+"for at slå print funktionen fra, vælg 'Ingen'"
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_journal__check_next_number
 msgid "Sequence number of the next printed check."
-msgstr "Sekvensnummer for den næste check, der udskrives."
+msgstr "Rækkefølge nummer for den næste udskrivende check."
 
 #. module: account_check_printing
 #: model:ir.model.fields,field_description:account_check_printing.field_account_payment__show_check_number
@@ -387,8 +411,8 @@ msgid ""
 "Something went wrong with Check Layout, please select another layout in "
 "Invoicing/Accounting Settings and try again."
 msgstr ""
-"Der opstod en fejl med checklayoutet. Vælg venligst et andet layout under "
-"indstillingerne Fakturering/Regnskab, og prøv igen."
+"Noget gik galt med Check Layout, vælg venligst et andet layout i Fakturering/"
+"Regnskab Indstillinger og forsøg igen."
 
 #. module: account_check_printing
 #. odoo-python
@@ -408,7 +432,7 @@ msgid ""
 "%s"
 msgstr ""
 "De følgende tal er allerede brugt:\n"
-"%s"
+" %s"
 
 #. module: account_check_printing
 #. odoo-python
@@ -417,8 +441,8 @@ msgid ""
 "The last check number was %s. In order to avoid a check being rejected by "
 "the bank, you can only use a greater number."
 msgstr ""
-"Det seneste checknummer var %s. For at undgå at banken afviser checken, kan "
-"du kun bruge et større tal."
+"Den seneste checknummer var %s. For at undgå at en check bliver afvist af "
+"banken, kan du kun bruge et større nummer."
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_account_payment__check_number
@@ -427,9 +451,9 @@ msgid ""
 "printed check paper already has numbers or if the current numbering is "
 "wrong, you can change it in the journal configuration page."
 msgstr ""
-"Den valgte journal er konfigureret til at udskrive checknumre. Hvis dit "
-"fortrykte checkpapir allerede har numre, eller hvis den nuværende "
-"nummerering er forkert, kan du rette det på journalkonfigurationssiden."
+"Den valgte journal er konfigureret til at printe checknumre. Hvis dit forud-"
+"printet checkpapir allerede har numre, eller hvis den nuværende nummerering "
+"er forkert, kan du ændre det på journal konfiguration siden."
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_res_company__account_check_printing_multi_stub
@@ -438,8 +462,8 @@ msgid ""
 "This option allows you to print check details (stub) on multiple pages if "
 "they don't fit on a single page."
 msgstr ""
-"Denne mulighed gør det muligt at udskrive checkoplysninger (stubbe) på flere "
-"sider, hvis de ikke kan være på ét enkelt ark."
+"Denne mulighed gør det muligt for dig at printe check detaljer (stubbe) på "
+"flere sider, hvis de ikke kan være på ét ark."
 
 #. module: account_check_printing
 #: model:ir.model.fields,help:account_check_printing.field_res_company__account_check_printing_date_label
@@ -448,27 +472,26 @@ msgid ""
 "This option allows you to print the date label on the check as per CPA.\n"
 "Disable this if your pre-printed check includes the date label."
 msgstr ""
-"Denne indstilling gør det muligt at udskrive datomærker på checken i "
-"overensstemmelse med CPA.\n"
-"Deaktivér den, hvis dine fortrykte checks allerede inkluderer datomærket."
+"Denne indstilling gør det muligt for dig at printe dato mærkater på checken "
+"i overensstemmelse med CPA.\n"
+"Deaktiver dette hvis dine forudprintede checks inkludere datomarkering."
 
 #. module: account_check_printing
 #: model_terms:ir.ui.view,arch_db:account_check_printing.print_pre_numbered_checks_view
 msgid ""
 "This will allow to save on payments the number of the corresponding check."
 msgstr ""
-"Dette gør det muligt at gemme nummeret på den pågældende check ved "
-"betalinger."
+"Dette gør det muligt at gemme nummeret på den tilsvarende check i betalinger."
 
 #. module: account_check_printing
 #: model_terms:ir.ui.view,arch_db:account_check_printing.view_account_payment_form_inherited
 msgid "Unmark Sent"
-msgstr "Fjern \"sendt\"-markeringen"
+msgstr "Fjern markering af sendt"
 
 #. module: account_check_printing
 #: model_terms:ir.ui.view,arch_db:account_check_printing.view_account_payment_form_inherited
 msgid "Void Check"
-msgstr "Ugyldig check"
+msgstr "Ugyldig Check"
 
 #. module: account_check_printing
 #. odoo-python
@@ -477,8 +500,8 @@ msgid ""
 "You have to choose a check layout. For this, go in Invoicing/Accounting "
 "Settings, search for 'Checks layout' and set one."
 msgstr ""
-"Du skal vælge et checklayout. Det gør du i indstillingerne Fakturering/"
-"Regnskab. Søg efter 'Checklayout', og vælg et layout."
+"Du skal vælge et check layout. Dette gøres i Fakturering/Regnskab "
+"Indstillinger, søg efter \"Check layout\", og angiv en."
 
 #. module: account_check_printing
 #. odoo-python
@@ -498,24 +521,5 @@ msgstr "out_refund"
 msgid "sep"
 msgstr "sep"
 
-#~ msgid "Contact"
-#~ msgstr "Kontakt"
-
-#~ msgid "Journal Entry"
-#~ msgstr "Postering"
-
-#~ msgid "Preferred Payment Method"
-#~ msgstr "Foretrukket Betalingsmetode"
-
-#~ msgid ""
-#~ "Preferred payment method when paying this vendor. This is used to filter "
-#~ "vendor bills by preferred payment method to register payments in mass. "
-#~ "Use cases: create bank files for batch wires, check runs."
-#~ msgstr ""
-#~ "Foretrukket betalingsmetode når denne leverandør betales. Dette anvendes "
-#~ "til at filtrere leverandørregninger ud fra foretrukket betalingsmetode, "
-#~ "for at registrere betalinger i partier. Brugs eksempler: opret bank filer "
-#~ "for parti overførsler, check kørsler."
-
-#~ msgid "Register Payment"
-#~ msgstr "Registrer betaling"
+#~ msgid "Sent"
+#~ msgstr "Sendt"

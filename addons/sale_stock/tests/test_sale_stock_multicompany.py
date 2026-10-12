@@ -9,6 +9,8 @@ from odoo.tests import tagged
 @tagged('post_install', '-at_install')
 class TestSaleStockMultiCompany(TestSaleCommon, ValuationReconciliationTestCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -130,7 +132,7 @@ class TestSaleStockMultiCompany(TestSaleCommon, ValuationReconciliationTestCommo
             'location_dest_id': picking.location_dest_id.id,
             'product_id': self.product_b.id,
             'product_uom_qty': 1,
-            'product_uom': self.product_b.uom_id.id,
+            'uom_id': self.product_b.uom_id.id,
             'quantity': 1,
         })
 
@@ -276,5 +278,45 @@ class TestSaleStockMultiCompany(TestSaleCommon, ValuationReconciliationTestCommo
         delivery.quantity = 5.0
         delivery.picked = True
         delivery.picking_id.button_validate()
+
+        self.assertEqual(so.order_line.qty_delivered, 5.0, "Intercompany transfers are being counted incorrectly")
+
+    def test_intercompany_warehouse_on_so(self):
+        """
+        Test that selecting a warehouse of another company on the SO properly triggers the delivery from another company
+        """
+        company_a = self.env.company
+        customer_location = self.env.ref('stock.stock_location_customers')
+
+        self.product_a.is_storable = True
+
+        wh_b = self.warehouse_B
+        loc_b = wh_b.lot_stock_id
+
+        self.env['stock.quant']._update_available_quantity(self.product_a, loc_b, 10.0)
+
+        so = self.env['sale.order'].create({
+            'partner_id': self.partner_a.id,
+            'company_id': company_a.id,
+            'warehouse_id': wh_b.id,
+            'order_line': [Command.create({
+                'product_id': self.product_a.id,
+                'product_uom_qty': 5.0,
+            })]
+        })
+
+        so.action_confirm()
+
+        delivery = so.picking_ids
+        self.assertRecordValues(delivery, [{
+            'location_id': loc_b.id,
+            'location_dest_id': customer_location.id,
+            'partner_id': self.partner_a.id,
+        }])
+        delivery.move_ids.write({
+            'quantity': 5,
+            'picked': True,
+        })
+        delivery.button_validate()
 
         self.assertEqual(so.order_line.qty_delivered, 5.0, "Intercompany transfers are being counted incorrectly")

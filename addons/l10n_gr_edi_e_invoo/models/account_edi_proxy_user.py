@@ -26,7 +26,7 @@ class AccountEdiProxyClientUser(models.Model):
 
     def _get_proxy_urls(self):
         urls = super()._get_proxy_urls()
-        endpoint_override = self.env['ir.config_parameter'].sudo().get_param(L10N_GR_EDI_IAP_ENDPOINT_PARAM)
+        endpoint_override = self.env['ir.config_parameter'].sudo().get_str(L10N_GR_EDI_IAP_ENDPOINT_PARAM)
         urls[L10N_GR_EDI_PROXY_TYPE] = {
             'prod': L10N_GR_EDI_DEFAULT_IAP_ENDPOINT,
             'test': (endpoint_override or L10N_GR_EDI_DEFAULT_IAP_TEST_ENDPOINT).rstrip('/'),
@@ -36,7 +36,7 @@ class AccountEdiProxyClientUser(models.Model):
 
     def _get_proxy_identification(self, company, proxy_type):
         if proxy_type == L10N_GR_EDI_PROXY_TYPE:
-            if not company.vat:
+            if not company.has_vat:
                 raise RedirectWarning(
                     message=self.env._(
                         'Please fill the VAT number of company "%(company_name)s" before sending electronic invoices.',

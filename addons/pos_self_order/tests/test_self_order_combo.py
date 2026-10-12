@@ -31,59 +31,70 @@ class TestSelfOrderCombo(SelfOrderCommonTest):
         self.pos_admin.group_ids += self.env.ref('account.group_account_invoice')
         self.pos_config.with_user(self.pos_user).open_ui()
         self.pos_config.current_session_id.set_opening_control(0, "")
-        self_route = self.pos_config._get_self_order_route()
 
-        self.start_tour(self_route, "self_combo_selector")
-        order = self.env['pos.order'].search([], order='id desc', limit=1)
+        # Find the combo items selected in the original tour
+        desk_org_item = self.desk_accessories_combo.combo_item_ids.filtered(
+            lambda i: i.product_id == self.desk_organizer
+        )
+        combo5_item = self.desks_combo.combo_item_ids.filtered(
+            lambda i: i.product_id.name == 'Combo Product 5'
+        )
+        combo8_item = self.chairs_combo.combo_item_ids.filtered(
+            lambda i: i.product_id.name == 'Combo Product 8'
+        )
+
+        # Find Size=M and Fabric=Leather PTAVs for Desk Organizer
+        desk_tmpl = self.desk_organizer.product_tmpl_id
+        size_m = desk_tmpl.attribute_line_ids.filtered(
+            lambda l: l.attribute_id.name == 'Size'
+        ).product_template_value_ids.filtered(lambda v: v.name == 'M')
+        fabric_leather = desk_tmpl.attribute_line_ids.filtered(
+            lambda l: l.attribute_id.name == 'Fabric'
+        ).product_template_value_ids.filtered(lambda v: v.name == 'Leather')
+
+        order = self.process_self_order([
+            {
+                'product': self.office_combo,
+                'qty': 2,
+                'price_unit': self.office_combo.lst_price,
+                'combo_children': [
+                    {
+                        'product': self.desk_organizer,
+                        'combo_item_id': desk_org_item.id,
+                        'attribute_value_ids': [size_m.id, fabric_leather.id],
+                    },
+                    {
+                        'product': combo5_item.product_id,
+                        'combo_item_id': combo5_item.id,
+                    },
+                    {
+                        'product': combo8_item.product_id,
+                        'combo_item_id': combo8_item.id,
+                    },
+                ],
+            },
+        ])
+
         self.assertEqual(len(order.lines), 4, "There should be 4 order lines - 1 combo parent and 3 combo lines")
-        # check that the combo lines are correctly linked to each other
         parent_line_id = self.env['pos.order.line'].search([('product_id.name', '=', 'Office Combo'), ('order_id', '=', order.id)])
         combo_line_ids = self.env['pos.order.line'].search([('product_id.name', '!=', 'Office Combo'), ('order_id', '=', order.id)])
         self.assertEqual(parent_line_id.combo_line_ids, combo_line_ids, "The combo parent should have 3 combo lines")
         self.assertEqual(parent_line_id.qty, 2, "There should be 2 combo products")
         self.assertEqual(parent_line_id.qty, combo_line_ids[0].qty, "The quantities should match with the parent")
 
-    def test_self_order_combo_categories(self):
-        setup_product_combo_items(self)
-        category = self.env['pos.category'].create({'name': 'Test Category'})
-        self.env["product.product"].create(
-            {
-                "available_in_pos": True,
-                "list_price": 10,
-                "name": "Test Combo",
-                "type": "combo",
-                'pos_categ_ids': category.ids,
-                "combo_ids": self.desks_combo,
-            }
-        )
-
-        self.pos_config.write({
-            'self_ordering_default_user_id': self.pos_admin.id,
-            'self_ordering_mode': 'mobile',
-            'self_ordering_pay_after': 'each',
-            'self_ordering_service_mode': 'counter',
-            'available_preset_ids': [(5, 0)],
-            'iface_available_categ_ids': category.ids,
-        })
-
-        self.pos_config.with_user(self.pos_user).open_ui()
-        self.pos_config.current_session_id.set_opening_control(0, "")
-        self_route = self.pos_config._get_self_order_route()
-
-        self.start_tour(self_route, "self_combo_selector_category")
-
     def test_combo_price_no_free_items(self):
         """
-        Regression test: when all combo sub-combos have qty_free=0, remaining_total
+        Regression test: when all combo sub-combos are upsell (qty_free=0), remaining_total
         (= parent list price) must be distributed proportionally to the extra lines,
         not silently dropped.
         """
         self.pos_config.with_user(self.pos_user).open_ui()
         self.pos_config.current_session_id.set_opening_control(0, "")
 
-        # Sub-combo with qty_free=0 (no free items) and qty_max=1
+        # Upsell combo: qty_free=0 (no free items), all selections are charged as extras
         no_free_combo = self.env['product.combo'].create({
             'name': 'No Free Combo',
+            'is_upsell': True,
             'qty_free': 0,
             'qty_max': 1,
             'combo_item_ids': [
@@ -139,9 +150,9 @@ class TestSelfOrderCombo(SelfOrderCommonTest):
         order.recompute_prices()
 
         # base_price of the combo = min lst_price among items = min(cola.lst_price, fanta.lst_price) = 2.2
-        # With qty_free=0, remaining_total = parent lst_price = 10.0 must flow into the child
-        # price_unit should be: base_price + proportional_share_of_parent_price
-        # = base_price + round(base_price * 10 / (base_price * 1)) = base_price + 10.0
+        # With is_upsell=True (qty_free=0), remaining_total = parent lst_price = 10.0 must flow into the child.
+        # price_unit = base_price + proportional_share_of_parent_price
+        # = base_price + round(base_price * 10.0 / (base_price * 1)) = base_price + 10.0
         expected_price = no_free_combo.base_price + combo_product.lst_price
         self.assertAlmostEqual(
             child_line.price_unit, expected_price, places=2,
@@ -222,112 +233,74 @@ class TestSelfOrderCombo(SelfOrderCommonTest):
             msg="Child line price_unit must be the same whether buying 1 or 2 parent combos",
         )
 
-    def test_product_dont_display_all_variants(self):
+    def test_self_order_combo_multiple_qty(self):
         """
-        Tests that when a variant is in a combo, clicking the variant
-        will only select it and not display every variant available
-        for that product. It still displays them if the template is given.
+        Tests that when having a combo with multiple qty, the price in the backend
+        is correctly computed based on the combo product's price.
         """
-        size_attribute, color_attribute = self.env['product.attribute'].create([
+        water, orange_juice, water2, orange_juice2 = self.env['product.product'].create([
             {
-                'name': 'Size',
-                'display_type': 'radio',
-                'create_variant': 'always',
-            },
-            {
-                'name': 'Color',
-                'display_type': 'radio',
-                'create_variant': 'no_variant',
-            },
-        ])
-        attribute_values = self.env['product.attribute.value'].create([
-            {
-                'name': 'M',
-                'attribute_id': size_attribute.id,
-            },
-            {
-                'name': 'L',
-                'attribute_id': size_attribute.id,
-            },
-            {
-                'name': 'Red',
-                'attribute_id': color_attribute.id,
-            },
-            {
-                'name': 'Blue',
-                'attribute_id': color_attribute.id,
-            },
-        ])
-        # With an never and always attribute
-        coke_template_never_always, coke_template_always, coke_template_never = self.env['product.template'].create([
-            {
-                'name': 'Coke always never',
+                'name': 'Water',
                 'available_in_pos': True,
-                'list_price': 3.0,
-                'attribute_line_ids': [
-                    Command.create({
-                        'attribute_id': size_attribute.id,
-                        'value_ids': [Command.set([attribute_values[0].id, attribute_values[1].id])],
-                    }),
-                    Command.create({
-                        'attribute_id': color_attribute.id,
-                        'value_ids': [Command.set([attribute_values[2].id, attribute_values[3].id])],
-                    })
-                ],
-            }, {
-                'name': 'Coke always only',
-                'available_in_pos': True,
-                'list_price': 3.0,
-                'attribute_line_ids': [
-                    Command.create({
-                        'attribute_id': size_attribute.id,
-                        'value_ids': [Command.set([attribute_values[0].id, attribute_values[1].id])],
-                    }),
-                ],
-            }, {
-                'name': 'Coke never only',
-                'available_in_pos': True,
-                'list_price': 3.0,
-                'attribute_line_ids': [
-                    Command.create({
-                        'attribute_id': color_attribute.id,
-                        'value_ids': [Command.set([attribute_values[2].id, attribute_values[3].id])],
-                    })
-                ],
+                'list_price': 0.0,
+                'taxes_id': [],
             },
-        ])
-        coke_large_always_never = coke_template_never_always.product_variant_ids[1]
-        coke_large_always = coke_template_always.product_variant_ids[1]
-        coke_large_never = coke_template_never.product_variant_ids[0]
+            {
+                'name': 'Orange Juice',
+                'available_in_pos': True,
+                'list_price': 0.0,
+            },
+            {
+                'name': 'Water 2',
+                'available_in_pos': True,
+                'list_price': 2.0,
+                'taxes_id': [],
+            },
+            {
+                'name': 'Orange Juice 2',
+                'available_in_pos': True,
+                'list_price': 2.0,
+            }
 
-        combo = self.env['product.combo'].create([{
-                'name': 'Drink Combo Both',
+        ])
+        drinks_combo, drinks_combo_with_price = self.env['product.combo'].create([
+            {
+                'name': 'Drinks',
                 'combo_item_ids': [
-                    Command.create({
-                        'product_id': coke_large_always_never.id,
-                        'extra_price': 0,
-                    }),
-                    Command.create({
-                        'product_id': coke_large_always.id,
-                        'extra_price': 0,
-                    }),
-                    Command.create({
-                        'product_id': coke_large_never.id,
-                        'extra_price': 0,
-                    }),
+                    Command.create({'product_id': water.id, 'extra_price': 0}),
+                    Command.create({'product_id': orange_juice.id, 'extra_price': 0}),
+                ],
+            },
+            {
+                'name': 'Drinks2',
+                'combo_item_ids': [
+                    Command.create({'product_id': water2.id, 'extra_price': 0}),
+                    Command.create({'product_id': orange_juice2.id, 'extra_price': 0}),
                 ],
             }
         ])
-
-        self.env['product.product'].create({
-            'available_in_pos': True,
-            'list_price': 10.0,
-            'name': 'Meal Combo',
-            'type': 'combo',
-            'combo_ids': [
-                Command.set([combo.id])
-            ],
-        })
+        combo_drinks, price_for_drinks = self.env['product.product'].create([
+            {
+                'name': 'Combo Drinks',
+                'type': 'combo',
+                'available_in_pos': True,
+                'list_price': 12.0,
+                'taxes_id': [],
+                'combo_ids': [
+                    Command.set([drinks_combo.id]),
+                ],
+            },
+            {
+                'name': 'Price for drinks',
+                'type': 'combo',
+                'available_in_pos': True,
+                'list_price': 12.0,
+                'taxes_id': [],
+                'combo_ids': [
+                    Command.set([drinks_combo_with_price.id]),
+                ],
+            }
+        ])
 
         self.pos_config.write({
             'self_ordering_mode': 'kiosk',
@@ -336,36 +309,33 @@ class TestSelfOrderCombo(SelfOrderCommonTest):
         })
         self.pos_config.with_user(self.pos_user).open_ui()
         self.pos_config.current_session_id.set_opening_control(0, "")
-        self_route = self.pos_config._get_self_order_route()
-        self.start_tour(self_route, "test_product_dont_display_all_variants")
 
-    def test_self_combo_extra_price_selection_and_confirmation(self):
-        """
-        Test extra price display in combo selection and confirmation.
-        - Combo with qty_free=0: All items show "+ €X" price badge
-        - Combo with qty_free>0: Free items have no extra badge, paid items show "Extra: €X"
-        - Confirmation page displays extra prices correctly
-        """
+        water_item = combo_drinks.combo_ids.combo_item_ids.filtered(lambda i: i.product_id == water)
+        water2_item = price_for_drinks.combo_ids.combo_item_ids.filtered(lambda i: i.product_id == water2)
 
-        setup_product_combo_items(self)
-        self.desks_combo.qty_free = 0
-        self.desks_combo.qty_max = 3
+        order1 = self.process_self_order([
+            {
+                'product': combo_drinks,
+                'qty': 2,
+                'price_unit': combo_drinks.lst_price,
+                'combo_children': [
+                    {'product': water, 'combo_item_id': water_item.id},
+                ],
+            },
+        ])
+        order2 = self.process_self_order([
+            {
+                'product': price_for_drinks,
+                'qty': 3,
+                'price_unit': price_for_drinks.lst_price,
+                'combo_children': [
+                    {'product': water2, 'combo_item_id': water2_item.id},
+                ],
+            },
+        ])
 
-        self.desk_accessories_combo.qty_free = 1
-        self.desk_accessories_combo.qty_max = 3
-
-        self.pos_config.write({
-            'self_ordering_default_user_id': self.pos_admin.id,
-            'self_ordering_mode': 'mobile',
-            'self_ordering_pay_after': 'each',
-            'self_ordering_service_mode': 'counter',
-            'available_preset_ids': [(5, 0)],
-        })
-        self.pos_config.with_user(self.pos_user).open_ui()
-        self.pos_config.current_session_id.set_opening_control(0, "")
-        self_route = self.pos_config._get_self_order_route()
-
-        self.start_tour(self_route, "test_self_combo_extra_price_selection_and_confirmation")
+        self.assertEqual(order1.amount_total, 24)
+        self.assertEqual(order2.amount_total, 36)
 
     def test_combo_price_unit_mulitple_qty(self):
         """
@@ -576,6 +546,20 @@ class TestSelfOrderCombo(SelfOrderCommonTest):
                     msg="An unpaid combo order must not be accepted as paid")
                 self.assertFalse(order.payment_ids)
 
+        session = self.pos_config.current_session_id
+        # Pay all orders
+        for order in session.order_ids:
+            order.payment_ids = self.env['pos.payment'].create({
+                'amount': order.amount_total,
+                'payment_date': order.date_order,
+                'payment_method_id': self.bank_payment_method.id,
+                'pos_order_id': order.id,
+            })
+            order.action_pos_order_paid()
+
+        session.close_session_from_ui()
+        self.assertEqual(session.state, 'closed', "The session must be closable even after a zeroed combo order was sent")
+
     def test_combo_extra_price_is_not_trusted_from_the_frontend(self):
         """
         The extra price of a combo item is part of the child line price. It must be added back
@@ -637,6 +621,20 @@ class TestSelfOrderCombo(SelfOrderCommonTest):
                 self.assertNotEqual(order.state, 'paid',
                     msg="An unpaid combo order must not be accepted as paid")
                 self.assertFalse(order.payment_ids)
+
+        session = self.pos_config.current_session_id
+        # Pay all orders
+        for order in session.order_ids:
+            order.payment_ids = self.env['pos.payment'].create({
+                'amount': order.amount_total,
+                'payment_date': order.date_order,
+                'payment_method_id': self.bank_payment_method.id,
+                'pos_order_id': order.id,
+            })
+            order.action_pos_order_paid()
+
+        session.close_session_from_ui()
+        self.assertEqual(session.state, 'closed', "The session must be closable even after a zeroed combo order was sent")
 
     def _setup_kiosk_session(self):
         self.pos_config.write({

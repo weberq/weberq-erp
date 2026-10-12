@@ -1,11 +1,11 @@
-import base64
-
 from odoo.tools import misc
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 from odoo.addons.stock_account.tests.test_anglo_saxon_valuation_reconciliation_common import ValuationReconciliationTestCommon
 
 
 class TestL10nRoEdiStockCommon(ValuationReconciliationTestCommon):
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     @AccountTestInvoicingCommon.setup_country('ro')
     def setUpClass(cls):
@@ -32,7 +32,7 @@ class TestL10nRoEdiStockCommon(ValuationReconciliationTestCommon):
             product = data['product_id']
             cls.env['stock.move'].create({
                 'product_id': product.id,
-                'product_uom': product.uom_id.id,
+                'uom_id': product.uom_id.id,
                 'product_uom_qty': data['product_uom_qty'],
                 'quantity': data['quantity'],
                 'procure_method': data.get('procure_method', 'make_to_stock'),
@@ -77,6 +77,6 @@ class TestL10nRoEdiStockCommon(ValuationReconciliationTestCommon):
                 tag.attrib['codTarifar'] = self.default_intrastat_code.code
 
         self.assertXmlTreeEqual(
-            self.get_xml_tree_from_string(base64.b64decode(document.attachment)),
+            self.get_xml_tree_from_string(document.attachment.content),
             expected_tree,
         )

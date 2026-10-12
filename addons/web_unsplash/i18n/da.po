@@ -12,22 +12,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-08 17:36+0000\n"
-"PO-Revision-Date: 2026-08-07 00:03+0000\n"
+"POT-Creation-Date: 2026-08-28 17:43+0000\n"
+"PO-Revision-Date: 2026-09-09 14:11+0000\n"
 "Last-Translator: \"Kira Petersen François (peti)\" <peti@odoo.com>\n"
-"Language-Team: Danish <https://translate.odoo.com/projects/odoo-19/"
+"Language-Team: Danish <https://translate.odoo.com/projects/odoo-master/"
 "web_unsplash/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#. module: web_unsplash
+#: model_terms:ir.ui.view,arch_db:web_unsplash.res_config_settings_view_form
+msgid "<i class=\"oi\" data-icon=\"east\"/> Create Unsplash Account"
+msgstr ""
 
 #. module: web_unsplash
 #: model:ir.model.fields,field_description:web_unsplash.field_res_config_settings__unsplash_access_key
 msgid "Access Key"
-msgstr "Adgangsnøgle"
+msgstr "Adgangs nøgle"
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -43,11 +48,17 @@ msgid "Apply"
 msgstr "Anvend"
 
 #. module: web_unsplash
+#: model:ir.model,name:web_unsplash.model_ir_attachment
+msgid "Attachment"
+msgstr "Vedhæftning"
+
+#. module: web_unsplash
 #: model:ir.model,name:web_unsplash.model_res_config_settings
 msgid "Config Settings"
 msgstr "Konfigurationsindstillinger"
 
 #. module: web_unsplash
+#: model:ir.model.fields,field_description:web_unsplash.field_ir_attachment__display_name
 #: model:ir.model.fields,field_description:web_unsplash.field_ir_qweb_field_image__display_name
 #: model:ir.model.fields,field_description:web_unsplash.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:web_unsplash.field_res_users__display_name
@@ -58,18 +69,26 @@ msgstr "Visningsnavn"
 #. odoo-python
 #: code:addons/web_unsplash/controllers/main.py:0
 msgid "ERROR: Unknown Unsplash URL!"
-msgstr "FEJL: Ukendt Unsplash-URL!"
+msgstr "FEJL: Ukendt Unsplash URL!"
 
 #. module: web_unsplash
 #. odoo-python
 #: code:addons/web_unsplash/controllers/main.py:0
 msgid "ERROR: Unknown Unsplash notify URL!"
-msgstr "FEJL: Ukendt Unsplash-notifikations-URL!"
+msgstr "FEJL: Ukendt Unsplash notifikations URL!"
 
 #. module: web_unsplash
-#: model_terms:ir.ui.view,arch_db:web_unsplash.res_config_settings_view_form
-msgid "Generate an Access Key"
-msgstr "Generér adgangsnøgle"
+#: model:ir.module.module,description:base.module_web_unsplash
+msgid ""
+"Explore the free high-resolution image library of Unsplash.com and find "
+"images to use in Odoo. An Unsplash search bar is added to the image library "
+"modal."
+msgstr ""
+
+#. module: web_unsplash
+#: model:ir.module.module,summary:base.module_web_unsplash
+msgid "Find free high-resolution images from Unsplash"
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -78,6 +97,7 @@ msgid "Get an Access key"
 msgstr "Få en adgangsnøgle"
 
 #. module: web_unsplash
+#: model:ir.model.fields,field_description:web_unsplash.field_ir_attachment__id
 #: model:ir.model.fields,field_description:web_unsplash.field_ir_qweb_field_image__id
 #: model:ir.model.fields,field_description:web_unsplash.field_res_config_settings__id
 #: model:ir.model.fields,field_description:web_unsplash.field_res_users__id
@@ -88,13 +108,13 @@ msgstr "ID"
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/unsplash_credentials/unsplash_credentials.xml:0
 msgid "Paste your access key here"
-msgstr "Indsæt din adgangsnøgle her"
+msgstr "Indsæt din adgangs nøgle her"
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/unsplash_credentials/unsplash_credentials.xml:0
 msgid "Paste your application ID here"
-msgstr "Indsæt dit applikations-ID her"
+msgstr "Indsæt dit applikations ID her"
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -106,19 +126,18 @@ msgstr "Fotos (via Unsplash)"
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/media_dialog/image_selector_patch.js:0
 msgid "Please check your Unsplash access key and application ID."
-msgstr "Kontrollér venligst din Unsplash-adgangsnøgle og dit applikations-ID."
+msgstr "Tjek venligst din Unsplash adgangs nøgle og dit applikations ID."
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/media_dialog/image_selector_patch.js:0
 msgid "Please check your internet connection or contact administrator."
-msgstr ""
-"Konrollér venligst din internetforbindelse eller kontakt din administrator."
+msgstr "Tjek venligst din internetforbindelse eller kontakt administrator."
 
 #. module: web_unsplash
 #: model:ir.model,name:web_unsplash.model_ir_qweb_field_image
 msgid "Qweb Field Image"
-msgstr "Billede fra QWeb-felt"
+msgstr "Qweb felt billede"
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -138,7 +157,7 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/media_dialog/image_selector_patch.js:0
 msgid "Something went wrong"
-msgstr "Der opstod en fejl"
+msgstr "Noget gik galt"
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -147,14 +166,25 @@ msgid ""
 "The max number of searches is exceeded. Please retry in an hour or extend to "
 "a better account."
 msgstr ""
-"Du har nået grænsen for søgninger. Forsøg igen om en time, eller opgradér "
-"til en konto med højere kapacitet."
+"Det maksimale antal søgninger er oversteget. Prøv venligst igen om en time, "
+"eller udvid til en bedre konto."
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/media_dialog/image_selector_patch.js:0
 msgid "Unauthorized Key"
 msgstr "Uautoriseret nøgle"
+
+#. module: web_unsplash
+#: model:ir.module.module,shortdesc:base.module_web_unsplash
+msgid "Unsplash Image Library"
+msgstr ""
+
+#. module: web_unsplash
+#. odoo-python
+#: code:addons/web_unsplash/models/ir_attachment.py:0
+msgid "Unsplash attachments must be images."
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -177,19 +207,16 @@ msgstr "Bruger"
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/unsplash_credentials/unsplash_credentials.xml:0
 msgid "and paste"
-msgstr "og indsæt"
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/unsplash_credentials/unsplash_credentials.xml:0
 msgid "and paste it here:"
-msgstr "og indsæt det her:"
+msgstr ""
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/unsplash_credentials/unsplash_credentials.xml:0
 msgid "here:"
-msgstr "her:"
-
-#~ msgid "Attachment"
-#~ msgstr "Vedhæftning"
+msgstr ""

@@ -202,7 +202,9 @@ class TestTaskDependencies(TestProjectCommon):
         subtasks['Build'].depend_on_ids = subtasks['Design']
         subtasks['Deliver'].depend_on_ids = subtasks['Build']
 
-        task = self.env['project.task'].browse(template.action_create_from_template())
+        task = self.env['project.task'].browse(
+            template.with_context(default_project_id=self.project_pigs.id).action_create_from_template()
+        )
         copies = {subtask.name: subtask for subtask in task.child_ids}
 
         self.assertFalse(copies['Design'].depend_on_ids)

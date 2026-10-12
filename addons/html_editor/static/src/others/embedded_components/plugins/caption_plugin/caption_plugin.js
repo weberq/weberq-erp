@@ -26,26 +26,26 @@ export class CaptionPlugin extends Plugin {
             {
                 id: "toggleImageCaption",
                 title: _t("Add/remove a caption"),
+                icon: "text_ad",
                 run: this.toggleImageCaption.bind(this),
                 isAvailable: isHtmlContentSupported,
             },
         ],
         toolbar_items: [
-            {
+            withSequence(20, {
                 id: "image_caption",
                 description: _t("Add/remove a caption"),
-                groupId: "image_description",
+                groupId: "image_modifiers",
                 commandId: "toggleImageCaption",
-                text: _t("Caption"),
                 isActive: () => this.hasImageCaption(this.dependencies.image.getTargetedImage()),
-            },
+            }),
         ],
-        clean_for_save_handlers: this.cleanForSave.bind(this),
-        delete_handlers: this.afterDelete.bind(this),
-        before_cut_handlers: this.expandSelectionToCaption.bind(this),
-        before_drag_handlers: this.expandSelectionToCaption.bind(this),
+        clean_for_save_processors: this.cleanForSave.bind(this),
+        on_deleted_handlers: this.afterDelete.bind(this),
+        on_will_cut_handlers: this.expandSelectionToCaption.bind(this),
+        on_will_drag_handlers: this.expandSelectionToCaption.bind(this),
         delete_image_overrides: this.handleDeleteImage.bind(this),
-        after_save_media_dialog_handlers: this.onImageReplaced.bind(this),
+        on_media_dialog_saved_handlers: this.onImageReplaced.bind(this),
         hints: [{ selector: "FIGCAPTION > .o_caption_editable", text: _t("Write a caption...") }],
         hint_targets_providers: (selectionData) => {
             const captionSpan = closestElement(
@@ -62,11 +62,19 @@ export class CaptionPlugin extends Plugin {
                 return false;
             }
         },
-        unsplittable_node_predicates: [
-            (node) => ["FIGURE", "FIGCAPTION"].includes(node.nodeName), // avoid merge
+        is_node_splittable_predicates: [
+            (node) => {
+                // avoid merge
+                if (["FIGURE", "FIGCAPTION"].includes(node.nodeName)) {
+                    return false;
+                }
+            },
         ],
-        image_name_predicates: [this.getImageName.bind(this)],
-        link_compatible_selection_predicates: this.isLinkAllowedOnSelection.bind(this),
+        is_link_allowed_on_selection_predicates: () => {
+            if (this.isLinkAllowedOnSelection()) {
+                return true;
+            }
+        },
         toolbar_namespace_providers: withSequence(70, (targetedNodes) => {
             if (
                 targetedNodes.length &&
@@ -75,9 +83,11 @@ export class CaptionPlugin extends Plugin {
                 return DISABLED_NAMESPACE;
             }
         }),
-        html_drop_overrides: this.onPaste.bind(this),
-        paste_overrides: this.onPaste.bind(this),
-        normalize_handlers: (root) => {
+        html_drop_overrides: this.onDrop.bind(this),
+        paste_text_overrides: this.onPaste.bind(this),
+        paste_html_overrides: this.onPaste.bind(this),
+        paste_odoo_editor_html_overrides: this.onPaste.bind(this),
+        normalize_processors: (root) => {
             let figures = [];
             if (root.matches(CAPTION_SPAN_SELECTOR)) {
                 figures = [closestElement(root, "figure")];
@@ -96,6 +106,7 @@ export class CaptionPlugin extends Plugin {
                     figcaption.setAttribute("placeholder", captionSpan.textContent);
                 }
             });
+            return root;
         },
         split_element_block_overrides: (params) => {
             if (closestElement(params.targetNode, CAPTION_SPAN_SELECTOR)) {
@@ -103,14 +114,19 @@ export class CaptionPlugin extends Plugin {
             }
         },
         powerbox_blacklist_selectors: CAPTION_SPAN_SELECTOR,
-        are_inlines_allowed_at_root_predicates: (node) => node.matches(CAPTION_SPAN_SELECTOR),
         // Consider a <figure> element as empty if it only contains a
         // <figcaption> element (e.g. when its image has just been
         // removed).
-        empty_node_predicates: (el) =>
-            el.matches?.("figure") &&
-            el.children.length === 1 &&
-            el.children[0].matches("figcaption"),
+        is_node_empty_predicates: (el) => {
+            if (
+                el.matches?.("figure") &&
+                el.children.length === 1 &&
+                el.children[0].matches("figcaption")
+            ) {
+                return true;
+            }
+        },
+        image_name_providers: this.getImageName.bind(this),
         move_node_whitelist_selectors: "figure",
 
         /** Processors */
@@ -126,17 +142,42 @@ export class CaptionPlugin extends Plugin {
             const caption = figure.querySelector("figcaption")?.textContent;
             figure.remove();
             this.addImageCaption(image, caption, false);
-            this.dependencies.history.addStep();
+            this.dependencies.history.commit();
         }
     }
 
-    onPaste(selection, clipboardData) {
-        const captionSpan = closestElement(selection.anchorNode, CAPTION_SPAN_SELECTOR);
-        if (captionSpan) {
-            const pastedTextContent = clipboardData.getData("text/plain");
+    onDrop(selection, text) {
+        if (closestElement(selection.anchorNode, CAPTION_SPAN_SELECTOR)) {
+            this.dependencies.clipboard.pasteText(text.replace(/\r?\n|\r/g, ""));
+            return true;
+        }
+    }
+
+    onPaste(selection, clipboardRoot) {
+        if (closestElement(selection.anchorNode, CAPTION_SPAN_SELECTOR)) {
+            const pastedTextContent = clipboardRoot.textContent;
             this.dependencies.clipboard.pasteText(pastedTextContent.replace(/\r?\n|\r/g, ""));
             return true;
         }
+    }
+
+    cleanForSave(root) {
+        const figures = [...root.querySelectorAll("figure")]
+            .filter(figure => figure.querySelectorAll("img").length === 1);
+        for (const figure of figures) {
+            figure.removeAttribute("contenteditable");
+            const image = figure.querySelector("img");
+            const span = figure.querySelector(CAPTION_SPAN_SELECTOR);
+            const captionText = span?.textContent || image.getAttribute("data-caption") || "";
+            figure.querySelector("figcaption").remove();
+            const newFigcaption = root.ownerDocument.createElement("figcaption");
+            newFigcaption.textContent = captionText;
+            image.removeAttribute("data-caption");
+            image.removeAttribute("data-caption-id");
+            image.classList.remove(EDITABLE_MEDIA_CLASS);
+            image.after(newFigcaption);
+        }
+        return root;
     }
 
     getCaptionId() {
@@ -159,7 +200,7 @@ export class CaptionPlugin extends Plugin {
             this.removeImageCaption(image);
         } else {
             this.addImageCaption(image, image.getAttribute("data-caption") || "");
-            this.dependencies.history.addStep();
+            this.dependencies.history.commit();
         }
     }
 
@@ -227,10 +268,10 @@ export class CaptionPlugin extends Plugin {
                 const baseContainer = this.dependencies.baseContainer.createBaseContainer();
                 if (figure.parentElement.nodeName === "A") {
                     figure.parentElement.before(baseContainer);
-                    baseContainer.append(figure.parentElement);
+                    baseContainer.replaceChildren(figure.parentElement);
                 } else {
                     figure.before(baseContainer);
-                    baseContainer.append(figure);
+                    baseContainer.replaceChildren(figure);
                 }
             }
             unwrapContents(figure);
@@ -244,25 +285,8 @@ export class CaptionPlugin extends Plugin {
                 focusNode,
                 focusOffset,
             });
-            this.dependencies.history.addStep();
-        }
-    }
-
-    cleanForSave({ root }) {
-        const figures = [...root.querySelectorAll("figure")]
-            .filter(figure => figure.querySelectorAll("img").length === 1);
-        for (const figure of figures) {
-            figure.removeAttribute("contenteditable");
-            const image = figure.querySelector("img");
-            const span = figure.querySelector(CAPTION_SPAN_SELECTOR);
-            const captionText = span?.textContent || image.getAttribute("data-caption") || "";
-            figure.querySelector("figcaption").remove();
-            const newFigcaption = root.ownerDocument.createElement("figcaption");
-            newFigcaption.textContent = captionText;
-            image.removeAttribute("data-caption");
-            image.removeAttribute("data-caption-id");
-            image.classList.remove(EDITABLE_MEDIA_CLASS);
-            image.after(newFigcaption);
+            this.dependencies.selection.focusEditable();
+            this.dependencies.history.commit();
         }
     }
 
@@ -333,7 +357,7 @@ export class CaptionPlugin extends Plugin {
                 anchorNode: sibling,
                 anchorOffset: 0,
             });
-            this.dependencies.history.addStep();
+            this.dependencies.history.commit();
             return true;
         }
     }

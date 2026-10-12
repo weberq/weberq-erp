@@ -30,7 +30,7 @@ class TestExpenseAnalytics(TestExpenseCommon):
 
         expense.action_submit()
         expense.action_approve()
-        expense.action_post()
+        self.post_expenses(expense)
 
         move = expense.account_move_id
         self.assertTrue(move, "Posting a company-paid expense should create a payment move")

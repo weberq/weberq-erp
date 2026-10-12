@@ -10,6 +10,8 @@ from odoo.exceptions import ValidationError
 @tagged('post_install_l10n', '-at_install', 'post_install')
 class TestArManual(common.TestArCommon):
 
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -36,9 +38,9 @@ class TestArManual(common.TestArCommon):
         self.assertEqual(invoice.sequence_number, 1)
 
     def test_02_fiscal_position(self):
-        # ADHOC SA > IVA Responsable Inscripto > Without Fiscal Positon
+        # ADHOC SA > IVA Responsable Inscripto > Domestic
         invoice = self._create_invoice_ar(partner_id=self.partner)
-        self.assertFalse(invoice.fiscal_position_id, 'Fiscal position should be set to empty')
+        self.assertEqual(invoice.fiscal_position_id, self.env.company.domestic_fiscal_position_id)
 
         # Consumidor Final > IVA Responsable Inscripto > Without Fiscal Positon
         invoice = self._create_invoice_ar(partner_id=self.partner_cf)
@@ -415,20 +417,60 @@ class TestArManual(common.TestArCommon):
         self.assertAlmostEqual(l10n_ar_values['price_subtotal'], 124716.0)
         self.assertAlmostEqual(l10n_ar_values['price_net'], 5196.5)
 
-    def test_l10n_ar_vat_with_non_numeric_value(self):
+    def test_l10n_ar_identification_with_non_numeric_value(self):
+        """ A non-numeric DNI or CUIL is rejected by its format validation, while a
+        passport accepts alphanumeric values (mirrors the pre-JSON identification test). """
         partner = self.env["res.partner"].create({"name": "AR Company", "country_id": self.env.ref("base.ar").id})
 
-        with self.assertRaisesRegex(ValidationError, 'Only numbers allowed for "DNI"'):
-            partner.l10n_latam_identification_type_id = self.env.ref("l10n_ar.it_dni")
-            partner.vat = "test"
+        with self.assertRaisesRegex(ValidationError, 'DNI'):
+            partner.additional_identifiers = {'AR_DNI': 'test'}
 
-        with self.assertRaisesRegex(ValidationError, 'Invalid length for "CUIL"'):
-            partner.l10n_latam_identification_type_id = self.env.ref("l10n_ar.it_CUIL")
-            partner.vat = "1234567890a"
+        with self.assertRaisesRegex(ValidationError, 'CUIL'):
+            partner.additional_identifiers = {'AR_CUIL': '1234567890a'}
 
-        partner.l10n_latam_identification_type_id = self.env.ref("l10n_latam_base.it_pass")
-        partner.vat = "A12345678"
-        self.assertEqual(partner.vat, "A12345678")
+        partner.additional_identifiers = {'PASSPORT': 'A12345678'}
+        self.assertEqual(partner.additional_identifiers.get('PASSPORT'), 'A12345678')
+
+    def test_l10n_ar_get_invoice_totals_for_report_refund_with_same_code(self):
+        """Test _l10n_ar_get_invoice_totals_for_report for refund invoices with ARCA codes that can be used for both invoice and refund"""
+        # Create a credit note with document type 60 that can be used as both invoice and refund
+        doc_60_lp_a = self.env.ref('l10n_ar.dc_a_cvl')
+
+        credit_note = self._create_invoice_ar(
+            ref='test_credit_note_refund: Credit note with document type 60 for refund test',
+            move_type='out_refund',
+            partner_id=self.res_partner_adhoc,
+            company_id=self.company_ri,
+            invoice_date="2021-03-20",
+            l10n_latam_document_type_id=doc_60_lp_a,
+        )
+
+        # Verify this is considered a refund invoice with special ARCA code
+        self.assertTrue(credit_note._l10n_ar_is_refund_invoice())
+
+        # Test the _l10n_ar_get_invoice_totals_for_report method
+        self._assert_tax_totals_summary(credit_note._l10n_ar_get_invoice_totals_for_report(), {
+            'same_tax_base': True,
+            'currency_id': self.currency.id,
+            'base_amount_currency': -100.0,
+            'tax_amount_currency': -21.0,
+            'total_amount_currency': -121.0,
+            'subtotals': [
+                {
+                    'name': "Untaxed Amount",
+                    'base_amount_currency': -100.0,
+                    'tax_amount_currency': -21.0,
+                    'tax_groups': [
+                        {
+                            'id': self.tax_21.tax_group_id.id,
+                            'base_amount_currency': -100.0,
+                            'tax_amount_currency': -21.0,
+                            'display_base_amount_currency': -100.0,
+                        },
+                    ],
+                },
+            ],
+        })
 
     def test_create_debit_note_for_credit_note(self):
         """
@@ -455,6 +497,42 @@ class TestArManual(common.TestArCommon):
         })
         debit_note_wizard.create_debit()
         self.assertTrue(invoice.reversal_move_ids.debit_note_ids)
+
+    def test_l10n_ar_get_invoice_totals_for_report_refund_with_same_code_vat_included(self):
+        """Same as above but with document type 188 (letter B): VAT is not detailed on the report and is folded
+        into the base amount. The sign must be applied only once so the totals stay negative on this path too."""
+        doc_188_lp_b = self.env.ref('l10n_ar.dc_liq_cd_sp_b')
+
+        credit_note = self._create_invoice_ar(
+            ref='test_credit_note_refund: Credit note with document type 188 for refund test',
+            move_type='out_refund',
+            partner_id=self.res_partner_adhoc,
+            company_id=self.company_ri,
+            invoice_date="2021-03-20",
+            l10n_latam_document_type_id=doc_188_lp_b,
+        )
+
+        self.assertTrue(credit_note._l10n_ar_is_refund_invoice())
+        self.assertTrue(credit_note._l10n_ar_include_vat())
+
+        tax_totals = credit_note._l10n_ar_get_invoice_totals_for_report()
+        self.assertEqual(tax_totals['base_amount_currency'], -121.0)
+        self.assertEqual(tax_totals['tax_amount_currency'], 0.0)
+        self.assertEqual(tax_totals['total_amount_currency'], -121.0)
+
+    def test_pre_printed_invoice_warning(self):
+        """Test that a warning is included when at an Invoice using a 'Pre-printed Invoice' Journal."""
+        invoice = self._create_invoice_ar()  # Created with 'Pre-printed Invoice' Journal
+        self.assertTrue(
+            'l10n_ar_apos_sys_preprinted_warning' in invoice.alerts,
+            'Pre-printed Invoice warning should be included.',
+        )
+        # Trigger alerts field recompute
+        self.journal.l10n_ar_is_pos = False
+        self.assertTrue(
+            'l10n_ar_apos_sys_preprinted_warning' not in (invoice.alerts or {}),
+            'Pre-printed Invoice warning should not be included.',
+        )
 
     def test_foreign_partner_without_expo_journal(self):
         """ Test that if there is no active export journal, creating an invoice for a foreign partner doesn't

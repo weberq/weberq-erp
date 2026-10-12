@@ -150,7 +150,7 @@
                     </record>
                     <record id="tax_report_line_building_repairs" model="account.report.line">
                         <field name="name">6.1 Carrying out repairs of own fixed assets (buildings/structures), where the right to input VAT deduction would be fully or partially restricted if such services were acquired from a third party</field>
-                        <field name="name@ka">6.1 საკუთარი ძირითადი საშუალების (შენობის/ნაგებობის) რემონტის განხორციელება, თუ ამ მომსახურების სხვა პირისგან შეძენის შემთხვევაში სრულად ან ნაწილობრივ შეიზღუდებოდა ჩათვლის</field>
+                        <field name="name@ka">6. 1 საკუთარი ძირითადი საშუალების (შენობის/ნაგებობის) რემონტის განხორციელება, თუ ამ მომსახურების სხვა პირისგან შეძენის შემთხვევაში სრულად ან ნაწილობრივ შეიზღუდებოდა ჩათვლის უფლება</field>
                         <field name="code">ge_8</field>
                         <field name="hierarchy_level">4</field>
                         <field name="expression_ids">

@@ -43,12 +43,10 @@ class TestAnalyticPlanOperations(TransactionCase):
         parent = self.env['account.analytic.plan'].create({'name': 'Parent Plan'})
         plan = self.env['account.analytic.plan'].create({'name': 'Test Plan', 'parent_id': parent.id})
         self.assertFalse(plan._find_plan_column('account.analytic.line'))
-        plan_field = plan._find_related_field('account.analytic.line')
-        self.assertTrue(plan_field)
+        self.assertTrue(plan._find_related_field('account.analytic.line'))
         plan.parent_id = False
         self.assertTrue(plan._find_plan_column('account.analytic.line'))
         self.assertFalse(plan._find_related_field('account.analytic.line'))
-        self.assertFalse(plan_field.exists())
 
     def test_demote_plan(self):
         parent = self.env['account.analytic.plan'].create({'name': 'Parent Plan'})
@@ -90,10 +88,11 @@ class TestAnalyticPlanOperations(TransactionCase):
             'code': 'manda',
             'plan_id': mandatory_plan.id,
         }])
-        distribution_model = self.env['account.analytic.distribution.model'].create({}).with_context(validate_analytic=True)
+        distribution_model = self.env['account.analytic.distribution.model'].create({
+            'analytic_distribution': {f"{test_account.id}": 100},
+        }).with_context(validate_analytic=True)
 
         # the configuration makes it raise an error
-        distribution_model.analytic_distribution = {f"{test_account.id}": 100}
         with self.assertRaisesRegex(UserError, r'require a 100% analytic distribution'):
             distribution_model._validate_distribution()
 
@@ -110,9 +109,11 @@ class TestAnalyticPlanOperations(TransactionCase):
         company_2 = self.env['res.company'].create({
             'name': 'company_2',
         })
-        plan = self.env['account.analytic.plan'].create([{
+        plan, other_plan = self.env['account.analytic.plan'].create([{
             'name': 'Plan',
             'default_applicability': 'optional',
+        }, {
+            'name': 'Other Plan',
         }])
         applicability = self.env['account.analytic.applicability'].create({
             'business_domain': 'general',
@@ -125,7 +126,14 @@ class TestAnalyticPlanOperations(TransactionCase):
             'code': 'manda',
             'plan_id': plan.id,
         }])
-        distribution_model = self.env['account.analytic.distribution.model'].create({}).with_context(validate_analytic=True)
+        other_account = self.env['account.analytic.account'].create([{
+            'name': 'Other Account',
+            'code': 'other',
+            'plan_id': other_plan.id,
+        }])
+        distribution_model = self.env['account.analytic.distribution.model'].create({
+            'analytic_distribution': {f"{other_account.id}": 100},
+        }).with_context(validate_analytic=True)
 
         # mandatory applicability is only in company_2, should not raise for company_1
         distribution_model._validate_distribution(business_domain='general', company_id=self.env.company.id)

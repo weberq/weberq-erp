@@ -1,9 +1,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-import base64
 import json
 import logging
-import pytz
 import re
 
 from datetime import datetime
@@ -12,6 +10,7 @@ from itertools import starmap
 from odoo import _, api, fields, models
 from odoo.exceptions import LockError, UserError
 from odoo.addons.l10n_in_ewaybill.tools.ewaybill_api import EWayBillApi, EWayBillError
+from odoo.tools import BinaryBytes
 
 _logger = logging.getLogger(__name__)
 
@@ -258,7 +257,7 @@ class L10nInEwaybill(models.Model):
                 ewaybill_json = ewaybill._ewaybill_generate_direct_json()
             else:
                 ewaybill_json = {}
-            ewaybill.content = base64.b64encode(json.dumps(ewaybill_json).encode())
+            ewaybill.content = BinaryBytes(json.dumps(ewaybill_json).encode())
 
     @api.depends('name', 'state')
     def _compute_display_name(self):
@@ -479,7 +478,7 @@ class L10nInEwaybill(models.Model):
             vals = {
                 'name': name,
                 'mimetype': 'application/json',
-                'raw': json.dumps(raw_data, indent=4),
+                'raw': json.dumps(raw_data, indent=4).encode(),
                 'res_model': self._name,
                 'res_id': self.id,
                 'res_field': res_field,
@@ -505,8 +504,9 @@ class L10nInEwaybill(models.Model):
         cancel_json_vals = {
             'ewbNo': int(self.name),
             'cancelRsnCode': int(self.cancel_reason),
-            'cancelRmrk': self.cancel_remarks,
         }
+        if self.cancel_remarks:
+            cancel_json_vals['cancelRmrk'] = self.cancel_remarks
         return cancel_json_vals
 
     def _ewaybill_cancel(self):
@@ -746,7 +746,7 @@ class L10nInEwaybill(models.Model):
         self.ensure_one()
         if self.attachment_id:
             try:
-                res_json = json.loads(self.attachment_id.raw.decode("utf-8"))
+                res_json = json.loads(self.attachment_id.raw.content)
             except ValueError:
                 return False
             ewb_name = res_json.get("ewayBillNo") or res_json.get("EwbNo")
@@ -767,7 +767,7 @@ class L10nInEwaybill(models.Model):
         attachment = self.env['ir.attachment'].create({
             'name': f'{doc_label} - {self.document_number}.pdf',
             'type': 'binary',
-            'datas': base64.b64encode(pdf_content),
+            'raw': BinaryBytes(pdf_content),
             'res_model': 'l10n.in.ewaybill',
             'res_id': self.id,
             'mimetype': 'application/pdf',

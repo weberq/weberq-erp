@@ -1,6 +1,5 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-import base64
 import datetime
 import email.policy
 import functools
@@ -24,12 +23,12 @@ from urllib3.contrib.pyopenssl import PyOpenSSLContext, get_subj_alt_name
 from odoo import _, api, fields, models, modules, tools
 from odoo.exceptions import UserError
 from odoo.tools import (
+    BinaryValue,
     email_domain_extract,
     email_domain_normalize,
     email_normalize,
     encapsulate_email,
     formataddr,
-    human_size,
 )
 
 try:
@@ -175,7 +174,6 @@ class IrMail_Server(models.Model):
     smtp_debug = fields.Boolean(string='Debugging', help="If enabled, the full output of SMTP sessions will "
                                                          "be written to the server log at DEBUG level "
                                                          "(this is very verbose and may include confidential info!)")
-    max_email_size = fields.Float(string="Max Email Size")
     sequence = fields.Integer(string='Priority', default=10, help="When no specific mail server is requested for a mail, the highest priority one "
                                                                   "is used. Default priority is 10 (smaller number = higher priority)")
     active = fields.Boolean(default=True)
@@ -256,10 +254,9 @@ class IrMail_Server(models.Model):
         """
         return dict()
 
+    @api.model
     def _get_max_email_size(self):
-        if self.max_email_size:
-            return self.max_email_size
-        return float(self.env['ir.config_parameter'].sudo().get_param('base.default_max_email_size', '10'))
+        return self.env['ir.config_parameter'].sudo().get_float('base.default_max_email_size', 20)
 
     def _get_test_email_from(self):
         self.ensure_one()
@@ -281,16 +278,13 @@ class IrMail_Server(models.Model):
     def _get_test_email_to(self):
         return "noreply@odoo.com"
 
-    def test_smtp_connection(self, autodetect_max_email_size=False):
-        """Test the connection and if autodetect_max_email_size, set auto-detected max email size.
+    def test_smtp_connection(self):
+        """Test the connection.
 
-        :param bool autodetect_max_email_size: whether to autodetect the max email size
-        :return: client action to notify the user of the result of the operation (connection test or
-            auto-detection successful depending on the ``autodetect_max_email_size`` parameter)
+        :return: client action to notify the user of the result of the operation
         :rtype: dict
 
-        :raises UserError: if the connection fails and if ``autodetect_max_email_size`` and
-            the server doesn't support the auto-detection of email max size
+        :raises UserError: if the connection fails
         """
         for server in self:
             smtp = False
@@ -313,12 +307,6 @@ class IrMail_Server(models.Model):
                 (code, repl) = smtp.getreply()
                 if code != 354:
                     raise UserError(_('The server refused the test connection with error %(repl)s', repl=repl))  # noqa: TRY301
-                if autodetect_max_email_size:
-                    max_size = smtp.esmtp_features.get('size')
-                    if not max_size:
-                        raise UserError(_('The server "%(server_name)s" doesn\'t return the maximum email size.',
-                                          server_name=server.name))
-                    server.max_email_size = float(max_size) / (1024 ** 2)
             except (UnicodeError, idna.core.InvalidCodepoint) as e:
                 raise UserError(_("Invalid server name!\n %s", e)) from e
             except (gaierror, timeout) as e:
@@ -347,33 +335,22 @@ class IrMail_Server(models.Model):
                 except Exception:
                     # ignored, just a consequence of the previous exception
                     pass
-
-        if autodetect_max_email_size:
-            message = _(
-                'Email maximum size updated (%(details)s).',
-                details=', '.join(f'{server.name}: {human_size(server.max_email_size * 1024 ** 2)}' for server in self))
-        else:
-            message = _('Connection Test Successful!')
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
-                'message': message,
+                'message': _('Connection Test Successful!'),
                 'type': 'success',
                 'sticky': False,
                 'next': {'type': 'ir.actions.act_window_close'},  # force a form reload
             },
         }
 
-    def action_retrieve_max_email_size(self):
-        self.ensure_one()
-        return self.test_smtp_connection(autodetect_max_email_size=True)
-
     @classmethod
     def _disable_send(cls):
         """Whether to disable sending e-mails"""
         # no e-mails during testing or when registry is initializing
-        return modules.module.current_test or cls.pool._init
+        return modules.module.current_test or not cls.pool.ready
 
     def _connect__(self, host=None, port=None, user=None, password=None, encryption=None,  # noqa: PLW3201
                 smtp_from=None, ssl_certificate=None, ssl_private_key=None, smtp_debug=False, mail_server_id=None,
@@ -439,9 +416,9 @@ class IrMail_Server(models.Model):
                     else:  # ssl, starttls
                         ssl_context.verify_mode = ssl.CERT_NONE
                     ssl_context._ctx.use_certificate(load_pem_x509_certificate(
-                        base64.b64decode(mail_server.smtp_ssl_certificate)))
+                        mail_server.smtp_ssl_certificate.content))
                     ssl_context._ctx.use_privatekey(load_pem_private_key(
-                        base64.b64decode(mail_server.smtp_ssl_private_key),
+                        mail_server.smtp_ssl_private_key.content,
                         password=None))
                     # Check that the private key match the certificate
                     ssl_context._ctx.check_privatekey()
@@ -566,8 +543,8 @@ class IrMail_Server(models.Model):
                                   making the content part of the mail "text/plain".
            :param string subtype_alternative: optional mime subtype of ``body_alternative`` (usually 'plain'
                                               or 'html'). Default is 'plain'.
-           :param list attachments: list of (filename, filecontents) pairs, where filecontents is a string
-                                    containing the bytes of the attachment
+           :param list attachments: list of (filename, filecontents, mime) tuples, where filecontents are
+                                    raw bytes or a binary value
            :param message_id:
            :param references:
            :param list email_cc: optional list of string values for CC header (to be joined with commas)
@@ -621,6 +598,8 @@ class IrMail_Server(models.Model):
         if attachments:
             for (fname, fcontent, mime) in attachments:
                 maintype, subtype = mime.split('/') if mime and '/' in mime else ('application', 'octet-stream')
+                if isinstance(fcontent, BinaryValue):
+                    fcontent = fcontent.content
                 if maintype == 'message' and subtype == 'rfc822':
                     msg.add_attachment(BytesParser().parsebytes(fcontent), filename=fname)
                 else:
@@ -657,9 +636,8 @@ class IrMail_Server(models.Model):
           ``--from-filter`` CLI/config parameter.
         :rtype: str | None
         """
-        return self.env['ir.config_parameter'].sudo().get_param(
-            'mail.default.from_filter', tools.config.get('from_filter')
-        )
+        return self.env['ir.config_parameter'].sudo().get_str(
+            'mail.default.from_filter') or tools.config.get('from_filter')
 
     def _prepare_email_message__(self, message, smtp_session):  # noqa: PLW3201
         """Prepare the SMTP information (from, to, message) before sending.
@@ -726,13 +704,25 @@ class IrMail_Server(models.Model):
         elif x_msg_add_to := message['X-Msg-To-Add']:
             to = message['To'] or ''
             to_normalized = tools.mail.email_normalize_all(to)
-            other_recipients = ', '.join(
-                address for address in tools.mail.email_split_and_format(x_msg_add_to)
-                if tools.mail.email_normalize(address, strict=False) not in to_normalized
-                )
             message.replace_header(
-                'To', ', '.join(part for part in [to, other_recipients] if part)
+                'To', ', '.join(
+                    ([to] if to else []) +
+                    [address for address in tools.mail.email_split_and_format(x_msg_add_to)
+                     if tools.mail.email_normalize(address, strict=False) not in to_normalized]
+                ))
+        # `Cc:` header extended similarly
+        if x_msg_add_cc := message.get('X-Msg-Cc-Add'):
+            cc = message.get('Cc') or ''
+            exclude_cc = tools.mail.email_normalize_all(cc) + tools.mail.email_normalize_all(message.get('To') or '')
+            new_cc = ', '.join(
+                ([cc] if cc else []) +
+                [address for address in tools.mail.email_split_and_format(x_msg_add_cc)
+                 if tools.mail.email_normalize(address, strict=False) not in exclude_cc]
             )
+            try:
+                message.replace_header('Cc', new_cc)
+            except KeyError:
+                message.add_header('Cc', new_cc)
 
         if message['From'] != smtp_from:
             message.replace_header('From', smtp_from)
@@ -740,6 +730,7 @@ class IrMail_Server(models.Model):
         # cleanup unwanted headers
         del message['Bcc']                   # see odoo/odoo@2445f9e3c22db810d61996afde883e4ca608f15b
         del message['X-Forge-To']
+        del message['X-Msg-Cc-Add']
         del message['X-Msg-To-Add']
         del message['X-Msg-To-Consolidate']
 

@@ -19,7 +19,7 @@ patch(PosOrder.prototype, {
     isInvoiceMandatoryForSA() {
         // Zatca enforces invoice, but for settlement due, invoices are not needed
         // Only applicable if enterprise:pos_settle_due module is installed
-        return this.isSACompany() && !this.is_settlement() && !this.is_settling_account;
+        return this.isSACompany() && !this.is_settlement() && !this.uiState?.is_settling_account;
     },
 
     isToInvoice() {
@@ -50,15 +50,20 @@ patch(PosOrder.prototype, {
     },
 
     get notLegal() {
-        return !this.l10n_sa_invoice_qr_code_str;
+        return (
+            !this.l10n_sa_invoice_qr_code_str ||
+            !["accepted", "warning"].includes(this.l10n_sa_invoice_edi_state)
+        );
     },
+
     generateQrcode() {
         if (!this.notLegal && this.isSACompany()) {
-            return generateQRCodeDataUrl(this.l10n_sa_invoice_qr_code_str, {
-                width: 180,
-                height: 180,
-            });
+            return generateQRCodeDataUrl(this.l10n_sa_invoice_qr_code_str);
         }
         return false;
+    },
+
+    get l10n_sa_alerts() {
+        return this.account_move?._l10n_sa_alerts || [];
     },
 });

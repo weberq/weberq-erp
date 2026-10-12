@@ -26,11 +26,6 @@ class CalendarRecurrence(models.Model):
         # modified in Odoo but computed from other fields).
         for recurrence in self.filtered('rrule'):
             values = self._rrule_parse(recurrence.rrule, recurrence.dtstart)
-            until = values.get('until')
-            if until and until.tzinfo:
-                # UNTIL=...Z is parsed as an aware UTC datetime; convert it to the
-                # recurrence timezone so the stored date is the right local boundary day.
-                values['until'] = until.astimezone(recurrence._get_timezone())
             recurrence.with_context(dont_notify=True).write(dict(values, need_sync_m=False))
 
     def _apply_recurrence(self, specific_values_creation=None, no_send_edit=False, generic_values_creation=None):
@@ -155,11 +150,14 @@ class CalendarRecurrence(models.Model):
         return self._extend_microsoft_domain(Domain.FALSE)
 
     def _cancel_microsoft(self):
-        self.calendar_event_ids.with_context(dont_notify=True)._cancel_microsoft()
+        # If we canceled and unlinked the events before canceling the recurrence,
+        # we would lose the calendar_id information which is related based on the events
+        events_to_cancel = self.calendar_event_ids.with_context(dont_notify=True)
         super()._cancel_microsoft()
+        events_to_cancel._cancel_microsoft()
 
     @api.model
-    def _microsoft_to_odoo_values(self, microsoft_recurrence, default_reminders=(), default_values=None, with_ids=False):
+    def _microsoft_to_odoo_values(self, microsoft_recurrence, default_reminders=(), default_values=None, with_ids=False, create=False):
         recurrence = microsoft_recurrence.get_recurrence()
 
         if with_ids:
