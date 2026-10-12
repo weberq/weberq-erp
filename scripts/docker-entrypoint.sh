@@ -10,6 +10,7 @@
 #   PASSWORD    - PostgreSQL password    (required)
 #   DB_NAME     - Odoo database name     (default: same as USER)
 #   WORKERS     - Odoo worker processes  (default: 4)
+#   MAX_CRON_THREADS - Cron workers     (default: 2)
 #   LOG_LEVEL   - Odoo log level        (default: info)
 #   ADMIN_PASSWD- Odoo master password  (default: random per start)
 # =============================================================================
@@ -22,6 +23,7 @@ DB_USER="${USER:-odoo}"
 DB_PASSWORD="${PASSWORD:-}"
 DB_NAME="${DB_NAME:-$DB_USER}"
 WORKERS="${WORKERS:-4}"
+MAX_CRON_THREADS="${MAX_CRON_THREADS:-2}"
 LOG_LEVEL="${LOG_LEVEL:-info}"
 ADMIN_PASSWD="${ADMIN_PASSWD:-}"
 
@@ -75,7 +77,7 @@ proxy_mode = True
 
 ; Workers (set 0 for dev single-thread mode)
 workers = ${WORKERS}
-max_cron_threads = 2
+max_cron_threads = ${MAX_CRON_THREADS}
 
 ; Logging (no logfile: logs go to stderr for docker logs)
 log_level = ${LOG_LEVEL}

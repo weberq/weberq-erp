@@ -111,10 +111,13 @@ jobs:
             docker pull "$IMAGE" || { echo "Image pull failed, old container left running."; exit 1; }
 
             # Every Odoo container gets the same database settings and the persistent
-            # data volume (filestore, sessions)
+            # data volume (filestore, sessions). Sized for the shared e2-medium VM
+            # (2 vCPU, 4 GB): the memory cap keeps the other sites on it alive if
+            # Odoo misbehaves.
             erp_run() {
               docker run \
                 --network web_network \
+                --memory 2g \
                 -v "$DATA_VOLUME":/var/lib/odoo \
                 -e HOST="$DB_HOST" \
                 -e PORT="$DB_PORT" \
@@ -122,7 +125,8 @@ jobs:
                 -e PASSWORD="$DB_PASSWORD" \
                 -e DB_NAME="$DB_NAME" \
                 -e ADMIN_PASSWD="$ODOO_MASTER_PASSWORD" \
-                -e WORKERS="4" \
+                -e WORKERS="2" \
+                -e MAX_CRON_THREADS="1" \
                 -e LOG_LEVEL="info" \
                 "$@"
             }
