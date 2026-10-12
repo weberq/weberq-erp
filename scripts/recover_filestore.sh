@@ -9,7 +9,7 @@
 #
 # Usage:
 #   ./recover_filestore.sh            List dangling volumes holding a filestore
-#   ./recover_filestore.sh --apply    Merge them into odoo_data
+#   ./recover_filestore.sh --apply    Merge them into odoo_data (created if missing)
 # =============================================================================
 
 set -euo pipefail
@@ -19,11 +19,13 @@ DATA_VOLUME="${DATA_VOLUME:-odoo_data}"
 APPLY=false
 [[ "${1:-}" == "--apply" ]] && APPLY=true
 
-docker volume inspect "$DATA_VOLUME" >/dev/null 2>&1 \
-  || { echo "Volume $DATA_VOLUME not found. Run a deploy first, it creates the volume."; exit 1; }
-
-# Use the running ERP image so the odoo user and GNU cp are available
-IMAGE="$(docker inspect -f '{{.Config.Image}}' "$APP_NAME")"
+# Run helpers in the ERP image so the odoo user and GNU cp are available: the
+# image of the ERP container if there is one, else the newest ERP image
+if [[ -z "${IMAGE:-}" ]]; then
+  IMAGE="$(docker inspect -f '{{.Config.Image}}' "$APP_NAME" 2>/dev/null || true)"
+  [[ -n "$IMAGE" ]] || IMAGE="$(docker images --format '{{.Repository}}:{{.Tag}}' ghcr.io/weberq/weberq-erp | awk 'NR==1')"
+fi
+[[ -n "$IMAGE" ]] || { echo "No ERP image found. Pull one or set IMAGE=..."; exit 1; }
 
 in_image() {
   docker run --rm --user root --entrypoint bash "$@"
@@ -31,14 +33,18 @@ in_image() {
 
 found=0
 for vol in $(docker volume ls -q -f dangling=true); do
+  # The target is dangling too while no container uses it
+  [[ "$vol" == "$DATA_VOLUME" ]] && continue
   files=$(in_image -v "$vol":/src:ro "$IMAGE" \
     -c 'if [ -d /src/filestore ]; then find /src/filestore -type f | wc -l; else echo -1; fi')
   [[ "$files" == "-1" ]] && continue
   found=$((found + 1))
   echo "$vol: $files filestore files"
   if $APPLY; then
+    # Creates $DATA_VOLUME on first use. Odoo writes sessions next to the
+    # filestore, so the volume root must belong to odoo as well.
     in_image -v "$vol":/src:ro -v "$DATA_VOLUME":/dst "$IMAGE" \
-      -c 'mkdir -p /dst/filestore && cp -a --update=none /src/filestore/. /dst/filestore/ && chown -R odoo:odoo /dst/filestore'
+      -c 'mkdir -p /dst/filestore && cp -a --update=none /src/filestore/. /dst/filestore/ && chown odoo:odoo /dst && chown -R odoo:odoo /dst/filestore'
     echo "  merged into $DATA_VOLUME"
   fi
 done
