@@ -8,9 +8,10 @@
 #   PORT        - PostgreSQL port        (default: 5432)
 #   USER        - PostgreSQL user        (default: odoo)
 #   PASSWORD    - PostgreSQL password    (required)
+#   DB_NAME     - Odoo database name     (default: same as USER)
 #   WORKERS     - Odoo worker processes  (default: 4)
 #   LOG_LEVEL   - Odoo log level        (default: info)
-#   ADMIN_PASSWD- Odoo master password  (default: changeme)
+#   ADMIN_PASSWD- Odoo master password  (default: random per start)
 # =============================================================================
 
 set -e
@@ -19,9 +20,17 @@ DB_HOST="${HOST:-db}"
 DB_PORT="${PORT:-5432}"
 DB_USER="${USER:-odoo}"
 DB_PASSWORD="${PASSWORD:-}"
+DB_NAME="${DB_NAME:-$DB_USER}"
 WORKERS="${WORKERS:-4}"
 LOG_LEVEL="${LOG_LEVEL:-info}"
-ADMIN_PASSWD="${ADMIN_PASSWD:-changeme}"
+ADMIN_PASSWD="${ADMIN_PASSWD:-}"
+
+# The database manager is disabled below, but never fall back to a guessable
+# master password
+if [ -z "$ADMIN_PASSWD" ]; then
+    echo "[entrypoint] WARNING: ADMIN_PASSWD not set, using a random master password"
+    ADMIN_PASSWD="$(python3 -c 'import secrets; print(secrets.token_urlsafe(32))')"
+fi
 
 # ─── Dynamically Build Addons Path ───────────────────────────────────────────
 COMPILED_ADDONS_PATH="/opt/odoo/addons,/opt/odoo/custom_addons"
@@ -49,20 +58,26 @@ db_port = ${DB_PORT}
 db_user = ${DB_USER}
 db_password = ${DB_PASSWORD}
 
+; Serve exactly one database and keep the public database manager
+; (/web/database/manager: create, drop, backup, restore) switched off
+db_name = ${DB_NAME}
+dbfilter = ^${DB_NAME}$
+list_db = False
+
 ; Master password (for DB management UI)
 admin_passwd = ${ADMIN_PASSWD}
 
-; Network
+; Network (listen on all interfaces so Traefik can reach the container)
+http_interface = 0.0.0.0
 http_port = 8069
-longpolling_port = 8072
+gevent_port = 8072
 proxy_mode = True
 
 ; Workers (set 0 for dev single-thread mode)
 workers = ${WORKERS}
 max_cron_threads = 2
 
-; Logging
-logfile = False
+; Logging (no logfile: logs go to stderr for docker logs)
 log_level = ${LOG_LEVEL}
 log_handler = :INFO
 

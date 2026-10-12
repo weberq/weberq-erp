@@ -7,8 +7,9 @@
 #   ./scripts/submodules.sh <command> [submodule_name]
 #
 # Commands:
-#   init      - Register + initialize all enabled submodules (first-time setup)
-#   pull      - Pull latest changes for all (or a specific) enabled submodule
+#   init      - Register + initialize all enabled submodules at their pinned commits
+#   pull      - Move all (or one) enabled submodule to its branch tip; commit the
+#               new pointer to deploy it
 #   update    - Sync .gitmodules from manifest, then pull (full reconcile)
 #   status    - Show status of all submodules
 #   add <name> <repo> [branch] [desc]
@@ -79,13 +80,10 @@ cmd_init() {
       git submodule add -b "$branch" "$repo" "$path"
       success "Added submodule: $name"
     else
-      info "Already registered, initializing..."
+      # Stays on the commit pinned in this repo, which is what CI builds.
+      # Use 'pull' to move to the branch tip.
+      info "Already registered, initializing at pinned commit..."
       git submodule update --init --recursive -- "$path"
-    fi
-
-    # Ensure we're on the correct branch
-    if [[ -d "$path" ]]; then
-      git -C "$path" checkout "$branch" 2>/dev/null || warn "Could not switch to branch '$branch' for $name"
     fi
   done < <(get_enabled_submodules)
 
@@ -245,8 +243,8 @@ ${BOLD}Usage:${RESET}
   ./scripts/submodules.sh <command> [options]
 
 ${BOLD}Commands:${RESET}
-  ${CYAN}init${RESET}   [name]              Initialize all (or one) enabled submodule(s)
-  ${CYAN}pull${RESET}   [name]              Pull latest from remote for all (or one)
+  ${CYAN}init${RESET}   [name]              Initialize all (or one) at the pinned commit
+  ${CYAN}pull${RESET}   [name]              Move to branch tip (commit pointer to deploy)
   ${CYAN}update${RESET} [name]              Sync manifest → .gitmodules, then pull
   ${CYAN}status${RESET}                     Show status of all submodules
   ${CYAN}add${RESET}    <name> <repo> [branch] [desc]

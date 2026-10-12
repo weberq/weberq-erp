@@ -24,7 +24,9 @@ jobs:
           # actions/checkout injects an extraheader overriding our PAT. We must remove it.
           git config --local --unset-all "http.https://github.com/.extraheader" || true
           git config --global url."https://${{ secrets.GHCR_PAT }}:x-oauth-basic@github.com/".insteadOf "git@github.com:"
-          git submodule update --init --recursive --remote
+          # Build exactly the submodule commits recorded in this repo. To take a newer
+          # version: ./scripts/submodules.sh pull <name>, test it, commit the new pointer.
+          git submodule update --init --recursive
 
       - name: Set lowercase owner
         run: echo "OWNER_LC=${GITHUB_REPOSITORY_OWNER,,}" >> $GITHUB_ENV
@@ -52,7 +54,7 @@ jobs:
           DB_PORT: ${{ secrets.DB_PORT || '5432' }}
           DB_USER: ${{ secrets.DB_USER || 'odoo' }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          ODOO_MASTER_PASSWORD: ${{ secrets.ODOO_MASTER_PASSWORD || 'changeme' }}
+          ODOO_MASTER_PASSWORD: ${{ secrets.ODOO_MASTER_PASSWORD }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
@@ -62,8 +64,16 @@ jobs:
           script: |
             DOMAIN="erp.weberq.in"
             APP_NAME="weberq-erp"
+            DB_NAME="$DB_USER"
+            DATA_VOLUME="odoo_data"
+            UPGRADE_MODULES="weberq_branding"
             OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
             IMAGE="ghcr.io/$OWNER_LC/$APP_NAME:${{ github.sha }}"
+
+            if [ -z "$DB_PASSWORD" ]; then
+              echo "DB_PASSWORD secret is not set, aborting."
+              exit 1
+            fi
 
             echo "Login to GHCR..."
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u $OWNER_LC --password-stdin || true
@@ -84,42 +94,108 @@ jobs:
               docker start odoo-db
             fi
 
-            echo "Cleanup old images to free disk space..."
-            docker image prune -af
+            echo "Wait for Postgres..."
+            DB_READY=false
+            for i in $(seq 1 30); do
+              if docker exec odoo-db pg_isready -q -U "$DB_USER"; then DB_READY=true; break; fi
+              sleep 2
+            done
+            [ "$DB_READY" = true ] || { echo "Postgres did not become ready, aborting."; exit 1; }
+
+            # Only ERP images are pruned, and images used by a container (the
+            # current release, kept for rollback) survive
+            echo "Remove unused ERP images to free disk space..."
+            docker image prune -af --filter "label=org.opencontainers.image.source=https://github.com/weberq/weberq-erp"
 
             echo "Pull exact image..."
-            docker pull $IMAGE
+            docker pull "$IMAGE" || { echo "Image pull failed, old container left running."; exit 1; }
+
+            # Every Odoo container gets the same database settings and the persistent
+            # data volume (filestore, sessions)
+            erp_run() {
+              docker run \
+                --network web_network \
+                -v "$DATA_VOLUME":/var/lib/odoo \
+                -e HOST="$DB_HOST" \
+                -e PORT="$DB_PORT" \
+                -e USER="$DB_USER" \
+                -e PASSWORD="$DB_PASSWORD" \
+                -e DB_NAME="$DB_NAME" \
+                -e ADMIN_PASSWD="$ODOO_MASTER_PASSWORD" \
+                -e WORKERS="4" \
+                -e LOG_LEVEL="info" \
+                "$@"
+            }
+
+            start_erp() {
+              erp_run -d \
+                --name "$APP_NAME" \
+                --restart unless-stopped \
+                -l "traefik.enable=true" \
+                -l "traefik.docker.network=web_network" \
+                -l "traefik.http.routers.$APP_NAME.rule=Host(\`$DOMAIN\`) || Host(\`www.$DOMAIN\`)" \
+                -l "traefik.http.routers.$APP_NAME.entrypoints=web,websecure" \
+                -l "traefik.http.routers.$APP_NAME.tls=true" \
+                -l "traefik.http.routers.$APP_NAME.tls.certresolver=letsencrypt" \
+                -l "traefik.http.routers.$APP_NAME.service=$APP_NAME" \
+                -l "traefik.http.services.$APP_NAME.loadbalancer.server.port=8069" \
+                -l "traefik.http.routers.${APP_NAME}-ws.rule=(Host(\`$DOMAIN\`) || Host(\`www.$DOMAIN\`)) && PathPrefix(\`/websocket\`)" \
+                -l "traefik.http.routers.${APP_NAME}-ws.entrypoints=web,websecure" \
+                -l "traefik.http.routers.${APP_NAME}-ws.tls=true" \
+                -l "traefik.http.routers.${APP_NAME}-ws.tls.certresolver=letsencrypt" \
+                -l "traefik.http.routers.${APP_NAME}-ws.service=${APP_NAME}-ws" \
+                -l "traefik.http.services.${APP_NAME}-ws.loadbalancer.server.port=8072" \
+                "$1" --config=/etc/odoo/odoo.conf
+            }
+
+            rollback() {
+              echo "Deploy failed: $1"
+              docker logs --tail 100 "$APP_NAME" 2>/dev/null || true
+              docker rm -f "$APP_NAME" 2>/dev/null || true
+              if [ -n "$PREV_IMAGE" ]; then
+                echo "Rolling back to $PREV_IMAGE..."
+                start_erp "$PREV_IMAGE"
+              fi
+              exit 1
+            }
+
+            PREV_IMAGE=$(docker inspect -f '{{.Config.Image}}' "$APP_NAME" 2>/dev/null || true)
 
             echo "Stop old container..."
-            docker rm -f $APP_NAME || true
+            docker stop "$APP_NAME" 2>/dev/null || true
+
+            # One-time migration: before $DATA_VOLUME existed, each deploy started Odoo
+            # on a fresh anonymous volume. Carry the previous container's data over.
+            if ! docker volume inspect "$DATA_VOLUME" >/dev/null 2>&1 && [ -n "$PREV_IMAGE" ]; then
+              echo "Seeding $DATA_VOLUME from the previous container..."
+              if ! docker run --rm --user root --entrypoint bash \
+                  --volumes-from "$APP_NAME" \
+                  -v "$DATA_VOLUME":/seed \
+                  "$IMAGE" -c 'cp -a /var/lib/odoo/. /seed/ && chown -R odoo:odoo /seed'; then
+                docker volume rm "$DATA_VOLUME" >/dev/null 2>&1 || true
+                docker start "$APP_NAME" || true
+                echo "Seeding $DATA_VOLUME failed, old container restarted."
+                exit 1
+              fi
+            fi
+
+            docker rm -f "$APP_NAME" 2>/dev/null || true
+
+            # Upgrade as a one-off step so container restarts don't re-run it
+            echo "Upgrade modules ($UPGRADE_MODULES)..."
+            erp_run --rm "$IMAGE" --config=/etc/odoo/odoo.conf -d "$DB_NAME" -u "$UPGRADE_MODULES" --stop-after-init \
+              || rollback "module upgrade failed"
 
             echo "Run new container..."
-            docker run -d \
-              --name $APP_NAME \
-              --network web_network \
-              --restart unless-stopped \
-              -e HOST="$DB_HOST" \
-              -e PORT="$DB_PORT" \
-              -e USER="$DB_USER" \
-              -e PASSWORD="$DB_PASSWORD" \
-              -e ADMIN_PASSWD="$ODOO_MASTER_PASSWORD" \
-              -e WORKERS="4" \
-              -e LOG_LEVEL="info" \
-              -l "traefik.enable=true" \
-              -l "traefik.docker.network=web_network" \
-              -l "traefik.http.routers.$APP_NAME.rule=Host(\`$DOMAIN\`) || Host(\`www.$DOMAIN\`)" \
-              -l "traefik.http.routers.$APP_NAME.entrypoints=web,websecure" \
-              -l "traefik.http.routers.$APP_NAME.tls=true" \
-              -l "traefik.http.routers.$APP_NAME.tls.certresolver=letsencrypt" \
-              -l "traefik.http.routers.$APP_NAME.service=$APP_NAME" \
-              -l "traefik.http.services.$APP_NAME.loadbalancer.server.port=8069" \
-              -l "traefik.http.routers.${APP_NAME}-ws.rule=(Host(\`$DOMAIN\`) || Host(\`www.$DOMAIN\`)) && PathPrefix(\`/websocket\`)" \
-              -l "traefik.http.routers.${APP_NAME}-ws.entrypoints=web,websecure" \
-              -l "traefik.http.routers.${APP_NAME}-ws.tls=true" \
-              -l "traefik.http.routers.${APP_NAME}-ws.tls.certresolver=letsencrypt" \
-              -l "traefik.http.routers.${APP_NAME}-ws.service=${APP_NAME}-ws" \
-              -l "traefik.http.services.${APP_NAME}-ws.loadbalancer.server.port=8072" \
-              $IMAGE --config=/etc/odoo/odoo.conf -d "$DB_USER" -u weberq_branding
+            start_erp "$IMAGE" || rollback "container failed to start"
+
+            echo "Wait for Odoo to serve the login page..."
+            HEALTHY=false
+            for i in $(seq 1 60); do
+              if docker exec "$APP_NAME" curl -fsS -m 10 -o /dev/null http://localhost:8069/web/login 2>/dev/null; then HEALTHY=true; break; fi
+              sleep 5
+            done
+            [ "$HEALTHY" = true ] || rollback "Odoo did not serve /web/login in time"
 
             echo "Cleanup dangling images..."
             docker image prune -f
